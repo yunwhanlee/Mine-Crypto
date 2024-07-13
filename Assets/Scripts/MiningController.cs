@@ -28,8 +28,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public float moveSpeed;                     // 移動速度
 
         [Range(1, 5)] public float attackSpeed;     // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
-        private float attackSpeedSec;               // 実際の攻撃速度(秒)
-        private float attackWaitTime;               // 攻撃待機時間
+        public float attackSpeedSec;               // 実際の攻撃速度(秒)
+        public float attackWaitTime;               // 攻撃待機時間
 
         public int bagStorageMax;                   // カバンMAX保管量
         public int bagStorage;                      // カバン保管量
@@ -52,12 +52,19 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
             status = Status.GO;
             attackSpeedSec = 1 / attackSpeed;
+            Debug.Log($"attackSpeedSec= {attackSpeedSec}");
             bagStorage = 0;
             stamina = staminaMax;
         }
 
         void FixedUpdate()
         {
+            if(status == Status.RECOVERTY)
+            {
+                Debug.Log("RECOVERY !");
+                return;
+            }
+
             //* 採掘していないとき
             if(status == Status.GO)
             {
@@ -65,7 +72,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 if(_animation.GetState() != CharacterState.Run)
                 {
                     _animation.Run();
-                    _animation.moveDustParticle.Play();
                 }
 
                 // ターゲット 指定
@@ -112,10 +118,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             else if(status == Status.BACKHOME)
             {
                 // 一回 実行
-                if(_animation.GetState() != CharacterState.Run)
+                if(_animation.GetState() != CharacterState.Crawl)
                 {
-                    _animation.Run();
-                    _animation.moveDustParticle.Play();
+                    _animation.Crawl(); // カバン持って帰る
                 }
 
                 Vector3 homePos = GM._.mm.homeTf.position;
@@ -141,31 +146,37 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 if(distance < 0.1f)
                 {
                     Debug.Log("REACH HOME!");
-                    status = Status.GO; // 採掘しに行こう！
-                    _animation.Idle();
-                    _animation.moveDustParticle.Stop();
-                    GM._.ui.coinAttractionPtcImg.Play();
 
                     // コイン 増加
                     GM._.mm.Coin += bagStorage;
                     bagStorage = 0;
 
-                    // カバンイメージ 非表示
-                    _charaBuilder.Back = "";
-                    _charaBuilder.Rebuild();
-
                     // スタミナ 減る
                     stamina--;
-                    if(stamina < 1)
+                    if(stamina <= 0)
                     {
+                        Debug.Log("REACH HOME! DIE");
                         status = Status.RECOVERTY;
                         _animation.Die();
                     }
+                    else {
+                        status = Status.GO; // 採掘しに行こう！
+                        _animation.Idle();
+                    }
+
+                    _animation.moveDustParticle.Stop();
+                    GM._.ui.coinAttractionPtcImg.Play();
                 }
             }
         }
 
         void Update() {
+            if(status == Status.RECOVERTY)
+            {
+                Debug.Log("RECOVERY !");
+                return;
+            }
+
             //* 採掘しているとき
             if(status == Status.MINING) {
                 attackWaitTime += Time.deltaTime;
@@ -174,7 +185,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 if(_animation.GetState() == CharacterState.Run)
                 {
                     _animation.Idle();
-                    _animation.moveDustParticle.Stop();
                 }
 
                 //* 鉱石 攻撃（採掘）
@@ -188,11 +198,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // カバン ストレージ量が埋めたら
                     else {
                         status = Status.BACKHOME; // 家に帰る
-
-                        // カバンイメージ 表示
-                        _charaBuilder.Back = "LargeBackpack";
-                        _charaBuilder.Rebuild();
-
                         return;
                     }
 
@@ -209,10 +214,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     {
                         status = Status.BACKHOME; // 家に帰る
                         targetOre = null;
-
-                        // カバンイメージ 表示
-                        _charaBuilder.Back = "LargeBackpack";
-                        _charaBuilder.Rebuild();
                     }
                 }
             }

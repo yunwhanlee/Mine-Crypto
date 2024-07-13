@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MineManager : MonoBehaviour
 {
-    public GameObject goblinPref;
+    public GameObject[] goblinPrefs;
 
     public Transform homeTf;
     public Transform oreGroupTf;
@@ -37,9 +37,35 @@ public class MineManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        //! TEST GOBLIN
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-            Instantiate(goblinPref, workerGroupTf);
+            Instantiate(goblinPrefs[0], workerGroupTf);
+            WorkerCnt++;
+        }
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Instantiate(goblinPrefs[1], workerGroupTf);
+            WorkerCnt++;
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(goblinPrefs[2], workerGroupTf);
+            WorkerCnt++;
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Instantiate(goblinPrefs[3], workerGroupTf);
+            WorkerCnt++;
+        }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            Instantiate(goblinPrefs[4], workerGroupTf);
+            WorkerCnt++;
+        }
+        if(Input.GetKeyDown(KeyCode.Y))
+        {
+            Instantiate(goblinPrefs[5], workerGroupTf);
             WorkerCnt++;
         }
     }

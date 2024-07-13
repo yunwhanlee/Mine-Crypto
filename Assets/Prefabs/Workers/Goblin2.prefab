@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8007824805813938150}
   - component: {fileID: 3155968093292501926}
   m_Layer: 0
-  m_Name: Goblin1
+  m_Name: Goblin2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   Head: Goblin
   Ears: Goblin
   Eyes: Goblin
-  Body: GoblinGoblin
+  Body: Goblin
   Hair: 
   Armor: 
   Helmet: 
@@ -330,7 +330,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  emitterVelocityMode: 0
+  emitterVelocityMode: 1
   looping: 1
   prewarm: 1
   playOnAwake: 0
@@ -894,7 +894,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1774,7 +1774,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1831,7 +1831,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5189,7 +5189,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: -497237652, guid: 949c3077ab491d9418fce2b666b47321, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 80e8e234c1ac27f4cad67d9671b73bf7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5213,7 +5213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 11400000, guid: 82d34aa9724e5574ab94507708e64b97, type: 2}
+  m_SpriteLibraryAsset: {fileID: 11400000, guid: 891d912d8be4bf240bfb72898afd1e41, type: 2}
 --- !u!114 &6250118534738944212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5226,10 +5226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 1.0429618e-14
+  m_CategoryHash: 0.009161512
   m_labelHash: 0.00000040954276
   m_SpriteKey: 8.913528e-15
-  m_SpriteHash: 27503621
+  m_SpriteHash: 288431053
 --- !u!1 &7931224995407229654
 GameObject:
   m_ObjectHideFlags: 0

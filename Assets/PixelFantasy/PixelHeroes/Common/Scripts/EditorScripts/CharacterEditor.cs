@@ -134,23 +134,35 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.EditorScripts
 
         private void Rebuild(LayerEditor layer)
         {
-            var layers = Layers.ToDictionary(i => i.Name, i => i.SpriteData);
+            if (layer != null)
+                {
+                    if (layer.Name == "Back")
+                    {
+                        CharacterBuilder.Back = layer.SpriteData;
+                    }
+                    // 다른 레이어가 필요하다면 추가
+                }
+                else
+                {
+                    var layers = Layers.ToDictionary(i => i.Name, i => i.SpriteData);
 
-            CharacterBuilder.Head = layers["Head"];
-            CharacterBuilder.Ears = layers["Ears"];
-            CharacterBuilder.Eyes = layers["Eyes"];
-            CharacterBuilder.Body = layers["Body"];
-            CharacterBuilder.Hair = layers["Hair"];
-            CharacterBuilder.Armor = layers["Armor"];
-            CharacterBuilder.Helmet = layers["Helmet"];
-            CharacterBuilder.Weapon = layers["Weapon"];
-            CharacterBuilder.Firearm = layers["Firearm"];
-            CharacterBuilder.Shield = layers["Shield"];
-            CharacterBuilder.Cape = layers["Cape"];
-            CharacterBuilder.Back = layers["Back"];
-            CharacterBuilder.Mask = layers["Mask"];
-            CharacterBuilder.Horns = layers["Horns"];
-            CharacterBuilder.Rebuild(layer?.Name);
+                    CharacterBuilder.Head = layers["Head"];
+                    CharacterBuilder.Ears = layers["Ears"];
+                    CharacterBuilder.Eyes = layers["Eyes"];
+                    CharacterBuilder.Body = layers["Body"];
+                    CharacterBuilder.Hair = layers["Hair"];
+                    CharacterBuilder.Armor = layers["Armor"];
+                    CharacterBuilder.Helmet = layers["Helmet"];
+                    CharacterBuilder.Weapon = layers["Weapon"];
+                    CharacterBuilder.Firearm = layers["Firearm"];
+                    CharacterBuilder.Shield = layers["Shield"];
+                    CharacterBuilder.Cape = layers["Cape"];
+                    CharacterBuilder.Back = layers["Back"];
+                    CharacterBuilder.Mask = layers["Mask"];
+                    CharacterBuilder.Horns = layers["Horns"];
+                }
+
+                CharacterBuilder.Rebuild(layer?.Name);
         }
 
         private static string GetDisplayName(string fileName)

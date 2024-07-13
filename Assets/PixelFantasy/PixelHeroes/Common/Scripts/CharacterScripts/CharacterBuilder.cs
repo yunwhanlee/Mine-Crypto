@@ -31,7 +31,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts
 
         public void Awake()
         {
-            Rebuild();
+            // Rebuild();
         }
 
         public void Rebuild(string changed = null, bool forceMerge = false)

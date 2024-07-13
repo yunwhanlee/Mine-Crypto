@@ -35,11 +35,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         public void Run()
         {
-            if (GetState() != CharacterState.Run)
-            {
-                EffectManager.Instance.CreateSpriteEffect(_character, "Run");
-            }
-
             SetState(CharacterState.Run);
             moveDustParticle.Play();
         }
@@ -63,6 +58,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         public void Block()
         {
+            if (GetState() != CharacterState.Block)
+            {
+                EffectManager.Instance.CreateSpriteEffect(_character, "Run");
+            }
+
             SetState(CharacterState.Block);
         }
 
@@ -74,6 +74,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public void Die()
         {
             SetState(CharacterState.Die);
+            moveDustParticle.Stop();
         }
 
         public void Roll()
@@ -111,6 +112,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public void Crawl()
         {
             SetState(CharacterState.Crawl);
+            moveDustParticle.Play();
         }
 
         public void Crouch()
