@@ -39,6 +39,7 @@ public class Ore : MonoBehaviour
     }
 
     public void DecreaseHp(int dmg) {
+        // 破壊したら、同じ採掘をしている他のゴブリンはそのまま終了
         if(IsDestroied)
             return;
 

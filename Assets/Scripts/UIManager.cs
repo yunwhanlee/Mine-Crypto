@@ -16,4 +16,13 @@ public class UIManager : MonoBehaviour
         coinTxt.text = DM._.DB.statusDB.Coin.ToString();
         workerCntTxt.text = GM._.mm.workerGroupTf.childCount.ToString();
     }
+
+    public IEnumerator CoPlayCoinAttractionPtcUIEF(int playCnt = 1) {
+        int time = 0;
+        while(time < playCnt) {
+            time++;
+            coinAttractionPtcImg.Play();
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 }

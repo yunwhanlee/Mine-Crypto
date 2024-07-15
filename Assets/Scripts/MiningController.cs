@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
@@ -77,17 +75,28 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // ターゲット 指定
                 if(!targetOre)
                 {
-                    // 最初一回すぐ攻撃
-                    attackWaitTime = attackSpeedSec;
+                    attackWaitTime = attackSpeedSec; // 最初一回すぐ攻撃
 
                     Ore ore = null;
+
+                    // ターゲット探す
                     for(int i = 0; i < GM._.mm.oreGroupTf.childCount; i++)
                     {   
                         ore = GM._.mm.oreGroupTf.GetChild(i).GetComponent<Ore>();
-                        if(!ore.IsMining)
+
+                        // ターゲットにするため、ループ終了
+                        if(ore.IsMining == false)
                             break;
                     }
 
+                    // 途中で他のゴブリンが破壊したら
+                    if(ore == null) {
+                        status = Status.BACKHOME; // 家に帰る
+                        targetOre = null;
+                        return;
+                    }
+
+                    // ターゲット指定
                     targetOre = ore;
                     targetOre.IsMining = true;
                 }
@@ -148,6 +157,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     Debug.Log("REACH HOME!");
 
                     // コイン 増加
+                    const int ratio = 50;
+                    int playCnt = bagStorage / ratio;
+                    Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {playCnt}");
+                    StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(playCnt <= 0? 1 : playCnt));
                     GM._.mm.Coin += bagStorage;
                     bagStorage = 0;
 
@@ -165,7 +178,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     }
 
                     _animation.moveDustParticle.Stop();
-                    GM._.ui.coinAttractionPtcImg.Play();
                 }
             }
         }

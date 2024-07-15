@@ -4072,7 +4072,7 @@ MonoBehaviour:
     to: 1
   _textureSheetFPS: 25
   _textureSheetCycles: 1
-  _rate: 50
+  _rate: 10
   _rateOverLifetime: 0
   _rateOverDistance: 0
   _bursts: []
@@ -4296,7 +4296,7 @@ GameObject:
   - component: {fileID: 5587259776473534882}
   - component: {fileID: 5587259776473534881}
   m_Layer: 0
-  m_Name: Particle Image
+  m_Name: CoinAttractionPtcImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

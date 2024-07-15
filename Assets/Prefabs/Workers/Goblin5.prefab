@@ -55,12 +55,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  attackVal: 10
-  moveSpeed: 5
-  attackSpeed: 1
+  attackVal: 22
+  moveSpeed: 9
+  attackSpeed: 1.8
   attackSpeedSec: 0
   attackWaitTime: 0
-  bagStorageMax: 50
+  bagStorageMax: 150
   bagStorage: 0
   staminaMax: 3
   stamina: 0
