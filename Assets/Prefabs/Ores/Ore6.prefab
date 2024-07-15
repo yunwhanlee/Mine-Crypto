@@ -176,9 +176,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Lv>k__BackingField: 0
-  <MaxHp>k__BackingField: 100
+  <MaxHp>k__BackingField: 600
   <Hp>k__BackingField: 0
   IsMining: 0
+  IsDestroied: 0
   <MaxMiningCnt>k__BackingField: 0
   <MiningCnt>k__BackingField: 0
   <OreSprs>k__BackingField:
@@ -227,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1151019433, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

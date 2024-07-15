@@ -179,6 +179,7 @@ MonoBehaviour:
   <MaxHp>k__BackingField: 100
   <Hp>k__BackingField: 0
   IsMining: 0
+  IsDestroied: 0
   <MaxMiningCnt>k__BackingField: 0
   <MiningCnt>k__BackingField: 0
   <OreSprs>k__BackingField:
@@ -227,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 275819660, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -275,7 +276,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.5, y: 2.35}
+    oldSize: {x: 3.125, y: 2.9375}
     newSize: {x: 2.5, y: 2.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
