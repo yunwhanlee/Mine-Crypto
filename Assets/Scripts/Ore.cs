@@ -15,6 +15,9 @@ public class Ore : MonoBehaviour
     [field:SerializeField] public int MaxMiningCnt {get; set;}
     [field:SerializeField] public int MiningCnt {get; set;}
 
+    [field: Header("EFFECT")]
+    [field: SerializeField] public ParticleSystem MiningHitPtcEF {get; private set;}
+
     [field: Header("鉱石 リソース：Large, Medium, Small")]
     const int OreLarge = 0, OreMedium = 1, OreSmall = 2;
     [field: SerializeField] public Sprite[] OreSprs {get; private set;}
@@ -45,8 +48,11 @@ public class Ore : MonoBehaviour
 
         Hp -= dmg;
 
+
         if(Hp > 0)
         {
+            MiningHitPtcEF.Play();
+
             HpSlider.value = (float)Hp / MaxHp;
 
             // Ore スプライト 設定
