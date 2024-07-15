@@ -205,12 +205,14 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     _animation.Slash();
 
                     // 鉱石 HpBar 表示
-                    if(!targetOre.HpSlider.gameObject.activeSelf)
+                    if(targetOre && !targetOre.HpSlider.gameObject.activeSelf)
                         targetOre.HpSlider.gameObject.SetActive(true);
 
                     // 攻撃
-                    bool isDestory = targetOre.DecreaseHp(attackVal);
-                    if(isDestory)
+                    targetOre.DecreaseHp(attackVal);
+
+                    // 破壊
+                    if(targetOre.IsDestroied)
                     {
                         status = Status.BACKHOME; // 家に帰る
                         targetOre = null;

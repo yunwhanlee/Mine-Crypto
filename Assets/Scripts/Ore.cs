@@ -11,6 +11,7 @@ public class Ore : MonoBehaviour
     [field:SerializeField] public int Hp {get; set;}
 
     [field:SerializeField] public bool IsMining;
+    [field:SerializeField] public bool IsDestroied;
     [field:SerializeField] public int MaxMiningCnt {get; set;}
     [field:SerializeField] public int MiningCnt {get; set;}
 
@@ -37,29 +38,27 @@ public class Ore : MonoBehaviour
         MiningCnt = 0;
     }
 
-    public bool DecreaseHp(int dmg) {
-        bool isDestory;
+    public void DecreaseHp(int dmg) {
+        if(IsDestroied)
+            return;
 
         Hp -= dmg;
-
-        // Ore スプライト 設定
-        float largeHpRatio = MaxHp * 0.6f;
-        float mediumHpRatio = MaxHp * 0.3f;
-        SprRdr.sprite = Hp > largeHpRatio? OreSprs[OreLarge]
-            : Hp > mediumHpRatio? OreSprs[OreMedium]
-            : OreSprs[OreSmall];
 
         if(Hp > 0)
         {
             HpSlider.value = (float)Hp / MaxHp;
-            isDestory = false;
+
+            // Ore スプライト 設定
+            float largeHpRatio = MaxHp * 0.6f;
+            float mediumHpRatio = MaxHp * 0.3f;
+            SprRdr.sprite = Hp > largeHpRatio? OreSprs[OreLarge]
+                : Hp > mediumHpRatio? OreSprs[OreMedium]
+                : OreSprs[OreSmall];
         }
         else
         {
-            isDestory = true;
+            IsDestroied = true;
             Destroy(gameObject);
         }
-
-        return isDestory;
     }
 }
