@@ -9,7 +9,7 @@ public class Ore : MonoBehaviour
 
     [field:SerializeField] public int Lv {get; set;}
     [field:SerializeField] public int MaxHp {get; set;}
-    [field:SerializeField] public int Hp {get; set;}
+    [field:SerializeField] int Hp {get; set;}
 
     [field:SerializeField] public bool IsMining;
     [field:SerializeField] public bool IsDestroied;

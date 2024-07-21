@@ -40,32 +40,38 @@ public class MineManager : MonoBehaviour
         //! TEST GOBLIN
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            Instantiate(goblinPrefs[0], workerGroupTf);
+            var ins = Instantiate(goblinPrefs[0], workerGroupTf);
+            ins.transform.position = GM._.mm.homeTf.position;
             WorkerCnt++;
         }
         if(Input.GetKeyDown(KeyCode.W))
         {
-            Instantiate(goblinPrefs[1], workerGroupTf);
+            var ins = Instantiate(goblinPrefs[1], workerGroupTf);
+            ins.transform.position = GM._.mm.homeTf.position;
             WorkerCnt++;
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(goblinPrefs[2], workerGroupTf);
+            var ins = Instantiate(goblinPrefs[2], workerGroupTf);
+            ins.transform.position = GM._.mm.homeTf.position;
             WorkerCnt++;
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
-            Instantiate(goblinPrefs[3], workerGroupTf);
+            var ins = Instantiate(goblinPrefs[3], workerGroupTf);
+            ins.transform.position = GM._.mm.homeTf.position;
             WorkerCnt++;
         }
         if(Input.GetKeyDown(KeyCode.T))
         {
-            Instantiate(goblinPrefs[4], workerGroupTf);
+            var ins = Instantiate(goblinPrefs[4], workerGroupTf);
+            ins.transform.position = GM._.mm.homeTf.position;
             WorkerCnt++;
         }
         if(Input.GetKeyDown(KeyCode.Y))
         {
-            Instantiate(goblinPrefs[5], workerGroupTf);
+            var ins = Instantiate(goblinPrefs[5], workerGroupTf);
+            ins.transform.position = GM._.mm.homeTf.position;
             WorkerCnt++;
         }
     }

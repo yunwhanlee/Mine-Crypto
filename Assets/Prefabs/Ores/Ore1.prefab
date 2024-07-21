@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Lv>k__BackingField: 0
-  <MaxHp>k__BackingField: 100
+  <MaxHp>k__BackingField: 1000
   <Hp>k__BackingField: 0
   IsMining: 0
   IsDestroied: 0
