@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
@@ -22,15 +24,32 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         public Status status;
 
-        public int attackVal;                       // 攻撃力
-        public float moveSpeed;                     // 移動速度
+        public int attackVal;                          // 攻撃力
+        public float moveSpeed;                        // 移動速度
 
-        [Range(1, 5)] public float attackSpeed;     // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
-        public float attackSpeedSec;               // 実際の攻撃速度(秒)
-        public float attackWaitTime;               // 攻撃待機時間
+        [Range(1, 5)] public float attackSpeed;        // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
+        public float attackSpeedSec;                   // 実際の攻撃速度(秒)
+        public float attackWaitTime;                   // 攻撃待機時間
 
-        public int bagStorageMax;                   // カバンMAX保管量
-        public int bagStorage;                      // カバン保管量
+        public int bagStorageMax;                      // カバンMAX保管量
+        // カバン保管量
+        [field:SerializeField] int bagStorage;  public int BagStorage {
+            get => bagStorage;
+            set {
+                bagStorage = value;
+
+                // ０以上なら スライダーバー 表示
+                bagStorageSlider.gameObject.SetActive(bagStorage > 0);
+
+                // スライダーバー UI最新化
+                if(bagStorageSlider.gameObject.activeSelf) {
+                    bagStorageSlider.value = (float)bagStorage / bagStorageMax;
+                    bagStorageSliderTxt.text = bagStorage.ToString();
+                }
+            }
+        }
+        public Slider bagStorageSlider;                // カバン保管量 スライダーバー
+        public TMP_Text bagStorageSliderTxt;           // カバン保管量 スライダーバー テキスト
 
         // public int staminaMax;                      // スタミナMAX
         // public int stamina;                         // スタミナ
@@ -51,7 +70,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             status = Status.GO;
             attackSpeedSec = 1 / attackSpeed;
             Debug.Log($"attackSpeedSec= {attackSpeedSec}");
-            bagStorage = 0;
+            BagStorage = 0;
             // stamina = staminaMax;
         }
 
@@ -156,13 +175,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     Debug.Log("REACH HOME!");
 
-                    // コイン 増加
+                    // コインEF 増加
                     const int ratio = 50;
-                    int playCnt = bagStorage / ratio;
-                    Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {playCnt}");
-                    StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(playCnt <= 0? 1 : playCnt));
+                    int effectPlayCnt = bagStorage / ratio;
+                    Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
+                    StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(effectPlayCnt <= 0? 1 : effectPlayCnt));
                     GM._.mm.Coin += bagStorage;
-                    bagStorage = 0;
+                    BagStorage = 0;
 
                     // スタミナ 減る
                     // stamina--;
@@ -205,7 +224,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // カバン ストレージ量 増加
                     if(bagStorage < bagStorageMax)
                     {
-                        bagStorage += attackVal;
+                        BagStorage += attackVal;
                     }
                     // カバン ストレージ量が埋めたら
                     else {

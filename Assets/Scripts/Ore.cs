@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ public class Ore : MonoBehaviour
 
     [field: SerializeField] public SpriteRenderer SprRdr {get; private set;}
     [field: SerializeField] public Slider HpSlider {get; private set;}
+    [field: SerializeField] public TMP_Text HpSliderTxt {get; private set;}
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class Ore : MonoBehaviour
 
         Hp = MaxHp;
         HpSlider.value = (float)Hp / MaxHp;
+        HpSliderTxt.text = MaxHp.ToString();
 
         IsMining = false;
         MaxMiningCnt = 5;
@@ -54,6 +57,7 @@ public class Ore : MonoBehaviour
             MiningHitPtcEF.Play();
 
             HpSlider.value = (float)Hp / MaxHp;
+            HpSliderTxt.text = Hp.ToString();
 
             // Ore スプライト 設定
             float largeHpRatio = MaxHp * 0.6f;
