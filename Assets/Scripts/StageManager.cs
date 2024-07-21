@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class StageManager : MonoBehaviour {
     private Vector2 bottomRightPos;
 
     public TMP_Text stageTxt;
+    public DOTweenAnimation cutOutMaskUIDOTAnim;
 
     //* Value
     [field:SerializeField] int stage;  public int Stage {
@@ -33,24 +35,30 @@ public class StageManager : MonoBehaviour {
         topLeftPos = oreAreaTopLeftTf.position;
         bottomRightPos = oreAreaBottomRightTf.position;
 
-        UpdateOreValueByStage();
-        InitOrePosList(interval: 2);
-        CreateOres(oreHp, oreCnt);
+        cutOutMaskUIDOTAnim.DOPlay();
+        StartCoroutine(CoUpdateAndCreateOre(interval: 2));
     }
 
     void Update() {
         //! TEST STAGE UP
         if(Input.GetKeyDown(KeyCode.A))
         {
-            for(int i = 0; i < GM._.mm.oreGroupTf.childCount; i++) {
-                Destroy(GM._.mm.oreGroupTf.GetChild(i).gameObject);
-            }
-
             Stage++;
-            UpdateOreValueByStage();
-            InitOrePosList(interval: 2);
-            CreateOres(oreHp, oreCnt);
+            cutOutMaskUIDOTAnim.DORestart();
+            StartCoroutine(CoUpdateAndCreateOre(interval: 2));
         }
+    }
+
+    IEnumerator CoUpdateAndCreateOre(int interval) {
+        yield return Util.TIME0_5;
+        // RESET : 모든 광석 오브젝트 삭제
+        for(int i = 0; i < GM._.mm.oreGroupTf.childCount; i++) {
+            Destroy(GM._.mm.oreGroupTf.GetChild(i).gameObject);
+        }
+
+        UpdateOreValueByStage();
+        InitOrePosList(interval);
+        CreateOres(oreHp, oreCnt);
     }
 
     /// <summary>
