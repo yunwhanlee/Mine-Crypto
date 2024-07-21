@@ -11,6 +11,8 @@ public class MineManager : MonoBehaviour
     public Transform workerGroupTf;
     public List<GameObject> rockList;
 
+    public int CurTotalMiningCnt; // 타겟광석을 순차적 배치하기위한 전체타겟 카운팅
+
     [field: SerializeField] public int Coin {
         get => DM._.DB.statusDB.Coin;
         set {

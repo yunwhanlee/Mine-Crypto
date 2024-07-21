@@ -1019,6 +1019,8 @@ MonoBehaviour:
   oreGroupTf: {fileID: 2072320142}
   workerGroupTf: {fileID: 1547406287}
   rockList: []
+  CurBalanceMiningCnt: 1
+  CurTotalMiningCnt: 0
 --- !u!1 &112562854
 GameObject:
   m_ObjectHideFlags: 0

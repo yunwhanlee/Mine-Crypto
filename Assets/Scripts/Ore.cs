@@ -11,9 +11,7 @@ public class Ore : MonoBehaviour
     [field:SerializeField] public int MaxHp {get; set;}
     [field:SerializeField] int Hp {get; set;}
 
-    [field:SerializeField] public bool IsMining;
     [field:SerializeField] public bool IsDestroied;
-    [field:SerializeField] public int MaxMiningCnt {get; set;}
     [field:SerializeField] public int MiningCnt {get; set;}
 
     [field: Header("EFFECT")]
@@ -39,8 +37,6 @@ public class Ore : MonoBehaviour
         HpSlider.value = (float)Hp / MaxHp;
         HpSliderTxt.text = MaxHp.ToString();
 
-        IsMining = false;
-        MaxMiningCnt = 5;
         MiningCnt = 0;
     }
 
@@ -69,6 +65,7 @@ public class Ore : MonoBehaviour
         else
         {
             IsDestroied = true;
+            GM._.mm.CurTotalMiningCnt -= MiningCnt;
             Destroy(gameObject);
         }
     }

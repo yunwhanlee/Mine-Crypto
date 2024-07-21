@@ -96,20 +96,26 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     attackWaitTime = attackSpeedSec; // 最初一回すぐ攻撃
 
+                    Transform oreGroupTf = GM._.mm.oreGroupTf;
                     Ore ore = null;
 
                     // ターゲット探す
-                    for(int i = 0; i < GM._.mm.oreGroupTf.childCount; i++)
+                    for(int i = 0; i < oreGroupTf.childCount; i++)
                     {   
-                        ore = GM._.mm.oreGroupTf.GetChild(i).GetComponent<Ore>();
+                        ore = oreGroupTf.GetChild(i).GetComponent<Ore>();
 
                         // ターゲットにするため、ループ終了
-                        if(ore.IsMining == false)
+                        int CurBalanceMiningCnt = 1 + GM._.mm.CurTotalMiningCnt / oreGroupTf.childCount;
+                        if(ore.MiningCnt < CurBalanceMiningCnt)
+                        {
+                            Debug.Log($"Calc MiningCnt Balance: {CurBalanceMiningCnt} <- {GM._.mm.CurTotalMiningCnt} / {oreGroupTf.childCount}");
                             break;
+                        }
                     }
 
                     // 途中で他のゴブリンが破壊したら
-                    if(ore == null) {
+                    if(ore == null)
+                    {
                         status = Status.BACKHOME; // 家に帰る
                         targetOre = null;
                         return;
@@ -117,7 +123,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                     // ターゲット指定
                     targetOre = ore;
-                    targetOre.IsMining = true;
+                    targetOre.MiningCnt++;
+                    GM._.mm.CurTotalMiningCnt++;
                 }
 
                 // 方向 指定
