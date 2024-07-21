@@ -32,9 +32,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public int bagStorageMax;                   // カバンMAX保管量
         public int bagStorage;                      // カバン保管量
 
-        public int staminaMax;                      // スタミナMAX
-        public int stamina;                         // スタミナ
-        public int staminaRecoveryVal;              // スタミナ回復量
+        // public int staminaMax;                      // スタミナMAX
+        // public int stamina;                         // スタミナ
+        // public int staminaRecoveryVal;              // スタミナ回復量
 
         public Ore targetOre;
 
@@ -52,7 +52,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             attackSpeedSec = 1 / attackSpeed;
             Debug.Log($"attackSpeedSec= {attackSpeedSec}");
             bagStorage = 0;
-            stamina = staminaMax;
+            // stamina = staminaMax;
         }
 
         void FixedUpdate()
@@ -165,17 +165,17 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     bagStorage = 0;
 
                     // スタミナ 減る
-                    stamina--;
-                    if(stamina <= 0)
-                    {
-                        Debug.Log("REACH HOME! DIE");
-                        status = Status.RECOVERTY;
-                        _animation.Die();
-                    }
-                    else {
-                        status = Status.GO; // 採掘しに行こう！
-                        _animation.Idle();
-                    }
+                    // stamina--;
+                    // if(stamina <= 0)
+                    // {
+                    //     Debug.Log("REACH HOME! DIE");
+                    //     status = Status.RECOVERTY;
+                    //     _animation.Die();
+                    // }
+                    // else {
+                    status = Status.GO; // 採掘しに行こう！
+                    _animation.Idle();
+                    // }
 
                     _animation.moveDustParticle.Stop();
                 }
