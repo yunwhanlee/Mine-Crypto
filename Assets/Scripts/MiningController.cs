@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts;
 using TMPro;
@@ -9,10 +10,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
     public class MiningController : MonoBehaviour
     {
         public enum Status {
+            WAIT,
             GO,
             MINING,
             BACKHOME,
-            RECOVERTY,
+            // RECOVERTY, // <- Stamina 회복중 상태
         }
 
         private Character _character;
@@ -67,18 +69,29 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
 
-            status = Status.GO;
             attackSpeedSec = 1 / attackSpeed;
             Debug.Log($"attackSpeedSec= {attackSpeedSec}");
             BagStorage = 0;
+
+            StartCoroutine(CoInitStatus());
             // stamina = staminaMax;
+        }
+
+        /// <summary>
+        /// 첫 고블린 생성 시, 점프등장 애니메이션 0.2초 후에 이동시작
+        /// </summary>
+        IEnumerator CoInitStatus()
+        {
+            status = Status.WAIT;
+            yield return Util.TIME0_2;
+            status = Status.GO;
         }
 
         void FixedUpdate()
         {
-            if(status == Status.RECOVERTY)
+            if(status == Status.WAIT)
             {
-                Debug.Log("RECOVERY !");
+                Debug.Log("WAIT !");
                 return;
             }
 
@@ -209,9 +222,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
         void Update() {
-            if(status == Status.RECOVERTY)
+            if(status == Status.WAIT)
             {
-                Debug.Log("RECOVERY !");
+                Debug.Log("WAIT !");
                 return;
             }
 

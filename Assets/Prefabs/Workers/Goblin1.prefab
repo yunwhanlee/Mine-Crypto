@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017b8b89299a11d4f8ebed301c64edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animation: {fileID: 7786607796372877768}
   status: 0
   attackVal: 10
   moveSpeed: 5

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Assets.PixelFantasy.Common.Scripts;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public void Start()
         {
             _character = GetComponent<Character>();
+            StartCoroutine(CoSpawn());
+        }
+
+        IEnumerator CoSpawn() {
+            Jump();
+            yield return Util.TIME1;
             Idle();
         }
 
