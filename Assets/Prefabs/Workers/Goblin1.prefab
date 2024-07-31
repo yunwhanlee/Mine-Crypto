@@ -58,7 +58,7 @@ MonoBehaviour:
   status: 0
   attackVal: 10
   moveSpeed: 5
-  attackSpeed: 1
+  attackSpeed: 1.11
   attackSpeedSec: 0
   attackWaitTime: 0
   bagStorageMax: 50

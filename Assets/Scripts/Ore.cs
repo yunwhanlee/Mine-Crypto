@@ -65,7 +65,7 @@ public class Ore : MonoBehaviour
         else
         {
             IsDestroied = true;
-            GM._.mm.CurTotalMiningCnt -= MiningCnt;
+            GM._.mnm.CurTotalMiningCnt -= MiningCnt;
             Destroy(gameObject);
         }
     }

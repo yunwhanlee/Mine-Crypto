@@ -96,7 +96,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     attackWaitTime = attackSpeedSec; // 最初一回すぐ攻撃
 
-                    Transform oreGroupTf = GM._.mm.oreGroupTf;
+                    Transform oreGroupTf = GM._.mnm.oreGroupTf;
                     Ore ore = null;
 
                     // ターゲット探す
@@ -105,10 +105,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         ore = oreGroupTf.GetChild(i).GetComponent<Ore>();
 
                         // ターゲットにするため、ループ終了
-                        int CurBalanceMiningCnt = 1 + GM._.mm.CurTotalMiningCnt / oreGroupTf.childCount;
+                        int CurBalanceMiningCnt = 1 + GM._.mnm.CurTotalMiningCnt / oreGroupTf.childCount;
                         if(ore.MiningCnt < CurBalanceMiningCnt)
                         {
-                            Debug.Log($"Calc MiningCnt Balance: {CurBalanceMiningCnt} <- {GM._.mm.CurTotalMiningCnt} / {oreGroupTf.childCount}");
+                            Debug.Log($"Calc MiningCnt Balance: {CurBalanceMiningCnt} <- {GM._.mnm.CurTotalMiningCnt} / {oreGroupTf.childCount}");
                             break;
                         }
                     }
@@ -124,7 +124,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // ターゲット指定
                     targetOre = ore;
                     targetOre.MiningCnt++;
-                    GM._.mm.CurTotalMiningCnt++;
+                    GM._.mnm.CurTotalMiningCnt++;
                 }
 
                 // 方向 指定
@@ -158,7 +158,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     _animation.Crawl(); // カバン持って帰る
                 }
 
-                Vector3 homePos = GM._.mm.homeTf.position;
+                Vector3 homePos = GM._.mnm.homeTf.position;
 
                 // 方向 指定
                 Vector2 dir = (homePos - transform.position).normalized;
@@ -166,7 +166,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // キャラの向き
                 sprRdr.flipX = dir.x < 0;
 
-                const float WEIGHT_UP_SLOW_SPEED_PER = 0.7f;
+                const float WEIGHT_UP_SLOW_SPEED_PER = 0.65f;
                 Vector2 moveVec = dir * (moveSpeed * WEIGHT_UP_SLOW_SPEED_PER) * Time.fixedDeltaTime;
 
                 // ターゲットへ行く
@@ -178,7 +178,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 Debug.Log($"BACKHOME:: distance= {distance}");
 
                 //* 家に到着
-                if(distance < 0.1f)
+                if(distance < 0.225f)
                 {
                     Debug.Log("REACH HOME!");
 
@@ -187,7 +187,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     int effectPlayCnt = bagStorage / ratio;
                     Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
                     StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(effectPlayCnt <= 0? 1 : effectPlayCnt));
-                    GM._.mm.Coin += bagStorage;
+                    GM._.mnm.Coin += bagStorage;
                     BagStorage = 0;
 
                     // スタミナ 減る

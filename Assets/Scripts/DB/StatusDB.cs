@@ -9,10 +9,17 @@ using UnityEngine;
 [Serializable]
 public class StatusDB
 {
-    [field:SerializeField] public int Coin {get; set;}
+    [field:SerializeField] int coin; public int Coin {
+        get {return coin;}
+        set {
+            coin = value;
+            if(coin < 0) coin = 0;
+            GM._.ui.coinTxt.text = coin.ToString();
+        }
+    }
 
     public StatusDB() {
-        Coin = 0;
+        coin = 0;
     }
 
 }

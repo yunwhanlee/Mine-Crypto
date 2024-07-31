@@ -36,7 +36,7 @@ public class StageManager : MonoBehaviour {
         bottomRightPos = oreAreaBottomRightTf.position;
 
         cutOutMaskUIDOTAnim.DOPlay();
-        StartCoroutine(CoUpdateAndCreateOre(interval: 2));
+        StartCoroutine(CoUpdateAndCreateOre(interval: 1));
     }
 
     void Update() {
@@ -45,15 +45,15 @@ public class StageManager : MonoBehaviour {
         {
             Stage++;
             cutOutMaskUIDOTAnim.DORestart();
-            StartCoroutine(CoUpdateAndCreateOre(interval: 2));
+            StartCoroutine(CoUpdateAndCreateOre(interval: 1));
         }
     }
 
     IEnumerator CoUpdateAndCreateOre(int interval) {
         yield return Util.TIME0_5;
         // RESET : 모든 광석 오브젝트 삭제
-        for(int i = 0; i < GM._.mm.oreGroupTf.childCount; i++) {
-            Destroy(GM._.mm.oreGroupTf.GetChild(i).gameObject);
+        for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++) {
+            Destroy(GM._.mnm.oreGroupTf.GetChild(i).gameObject);
         }
 
         UpdateOreValueByStage();
@@ -95,7 +95,7 @@ public class StageManager : MonoBehaviour {
             int rand = Random.Range(0, orePosList.Count);
 
             // 생성
-            Ore ore = Instantiate(orePrefs[0], GM._.mm.oreGroupTf).GetComponent<Ore>();
+            Ore ore = Instantiate(orePrefs[0], GM._.mnm.oreGroupTf).GetComponent<Ore>();
             ore.transform.position = orePosList[rand]; // 랜덤위치 적용
             ore.MaxHp = oreHp;
 
