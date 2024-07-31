@@ -17,9 +17,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             // RECOVERTY, // <- Stamina 회복중 상태
         }
 
-        private Character _character;
-        private CharacterBuilder _charaBuilder;
-        private CharacterController2D _controller;
+        // private Character _character;
+        // private CharacterBuilder _charaBuilder;
+        // private CharacterController2D _controller;
         private CharacterAnimation _animation;
         private Rigidbody2D rigid;
         private SpriteRenderer sprRdr;
@@ -62,9 +62,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         public void Start()
         {
-            _character = GetComponent<Character>();
-            _charaBuilder = GetComponent<CharacterBuilder>();
-            _controller = GetComponent<CharacterController2D>();
+            // _character = GetComponent<Character>();
+            // _charaBuilder = GetComponent<CharacterBuilder>();
+            // _controller = GetComponent<CharacterController2D>();
             _animation = GetComponent<CharacterAnimation>();
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();

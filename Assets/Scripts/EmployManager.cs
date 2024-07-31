@@ -32,6 +32,7 @@ public class EmployManager : MonoBehaviour
             GM._.ui.SetTopWorkerInfoTxt(workerCnt, population);
         }
     }
+
     public int populationMax;
     [SerializeField] int population;
     public int Population {
@@ -45,6 +46,7 @@ public class EmployManager : MonoBehaviour
     private int workerPrice;
     private int populationPrice;
 
+
     void Start()
     {
         WorkerCnt = GM._.mnm.workerGroupTf.childCount;
@@ -55,8 +57,10 @@ public class EmployManager : MonoBehaviour
 #region FUNC
     private void UpdateUIAndData()
     {
+        // UI
         populationIncInfoTxt.text = $"{population} => {population + 1}";
 
+        // Data
         workerPrice = WORKER_PRICE_DEF + workerCnt * (workerCnt - 1) * 4000 / 2;
         workerPriceTxt.text = workerPrice.ToString();
 
@@ -102,14 +106,10 @@ public class EmployManager : MonoBehaviour
                 UpdateUIAndData();
             }
             else
-            {
                 GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
-            }
         }
         else
-        {
             GM._.ui.ShowWarningMsgPopUp("인구수가 꽉찼습니다. 최대인구를 늘리세요.");
-        }
     }
 
     /// <summary>
@@ -127,14 +127,10 @@ public class EmployManager : MonoBehaviour
                 UpdateUIAndData();
             }
             else
-            {
                 GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
-            }
         }
         else
-        {
             GM._.ui.ShowWarningMsgPopUp("인구수가 MAX입니다.");
-        }
 
 
     }

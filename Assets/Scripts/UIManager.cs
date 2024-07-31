@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void SetTopWorkerInfoTxt(int workerCnt, int population) {
         workerInfoTxt.text = $"{workerCnt} / {population}";
+        workerInfoTxt.color = (workerCnt == population)? Color.red : Color.green;
     }
 
     /// <summary>
