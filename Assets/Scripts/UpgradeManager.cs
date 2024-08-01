@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
-    //* Component
+    //* COMPONENT
     public DOTweenAnimation DOTAnim;
 
-    //* Elements
+    //* ELEMENT
     public GameObject windowObj;
 
     public TMP_Text upgAttackPriceTxt;
@@ -27,7 +27,7 @@ public class UpgradeManager : MonoBehaviour
     public TMP_Text upgExtraRebornPerInfoTxt;
 
 
-    //* Value
+    //* VALUE
     public UpgradeFormatInt upgAttack;
     public UpgradeFormatFloat upgAttackSpeed;
     public UpgradeFormatFloat upgMoveSpeed;
@@ -35,7 +35,7 @@ public class UpgradeManager : MonoBehaviour
     public UpgradeFormatFloat upgExtraRebornPer;
 
     void Start()
-    {   // TODO Price값은 가짜값
+    {
         upgAttack = new UpgradeFormatInt(Lv: 1, Unit: 1, PriceDef: 200);
         upgAttackSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 0.5f, PriceDef: 200);
         upgMoveSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 0.5f, PriceDef: 200);

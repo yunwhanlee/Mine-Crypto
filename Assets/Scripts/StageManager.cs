@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -39,13 +40,21 @@ public class StageManager : MonoBehaviour {
         StartCoroutine(CoUpdateAndCreateOre(interval: 1));
     }
 
-    void Update() {
-        //! TEST STAGE UP
-        if(Input.GetKeyDown(KeyCode.A))
+    public IEnumerator CoNextStage() {
+        Stage++;
+        yield return Util.TIME0_5;
+
+        cutOutMaskUIDOTAnim.DORestart();
+        yield return CoUpdateAndCreateOre(interval: 1);
+        yield return Util.TIME1;
+
+        // 고블린 채광이동 시작!
+        Transform workerGroup = GM._.mnm.workerGroupTf;
+        for(int i = 0; i < workerGroup.childCount; i++)
         {
-            Stage++;
-            cutOutMaskUIDOTAnim.DORestart();
-            StartCoroutine(CoUpdateAndCreateOre(interval: 1));
+            yield return Util.TIME0_2; // 이동시 겹치지 않게 0.2초씩 대기
+            var worker = workerGroup.GetChild(i).GetComponent<MiningController>();
+            StartCoroutine(worker.CoInitStatus());
         }
     }
 
@@ -65,7 +74,8 @@ public class StageManager : MonoBehaviour {
     /// 스테이지에 따른 광석 적용값 업데이트
     /// </summary>
     private void UpdateOreValueByStage() {
-        oreHp = 1000 + ((stage-1) * 100);
+        const int DEF_HP = 100;
+        oreHp = DEF_HP + ((stage-1) * 100);
         oreCnt = (stage + 10) / 10;
     }
     

@@ -12,6 +12,7 @@ public class MineManager : MonoBehaviour
     public List<GameObject> rockList;
 
     //* Value
+    public int workerClearStageStatusCnt; // 광석을 다캐고 다음스테이지로 가기위한 카운팅
     public int CurTotalMiningCnt; // 타겟광석을 순차적 배치하기위한 전체타겟 카운팅
 
     [field:SerializeField] public int Coin {
