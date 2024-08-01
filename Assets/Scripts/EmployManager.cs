@@ -17,10 +17,11 @@ public class EmployManager : MonoBehaviour
     public TMP_Text workerPriceTxt;
     public TMP_Text populationPriceTxt;
 
+
+    //* Value
     const int WORKER_PRICE_DEF = 1000;
     const int POPULATION_PRICE_DEF = 5000;
 
-    //* Value
     [SerializeField] int workerCnt;
     public int WorkerCnt {
         get {
@@ -57,15 +58,16 @@ public class EmployManager : MonoBehaviour
 #region FUNC
     private void UpdateUIAndData()
     {
-        // UI
-        populationIncInfoTxt.text = $"{population} => {population + 1}";
-
         // Data
         workerPrice = WORKER_PRICE_DEF + workerCnt * (workerCnt - 1) * 4000 / 2;
         workerPriceTxt.text = workerPrice.ToString();
 
         populationPrice = POPULATION_PRICE_DEF + population * (population - 1) * 5000 / 2;
         populationPriceTxt.text = populationPrice.ToString();
+
+        // UI
+        populationIncInfoTxt.text = $"{population} => {population + 1}";
+
     }
 #endregion
 

@@ -26,14 +26,29 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         public Status status;
 
-        public int attackVal;                          // 攻撃力
-        public float moveSpeed;                        // 移動速度
+        [SerializeField] int attackVal; // 攻撃力
+        public int AttackVal {
+            get => attackVal + GM._.ugm.upgAttack.Val;
+        }
 
-        [Range(1, 5)] public float attackSpeed;        // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
-        public float attackSpeedSec;                   // 実際の攻撃速度(秒)
-        public float attackWaitTime;                   // 攻撃待機時間
+        [SerializeField] [Range(1, 5)] float attackSpeed; // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
+        public float AttackSpeed {
+            get => attackSpeed + GM._.ugm.upgAttackSpeed.Val;
+        }
 
-        public int bagStorageMax;                      // カバンMAX保管量
+        [SerializeField] float moveSpeed; // 移動速度
+        public float MoveSpeed {
+            get => moveSpeed + GM._.ugm.upgMoveSpeed.Val;
+        }
+
+        [SerializeField] int bagStorageMax;  // カバンMAX保管量
+        public int BagStorageMax {
+            get => bagStorageMax + GM._.ugm.upgBagStorage.Val;
+        }
+
+        float attackSpeedSec; // 実際の攻撃速度(秒)
+        float attackWaitTime; // 攻撃待機時間
+
         // カバン保管量
         [field:SerializeField] int bagStorage;  public int BagStorage {
             get => bagStorage;
@@ -45,7 +60,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                 // スライダーバー UI最新化
                 if(bagStorageSlider.gameObject.activeSelf) {
-                    bagStorageSlider.value = (float)bagStorage / bagStorageMax;
+                    bagStorageSlider.value = (float)bagStorage / BagStorageMax;
                     bagStorageSliderTxt.text = bagStorage.ToString();
                 }
             }
@@ -69,7 +84,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
 
-            attackSpeedSec = 1 / attackSpeed;
+            attackSpeedSec = 1 / AttackSpeed;
             Debug.Log($"attackSpeedSec= {attackSpeedSec}");
             BagStorage = 0;
 
@@ -146,7 +161,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // キャラの向き
                 sprRdr.flipX = dir.x < 0;
 
-                Vector2 moveVec = dir * moveSpeed * Time.fixedDeltaTime;
+                Vector2 moveVec = dir * MoveSpeed * Time.fixedDeltaTime;
 
                 // ターゲットへ行く
                 rigid.MovePosition(rigid.position + moveVec);
@@ -180,7 +195,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 sprRdr.flipX = dir.x < 0;
 
                 const float WEIGHT_UP_SLOW_SPEED_PER = 0.65f;
-                Vector2 moveVec = dir * (moveSpeed * WEIGHT_UP_SLOW_SPEED_PER) * Time.fixedDeltaTime;
+                Vector2 moveVec = dir * (MoveSpeed * WEIGHT_UP_SLOW_SPEED_PER) * Time.fixedDeltaTime;
 
                 // ターゲットへ行く
                 rigid.MovePosition(rigid.position + moveVec);
@@ -242,9 +257,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 if(attackWaitTime > attackSpeedSec)
                 {
                     // カバン ストレージ量 増加
-                    if(bagStorage < bagStorageMax)
+                    if(bagStorage < BagStorageMax)
                     {
-                        BagStorage += attackVal;
+                        BagStorage += AttackVal;
                     }
                     // カバン ストレージ量が埋めたら
                     else {
@@ -260,7 +275,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         targetOre.HpSlider.gameObject.SetActive(true);
 
                     // 攻撃
-                    targetOre.DecreaseHp(attackVal);
+                    targetOre.DecreaseHp(AttackVal);
 
                     // 破壊
                     if(targetOre.IsDestroied)
