@@ -65,112 +65,59 @@ public class UpgradeManager : MonoBehaviour
     /// <summary>
     /// (강화) 공격력 업그레이드 버튼
     /// </summary>
-    public void OnClickUpgradeAttackBtn()
-    {
-        if(DM._.DB.statusDB.Coin >= upgAttack.Price)
-        {
-            GM._.ui.ShowNoticeMsgPopUp("공격력 업그레이드 완료!");
-            DM._.DB.statusDB.Coin -= upgAttack.Price;
-            upgAttack.Lv++;
-
-            UpdateUIAndData();
-        }
-        else
-            GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
-    }
+    public void OnClickUpgradeAttackBtn() => Upgrade(upgAttack);
 
     /// <summary>
     /// (강화) 공격속도 업그레이드 버튼
     /// </summary>
-    public void OnClickUpgradeAttackSpeedBtn()
-    {
-        if(DM._.DB.statusDB.Coin >= upgAttackSpeed.Price)
-        {
-            GM._.ui.ShowNoticeMsgPopUp("공격속도 업그레이드 완료!");
-            DM._.DB.statusDB.Coin -= upgAttackSpeed.Price;
-            upgAttackSpeed.Lv++;
-
-            UpdateUIAndData();
-        }
-        else
-            GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
-    }
+    public void OnClickUpgradeAttackSpeedBtn() => Upgrade(upgAttackSpeed);
 
     /// <summary>
     /// (강화) 이동속도 업그레이드 버튼
     /// </summary>
-    public void OnClickUpgradeMoveSpeedBtn()
-    {
-        if(DM._.DB.statusDB.Coin >= upgMoveSpeed.Price)
-        {
-            GM._.ui.ShowNoticeMsgPopUp("공격속도 업그레이드 완료!");
-            DM._.DB.statusDB.Coin -= upgMoveSpeed.Price;
-            upgMoveSpeed.Lv++;
-
-            UpdateUIAndData();
-        }
-        else
-            GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
-    }
+    public void OnClickUpgradeMoveSpeedBtn() => Upgrade(upgMoveSpeed);
 
     /// <summary>
     /// (강화) 가방용량 업그레이드 버튼
     /// </summary>
-    public void OnClickUpgradeBagStorageBtn()
-    {
-        if(DM._.DB.statusDB.Coin >= upgBagStorage.Price)
-        {
-            GM._.ui.ShowNoticeMsgPopUp("공격속도 업그레이드 완료!");
-            DM._.DB.statusDB.Coin -= upgBagStorage.Price;
-            upgBagStorage.Lv++;
-
-            UpdateUIAndData();
-        }
-        else
-            GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
-    }
+    public void OnClickUpgradeBagStorageBtn() => Upgrade(upgBagStorage);
 
     /// <summary>
     /// (강화) 추가 환생의결정 업그레이드 버튼
     /// </summary>
-    public void OnClickUpgradeExtraRebornBtn()
-    {
-        if(DM._.DB.statusDB.Coin >= upgExtraRebornPer.Price)
+    public void OnClickUpgradeExtraRebornBtn() => Upgrade(upgExtraRebornPer);
+#endregion
+
+#region FUNC
+    private void Upgrade(UpgradeFormat upgradeDt) {
+        if(DM._.DB.statusDB.Coin >= upgradeDt.Price)
         {
-            GM._.ui.ShowNoticeMsgPopUp("공격속도 업그레이드 완료!");
-            DM._.DB.statusDB.Coin -= upgExtraRebornPer.Price;
-            upgExtraRebornPer.Lv++;
+            GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
+            DM._.DB.statusDB.Coin -= upgradeDt.Price;
+            upgradeDt.Lv++;
 
             UpdateUIAndData();
         }
         else
             GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
     }
-#endregion
 
-#region FUNC
     private void UpdateUIAndData()
     {
         // TODO 여기도 UpgradeFormat만들었으니까 클래스 내부에서 메서드 만들어서 리펙토리 하기.
 
         // Data
-        int nextUpgAttack = (upgAttack.Lv + 1) * upgAttack.Unit;
-        float nextUpgAttackSpeed = (upgAttackSpeed.Lv + 1) * upgAttackSpeed.Unit;
-        float nextUpgMoveSpeed = (upgMoveSpeed.Lv + 1) * upgMoveSpeed.Unit;
-        int nextUpgBagStorage = (upgBagStorage.Lv + 1) * upgBagStorage.Unit;
-        float nextUpgExtraRebornPer = (upgExtraRebornPer.Lv + 1) * upgExtraRebornPer.Unit;
+        upgAttack.UpdateVal();
+        upgAttackSpeed.UpdateVal();
+        upgMoveSpeed.UpdateVal();
+        upgBagStorage.UpdateVal();
+        upgExtraRebornPer.UpdateVal();
 
-        upgAttack.Val = upgAttack.Lv * upgAttack.Unit;
-        upgAttackSpeed.Val = upgAttackSpeed.Lv * upgAttackSpeed.Unit;
-        upgMoveSpeed.Val = upgMoveSpeed.Lv * upgMoveSpeed.Unit;
-        upgBagStorage.Val = upgBagStorage.Lv * upgBagStorage.Unit;
-        upgExtraRebornPer.Val = upgExtraRebornPer.Lv * upgExtraRebornPer.Unit;
-
-        upgAttack.Price = upgAttack.PriceDef + upgAttack.Lv * (upgAttack.Lv - 1) * 100 / 2;
-        upgAttackSpeed.Price = upgAttackSpeed.PriceDef + upgAttackSpeed.Lv * (upgAttackSpeed.Lv - 1) * 100 / 2;
-        upgMoveSpeed.Price = upgMoveSpeed.PriceDef + upgMoveSpeed.Lv * (upgMoveSpeed.Lv - 1) * 100 / 2;
-        upgBagStorage.Price = upgBagStorage.PriceDef + upgBagStorage.Lv * (upgBagStorage.Lv - 1) * 100 / 2;
-        upgExtraRebornPer.Price = upgExtraRebornPer.PriceDef + upgExtraRebornPer.Lv * (upgExtraRebornPer.Lv - 1) * 100 / 2;
+        upgAttack.UpdatePrice();
+        upgAttackSpeed.UpdatePrice();
+        upgMoveSpeed.UpdatePrice();
+        upgBagStorage.UpdatePrice();
+        upgExtraRebornPer.UpdatePrice();
 
         // UI
         upgAttackPriceTxt.text = $"{upgAttack.Price}";
@@ -179,11 +126,11 @@ public class UpgradeManager : MonoBehaviour
         upgBagStoragePriceTxt.text = $"{upgBagStorage.Price}";
         upgExtraRebornPerPriceTxt.text = $"{upgExtraRebornPer.Price}";
 
-        upgAttackInfoTxt.text = $"{upgAttack.Val} => {nextUpgAttack}";
-        upgAttackSpeedInfoTxt.text = $"{upgAttackSpeed.Val} => {nextUpgAttackSpeed}";
-        upgMoveSpeedInfoTxt.text = $"{upgMoveSpeed.Val} => {nextUpgMoveSpeed}";
-        upgBagStorageInfoTxt.text = $"{upgBagStorage.Val} => {nextUpgBagStorage}";
-        upgExtraRebornPerInfoTxt.text = $"{upgExtraRebornPer.Val * 100} => {nextUpgExtraRebornPer * 100}%";
+        upgAttackInfoTxt.text = $"{upgAttack.Val} => {upgAttack.GetNextVal()}";
+        upgAttackSpeedInfoTxt.text = $"{upgAttackSpeed.Val} => {upgAttackSpeed.GetNextVal()}";
+        upgMoveSpeedInfoTxt.text = $"{upgMoveSpeed.Val} => {upgMoveSpeed.GetNextVal()}";
+        upgBagStorageInfoTxt.text = $"{upgBagStorage.Val} => {upgBagStorage.GetNextVal()}";
+        upgExtraRebornPerInfoTxt.text = $"{upgExtraRebornPer.Val * 100} => {upgExtraRebornPer.GetNextVal() * 100}%";
     }
 #endregion
 }
