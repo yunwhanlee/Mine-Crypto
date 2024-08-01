@@ -74,7 +74,7 @@ public class StageManager : MonoBehaviour {
     /// 스테이지에 따른 광석 적용값 업데이트
     /// </summary>
     private void UpdateOreValueByStage() {
-        const int DEF_HP = 100;
+        const int DEF_HP = 1000;
         oreHp = DEF_HP + ((stage-1) * 100);
         oreCnt = (stage + 10) / 10;
     }

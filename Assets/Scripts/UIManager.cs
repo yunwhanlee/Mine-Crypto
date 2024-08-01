@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AssetKits.ParticleImage;
+using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,12 +22,33 @@ public class UIManager : MonoBehaviour
     //* EFFECT
     public ParticleImage coinAttractionPtcImg;
 
+    [Header("DEBUG")]
+    public TMP_Text workerInfoDebugTxt;
+
 
     void Start()
     {
         coinTxt.text = DM._.DB.statusDB.Coin.ToString();
     }
 
+    void Update() {
+        if(GM._.mnm.workerGroupTf.childCount > 0)
+        {
+            var worker = GM._.mnm.workerGroupTf.GetChild(0).GetComponent<MiningController>();
+            workerInfoDebugTxt.text =
+                $"ATK: {worker.AttackVal}, ATKSPD: {worker.AttackSpeed}({(1 / worker.AttackSpeed).ToString("F4")}초), MOVSPD: {worker.MoveSpeed}, BAGMAX: {worker.BagStorageMax}";
+        }
+        
+    }
+
+#region EVENT
+    public void OnClickTopCoinPlusIcon() {
+        //! Add Coin TEST
+        DM._.DB.statusDB.Coin += 100000;
+    }
+#endregion
+
+#region FUNC
     /// <summary>
     /// TOP 고블린수/인구 UI 최신화
     /// </summary>
@@ -74,4 +96,5 @@ public class UIManager : MonoBehaviour
             yield return Util.TIME0_1;
         }
     }
+#endregion
 }

@@ -37,8 +37,8 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         upgAttack = new UpgradeFormatInt(Lv: 1, Unit: 1, PriceDef: 200);
-        upgAttackSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 0.5f, PriceDef: 200);
-        upgMoveSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 0.5f, PriceDef: 200);
+        upgAttackSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 0.2f, PriceDef: 200);
+        upgMoveSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 2, PriceDef: 200);
         upgBagStorage = new UpgradeFormatInt(Lv: 1, Unit: 10, PriceDef: 200);
         upgExtraRebornPer = new UpgradeFormatFloat(Lv: 1, Unit: 0.05f, PriceDef: 200);
     }

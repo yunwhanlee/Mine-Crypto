@@ -55,18 +55,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017b8b89299a11d4f8ebed301c64edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: {fileID: 7786607796372877768}
   status: 0
-  attackVal: 10
-  moveSpeed: 5
-  attackSpeed: 1.11
-  attackSpeedSec: 0
-  attackWaitTime: 0
-  bagStorageMax: 50
-  bagStorage: 0
   bagStorageSlider: {fileID: 5591018166884407550}
   bagStorageSliderTxt: {fileID: 8757461640561919784}
   targetOre: {fileID: 0}
+  attackVal: 10
+  attackSpeed: 1
+  moveSpeed: 5
+  bagStorageMax: 50
+  bagStorage: 0
 --- !u!114 &2944285913796612606
 MonoBehaviour:
   m_ObjectHideFlags: 0

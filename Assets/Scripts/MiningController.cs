@@ -40,6 +40,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             get => attackVal + GM._.ugm.upgAttack.Val;
         }
 
+        // float attackSpeedSec; // 
+
         // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
         [SerializeField] [Range(1, 5)] float attackSpeed; 
         public float AttackSpeed {
@@ -58,7 +60,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             get => bagStorageMax + GM._.ugm.upgBagStorage.Val;
         }
 
-        float attackSpeedSec; // 実際の攻撃速度(秒)
         float attackWaitTime; // 攻撃待機時間
 
         // カバン保管量
@@ -91,8 +92,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             // _charaBuilder = GetComponent<CharacterBuilder>();
             // _controller = GetComponent<CharacterController2D>();
 
-            attackSpeedSec = 1 / AttackSpeed;
+            // 実際の攻撃速度(秒)
+            float attackSpeedSec = 1 / AttackSpeed;
             Debug.Log($"attackSpeedSec= {attackSpeedSec}");
+
             BagStorage = 0;
 
             StartCoroutine(CoInitStatus());
@@ -130,6 +133,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // ターゲット 指定
                 if(!targetOre)
                 {
+                    float attackSpeedSec = 1 / AttackSpeed; // 実際の攻撃速度(秒)
                     attackWaitTime = attackSpeedSec; // 最初一回すぐ攻撃
 
                     Transform oreGroupTf = GM._.mnm.oreGroupTf;
@@ -237,17 +241,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         _animation.Die();
 
                         GM._.mnm.workerClearStageStatusCnt++;
-                        // for(int i = 0; i < GM._.mnm.workerGroupTf.childCount; i++)
-                        // {
-                        //     var worker = GM._.mnm.workerGroupTf.GetComponent<MiningController>();
-                        //     Debug.Log("worker= " + worker);
-                        //     if(worker.status != Status.CLEARSTAGE)
-                        //     {
-                        //         isClearStage = false;
-                        //     }
-                        // }
-                        
-                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.epm.Population)
+
+                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.epm.WorkerCnt)
                         {
                             GM._.mnm.workerClearStageStatusCnt = 0;
                             StartCoroutine(GM._.stm.CoNextStage());
@@ -282,6 +277,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             //* 採掘しているとき
             if(status == Status.MINING) {
                 attackWaitTime += Time.deltaTime;
+                float attackSpeedSec = 1 / AttackSpeed; // 実際の攻撃速度(秒)
 
                 //* 走るアニメーション 停止
                 if(_animation.GetState() == CharacterState.Run)
