@@ -18,25 +18,6 @@ public class UpgradeFormat
 }
 
 /// <summary>
-/// 업그레이드 포멧 (int형 Val)
-/// </summary>
-[System.Serializable]
-public class UpgradeFormatInt : UpgradeFormat
-{
-    [field:SerializeField] public int Val {get; set;}
-    [field:SerializeField] public int Unit {get; private set;}
-
-    public UpgradeFormatInt(int Lv, int Unit, int PriceDef) {
-        this.Lv = Lv;
-        this.Unit = Unit;
-        this.PriceDef = PriceDef;
-    }
-
-    public void UpdateVal() => Val = Lv * Unit;
-    public int GetNextVal() => (Lv + 1) * Unit;
-}
-
-/// <summary>
 /// 업그레이드 포멧 (float형 Val)
 /// </summary>
 [System.Serializable]
@@ -52,5 +33,28 @@ public class UpgradeFormatFloat : UpgradeFormat
     }
 
     public void UpdateVal() => Val = Lv * Unit;
+
     public float GetNextVal() => (Lv + 1) * Unit;
 }
+
+/// <summary>
+/// 업그레이드 포멧 (int형 Val)
+/// </summary>
+[System.Serializable]
+public class UpgradeFormatInt : UpgradeFormat
+{
+    [field:SerializeField] public int Val {get; set;}
+    [field:SerializeField] public int Unit {get; private set;}
+
+    public UpgradeFormatInt(int Lv, int Unit, int PriceDef) {
+        this.Lv = Lv;
+        this.Unit = Unit;
+        this.PriceDef = PriceDef;
+    }
+
+    public void UpdateVal() => Val = Lv * Unit;
+
+    public int GetNextVal() => (Lv + 1) * Unit;
+}
+
+

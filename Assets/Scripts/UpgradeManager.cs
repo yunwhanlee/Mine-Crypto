@@ -26,21 +26,20 @@ public class UpgradeManager : MonoBehaviour
     public TMP_Text upgBagStorageInfoTxt;
     public TMP_Text upgExtraRebornPerInfoTxt;
 
-
     //* VALUE
-    public UpgradeFormatInt upgAttack;
+    public UpgradeFormatFloat upgAttack;
     public UpgradeFormatFloat upgAttackSpeed;
     public UpgradeFormatFloat upgMoveSpeed;
-    public UpgradeFormatInt upgBagStorage;
+    public UpgradeFormatFloat upgBagStorage;
     public UpgradeFormatFloat upgExtraRebornPer;
 
     void Start()
     {
-        upgAttack = new UpgradeFormatInt(Lv: 1, Unit: 1, PriceDef: 200);
-        upgAttackSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 0.2f, PriceDef: 200);
-        upgMoveSpeed = new UpgradeFormatFloat(Lv: 1, Unit: 2, PriceDef: 200);
-        upgBagStorage = new UpgradeFormatInt(Lv: 1, Unit: 10, PriceDef: 200);
-        upgExtraRebornPer = new UpgradeFormatFloat(Lv: 1, Unit: 0.05f, PriceDef: 200);
+        upgAttack = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
+        upgAttackSpeed = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
+        upgMoveSpeed = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
+        upgBagStorage = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
+        upgExtraRebornPer = new UpgradeFormatFloat(Lv: 0, Unit: 0.05f, PriceDef: 200);
     }
 
 #region EVENT FUNC
@@ -104,8 +103,6 @@ public class UpgradeManager : MonoBehaviour
 
     private void UpdateUIAndData()
     {
-        // TODO 여기도 UpgradeFormat만들었으니까 클래스 내부에서 메서드 만들어서 리펙토리 하기.
-
         // Data
         upgAttack.UpdateVal();
         upgAttackSpeed.UpdateVal();
@@ -126,11 +123,11 @@ public class UpgradeManager : MonoBehaviour
         upgBagStoragePriceTxt.text = $"{upgBagStorage.Price}";
         upgExtraRebornPerPriceTxt.text = $"{upgExtraRebornPer.Price}";
 
-        upgAttackInfoTxt.text = $"{upgAttack.Val} => {upgAttack.GetNextVal()}";
-        upgAttackSpeedInfoTxt.text = $"{upgAttackSpeed.Val} => {upgAttackSpeed.GetNextVal()}";
-        upgMoveSpeedInfoTxt.text = $"{upgMoveSpeed.Val} => {upgMoveSpeed.GetNextVal()}";
-        upgBagStorageInfoTxt.text = $"{upgBagStorage.Val} => {upgBagStorage.GetNextVal()}";
-        upgExtraRebornPerInfoTxt.text = $"{upgExtraRebornPer.Val * 100} => {upgExtraRebornPer.GetNextVal() * 100}%";
+        upgAttackInfoTxt.text = $"{upgAttack.Val * 100}% => {upgAttack.GetNextVal() * 100}%";
+        upgAttackSpeedInfoTxt.text = $"{upgAttackSpeed.Val * 100}% => {upgAttackSpeed.GetNextVal() * 100}%";
+        upgMoveSpeedInfoTxt.text = $"{upgMoveSpeed.Val * 100}% => {upgMoveSpeed.GetNextVal() * 100}%";
+        upgBagStorageInfoTxt.text = $"{upgBagStorage.Val * 100}% => {upgBagStorage.GetNextVal() * 100}%";
+        upgExtraRebornPerInfoTxt.text = $"{upgExtraRebornPer.Val * 100}% => {upgExtraRebornPer.GetNextVal() * 100}%";
     }
 #endregion
 }

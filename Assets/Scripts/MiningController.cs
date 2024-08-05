@@ -34,30 +34,43 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Ore targetOre;
 
         //* VALUE
+        const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
+        const float REACH_TARGET_MIN_DIST = 0.375f;    // 타겟지점 도달판단 최소거리(집, 광석)
+
         // 攻撃力
         [SerializeField] int attackVal;
         public int AttackVal {
-            get => attackVal + GM._.ugm.upgAttack.Val;
+            get {
+                float extraVal = 1 * GM._.ugm.upgAttack.Val;
+                return Mathf.RoundToInt(attackVal * extraVal);
+            } 
         }
 
-        // float attackSpeedSec; // 
-
-        // 攻撃速度値 -> MIN 1(1SEC : 1秒1回) ~ MAX 5(0.2SEC : 1秒1回))
-        [SerializeField] [Range(1, 5)] float attackSpeed; 
+        // 攻撃速度
+        [SerializeField] [Range(1, 7.5f)] float attackSpeed;
         public float AttackSpeed {
-            get => attackSpeed + GM._.ugm.upgAttackSpeed.Val;
+            get {
+                float extraVal = 1 + GM._.ugm.upgAttackSpeed.Val;
+                return attackSpeed * extraVal;
+            }
         }
 
         // 移動速度
-        [SerializeField] float moveSpeed; 
+        [SerializeField] float moveSpeed;
         public float MoveSpeed {
-            get => moveSpeed + GM._.ugm.upgMoveSpeed.Val;
+            get {
+                float extraVal = 1 + GM._.ugm.upgMoveSpeed.Val;
+                return moveSpeed * extraVal;
+            }
         }
 
-        // カバンMAX保管量
-        [SerializeField] int bagStorageMax;  
-        public int BagStorageMax {
-            get => bagStorageMax + GM._.ugm.upgBagStorage.Val;
+        // カバンサイズ保管量
+        [SerializeField] int bagStorageSize;
+        public int BagStorageSize {
+            get {
+                float extraVal = bagStorageSize * GM._.ugm.upgBagStorage.Val;
+                return bagStorageSize + Mathf.RoundToInt(extraVal);
+            }
         }
 
         float attackWaitTime; // 攻撃待機時間
@@ -73,7 +86,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                 // スライダーバー UI最新化
                 if(bagStorageSlider.gameObject.activeSelf) {
-                    bagStorageSlider.value = (float)bagStorage / BagStorageMax;
+                    bagStorageSlider.value = (float)bagStorage / BagStorageSize;
                     bagStorageSliderTxt.text = bagStorage.ToString();
                 }
             }
@@ -93,7 +106,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             // _controller = GetComponent<CharacterController2D>();
 
             // 実際の攻撃速度(秒)
-            float attackSpeedSec = 1 / AttackSpeed;
+            float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed;
             Debug.Log($"attackSpeedSec= {attackSpeedSec}");
 
             BagStorage = 0;
@@ -133,7 +146,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // ターゲット 指定
                 if(!targetOre)
                 {
-                    float attackSpeedSec = 1 / AttackSpeed; // 実際の攻撃速度(秒)
+                    float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
                     attackWaitTime = attackSpeedSec; // 最初一回すぐ攻撃
 
                     Transform oreGroupTf = GM._.mnm.oreGroupTf;
@@ -184,7 +197,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 Debug.Log($"GO:: distance= {distance}");
 
                 //* 鉱石についたら
-                if(distance < 0.1f)
+                if(distance < REACH_TARGET_MIN_DIST)
                 {
                     status = Status.MINING; // 採掘開始
                 }
@@ -218,7 +231,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 Debug.Log($"BACKHOME:: distance= {distance}");
 
                 //* 家に到着
-                if(distance < 0.275f)
+                if(distance < REACH_TARGET_MIN_DIST)
                 {
                     Debug.Log("REACH HOME!");
 
@@ -277,7 +290,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             //* 採掘しているとき
             if(status == Status.MINING) {
                 attackWaitTime += Time.deltaTime;
-                float attackSpeedSec = 1 / AttackSpeed; // 実際の攻撃速度(秒)
+                float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
 
                 //* 走るアニメーション 停止
                 if(_animation.GetState() == CharacterState.Run)
@@ -289,7 +302,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 if(attackWaitTime > attackSpeedSec)
                 {
                     // カバン ストレージ量 増加
-                    if(bagStorage < BagStorageMax)
+                    if(bagStorage < BagStorageSize)
                     {
                         BagStorage += AttackVal;
                     }

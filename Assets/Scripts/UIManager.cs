@@ -36,9 +36,11 @@ public class UIManager : MonoBehaviour
         {
             var worker = GM._.mnm.workerGroupTf.GetChild(0).GetComponent<MiningController>();
             workerInfoDebugTxt.text =
-                $"ATK: {worker.AttackVal}, ATKSPD: {worker.AttackSpeed}({(1 / worker.AttackSpeed).ToString("F4")}초), MOVSPD: {worker.MoveSpeed}, BAGMAX: {worker.BagStorageMax}";
+                $"[고블린1 업글] 공: {worker.AttackVal}"
+                + $", 공속: {worker.AttackSpeed}({(1 / worker.AttackSpeed).ToString("F2")}초)"
+                + $", 이속: {worker.MoveSpeed}"
+                + $", 가방: {worker.BagStorageSize}";
         }
-        
     }
 
 #region EVENT

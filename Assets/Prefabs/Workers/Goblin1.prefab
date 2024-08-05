@@ -62,7 +62,7 @@ MonoBehaviour:
   attackVal: 10
   attackSpeed: 1
   moveSpeed: 5
-  bagStorageMax: 50
+  bagStorageSize: 50
   bagStorage: 0
 --- !u!114 &2944285913796612606
 MonoBehaviour:
