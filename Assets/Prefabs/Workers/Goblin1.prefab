@@ -61,7 +61,7 @@ MonoBehaviour:
   targetOre: {fileID: 0}
   attackVal: 10
   attackSpeed: 1
-  moveSpeed: 5
+  moveSpeed: 10
   bagStorageSize: 50
   bagStorage: 0
 --- !u!114 &2944285913796612606
@@ -698,7 +698,7 @@ RectTransform:
   m_GameObject: {fileID: 6260389377325882589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0085, y: 0.0085, z: 0.0085}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7620124335315594856}
@@ -5611,6 +5611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2907511878051288995}
+  - component: {fileID: 5614089508237674530}
   - component: {fileID: 5774262471020347755}
   - component: {fileID: 2720476854500990109}
   - component: {fileID: 6250118534738944212}
@@ -5637,6 +5638,19 @@ Transform:
   - {fileID: 8332153666493901501}
   m_Father: {fileID: 750478196334933408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5614089508237674530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951835589505059996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c9d4e46a93eee469e09d5bcdb4856e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRdr: {fileID: 0}
 --- !u!212 &5774262471020347755
 SpriteRenderer:
   m_ObjectHideFlags: 0

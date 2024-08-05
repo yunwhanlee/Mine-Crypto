@@ -26,10 +26,11 @@ public class StageManager : MonoBehaviour {
             stageTxt.text = $"광산 {stage}층";
         }
     }
+    [field:SerializeField] int oreAreaInterval;       // 광석 배치영역 광석 사이 간격 (작을수록 더 많은 위치리스트 생성)
     [field:SerializeField] List<Vector2> orePosList = new List<Vector2>();
 
-    [field:SerializeField] int oreHp;       // 스테이지별 적용할 광석 JP
-    [field:SerializeField] int oreCnt;      // 스테이지별 적용할 광석 수
+    [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
+    [field:SerializeField] int oreCnt;                  // 스테이지별 적용할 광석 수
 
     void Start() {
         Stage = 1;
@@ -37,7 +38,7 @@ public class StageManager : MonoBehaviour {
         bottomRightPos = oreAreaBottomRightTf.position;
 
         cutOutMaskUIDOTAnim.DOPlay();
-        StartCoroutine(CoUpdateAndCreateOre(interval: 1));
+        StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
     }
 
     public IEnumerator CoNextStage() {
@@ -45,7 +46,7 @@ public class StageManager : MonoBehaviour {
         yield return Util.TIME0_5;
 
         cutOutMaskUIDOTAnim.DORestart();
-        yield return CoUpdateAndCreateOre(interval: 1);
+        yield return CoUpdateAndCreateOre(oreAreaInterval);
         yield return Util.TIME1;
 
         // 고블린 채광이동 시작!

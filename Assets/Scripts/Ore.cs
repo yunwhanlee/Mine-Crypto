@@ -30,6 +30,9 @@ public class Ore : MonoBehaviour
         // Ore スプライト
         SprRdr.sprite = OreSprs[OreLarge];
 
+        // Sorting Layer
+        SprRdr.sortingOrder = Mathf.RoundToInt(transform.position.y) * -1;
+
         // HpBar 非表示
         HpSlider.gameObject.SetActive(false);
 

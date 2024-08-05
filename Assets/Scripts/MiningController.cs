@@ -34,6 +34,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Ore targetOre;
 
         //* VALUE
+        const float TARGET_Y_UNDER_MINUS = 0.2f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
         const float REACH_TARGET_MIN_DIST = 0.375f;    // 타겟지점 도달판단 최소거리(집, 광석)
 
@@ -180,8 +181,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     GM._.mnm.CurTotalMiningCnt++;
                 }
 
+                // Sorting Layer 앞 배치를 위해, 타겟보다 조금 Y축 밑으로 위치 설정
+                var pos = targetOre.transform.position;
+                Vector3 underYTargetPos = new (pos.x, pos.y - TARGET_Y_UNDER_MINUS, pos.z);
                 // 方向 指定
-                Vector2 dir = (targetOre.transform.position - transform.position).normalized;
+                Vector2 dir = (underYTargetPos - transform.position).normalized;
 
                 // キャラの向き
                 sprRdr.flipX = dir.x < 0;

@@ -5008,15 +5008,13 @@ MonoBehaviour:
   <Lv>k__BackingField: 0
   <MaxHp>k__BackingField: 700
   <Hp>k__BackingField: 0
-  IsMining: 0
   IsDestroied: 0
-  <MaxMiningCnt>k__BackingField: 0
   <MiningCnt>k__BackingField: 0
   <MiningHitPtcEF>k__BackingField: {fileID: 6113469961754799456}
   <OreSprs>k__BackingField:
-  - {fileID: -2030487413, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
-  - {fileID: 897646853, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
-  - {fileID: 11555457, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
+  - {fileID: -431651913, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
+  - {fileID: 522370233, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
+  - {fileID: 1514064982, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
   <SprRdr>k__BackingField: {fileID: 3946950307020229234}
   <HpSlider>k__BackingField: {fileID: 740236741163685139}
   <HpSliderTxt>k__BackingField: {fileID: 2500955015186553534}
@@ -5061,12 +5059,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2030487413, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
+  m_Sprite: {fileID: -431651913, guid: 12153babd81daa2498c2a0c1fb38b115, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5, y: 2.35}
+  m_Size: {x: 5.5, y: 5.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5107,9 +5105,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.75, y: 2.875}
-    newSize: {x: 2.5, y: 2.35}
+    pivot: {x: 0.5, y: 0.1}
+    oldSize: {x: 5.5, y: 5.75}
+    newSize: {x: 5.5, y: 5.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -5310,7 +5308,7 @@ RectTransform:
   m_GameObject: {fileID: 4297863736950494608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0125, y: 0.0125, z: 0.0125}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2781699114596689802}
@@ -5318,7 +5316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.25}
+  m_AnchoredPosition: {x: 0.25, y: 2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7956472708374024845

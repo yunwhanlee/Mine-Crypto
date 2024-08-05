@@ -14,7 +14,6 @@ public class GM : MonoBehaviour
     public UpgradeManager ugm;
     public RebornManager rbm;
 
-
     void Awake()
     {
         _ = this;
@@ -25,5 +24,15 @@ public class GM : MonoBehaviour
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
         ugm = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
         rbm = GameObject.Find("RebornManager").GetComponent<RebornManager>();
+    }
+
+    void Update()
+    {
+        //! TEST NEXT STAGE
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            mnm.workerClearStageStatusCnt = 0;
+            StartCoroutine(stm.CoNextStage());
+        }
     }
 }
