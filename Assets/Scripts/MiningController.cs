@@ -41,7 +41,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         [SerializeField] int attackVal;
         public int AttackVal {
             get {
-                float extraVal = 1 * GM._.ugm.upgAttack.Val;
+                float extraVal = 1 + GM._.ugm.upgAttack.Val;
                 return Mathf.RoundToInt(attackVal * extraVal);
             } 
         }
