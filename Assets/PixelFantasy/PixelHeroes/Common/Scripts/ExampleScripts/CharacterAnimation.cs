@@ -27,7 +27,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public void Idle()
         {
             SetState(CharacterState.Idle);
-            moveDustParticle.Stop();
+            if(moveDustParticle) moveDustParticle.Stop();
         }
 
         public void Ready()
