@@ -9,6 +9,7 @@ using UnityEngine;
 [Serializable]
 public class DB {
     public StatusDB statusDB;
+    public MissionDB missionDB;
 }
 
 /// <summary>

@@ -52,14 +52,6 @@ public class UIManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
-    /// TOP 고블린수/인구 UI 최신화
-    /// </summary>
-    public void SetTopWorkerInfoTxt(int workerCnt, int population) {
-        // workerInfoTxt.text = $"{workerCnt} / {population}";
-        // workerInfoTxt.color = (workerCnt == population)? Color.red : Color.green;
-    }
-
-    /// <summary>
     /// 경고 메세지 팝업
     /// </summary>
     public void ShowWarningMsgPopUp(string msg)

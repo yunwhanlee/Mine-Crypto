@@ -54,6 +54,9 @@ public class StgInfo
                 // 이전 팝업 닫기
                 GM._.hm.HomeWindow.SetActive(false);
                 GM._.ssm.selectStagePopUp.SetActive(false);
+
+                // 캐릭터 고용(소환) 팝업 열기
+                GM._.epm.ShowPopUp();
             }
             else
                 GM._.ui.ShowWarningMsgPopUp("입장티켓이 부족합니다.");

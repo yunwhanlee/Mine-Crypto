@@ -11,7 +11,7 @@ public class StatusDB
 {
     [Header("일반재화 8종 및 특별재화(별사탕)")]
     [field:SerializeField] int[] rscArr; public int[] RscArr {
-        get => rscArr; 
+        get => rscArr;
     }
 
     // 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작

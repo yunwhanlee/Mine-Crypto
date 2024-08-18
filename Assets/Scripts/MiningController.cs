@@ -259,7 +259,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                         GM._.mnm.workerClearStageStatusCnt++;
 
-                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.epm.WorkerCnt)
+                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.ugm.upgIncPopulation.Val)
                         {
                             GM._.mnm.workerClearStageStatusCnt = 0;
                             StartCoroutine(GM._.stm.CoNextStage());
