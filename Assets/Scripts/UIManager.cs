@@ -55,8 +55,8 @@ public class UIManager : MonoBehaviour
     /// TOP 고블린수/인구 UI 최신화
     /// </summary>
     public void SetTopWorkerInfoTxt(int workerCnt, int population) {
-        workerInfoTxt.text = $"{workerCnt} / {population}";
-        workerInfoTxt.color = (workerCnt == population)? Color.red : Color.green;
+        // workerInfoTxt.text = $"{workerCnt} / {population}";
+        // workerInfoTxt.color = (workerCnt == population)? Color.red : Color.green;
     }
 
     /// <summary>

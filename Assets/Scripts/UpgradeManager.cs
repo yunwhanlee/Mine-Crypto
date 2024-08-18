@@ -14,57 +14,65 @@ public class UpgradeManager : MonoBehaviour
     //* ELEMENT
     public GameObject windowObj;
 
-    public TMP_Text upgAttackPriceTxt;
-    public TMP_Text upgAttackSpeedPriceTxt;
-    public TMP_Text upgMoveSpeedPriceTxt;
-    public TMP_Text upgBagStoragePriceTxt;
-    public TMP_Text upgExtraRebornPerPriceTxt;
-
-    public TMP_Text upgAttackInfoTxt;
-    public TMP_Text upgAttackSpeedInfoTxt;
-    public TMP_Text upgMoveSpeedInfoTxt;
-    public TMP_Text upgBagStorageInfoTxt;
-    public TMP_Text upgExtraRebornPerInfoTxt;
+    [Header("업그레이드 UI")]
+    public UpgradeUIFormat upgAttackUI;
+    public UpgradeUIFormat upgIncTimerUI;
+    public UpgradeUIFormat upgAttackSpeedUI;
+    public UpgradeUIFormat upgBagStorageUI;
+    public UpgradeUIFormat upgNextStageSkipUI;
+    public UpgradeUIFormat upgIncPopulationUI;
+    public UpgradeUIFormat upgMoveSpeedUI;
+    public UpgradeUIFormat upgIncCristalUI;
 
     //* VALUE
-    public UpgradeFormatFloat upgAttack;
+    [Header("업그레이드 데이터")]
+    public UpgradeFormatInt upgAttack;
+    public UpgradeFormatInt upgIncTimer;
     public UpgradeFormatFloat upgAttackSpeed;
-    public UpgradeFormatFloat upgMoveSpeed;
     public UpgradeFormatFloat upgBagStorage;
-    public UpgradeFormatFloat upgExtraRebornPer;
+    public UpgradeFormatFloat upgNextStageSkip;
+    public UpgradeFormatInt upgIncPopulation;
+    public UpgradeFormatFloat upgMoveSpeed;
+    public UpgradeFormatInt upgIncCristal;
 
     void Start()
     {
-        upgAttack = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
-        upgAttackSpeed = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
-        upgMoveSpeed = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
-        upgBagStorage = new UpgradeFormatFloat(Lv: 0, Unit: 0.1f, PriceDef: 200);
-        upgExtraRebornPer = new UpgradeFormatFloat(Lv: 0, Unit: 0.05f, PriceDef: 200);
+        upgAttack = new UpgradeFormatInt(
+            Lv: 0, Unit: 1, NeedRsc: Enum.RSC.ORE1, PriceDef: 200, DefVal: 0, MaxLv: 1000
+        );
+        upgIncTimer = new UpgradeFormatInt(
+            Lv: 0, Unit: 10, NeedRsc: Enum.RSC.ORE2, PriceDef: 200, DefVal: 30, MaxLv: 3000
+        );
+        upgAttackSpeed = new UpgradeFormatFloat(
+            Lv: 0, Unit: 0.05f, NeedRsc: Enum.RSC.ORE3, PriceDef: 200, DefVal: 0, MaxLv: 20
+        );
+        upgBagStorage = new UpgradeFormatFloat(
+            Lv: 0, Unit: 0.05f, NeedRsc: Enum.RSC.ORE4, PriceDef: 200, DefVal: 0, MaxLv: 40
+        );
+        upgNextStageSkip = new UpgradeFormatFloat(
+            Lv: 0, Unit: 0.002f, NeedRsc: Enum.RSC.ORE5, PriceDef: 200, DefVal: 0, MaxLv: 50
+        );
+        upgIncPopulation = new UpgradeFormatInt(
+            Lv: 0, Unit: 1, NeedRsc: Enum.RSC.ORE6, PriceDef: 200, DefVal: 3, MaxLv: 7
+        );
+        upgMoveSpeed = new UpgradeFormatFloat(
+            Lv: 0, Unit: 0.05f, NeedRsc: Enum.RSC.ORE7, PriceDef: 200, DefVal: 0, MaxLv: 20
+        );
+        upgIncCristal = new UpgradeFormatInt(
+            Lv: 0, Unit: 1, NeedRsc: Enum.RSC.ORE8, PriceDef: 200, DefVal: 0, MaxLv: 100
+        );
     }
 
 #region EVENT FUNC
     /// <summary>
-    /// 팝업 열기
-    /// </summary>
-    public void OnClickPlusBtn()
-    {
-        windowObj.SetActive(true);
-        DOTAnim.DORestart();
-        UpdateUIAndData();
-    }
-
-    /// <summary>
-    /// 팝업 닫기
-    /// </summary>
-    public void OnClickDimScreen()
-    {
-        windowObj.SetActive(false);
-    }
-
-    /// <summary>
     /// (강화) 공격력 업그레이드 버튼
     /// </summary>
     public void OnClickUpgradeAttackBtn() => Upgrade(upgAttack);
+
+    /// <summary>
+    /// (강화) 채굴시간 업그레이드 버튼
+    /// </summary>
+    public void OnClickUpgradeIncTimerBtn() => Upgrade(upgIncTimer);
 
     /// <summary>
     /// (강화) 공격속도 업그레이드 버튼
@@ -72,28 +80,47 @@ public class UpgradeManager : MonoBehaviour
     public void OnClickUpgradeAttackSpeedBtn() => Upgrade(upgAttackSpeed);
 
     /// <summary>
-    /// (강화) 이동속도 업그레이드 버튼
-    /// </summary>
-    public void OnClickUpgradeMoveSpeedBtn() => Upgrade(upgMoveSpeed);
-
-    /// <summary>
     /// (강화) 가방용량 업그레이드 버튼
     /// </summary>
     public void OnClickUpgradeBagStorageBtn() => Upgrade(upgBagStorage);
 
     /// <summary>
-    /// (강화) 추가 환생의결정 업그레이드 버튼
+    /// (강화) 다음 층 스킵 업그레이드 버튼
     /// </summary>
-    public void OnClickUpgradeExtraRebornBtn() => Upgrade(upgExtraRebornPer);
+    public void OnClickUpgradeNextStageSkipBtn() => Upgrade(upgNextStageSkip);
+
+    /// <summary>
+    /// (강화) 고용 수 업그레이드 버튼
+    /// </summary>
+    public void OnClickUpgradeIncPopulationBtn() => Upgrade(upgIncPopulation);
+
+    /// <summary>
+    /// (강화) 이동속도 업그레이드 버튼
+    /// </summary>
+    public void OnClickUpgradeMoveSpeedBtn() => Upgrade(upgMoveSpeed);
+
+    /// <summary>
+    /// (강화) 크리스탈 획득량 업그레이드 버튼
+    /// </summary>
+    public void OnClickUpgradeIncCristalBtn() => Upgrade(upgIncCristal);
 #endregion
 
 #region FUNC
-    private void Upgrade(UpgradeFormat upgradeDt) {
-        if(DM._.DB.statusDB.Coin >= upgradeDt.Price)
+    /// <summary>
+    /// 팝업 열기
+    /// </summary>
+    public void ShowPopUp() {
+        windowObj.SetActive(true);
+        DOTAnim.DORestart();
+        UpdateUIAndData();
+    }
+
+    private void Upgrade(UpgradeFormat upgDt) {
+        if(DM._.DB.statusDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
         {
             GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
-            DM._.DB.statusDB.Coin -= upgradeDt.Price;
-            upgradeDt.Lv++;
+            DM._.DB.statusDB.SetRscArr((int)upgDt.NeedRsc, -upgDt.Price);
+            upgDt.Lv++;
 
             UpdateUIAndData();
         }
@@ -101,33 +128,40 @@ public class UpgradeManager : MonoBehaviour
             GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
     }
 
+    /// <summary>
+    /// 업그레이드 결과 최신화
+    /// </summary>
     private void UpdateUIAndData()
     {
-        // Data
+        //* Data Val
         upgAttack.UpdateVal();
+        upgIncTimer.UpdateVal();
         upgAttackSpeed.UpdateVal();
-        upgMoveSpeed.UpdateVal();
         upgBagStorage.UpdateVal();
-        upgExtraRebornPer.UpdateVal();
+        upgNextStageSkip.UpdateVal();
+        upgIncPopulation.UpdateVal();
+        upgMoveSpeed.UpdateVal();
+        upgIncCristal.UpdateVal();
 
+        //* Data Price
         upgAttack.UpdatePrice();
+        upgIncTimer.UpdatePrice();
         upgAttackSpeed.UpdatePrice();
-        upgMoveSpeed.UpdatePrice();
         upgBagStorage.UpdatePrice();
-        upgExtraRebornPer.UpdatePrice();
+        upgNextStageSkip.UpdatePrice();
+        upgIncPopulation.UpdatePrice();
+        upgMoveSpeed.UpdatePrice();
+        upgIncCristal.UpdatePrice();
 
-        // UI
-        upgAttackPriceTxt.text = $"{upgAttack.Price}";
-        upgAttackSpeedPriceTxt.text = $"{upgAttackSpeed.Price}";
-        upgMoveSpeedPriceTxt.text = $"{upgMoveSpeed.Price}";
-        upgBagStoragePriceTxt.text = $"{upgBagStorage.Price}";
-        upgExtraRebornPerPriceTxt.text = $"{upgExtraRebornPer.Price}";
-
-        upgAttackInfoTxt.text = $"{upgAttack.Val * 100}% => {upgAttack.GetNextVal() * 100}%";
-        upgAttackSpeedInfoTxt.text = $"{upgAttackSpeed.Val * 100}% => {upgAttackSpeed.GetNextVal() * 100}%";
-        upgMoveSpeedInfoTxt.text = $"{upgMoveSpeed.Val * 100}% => {upgMoveSpeed.GetNextVal() * 100}%";
-        upgBagStorageInfoTxt.text = $"{upgBagStorage.Val * 100}% => {upgBagStorage.GetNextVal() * 100}%";
-        upgExtraRebornPerInfoTxt.text = $"{upgExtraRebornPer.Val * 100}% => {upgExtraRebornPer.GetNextVal() * 100}%";
+        //* UI
+        upgAttackUI.UpdateUI(upgAttack);
+        upgIncTimerUI.UpdateUI(upgIncTimer, "sec");
+        upgAttackSpeedUI.UpdateUI(upgAttackSpeed);
+        upgBagStorageUI.UpdateUI(upgBagStorage);
+        upgNextStageSkipUI.UpdateUI(upgNextStageSkip);
+        upgIncPopulationUI.UpdateUI(upgIncPopulation);
+        upgMoveSpeedUI.UpdateUI(upgMoveSpeed);
+        upgIncCristalUI.UpdateUI(upgIncCristal);
     }
 #endregion
 }

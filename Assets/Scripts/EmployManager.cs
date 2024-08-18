@@ -78,7 +78,6 @@ public class EmployManager : MonoBehaviour
     public void OnClickPlusBtn()
     {
         windowObj.SetActive(true);
-        DOTAnim.DORestart();
         UpdateUIAndData();
     }
 
