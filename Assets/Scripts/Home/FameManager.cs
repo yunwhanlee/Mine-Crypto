@@ -67,10 +67,45 @@ public class FameManager : MonoBehaviour
     private void UpdateFameNeedExp() {
         fameMaxExp = 10 + (fameLv * (fameLv - 1) * 10) / 2;
     }
+    /// <summary>
+    /// 명예레벨 필요경험치 UI ( MAX 20LV )
+    /// </summary>
     private void UpdateFameUI() {
         fameExpSlider.value = (float)fameExp / fameMaxExp;
         fameLvTxt.text = $"{fameLv}";
         fameExpTxt.text = $"{fameExp} / {fameMaxExp}";
+    }
+
+    /// <summary>
+    /// 명성에 따른 캐릭터 랜덤등급 배열 반환 (MAX 20LV)
+    /// </summary>
+    /// <returns>[일반 , 고급 , 희귀 , 유니크 , 전설 , 신화]</returns>
+    public int[] GetRandomGradeArrByFame(bool isNextLv = false) {
+        int lv = isNextLv? fameLv + 1 : fameLv;
+        switch(lv) {
+            case 1: return new int[] {70, 25, 3, 2, 0, 0};
+            case 2: return new int[] {65, 30, 3, 2, 0, 0};
+            case 3: return new int[] {60, 30, 6, 3, 1, 0};
+            case 4: return new int[] {55, 35, 6, 3, 1, 0};
+            case 5: return new int[] {50, 35, 9, 5, 1, 0};
+            case 6: return new int[] {45, 40, 8, 5, 2, 0};
+            case 7: return new int[] {40, 40, 12, 6, 2, 0};
+            case 8: return new int[] {35, 45, 12, 6, 2, 0};
+            case 9: return new int[] {30, 50, 12, 6, 2, 0};
+            case 10: return new int[] {30, 50, 10, 7, 3, 0};
+            case 11: return new int[] {25, 45, 15, 10, 4, 1};
+            case 12: return new int[] {20, 45, 20, 10, 4, 1};
+            case 13: return new int[] {15, 40, 25, 13, 6, 1};
+            case 14: return new int[] {10, 40, 30, 13, 6, 1};
+            case 15: return new int[] {5, 40, 35, 15, 9, 1};
+            case 16: return new int[] {0, 35, 35, 20, 9, 1};
+            case 17: return new int[] {0, 30, 40, 20, 9, 1};
+            case 18: return new int[] {0, 20, 40, 25, 12, 3};
+            case 19: return new int[] {0, 10, 30, 45, 12, 3};
+            case 20: return new int[] {0, 0, 20, 60, 15, 5};
+        }
+
+        return null; // 해당 레벨이 아닌경우 에러: null반환
     }
 #endregion
 }

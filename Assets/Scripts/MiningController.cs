@@ -29,6 +29,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         // private CharacterController2D _controller;
 
         //* ELEMENT
+        public Sprite iconCharaImg;                    // UI표시 전용 아이콘 이미지
         public Slider bagStorageSlider;                // カバン保管量 スライダーバー
         public TMP_Text bagStorageSliderTxt;           // カバン保管量 スライダーバー テキスト
         public Ore targetOre;
@@ -38,6 +39,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
         const float REACH_TARGET_MIN_DIST = 0.375f;    // 타겟지점 도달판단 최소거리(집, 광석)
 
+        // 이름
+        [field: SerializeField] public string Name {get; private set;}
+
+        // 등급
+        [field: SerializeField] public Enum.GRADE Grade {get; private set;}
+
+        [Header("능력치")]
         // 攻撃力
         [SerializeField] int attackVal;
         public int AttackVal {
@@ -75,6 +83,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
         float attackWaitTime; // 攻撃待機時間
+
+        [Space()]
 
         // カバン保管量
         [field:SerializeField] int bagStorage;  public int BagStorage {

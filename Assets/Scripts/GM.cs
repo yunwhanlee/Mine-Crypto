@@ -12,6 +12,8 @@ public class GM : MonoBehaviour
 
     [field:HideInInspector] public HomeManager hm;
     [field:HideInInspector] public SelectStageManager ssm;
+    [field:HideInInspector] public FameManager fm; // 명성 및 미션
+    
 
     [field:HideInInspector] public PlayManager pm;
     [field:HideInInspector] public MineManager mnm;
@@ -30,6 +32,7 @@ public class GM : MonoBehaviour
 
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();
         ssm = GameObject.Find("SelectStageManager").GetComponent<SelectStageManager>();
+        fm = GameObject.Find("FameManager").GetComponent<FameManager>();
 
         pm = GameObject.Find("PlayManager").GetComponent<PlayManager>();
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();

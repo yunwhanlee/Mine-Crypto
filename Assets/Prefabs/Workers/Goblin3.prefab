@@ -55,17 +55,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  attackVal: 15
-  moveSpeed: 7
-  attackSpeed: 1.4
-  attackSpeedSec: 0
-  attackWaitTime: 0
-  bagStorageMax: 100
-  bagStorage: 0
-  staminaMax: 3
-  stamina: 0
-  staminaRecoveryVal: 1
+  iconCharaImg: {fileID: -1325544016, guid: d811df1f630ad7d4c80c5692347aab64, type: 3}
+  bagStorageSlider: {fileID: 0}
+  bagStorageSliderTxt: {fileID: 0}
   targetOre: {fileID: 0}
+  <Name>k__BackingField: "\uC0C1\uAE09\uACE0\uBE14\uB9B0"
+  <Grade>k__BackingField: 2
+  attackVal: 40
+  attackSpeed: 1.5
+  moveSpeed: 15
+  bagStorageSize: 150
+  bagStorage: 0
 --- !u!114 &2944285913796612606
 MonoBehaviour:
   m_ObjectHideFlags: 0
