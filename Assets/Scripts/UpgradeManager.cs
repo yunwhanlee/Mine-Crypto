@@ -133,16 +133,6 @@ public class UpgradeManager : MonoBehaviour
     /// </summary>
     private void UpdateUIAndData()
     {
-        //* Data Val
-        upgAttack.UpdateVal();
-        upgIncTimer.UpdateVal();
-        upgAttackSpeed.UpdateVal();
-        upgBagStorage.UpdateVal();
-        upgNextStageSkip.UpdateVal();
-        upgIncPopulation.UpdateVal();
-        upgMoveSpeed.UpdateVal();
-        upgIncCristal.UpdateVal();
-
         //* Data Price
         upgAttack.UpdatePrice();
         upgIncTimer.UpdatePrice();

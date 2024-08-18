@@ -22,6 +22,8 @@ public class EmployManager : MonoBehaviour
     public GameObject fameInfoPanel; // 다음 명성레벨에 따른 캐릭터 고용(소환) 등급표
     public TMP_Text nextLvRandomGradeTableValTxt;
 
+    public TMP_Text PlayBtnEmployCntTxt;
+
     [Header("SECTION2: 캐릭터 카드 리스트")]
     public MiningController[] charaPrefArr;
     public GameObject charaCardUIPref;
@@ -37,15 +39,7 @@ public class EmployManager : MonoBehaviour
 
     //* Value
     int workerCnt;
-
-    void Start()
-    {
-        workerCnt = 0;
-        DOTAnim.DORestart();
-        SetRandomGradeTableUI();
-        CreateCharaCardUIContent();
-        ShowSelectCharaInfo(charaIdx: 0);
-    }
+    int workerMax;
 
 #region EVENT
     /// <summary>
@@ -53,14 +47,46 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickPlayBtn()
     {
-        if(workerCnt < GM._.ugm.upgIncPopulation.Val)
-        {
-            //TODO Grade Random
-            int randomIdx = Random.Range(0, 1); 
+        employPopUp.SetActive(false);
 
-            var ins = Instantiate(GM._.mnm.goblinPrefs[randomIdx], GM._.mnm.workerGroupTf);
+        // 고블린 생성
+        StartCoroutine(CoCreateRandomCharaIns());
+    }
+
+    IEnumerator CoCreateRandomCharaIns() {
+        // 고용횟수 만큼 반복
+        for(workerCnt = 0; workerCnt < workerMax; workerCnt++)
+        {   
+            const int A = 0, B = 1, C = 2, D = 3, E = 4, F = 5;
+
+            // 랜덤 등급 설정
+            int[] gTb = GM._.fm.GetRandomGradeArrByFame(isNextLv: true);
+            int max = gTb[A] + gTb[B] + gTb[C] + gTb[D] + gTb[E] + gTb[F];
+            int rdPer = Random.Range(0, max); 
+
+            var grade = rdPer < gTb[A]? Enum.GRADE.COMMON
+                : rdPer < gTb[A] + gTb[B]? Enum.GRADE.UNCOMMON
+                : rdPer < gTb[A] + gTb[B] + gTb[C]? Enum.GRADE.RARE
+                : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D]? Enum.GRADE.UNIQUE
+                : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D] + gTb[E]? Enum.GRADE.LEGEND
+                : Enum.GRADE.MYTH;
+
+            Debug.Log($"Create Chara: workerCnt({workerCnt}) < workerMax({workerMax}), Random Grade Per= {rdPer} => {grade}");
+
+            // 한국어로 등급이름 번역
+            string gradeName = grade == Enum.GRADE.COMMON? "일반"
+                : grade == Enum.GRADE.UNCOMMON? "<color=green>고급</color>"
+                : grade == Enum.GRADE.RARE? "<color=blue>레어</color>"
+                : grade == Enum.GRADE.UNIQUE? "<color=purple>유니크</color>"
+                : grade == Enum.GRADE.LEGEND? "<color=yellow>전설</color>"
+                : "<color=red>신화</color>";
+
+            GM._.ui.ShowNoticeMsgPopUp($"{workerCnt}. {gradeName} 등급 소환!");
+            yield return Util.TIME0_5; // 약간 대기하여 캐릭터가 겹치지 않도록
+
+            // 고블린 생성
+            var ins = Instantiate(GM._.mnm.goblinPrefs[(int)grade], GM._.mnm.workerGroupTf);
             ins.transform.position = GM._.mnm.homeTf.position;
-            workerCnt++;
         }
     }
 
@@ -76,9 +102,27 @@ public class EmployManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    /// <summary>
+    /// 팝업 열기
+    /// </summary>
     public void ShowPopUp() {
         employPopUp.SetActive(true);
         DOTAnim.DORestart();
+        UpdateUIAndData();
+    }
+
+    /// <summary>
+    /// 데이터 및 UI 최신화
+    /// </summary>
+    private void UpdateUIAndData() {
+        workerCnt = 0;
+        workerMax = GM._.ugm.upgIncPopulation.Val;
+        PlayBtnEmployCntTxt.text = $"{workerMax}마리 고용";
+
+        DOTAnim.DORestart();
+        SetRandomGradeTableUI();
+        CreateCharaCardUIContent();
+        ShowSelectCharaInfo(charaIdx: 0);
     }
 
     /// <summary>

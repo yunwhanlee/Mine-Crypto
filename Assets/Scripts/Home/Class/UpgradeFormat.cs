@@ -26,7 +26,7 @@ public class UpgradeFormat
 public class UpgradeFormatFloat : UpgradeFormat
 {
     [field:SerializeField] public float DefVal {get; private set;}
-    [field:SerializeField] public float Val {get; set;}
+    [field:SerializeField] public float Val {get => DefVal + (Lv * Unit);}
     [field:SerializeField] public float Unit {get; private set;}
 
     public UpgradeFormatFloat(int Lv, int MaxLv, float Unit, Enum.RSC NeedRsc, int PriceDef, float DefVal) {
@@ -38,10 +38,6 @@ public class UpgradeFormatFloat : UpgradeFormat
         this.DefVal = DefVal;
     }
 
-    public void UpdateVal() {
-        Val = DefVal + (Lv * Unit);
-    } 
-
     public float GetNextVal() => DefVal + (Lv + 1) * Unit;
 }
 
@@ -52,7 +48,7 @@ public class UpgradeFormatFloat : UpgradeFormat
 public class UpgradeFormatInt : UpgradeFormat
 {
     [field:SerializeField] public int DefVal {get; private set;}
-    [field:SerializeField] public int Val {get; set;}
+    [field:SerializeField] public int Val {get => DefVal + (Lv * Unit);}
     [field:SerializeField] public int Unit {get; private set;}
 
     public UpgradeFormatInt(int Lv, int Unit, Enum.RSC NeedRsc, int PriceDef, int DefVal, int MaxLv) {
@@ -63,10 +59,6 @@ public class UpgradeFormatInt : UpgradeFormat
         this.PriceDef = PriceDef;
         this.DefVal = DefVal;
     }
-
-    public void UpdateVal() {
-        Val = DefVal + (Lv * Unit);
-    } 
 
     public int GetNextVal() => DefVal + (Lv + 1) * Unit;
 }

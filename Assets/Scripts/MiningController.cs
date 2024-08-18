@@ -35,7 +35,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Ore targetOre;
 
         //* VALUE
-        const float TARGET_Y_UNDER_MINUS = 0.2f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
+        const float TARGET_Y_UNDER_MINUS = 0.4f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
         const float REACH_TARGET_MIN_DIST = 0.375f;    // 타겟지점 도달판단 최소거리(집, 광석)
 
@@ -207,7 +207,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 rigid.velocity = Vector2.zero;
 
                 // 距離
-                float distance = Vector2.Distance(targetOre.transform.position, transform.position);
+                float distance = Vector2.Distance(underYTargetPos, transform.position);
                 Debug.Log($"GO:: distance= {distance}");
 
                 //* 鉱石についたら
