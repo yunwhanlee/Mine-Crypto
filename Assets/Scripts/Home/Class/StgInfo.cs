@@ -51,6 +51,9 @@ public class StgInfo
                 GM._.ui.ShowNoticeMsgPopUp("광산진입");
                 DM._.DB.statusDB.StageTicket -= needTicketCnt;
 
+                // 선택한 광산종류 저장
+                GM._.stm.OreType = (Enum.RSC)id;
+
                 // 이전 팝업 닫기
                 GM._.hm.HomeWindow.SetActive(false);
                 GM._.ssm.selectStagePopUp.SetActive(false);

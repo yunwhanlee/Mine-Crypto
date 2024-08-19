@@ -6,8 +6,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameState {
+    Play, Gameover
+} 
+
 public class StageManager : MonoBehaviour {
-    //* Object
+    [Header("TOP")]
+    public Image curRscIconImg;
+    public TMP_Text curRscCntTxt;
+    public TMP_Text timerTxt;
+    public TMP_Text stageTxt;
+
+    //* Ore Object
     public GameObject[] orePrefs;
 
     public Transform oreAreaTopLeftTf;
@@ -15,34 +25,69 @@ public class StageManager : MonoBehaviour {
     private Vector2 topLeftPos;
     private Vector2 bottomRightPos;
 
-    public TMP_Text stageTxt;
     public DOTweenAnimation cutOutMaskUIDOTAnim;
 
     //* Value
-    [field:SerializeField] int stage;  public int Stage {
-        get => stage;
+
+
+    [field:SerializeField] int timerVal;  public int TimerVal {
+        get => timerVal;
         set {
-            stage = value;
-            stageTxt.text = $"광산 {stage}층";
+            timerVal = value;
+
+            int min = timerVal / 60;
+            int sec = timerVal % 60;
+            timerTxt.text = $"{min:00} : {sec:00}";
         }
     }
+
+    [field:SerializeField] Enum.RSC oreType;  public Enum.RSC OreType {
+        get => oreType;
+        set => oreType = value;
+    }
+
+    [field:SerializeField] int floor;  public int Floor {
+        get => floor;
+        set {
+            floor = value;
+            stageTxt.text = $"{(int)oreType + 1}광산 {floor}층";
+        }
+    }
+
     [field:SerializeField] int oreAreaInterval;       // 광석 배치영역 광석 사이 간격 (작을수록 더 많은 위치리스트 생성)
     [field:SerializeField] List<Vector2> orePosList = new List<Vector2>();
 
     [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
     [field:SerializeField] int oreCnt;                  // 스테이지별 적용할 광석 수
 
-    void Start() {
-        Stage = 1;
+    /// <summary>
+    /// 선택한 스테이지 시작
+    /// </summary>
+    public void StartStage() {
+        Debug.Log("StartStage()::");
+        Floor = 1;
+
+        // 선택한 광산타입으로 초기화
+        curRscIconImg.sprite = GM._.RscSprArr[(int)oreType]; // 재화 아이콘
+        curRscCntTxt.text = $"{DM._.DB.statusDB.RscArr[(int)oreType]}"; // 재화수량
+
+        // 타이머 초기화 및 카운트다운 시작
+        TimerVal = GM._.ugm.upgIncTimer.Val;
+        StartCoroutine(CoCownDownTimer());
+
+        // 광석 생성 영역
         topLeftPos = oreAreaTopLeftTf.position;
         bottomRightPos = oreAreaBottomRightTf.position;
 
+        // 컷아웃 마스크 UI효과
         cutOutMaskUIDOTAnim.DOPlay();
+
+        // 광석 오브젝트 생성
         StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
     }
 
     public IEnumerator CoNextStage() {
-        Stage++;
+        Floor++;
         yield return Util.TIME0_5;
 
         cutOutMaskUIDOTAnim.DORestart();
@@ -57,6 +102,15 @@ public class StageManager : MonoBehaviour {
             var worker = workerGroup.GetChild(i).GetComponent<MiningController>();
             StartCoroutine(worker.CoInitStatus());
         }
+    }
+
+    IEnumerator CoCownDownTimer() {
+        while(timerVal > 0) {
+            yield return Util.TIME1;
+            TimerVal -= 1;
+        }
+
+        timerTxt.text = "GAME OVER!";
     }
 
     IEnumerator CoUpdateAndCreateOre(int interval) {
@@ -76,8 +130,8 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     private void UpdateOreValueByStage() {
         const int DEF_HP = 1000;
-        oreHp = DEF_HP + ((stage-1) * 100);
-        oreCnt = (stage + 10) / 10;
+        oreHp = DEF_HP + ((floor-1) * 100);
+        oreCnt = (floor + 10) / 10;
     }
     
     /// <summary>
@@ -96,7 +150,7 @@ public class StageManager : MonoBehaviour {
     /// <summary>
     /// 광석 생성
     /// </summary>
-    public void CreateOres(int oreHp, int oreCnt) {
+    private void CreateOres(int oreHp, int oreCnt) {
         // 생성개수가 리스트보다 많다면 리스트 최대치로 수정
         if(oreCnt > orePosList.Count)
             oreCnt = orePosList.Count;
@@ -106,7 +160,7 @@ public class StageManager : MonoBehaviour {
             int rand = Random.Range(0, orePosList.Count);
 
             // 생성
-            Ore ore = Instantiate(orePrefs[0], GM._.mnm.oreGroupTf).GetComponent<Ore>();
+            Ore ore = Instantiate(orePrefs[(int)oreType], GM._.mnm.oreGroupTf).GetComponent<Ore>();
             ore.transform.position = orePosList[rand]; // 랜덤위치 적용
             ore.MaxHp = oreHp;
 

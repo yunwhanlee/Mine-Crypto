@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Ore : MonoBehaviour
 {
-
+    [field:SerializeField] public Enum.RSC OreType {get; private set;}
     [field:SerializeField] public int Lv {get; set;}
     [field:SerializeField] public int MaxHp {get; set;}
     [field:SerializeField] int Hp {get; set;}

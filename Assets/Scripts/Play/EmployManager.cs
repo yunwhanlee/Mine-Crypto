@@ -49,6 +49,9 @@ public class EmployManager : MonoBehaviour
     {
         employPopUp.SetActive(false);
 
+        // 스테이지 시작
+        GM._.stm.StartStage();
+
         // 고블린 생성
         StartCoroutine(CoCreateRandomCharaIns());
     }

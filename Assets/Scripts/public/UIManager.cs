@@ -81,11 +81,12 @@ public class UIManager : MonoBehaviour
         noticeMsgPopUp.SetActive(false);
     }
 
-    public IEnumerator CoPlayCoinAttractionPtcUIEF(int playCnt = 1)
+    public IEnumerator CoPlayCoinAttractionPtcUIEF(int playCnt, Enum.RSC oreType)
     {
         int time = 0;
         while(time < playCnt) {
             time++;
+            coinAttractionPtcImg.sprite = GM._.RscSprArr[(int)oreType];
             coinAttractionPtcImg.Play();
             yield return Util.TIME0_1;
         }

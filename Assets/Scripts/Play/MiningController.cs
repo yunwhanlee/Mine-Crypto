@@ -35,7 +35,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Ore targetOre;
 
         //* VALUE
-        const float TARGET_Y_UNDER_MINUS = 0.4f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
+        const float TARGET_Y_UNDER_MINUS = 0.5f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
         const float REACH_TARGET_MIN_DIST = 0.375f;    // 타겟지점 도달판단 최소거리(집, 광석)
 
@@ -253,7 +253,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     const int ratio = 50;
                     int effectPlayCnt = bagStorage / ratio;
                     Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
-                    StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(effectPlayCnt <= 0? 1 : effectPlayCnt));
+                    StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
+                        (effectPlayCnt <= 0)? 1 : effectPlayCnt
+                        , targetOre.OreType
+                    ));
                     GM._.mnm.Coin += bagStorage;
                     BagStorage = 0;
 

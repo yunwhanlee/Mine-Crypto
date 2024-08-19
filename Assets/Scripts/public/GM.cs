@@ -15,12 +15,10 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public FameManager fm; // 명성 및 미션
     
 
-    [field:HideInInspector] public PlayManager pm;
     [field:HideInInspector] public MineManager mnm;
     [field:HideInInspector] public StageManager stm;
     [field:HideInInspector] public EmployManager epm;
     [field:HideInInspector] public UpgradeManager ugm;
-    [field:HideInInspector] public RebornManager rbm;
 
     [field:SerializeField] public Sprite[] RscSprArr {get; private set;}
 
@@ -34,13 +32,10 @@ public class GM : MonoBehaviour
         ssm = GameObject.Find("SelectStageManager").GetComponent<SelectStageManager>();
         fm = GameObject.Find("FameManager").GetComponent<FameManager>();
 
-        pm = GameObject.Find("PlayManager").GetComponent<PlayManager>();
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();
         stm = GameObject.Find("StageManager").GetComponent<StageManager>();
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
         ugm = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
-        rbm = GameObject.Find("RebornManager").GetComponent<RebornManager>();
-
     }
 
     void Update()
