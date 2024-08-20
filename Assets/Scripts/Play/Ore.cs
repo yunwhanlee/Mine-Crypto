@@ -12,6 +12,8 @@ public class Ore : MonoBehaviour
     [field:SerializeField] int Hp {get; set;}
 
     [field:SerializeField] public bool IsDestroied;
+
+    /// <summary> 현재 자신을 채굴중인 캐릭터 수 </summary>
     [field:SerializeField] public int MiningCnt {get; set;}
 
     [field: Header("EFFECT")]

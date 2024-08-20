@@ -32,15 +32,17 @@ public class UIManager : MonoBehaviour
     }
 
     void Update() {
-        if(GM._.mnm.workerGroupTf.childCount > 0)
-        {
-            var worker = GM._.mnm.workerGroupTf.GetChild(0).GetComponent<MiningController>();
-            workerInfoDebugTxt.text =
-                $"[고블린1 업글] 공: {worker.AttackVal}"
-                + $", 공속: {worker.AttackSpeed}({(1 / worker.AttackSpeed).ToString("F2")}초)"
-                + $", 이속: {worker.MoveSpeed}"
-                + $", 가방: {worker.BagStorageSize}";
-        }
+        workerInfoDebugTxt.text = $"상태: {GM._.gameState}";
+
+        // if(GM._.mnm.workerGroupTf.childCount > 0)
+        // {
+        //     var worker = GM._.mnm.workerGroupTf.GetChild(0).GetComponent<MiningController>();
+        //     workerInfoDebugTxt.text =
+        //         $"[고블린1 업글] 공: {worker.AttackVal}"
+        //         + $", 공속: {worker.AttackSpeed}({(1 / worker.AttackSpeed).ToString("F2")}초)"
+        //         + $", 이속: {worker.MoveSpeed}"
+        //         + $", 가방: {worker.BagStorageSize}";
+        // }
     }
 
 #region EVENT

@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
+public enum GameState {
+    HOME, PLAY, GAMEOVER, STOP
+}
+
 public class GM : MonoBehaviour
 {
+    public GameState gameState;
     public static GM _;
 
     //* Outside
@@ -24,6 +29,7 @@ public class GM : MonoBehaviour
 
     void Awake()
     {
+        gameState = GameState.HOME;
         _ = this;
 
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();

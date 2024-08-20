@@ -6,10 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GameState {
-    Play, Gameover
-} 
-
 public class StageManager : MonoBehaviour {
     [Header("TOP")]
     public Image curRscIconImg;
@@ -28,7 +24,6 @@ public class StageManager : MonoBehaviour {
     public DOTweenAnimation cutOutMaskUIDOTAnim;
 
     //* Value
-
 
     [field:SerializeField] int timerVal;  public int TimerVal {
         get => timerVal;
@@ -65,6 +60,7 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     public void StartStage() {
         Debug.Log("StartStage()::");
+        GM._.gameState = GameState.PLAY;
         Floor = 1;
 
         // 선택한 광산타입으로 초기화
@@ -86,6 +82,9 @@ public class StageManager : MonoBehaviour {
         StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
     }
 
+    /// <summary>
+    /// 다음 스테이지 이동
+    /// </summary>
     public IEnumerator CoNextStage() {
         Floor++;
         yield return Util.TIME0_5;
@@ -104,13 +103,17 @@ public class StageManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 시간 카운트 다운
+    /// </summary>
     IEnumerator CoCownDownTimer() {
         while(timerVal > 0) {
             yield return Util.TIME1;
             TimerVal -= 1;
         }
 
-        timerTxt.text = "GAME OVER!";
+        GM._.gameState = GameState.GAMEOVER;
+        timerTxt.text = GameState.GAMEOVER.ToString();
     }
 
     IEnumerator CoUpdateAndCreateOre(int interval) {

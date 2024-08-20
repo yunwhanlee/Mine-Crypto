@@ -15,7 +15,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             MINING,
             BACKHOME,
             CLEARSTAGE,
-            // RECOVERTY, // <- Stamina 회복중 상태
         }
 
         public Status status;
@@ -103,10 +102,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             }
         }
 
-        // public int staminaMax;                      // スタミナMAX
-        // public int stamina;                         // スタミナ
-        // public int staminaRecoveryVal;              // スタミナ回復量
-
         public void Start()
         {
             _animation = GetComponent<CharacterAnimation>();
@@ -123,11 +118,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             BagStorage = 0;
 
             StartCoroutine(CoInitStatus());
-            // stamina = staminaMax;
         }
 
         /// <summary>
-        /// 첫 고블린 생성 시, 점프 애니메이션 0.2초 후에 이동시작
+        /// 첫 캐릭터 생성 시, 점프 애니메이션 0.2초 후에 이동시작
         /// </summary>
         public IEnumerator CoInitStatus()
         {
@@ -136,6 +130,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             status = Status.GO;
         }
 
+        /// <summary>
+        /// 타겟 이동관련 처리
+        /// </summary>
         void FixedUpdate()
         {
             if(status == Status.SPAWN
@@ -145,31 +142,32 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 return;
             }
 
-            //* 採掘していないとき
+            //* 채굴하러 이동중인 경우
             if(status == Status.GO)
             {
-                // 一回 実行
+                // 달리기 애니메이션 실행 (1회)
                 if(_animation.GetState() != CharacterState.Run)
-                {
                     _animation.Run();
-                }
 
-                // ターゲット 指定
+                // 타겟광석이 없을 경우
                 if(!targetOre)
                 {
-                    float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
-                    attackWaitTime = attackSpeedSec; // 最初一回すぐ攻撃
-
-                    Transform oreGroupTf = GM._.mnm.oreGroupTf;
                     Ore ore = null;
+                    Transform oreGroupTf = GM._.mnm.oreGroupTf;
 
-                    // ターゲット探す
+                    float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
+                    attackWaitTime = attackSpeedSec; // 처음 1회는 바로 공격하도록
+
+                    // 타겟광석 설정
                     for(int i = 0; i < oreGroupTf.childCount; i++)
-                    {   
+                    {
+                        // 순서대로 타겟광석을 배분하기위한 균형카운트
+                        int CurBalanceMiningCnt = 1 + GM._.mnm.CurTotalMiningCnt / oreGroupTf.childCount;
+
+                        // i번째 광석대입
                         ore = oreGroupTf.GetChild(i).GetComponent<Ore>();
 
-                        // ターゲットにするため、ループ終了
-                        int CurBalanceMiningCnt = 1 + GM._.mnm.CurTotalMiningCnt / oreGroupTf.childCount;
+                        // 위 광석을 채굴중인 캐릭이 균형카운트보다 작다면, 루프 종료
                         if(ore.MiningCnt < CurBalanceMiningCnt)
                         {
                             Debug.Log($"Calc MiningCnt Balance: {CurBalanceMiningCnt} <- {GM._.mnm.CurTotalMiningCnt} / {oreGroupTf.childCount}");
@@ -177,126 +175,126 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         }
                     }
 
-                    // 途中で他のゴブリンが破壊したら
+                    //* 도중에 다른 캐릭터가 타겟광석을 파괴했을 경우
                     if(ore == null)
                     {
-                        status = Status.BACKHOME; // 家に帰る
+                        status = Status.BACKHOME; // 귀가
                         targetOre = null;
                         return;
                     }
 
-                    // ターゲット指定
+                    // 타겟 지정 완료
                     targetOre = ore;
+
                     targetOre.MiningCnt++;
                     GM._.mnm.CurTotalMiningCnt++;
                 }
 
-                // Sorting Layer 앞 배치를 위해, 타겟보다 조금 Y축 밑으로 위치 설정
+                // Sorting Layer 앞 배치를 위해, 타겟 Y좌표를 조금아래로 설정
                 var pos = targetOre.transform.position;
                 Vector3 underYTargetPos = new (pos.x, pos.y - TARGET_Y_UNDER_MINUS, pos.z);
-                // 方向 指定
+
+                // 타겟 방향
                 Vector2 dir = (underYTargetPos - transform.position).normalized;
 
-                // キャラの向き
+                // 캐릭터 좌・우
                 sprRdr.flipX = dir.x < 0;
 
                 Vector2 moveVec = dir * MoveSpeed * Time.fixedDeltaTime;
 
-                // ターゲットへ行く
+                // 타겟으로 이동
                 rigid.MovePosition(rigid.position + moveVec);
                 rigid.velocity = Vector2.zero;
 
-                // 距離
+                // 타겟과의 거리
                 float distance = Vector2.Distance(underYTargetPos, transform.position);
                 Debug.Log($"GO:: distance= {distance}");
 
-                //* 鉱石についたら
+                //* 타겟광석에 도착했을 경우
                 if(distance < REACH_TARGET_MIN_DIST)
                 {
-                    status = Status.MINING; // 採掘開始
+                    status = Status.MINING; // 채굴시작!
                 }
             }
-            //* 家に帰る
+            //* 가방이 꽉차서 귀가하는 경우 (또는 광석이 채굴도중 파괴될 경우)
             else if(status == Status.BACKHOME)
             {
-                // 一回 実行
+                // 가방들고 돌아오기 애니메이션 실행 (1회)
                 if(_animation.GetState() != CharacterState.Crawl)
-                {
-                    _animation.Crawl(); // カバン持って帰る
-                }
+                    _animation.Crawl();
 
                 Vector3 homePos = GM._.mnm.homeTf.position;
 
-                // 方向 指定
+                // 집 방향
                 Vector2 dir = (homePos - transform.position).normalized;
 
-                // キャラの向き
+                // 캐릭터 좌・우
                 sprRdr.flipX = dir.x < 0;
 
+                // 가방이 무거우니까 속도낮춘 방향벡터
                 const float WEIGHT_UP_SLOW_SPEED_PER = 0.65f;
                 Vector2 moveVec = dir * (MoveSpeed * WEIGHT_UP_SLOW_SPEED_PER) * Time.fixedDeltaTime;
 
-                // ターゲットへ行く
+                // 집으로 이동
                 rigid.MovePosition(rigid.position + moveVec);
                 rigid.velocity = Vector2.zero;
 
-                // 距離
+                // 집과의 거리
                 float distance = Vector2.Distance(homePos, transform.position);
                 Debug.Log($"BACKHOME:: distance= {distance}");
 
-                //* 家に到着
+                //* 집 도착
                 if(distance < REACH_TARGET_MIN_DIST)
                 {
                     Debug.Log("REACH HOME!");
 
-                    // コインEF 増加
+                    // 재화이펙트 수량
                     const int ratio = 50;
                     int effectPlayCnt = bagStorage / ratio;
                     Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
+
+                    // 재화 이펙트 재생
                     StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
-                        (effectPlayCnt <= 0)? 1 : effectPlayCnt
-                        , targetOre.OreType
+                        (effectPlayCnt <= 0)? 1 : effectPlayCnt, targetOre.OreType
                     ));
-                    GM._.mnm.Coin += bagStorage;
+
+                    // 재화 증가
+                    DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
+
+                    // 가방 비우기
                     BagStorage = 0;
 
+                    //* 맵에 광석이 남아있는 경우
                     if(GM._.mnm.oreGroupTf.childCount > 0)
                     {
-                        status = Status.GO; // 採掘しに行こう！
+                        status = Status.GO; // 채굴하러 이동
                         _animation.Idle();
                     }
+                    //* 맵에 광석이 없는 경우
                     else
                     {
-                        status = Status.CLEARSTAGE; // 採掘しに行こう！
-                        _animation.Die();
+                        status = Status.CLEARSTAGE; // 스테이지 클리어
+                        _animation.Die(); // 쓰러짐 애니메이션
 
+                        // 캐릭터 클리어 카운트 ++
                         GM._.mnm.workerClearStageStatusCnt++;
 
+                        // 모든 캐릭터가 클리어 카운트 됬다면
                         if(GM._.mnm.workerClearStageStatusCnt >= GM._.ugm.upgIncPopulation.Val)
                         {
-                            GM._.mnm.workerClearStageStatusCnt = 0;
-                            StartCoroutine(GM._.stm.CoNextStage());
+                            GM._.mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
+                            StartCoroutine(GM._.stm.CoNextStage()); // 다음 스테이지 이동
                         }
                     }
 
                     _animation.moveDustParticle.Stop();
-
-                    // スタミナ 減る
-                    // stamina--;
-                    // if(stamina <= 0)
-                    // {
-                    //     Debug.Log("REACH HOME! DIE");
-                    //     status = Status.RECOVERTY;
-                    //     _animation.Die();
-                    // }
-                    // else {
-                    // status = Status.GO; // 採掘しに行こう！
-                    // _animation.Idle();
-                    // }
                 }
             }
         }
 
+        /// <summary>
+        /// 채굴관련 처리
+        /// </summary>
         void Update() {
             if(status == Status.SPAWN)
             {
@@ -304,45 +302,47 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 return;
             }
 
-            //* 採掘しているとき
+            //* 채굴중인 경우
             if(status == Status.MINING) {
                 attackWaitTime += Time.deltaTime;
-                float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
 
-                //* 走るアニメーション 停止
+                // 実際の攻撃速度(秒)
+                float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; 
+
+                // 달리는 애니메이션 정지
                 if(_animation.GetState() == CharacterState.Run)
-                {
                     _animation.Idle();
-                }
 
-                //* 鉱石 攻撃（採掘）
+                //* 광석채굴 (공격)
                 if(attackWaitTime > attackSpeedSec)
                 {
-                    // カバン ストレージ量 増加
+                    attackWaitTime = 0;
+
+                    // 가방용량 증가
                     if(bagStorage < BagStorageSize)
                     {
                         BagStorage += AttackVal;
                     }
-                    // カバン ストレージ量が埋めたら
+                    // 가방이 꽉찬 경우
                     else {
-                        status = Status.BACKHOME; // 家に帰る
+                        status = Status.BACKHOME; // 귀가
                         return;
                     }
 
-                    attackWaitTime = 0;
+                    // 채굴 애니메이션
                     _animation.Slash();
 
-                    // 鉱石 HpBar 表示
+                    // 광석 HpBar 표시
                     if(targetOre && !targetOre.HpSlider.gameObject.activeSelf)
                         targetOre.HpSlider.gameObject.SetActive(true);
 
-                    // 攻撃
+                    // 광석 체력감소
                     targetOre.DecreaseHp(AttackVal);
 
-                    // 破壊
+                    // 광석체력 0이라면, 파괴
                     if(targetOre.IsDestroied)
                     {
-                        status = Status.BACKHOME; // 家に帰る
+                        status = Status.BACKHOME; // 귀가
                         targetOre = null;
                     }
                 }

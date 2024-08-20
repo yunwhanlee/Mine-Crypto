@@ -19,7 +19,10 @@ public class StatusDB
         rscArr[idx] += val;
         if(rscArr[idx] < 0)
                 rscArr[idx] = 0;
-        GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
+        if(GM._.gameState == GameState.HOME)
+            GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
+        else
+            GM._.stm.curRscCntTxt.text = $"{rscArr[idx]}";
     }
 
     //TODO 광석티켓 -> 일반광산
