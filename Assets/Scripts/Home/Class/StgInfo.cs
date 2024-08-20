@@ -48,7 +48,6 @@ public class StgInfo
             Debug.Log($"Click EnterBtn:: needTicketCnt= {needTicketCnt}");
             if(DM._.DB.statusDB.StageTicket >= needTicketCnt)
             {
-                GM._.ui.ShowNoticeMsgPopUp("광산진입");
                 DM._.DB.statusDB.StageTicket -= needTicketCnt;
 
                 // 선택한 광산종류 저장

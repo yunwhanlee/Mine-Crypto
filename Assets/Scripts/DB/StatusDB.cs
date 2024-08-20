@@ -25,6 +25,12 @@ public class StatusDB
             GM._.stm.curRscCntTxt.text = $"{rscArr[idx]}";
     }
 
+    public void UpdateAllRscUIAtHome() {
+        for(int i = 0; i < rscArr.Length; i++){
+            GM._.hm.topRscTxtArr[i].text = $"{rscArr[i]}";
+        }
+    }
+
     //TODO 광석티켓 -> 일반광산
     [field:SerializeField] int stageTicket; public int StageTicket {
         get => stageTicket;
@@ -44,18 +50,4 @@ public class StatusDB
     //         if(redTicket < 0) redTicket = 0;
     //     }
     // }
-
-    [field:SerializeField] int coin; public int Coin {
-        get {return coin;}
-        set {
-            coin = value;
-            if(coin < 0) coin = 0;
-            GM._.ui.coinTxt.text = coin.ToString();
-        }
-    }
-
-    public StatusDB() {
-        coin = 0;
-    }
-
 }

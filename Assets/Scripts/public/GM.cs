@@ -19,7 +19,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public SelectStageManager ssm;
     [field:HideInInspector] public FameManager fm; // 명성 및 미션
     
-
+    [field:HideInInspector] public PlayManager pm;
     [field:HideInInspector] public MineManager mnm;
     [field:HideInInspector] public StageManager stm;
     [field:HideInInspector] public EmployManager epm;
@@ -38,6 +38,7 @@ public class GM : MonoBehaviour
         ssm = GameObject.Find("SelectStageManager").GetComponent<SelectStageManager>();
         fm = GameObject.Find("FameManager").GetComponent<FameManager>();
 
+        pm = GameObject.Find("PlayManager").GetComponent<PlayManager>();
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();
         stm = GameObject.Find("StageManager").GetComponent<StageManager>();
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
@@ -47,7 +48,7 @@ public class GM : MonoBehaviour
     void Update()
     {
         //! TEST NEXT STAGE
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.B))
         {
             mnm.workerClearStageStatusCnt = 0;
             StartCoroutine(stm.CoNextStage());

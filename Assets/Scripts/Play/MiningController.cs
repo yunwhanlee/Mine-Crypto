@@ -81,9 +81,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             }
         }
 
-        float attackWaitTime; // 攻撃待機時間
-
-        [Space()]
+        // 攻撃待機時間
+        float attackWaitTime; 
 
         // カバン保管量
         [field:SerializeField] int bagStorage;  public int BagStorage {
@@ -254,12 +253,15 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
 
                     // 재화 이펙트 재생
-                    StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
-                        (effectPlayCnt <= 0)? 1 : effectPlayCnt, targetOre.OreType
-                    ));
+                    if(targetOre != null) {
+                        StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
+                            (effectPlayCnt <= 0)? 1 : effectPlayCnt, targetOre.OreType
+                        ));
+                    }
 
                     // 재화 증가
-                    DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
+                    if(targetOre != null)
+                        DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
 
                     // 가방 비우기
                     BagStorage = 0;

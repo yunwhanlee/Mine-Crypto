@@ -25,12 +25,6 @@ public class UIManager : MonoBehaviour
     [Header("DEBUG")]
     public TMP_Text workerInfoDebugTxt;
 
-
-    void Start()
-    {
-        coinTxt.text = DM._.DB.statusDB.Coin.ToString();
-    }
-
     void Update() {
         workerInfoDebugTxt.text = $"상태: {GM._.gameState}";
 
@@ -48,7 +42,7 @@ public class UIManager : MonoBehaviour
 #region EVENT
     public void OnClickTopCoinPlusIcon() {
         //! Add Coin TEST
-        DM._.DB.statusDB.Coin += 100000;
+        
     }
 #endregion
 

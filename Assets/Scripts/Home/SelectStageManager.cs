@@ -13,7 +13,7 @@ public class SelectStageManager : MonoBehaviour
     public GameObject selectStagePopUp;
     public TMP_Text stageTicketCntTxt;
 
-    [Header("스테이지 정보 배열")]
+    [Header("스테이지 정보 배열 (버튼 포함)")]
     public StgInfo[] stgInfoArr;
 
     void Start() {

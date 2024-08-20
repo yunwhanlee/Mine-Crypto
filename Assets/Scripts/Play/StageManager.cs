@@ -10,7 +10,7 @@ public class StageManager : MonoBehaviour {
     [Header("TOP")]
     public Image curRscIconImg;
     public TMP_Text curRscCntTxt;
-    public TMP_Text timerTxt;
+
     public TMP_Text stageTxt;
 
     //* Ore Object
@@ -25,16 +25,6 @@ public class StageManager : MonoBehaviour {
 
     //* Value
 
-    [field:SerializeField] int timerVal;  public int TimerVal {
-        get => timerVal;
-        set {
-            timerVal = value;
-
-            int min = timerVal / 60;
-            int sec = timerVal % 60;
-            timerTxt.text = $"{min:00} : {sec:00}";
-        }
-    }
 
     [field:SerializeField] Enum.RSC oreType;  public Enum.RSC OreType {
         get => oreType;
@@ -67,9 +57,8 @@ public class StageManager : MonoBehaviour {
         curRscIconImg.sprite = GM._.RscSprArr[(int)oreType]; // 재화 아이콘
         curRscCntTxt.text = $"{DM._.DB.statusDB.RscArr[(int)oreType]}"; // 재화수량
 
-        // 타이머 초기화 및 카운트다운 시작
-        TimerVal = GM._.ugm.upgIncTimer.Val;
-        StartCoroutine(CoCownDownTimer());
+        // 타이머 카운트다운 시작
+        GM._.pm.StartCowndownTimer();
 
         // 광석 생성 영역
         topLeftPos = oreAreaTopLeftTf.position;
@@ -101,19 +90,6 @@ public class StageManager : MonoBehaviour {
             var worker = workerGroup.GetChild(i).GetComponent<MiningController>();
             StartCoroutine(worker.CoInitStatus());
         }
-    }
-
-    /// <summary>
-    /// 시간 카운트 다운
-    /// </summary>
-    IEnumerator CoCownDownTimer() {
-        while(timerVal > 0) {
-            yield return Util.TIME1;
-            TimerVal -= 1;
-        }
-
-        GM._.gameState = GameState.GAMEOVER;
-        timerTxt.text = GameState.GAMEOVER.ToString();
     }
 
     IEnumerator CoUpdateAndCreateOre(int interval) {
