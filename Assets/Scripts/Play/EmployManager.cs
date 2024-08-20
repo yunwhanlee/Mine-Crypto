@@ -19,6 +19,7 @@ public class EmployManager : MonoBehaviour
     public GameObject charaGachaPopUp;
 
     [Header("캐릭 랜덤뽑기 팝업")]
+    private Coroutine corCreateGachaResultID;
     public Transform charaGachaContentTf;
     public TMP_Text retryCntTxt;
 
@@ -61,7 +62,7 @@ public class EmployManager : MonoBehaviour
         SetRandomGachaGradeList();
 
         // 랜덤뽑기 결과UI 표시
-        StartCoroutine(CoCreateGachaResultCardUIContent());
+        corCreateGachaResultID = StartCoroutine(CoCreateGachaResultCardUIContent());
     }
 
     /// <summary>
@@ -83,7 +84,7 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickRetryBtn()
     {
-        if(gachaRetryCnt < 0) {
+        if(gachaRetryCnt <= 0) {
             GM._.ui.ShowWarningMsgPopUp("재시도 횟수를 전부 사용했습니다!");
             return;
         }
@@ -100,7 +101,8 @@ public class EmployManager : MonoBehaviour
             SetRandomGachaGradeList();
 
             // 랜덤뽑기 결과UI 표시
-            StartCoroutine(CoCreateGachaResultCardUIContent());
+            if(corCreateGachaResultID != null) StopCoroutine(corCreateGachaResultID);
+            corCreateGachaResultID = StartCoroutine(CoCreateGachaResultCardUIContent());
         }
     }
 
@@ -265,6 +267,8 @@ public class EmployManager : MonoBehaviour
             // 캐릭터 이미지
             card.transform.GetChild(CHARA_IMG).GetComponent<Image>().sprite = charaPrefArr[(int)grade].iconCharaImg;
         }
+
+        corCreateGachaResultID = null;
     }
 
     /// <summary>
