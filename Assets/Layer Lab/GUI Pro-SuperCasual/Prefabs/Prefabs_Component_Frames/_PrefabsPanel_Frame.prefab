@@ -10039,6 +10039,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemFrame01_Divided-Group
       objectReference: {fileID: 0}
+    - target: {fileID: 94710413063042000, guid: 9f8cab81ac4b24508a8d46accc6317c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 94710413063042007, guid: 9f8cab81ac4b24508a8d46accc6317c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

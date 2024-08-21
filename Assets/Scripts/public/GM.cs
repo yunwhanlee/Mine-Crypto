@@ -12,13 +12,16 @@ public class GM : MonoBehaviour
     public GameState gameState;
     public static GM _;
 
-    //* Outside
+    //* PUBLIC
     [field:HideInInspector] public UIManager ui;
+    [field:HideInInspector] public RewardUIManager rwm;
 
+    //* HOME
     [field:HideInInspector] public HomeManager hm;
     [field:HideInInspector] public SelectStageManager ssm;
     [field:HideInInspector] public FameManager fm; // 명성 및 미션
     
+    //* PLAY
     [field:HideInInspector] public PlayManager pm;
     [field:HideInInspector] public MineManager mnm;
     [field:HideInInspector] public StageManager stm;
@@ -33,6 +36,7 @@ public class GM : MonoBehaviour
         _ = this;
 
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+        rwm = GameObject.Find("RewardUIManager").GetComponent<RewardUIManager>();
 
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();
         ssm = GameObject.Find("SelectStageManager").GetComponent<SelectStageManager>();

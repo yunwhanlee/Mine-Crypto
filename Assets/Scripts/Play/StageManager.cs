@@ -57,8 +57,13 @@ public class StageManager : MonoBehaviour {
         curRscIconImg.sprite = GM._.RscSprArr[(int)oreType]; // 재화 아이콘
         curRscCntTxt.text = $"{DM._.DB.statusDB.RscArr[(int)oreType]}"; // 재화수량
 
+        stageTxt.text = "READY";
+
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();
+
+        // 게임결과 획득한 재화배열 초기화
+        GM._.pm.resultRscArr = new int[Enum.GetEnumRSCLenght()];
 
         // 광석 생성 영역
         topLeftPos = oreAreaTopLeftTf.position;

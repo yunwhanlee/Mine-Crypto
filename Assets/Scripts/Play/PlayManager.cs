@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,6 +12,9 @@ public class PlayManager : MonoBehaviour
 
     //* Value
     private Coroutine corTimerCowndownID;
+
+    [Header("인게임 채굴한 광석재화 수량 표시용 데이터")]
+    public int[] resultRscArr;
 
     [field:SerializeField] int timerVal;  public int TimerVal {
         get => timerVal;
@@ -36,7 +40,7 @@ public class PlayManager : MonoBehaviour
         for(int i = 0; i < GM._.mnm.workerGroupTf.childCount; i++){
             Destroy(GM._.mnm.workerGroupTf.GetChild(i).gameObject); 
         }
-        // 모든 재화 업데이트
+        // 모든 재화 UI 업데이트
         DM._.DB.statusDB.UpdateAllRscUIAtHome();
     }
 
@@ -49,13 +53,18 @@ public class PlayManager : MonoBehaviour
     private IEnumerator CoStartCownDownTimer() {
         timerVal = GM._.ugm.upgIncTimer.Val;
 
+        // 타이머 카운트 다운 
         while(timerVal > 0) {
             yield return Util.TIME1;
             TimerVal -= 1;
         }
 
+        //* 게임오버 (타이머 0이면)
         GM._.gameState = GameState.GAMEOVER;
         timerTxt.text = GameState.GAMEOVER.ToString();
+
+        //* 보상팝업 표시
+        GM._.rwm.ShowResultRscUI(resultRscArr);
     }
 #endregion
 

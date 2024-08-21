@@ -106,9 +106,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             _animation = GetComponent<CharacterAnimation>();
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
-            // _character = GetComponent<Character>();
-            // _charaBuilder = GetComponent<CharacterBuilder>();
-            // _controller = GetComponent<CharacterController2D>();
 
             // 実際の攻撃速度(秒)
             float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed;
@@ -134,6 +131,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// </summary>
         void FixedUpdate()
         {
+            if(GM._.gameState == GameState.GAMEOVER)
+            {
+                if(_animation.GetState() != CharacterState.Die)
+                    _animation.Die();
+                return;
+            }
+
             if(status == Status.SPAWN
             || status == Status.CLEARSTAGE)
             {
@@ -252,16 +256,20 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     int effectPlayCnt = bagStorage / ratio;
                     Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
 
-                    // 재화 이펙트 재생
                     if(targetOre != null) {
+                        // 재화 이펙트 재생
                         StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
                             (effectPlayCnt <= 0)? 1 : effectPlayCnt, targetOre.OreType
                         ));
                     }
 
-                    // 재화 증가
-                    if(targetOre != null)
+                    // 재화 획득
+                    if(targetOre != null) {
+                        // 타겟재화 증가
                         DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
+                        // 결과재화 반영
+                        GM._.pm.resultRscArr[(int)targetOre.OreType] += BagStorage;
+                    }
 
                     // 가방 비우기
                     BagStorage = 0;
@@ -295,9 +303,14 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
         /// <summary>
-        /// 채굴관련 처리
+        /// 광석 채굴관련 처리
         /// </summary>
         void Update() {
+            if(GM._.gameState == GameState.GAMEOVER)
+            {
+                return;
+            }
+
             if(status == Status.SPAWN)
             {
                 Debug.Log("WAIT !");
