@@ -14,6 +14,8 @@ public class GM : MonoBehaviour
 
     //* PUBLIC
     [field:HideInInspector] public UIManager ui;
+    [field:HideInInspector] public InventoryUIManager ivm;
+    [field:HideInInspector] public InventoryDescriptionManager idm;
     [field:HideInInspector] public RewardUIManager rwm;
 
     //* HOME
@@ -36,6 +38,8 @@ public class GM : MonoBehaviour
         _ = this;
 
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+        ivm = GameObject.Find("InventoryUIManager").GetComponent<InventoryUIManager>();
+        idm = GameObject.Find("InventoryDescriptionManager").GetComponent<InventoryDescriptionManager>();
         rwm = GameObject.Find("RewardUIManager").GetComponent<RewardUIManager>();
 
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();

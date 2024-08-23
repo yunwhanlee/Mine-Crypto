@@ -19,21 +19,5 @@ public class HomeManager : MonoBehaviour
         public void OnClickGameStartBtn() {
             GM._.ssm.ShowPopUp();
         }
-
-        public void OnClickUpgradeBtn() {
-            GM._.ugm.ShowPopUp();
-        }
-
-        public void OnClickOreBlessBtn() {
-            //TODO
-        }
-
-        public void OnClickAutoMiningBtn() {
-            //TODO
-        }
-
-        public void OnClickChallengeBtn() {
-            //TODO
-        }
     #endregion
 }

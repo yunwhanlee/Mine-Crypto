@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using AssetKits.ParticleImage;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// (PUBLIC) 공통 UI 매니저 : 어디서든 접근가능
+/// </summary>
 public class UIManager : MonoBehaviour
 {
-    //* TOP
-    public TMP_Text coinTxt;
-    public TMP_Text workerInfoTxt;
-
     //* POP UP
+    public GameObject menuPopUp;
+
     public GameObject warningMsgPopUp;
     public TMP_Text warningMsgTxt;
 
@@ -22,27 +24,29 @@ public class UIManager : MonoBehaviour
     //* EFFECT
     public ParticleImage coinAttractionPtcImg;
 
-    [Header("DEBUG")]
-    public TMP_Text workerInfoDebugTxt;
-
-    void Update() {
-        workerInfoDebugTxt.text = $"상태: {GM._.gameState}";
-
-        // if(GM._.mnm.workerGroupTf.childCount > 0)
-        // {
-        //     var worker = GM._.mnm.workerGroupTf.GetChild(0).GetComponent<MiningController>();
-        //     workerInfoDebugTxt.text =
-        //         $"[고블린1 업글] 공: {worker.AttackVal}"
-        //         + $", 공속: {worker.AttackSpeed}({(1 / worker.AttackSpeed).ToString("F2")}초)"
-        //         + $", 이속: {worker.MoveSpeed}"
-        //         + $", 가방: {worker.BagStorageSize}";
-        // }
+#region EVENT
+    public void OnClickMenuIconBtn() {
+        menuPopUp.SetActive(true);
     }
 
-#region EVENT
-    public void OnClickTopCoinPlusIcon() {
-        //! Add Coin TEST
-        
+    public void OnClickInvIconBtn() {
+        GM._.ivm.ShowInventory();
+    }
+
+    public void OnClickUpgradeBtn() {
+        GM._.ugm.ShowPopUp();
+    }
+
+    public void OnClickOreBlessBtn() {
+        //TODO
+    }
+
+    public void OnClickAutoMiningBtn() {
+        //TODO
+    }
+
+    public void OnClickChallengeBtn() {
+        //TODO
     }
 #endregion
 

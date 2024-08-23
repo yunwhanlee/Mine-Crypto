@@ -8,9 +8,8 @@ using UnityEngine;
 /// </summary>
 public class RewardUIManager : MonoBehaviour
 {
+    public GameObject rewardUIPopUp;            // 보상 팝업
     public RewardSlotUI[] rewardSlotUIArr;      // 보상 슬롯UI 객체배열
-
-    public GameObject rewardUIPopUp;            // 보상 슬롯UI 팝업
 
     [Header("모든 보상템을 ContentTf안에 미리 만들고 IDX로 처리")]
     public Transform contentTf;
@@ -21,10 +20,10 @@ public class RewardUIManager : MonoBehaviour
     }
 
     void Update() {
-        //! TEST
+        //! 보상 테스트
         if(Input.GetKeyDown(KeyCode.V)) {
 
-            // 수령할 보상 데이터 (결과팝업 표시)
+            // 보상획득 (결과팝업 표시)
             ShowReward (
                 new Dictionary<Enum.RWD, int>
                 {
@@ -59,19 +58,19 @@ public class RewardUIManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
-    /// 보상 관련 데이터 및 오브젝트 초기화 (1회)
+    /// 보상 관련 데이터 및 객체 초기화 (1회)
     /// </summary>
     private void InitDataAndUI() {
         // 보상슬롯UI를 배열로 저장 (미리 ContentTf에 슬롯UI 추가하여 준비)
         rewardSlotUIArr = new RewardSlotUI[contentTf.childCount];
-        InitRwdSlotUIArr();
+        InitElement();
         ResetAllSlotUI();
     }
 
     /// <summary>
-    /// 보상슬롯UI 객체 생성 (1회)
+    /// 모든 아이템슬롯UI 객체 초기화 (1회)
     /// </summary>
-    private void InitRwdSlotUIArr() {
+    private void InitElement() {
         for(int i = 0; i < contentTf.childCount; i++)
         {
             rewardSlotUIArr[i] = new RewardSlotUI

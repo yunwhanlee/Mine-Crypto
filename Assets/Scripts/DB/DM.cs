@@ -10,6 +10,7 @@ using UnityEngine;
 public class DB {
     public StatusDB statusDB;
     public MissionDB missionDB;
+    public BestFloorDB bestFloorDB;
 }
 
 /// <summary>
