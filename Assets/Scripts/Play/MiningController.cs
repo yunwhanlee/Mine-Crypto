@@ -267,8 +267,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     if(targetOre != null) {
                         // 타겟재화 증가
                         DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
-                        // 결과재화 반영
-                        GM._.pm.resultRscArr[(int)targetOre.OreType] += BagStorage;
+                        // 게임결과 획득한 보상 중 재화에 반영
+                        GM._.pm.gameoverRwdArr[(int)targetOre.OreType] += BagStorage;
                     }
 
                     // 가방 비우기

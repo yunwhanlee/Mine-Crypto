@@ -46,9 +46,9 @@ public class StgInfo
         // 입장티켓 버튼 이벤트 등록
         EnterBtn.onClick.AddListener(() => {
             Debug.Log($"Click EnterBtn:: needTicketCnt= {needTicketCnt}");
-            if(DM._.DB.statusDB.StageTicket >= needTicketCnt)
+            if(DM._.DB.statusDB.OreTicket >= needTicketCnt)
             {
-                DM._.DB.statusDB.StageTicket -= needTicketCnt;
+                DM._.DB.statusDB.OreTicket -= needTicketCnt;
 
                 // 선택한 광산종류 저장
                 GM._.stm.OreType = (Enum.RSC)id;

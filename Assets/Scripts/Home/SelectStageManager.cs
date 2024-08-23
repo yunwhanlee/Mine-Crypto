@@ -17,7 +17,7 @@ public class SelectStageManager : MonoBehaviour
     public StgInfo[] stgInfoArr;
 
     void Start() {
-        stageTicketCntTxt.text = $"{DM._.DB.statusDB.StageTicket} / 10";
+        stageTicketCntTxt.text = $"{DM._.DB.statusDB.OreTicket} / 10";
 
         for(int i = 0; i < stgInfoArr.Length; i++) {
             Debug.Log($"{stgInfoArr[i].name}: EnterBtn= {stgInfoArr[i].EnterBtn}, UnlockPriceBtn= {stgInfoArr[i].UnlockPriceBtn}");

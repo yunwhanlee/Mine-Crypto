@@ -17,15 +17,15 @@ public static class Enum
         // 재화 종류
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
         // 소비 아이템
-        ORE_TICKET, RED_TICKET, CHEST,
-        // 수치
+        ORE_TICKET, RED_TICKET, TREASURE_CHEST, ORE_CHEST,
+        // 포인트
         FAME,
     }
 
     /// <summary>
     /// 모든 재화타입 개수
     /// </summary>
-    public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;
+    // public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;
 
     /// <summary>
     /// 모든 보상타입 개수
@@ -54,7 +54,7 @@ public static class Enum
             case RWD.CRISTAL: return "크리스탈";
             case RWD.ORE_TICKET: return "광석티켓";
             case RWD.RED_TICKET: return "붉은티켓";
-            case RWD.CHEST: return "보물상자";
+            case RWD.TREASURE_CHEST: return "보물상자";
             case RWD.FAME: return "명성";
         }
         return "???";
