@@ -9,7 +9,7 @@ using UnityEngine;
 [Serializable]
 public class StatusDB
 {
-    [Header("일반재화 8종 및 특별재화(별사탕)")]
+    [Header("광석재화 8종 및 크리스탈")]
     [field:SerializeField] int[] rscArr; public int[] RscArr {
         get => rscArr;
     }

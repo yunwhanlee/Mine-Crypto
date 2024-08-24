@@ -5660,7 +5660,6 @@ RectTransform:
   - {fileID: 696825362}
   - {fileID: 45697813}
   - {fileID: 1530852296}
-  - {fileID: 2096554628}
   m_Father: {fileID: 2044878613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5960,8 +5959,7 @@ MonoBehaviour:
       <StageClearCnt>k__BackingField: 0
       <MiningChestCnt>k__BackingField: 0
       <ChallengeClearCnt>k__BackingField: 0
-    bestFloorDB:
-      oreArr: 000000000000000000000000000000000000000000000000000000000000000000000000
+    bestFloorArr: 
 --- !u!1 &147720921
 GameObject:
   m_ObjectHideFlags: 0
@@ -36844,7 +36842,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1199729838}
   - {fileID: 556811404}
   - {fileID: 1113467502}
   m_Father: {fileID: 2044878613}
@@ -52641,7 +52638,7 @@ RectTransform:
   - {fileID: 691884219}
   - {fileID: 1883403717046268380}
   - {fileID: 1318780165}
-  m_Father: {fileID: 838394137}
+  m_Father: {fileID: 1530852296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -64685,7 +64682,9 @@ RectTransform:
   - {fileID: 517206460}
   - {fileID: 1444750978}
   - {fileID: 2020528045}
+  - {fileID: 2096554628}
   - {fileID: 39466016}
+  - {fileID: 1199729838}
   m_Father: {fileID: 122956764}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -87133,7 +87132,7 @@ GameObject:
   - component: {fileID: 2096554628}
   - component: {fileID: 2096554629}
   m_Layer: 0
-  m_Name: EngraveInfoPanel
+  m_Name: OreBlessInfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87153,7 +87152,7 @@ RectTransform:
   m_Children:
   - {fileID: 1830026728}
   - {fileID: 782928839}
-  m_Father: {fileID: 122956764}
+  m_Father: {fileID: 1530852296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

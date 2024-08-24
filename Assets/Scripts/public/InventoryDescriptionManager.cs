@@ -109,7 +109,7 @@ void Start() {
                         RwdArr[i] = rwdList[randIdx];                    
 
                         // 2.보상 수량
-                        int bestFloor = DM._.DB.bestFloorDB.OreArr[randIdx];
+                        int bestFloor = DM._.DB.bestFloorArr[randIdx];
                         cntArr[i] = 100 + (bestFloor * 100); // 계산식
 
                         rwdList.RemoveAt(randIdx);

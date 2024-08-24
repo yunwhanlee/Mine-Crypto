@@ -10,7 +10,9 @@ using UnityEngine;
 public class DB {
     public StatusDB statusDB;
     public MissionDB missionDB;
-    public BestFloorDB bestFloorDB;
+
+    [Header("광산 8종 및 시련의광산 최대도달층")]
+    public int[] bestFloorArr;
 }
 
 /// <summary>

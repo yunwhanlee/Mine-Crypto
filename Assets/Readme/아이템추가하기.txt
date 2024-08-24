@@ -1,0 +1,9 @@
+모든 아이템은 미리 다 오브젝트를 생성하고 수량이 0이상이면 표시하는 방식이다.
+
+※ 그러므로 index순서가 매우 중요하다!!
+
+■보상 아이템 추가 (인벤토리도 같은 흐름)
+1.(소스코드) Enum.RWD {} 에 이름 추가하기. 
+2.(에디터) Canvas_Static/Public/RewardPopUp/ContentTf의 자식으로 오브젝트 추가하기.
+3.(소스코드) DM:: DB클래스에 아이템수량 변수 추가하기.
+4.(소스코드) RewardUIManager:: ShowReward()의 switch문에 획득시 수량 증가처리 추가.

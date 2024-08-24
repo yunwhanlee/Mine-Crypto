@@ -170,6 +170,7 @@ public class RewardUIManager : MonoBehaviour
                 case Enum.RWD.FAME: // 명성포인트
                     sttDB.Fame += val;
                     break;
+                // 여기에 추가
             }
             
         }
