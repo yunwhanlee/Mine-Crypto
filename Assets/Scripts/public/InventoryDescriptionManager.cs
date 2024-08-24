@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using static Enum;
 
 /// <summary>
 /// 인벤토리 아이템 상세정보 팝업
@@ -31,7 +32,7 @@ void Start() {
     /// 인벤토리 아이템 상세정보
     /// </summary>
     /// <param name="invIdx">인벤토리 아이템 인덱스</param>
-    public void OnClickInvItemSlot(Enum.INV invIdx) {
+    public void OnClickInvItemSlot(INV invIdx) {
         windowObj.SetActive(true);
 
         var invSlotUI = GM._.ivm.invSlotUIArr[(int)invIdx];
@@ -45,31 +46,58 @@ void Start() {
         switch(invIdx)
         {
             // 소비아이템 타입
-            case Enum.INV.TREASURE_CHEST:
-                confirmBtnTxt.text = "열기";
+            case INV.TREASURE_CHEST:
+                confirmBtnTxt.text = "모두 열기";
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("보물상자 오픈!");
 
-                    // 인벤토리 소비아이템 수량 감소
-                    sttDB.TreasureChest--;
+                    // 보상으로 나오는 모든 아이템 Dic
+                    Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
+                        {RWD.ORE_TICKET, 0},
+                        {RWD.RED_TICKET, 0},
+                        {RWD.CRISTAL, 0}
+                    };
 
-                    // 1.보상 아이템
-                    int random = Random.Range(0, 100);
-                    Enum.RWD reward = (random < 50)? Enum.RWD.ORE_TICKET
-                        : (random < 80)? Enum.RWD.RED_TICKET
-                        : Enum.RWD.CRISTAL;
-                    
-                    // 2.보상 수량
-                    int cnt = (reward == Enum.RWD.CRISTAL)? Random.Range(1, 6)
-                        : 1;
+                    // 모든 보물상자 열기
+                    for(int i = 0; i < sttDB.TreasureChest; i++)
+                    {
+                        // 1.보상 아이템 랜덤선택
+                        int random = Random.Range(0, 100);
+                        RWD reward = (random < 50)? RWD.ORE_TICKET
+                            : (random < 80)? RWD.RED_TICKET
+                            : RWD.CRISTAL;
+                        
+                        // 2.보상 수량 설정
+                        int cnt = (reward == RWD.CRISTAL)? Random.Range(1, 6) // 크리스탈이면 1 ~ 5개 랜덤
+                            : 1; // 그 이외 1개
+
+                        // 3.보상 Dic에 획득할 수량 추가
+                        switch(reward)
+                        {
+                            case RWD.ORE_TICKET:
+                                rwdDic[RWD.ORE_TICKET] += cnt;
+                                break;
+                            case RWD.RED_TICKET:
+                                rwdDic[RWD.RED_TICKET] += cnt;
+                                break;
+                            case RWD.CRISTAL:
+                                rwdDic[RWD.CRISTAL] += cnt;
+                                break;
+                        }
+                    }
+
+                    // 인벤토리 소비아이템 수량 감소
+                    sttDB.TreasureChest = 0;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
-                        new Dictionary<Enum.RWD, int>
+                        new Dictionary<RWD, int>
                         {
-                            { reward, cnt }
+                            {RWD.ORE_TICKET, rwdDic[RWD.ORE_TICKET]},
+                            {RWD.RED_TICKET, rwdDic[RWD.RED_TICKET]},
+                            {RWD.CRISTAL, rwdDic[RWD.CRISTAL]}
                         }
                     );
 
@@ -80,48 +108,68 @@ void Start() {
                     UpdateConsumedItemCntUI(sttDB.TreasureChest);
                 };
                 break;
-            case Enum.INV.ORE_CHEST:
-                confirmBtnTxt.text = "열기";
+            case INV.ORE_CHEST:
+                confirmBtnTxt.text = "모두 열기";
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("광석상자 오픈!");
                     
-                    // 인벤토리 소비아이템 수량 감소
-                    sttDB.OreChest--;
-
-                    // 광석 3종류 랜덤
-                    List<Enum.RWD> rwdList = new() {
-                        Enum.RWD.ORE1, Enum.RWD.ORE2, Enum.RWD.ORE3,
-                        Enum.RWD.ORE4, Enum.RWD.ORE5, Enum.RWD.ORE6,
-                        Enum.RWD.ORE7, Enum.RWD.ORE8,
+                    // 보상으로 나오는 모든 아이템 Dic
+                    Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
+                        {RWD.ORE1, 0}, {RWD.ORE2, 0}, {RWD.ORE3, 0}, {RWD.ORE4, 0},
+                        {RWD.ORE5, 0}, {RWD.ORE6, 0}, {RWD.ORE7, 0}, {RWD.ORE8, 0}
                     };
 
-                    Enum.RWD[] RwdArr = new Enum.RWD[3];
+
+
+                    // 광석 3종류 랜덤
+                    RWD[] rwdArr = new RWD[3];
                     int[] cntArr = new int[3];
 
-                    // 중복X 랜덤 3회
-                    for(int i = 0; i < RwdArr.Length; i++)
+                    // 모든 보물상자 열기
+                    for(int i = 0; i < sttDB.OreChest; i++)
                     {
-                        int randIdx = Random.Range(0, rwdList.Count);
+                        // 중복없는 보상 종류선택을 위한 리스트
+                        List<RWD> rwdList = new() {
+                            RWD.ORE1, RWD.ORE2, RWD.ORE3, RWD.ORE4,
+                            RWD.ORE5, RWD.ORE6, RWD.ORE7, RWD.ORE8,
+                        };
 
-                        // 1.보상 아이템
-                        RwdArr[i] = rwdList[randIdx];                    
+                        // 중복없는 랜덤 재화 3개 선택
+                        for(int j = 0; j < rwdArr.Length; j++)
+                        {
+                            // 1.보상 아이템 랜덤선택
+                            int randIdx = Random.Range(0, rwdList.Count);
 
-                        // 2.보상 수량
-                        int bestFloor = DM._.DB.bestFloorArr[randIdx];
-                        cntArr[i] = 100 + (bestFloor * 100); // 계산식
+                            Debug.Log($"randIdx= {randIdx}");
 
-                        rwdList.RemoveAt(randIdx);
+                            // 2.보상 수량
+                            int bestFloor = DM._.DB.bestFloorArr[randIdx];
+                            int val = 100 + (bestFloor * 100); // 계산식
+
+                            rwdDic[(RWD)randIdx] += val;
+
+                            // 리스트 제거 (중복방지)
+                            rwdList.RemoveAt(randIdx);
+                        }
                     }
+
+                    // 인벤토리 소비아이템 수량 감소
+                    sttDB.OreChest = 0;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
-                        new Dictionary<Enum.RWD, int>
+                        new Dictionary<RWD, int>
                         {
-                            { RwdArr[0], cntArr[0] },
-                            { RwdArr[1], cntArr[1] },
-                            { RwdArr[2], cntArr[2] },
+                            { RWD.ORE1, rwdDic[RWD.ORE1] },
+                            { RWD.ORE2, rwdDic[RWD.ORE2] },
+                            { RWD.ORE3, rwdDic[RWD.ORE3] },
+                            { RWD.ORE4, rwdDic[RWD.ORE4] },
+                            { RWD.ORE5, rwdDic[RWD.ORE5] },
+                            { RWD.ORE6, rwdDic[RWD.ORE6] },
+                            { RWD.ORE7, rwdDic[RWD.ORE7] },
+                            { RWD.ORE8, rwdDic[RWD.ORE8] },
                         }
                     );
 

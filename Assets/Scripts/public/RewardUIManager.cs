@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using static Enum;
 
 /// <summary>
 /// (PUBLIC) 보상 표시 팝업 (게임종료 및 보상수령에 사용)
@@ -25,11 +27,11 @@ public class RewardUIManager : MonoBehaviour
 
             // 보상획득 (결과팝업 표시)
             ShowReward (
-                new Dictionary<Enum.RWD, int>
+                new Dictionary<RWD, int>
                 {
-                    { Enum.RWD.CRISTAL, 1000 },
-                    { Enum.RWD.ORE1, 100 },
-                    { Enum.RWD.ORE_CHEST, 10 },
+                    { RWD.CRISTAL, 1000 },
+                    { RWD.ORE1, 100 },
+                    { RWD.ORE_CHEST, 10 },
                 }
             );
         }
@@ -75,8 +77,8 @@ public class RewardUIManager : MonoBehaviour
         {
             rewardSlotUIArr[i] = new RewardSlotUI
             {
-                name = Enum.GetRewardItemName((Enum.RWD)i),
-                rwdType = (Enum.RWD)i,
+                name = GetRewardItemName((RWD)i),
+                rwdType = (RWD)i,
                 obj = contentTf.GetChild(i).gameObject,
                 cntTxt = contentTf.GetChild(i).GetComponentInChildren<TMP_Text>()
             };
@@ -124,7 +126,7 @@ public class RewardUIManager : MonoBehaviour
     /// 수령할 보상 팝업 표시 및 수치 증가
     /// </summary>
     /// <param name="rwdDic">수령할 보상 Dic리스트</param>
-    public void ShowReward(Dictionary<Enum.RWD, int> rwdDic) {
+    public void ShowReward(Dictionary<RWD, int> rwdDic) {
         // 보상슬롯 팝업 표시
         GM._.rwm.rewardUIPopUp.SetActive(true);
 
@@ -134,45 +136,47 @@ public class RewardUIManager : MonoBehaviour
         // 획득할 보상아이템 처리
         foreach(var rwd in rwdDic)
         {
-            StatusDB sttDB = DM._.DB.statusDB;
-            Enum.RWD rwdType = rwd.Key;     // 타입
-            int val = rwd.Value;            // 획득량
-
-            // 해당 보상슬롯UI 표시
-            GM._.rwm.rewardSlotUIArr[(int)rwdType].obj.SetActive(true);
-            GM._.rwm.rewardSlotUIArr[(int)rwdType].cntTxt.text = val.ToString();
-
-            switch(rwdType)
+            if(rwd.Value > 0)
             {
-                case Enum.RWD.ORE1:
-                case Enum.RWD.ORE2:
-                case Enum.RWD.ORE3:
-                case Enum.RWD.ORE4:
-                case Enum.RWD.ORE5:
-                case Enum.RWD.ORE6:
-                case Enum.RWD.ORE7:
-                case Enum.RWD.ORE8:
-                case Enum.RWD.CRISTAL: // 타겟재화 증가
-                    sttDB.SetRscArr((int)rwdType, val);
-                    break;
-                case Enum.RWD.ORE_TICKET: // 광석 입장티켓
-                    sttDB.OreTicket += val;
-                    break;
-                case Enum.RWD.RED_TICKET: // 시련의광산 입장티켓
-                    sttDB.RedTicket += val;
-                    break;
-                case Enum.RWD.TREASURE_CHEST: // 보물상자
-                    sttDB.TreasureChest += val;
-                    break;
-                case Enum.RWD.ORE_CHEST: // 광석상자
-                    sttDB.OreChest += val;
-                    break;
-                case Enum.RWD.FAME: // 명성포인트
-                    sttDB.Fame += val;
-                    break;
-                // 여기에 추가
+                StatusDB sttDB = DM._.DB.statusDB;
+                RWD rwdType = rwd.Key;     // 타입
+                int val = rwd.Value;            // 획득량
+
+                // 해당 보상슬롯UI 표시
+                GM._.rwm.rewardSlotUIArr[(int)rwdType].obj.SetActive(true);
+                GM._.rwm.rewardSlotUIArr[(int)rwdType].cntTxt.text = val.ToString();
+
+                switch(rwdType)
+                {
+                    case RWD.ORE1:
+                    case RWD.ORE2:
+                    case RWD.ORE3:
+                    case RWD.ORE4:
+                    case RWD.ORE5:
+                    case RWD.ORE6:
+                    case RWD.ORE7:
+                    case RWD.ORE8:
+                    case RWD.CRISTAL: // 타겟재화 증가
+                        sttDB.SetRscArr((int)rwdType, val);
+                        break;
+                    case RWD.ORE_TICKET: // 광석 입장티켓
+                        sttDB.OreTicket += val;
+                        break;
+                    case RWD.RED_TICKET: // 시련의광산 입장티켓
+                        sttDB.RedTicket += val;
+                        break;
+                    case RWD.TREASURE_CHEST: // 보물상자
+                        sttDB.TreasureChest += val;
+                        break;
+                    case RWD.ORE_CHEST: // 광석상자
+                        sttDB.OreChest += val;
+                        break;
+                    case RWD.FAME: // 명성포인트
+                        sttDB.Fame += val;
+                        break;
+                    // 여기에 추가
+                }
             }
-            
         }
     }
 #endregion

@@ -29,25 +29,41 @@ public class UIManager : MonoBehaviour
         menuPopUp.SetActive(true);
     }
 
+    public void OnClickChallengeBtn() {
+        GM._.clm.windowObj.SetActive(true);
+    }
+
     public void OnClickInvIconBtn() {
         GM._.ivm.ShowInventory();
     }
 
-    public void OnClickUpgradeBtn() {
+    public void OnClickMenu_UpgradeBtn() {
         GM._.ugm.ShowPopUp();
     }
 
-    public void OnClickOreBlessBtn() {
+    public void OnClickMenu_FameBtn() {
+        GM._.fm.windowObj.SetActive(true);
+        GM._.fm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+    }
+
+    public void OnClickMenu_OreBlessBtn() {
+        GM._.obm.windowObj.SetActive(true);
+        GM._.obm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+    }
+
+    public void OnClickMenu_AutoMiningBtn() {
+        GM._.amm.windowObj.SetActive(true);
+        GM._.amm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+    }
+
+    public void OnClickMenu_KnowledgeBtnBtn() {
         //TODO
     }
 
-    public void OnClickAutoMiningBtn() {
+    public void OnClickMenu_SettingBtn() {
         //TODO
     }
 
-    public void OnClickChallengeBtn() {
-        //TODO
-    }
 #endregion
 
 #region FUNC

@@ -8,6 +8,7 @@ public class FameManager : MonoBehaviour
 {
     const int MAX_FAME_LV = 20;
 
+    public GameObject windowObj;
     public Slider fameExpSlider;
     public TMP_Text fameLvTxt;
     public TMP_Text fameExpTxt;

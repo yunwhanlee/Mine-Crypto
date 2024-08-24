@@ -22,6 +22,9 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public HomeManager hm;
     [field:HideInInspector] public SelectStageManager ssm;
     [field:HideInInspector] public FameManager fm; // 명성 및 미션
+    [field:HideInInspector] public OreBlessManager obm;
+    [field:HideInInspector] public AutoMiningManager amm;
+    [field:HideInInspector] public ChallengeManager clm; // 시련의 광산
     
     //* PLAY
     [field:HideInInspector] public PlayManager pm;
@@ -37,20 +40,28 @@ public class GM : MonoBehaviour
         gameState = GameState.HOME;
         _ = this;
 
+        // PUBLIC
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();
         ivm = GameObject.Find("InventoryUIManager").GetComponent<InventoryUIManager>();
         idm = GameObject.Find("InventoryDescriptionManager").GetComponent<InventoryDescriptionManager>();
         rwm = GameObject.Find("RewardUIManager").GetComponent<RewardUIManager>();
 
+        // PUBLIC MENU
+        ugm = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
+        fm = GameObject.Find("FameManager").GetComponent<FameManager>();
+        obm = GameObject.Find("OreBlessManager").GetComponent<OreBlessManager>();
+        amm = GameObject.Find("AutoMiningManager").GetComponent<AutoMiningManager>();
+        clm = GameObject.Find("ChallengeManager").GetComponent<ChallengeManager>();
+
+        // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();
         ssm = GameObject.Find("SelectStageManager").GetComponent<SelectStageManager>();
-        fm = GameObject.Find("FameManager").GetComponent<FameManager>();
 
+        // PLAY
         pm = GameObject.Find("PlayManager").GetComponent<PlayManager>();
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();
         stm = GameObject.Find("StageManager").GetComponent<StageManager>();
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
-        ugm = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
     }
 
     void Update()

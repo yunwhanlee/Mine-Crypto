@@ -23,6 +23,15 @@ public static class Enum
         COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH
     }
 
+    public enum MISSION {
+        MINING_ORE_CNT,
+        MINING_TIME,
+        UPGRADE_CNT,
+        STAGE_CLEAR_CNT,
+        MINING_CHEST_CNT,
+        CHALLENGE_CLEAR_CNT
+    }
+
     /// <summary>
     ///* 재화 아이템 종류
     /// </summary>
@@ -41,6 +50,7 @@ public static class Enum
         ORE_TICKET, RED_TICKET, TREASURE_CHEST, ORE_CHEST,
         // 포인트
         FAME,
+        //※ 여기에 추가
     }
 
     /// <summary>
@@ -52,7 +62,7 @@ public static class Enum
         RED_TICKET, 
         TREASURE_CHEST,
         ORE_CHEST
-        // 여기에 추가
+        //※ 여기에 추가
     }
 
     //* 위의 인벤토리 아이템 이름 및 정보
@@ -61,32 +71,22 @@ public static class Enum
         new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다."),
         new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다."),
         new InvItem_Info("광석상자", "어떤 광석이 나올지 알 수 없다."),
-        // 여기에 추가 (추가시 배열 수 늘리기)
+        // 여기에 추가
     };
 
-    /// <summary>
-    /// 모든 재화 개수
-    /// </summary>
+    /// <summary>모든 재화 개수</summary>
     // public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;
 
-    /// <summary>
-    /// 모든 보상아이템 개수
-    /// </summary>
+    /// <summary>모든 보상아이템 개수</summary>
     public static int GetEnumRWDLenght() => GetEnumRWDArr().Length;
 
-    /// <summary>
-    /// 모든 인벤토리 아이템 개수
-    /// </summary>
+    /// <summary>모든 인벤토리 아이템 개수</summary>
     public static int GetEnumINVLenght() => GetEnumINVArr().Length;
 
-    /// <summary>
-    /// 모든 보상아이템 Enum 배열
-    /// </summary>
+    /// <summary>모든 보상아이템 Enum 배열</summary>
     public static System.Array GetEnumRWDArr() => System.Enum.GetValues(typeof(RWD));
 
-    /// <summary>
-    /// 모든 인벤토리 아이템 Enum 배열
-    /// </summary>
+    /// <summary>모든 인벤토리 아이템 Enum 배열</summary>
     public static System.Array GetEnumINVArr() => System.Enum.GetValues(typeof(INV));
 
     /// <summary>
@@ -112,12 +112,5 @@ public static class Enum
         return "???";
     }
 
-    public enum MISSION {
-        MINING_ORE_CNT,
-        MINING_TIME,
-        UPGRADE_CNT,
-        STAGE_CLEAR_CNT,
-        MINING_CHEST_CNT,
-        CHALLENGE_CLEAR_CNT
-    }
+
 }
