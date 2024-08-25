@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "OreBless Ability Data", menuName = "Scriptable Object/OreBlessAbilityData_Float")]
+public class OreBlessAbilityDB_Float : ScriptableObject
+{
+    [SerializeField] private Enum.OREBLESS_ABT type;
+    public Enum.OREBLESS_ABT Type {get => type;}
+
+    [SerializeField] private string abtName;
+    public string AbtName {get => abtName;}
+
+    [Header("축복능력치 랜덤최소값 [일반, 고급, 레어, 유니크, 전설, 신화]")]
+    [SerializeField] private float[] minArr = new float[6]; 
+    public float[] MinArr {get => minArr;}
+
+    [Header("축복능력치 랜덤최대값 [일반, 고급, 레어, 유니크, 전설, 신화]")]
+    [SerializeField] private float[] maxArr = new float[6]; 
+    public float[] MaxArr {get => maxArr;}
+}

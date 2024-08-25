@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd05d3cad5870a943a3718b8d7ebe551, type: 3}
+  m_Name: 8.IncChestPer
+  m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
+  type: 7
+  abtName: "\uBCF4\uBB3C\uC0C1\uC790 \uB4F1\uC7A5\uD655\uB960%"
+  minArr:
+  - 0.001
+  - 0.006
+  - 0.011
+  - 0.016
+  - 0.021
+  - 0.025
+  maxArr:
+  - 0.005
+  - 0.01
+  - 0.015
+  - 0.02
+  - 0.024
+  - 0.026

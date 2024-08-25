@@ -33,6 +33,29 @@ public static class Enum
     }
 
     /// <summary>
+    /// 축복 능력치
+    /// </summary>
+    public enum OREBLESS_ABT {
+        ATK_PER,
+        ATKSPD_PER,
+        MOVSPD_PER,
+        BAG_STG,
+        INC_TIMER,
+        INC_CRISTAL,
+        NEXTSTG_SKIP_PER,
+        INC_CHEST_PER,
+        INC_ORE1_PER,
+        INC_ORE2_PER,
+        INC_ORE3_PER,
+        INC_ORE4_PER,
+        INC_ORE5_PER,
+        INC_ORE6_PER,
+        INC_ORE7_PER,
+        INC_ORE8_PER,
+        INC_POPULATION
+    }
+
+    /// <summary>
     ///* 재화 아이템 종류
     /// </summary>
     public enum RSC {
