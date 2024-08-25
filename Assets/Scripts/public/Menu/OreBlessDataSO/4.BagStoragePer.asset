@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4.BagStoragePer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 3
-  abtName: "\uAC00\uBC29\uC6A9\uB7C9%"
+  abtName: "\uAC00\uBC29\uC6A9\uB7C9"
   minArr:
   - 0.001
   - 0.021

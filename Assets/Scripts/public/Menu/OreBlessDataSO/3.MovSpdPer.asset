@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3.MovSpdPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 2
-  abtName: "\uC774\uB3D9\uC18D\uB3C4%"
+  abtName: "\uC774\uB3D9\uC18D\uB3C4"
   minArr:
   - 0.001
   - 0.021

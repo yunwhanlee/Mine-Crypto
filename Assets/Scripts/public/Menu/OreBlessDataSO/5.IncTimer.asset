@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 5.IncTimer
   m_EditorClassIdentifier: 
   type: 4
-  abtName: "\uCC44\uAD74\uC2DC\uAC04(\uCD08)"
+  abtName: "\uCC44\uAD74\uC2DC\uAC04"
   minArr: 0a0000001f000000650000002d010000f5010000e8030000
   maxArr: 1e000000640000002c010000f4010000e7030000e9030000

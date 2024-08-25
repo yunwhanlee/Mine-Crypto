@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class OreBlessManager : MonoBehaviour
 {
+    const int INT_TYPE = 0, FLOAT_TYPE = 1;
+
     [field:Header("광산의 축복 능력치 데이터 (INT)")]
     [field:SerializeField] public OreBlessAbilityDB_Int[] Int_Abilities {get; private set;}
     [field:Header("광산의 축복 능력치 데이터 (FLOAT)")]
@@ -19,72 +21,73 @@ public class OreBlessManager : MonoBehaviour
     /// <summary>
     /// 축복 능력지 재설정
     /// </summary>
-    /// <param name="idx">광석축복 슬롯 IDX</param>
-    public void OnClickAbilityResetBtn(int idx) {
-        GM._.ui.ShowNoticeMsgPopUp($"제{idx + 1}광산 축복 능력 재설정 성공!");
-
-        var type = Enum.OREBLESS_ABT.ATK_PER;
-        float val = 0;
-        string name = "";
+    /// <param name="oreBlessIdx">광석축복 슬롯 IDX</param>
+    public void OnClickAbilityResetBtn(int oreBlessIdx) {
+        GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
 
         // 능력리스트 리셋
-        oreBlessFormatArr[idx].AbilityList = new List<OreBlessAbilityData>();
-        oreBlessFormatArr[idx].AbilityTxt.text = "";
+        oreBlessFormatArr[oreBlessIdx].AbilityList = new List<OreBlessAbilityData>();
+        oreBlessFormatArr[oreBlessIdx].AbilityTxt.text = "";
 
-        // 랜덤 능력치 개수 (1개 ~ 3개)
+        // 랜덤 능력치 개수 설정 (1개 ~ 3개)
         int abilityLen = Random.Range(1, 3 + 1);
-
-        oreBlessFormatArr[idx].AbilityCnt = abilityLen;
+        oreBlessFormatArr[oreBlessIdx].AbilityCnt = abilityLen;
 
         for(int i = 0; i < abilityLen; i++)
         {
-            // 타입 랜덤
-            const int INT_TYPE = 0, FLOAT_TYPE = 1;
-            int randType = Random.Range(0, 2);
-
-            // 랜덤 능력
-            switch(randType)
-            {
-                case INT_TYPE:
-                {
-                    int rdType = Random.Range(0, Int_Abilities.Length);
-                    var rdAbility = Int_Abilities[rdType];
-                    int randVal = Random.Range(rdAbility.MinArr[0], rdAbility.MaxArr[0]);
-
-                    // 능력치 데이터 추가
-                    oreBlessFormatArr[idx].AbilityList.Add (
-                        new OreBlessAbilityData { type = rdAbility.Type, val = randVal}
-                    );
-
-                    // 능력치 UI텍스트
-                    oreBlessFormatArr[idx].AbilityTxt.text += $"{rdAbility.AbtName} {randVal}\n";
-                    break;
-                }
-                case FLOAT_TYPE:
-                {
-                    int rdType = Random.Range(0, Float_Abilities.Length);
-                    var rdAbility = Float_Abilities[rdType];
-                    float randVal = Random.Range(rdAbility.MinArr[0], rdAbility.MaxArr[0]);
-                    randVal = (float)Math.Round(randVal, 3);
-
-                    // 능력치 데이터 추가
-                    
-                    oreBlessFormatArr[idx].AbilityList.Add (
-                        new OreBlessAbilityData { type = rdAbility.Type, val = randVal}
-                    );
-
-                    // 능력치 UI텍스트
-                    oreBlessFormatArr[idx].AbilityTxt.text += $"{rdAbility.AbtName} {randVal * 100}\n";
-                    break;
-                }
-            }
-
-
+            // 랜덤 타입
+            int randDataType = Random.Range(INT_TYPE, FLOAT_TYPE + 1);
+            // 랜덤 능력치 설정
+            SetRandomAbilities(randDataType, oreBlessIdx);
         }
     }
 #endregion
 
 #region FUNC
-    
+    /// <summary>
+    /// 랜덤 능력치 설정
+    /// </summary>
+    /// <param name="dataType">자료형 타입</param>
+    /// <param name="oreBlessIdx">광석축복 슬롯 IDX</param>
+    private void SetRandomAbilities(int dataType, int oreBlessIdx) {
+        float value = 0;
+        string unit = "";
+        OreBlessAbilityDB_Int intAbility = null;
+        OreBlessAbilityDB_Float floatAbility = null;
+
+        // 랜덤 능력치 처리
+        switch(dataType)
+        {
+            case INT_TYPE: {
+                int rdType = Random.Range(0, Int_Abilities.Length);
+                intAbility = Int_Abilities[rdType];
+                value = Random.Range(intAbility.MinArr[0], intAbility.MaxArr[0]);
+                unit = (intAbility.Type == Enum.OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
+                break;
+            }
+            case FLOAT_TYPE: {
+                int rdType = Random.Range(0, Float_Abilities.Length);
+                floatAbility = Float_Abilities[rdType];
+                value = Random.Range(floatAbility.MinArr[0], floatAbility.MaxArr[0]);
+                value = (float)Math.Round(value, 3);
+                unit = "%";
+                break;
+            }
+        }
+
+        bool isInt = dataType == INT_TYPE;
+
+        //* 능력치 데이터 추가
+        oreBlessFormatArr[oreBlessIdx].AbilityList.Add (
+            new OreBlessAbilityData { 
+                type = isInt? intAbility.Type : floatAbility.Type,
+                val = value
+            }
+        );
+
+        //* 능력치 UI텍스트 업데이트
+        oreBlessFormatArr[oreBlessIdx].AbilityTxt.text += 
+            $"{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{value * (isInt? 1 : 100)}{unit}\n";
+    }
 #endregion
 }

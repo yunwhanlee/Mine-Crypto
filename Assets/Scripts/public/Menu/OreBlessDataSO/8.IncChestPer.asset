@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 8.IncChestPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 7
-  abtName: "\uBCF4\uBB3C\uC0C1\uC790 \uB4F1\uC7A5\uD655\uB960%"
+  abtName: "\uC0C1\uC790 \uB4F1\uC7A5\uD655\uB960"
   minArr:
   - 0.001
   - 0.006

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd05d3cad5870a943a3718b8d7ebe551, type: 3}
   m_Name: 1.AtkPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
-  abtName: "\uACF5\uACA9\uB825%"
+  type: 0
+  abtName: "\uACF5\uACA9\uB825"
   minArr:
   - 0.001
   - 0.021
