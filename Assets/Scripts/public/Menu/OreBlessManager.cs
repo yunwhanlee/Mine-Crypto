@@ -1,13 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using static Enum;
 using Random = UnityEngine.Random;
 
 public class OreBlessManager : MonoBehaviour
 {
-    const int INT_TYPE = 0, FLOAT_TYPE = 1;
+    StatusDB sttDB;
+
+    const int RESET_CRISTAL_PRICE = 10;         // 능력치 재설정위한 크리스탈 가격
+    const int RESET_ORE_PRICE = 10000;          // 능력치 재설정위한 광석조각 가격
+    const int INT_TYPE = 0, FLOAT_TYPE = 1;     // 능력치 데이터 타입
+
+    void Awake() {
+        sttDB = DM._.DB.statusDB;
+    }
 
     [field:Header("광산의 축복 능력치 데이터 (INT)")]
     [field:SerializeField] public OreBlessAbilityDB_Int[] Int_Abilities {get; private set;}
@@ -23,7 +31,22 @@ public class OreBlessManager : MonoBehaviour
     /// </summary>
     /// <param name="oreBlessIdx">광석축복 슬롯 IDX</param>
     public void OnClickAbilityResetBtn(int oreBlessIdx) {
-        GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
+
+        // 필요재화 수량 체크
+        if(sttDB.RscArr[(int)RSC.CRISTAL] >= RESET_CRISTAL_PRICE
+        && sttDB.RscArr[oreBlessIdx] >= RESET_ORE_PRICE)
+        {
+            GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
+
+            // 재화 데이터 수치 감소
+            sttDB.SetRscArr((int)RSC.CRISTAL, -RESET_CRISTAL_PRICE);
+            sttDB.SetRscArr(oreBlessIdx, -RESET_ORE_PRICE);
+        }
+        else
+        {
+            GM._.ui.ShowWarningMsgPopUp($"재화가 부족합니다!");
+            return;
+        }
 
         // 능력리스트 리셋
         oreBlessFormatArr[oreBlessIdx].AbilityList = new List<OreBlessAbilityData>();
@@ -37,8 +60,18 @@ public class OreBlessManager : MonoBehaviour
         {
             // 랜덤 타입
             int randDataType = Random.Range(INT_TYPE, FLOAT_TYPE + 1);
+
+            // 랜덤 등급
+            int randPer = Random.Range(0, 100);
+            GRADE grade = randPer < 40? GRADE.COMMON
+                : randPer < 70? GRADE.UNCOMMON
+                : randPer < 85? GRADE.RARE
+                : randPer < 95? GRADE.UNIQUE
+                : randPer < 99? GRADE.LEGEND
+                : GRADE.MYTH;
+
             // 랜덤 능력치 설정
-            SetRandomAbilities(randDataType, oreBlessIdx);
+            SetRandomAbilities(randDataType, (int)grade, oreBlessIdx);
         }
     }
 #endregion
@@ -48,8 +81,9 @@ public class OreBlessManager : MonoBehaviour
     /// 랜덤 능력치 설정
     /// </summary>
     /// <param name="dataType">자료형 타입</param>
+    /// <param name="gradeIdx">등급 IDX</param>
     /// <param name="oreBlessIdx">광석축복 슬롯 IDX</param>
-    private void SetRandomAbilities(int dataType, int oreBlessIdx) {
+    private void SetRandomAbilities(int dataType, int gradeIdx, int oreBlessIdx) {
         float value = 0;
         string unit = "";
         OreBlessAbilityDB_Int intAbility = null;
@@ -61,14 +95,14 @@ public class OreBlessManager : MonoBehaviour
             case INT_TYPE: {
                 int rdType = Random.Range(0, Int_Abilities.Length);
                 intAbility = Int_Abilities[rdType];
-                value = Random.Range(intAbility.MinArr[0], intAbility.MaxArr[0]);
-                unit = (intAbility.Type == Enum.OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
+                value = Random.Range(intAbility.MinArr[gradeIdx], intAbility.MaxArr[gradeIdx]);
+                unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
                 break;
             }
             case FLOAT_TYPE: {
                 int rdType = Random.Range(0, Float_Abilities.Length);
                 floatAbility = Float_Abilities[rdType];
-                value = Random.Range(floatAbility.MinArr[0], floatAbility.MaxArr[0]);
+                value = Random.Range(floatAbility.MinArr[gradeIdx], floatAbility.MaxArr[gradeIdx]);
                 value = (float)Math.Round(value, 3);
                 unit = "%";
                 break;
@@ -85,9 +119,22 @@ public class OreBlessManager : MonoBehaviour
             }
         );
 
+        //* 등급 텍스트 색상
+        string colorTag = (gradeIdx == (int)GRADE.COMMON)? "white"
+            : (gradeIdx == (int)GRADE.UNCOMMON)? "green"
+            : (gradeIdx == (int)GRADE.RARE)? "blue"
+            : (gradeIdx == (int)GRADE.UNIQUE)? "purple"
+            : (gradeIdx == (int)GRADE.LEGEND)? "yellow"
+            : "red";
+
+        // 수치 표시 (Float의 경우, 소수점 3자리까지만)
+        string displayValue = isInt? value.ToString() : (value * 100).ToString("0.###");
+
         //* 능력치 UI텍스트 업데이트
         oreBlessFormatArr[oreBlessIdx].AbilityTxt.text += 
-            $"{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{value * (isInt? 1 : 100)}{unit}\n";
+            $"<color={colorTag}>{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{displayValue}{unit}</color>\n";
+
+        
     }
 #endregion
 }
