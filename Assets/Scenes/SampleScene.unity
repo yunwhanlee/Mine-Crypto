@@ -6667,7 +6667,9 @@ MonoBehaviour:
     <Type>k__BackingField: 1
     <IsUnlock>k__BackingField: 0
     <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
+    <AbilityList>k__BackingField:
+    - type: 0
+      val: 0
   - LockedPanel: {fileID: 1993141809}
     AbilityTxt: {fileID: 507612811}
     <Type>k__BackingField: 2

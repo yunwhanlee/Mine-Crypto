@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static Enum;
 
 public class PlayManager : MonoBehaviour
 {
@@ -51,7 +52,9 @@ public class PlayManager : MonoBehaviour
         => corTimerCowndownID = StartCoroutine(CoStartCownDownTimer());
 
     private IEnumerator CoStartCownDownTimer() {
-        timerVal = GM._.ugm.upgIncTimer.Val;
+        // 타이머 최대시간
+        timerVal = GM._.ugm.upgIncTimer.Val
+            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
 
         // 타이머 카운트 다운 
         while(timerVal > 0) {

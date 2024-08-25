@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 [Serializable]
 public struct OreBlessAbilityData {
     public Enum.OREBLESS_ABT type;
-    public float val;
+    public float val; // int형 능력치일 경우 (int)로 형변환 할 것!
 }
 
 /// <summary>

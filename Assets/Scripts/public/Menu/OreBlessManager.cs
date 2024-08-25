@@ -133,8 +133,30 @@ public class OreBlessManager : MonoBehaviour
         //* 능력치 UI텍스트 업데이트
         oreBlessFormatArr[oreBlessIdx].AbilityTxt.text += 
             $"<color={colorTag}>{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{displayValue}{unit}</color>\n";
+    }
 
-        
+    /// <summary>
+    /// 광산의축복 능력치 값 반환
+    /// </summary>
+    /// <param name="type">능력치 타입</param>
+    /// <returns>INC_TIMER, INC_CRISTAL, INC_POPULATION의 경우에 (int)형변환하기!</returns>
+    public float GetAbilityValue(OREBLESS_ABT type)
+    {
+        float val = 0;
+
+        // 능력치가 활성화되있는 축복만 검출
+        var activeOreBlessArr = Array.FindAll(oreBlessFormatArr, oreBless => oreBless.AbilityList.Count > 0);
+
+        // 활성화 축복 리스트
+        Array.ForEach(activeOreBlessArr, oreBless => {
+            // 능력치 리스트
+            oreBless.AbilityList.ForEach(ability => {
+                // 검출할 타입과 같은 경우
+                if(ability.type == type)
+                    val += ability.val; // 능력치 값 더하기
+            });
+        });
+        return val; // 다 더해진 능력치 반환
     }
 #endregion
 }

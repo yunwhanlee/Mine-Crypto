@@ -4,6 +4,7 @@ using Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enum;
 
 namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
@@ -49,17 +50,26 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         [SerializeField] int attackVal;
         public int AttackVal {
             get {
-                float extraVal = 1 + GM._.ugm.upgAttack.Val;
-                return Mathf.RoundToInt(attackVal * extraVal);
-            } 
+                int extraVal = GM._.ugm.upgAttack.Val;
+                float extraPer = 1 + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATK_PER);
+
+                int result = Mathf.RoundToInt((attackVal + extraVal) * extraPer);
+                Debug.Log($"AttackVal: ({attackVal} + {extraVal}) * {extraPer}=" + result);
+                return result;
+            }
         }
 
         // 攻撃速度
         [SerializeField] [Range(1, 7.5f)] float attackSpeed;
         public float AttackSpeed {
             get {
-                float extraVal = 1 + GM._.ugm.upgAttackSpeed.Val;
-                return attackSpeed * extraVal;
+                float extraPer = 1
+                    + GM._.ugm.upgAttackSpeed.Val
+                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER);
+
+                float result = attackSpeed * extraPer;
+                Debug.Log($"AttackSpeed: {attackSpeed} * {extraPer}=" + result);
+                return result;
             }
         }
 
@@ -67,8 +77,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         [SerializeField] float moveSpeed;
         public float MoveSpeed {
             get {
-                float extraVal = 1 + GM._.ugm.upgMoveSpeed.Val;
-                return moveSpeed * extraVal;
+                float extraPer = 1
+                    + GM._.ugm.upgMoveSpeed.Val
+                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER);
+                
+                float result = moveSpeed * extraPer;
+                Debug.Log($"MoveSpeed: {moveSpeed} * {extraPer}=" + result);
+                return result;
             }
         }
 
@@ -76,8 +91,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         [SerializeField] int bagStorageSize;
         public int BagStorageSize {
             get {
-                float extraVal = bagStorageSize * GM._.ugm.upgBagStorage.Val;
-                return bagStorageSize + Mathf.RoundToInt(extraVal);
+                float extraPer = 1
+                    + GM._.ugm.upgBagStorage.Val
+                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.BAG_STG_PER);
+
+                int result = Mathf.RoundToInt(bagStorageSize * extraPer);
+                Debug.Log($"BagStorageSize: {bagStorageSize} * {extraPer}=" + result);
+                return result;
             }
         }
 
@@ -85,7 +105,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         float attackWaitTime; 
 
         // カバン保管量
-        [field:SerializeField] int bagStorage;  public int BagStorage {
+        [field:SerializeField] int bagStorage;
+        public int BagStorage {
             get => bagStorage;
             set {
                 bagStorage = value;

@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using static Enum;
 
 public class EmployManager : MonoBehaviour
 {
@@ -191,7 +192,8 @@ public class EmployManager : MonoBehaviour
     private void UpdateUIAndData() {
         // 고용 팝업
         workerCnt = 0;
-        workerMax = GM._.ugm.upgIncPopulation.Val;
+        workerMax = GM._.ugm.upgIncPopulation.Val
+            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION);
         PlayBtnEmployCntTxt.text = $"{workerMax}마리 고용";
 
         // 랜덤뽑기결과 팝업
