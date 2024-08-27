@@ -70,7 +70,7 @@ public static class Enum
         // 재화 종류
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
         // 소비 아이템
-        ORE_TICKET, RED_TICKET, TREASURE_CHEST, ORE_CHEST,
+        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
         // 포인트
         FAME,
         //※ 여기에 추가
@@ -83,8 +83,8 @@ public static class Enum
     public enum INV {
         ORE_TICKET, 
         RED_TICKET, 
+        ORE_CHEST,
         TREASURE_CHEST,
-        ORE_CHEST
         //※ 여기에 추가
     }
 
@@ -92,8 +92,8 @@ public static class Enum
     public static InvItem_Info[] INV_ITEM_INFO = new InvItem_Info[4] {
         new InvItem_Info("광산티켓", "광산에 입장가능한 티켓이다."),
         new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다."),
-        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다."),
         new InvItem_Info("광석상자", "어떤 광석이 나올지 알 수 없다."),
+        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다."),
         // 여기에 추가
     };
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enum;
 
 public class Ore : MonoBehaviour
 {
-    [field:SerializeField] public Enum.RSC OreType {get; private set;}
+    [field:SerializeField] public RSC OreType {get; private set;} // CRISTAL은 보물상자 Prefab임
     [field:SerializeField] public int Lv {get; set;}
     [field:SerializeField] public int MaxHp {get; set;}
     [field:SerializeField] int Hp {get; set;}
@@ -71,6 +72,17 @@ public class Ore : MonoBehaviour
         {
             IsDestroied = true;
             GM._.mnm.CurTotalMiningCnt -= MiningCnt;
+
+            // 보물상자인 경우
+            if(OreType == RSC.CRISTAL) 
+            {
+                GM._.pm.govResRwdArr[(int)RWD.TREASURE_CHEST]++; // 결과수치 UI
+                DM._.DB.statusDB.TreasureChest++; // 데이터
+
+                Debug.Log("보물상자 획득 EF표시!");
+                GM._.ui.PlayTreasureChestAttractionPtcUIEF();
+            }
+
             Destroy(gameObject);
         }
     }

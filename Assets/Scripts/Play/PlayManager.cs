@@ -14,8 +14,8 @@ public class PlayManager : MonoBehaviour
     //* Value
     private Coroutine corTimerCowndownID;
 
-    [Header("(인게임) 획득한 보상수량 표시 데이터")]
-    public int[] gameoverRwdArr; // 정의는 StageManager:: StageStart()에서 매번 초기화
+    [Header("(인게임) 게임오버시 획득한 보상수량 결과표시 데이터")]
+    public int[] govResRwdArr; // 정의는 StageManager:: StageStart()에서 매번 초기화
 
     [field:SerializeField] int timerVal;  public int TimerVal {
         get => timerVal;
@@ -62,28 +62,28 @@ public class PlayManager : MonoBehaviour
             TimerVal -= 1;
         }
 
-        //! 게임오버 (타이머 0이 되면)
+        //! 타이머 0 -> 게임오버로 상태 변경
         GM._.gameState = GameState.GAMEOVER;
         timerTxt.text = GameState.GAMEOVER.ToString();
 
+        Gameover();
+    }
+
+    /// <summary>
+    /// 게임오버 (제공되는 보상표시)
+    /// </summary>
+    private void Gameover() {
         // 입장티켓 1개 회수
-        DM._.DB.statusDB.OreTicket++; // 데이터 수량
-        gameoverRwdArr[(int)Enum.RWD.ORE_TICKET]++; // 결과UI 표시 수량
+        govResRwdArr[(int)RWD.ORE_TICKET]++;            // 결과수치 UI
+        DM._.DB.statusDB.OreTicket++;                   // 데이터
 
-        // 광석상자 획득
-        DM._.DB.statusDB.OreChest++; // 데이터 수량
-        gameoverRwdArr[(int)Enum.RWD.ORE_CHEST]++; // 결과UI 표시 수량
+        // 광석상자 획득 (매 층마다 +1)
+        int oreChestCnt = GM._.stm.Floor - 1;
+        govResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
+        DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
 
-        //? 보물상자 획득 (TEST)
-        DM._.DB.statusDB.TreasureChest++; // 데이터 수량
-        gameoverRwdArr[(int)Enum.RWD.TREASURE_CHEST]++; // 결과UI 표시 수량
-
-        //? 명예포인트 획득 (TEST)
-        DM._.DB.statusDB.Fame++; // 데이터 수량
-        gameoverRwdArr[(int)Enum.RWD.FAME]++; // 결과UI 표시 수량
-
-        //* 보상팝업 표시
-        GM._.rwm.ShowGameoverReward(gameoverRwdArr);
+        // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
+        GM._.rwm.ShowGameoverReward(govResRwdArr);
     }
 #endregion
 

@@ -69,8 +69,11 @@ public class StgInfo
             Debug.Log($"Click UnlockPriceBtn:: unlockPrice= {unlockPrice}");
             if(DM._.DB.statusDB.RscArr[id] >= unlockPrice)
             {
-                GM._.ui.ShowNoticeMsgPopUp("광산해금 완료!");
+                GM._.ui.ShowNoticeMsgPopUp("광산해금 완료! (광산의축복 개방)");
                 DM._.DB.statusDB.RscArr[id] -= unlockPrice;
+
+                // 광산의 축복 개방
+                GM._.obm.oreBlessFormatArr[id].IsUnlock = true;
 
                 // 해금 UI
                 isUnlocked = true;

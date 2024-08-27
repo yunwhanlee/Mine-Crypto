@@ -26,9 +26,28 @@ public class OreBlessFormat
     [field:SerializeField] public TMP_Text AbilityTxt;
 
     //* Value
+    public int id;
     [field:SerializeField] public Enum.RSC Type {get; set;}
-    [field:SerializeField] public bool IsUnlock {get; set;}
+    [field:SerializeField] public bool IsUnlock {
+        get => DM._.DB.oreBlessDB.IsUnlockArr[id];
+        set {
+            DM._.DB.oreBlessDB.IsUnlockArr[id] = value;
+            
+            // UI
+            LockedPanel.SetActive(!value);
+        }
+    }
 
     [field:SerializeField] public int AbilityCnt {get; set;}
     [field:SerializeField] public List<OreBlessAbilityData> AbilityList {get; set;}
+
+#region FUNC
+    public void ActiveUnlockPanel()
+    {
+        LockedPanel.SetActive(!IsUnlock);
+
+        if(!IsUnlock)
+            AbilityTxt.text = "";
+    }
+#endregion
 }

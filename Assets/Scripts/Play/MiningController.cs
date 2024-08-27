@@ -256,7 +256,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 sprRdr.flipX = dir.x < 0;
 
                 // 가방이 무거우니까 속도낮춘 방향벡터
-                const float WEIGHT_UP_SLOW_SPEED_PER = 0.65f;
+                const float WEIGHT_UP_SLOW_SPEED_PER = 0.9f;
                 Vector2 moveVec = dir * (MoveSpeed * WEIGHT_UP_SLOW_SPEED_PER) * Time.fixedDeltaTime;
 
                 // 집으로 이동
@@ -289,7 +289,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         // 타겟재화 증가
                         DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
                         // 게임결과 획득한 보상 중 재화에 반영
-                        GM._.pm.gameoverRwdArr[(int)targetOre.OreType] += BagStorage;
+                        GM._.pm.govResRwdArr[(int)targetOre.OreType] += BagStorage;
                     }
 
                     // 가방 비우기
@@ -328,15 +328,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// </summary>
         void Update() {
             if(GM._.gameState == GameState.GAMEOVER)
-            {
                 return;
-            }
-
             if(status == Status.SPAWN)
-            {
-                Debug.Log("WAIT !");
                 return;
-            }
 
             //* 채굴중인 경우
             if(status == Status.MINING) {
@@ -354,15 +348,19 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     attackWaitTime = 0;
 
-                    // 가방용량 증가
-                    if(bagStorage < BagStorageSize)
+                    // 타겟광석이 보물상자면 가방용량 처리 안함
+                    if(targetOre.OreType != RSC.CRISTAL)
                     {
-                        BagStorage += AttackVal;
-                    }
-                    // 가방이 꽉찬 경우
-                    else {
-                        status = Status.BACKHOME; // 귀가
-                        return;
+                        // 가방용량 증가
+                        if(bagStorage < BagStorageSize)
+                        {
+                            BagStorage += AttackVal;
+                        }
+                        // 가방이 꽉찬 경우
+                        else {
+                            status = Status.BACKHOME; // 귀가
+                            return;
+                        }
                     }
 
                     // 채굴 애니메이션
@@ -378,7 +376,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // 광석체력 0이라면, 파괴
                     if(targetOre.IsDestroied)
                     {
-                        status = Status.BACKHOME; // 귀가
+                        if(targetOre.OreType != RSC.CRISTAL)
+                            status = Status.BACKHOME; // 귀가
+                        else
+                            status = Status.GO;
+
                         targetOre = null;
                     }
                 }

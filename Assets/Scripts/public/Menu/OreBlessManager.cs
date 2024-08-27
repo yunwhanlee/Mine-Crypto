@@ -8,14 +8,11 @@ using Random = UnityEngine.Random;
 public class OreBlessManager : MonoBehaviour
 {
     StatusDB sttDB;
+    OreBlessDB oreDB;
 
     const int RESET_CRISTAL_PRICE = 10;         // 능력치 재설정위한 크리스탈 가격
     const int RESET_ORE_PRICE = 10000;          // 능력치 재설정위한 광석조각 가격
-    const int INT_TYPE = 0, FLOAT_TYPE = 1;     // 능력치 데이터 타입
-
-    void Awake() {
-        sttDB = DM._.DB.statusDB;
-    }
+    const int INT_TYPE = 0, FLOAT_TYPE = 1;     // 능력치 데이터 타입\
 
     [field:Header("광산의 축복 능력치 데이터 (INT)")]
     [field:SerializeField] public OreBlessAbilityDB_Int[] Int_Abilities {get; private set;}
@@ -24,6 +21,20 @@ public class OreBlessManager : MonoBehaviour
 
     public GameObject windowObj;
     public OreBlessFormat[] oreBlessFormatArr;
+
+    void Start() {
+        sttDB = DM._.DB.statusDB;
+        oreDB = DM._.DB.oreBlessDB;
+
+        // DB 잠금해제 데이터 로드
+        for(int i = 0; i < oreDB.IsUnlockArr.Length; i++)
+        {   
+            oreBlessFormatArr[i].IsUnlock = oreDB.IsUnlockArr[i];
+            oreBlessFormatArr[i].ActiveUnlockPanel();
+
+            //TODO 능력치 텍스트 표시
+        }
+    }
 
 #region EVENT
     /// <summary>

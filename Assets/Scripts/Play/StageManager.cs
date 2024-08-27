@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enum;
 
 public class StageManager : MonoBehaviour {
     [Header("TOP")]
@@ -14,6 +15,7 @@ public class StageManager : MonoBehaviour {
     public TMP_Text stageTxt;
 
     //* Ore Object
+    [Header("광석 및 보물상자 Prefs")]
     public GameObject[] orePrefs;
 
     public Transform oreAreaTopLeftTf;
@@ -24,9 +26,10 @@ public class StageManager : MonoBehaviour {
     public DOTweenAnimation cutOutMaskUIDOTAnim;
 
     //* Value
+    [Header("생성시 보물상자로 랜덤변경 확률%")]
+    [Range(1, 100)] public int treasureChestSpawnPer;
 
-
-    [field:SerializeField] Enum.RSC oreType;  public Enum.RSC OreType {
+    [field:SerializeField] RSC oreType;  public RSC OreType {
         get => oreType;
         set => oreType = value;
     }
@@ -51,19 +54,19 @@ public class StageManager : MonoBehaviour {
     public void StartStage() {
         Debug.Log("StartStage()::");
         GM._.gameState = GameState.PLAY;
-        Floor = 1;
+        Floor = 5;
 
         // 선택한 광산타입으로 초기화
         curRscIconImg.sprite = GM._.RscSprArr[(int)oreType]; // 재화 아이콘
         curRscCntTxt.text = $"{DM._.DB.statusDB.RscArr[(int)oreType]}"; // 재화수량
 
-        stageTxt.text = $"제{Floor}광산";
+        stageTxt.text = $"{Floor}층";
 
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();
 
         // 게임결과 획득한 재화배열 초기화
-        GM._.pm.gameoverRwdArr = new int[Enum.GetEnumRWDLenght()];
+        GM._.pm.govResRwdArr = new int[Enum.GetEnumRWDLenght()];
 
         // 광석 생성 영역
         topLeftPos = oreAreaTopLeftTf.position;
@@ -143,8 +146,13 @@ public class StageManager : MonoBehaviour {
         for(int i = 0; i < oreCnt; i++) {
             int rand = Random.Range(0, orePosList.Count);
 
+            // 보물상자로 랜덤변경
+            int randPer = Random.Range(0, 100);
+            int typeIdx = (randPer <= treasureChestSpawnPer)? (int)RSC.CRISTAL : (int)oreType;
+            Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= treasureChestSpawnPer({treasureChestSpawnPer}), typeIdx= {typeIdx}");
+
             // 생성
-            Ore ore = Instantiate(orePrefs[(int)oreType], GM._.mnm.oreGroupTf).GetComponent<Ore>();
+            Ore ore = Instantiate(orePrefs[typeIdx], GM._.mnm.oreGroupTf).GetComponent<Ore>();
             ore.transform.position = orePosList[rand]; // 랜덤위치 적용
             ore.MaxHp = oreHp;
 

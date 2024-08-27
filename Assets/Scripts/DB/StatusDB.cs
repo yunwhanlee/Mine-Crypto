@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ステータス
-/// </summary>
 [Serializable]
 public class StatusDB
 {
@@ -72,7 +69,8 @@ public class StatusDB
     /// </summary>
     /// <param name="idx">재화 타입(인덱스)</param>
     /// <param name="val">증가량</param>
-    public void SetRscArr(int idx, int val) { //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
+    public void SetRscArr(int idx, int val) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
+    {
         rscArr[idx] += val;
         if(rscArr[idx] < 0)
                 rscArr[idx] = 0;

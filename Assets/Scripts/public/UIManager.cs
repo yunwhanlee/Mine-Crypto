@@ -21,8 +21,9 @@ public class UIManager : MonoBehaviour
     public GameObject noticeMsgPopUp;
     public TMP_Text noticeMsgTxt;
 
-    //* EFFECT
-    public ParticleImage coinAttractionPtcImg;
+    [Header("EFFECT")]
+    public ParticleImage coinAttractionPtcImg;          // 광석조각 획득 UI-EF
+    public ParticleImage treasureChestAttractionPtcImg; // 보물상자 획득 UI-EF
 
 #region EVENT
     public void OnClickMenuIconBtn() {
@@ -106,6 +107,11 @@ public class UIManager : MonoBehaviour
             coinAttractionPtcImg.Play();
             yield return Util.TIME0_1;
         }
+    }
+
+    public void PlayTreasureChestAttractionPtcUIEF()
+    {
+        treasureChestAttractionPtcImg.Play();
     }
 #endregion
 }
