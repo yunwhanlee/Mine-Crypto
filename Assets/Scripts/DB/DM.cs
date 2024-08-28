@@ -11,9 +11,7 @@ public class DB {
     public StatusDB statusDB;
     public MissionDB missionDB;
     public OreBlessDB oreBlessDB;
-
-    [Header("광산 8종 및 시련의광산 최대도달층")]
-    public int[] bestFloorArr;
+    public StageDB stageDB;
 }
 
 /// <summary>
@@ -37,13 +35,9 @@ public class DM : MonoBehaviour {
             return;
         }
 
-        // Reset
-        DB.oreBlessDB = new OreBlessDB {IsUnlockArr = new bool[8]};
-        for(int i = 0; i < DB.oreBlessDB.IsUnlockArr.Length; i++)
-        {   
-            // [0]빼고 전부 false
-            if(i == 0) DB.oreBlessDB.IsUnlockArr[i] = true;
-            else       DB.oreBlessDB.IsUnlockArr[i] = false;
-        }
+        // 데이터 초기화
+        DB.statusDB.Init();
+        DB.oreBlessDB.Init();
+        DB.stageDB.Init();
     }
 }

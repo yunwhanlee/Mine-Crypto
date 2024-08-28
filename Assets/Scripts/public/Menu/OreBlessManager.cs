@@ -26,14 +26,7 @@ public class OreBlessManager : MonoBehaviour
         sttDB = DM._.DB.statusDB;
         oreDB = DM._.DB.oreBlessDB;
 
-        // DB 잠금해제 데이터 로드
-        for(int i = 0; i < oreDB.IsUnlockArr.Length; i++)
-        {   
-            oreBlessFormatArr[i].IsUnlock = oreDB.IsUnlockArr[i];
-            oreBlessFormatArr[i].ActiveUnlockPanel();
-
-            //TODO 능력치 텍스트 표시
-        }
+        SetUI();
     }
 
 #region EVENT
@@ -59,6 +52,76 @@ public class OreBlessManager : MonoBehaviour
             return;
         }
 
+        ResetAbilities(oreBlessIdx);
+    }
+#endregion
+
+#region FUNC
+    /// <summary>
+    /// 로드한 데이터로 잠금해제 및 능력치UI 표시
+    /// </summary>
+    private void SetUI() {
+        // 로드데이터 UI 확인 및 표시
+        for(int i = 0; i < oreDB.saveDt.Length; i++)
+        {
+            OreBlessSaveData saveDt = oreDB.saveDt[i];
+
+            // 잠금해제
+            oreBlessFormatArr[i].IsUnlock = saveDt.IsUnlock;
+            oreBlessFormatArr[i].ActiveUnlockPanel();
+
+            // 능력치 텍스트 초기화
+            oreBlessFormatArr[i].AbilityTxt.text = "";
+
+            // 능력치
+            if(saveDt.AbilityList != null)
+            {
+                saveDt.AbilityList.ForEach( ability =>
+                {
+                    Debug.Log($"ability:: grade= {ability.grade}, type= {ability.type}, val= {ability.val}");
+
+                    string unit = "";
+                    OreBlessAbilityDB_Int intAbility = null;
+                    OreBlessAbilityDB_Float floatAbility = null;
+
+                    // 능력치 자료형
+                    bool isInt = (
+                        ability.type == OREBLESS_ABT.INC_TIMER
+                        || ability.type == OREBLESS_ABT.INC_CRISTAL
+                        || ability.type == OREBLESS_ABT.INC_POPULATION
+                    );
+
+                    // 자료형에 따른 처리
+                    if(isInt)
+                    {
+                        intAbility = Int_Abilities[(int)ability.type];
+                        unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
+                    }
+                    else 
+                    {
+                        floatAbility = Float_Abilities[(int)ability.type];
+                        unit = "%";
+                    }
+
+                    // 등급 텍스트 색상
+                    string colorTag = GetGradeTagColor(ability.grade);
+
+                    // 수치 표시 (Float의 경우, 소수점 3자리까지만)
+                    string displayValue = isInt? ability.val.ToString() : (ability.val * 100).ToString("0.###");
+
+                    //* 능력치 UI텍스트 업데이트
+                    oreBlessFormatArr[i].AbilityTxt.text += 
+                        $"<color={colorTag}>{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{displayValue}{unit}</color>\n";
+                });
+            }
+        }
+    }
+
+    /// <summary>
+    /// 능력치 리셋
+    /// </summary>
+    /// <param name="oreBlessIdx">축복의 광산 IDX</param>
+    public void ResetAbilities(int oreBlessIdx) {
         // 능력리스트 리셋
         oreBlessFormatArr[oreBlessIdx].AbilityList = new List<OreBlessAbilityData>();
         oreBlessFormatArr[oreBlessIdx].AbilityTxt.text = "";
@@ -85,9 +148,7 @@ public class OreBlessManager : MonoBehaviour
             SetRandomAbilities(randDataType, (int)grade, oreBlessIdx);
         }
     }
-#endregion
 
-#region FUNC
     /// <summary>
     /// 랜덤 능력치 설정
     /// </summary>
@@ -124,19 +185,15 @@ public class OreBlessManager : MonoBehaviour
 
         //* 능력치 데이터 추가
         oreBlessFormatArr[oreBlessIdx].AbilityList.Add (
-            new OreBlessAbilityData { 
+            new OreBlessAbilityData {
+                grade = (GRADE)gradeIdx,
                 type = isInt? intAbility.Type : floatAbility.Type,
                 val = value
             }
         );
 
-        //* 등급 텍스트 색상
-        string colorTag = (gradeIdx == (int)GRADE.COMMON)? "white"
-            : (gradeIdx == (int)GRADE.UNCOMMON)? "green"
-            : (gradeIdx == (int)GRADE.RARE)? "blue"
-            : (gradeIdx == (int)GRADE.UNIQUE)? "purple"
-            : (gradeIdx == (int)GRADE.LEGEND)? "yellow"
-            : "red";
+        // 등급 텍스트 색상
+        string colorTag = GetGradeTagColor((GRADE)gradeIdx);
 
         // 수치 표시 (Float의 경우, 소수점 3자리까지만)
         string displayValue = isInt? value.ToString() : (value * 100).ToString("0.###");
@@ -156,7 +213,7 @@ public class OreBlessManager : MonoBehaviour
         float val = 0;
 
         // 능력치가 활성화되있는 축복만 검출
-        var activeOreBlessArr = Array.FindAll(oreBlessFormatArr, oreBless => oreBless.AbilityList.Count > 0);
+        var activeOreBlessArr = Array.FindAll(oreBlessFormatArr, oreBless => oreBless.AbilityList != null);
 
         // 활성화 축복 리스트
         Array.ForEach(activeOreBlessArr, oreBless => {

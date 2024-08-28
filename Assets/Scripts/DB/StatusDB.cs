@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using static Enum;
 
 [Serializable]
@@ -65,6 +66,24 @@ public class StatusDB
     }
 
 #region FUNC
+    public void Init()
+    {
+        // 재화 (광석 및 크리스탈 )
+        rscArr = new int[9] {
+            100000, 100000, 100000, 100000, // 광석 1,2,3,4
+            100000, 100000, 100000, 100000, // 광석 5,6,7,8
+            10000, // 크리스탈
+        };
+
+        // 아이템 수
+        oreTicket = 5;     // 광산 입장티켓
+        redTicket = 3;     // 시련의광산 입장티켓
+        treasureChest = 5; // 보물상자
+        oreChest = 5;      // 광석상자
+        fame = 1;          // 명성포인트
+
+    }
+
     /// <summary>
     /// 재화량 추가 및 UI업데이트
     /// </summary>

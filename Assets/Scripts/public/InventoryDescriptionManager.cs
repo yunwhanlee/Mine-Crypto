@@ -145,7 +145,7 @@ void Start() {
                             Debug.Log($"randIdx= {randIdx}");
 
                             // 2.보상 수량
-                            int bestFloor = DM._.DB.bestFloorArr[randIdx];
+                            int bestFloor = DM._.DB.stageDB.BestFloorArr[randIdx];
                             int val = 100 + (bestFloor * 100); // 계산식
 
                             rwdDic[(RWD)randIdx] += val;

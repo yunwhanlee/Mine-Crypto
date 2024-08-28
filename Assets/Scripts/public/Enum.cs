@@ -23,6 +23,19 @@ public static class Enum
         COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH
     }
 
+    public static string GetGradeTagColor(GRADE grade)
+    {
+        //* 등급 텍스트 색상
+        string colorTag = (grade == GRADE.COMMON)? "white"
+            : (grade == GRADE.UNCOMMON)? "green"
+            : (grade == GRADE.RARE)? "blue"
+            : (grade == GRADE.UNIQUE)? "purple"
+            : (grade == GRADE.LEGEND)? "yellow"
+            : "red";
+        
+        return colorTag;
+    }
+
     public enum MISSION {
         MINING_ORE_CNT,
         MINING_TIME,

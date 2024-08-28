@@ -6,7 +6,10 @@ using UnityEngine;
 public class OreBlessAbilityDB_Int : ScriptableObject
 {
     [SerializeField] private Enum.OREBLESS_ABT type;
-    public Enum.OREBLESS_ABT Type {get => type;}
+    public Enum.OREBLESS_ABT Type {
+        get => type;
+        set => type = value;
+    }
 
     [SerializeField] private string abtName;
     public string AbtName {get => abtName;}

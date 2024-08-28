@@ -6591,8 +6591,16 @@ MonoBehaviour:
       <MiningChestCnt>k__BackingField: 0
       <ChallengeClearCnt>k__BackingField: 0
     oreBlessDB:
-      isUnlockArr: 0000000000000000
-    bestFloorArr: 000000000000000000000000000000000000000000000000000000000000000000000000
+      saveDt:
+      - isUnlock: 0
+        abilityCnt: 0
+        abilityList:
+        - type: 0
+          grade: 0
+          val: 0
+    stageDB:
+      isUnlockArr: 
+      bestFloorArr: 
 --- !u!1 &145849431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,52 +6670,34 @@ MonoBehaviour:
     AbilityTxt: {fileID: 1158643301}
     id: 0
     <Type>k__BackingField: 0
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
   - LockedPanel: {fileID: 993632856}
     AbilityTxt: {fileID: 28722616}
     id: 1
     <Type>k__BackingField: 1
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField:
-    - type: 0
-      val: 0
   - LockedPanel: {fileID: 1993141809}
     AbilityTxt: {fileID: 507612811}
     id: 2
     <Type>k__BackingField: 2
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
   - LockedPanel: {fileID: 1549560746}
     AbilityTxt: {fileID: 1043540590}
     id: 3
     <Type>k__BackingField: 3
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
   - LockedPanel: {fileID: 803222971}
     AbilityTxt: {fileID: 1744093272}
     id: 4
     <Type>k__BackingField: 4
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
   - LockedPanel: {fileID: 615945900}
     AbilityTxt: {fileID: 564051432}
     id: 5
     <Type>k__BackingField: 5
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
   - LockedPanel: {fileID: 967714935}
     AbilityTxt: {fileID: 490204739}
     id: 6
     <Type>k__BackingField: 6
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
   - LockedPanel: {fileID: 200304818}
     AbilityTxt: {fileID: 269085829}
     id: 7
     <Type>k__BackingField: 7
-    <AbilityCnt>k__BackingField: 0
-    <AbilityList>k__BackingField: []
 --- !u!1 &146521428
 GameObject:
   m_ObjectHideFlags: 0
@@ -96193,7 +96183,7 @@ MonoBehaviour:
     id: 1
     needTicketCnt: 1
     unlockPrice: 5000
-    isUnlocked: 1
+    isUnlocked: 0
     lockedPanel: {fileID: 1959436294}
     EnterBtn: {fileID: 1482632451}
     UnlockPriceBtn: {fileID: 121991869}

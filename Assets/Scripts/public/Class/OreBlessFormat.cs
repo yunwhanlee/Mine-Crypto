@@ -12,6 +12,7 @@ using UnityEngine.UIElements;
 [Serializable]
 public struct OreBlessAbilityData {
     public Enum.OREBLESS_ABT type;
+    public Enum.GRADE grade;
     public float val; // int형 능력치일 경우 (int)로 형변환 할 것!
 }
 
@@ -29,25 +30,26 @@ public class OreBlessFormat
     public int id;
     [field:SerializeField] public Enum.RSC Type {get; set;}
     [field:SerializeField] public bool IsUnlock {
-        get => DM._.DB.oreBlessDB.IsUnlockArr[id];
+        get => DM._.DB.oreBlessDB.saveDt[id].IsUnlock;
         set {
-            DM._.DB.oreBlessDB.IsUnlockArr[id] = value;
-            
-            // UI
-            LockedPanel.SetActive(!value);
+            DM._.DB.oreBlessDB.saveDt[id].IsUnlock = value;
+            LockedPanel.SetActive(!value); // UI
         }
     }
 
-    [field:SerializeField] public int AbilityCnt {get; set;}
-    [field:SerializeField] public List<OreBlessAbilityData> AbilityList {get; set;}
+    [field:SerializeField] public int AbilityCnt {
+        get => DM._.DB.oreBlessDB.saveDt[id].AbilityCnt;
+        set => DM._.DB.oreBlessDB.saveDt[id].AbilityCnt = value;
+    }
+    [field:SerializeField] public List<OreBlessAbilityData> AbilityList {
+        get => DM._.DB.oreBlessDB.saveDt[id].AbilityList; 
+        set => DM._.DB.oreBlessDB.saveDt[id].AbilityList = value;
+    }
 
 #region FUNC
     public void ActiveUnlockPanel()
     {
         LockedPanel.SetActive(!IsUnlock);
-
-        if(!IsUnlock)
-            AbilityTxt.text = "";
     }
 #endregion
 }
