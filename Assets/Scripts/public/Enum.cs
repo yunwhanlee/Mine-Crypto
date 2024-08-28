@@ -41,17 +41,17 @@ public static class Enum
         MOVSPD_PER,
         BAG_STG_PER,
         INC_TIMER, // int
-        INC_CRISTAL, // int //TODO
-        NEXTSTG_SKIP_PER, //TODO
-        INC_CHEST_PER, //TODO
-        INC_ORE1_PER, //TODO
-        INC_ORE2_PER, //TODO
-        INC_ORE3_PER, //TODO
-        INC_ORE4_PER, //TODO
-        INC_ORE5_PER, //TODO
-        INC_ORE6_PER, //TODO
-        INC_ORE7_PER, //TODO
-        INC_ORE8_PER, //TODO
+        INC_CRISTAL, // int
+        NEXTSTG_SKIP_PER,
+        INC_CHEST_PER,
+        INC_ORE1_PER,
+        INC_ORE2_PER,
+        INC_ORE3_PER,
+        INC_ORE4_PER,
+        INC_ORE5_PER,
+        INC_ORE6_PER,
+        INC_ORE7_PER,
+        INC_ORE8_PER,
         INC_POPULATION // int
     }
 

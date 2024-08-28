@@ -284,7 +284,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         ));
                     }
 
-                    // 재화 획득
+                    //* 재화 획득
                     if(targetOre != null) {
                         // 타겟재화 증가
                         DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);

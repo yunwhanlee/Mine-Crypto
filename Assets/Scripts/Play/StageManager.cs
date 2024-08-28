@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
@@ -6,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
+using Random = UnityEngine.Random;
 
 public class StageManager : MonoBehaviour {
     [Header("TOP")]
@@ -83,7 +85,21 @@ public class StageManager : MonoBehaviour {
     /// 다음 스테이지 이동
     /// </summary>
     public IEnumerator CoNextStage() {
+        float upgPer = GM._.ugm.upgBagStorage.Val;
+        float oreBlessPer = GM._.obm.GetAbilityValue(OREBLESS_ABT.NEXTSTG_SKIP_PER);
+
         Floor++;
+
+        // 2층 이동확률% 적용 (소수점 3자리까지)
+        int skipFloorPer = Mathf.RoundToInt((upgPer + oreBlessPer) * 1000);
+        int randPer = Random.Range(0, 1000);
+        Debug.Log($"2층 이동확률%:: skipFloorPer({skipFloorPer}) <= randPer({randPer})");
+        if(skipFloorPer <= randPer)
+        {
+            Floor++; // 현재층 스킵
+            GM._.ui.ShowNoticeMsgPopUp("2층 이동확률 발동! 다음층으로 바로 이동합니다.");
+        }
+
         yield return Util.TIME0_5;
 
         cutOutMaskUIDOTAnim.DORestart();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enum;
 
 [Serializable]
 public class StatusDB
@@ -69,15 +70,66 @@ public class StatusDB
     /// </summary>
     /// <param name="idx">재화 타입(인덱스)</param>
     /// <param name="val">증가량</param>
-    public void SetRscArr(int idx, int val) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
+    public int SetRscArr(int idx, int val) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
     {
+        OreBlessManager obm = GM._.obm;
+        float extraPer = 1;
+
+        // 수량이 추가되는 경우
+        if(val > 0)
+        {
+            // 추가획득량% 적용
+            switch(idx)
+            {
+                case (int)RWD.ORE1:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE1_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE2:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE2_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE3:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE3_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE4:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE4_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE5:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE5_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE6:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE6_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE7:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE7_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.ORE8:
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE8_PER);
+                    val = Mathf.RoundToInt(val * extraPer);
+                    break;
+                case (int)RWD.CRISTAL: // (Int형)
+                    int extraVal = GM._.ugm.upgIncCristal.Val + (int)obm.GetAbilityValue(OREBLESS_ABT.INC_CRISTAL);
+                    val += extraVal;
+                    break;
+            }
+        }
+
         rscArr[idx] += val;
+
         if(rscArr[idx] < 0)
                 rscArr[idx] = 0;
         if(GM._.gameState == GameState.HOME)
             GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
         else
             GM._.stm.curRscCntTxt.text = $"{rscArr[idx]}";
+
+        return val;
     }
 
     /// <summary>

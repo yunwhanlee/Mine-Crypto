@@ -142,10 +142,6 @@ public class RewardUIManager : MonoBehaviour
                 RWD rwdType = rwd.Key;     // 타입
                 int val = rwd.Value;            // 획득량
 
-                // 해당 보상슬롯UI 표시
-                GM._.rwm.rewardSlotUIArr[(int)rwdType].obj.SetActive(true);
-                GM._.rwm.rewardSlotUIArr[(int)rwdType].cntTxt.text = val.ToString();
-
                 switch(rwdType)
                 {
                     case RWD.ORE1:
@@ -156,8 +152,8 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.ORE6:
                     case RWD.ORE7:
                     case RWD.ORE8:
-                    case RWD.CRISTAL: // 타겟재화 증가
-                        sttDB.SetRscArr((int)rwdType, val);
+                    case RWD.CRISTAL: // 타겟재화 추가
+                        val = sttDB.SetRscArr((int)rwdType, val);
                         break;
                     case RWD.ORE_TICKET: // 광석 입장티켓
                         sttDB.OreTicket += val;
@@ -176,6 +172,10 @@ public class RewardUIManager : MonoBehaviour
                         break;
                     // 여기에 추가
                 }
+
+                // 해당 보상슬롯UI 표시
+                GM._.rwm.rewardSlotUIArr[(int)rwdType].obj.SetActive(true);
+                GM._.rwm.rewardSlotUIArr[(int)rwdType].cntTxt.text = val.ToString();
             }
         }
     }
