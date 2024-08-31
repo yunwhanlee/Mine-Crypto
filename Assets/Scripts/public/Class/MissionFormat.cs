@@ -50,7 +50,7 @@ public class MissionFormat
                 break;
             case MISSION.STAGE_CLEAR_CNT: //* 고정
                 Exp = missionDB.StageClearCnt;
-                MaxExp = 3;
+                MaxExp = 3 + (Lv - 1) * 3;
                 Reward = new Dictionary<RWD, int> {
                     { RWD.FAME, 1 },
                     { RWD.TREASURE_CHEST, Lv },
