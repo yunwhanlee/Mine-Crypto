@@ -67,6 +67,14 @@ public class EmployManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 다음레벨 명성팝업 표시용 (i)정보버튼
+    /// </summary>
+    public void OnClickFameInfoIconBtn()
+    {
+        GM._.fm.ShowFameNextLevelUpGradeTable();
+    }
+
+    /// <summary>
     /// 게임시작
     /// </summary>
     public void OnClickPlayBtn()
@@ -118,16 +126,16 @@ public class EmployManager : MonoBehaviour
             const int A = 0, B = 1, C = 2, D = 3, E = 4, F = 5;
 
             // 랜덤 등급 설정
-            int[] gTb = GM._.fm.GetRandomGradeArrByFame(isNextLv: true);
+            int[] gTb = GM._.fm.GetRandomGradeArrByFame();
             int max = gTb[A] + gTb[B] + gTb[C] + gTb[D] + gTb[E] + gTb[F];
             int rdPer = Random.Range(0, max); 
 
-            Enum.GRADE grade = rdPer < gTb[A]? Enum.GRADE.COMMON
-                : rdPer < gTb[A] + gTb[B]? Enum.GRADE.UNCOMMON
-                : rdPer < gTb[A] + gTb[B] + gTb[C]? Enum.GRADE.RARE
-                : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D]? Enum.GRADE.UNIQUE
-                : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D] + gTb[E]? Enum.GRADE.LEGEND
-                : Enum.GRADE.MYTH;
+            GRADE grade = rdPer < gTb[A]? GRADE.COMMON
+                : rdPer < gTb[A] + gTb[B]?GRADE.UNCOMMON
+                : rdPer < gTb[A] + gTb[B] + gTb[C]? GRADE.RARE
+                : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D]? GRADE.UNIQUE
+                : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D] + gTb[E]? GRADE.LEGEND
+                : GRADE.MYTH;
 
             Debug.Log($"Create Chara: workerCnt({workerCnt}) < workerMax({workerMax}), Random Grade Per= {rdPer} => {grade}");
 
