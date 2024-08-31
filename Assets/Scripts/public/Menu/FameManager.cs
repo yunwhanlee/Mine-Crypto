@@ -7,7 +7,7 @@ using static Enum;
 
 public class FameManager : MonoBehaviour
 {
-    const int MAX_FAME_LV = 20;
+    const int FAME_MAXLV = 2;
 
     [Header("버튼 수령가능한지에 따른 색깔 스프라이트")]
     public Sprite grayBtnSpr;
@@ -128,16 +128,17 @@ public class FameManager : MonoBehaviour
     /// <summary>
     /// 명예레벨 필요경험치 ( MAX 20LV )
     /// </summary>
-    private void UpdateFameMapExp() {
-        fameMaxExp = 10 + (fameLv * (fameLv - 1) * 10) / 2;
+    private void UpdateFameMapExp()
+    {
+        fameMaxExp = CalcFameMaxExp(fameLv);
 
         // 명성 레벨업인 경우
-        if(FameExp >= fameMaxExp)
+        if(FameExp >= fameMaxExp && fameLv < FAME_MAXLV)
         {
             // 업데이트
             fameLv++;
             FameExp = 0;
-            fameMaxExp = 10 + (fameLv * (fameLv - 1) * 10) / 2;
+            fameMaxExp = CalcFameMaxExp(fameLv);
 
             GM._.ui.ShowNoticeMsgPopUp("명성 레벨업!");
             FameLevelUp();
@@ -145,18 +146,35 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 명예레벨 필요경험치 계산식
+    /// </summary>
+    private int CalcFameMaxExp(int fameLv)
+    {
+        return 10 + fameLv * (fameLv - 1) * 10 / 2;
+    }
+
+    /// <summary>
     /// 명예레벨 필요경험치 UI ( MAX 20LV )
     /// </summary>
-    private void UpdateFameUI() {
+    private void UpdateFameUI()
+    {
+        fameLvTxt.text = fameLv.ToString();
         fameExpSlider.value = (float)FameExp / fameMaxExp;
-        fameLvTxt.text = $"{fameLv}";
         fameExpTxt.text = $"{FameExp} / {fameMaxExp}";
+
+        // MAX 레벨이라면
+        if(fameLv >= FAME_MAXLV)
+        {
+            fameExpSlider.value = 1; // FULL
+            fameExpTxt.text = "MAX";
+        }
     }
 
     /// <summary>
     /// 명성레벨업 보상지급
     /// </summary>
-    private void FameLevelUp() {
+    private void FameLevelUp()
+    {
         ShowFameLevelUpGradeTable(isLvUp: true);
 
         GM._.rwm.ShowReward (
@@ -273,6 +291,16 @@ public class FameManager : MonoBehaviour
             case 18: return new int[] {0, 20, 40, 25, 12, 3};
             case 19: return new int[] {0, 10, 30, 45, 12, 3};
             case 20: return new int[] {0, 0, 20, 60, 15, 5};
+            case 21: return new int[] {0, 0, 20, 58, 17, 5};
+            case 22: return new int[] {0, 0, 18, 57, 20, 5};
+            case 23: return new int[] {0, 0, 18, 55, 21, 6};
+            case 24: return new int[] {0, 0, 16, 55, 23, 6};
+            case 25: return new int[] {0, 0, 14, 53, 26, 7};
+            case 26: return new int[] {0, 0, 14, 50, 29, 7};
+            case 27: return new int[] {0, 0, 12, 48, 32, 8};
+            case 28: return new int[] {0, 0, 10, 45, 36, 9};
+            case 29: return new int[] {0, 0, 5, 40, 45, 10};
+            case 30: return new int[] {0, 0, 0, 35, 50, 15};
         }
 
         return null; // 해당 레벨이 아닌경우 에러: null반환
