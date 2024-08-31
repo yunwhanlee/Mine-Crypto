@@ -62,9 +62,9 @@ public class OreBlessManager : MonoBehaviour
     /// </summary>
     private void SetUI() {
         // 로드데이터 UI 확인 및 표시
-        for(int i = 0; i < oreDB.saveDt.Length; i++)
+        for(int i = 0; i < oreDB.saveDts.Length; i++)
         {
-            OreBlessSaveData saveDt = oreDB.saveDt[i];
+            OreBlessSaveData saveDt = oreDB.saveDts[i];
 
             // 잠금해제
             oreBlessFormatArr[i].IsUnlock = saveDt.IsUnlock;

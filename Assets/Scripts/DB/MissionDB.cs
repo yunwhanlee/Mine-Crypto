@@ -2,30 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static Enum;
+
+[Serializable]
+public struct MissionSaveData {
+    [field:SerializeField] public MISSION Type {get; private set;}      // 타입
+    [field:SerializeField] public int Lv {get; set;}                    // 레벨
+    [field:SerializeField] public int Exp {get; set;}
+
+    public MissionSaveData(MISSION Type, int Lv, int Exp)
+    {
+        this.Type = Type;
+        this.Lv = Lv;
+        this.Exp = Exp;
+    }
+}
 
 [Serializable]
 public class MissionDB
 {
-    /// <summary> 광석채굴 </summary>
-    [field:SerializeField] public int MiningOreCnt {get; set;}
-    /// <summary> 채굴시간 </summary>
-    [field:SerializeField] public int MiningTime {get; set;}
-    /// <summary> 강화하기 </summary>
-    [field:SerializeField] public int UpgradeCnt {get; set;}
-    /// <summary> 광산 클리어 </summary>
-    [field:SerializeField] public int StageClearCnt {get; set;}
-    /// <summary> 보물상자 획득 </summary>
-    [field:SerializeField] public int MiningChestCnt {get; set;}
-    /// <summary> 시련의광산 돌파 </summary>
-    [field:SerializeField] public int ChallengeClearCnt {get; set;} //TODO
+    public MissionSaveData[] saveDts;
 
     public void Init()
     {
-        MiningOreCnt = 0;
-        MiningTime = 0;
-        UpgradeCnt = 0;
-        StageClearCnt = 0;
-        MiningChestCnt = 0;
-        ChallengeClearCnt = 0;
+        saveDts = new MissionSaveData[6] {
+            new MissionSaveData(MISSION.MINING_ORE_CNT, Lv: 1, Exp: 0),         // 광석채굴
+            new MissionSaveData(MISSION.MINING_TIME, Lv: 1, Exp: 0),            // 채굴시간
+            new MissionSaveData(MISSION.UPGRADE_CNT, Lv: 1, Exp: 0),            // 강화하기
+            new MissionSaveData(MISSION.STAGE_CLEAR_CNT, Lv: 1, Exp: 0),        // 광산 클리어
+            new MissionSaveData(MISSION.MINING_CHEST_CNT, Lv: 1, Exp: 0),       // 보물상자 획득
+            new MissionSaveData(MISSION.CHALLENGE_CLEAR_CNT, Lv: 1, Exp: 0),    // 시련의광산 돌파
+        };
     }
 }

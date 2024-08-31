@@ -19,17 +19,17 @@ public class MissionFormat
             switch(Type)
             {
                 case MISSION.MINING_ORE_CNT:
-                    return missionDB.MiningOreCnt;
+                    return missionDB.saveDts[0].Exp;
                 case MISSION.MINING_TIME:
-                    return missionDB.MiningTime;
+                    return missionDB.saveDts[1].Exp;
                 case MISSION.UPGRADE_CNT:
-                    return missionDB.UpgradeCnt;
+                    return missionDB.saveDts[2].Exp;
                 case MISSION.STAGE_CLEAR_CNT: //* 고정
-                    return missionDB.StageClearCnt;
+                    return missionDB.saveDts[3].Exp;
                 case MISSION.MINING_CHEST_CNT:
-                    return missionDB.MiningChestCnt;
+                    return missionDB.saveDts[4].Exp;
                 case MISSION.CHALLENGE_CLEAR_CNT:
-                    return missionDB.ChallengeClearCnt;
+                    return missionDB.saveDts[5].Exp;
             }
 
             return -1;
@@ -40,18 +40,30 @@ public class MissionFormat
             switch(Type)
             {
                 case MISSION.MINING_ORE_CNT:
-                    missionDB.MiningOreCnt = value; break;
+                    missionDB.saveDts[0].Exp = value;
+                    break;
                 case MISSION.MINING_TIME:
-                    missionDB.MiningTime = value; break;
+                    missionDB.saveDts[1].Exp = value; 
+                    break;
                 case MISSION.UPGRADE_CNT:
-                    missionDB.UpgradeCnt = value; break;
+                    missionDB.saveDts[2].Exp = value; 
+                    break;
                 case MISSION.STAGE_CLEAR_CNT: //* 고정
-                    missionDB.StageClearCnt = value; break;
+                    missionDB.saveDts[3].Exp = value; 
+                    break;
                 case MISSION.MINING_CHEST_CNT:
-                    missionDB.MiningChestCnt = value; break;
+                    missionDB.saveDts[4].Exp = value; 
+                    break;
                 case MISSION.CHALLENGE_CLEAR_CNT:
-                    missionDB.ChallengeClearCnt = value; break;
+                    missionDB.saveDts[5].Exp = value; 
+                    break;
             }
+
+            // 객체생성 단계에서는 MaxExp가 0일때는 업데이트 알림UI 처리하지 않기
+            if(MaxExp == 0)
+                return;
+
+            Debug.Log($"MissionFormat:: Type= {Type}, Lv= {Lv}, Exp= {value}, MaxExp= {MaxExp}");
 
             // 업데이트 알림UI 🔴
             GM._.fm.UpdateAlertRedDot();

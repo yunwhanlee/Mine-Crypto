@@ -30,20 +30,20 @@ public class OreBlessFormat
     public int id;
     [field:SerializeField] public Enum.RSC Type {get; set;}
     [field:SerializeField] public bool IsUnlock {
-        get => DM._.DB.oreBlessDB.saveDt[id].IsUnlock;
+        get => DM._.DB.oreBlessDB.saveDts[id].IsUnlock;
         set {
-            DM._.DB.oreBlessDB.saveDt[id].IsUnlock = value;
+            DM._.DB.oreBlessDB.saveDts[id].IsUnlock = value;
             LockedPanel.SetActive(!value); // UI
         }
     }
 
     [field:SerializeField] public int AbilityCnt {
-        get => DM._.DB.oreBlessDB.saveDt[id].AbilityCnt;
-        set => DM._.DB.oreBlessDB.saveDt[id].AbilityCnt = value;
+        get => DM._.DB.oreBlessDB.saveDts[id].AbilityCnt;
+        set => DM._.DB.oreBlessDB.saveDts[id].AbilityCnt = value;
     }
     [field:SerializeField] public List<OreBlessAbilityData> AbilityList {
-        get => DM._.DB.oreBlessDB.saveDt[id].AbilityList; 
-        set => DM._.DB.oreBlessDB.saveDt[id].AbilityList = value;
+        get => DM._.DB.oreBlessDB.saveDts[id].AbilityList; 
+        set => DM._.DB.oreBlessDB.saveDts[id].AbilityList = value;
     }
 
 #region FUNC

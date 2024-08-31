@@ -44,14 +44,16 @@ public class FameManager : MonoBehaviour
     public MissionUIFormat[] missionUIArr;
 
     void Start() {
-        // 데이터 로드
+        var svDts = DM._.DB.missionDB.saveDts;
+
+        // 객체생성 및 데이터 로드 (MapExp는 UpdateAll에서 계산식으로 대입)
         missionArr = new MissionFormat[6] {
-            new() { Type = MISSION.MINING_ORE_CNT, Lv = 1, Exp = 0, MaxExp = 10 },
-            new() { Type = MISSION.MINING_TIME, Lv = 1, Exp = 0, MaxExp = 10 },
-            new() { Type = MISSION.UPGRADE_CNT, Lv = 1, Exp = 0, MaxExp = 10 },
-            new() { Type = MISSION.STAGE_CLEAR_CNT, Lv = 1, Exp = 0, MaxExp = 10 },
-            new() { Type = MISSION.MINING_CHEST_CNT, Lv = 1, Exp = 0, MaxExp = 10 },
-            new() { Type = MISSION.CHALLENGE_CLEAR_CNT, Lv = 1, Exp = 0, MaxExp = 10 },
+            new() { Type = svDts[0].Type, Lv = svDts[0].Lv, Exp = svDts[0].Exp, MaxExp = 0 },
+            new() { Type = svDts[1].Type, Lv = svDts[1].Lv, Exp = svDts[1].Exp, MaxExp = 0 },
+            new() { Type = svDts[2].Type, Lv = svDts[2].Lv, Exp = svDts[2].Exp, MaxExp = 0 },
+            new() { Type = svDts[3].Type, Lv = svDts[3].Lv, Exp = svDts[3].Exp, MaxExp = 0 },
+            new() { Type = svDts[4].Type, Lv = svDts[4].Lv, Exp = svDts[4].Exp, MaxExp = 0 },
+            new() { Type = svDts[5].Type, Lv = svDts[5].Lv, Exp = svDts[5].Exp, MaxExp = 0 },
         };
 
         UpdateAll();
@@ -315,6 +317,7 @@ public class FameManager : MonoBehaviour
     /// 수령가능한 버튼이 있다면, 알림아이콘UI 🔴표시
     /// </summary>
     public void UpdateAlertRedDot() {
+        Debug.Log($"UpdateAlertRedDot()::");
         bool isAcceptable = Array.Exists(missionArr, msi => msi.Exp >= msi.MaxExp);
         alertRedDotObj.SetActive(isAcceptable);
     }

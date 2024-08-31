@@ -35,7 +35,7 @@ public struct OreBlessSaveData {
 [Serializable]
 public class OreBlessDB
 {
-    public OreBlessSaveData[] saveDt;
+    public OreBlessSaveData[] saveDts;
 
     public void Init()
     {
@@ -49,7 +49,7 @@ public class OreBlessDB
             },
         };
 
-        saveDt = new OreBlessSaveData[8] {
+        saveDts = new OreBlessSaveData[8] {
             new OreBlessSaveData(true, 1, defAbilityList),
             new OreBlessSaveData(false, 0, null),
             new OreBlessSaveData(false, 0, null),
