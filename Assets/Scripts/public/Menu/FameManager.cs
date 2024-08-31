@@ -9,6 +9,12 @@ public class FameManager : MonoBehaviour
 {
     const int MAX_FAME_LV = 20;
 
+    [Header("버튼 수령가능한지에 따른 색깔 스프라이트")]
+    public Sprite grayBtnSpr;
+    public Sprite yellowBtnSpr;
+
+    [Space(15)]
+
     public GameObject windowObj;
     public Slider fameExpSlider;
     public TMP_Text fameLvTxt;
@@ -43,6 +49,22 @@ public class FameManager : MonoBehaviour
         UpdateAll();
     }
 
+    void Update() {
+        //! TEST 미션 EXP 증가
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("TEST 미션 EXP 증가");
+            DM._.DB.missionDB.MiningOreCnt += 50;
+            DM._.DB.missionDB.MiningTime += 50;
+            DM._.DB.missionDB.UpgradeCnt += 10;
+            DM._.DB.missionDB.StageClearCnt += 100;
+            DM._.DB.missionDB.MiningChestCnt += 10;
+            DM._.DB.missionDB.ChallengeClearCnt += 10;
+
+            UpdateAll();
+        }
+    }
+
 #region EVENT
     /// <summary>
     /// 미션 보상획득 버튼
@@ -57,7 +79,13 @@ public class FameManager : MonoBehaviour
             return;
         }
 
+        // 미션 레벨 업
+        mission.Lv++;
+
+        // 미션 보상
         GM._.rwm.ShowReward(missionArr[idx].Reward);
+
+        // 업데이트
         UpdateAll();
     }
 #endregion
@@ -69,14 +97,14 @@ public class FameManager : MonoBehaviour
     private void UpdateAll()
     {
         // 명예 데이터 업데이트
-        UpdateFameNeedExp();
+        UpdateFameMapExp();
+
+        // 명예 UI 업데이트
+        UpdateFameUI();
 
         // 미션 데이터 업데이트
         for(int i = 0; i < missionArr.Length; i++)
             missionArr[i].UpdateData();
-
-        // 명예 UI 업데이트
-        UpdateFameUI();
 
         // 미션 UI 업데이트
         for(int i = 0; i < missionUIArr.Length; i++)
@@ -85,13 +113,13 @@ public class FameManager : MonoBehaviour
     /// <summary>
     /// 명예레벨 필요경험치 ( MAX 20LV )
     /// </summary>
-    private void UpdateFameNeedExp() {
+    private void UpdateFameMapExp() {
         fameMaxExp = 10 + (fameLv * (fameLv - 1) * 10) / 2;
 
+        // 명성 레벨업인 경우
         if(FameExp >= fameMaxExp)
         {
             // 업데이트
-            FameExp = 0;
             fameLv++;
             fameMaxExp = 10 + (fameLv * (fameLv - 1) * 10) / 2;
 

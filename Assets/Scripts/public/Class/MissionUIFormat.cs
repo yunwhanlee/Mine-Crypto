@@ -12,9 +12,12 @@ using static Enum;
 [System.Serializable]
 public class MissionUIFormat
 {
+    [field:SerializeField] public TMP_Text LvTxt {get; private set;}
+
     [field:SerializeField] public Slider ExpSlider {get; private set;}
     [field:SerializeField] public TMP_Text ExpTxt {get; private set;}
 
+    [field:SerializeField] public Image BtnImg {get; private set;}
     [field:SerializeField] public TMP_Text Rwd1Txt {get; private set;}
     [field:SerializeField] public Image Rwd1Img {get; private set;}
     [field:SerializeField] public TMP_Text Rwd2Txt {get; private set;}
@@ -26,6 +29,9 @@ public class MissionUIFormat
     /// </summary>
     /// <param name="mission">미션타입</param> <summary>
     public void UpdateUI(MissionFormat mission) {
+        // 레벨 텍스트
+        LvTxt.text = mission.Lv.ToString();
+
         // 경험치 슬라이더
         ExpSlider.value = (float)mission.Exp / mission.MaxExp;
         ExpTxt.text = $"{mission.Exp} / {mission.MaxExp}";
@@ -33,6 +39,13 @@ public class MissionUIFormat
         // 보상 수령버튼
         var rewardKeys = mission.Reward.Keys.ToList();
         var rewardValues = mission.Reward.Values.ToList();
+
+        // 수령가능에 따른 버튼 색깔
+        if(mission.Exp >= mission.MaxExp)
+            BtnImg.sprite = GM._.fm.yellowBtnSpr;
+        else
+            BtnImg.sprite = GM._.fm.grayBtnSpr;
+
         if(rewardValues.Count > 1)
         {
             // 보상1
