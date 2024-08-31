@@ -376,12 +376,20 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // 광석체력 0이라면, 파괴
                     if(targetOre.IsDestroied)
                     {
+                        // 광석인 경우
                         if(targetOre.OreType != RSC.CRISTAL)
+                        {
                             status = Status.BACKHOME; // 귀가
+                        }
+                        // 보물상자인 경우
                         else
+                        {
+                            DM._.DB.missionDB.MiningChestCnt++;
                             status = Status.GO;
+                        }
 
                         targetOre = null;
+                        DM._.DB.missionDB.MiningOreCnt++;
                     }
                 }
             }

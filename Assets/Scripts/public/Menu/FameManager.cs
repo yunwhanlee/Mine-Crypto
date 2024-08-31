@@ -7,7 +7,7 @@ using static Enum;
 
 public class FameManager : MonoBehaviour
 {
-    const int FAME_MAXLV = 2;
+    const int FAME_MAXLV = 30;
 
     [Header("버튼 수령가능한지에 따른 색깔 스프라이트")]
     public Sprite grayBtnSpr;
@@ -108,7 +108,7 @@ public class FameManager : MonoBehaviour
     /// <summary>
     /// 현재 명예 및 미션 데이터와 UI 업데이트
     /// </summary>
-    private void UpdateAll()
+    public void UpdateAll()
     {
         // 명예 데이터 업데이트
         UpdateFameMapExp();

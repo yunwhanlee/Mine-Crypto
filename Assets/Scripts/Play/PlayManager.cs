@@ -17,6 +17,8 @@ public class PlayManager : MonoBehaviour
     [Header("(인게임) 게임오버시 획득한 보상수량 결과표시 데이터")]
     public int[] govResRwdArr; // 정의는 StageManager:: StageStart()에서 매번 초기화
 
+    [field:SerializeField] int timerMax;
+
     [field:SerializeField] int timerVal;  public int TimerVal {
         get => timerVal;
         set {
@@ -56,6 +58,9 @@ public class PlayManager : MonoBehaviour
         timerVal = GM._.ugm.upgIncTimer.Val
             + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
 
+        // 시작전에 최대타이머 시간 대입 -> 종료시, 채굴시간미션에 적용
+        timerMax = timerVal;
+
         // 타이머 카운트 다운 
         while(timerVal > 0) {
             yield return Util.TIME1;
@@ -66,13 +71,13 @@ public class PlayManager : MonoBehaviour
         GM._.gameState = GameState.GAMEOVER;
         timerTxt.text = GameState.GAMEOVER.ToString();
 
-        Gameover();
+        Timeover();
     }
 
     /// <summary>
-    /// 게임오버 (제공되는 보상표시)
+    ///* 타임오버 (제공 보상표시)
     /// </summary>
-    private void Gameover() {
+    private void Timeover() {
         // 입장티켓 1개 회수
         govResRwdArr[(int)RWD.ORE_TICKET]++;            // 결과수치 UI
         DM._.DB.statusDB.OreTicket++;                   // 데이터
@@ -84,6 +89,12 @@ public class PlayManager : MonoBehaviour
 
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
         GM._.rwm.ShowGameoverReward(govResRwdArr);
+
+        // 채굴시간 미션
+        DM._.DB.missionDB.MiningTime += timerMax;
+
+        // 광산 클리어 미션
+        DM._.DB.missionDB.StageClearCnt++;
     }
 #endregion
 

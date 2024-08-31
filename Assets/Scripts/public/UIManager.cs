@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
     public void OnClickMenu_FameBtn() {
         GM._.fm.windowObj.SetActive(true);
         GM._.fm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+        GM._.fm.UpdateAll();
     }
 
     public void OnClickMenu_OreBlessBtn() {
