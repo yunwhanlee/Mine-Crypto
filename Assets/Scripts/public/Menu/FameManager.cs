@@ -20,6 +20,10 @@ public class FameManager : MonoBehaviour
     public TMP_Text fameLvTxt;
     public TMP_Text fameExpTxt;
 
+    [Header("명성 레벨업 정보 패널 : 캐릭터 고용 랜덤테이블 확인용으로도 사용")]
+    public GameObject fameLevelUpInfoPanel;
+    public TMP_Text employRandomTableValTxt;
+
     public int fameLv;
     public int FameExp { 
         get => DM._.DB.statusDB.Fame;
@@ -88,6 +92,19 @@ public class FameManager : MonoBehaviour
         // 업데이트
         UpdateAll();
     }
+
+    /// <summary>
+    /// 다음 명예레벨에 따른 소환등급 확률표 표시
+    /// </summary>
+    public void OnClickFameInfoIconBtn()
+    {
+        fameLevelUpInfoPanel.SetActive(true);
+        int[] gTb = GM._.fm.GetRandomGradeArrByFame(isNextLv: true);
+
+        // 등급표 작성
+        employRandomTableValTxt.text =
+            $"{gTb[0]}%" + $"\n<color=green>{gTb[1]}%</color>" + $"\n<color=blue>{gTb[2]}%</color>" + $"\n<color=purple>{gTb[3]}%</color>" + $"\n<color=yellow>{gTb[4]}%</color>" + $"\n<color=red>{gTb[5]}%</color>";
+    }
 #endregion
 
 #region FUNC
@@ -121,6 +138,7 @@ public class FameManager : MonoBehaviour
         {
             // 업데이트
             fameLv++;
+            FameExp = 0;
             fameMaxExp = 10 + (fameLv * (fameLv - 1) * 10) / 2;
 
             GM._.ui.ShowNoticeMsgPopUp("명성 레벨업!");
