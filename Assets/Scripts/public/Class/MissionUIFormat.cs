@@ -42,7 +42,9 @@ public class MissionUIFormat
 
         // 수령가능에 따른 버튼 색깔
         if(mission.Exp >= mission.MaxExp)
+        {
             BtnImg.sprite = GM._.fm.yellowBtnSpr;
+        }
         else
             BtnImg.sprite = GM._.fm.grayBtnSpr;
 

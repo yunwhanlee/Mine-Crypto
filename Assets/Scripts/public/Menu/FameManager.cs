@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,7 @@ public class FameManager : MonoBehaviour
     [Space(15)]
 
     public GameObject windowObj;
+    public GameObject alertRedDotObj;
     public Slider fameExpSlider;
     public TMP_Text fameLvTxt;
     public TMP_Text fameExpTxt;
@@ -60,12 +62,12 @@ public class FameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("TEST 미션 EXP 증가");
-            DM._.DB.missionDB.MiningOreCnt += 50;
-            DM._.DB.missionDB.MiningTime += 50;
-            DM._.DB.missionDB.UpgradeCnt += 10;
-            DM._.DB.missionDB.StageClearCnt += 100;
-            DM._.DB.missionDB.MiningChestCnt += 10;
-            DM._.DB.missionDB.ChallengeClearCnt += 10;
+            missionArr[(int)MISSION.MINING_ORE_CNT].Exp += 50;
+            missionArr[(int)MISSION.MINING_TIME].Exp += 50;
+            missionArr[(int)MISSION.UPGRADE_CNT].Exp += 10;
+            missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp += 100;
+            missionArr[(int)MISSION.MINING_CHEST_CNT].Exp += 10;
+            missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp += 10;
 
             UpdateAll();
         }
@@ -93,6 +95,9 @@ public class FameManager : MonoBehaviour
 
         // 업데이트
         UpdateAll();
+
+        // 업데이트 알림UI 🔴
+        UpdateAlertRedDot();
     }
 
     /// <summary>
@@ -122,7 +127,9 @@ public class FameManager : MonoBehaviour
 
         // 미션 UI 업데이트
         for(int i = 0; i < missionUIArr.Length; i++)
+        {
             missionUIArr[i].UpdateUI(missionArr[i]);
+        }
     }
 
     /// <summary>
@@ -187,8 +194,6 @@ public class FameManager : MonoBehaviour
             }
         );
     }
-
-
 
     /// <summary>
     /// 명성 레벨업 팝업 표시 (레벨업이 아닐경우, 현재 소환등급 표시용)
@@ -304,6 +309,14 @@ public class FameManager : MonoBehaviour
         }
 
         return null; // 해당 레벨이 아닌경우 에러: null반환
+    }
+
+    /// <summary>
+    /// 수령가능한 버튼이 있다면, 알림아이콘UI 🔴표시
+    /// </summary>
+    public void UpdateAlertRedDot() {
+        bool isAcceptable = Array.Exists(missionArr, msi => msi.Exp >= msi.MaxExp);
+        alertRedDotObj.SetActive(isAcceptable);
     }
 #endregion
 }

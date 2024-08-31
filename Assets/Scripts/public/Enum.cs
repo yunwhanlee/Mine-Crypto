@@ -42,7 +42,8 @@ public static class Enum
         UPGRADE_CNT,
         STAGE_CLEAR_CNT,
         MINING_CHEST_CNT,
-        CHALLENGE_CLEAR_CNT
+        CHALLENGE_CLEAR_CNT,
+        NULL,
     }
 
     /// <summary>

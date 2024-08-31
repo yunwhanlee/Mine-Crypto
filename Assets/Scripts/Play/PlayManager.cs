@@ -91,10 +91,10 @@ public class PlayManager : MonoBehaviour
         GM._.rwm.ShowGameoverReward(govResRwdArr);
 
         // 채굴시간 미션
-        DM._.DB.missionDB.MiningTime += timerMax;
+        GM._.fm.missionArr[(int)MISSION.MINING_TIME].Exp += timerMax;
 
         // 광산 클리어 미션
-        DM._.DB.missionDB.StageClearCnt++;
+        GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++;
     }
 #endregion
 

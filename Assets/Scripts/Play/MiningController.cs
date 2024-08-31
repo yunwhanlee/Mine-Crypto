@@ -384,12 +384,12 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         // 보물상자인 경우
                         else
                         {
-                            DM._.DB.missionDB.MiningChestCnt++;
+                            GM._.fm.missionArr[(int)MISSION.MINING_CHEST_CNT].Exp++;
                             status = Status.GO;
                         }
 
                         targetOre = null;
-                        DM._.DB.missionDB.MiningOreCnt++;
+                        GM._.fm.missionArr[(int)MISSION.MINING_ORE_CNT].Exp++;
                     }
                 }
             }
