@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using static Enum;
 
 /// <summary>
@@ -94,6 +95,20 @@ public class RewardUIManager : MonoBehaviour
             rewardSlotUIArr[i].cntTxt.text = "0";
             rewardSlotUIArr[i].obj.SetActive(false); // 비표시
         }
+    }
+    
+    /// <summary>
+    /// 보상 아이템 이미지 획득
+    /// </summary>
+    /// <param name="rwdType">보상타입</param>
+    public Sprite GetRewardItemSprite(RWD rwdType)
+    {
+        const int ICON_ITEM = 1;
+
+        Transform iconItemTf = rewardSlotUIArr[(int)rwdType].obj.transform.GetChild(ICON_ITEM);
+        Image itemImg = iconItemTf.GetComponent<Image>();
+
+        return itemImg.sprite;
     }
 
     /// <summary>

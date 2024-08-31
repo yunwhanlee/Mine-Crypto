@@ -1795,8 +1795,9 @@ GameObject:
   - component: {fileID: 45285577}
   - component: {fileID: 45285579}
   - component: {fileID: 45285578}
+  - component: {fileID: 45285580}
   m_Layer: 0
-  m_Name: RewardAcceptBtn
+  m_Name: RewardAcceptBtn4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1861,6 +1862,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45285576}
   m_CullTransparentMesh: 1
+--- !u!114 &45285580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45285576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 45285578}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886384814}
+        m_TargetAssemblyTypeName: FameManager, Assembly-CSharp
+        m_MethodName: OnClickAcceptRewardBtn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &45329652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,9 +3076,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 723
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3058,7 +3115,7 @@ RectTransform:
   m_Father: {fileID: 1904590322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.698, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18017,8 +18074,9 @@ GameObject:
   - component: {fileID: 315946054}
   - component: {fileID: 315946056}
   - component: {fileID: 315946055}
+  - component: {fileID: 315946057}
   m_Layer: 0
-  m_Name: RewardAcceptBtn
+  m_Name: RewardAcceptBtn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18083,6 +18141,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315946053}
   m_CullTransparentMesh: 1
+--- !u!114 &315946057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315946053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 315946055}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886384814}
+        m_TargetAssemblyTypeName: FameManager, Assembly-CSharp
+        m_MethodName: OnClickAcceptRewardBtn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &317840893
 GameObject:
   m_ObjectHideFlags: 0
@@ -20002,7 +20116,7 @@ RectTransform:
   m_Father: {fileID: 1583392473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.698, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24560,7 +24674,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -50, y: 655}
+  m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &495614880
 MonoBehaviour:
@@ -25618,8 +25732,9 @@ GameObject:
   - component: {fileID: 518950122}
   - component: {fileID: 518950124}
   - component: {fileID: 518950123}
+  - component: {fileID: 518950125}
   m_Layer: 0
-  m_Name: RewardAcceptBtn
+  m_Name: RewardAcceptBtn6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25684,6 +25799,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518950121}
   m_CullTransparentMesh: 1
+--- !u!114 &518950125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518950121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 518950123}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886384814}
+        m_TargetAssemblyTypeName: FameManager, Assembly-CSharp
+        m_MethodName: OnClickAcceptRewardBtn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -32029,7 +32200,7 @@ GameObject:
   - component: {fileID: 659914273}
   - component: {fileID: 659914272}
   m_Layer: 0
-  m_Name: ExpTxt
+  m_Name: ExpTxt4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45598,7 +45769,7 @@ RectTransform:
   m_Father: {fileID: 219801710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.723, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -60163,7 +60334,7 @@ MonoBehaviour:
   m_Content: {fileID: 495614879}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 0
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -60655,8 +60826,9 @@ GameObject:
   - component: {fileID: 1241869783}
   - component: {fileID: 1241869785}
   - component: {fileID: 1241869784}
+  - component: {fileID: 1241869786}
   m_Layer: 0
-  m_Name: RewardAcceptBtn
+  m_Name: RewardAcceptBtn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60721,6 +60893,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241869782}
   m_CullTransparentMesh: 1
+--- !u!114 &1241869786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241869782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1241869784}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886384814}
+        m_TargetAssemblyTypeName: FameManager, Assembly-CSharp
+        m_MethodName: OnClickAcceptRewardBtn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1242321564
 GameObject:
   m_ObjectHideFlags: 0
@@ -70266,7 +70494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1444750978
 RectTransform:
   m_ObjectHideFlags: 0
@@ -84078,8 +84306,9 @@ GameObject:
   - component: {fileID: 1754999476}
   - component: {fileID: 1754999478}
   - component: {fileID: 1754999477}
+  - component: {fileID: 1754999479}
   m_Layer: 0
-  m_Name: RewardAcceptBtn
+  m_Name: RewardAcceptBtn5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84144,6 +84373,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754999475}
   m_CullTransparentMesh: 1
+--- !u!114 &1754999479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754999475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1754999477}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886384814}
+        m_TargetAssemblyTypeName: FameManager, Assembly-CSharp
+        m_MethodName: OnClickAcceptRewardBtn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1756213705
 GameObject:
   m_ObjectHideFlags: 0
@@ -90434,7 +90719,7 @@ RectTransform:
   m_Father: {fileID: 1351784438}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.698, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -90803,68 +91088,69 @@ MonoBehaviour:
   fameLvTxt: {fileID: 1761023969}
   fameExpTxt: {fileID: 1577928308}
   fameLv: 1
-  fameExp: 0
   fameMaxExp: 0
-  m_MiningOreCnt:
-    <Type>k__BackingField: 0
+  missionArr:
+  - <Type>k__BackingField: 0
     <Lv>k__BackingField: 0
     <Exp>k__BackingField: 0
     <MaxExp>k__BackingField: 0
-  m_MiningTime:
-    <Type>k__BackingField: 0
+  - <Type>k__BackingField: 0
     <Lv>k__BackingField: 0
     <Exp>k__BackingField: 0
     <MaxExp>k__BackingField: 0
-  m_UpgradeCnt:
-    <Type>k__BackingField: 0
+  - <Type>k__BackingField: 0
     <Lv>k__BackingField: 0
     <Exp>k__BackingField: 0
     <MaxExp>k__BackingField: 0
-  m_StageClearCnt:
-    <Type>k__BackingField: 0
+  - <Type>k__BackingField: 0
     <Lv>k__BackingField: 0
     <Exp>k__BackingField: 0
     <MaxExp>k__BackingField: 0
-  m_MiningChestCnt:
-    <Type>k__BackingField: 0
+  - <Type>k__BackingField: 0
     <Lv>k__BackingField: 0
     <Exp>k__BackingField: 0
     <MaxExp>k__BackingField: 0
-  m_ChallengeClearCnt:
-    <Type>k__BackingField: 0
+  - <Type>k__BackingField: 0
     <Lv>k__BackingField: 0
     <Exp>k__BackingField: 0
     <MaxExp>k__BackingField: 0
-  m_MiningOreCntUI:
-    <ExpSlider>k__BackingField: {fileID: 954496770}
+  missionUIArr:
+  - <ExpSlider>k__BackingField: {fileID: 954496770}
     <ExpTxt>k__BackingField: {fileID: 1642784425}
     <Rwd1Txt>k__BackingField: {fileID: 1175103779}
+    <Rwd1Img>k__BackingField: {fileID: 1363303564}
     <Rwd2Txt>k__BackingField: {fileID: 217207055}
-  m_MiningTimeUI:
-    <ExpSlider>k__BackingField: {fileID: 1132496129}
+    <Rwd2Img>k__BackingField: {fileID: 1041374997}
+  - <ExpSlider>k__BackingField: {fileID: 1132496129}
     <ExpTxt>k__BackingField: {fileID: 529717044}
     <Rwd1Txt>k__BackingField: {fileID: 1205424713}
+    <Rwd1Img>k__BackingField: {fileID: 1262858476}
     <Rwd2Txt>k__BackingField: {fileID: 102977}
-  m_UpgradeCntUI:
-    <ExpSlider>k__BackingField: {fileID: 1499646297}
+    <Rwd2Img>k__BackingField: {fileID: 850155639}
+  - <ExpSlider>k__BackingField: {fileID: 1499646297}
     <ExpTxt>k__BackingField: {fileID: 1275382565}
     <Rwd1Txt>k__BackingField: {fileID: 1412205118}
+    <Rwd1Img>k__BackingField: {fileID: 612212380}
     <Rwd2Txt>k__BackingField: {fileID: 505272209}
-  m_StageClearCntUI:
-    <ExpSlider>k__BackingField: {fileID: 1101453733}
+    <Rwd2Img>k__BackingField: {fileID: 1179607623}
+  - <ExpSlider>k__BackingField: {fileID: 1101453733}
     <ExpTxt>k__BackingField: {fileID: 659914272}
     <Rwd1Txt>k__BackingField: {fileID: 1944765743}
+    <Rwd1Img>k__BackingField: {fileID: 1728485285}
     <Rwd2Txt>k__BackingField: {fileID: 1625199832}
-  m_MiningChestCntUI:
-    <ExpSlider>k__BackingField: {fileID: 654226863}
+    <Rwd2Img>k__BackingField: {fileID: 612916578}
+  - <ExpSlider>k__BackingField: {fileID: 654226863}
     <ExpTxt>k__BackingField: {fileID: 1828871760}
     <Rwd1Txt>k__BackingField: {fileID: 82853261}
+    <Rwd1Img>k__BackingField: {fileID: 341703021}
     <Rwd2Txt>k__BackingField: {fileID: 989153544}
-  m_ChallengeClearCntUI:
-    <ExpSlider>k__BackingField: {fileID: 959570305}
+    <Rwd2Img>k__BackingField: {fileID: 1396396727}
+  - <ExpSlider>k__BackingField: {fileID: 959570305}
     <ExpTxt>k__BackingField: {fileID: 984781135}
     <Rwd1Txt>k__BackingField: {fileID: 1141644961}
+    <Rwd1Img>k__BackingField: {fileID: 437974920}
     <Rwd2Txt>k__BackingField: {fileID: 2005215652}
+    <Rwd2Img>k__BackingField: {fileID: 1848774431}
 --- !u!1 &1887619430
 GameObject:
   m_ObjectHideFlags: 0
@@ -93702,7 +93988,7 @@ RectTransform:
   m_Father: {fileID: 1741239139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.698, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -96365,7 +96651,7 @@ RectTransform:
   m_Father: {fileID: 1634250615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.698, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -97251,7 +97537,7 @@ RectTransform:
   m_Father: {fileID: 863382973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.698, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -99034,8 +99320,9 @@ GameObject:
   - component: {fileID: 2093601773}
   - component: {fileID: 2093601775}
   - component: {fileID: 2093601774}
+  - component: {fileID: 2093601776}
   m_Layer: 0
-  m_Name: RewardAcceptBtn
+  m_Name: RewardAcceptBtn3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99100,6 +99387,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093601772}
   m_CullTransparentMesh: 1
+--- !u!114 &2093601776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093601772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2093601774}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886384814}
+        m_TargetAssemblyTypeName: FameManager, Assembly-CSharp
+        m_MethodName: OnClickAcceptRewardBtn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2094029334
 GameObject:
   m_ObjectHideFlags: 0

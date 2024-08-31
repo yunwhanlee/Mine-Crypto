@@ -37,6 +37,7 @@ public class DM : MonoBehaviour {
 
         // 데이터 초기화
         DB.statusDB.Init();
+        DB.missionDB.Init();
         DB.oreBlessDB.Init();
         DB.stageDB.Init();
     }

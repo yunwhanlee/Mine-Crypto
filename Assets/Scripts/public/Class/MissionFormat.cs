@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enum;
 
 /// <summary>
 /// (명성) 미션 데이터
@@ -8,47 +9,62 @@ using UnityEngine;
 [System.Serializable]
 public class MissionFormat
 {
-    [field:SerializeField] public Enum.MISSION Type {get; set;}
-    [field:SerializeField] public int Lv {get; set;}
-    [field:SerializeField] public int Exp {get; set;}
-    [field:SerializeField] public int MaxExp {get; set;}
+    [field:SerializeField] public MISSION Type {get; set;} // 타입
+    [field:SerializeField] public int Lv {get; set;}            // 레벨
+    [field:SerializeField] public int Exp {get; set;}           // 현재경험치
+    [field:SerializeField] public int MaxExp {get; set;}        // 필요경험치
 
-    //TODO 보상
-
-    public MissionFormat(Enum.MISSION Type, int Lv, int Exp, int MaxExp) {
-        this.Type = Type;
-        this.Lv = Lv;
-        this.Exp = Exp;
-        this.MaxExp = MaxExp;
-    }
+    public Dictionary<RWD, int> Reward {get; set;}              // 보상 Dictionary리스트
 
 #region FUNC
     /// <summary>
     /// 레벨에 따른 필요경험치 업데이트
     /// </summary>
-    public void UpdateNeedExp() {
+    public void UpdateData() {
         switch(Type) {
-            case Enum.MISSION.MINING_ORE_CNT:
+            case MISSION.MINING_ORE_CNT:
                 MaxExp = 5 + (Lv * (Lv - 1) * 5 ) / 2;
+                Reward = new Dictionary<RWD, int> {
+                    { RWD.FAME, 1 },
+                    { RWD.ORE_CHEST, Lv },
+                };
                 break;
-            case Enum.MISSION.MINING_TIME:
+            case MISSION.MINING_TIME:
                 MaxExp = 30 + (Lv * (Lv - 1) * 30) / 2;
+                Reward = new Dictionary<RWD, int> {
+                    { RWD.FAME, 1 },
+                    { RWD.ORE_CHEST, Lv },
+                };
                 break;
-            case Enum.MISSION.UPGRADE_CNT:
+            case MISSION.UPGRADE_CNT:
                 MaxExp = 5 + (Lv * (Lv - 1) * 5) / 2;
+                Reward = new Dictionary<RWD, int> {
+                    { RWD.FAME, 1 },
+                    { RWD.ORE_CHEST, Lv },
+                };
                 break;
-            case Enum.MISSION.STAGE_CLEAR_CNT: //* 고정
+            case MISSION.STAGE_CLEAR_CNT: //* 고정
                 MaxExp = 3;
+                Reward = new Dictionary<RWD, int> {
+                    { RWD.FAME, 1 },
+                    { RWD.TREASURE_CHEST, Lv },
+                };
                 break;
-            case Enum.MISSION.MINING_CHEST_CNT:
+            case MISSION.MINING_CHEST_CNT:
                 MaxExp = 1 + (Lv * (Lv - 1) * 2) / 2;
+                Reward = new Dictionary<RWD, int> {
+                    { RWD.FAME, 1 },
+                    { RWD.TREASURE_CHEST, Lv },
+                };
                 break;
-            case Enum.MISSION.CHALLENGE_CLEAR_CNT:
+            case MISSION.CHALLENGE_CLEAR_CNT:
                 MaxExp = 1 + (Lv - 1);
+                Reward = new Dictionary<RWD, int> {
+                    { RWD.FAME, 1 },
+                    { RWD.TREASURE_CHEST, Lv },
+                };
                 break;
         }
     }
-
-    //TODO 보상 ( 1. 명성, 2. 보물상자 )
 #endregion
 }
