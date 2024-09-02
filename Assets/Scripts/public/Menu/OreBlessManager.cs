@@ -26,7 +26,7 @@ public class OreBlessManager : MonoBehaviour
         sttDB = DM._.DB.statusDB;
         oreDB = DM._.DB.oreBlessDB;
 
-        SetUI();
+        UpdateUI();
     }
 
 #region EVENT
@@ -60,15 +60,14 @@ public class OreBlessManager : MonoBehaviour
     /// <summary>
     /// 로드한 데이터로 잠금해제 및 능력치UI 표시
     /// </summary>
-    private void SetUI() {
+    private void UpdateUI() {
         // 로드데이터 UI 확인 및 표시
         for(int i = 0; i < oreDB.saveDts.Length; i++)
         {
             OreBlessSaveData saveDt = oreDB.saveDts[i];
 
-            // 잠금해제
+            // 잠금해제 화면
             oreBlessFormatArr[i].IsUnlock = saveDt.IsUnlock;
-            oreBlessFormatArr[i].ActiveUnlockPanel();
 
             // 능력치 텍스트 초기화
             oreBlessFormatArr[i].AbilityTxt.text = "";

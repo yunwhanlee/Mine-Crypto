@@ -33,7 +33,7 @@ public class OreBlessFormat
         get => DM._.DB.oreBlessDB.saveDts[id].IsUnlock;
         set {
             DM._.DB.oreBlessDB.saveDts[id].IsUnlock = value;
-            LockedPanel.SetActive(!value); // UI
+            LockedPanel.SetActive(!value); // 잠금화면UI 업데이트
         }
     }
 
@@ -47,9 +47,5 @@ public class OreBlessFormat
     }
 
 #region FUNC
-    public void ActiveUnlockPanel()
-    {
-        LockedPanel.SetActive(!IsUnlock);
-    }
 #endregion
 }

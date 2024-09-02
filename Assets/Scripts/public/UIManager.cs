@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
     public void OnClickMenu_AutoMiningBtn() {
         GM._.amm.windowObj.SetActive(true);
         GM._.amm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+        GM._.amm.UpdateAll();
     }
 
     public void OnClickMenu_KnowledgeBtnBtn() {
