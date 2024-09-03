@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enum;
 
 public class InventoryUIManager : MonoBehaviour
 {
@@ -65,10 +66,20 @@ public class InventoryUIManager : MonoBehaviour
     /// </summary>
     public void UpdateSlotUI() {
         StatusDB sttDB = DM._.DB.statusDB;
-        invSlotUIArr[(int)Enum.INV.ORE_TICKET].Active(sttDB.OreTicket);
-        invSlotUIArr[(int)Enum.INV.RED_TICKET].Active(sttDB.RedTicket);
-        invSlotUIArr[(int)Enum.INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
-        invSlotUIArr[(int)Enum.INV.ORE_CHEST].Active(sttDB.OreChest);
+
+        invSlotUIArr[(int)INV.ORE1].Active(sttDB.RscArr[(int)INV.ORE1]);
+        invSlotUIArr[(int)INV.ORE2].Active(sttDB.RscArr[(int)INV.ORE2]);
+        invSlotUIArr[(int)INV.ORE3].Active(sttDB.RscArr[(int)INV.ORE3]);
+        invSlotUIArr[(int)INV.ORE4].Active(sttDB.RscArr[(int)INV.ORE4]);
+        invSlotUIArr[(int)INV.ORE5].Active(sttDB.RscArr[(int)INV.ORE5]);
+        invSlotUIArr[(int)INV.ORE6].Active(sttDB.RscArr[(int)INV.ORE6]);
+        invSlotUIArr[(int)INV.ORE7].Active(sttDB.RscArr[(int)INV.ORE7]);
+        invSlotUIArr[(int)INV.ORE8].Active(sttDB.RscArr[(int)INV.ORE8]);
+        invSlotUIArr[(int)INV.CRISTAL].Active(sttDB.RscArr[(int)INV.CRISTAL]);
+        invSlotUIArr[(int)INV.ORE_TICKET].Active(sttDB.OreTicket);
+        invSlotUIArr[(int)INV.RED_TICKET].Active(sttDB.RedTicket);
+        invSlotUIArr[(int)INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
+        invSlotUIArr[(int)INV.ORE_CHEST].Active(sttDB.OreChest);
     }
 #endregion
 }

@@ -95,15 +95,27 @@ public static class Enum
     //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
     /// </summary>
     public enum INV {
-        ORE_TICKET, 
-        RED_TICKET, 
-        ORE_CHEST,
-        TREASURE_CHEST,
+        // 재화 종류
+        ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
+        // 아이템 종류
+        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
         //※ 여기에 추가
     }
 
+    /// <summary>
     //* 위의 인벤토리 아이템 이름 및 정보
-    public static InvItem_Info[] INV_ITEM_INFO = new InvItem_Info[4] {
+    /// <summary>
+    //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
+    public static InvItem_Info[] INV_ITEM_INFO = new InvItem_Info[13] {
+        new InvItem_Info("제1 광석", "제1 광석의 조각이다. (재화)"),
+        new InvItem_Info("제2 광석", "제2 광석의 조각이다. (재화)"),
+        new InvItem_Info("제3 광석", "제3 광석의 조각이다. (재화)"),
+        new InvItem_Info("제4 광석", "제4 광석의 조각이다. (재화)"),
+        new InvItem_Info("제5 광석", "제5 광석의 조각이다. (재화)"),
+        new InvItem_Info("제6 광석", "제6 광석의 조각이다. (재화)"),
+        new InvItem_Info("제7 광석", "제7 광석의 조각이다. (재화)"),
+        new InvItem_Info("제8 광석", "제8 광석의 조각이다. (재화)"),
+        new InvItem_Info("크리스탈", "크리스탈 조각이다. (재화)"),
         new InvItem_Info("광산티켓", "광산에 입장가능한 티켓이다."),
         new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다."),
         new InvItem_Info("광석상자", "어떤 광석이 나올지 알 수 없다."),
