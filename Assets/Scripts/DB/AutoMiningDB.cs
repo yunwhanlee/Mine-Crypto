@@ -19,6 +19,7 @@ public class AutoMiningDB
     public void Init()
     {
         saveDts = new AutoMiningSaveData[9] {
+            // 광석
             new() {IsUnlock= true,  Lv= 1, Time= 0, CurStorage = 0},
             new() {IsUnlock= false, Lv= 1, Time= 0, CurStorage = 0},
             new() {IsUnlock= false, Lv= 1, Time= 0, CurStorage = 0},
@@ -27,7 +28,8 @@ public class AutoMiningDB
             new() {IsUnlock= false, Lv= 1, Time= 0, CurStorage = 0},
             new() {IsUnlock= false, Lv= 1, Time= 0, CurStorage = 0},
             new() {IsUnlock= false, Lv= 1, Time= 0, CurStorage = 0},
-            new() {IsUnlock= false, Lv= 1, Time= 0, CurStorage = 0},
+            // 크리스탈
+            new() {IsUnlock= true, Lv= 1, Time= 0, CurStorage = 0},
         };
     }
 }
