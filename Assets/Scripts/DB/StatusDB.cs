@@ -20,7 +20,7 @@ public class StatusDB
             oreTicket = value;
             if(oreTicket < 0) oreTicket = 0;
 
-            // (홈) 광산선택 팝업 텍스트UI 최신화
+            //* (홈) 광산선택 팝업 텍스트UI 최신화
             GM._.ssm.stageTicketCntTxt.text = $"{oreTicket} / 10";
         }
     }
@@ -142,11 +142,10 @@ public class StatusDB
         rscArr[idx] += val;
 
         if(rscArr[idx] < 0)
-                rscArr[idx] = 0;
-        if(GM._.gameState == GameState.HOME)
-            GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
-        else
-            GM._.stm.curRscCntTxt.text = $"{rscArr[idx]}";
+            rscArr[idx] = 0;
+
+        // TOP RSC 재화표시 업데이트UI
+        GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
 
         return val;
     }

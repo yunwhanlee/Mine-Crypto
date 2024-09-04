@@ -12,7 +12,11 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
-    //* POP UP
+    [Header("TOP RSC CNT GROUP")]
+    public GameObject topRscGroup;
+    public TMP_Text[] topRscTxtArr;
+
+    [Header("POP UP")]
     public GameObject menuPopUp;
 
     public GameObject warningMsgPopUp;
@@ -25,13 +29,27 @@ public class UIManager : MonoBehaviour
     public ParticleImage coinAttractionPtcImg;          // 광석조각 획득 UI-EF
     public ParticleImage treasureChestAttractionPtcImg; // 보물상자 획득 UI-EF
 
-#region EVENT
-    public void OnClickMenuIconBtn() {
-        menuPopUp.SetActive(true);
+    void Start() {
+        // TOP 재화표시창 끄기
+        topRscGroup.SetActive(false);
+        
+        // 재화표시창 업데이트UI
+        for(int i = 0; i < topRscTxtArr.Length; i++)
+        {
+            topRscTxtArr[i].text = $"{DM._.DB.statusDB.RscArr[i]}";
+        }
     }
 
-    public void OnClickChallengeBtn() {
-        GM._.clm.windowObj.SetActive(true);
+#region EVENT
+    /// <summary>
+    /// TOP 재화표시창 끄기
+    /// </summary>
+    public void OnCloseTopRscGroup() {
+        topRscGroup.SetActive(false);
+    }
+
+    public void OnClickMenuIconBtn() {
+        menuPopUp.SetActive(true);
     }
 
     public void OnClickInvIconBtn() {
@@ -39,6 +57,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenu_UpgradeBtn() {
+        topRscGroup.SetActive(true);
         GM._.ugm.ShowPopUp();
     }
 
@@ -49,14 +68,21 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenu_OreBlessBtn() {
+        topRscGroup.SetActive(true);
         GM._.obm.windowObj.SetActive(true);
         GM._.obm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
     }
 
     public void OnClickMenu_AutoMiningBtn() {
+        topRscGroup.SetActive(true);
         GM._.amm.windowObj.SetActive(true);
         GM._.amm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
         GM._.amm.UpdateAll();
+    }
+
+    public void OnClickChallengeBtn() {
+        topRscGroup.SetActive(true);
+        GM._.clm.windowObj.SetActive(true);
     }
 
     public void OnClickMenu_KnowledgeBtnBtn() {

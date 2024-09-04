@@ -33,6 +33,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public EmployManager epm;
     [field:HideInInspector] public UpgradeManager ugm;
 
+    // 광석조각 이미지배열
     [field:SerializeField] public Sprite[] RscSprArr {get; private set;}
 
     void Awake()

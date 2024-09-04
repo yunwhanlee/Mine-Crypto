@@ -54,6 +54,7 @@ public class StgInfo
                 GM._.stm.OreType = (Enum.RSC)id;
 
                 // 이전 팝업 닫기
+                GM._.ui.topRscGroup.SetActive(false);
                 GM._.hm.HomeWindow.SetActive(false);
                 GM._.ssm.selectStagePopUp.SetActive(false);
 

@@ -11,9 +11,6 @@ using Random = UnityEngine.Random;
 
 public class StageManager : MonoBehaviour {
     [Header("TOP")]
-    public Image curRscIconImg;
-    public TMP_Text curRscCntTxt;
-
     public TMP_Text stageTxt;
 
     //* Ore Object
@@ -56,13 +53,9 @@ public class StageManager : MonoBehaviour {
     public void StartStage() {
         Debug.Log("StartStage()::");
         GM._.gameState = GameState.PLAY;
-        Floor = 5;
+        Floor = 1;
 
-        // 선택한 광산타입으로 초기화
-        curRscIconImg.sprite = GM._.RscSprArr[(int)oreType]; // 재화 아이콘
-        curRscCntTxt.text = $"{DM._.DB.statusDB.RscArr[(int)oreType]}"; // 재화수량
-
-        stageTxt.text = $"{Floor}층";
+        stageTxt.text = $"{(int)oreType + 1}광산 {floor}층";
 
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();

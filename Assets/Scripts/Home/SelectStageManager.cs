@@ -27,6 +27,7 @@ public class SelectStageManager : MonoBehaviour
 
 #region FUNC
     public void ShowPopUp() {
+        GM._.ui.topRscGroup.SetActive(true);
         selectStagePopUp.SetActive(true);
         selectStagePopUp.GetComponent<DOTweenAnimation>().DORestart();
     }
