@@ -116,6 +116,7 @@ public class PlayManager : MonoBehaviour
         Time.timeScale = 1;
 
         pausePopUp.SetActive(false);
+        GM._.epm.employPopUp.SetActive(false);
         GM._.hm.HomeWindow.SetActive(true);
 
         //TODO 게임뷰 초기화

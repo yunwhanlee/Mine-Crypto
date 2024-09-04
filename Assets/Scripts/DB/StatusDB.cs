@@ -147,6 +147,10 @@ public class StatusDB
         // TOP RSC 재화표시 업데이트UI
         GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
 
+        // 게임플레이 경우 인벤토리 업데이트UI
+        if(GM._.gameState == GameState.PLAY)
+            GM._.ivm.UpdateSlotUI();
+
         return val;
     }
 

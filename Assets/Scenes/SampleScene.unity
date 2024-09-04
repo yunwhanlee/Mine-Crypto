@@ -48314,7 +48314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1748, y: -60}
+  m_AnchoredPosition: {x: 136, y: -60}
   m_SizeDelta: {x: 186.35999, y: 70.859985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &957512559
@@ -51664,6 +51664,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowObj: {fileID: 3170307224149975315}
+  redTicketCntTxt: {fileID: 421113558}
+  bestFloorTxt: {fileID: 3170307225122214482}
 --- !u!4 &1016196387
 Transform:
   m_ObjectHideFlags: 0
@@ -55198,7 +55200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1049402601
 RectTransform:
   m_ObjectHideFlags: 0
@@ -117494,7 +117496,7 @@ GameObject:
   - component: {fileID: 3170307225013827483}
   - component: {fileID: 3170307225013827480}
   m_Layer: 0
-  m_Name: BestFloorNumTxt
+  m_Name: BestFloorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117736,7 +117738,7 @@ GameObject:
   - component: {fileID: 3170307225122214485}
   - component: {fileID: 3170307225122214482}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: BestFloorTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119591,10 +119593,10 @@ RectTransform:
   - {fileID: 5587259776473534880}
   m_Father: {fileID: 696825362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -810.99994, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -811, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4024696524133691400
 RectTransform:
@@ -124780,7 +124782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -125777,7 +125779,7 @@ MonoBehaviour:
     m_ConstantMax: -2
   _targetModule:
     enabled: 1
-  _attractorTarget: {fileID: 0}
+  _attractorTarget: {fileID: 642450661}
   _toTarget:
     m_Mode: 2
     m_CurveMultiplier: 1

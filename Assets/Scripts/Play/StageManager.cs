@@ -5,7 +5,6 @@ using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using static Enum;
 using Random = UnityEngine.Random;
 
@@ -37,7 +36,7 @@ public class StageManager : MonoBehaviour {
         get => floor;
         set {
             floor = value;
-            stageTxt.text = $"{(int)oreType + 1}광산 {floor}층";
+            stageTxt.text = GetStageName();
         }
     }
 
@@ -47,15 +46,19 @@ public class StageManager : MonoBehaviour {
     [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
     [field:SerializeField] int oreCnt;                  // 스테이지별 적용할 광석 수
 
+#region FUNC
+    private string GetStageName() => $"{(int)oreType + 1}광산 {floor}층";
+
     /// <summary>
     /// 선택한 스테이지 시작
     /// </summary>
-    public void StartStage() {
+    public void StartStage()
+    {
         Debug.Log("StartStage()::");
         GM._.gameState = GameState.PLAY;
         Floor = 1;
 
-        stageTxt.text = $"{(int)oreType + 1}광산 {floor}층";
+        stageTxt.text = GetStageName();
 
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();
@@ -77,7 +80,8 @@ public class StageManager : MonoBehaviour {
     /// <summary>
     /// 다음 스테이지 이동
     /// </summary>
-    public IEnumerator CoNextStage() {
+    public IEnumerator CoNextStage()
+    {
         float upgPer = GM._.ugm.upgBagStorage.Val;
         float oreBlessPer = GM._.obm.GetAbilityValue(OREBLESS_ABT.NEXTSTG_SKIP_PER);
 
@@ -109,7 +113,8 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-    IEnumerator CoUpdateAndCreateOre(int interval) {
+    IEnumerator CoUpdateAndCreateOre(int interval)
+    {
         yield return Util.TIME0_5;
         // RESET : 모든 광석 오브젝트 삭제
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++) {
@@ -124,7 +129,8 @@ public class StageManager : MonoBehaviour {
     /// <summary>
     /// 스테이지에 따른 광석 적용값 업데이트
     /// </summary>
-    private void UpdateOreValueByStage() {
+    private void UpdateOreValueByStage()
+    {
         const int DEF_HP = 1000;
         oreHp = DEF_HP + ((floor-1) * 100);
         oreCnt = (floor + 10) / 10;
@@ -133,7 +139,8 @@ public class StageManager : MonoBehaviour {
     /// <summary>
     /// 위치 리스트 초기화
     /// </summary>
-    private void InitOrePosList(int interval) {
+    private void InitOrePosList(int interval)
+    {
         for (float x = topLeftPos.x; x <= bottomRightPos.x; x += interval)
         {
             for (float y = topLeftPos.y; y >= bottomRightPos.y; y -= interval * 1.4f)
@@ -146,7 +153,8 @@ public class StageManager : MonoBehaviour {
     /// <summary>
     /// 광석 생성
     /// </summary>
-    private void CreateOres(int oreHp, int oreCnt) {
+    private void CreateOres(int oreHp, int oreCnt)
+    {
         // 생성개수가 리스트보다 많다면 리스트 최대치로 수정
         if(oreCnt > orePosList.Count)
             oreCnt = orePosList.Count;
@@ -169,4 +177,5 @@ public class StageManager : MonoBehaviour {
             orePosList.RemoveAt(rand);
         }
     }
+#endregion
 }
