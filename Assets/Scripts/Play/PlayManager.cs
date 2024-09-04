@@ -55,8 +55,11 @@ public class PlayManager : MonoBehaviour
 
     private IEnumerator CoStartCownDownTimer() {
         // 타이머 최대시간
-        timerVal = GM._.ugm.upgIncTimer.Val
-            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
+        if(GM._.stm.OreType == RSC.CRISTAL)
+            timerVal = 60;
+        else
+            timerVal = GM._.ugm.upgIncTimer.Val
+                + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
 
         // 시작전에 최대타이머 시간 대입 -> 종료시, 채굴시간미션에 적용
         timerMax = timerVal;

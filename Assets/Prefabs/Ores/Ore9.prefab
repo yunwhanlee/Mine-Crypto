@@ -5198,7 +5198,7 @@ GameObject:
   - component: {fileID: 3946950307020229234}
   - component: {fileID: 2137212062960813220}
   m_Layer: 0
-  m_Name: Ore____
+  m_Name: Ore9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5233,6 +5233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0c02401d3df214db2de9075d467cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <OreType>k__BackingField: 8
   <Lv>k__BackingField: 0
   <MaxHp>k__BackingField: 600
   <Hp>k__BackingField: 0
@@ -5333,7 +5334,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.1}
+    pivot: {x: 0.5, y: 0.15}
     oldSize: {x: 10, y: 8.833333}
     newSize: {x: 7.5, y: 6.625}
     adaptiveTilingThreshold: 0.5

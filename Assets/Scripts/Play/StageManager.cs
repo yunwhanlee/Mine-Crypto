@@ -13,7 +13,8 @@ public class StageManager : MonoBehaviour {
     public TMP_Text stageTxt;
 
     //* Ore Object
-    [Header("광석 및 보물상자 Prefs")]
+    [Header("보물상자 및 광석 Prefs")]
+    public GameObject treasureChestPref;
     public GameObject[] orePrefs;
 
     public Transform oreAreaTopLeftTf;
@@ -47,8 +48,6 @@ public class StageManager : MonoBehaviour {
     [field:SerializeField] int oreCnt;                  // 스테이지별 적용할 광석 수
 
 #region FUNC
-    private string GetStageName() => $"{(int)oreType + 1}광산 {floor}층";
-
     /// <summary>
     /// 선택한 스테이지 시작
     /// </summary>
@@ -58,6 +57,7 @@ public class StageManager : MonoBehaviour {
         GM._.gameState = GameState.PLAY;
         Floor = 1;
 
+        // 스테이지층
         stageTxt.text = GetStageName();
 
         // 타이머 카운트다운 시작
@@ -113,9 +113,37 @@ public class StageManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 캐릭터 가챠뽑기 UI준비
+    /// </summary>
+    /// <param name="closeWindowObj">비표시할 이전 팝업</param>
+    public void SetGachaUI(GameObject closeWindowObj)
+    {
+        // 이전 팝업 닫기
+        closeWindowObj.SetActive(false);
+        GM._.ui.topRscGroup.SetActive(false);
+        GM._.hm.HomeWindow.SetActive(false);
+
+        // 게임시작전 보이는 텍스트 공백으로 정리
+        GM._.pm.timerTxt.text = "";
+        GM._.stm.stageTxt.text = "캐릭터를 뽑아주세요!";
+
+        // 캐릭터 고용(소환) 팝업 열기
+        GM._.epm.ShowPopUp();
+    }
+
+    private string GetStageName()
+    {
+        if(OreType == RSC.CRISTAL)
+            return $"시련의광산 {floor}층";
+        else
+            return $"제{(int)oreType + 1} 광산 {floor}층";
+    }
+
     IEnumerator CoUpdateAndCreateOre(int interval)
     {
         yield return Util.TIME0_5;
+
         // RESET : 모든 광석 오브젝트 삭제
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++) {
             Destroy(GM._.mnm.oreGroupTf.GetChild(i).gameObject);
@@ -155,6 +183,8 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     private void CreateOres(int oreHp, int oreCnt)
     {
+        GameObject obj = null;
+
         // 생성개수가 리스트보다 많다면 리스트 최대치로 수정
         if(oreCnt > orePosList.Count)
             oreCnt = orePosList.Count;
@@ -163,13 +193,26 @@ public class StageManager : MonoBehaviour {
         for(int i = 0; i < oreCnt; i++) {
             int rand = Random.Range(0, orePosList.Count);
 
-            // 보물상자로 랜덤변경
-            int randPer = Random.Range(0, 100);
-            int typeIdx = (randPer <= treasureChestSpawnPer)? (int)RSC.CRISTAL : (int)oreType;
-            Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= treasureChestSpawnPer({treasureChestSpawnPer}), typeIdx= {typeIdx}");
+            // 스테이지 타입
+            switch(oreType)
+            {   
+                //* 시련의광산
+                case RSC.CRISTAL: 
+                    // 모든 광석 랜덤
+                    int randOreIdx = Random.Range(0, Enum.GetEnumRSCLenght());
+                    obj = orePrefs[randOreIdx];
+                    break;
+                //* 일반광산
+                default:
+                    // 낮은확률 광석 -> 보물상자로 랜덤변경
+                    int randPer = Random.Range(0, 100);
+                    obj = (randPer <= treasureChestSpawnPer)? treasureChestPref : orePrefs[(int)oreType];
+                    Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= treasureChestSpawnPer({treasureChestSpawnPer})");
+                    break;
+            }
 
             // 생성
-            Ore ore = Instantiate(orePrefs[typeIdx], GM._.mnm.oreGroupTf).GetComponent<Ore>();
+            Ore ore = Instantiate(obj, GM._.mnm.oreGroupTf).GetComponent<Ore>();
             ore.transform.position = orePosList[rand]; // 랜덤위치 적용
             ore.MaxHp = oreHp;
 

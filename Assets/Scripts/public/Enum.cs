@@ -124,7 +124,7 @@ public static class Enum
     };
 
     /// <summary>모든 재화 개수</summary>
-    // public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;
+    public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;
 
     /// <summary>모든 보상아이템 개수</summary>
     public static int GetEnumRWDLenght() => GetEnumRWDArr().Length;

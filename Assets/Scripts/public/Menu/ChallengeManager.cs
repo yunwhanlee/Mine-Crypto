@@ -30,13 +30,20 @@ public class ChallengeManager : MonoBehaviour
     }
 
 #region EVENT
+    /// <summary>
+    /// 시련의광산 입장 버튼
+    /// </summary>
     public void OnClickEnterBtn()
     {
         if(CurRedTicketCnt > 1)
         {
             CurRedTicketCnt--;
 
-            
+            // 선택한 광산타입
+            GM._.stm.OreType = RSC.CRISTAL;
+
+            // 캐릭터 가챠뽑기 UI준비
+            GM._.stm.SetGachaUI(windowObj);
         }
         else
             GM._.ui.ShowWarningMsgPopUp("입장티켓이 부족합니다.");
