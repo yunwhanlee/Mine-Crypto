@@ -34,6 +34,8 @@ public class PlayManager : MonoBehaviour
 
 #region FUNC
     public void InitPlayData() {
+        // 캐릭터 생성시 등급표시 메세지 정지
+        GM._.epm.StopCorCreateRandomCharaID();
         // 타이머 카운트 정지
         StopCorTimer();
         // 광석 삭제

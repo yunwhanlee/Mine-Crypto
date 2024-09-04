@@ -107,7 +107,7 @@ public class StageManager : MonoBehaviour {
         Transform workerGroup = GM._.mnm.workerGroupTf;
         for(int i = 0; i < workerGroup.childCount; i++)
         {
-            yield return Util.TIME0_2; // 이동시 겹치지 않게 0.2초씩 대기
+            yield return Util.TIME0_1; // 이동시 겹치지 않게 대기
             var worker = workerGroup.GetChild(i).GetComponent<MiningController>();
             StartCoroutine(worker.CoInitStatus());
         }

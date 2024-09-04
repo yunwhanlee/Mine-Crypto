@@ -143,7 +143,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public IEnumerator CoInitStatus()
         {
             status = Status.SPAWN;
-            yield return Util.TIME0_2;
+            yield return Util.TIME0_1;
             status = Status.GO;
         }
 

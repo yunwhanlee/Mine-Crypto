@@ -20,6 +20,7 @@ public class EmployManager : MonoBehaviour
     public GameObject charaGachaPopUp;
 
     [Header("캐릭 랜덤뽑기 팝업")]
+    private Coroutine corCreateRandomCharaID;
     private Coroutine corCreateGachaResultID;
     public Transform charaGachaContentTf;
     public TMP_Text retryCntTxt;
@@ -85,7 +86,7 @@ public class EmployManager : MonoBehaviour
         GM._.stm.StartStage();
 
         // 캐릭터 생성
-        StartCoroutine(CoCreateRandomCharaIns());
+        corCreateRandomCharaID = StartCoroutine(CoCreateRandomCharaIns());
     }
 
     /// <summary>
@@ -173,6 +174,15 @@ public class EmployManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    /// <summary>
+    /// 캐릭터 생성시 등급표시 메세지 코루틴 정지
+    /// </summary>
+    public void StopCorCreateRandomCharaID()
+    {
+        if(corCreateRandomCharaID != null)
+            StopCoroutine(corCreateRandomCharaID);
+    }
+
     /// <summary>
     /// 팝업 열기
     /// </summary>
