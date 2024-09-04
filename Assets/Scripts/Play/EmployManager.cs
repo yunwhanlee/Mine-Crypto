@@ -255,7 +255,7 @@ public class EmployManager : MonoBehaviour
         // 결과카드UI 생성
         for(int i = 0; i < gachaResultList.Count; i++)
         {
-            yield return Util.TIME0_2; 
+            yield return Util.TIME0_05;
             // 등급
             Enum.GRADE grade = gachaResultList[i];
             // 카드 생성

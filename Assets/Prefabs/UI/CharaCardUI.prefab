@@ -159,7 +159,7 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0
-  duration: 0.3
+  duration: 0.4
   easeType: 30
   easeCurve:
     serializedVersion: 2
@@ -216,7 +216,7 @@ MonoBehaviour:
   optionalBool0: 0
   optionalBool1: 0
   optionalFloat0: 1
-  optionalInt0: 10
+  optionalInt0: 8
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalShakeRandomnessMode: 0
