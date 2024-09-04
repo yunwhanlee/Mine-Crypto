@@ -152,7 +152,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// </summary>
         void FixedUpdate()
         {
-            if(GM._.gameState == GameState.GAMEOVER)
+            if(GM._.gameState == GameState.TIMEOVER)
             {
                 if(_animation.GetState() != CharacterState.Die)
                     _animation.Die();
@@ -289,7 +289,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         // 타겟재화 증가
                         DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
                         // 게임결과 획득한 보상 중 재화에 반영
-                        GM._.pm.govResRwdArr[(int)targetOre.OreType] += BagStorage;
+                        GM._.pm.playResRwdArr[(int)targetOre.OreType] += BagStorage;
                     }
 
                     // 가방 비우기
@@ -313,8 +313,21 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         // 모든 캐릭터가 클리어 카운트 됬다면
                         if(GM._.mnm.workerClearStageStatusCnt >= GM._.ugm.upgIncPopulation.Val)
                         {
-                            GM._.mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
-                            StartCoroutine(GM._.stm.CoNextStage()); // 다음 스테이지 이동
+                            // 시련의광산 층 돌파 성공
+                            if(GM._.stm.OreType == RSC.CRISTAL)
+                            {
+                                GM._.gameState = GameState.TIMEOVER;
+                                GM._.pm.StopCorTimer();
+                                GM._.pm.timerTxt.text = "CLEAR!";
+                                GM._.pm.Timeover(); // 타임오버
+                                GM._.clm.BestFloor++;
+                            }
+                            // 일반광산 다음층으로
+                            else
+                            {
+                                GM._.mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
+                                StartCoroutine(GM._.stm.CoNextStage()); // 다음 스테이지 이동
+                            }
                         }
                     }
 
@@ -327,7 +340,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// 광석 채굴관련 처리
         /// </summary>
         void Update() {
-            if(GM._.gameState == GameState.GAMEOVER)
+            if(GM._.gameState == GameState.TIMEOVER)
                 return;
             if(status == Status.SPAWN)
                 return;

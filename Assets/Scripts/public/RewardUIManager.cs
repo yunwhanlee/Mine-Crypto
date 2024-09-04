@@ -45,7 +45,7 @@ public class RewardUIManager : MonoBehaviour
     public void OnClickDimScreenBtn() {
         switch(GM._.gameState)
         {
-            case GameState.GAMEOVER:
+            case GameState.TIMEOVER:
                 GM._.gameState = GameState.HOME;
                 rewardUIPopUp.SetActive(false);
                 GM._.hm.HomeWindow.SetActive(true);

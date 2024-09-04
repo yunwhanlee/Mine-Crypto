@@ -7,6 +7,9 @@ using static Enum;
 
 public class PlayManager : MonoBehaviour
 {
+    
+    const int CRISTAL_STAGE_PLAYTIME_SEC = 30;// 시련의광산 플레이타임
+
     //* Element
     public GameObject pausePopUp;
     public TMP_Text timerTxt;
@@ -15,10 +18,9 @@ public class PlayManager : MonoBehaviour
     private Coroutine corTimerCowndownID;
 
     [Header("(인게임) 게임오버시 획득한 보상수량 결과표시 데이터")]
-    public int[] govResRwdArr; // 정의는 StageManager:: StageStart()에서 매번 초기화
+    public int[] playResRwdArr; // 정의는 StageManager:: StageStart()에서 매번 초기화
 
     [field:SerializeField] int timerMax;
-
     [field:SerializeField] int timerVal;  public int TimerVal {
         get => timerVal;
         set {
@@ -33,8 +35,7 @@ public class PlayManager : MonoBehaviour
 #region FUNC
     public void InitPlayData() {
         // 타이머 카운트 정지
-        if(corTimerCowndownID != null)
-            StopCoroutine(corTimerCowndownID);
+        StopCorTimer();
         // 광석 삭제
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++) {
             Destroy(GM._.mnm.oreGroupTf.GetChild(i).gameObject); 
@@ -47,6 +48,11 @@ public class PlayManager : MonoBehaviour
         DM._.DB.statusDB.UpdateAllRscUIAtHome();
     }
 
+    public void StopCorTimer() {
+        if(corTimerCowndownID != null)
+            StopCoroutine(corTimerCowndownID);
+    }
+
     /// <summary>
     /// 시간 카운트 다운
     /// </summary>
@@ -56,7 +62,7 @@ public class PlayManager : MonoBehaviour
     private IEnumerator CoStartCownDownTimer() {
         // 타이머 최대시간
         if(GM._.stm.OreType == RSC.CRISTAL)
-            timerVal = 60;
+            timerVal = CRISTAL_STAGE_PLAYTIME_SEC;
         else
             timerVal = GM._.ugm.upgIncTimer.Val
                 + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
@@ -71,27 +77,35 @@ public class PlayManager : MonoBehaviour
         }
 
         //! 타이머 0 -> 게임오버로 상태 변경
-        GM._.gameState = GameState.GAMEOVER;
-        timerTxt.text = GameState.GAMEOVER.ToString();
+        GM._.gameState = GameState.TIMEOVER;
+        timerTxt.text = "TIME OVER!";
 
-        Timeover();
+        Timeover(); // 타임오버
     }
 
     /// <summary>
     ///* 타임오버 (제공 보상표시)
     /// </summary>
-    private void Timeover() {
+    public void Timeover() {
         // 입장티켓 1개 회수
-        govResRwdArr[(int)RWD.ORE_TICKET]++;            // 결과수치 UI
-        DM._.DB.statusDB.OreTicket++;                   // 데이터
+        if(GM._.stm.OreType == RSC.CRISTAL)
+        {
+            playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
+            DM._.DB.statusDB.RedTicket++;               // 데이터
+        }
+        else
+        {
+            playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
+            DM._.DB.statusDB.OreTicket++;               // 데이터
+        }
 
         // 광석상자 획득 (매 층마다 +1)
         int oreChestCnt = GM._.stm.Floor - 1;
-        govResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
+        playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
         DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
 
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
-        GM._.rwm.ShowGameoverReward(govResRwdArr);
+        GM._.rwm.ShowGameoverReward(playResRwdArr);
 
         // 채굴시간 미션
         GM._.fm.missionArr[(int)MISSION.MINING_TIME].Exp += timerMax;

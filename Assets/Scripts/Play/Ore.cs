@@ -76,7 +76,7 @@ public class Ore : MonoBehaviour
             // 보물상자인 경우
             if(OreType == RSC.CRISTAL) 
             {
-                GM._.pm.govResRwdArr[(int)RWD.TREASURE_CHEST]++; // 결과수치 UI
+                GM._.pm.playResRwdArr[(int)RWD.TREASURE_CHEST]++; // 결과수치 UI
                 DM._.DB.statusDB.TreasureChest++; // 데이터
 
                 Debug.Log("보물상자 획득 EF표시!");

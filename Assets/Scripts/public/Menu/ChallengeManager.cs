@@ -44,6 +44,8 @@ public class ChallengeManager : MonoBehaviour
 
             // 캐릭터 가챠뽑기 UI준비
             GM._.stm.SetGachaUI(windowObj);
+
+            UpdateUI();
         }
         else
             GM._.ui.ShowWarningMsgPopUp("입장티켓이 부족합니다.");
@@ -51,7 +53,7 @@ public class ChallengeManager : MonoBehaviour
 #endregion
 
 #region FUNC
-    private void UpdateUI()
+    public void UpdateUI()
     {
         redTicketCntTxt.text = $"{CurRedTicketCnt}";
         bestFloorTxt.text = $"{BestFloor}";

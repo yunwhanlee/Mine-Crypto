@@ -36498,7 +36498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 371}
+  m_AnchoredPosition: {x: 0, y: 304}
   m_SizeDelta: {x: 650.3, y: 67.23999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &693331888
@@ -38209,7 +38209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "60\uCD08\uC548\uC5D0 \uB354 \uB9CE\uC740 \uCE35\uC218\uB97C \uACF5\uB7B5
+  m_text: "60\uCD08\uC548\uC5D0 \uD604\uC7AC \uCE35\uC218\uB97C \uD074\uB9AC\uC5B4
     \uD558\uB77C!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c91bfe8258901ef42b02717f29e12248, type: 2}
@@ -91271,7 +91271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePopUp: {fileID: 1421176522}
   timerTxt: {fileID: 1206236168}
-  govResRwdArr: 
+  playResRwdArr: 
   timerMax: 0
   timerVal: 0
 --- !u!1 &1754426449
@@ -113379,7 +113379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -24.00001}
   m_SizeDelta: {x: 1500, y: 550.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1883403717046268381

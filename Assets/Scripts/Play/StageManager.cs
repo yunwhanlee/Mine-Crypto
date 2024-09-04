@@ -41,7 +41,7 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-    [field:SerializeField] int oreAreaInterval;       // 광석 배치영역 광석 사이 간격 (작을수록 더 많은 위치리스트 생성)
+    [field:SerializeField] int oreAreaInterval;         // 광석 배치영역 광석 사이 간격 (작을수록 더 많은 위치리스트 생성)
     [field:SerializeField] List<Vector2> orePosList = new List<Vector2>();
 
     [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
@@ -55,7 +55,7 @@ public class StageManager : MonoBehaviour {
     {
         Debug.Log("StartStage()::");
         GM._.gameState = GameState.PLAY;
-        Floor = 1;
+        Floor = (OreType == RSC.CRISTAL)? GM._.clm.BestFloor : 1;
 
         // 스테이지층
         stageTxt.text = GetStageName();
@@ -64,7 +64,7 @@ public class StageManager : MonoBehaviour {
         GM._.pm.StartCowndownTimer();
 
         // 게임결과 획득한 재화배열 초기화
-        GM._.pm.govResRwdArr = new int[Enum.GetEnumRWDLenght()];
+        GM._.pm.playResRwdArr = new int[Enum.GetEnumRWDLenght()];
 
         // 광석 생성 영역
         topLeftPos = oreAreaTopLeftTf.position;

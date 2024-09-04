@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 
 public enum GameState {
-    HOME, PLAY, GAMEOVER, STOP
+    HOME, PLAY, TIMEOVER, STOP
 }
 
 public class GM : MonoBehaviour
