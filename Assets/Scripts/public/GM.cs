@@ -24,6 +24,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public FameManager fm; // 명성 및 미션
     [field:HideInInspector] public OreBlessManager obm;
     [field:HideInInspector] public AutoMiningManager amm;
+    [field:HideInInspector] public OreProficiencyManager pfm;
     [field:HideInInspector] public ChallengeManager clm; // 시련의 광산
     
     //* PLAY
@@ -52,6 +53,7 @@ public class GM : MonoBehaviour
         fm = GameObject.Find("FameManager").GetComponent<FameManager>();
         obm = GameObject.Find("OreBlessManager").GetComponent<OreBlessManager>();
         amm = GameObject.Find("AutoMiningManager").GetComponent<AutoMiningManager>();
+        pfm = GameObject.Find("OreProficiencyManager").GetComponent<OreProficiencyManager>();
         clm = GameObject.Find("ChallengeManager").GetComponent<ChallengeManager>();
 
         // HOME

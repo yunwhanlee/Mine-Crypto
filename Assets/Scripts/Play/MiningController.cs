@@ -51,7 +51,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public int AttackVal {
             get {
                 int extraVal = GM._.ugm.upgAttack.Val;
-                float extraPer = 1 + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATK_PER);
+                float extraPer = 1
+                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATK_PER)
+                    + GM._.pfm.totalAttackPer;
 
                 int result = Mathf.RoundToInt((attackVal + extraVal) * extraPer);
                 Debug.Log($"AttackVal: ({attackVal} + {extraVal}) * {extraPer}=" + result);

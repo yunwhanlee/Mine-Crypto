@@ -47,6 +47,14 @@ public static class Enum
     }
 
     /// <summary>
+    /// 숙련도 미션 항목
+    /// </summary>
+    public enum PROFICIENCY {
+        ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8,
+        ORE_CHEST, TREASURE_CHEST
+    }
+
+    /// <summary>
     /// 축복 능력치 (int OR Float)
     /// </summary>
     public enum OREBLESS_ABT {

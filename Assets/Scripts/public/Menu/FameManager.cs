@@ -43,7 +43,8 @@ public class FameManager : MonoBehaviour
     [Header("미션 UI")]
     public MissionUIFormat[] missionUIArr;
 
-    void Start() {
+    void Start()
+    {
         var svDts = DM._.DB.missionDB.saveDts;
 
         // 객체생성 및 데이터 로드 (MapExp는 UpdateAll에서 계산식으로 대입)
@@ -59,7 +60,8 @@ public class FameManager : MonoBehaviour
         UpdateAll();
     }
 
-    void Update() {
+    void Update()
+    {
         //! TEST 미션 EXP 증가
         if(Input.GetKeyDown(KeyCode.C))
         {

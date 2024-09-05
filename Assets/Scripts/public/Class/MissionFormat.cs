@@ -12,7 +12,8 @@ public class MissionFormat
 {
     [field:SerializeField] public MISSION Type {get; set;}      // 타입
     [field:SerializeField] public int Lv {get; set;}            // 레벨
-    [field:SerializeField] public int Exp { // 현재경험치
+    [field:SerializeField] public int MaxExp {get; set;}        // 필요경험치
+    [field:SerializeField] public int Exp {                     // 현재경험치
         get {
             var missionDB = DM._.DB.missionDB;
 
@@ -31,7 +32,7 @@ public class MissionFormat
                 case MISSION.CHALLENGE_CLEAR_CNT:
                     return missionDB.saveDts[5].Exp;
             }
-
+            Debug.LogError("MissionFormat:: Type Error : 맞는 타입이 없습니다.");
             return -1;
         }
         set {
@@ -69,18 +70,17 @@ public class MissionFormat
             GM._.fm.UpdateAlertRedDot();
         }
     }
-    [field:SerializeField] public int MaxExp {get; set;}        // 필요경험치
 
     public Dictionary<RWD, int> Reward {get; set;}              // 보상 Dictionary리스트
+
 
 #region FUNC
     /// <summary>
     /// 레벨에 따른 필요경험치 업데이트
     /// </summary>
     public void UpdateData() {
-        var missionDB = DM._.DB.missionDB;
-
-        switch(Type) {
+        switch(Type)
+        {
             case MISSION.MINING_ORE_CNT:
                 MaxExp = 5 + (Lv * (Lv - 1) * 5 ) / 2;
                 Reward = new Dictionary<RWD, int> {

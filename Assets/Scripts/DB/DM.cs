@@ -12,6 +12,7 @@ public class DB {
     public MissionDB missionDB;
     public OreBlessDB oreBlessDB;
     public AutoMiningDB autoMiningDB;
+    public OreProficiencyDB proficiencyDB;
     public StageDB stageDB;
 }
 
@@ -41,6 +42,7 @@ public class DM : MonoBehaviour {
         DB.missionDB.Init();
         DB.oreBlessDB.Init();
         DB.autoMiningDB.Init();
+        DB.proficiencyDB.Init();
         DB.stageDB.Init();
     }
 }

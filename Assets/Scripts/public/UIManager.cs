@@ -86,8 +86,10 @@ public class UIManager : MonoBehaviour
         GM._.clm.UpdateUI();
     }
 
-    public void OnClickMenu_KnowledgeBtnBtn() {
-        //TODO
+    public void OnClickMenu_OreProficiencyBtn() {
+        GM._.pfm.windowObj.SetActive(true);
+        GM._.pfm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+        GM._.pfm.UpdateAll();
     }
 
     public void OnClickMenu_SettingBtn() {
