@@ -27,6 +27,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public OreProficiencyManager pfm;
     [field:HideInInspector] public ChallengeManager clm; // 시련의 광산
     [field:HideInInspector] public StatusManager sttm;
+    [field:HideInInspector] public TranscendManager tsm; // 초월
     
     //* PLAY
     [field:HideInInspector] public PlayManager pm;
@@ -57,6 +58,7 @@ public class GM : MonoBehaviour
         pfm = GameObject.Find("OreProficiencyManager").GetComponent<OreProficiencyManager>();
         clm = GameObject.Find("ChallengeManager").GetComponent<ChallengeManager>();
         sttm = GameObject.Find("StatusManager").GetComponent<StatusManager>();
+        tsm = GameObject.Find("TranscendManager").GetComponent<TranscendManager>();
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();

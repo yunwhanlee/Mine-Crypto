@@ -182,7 +182,8 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.ORE_CHEST: // 광석상자
                         sttDB.OreChest += val;
                         break;
-                    case RWD.FAME: // 명성포인트
+                    case RWD.FAME: // 명성포인트 + (초월) 명예 획득량
+                        val += GM._.tsm.upgIncFame.Val;
                         sttDB.Fame += val;
                         break;
                     // 여기에 추가

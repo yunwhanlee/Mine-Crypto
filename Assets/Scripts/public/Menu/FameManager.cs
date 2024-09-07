@@ -73,8 +73,6 @@ public class FameManager : MonoBehaviour
             missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp += 100;
             missionArr[(int)MISSION.MINING_CHEST_CNT].Exp += 10;
             missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp += 10;
-
-            
         }
     }
 

@@ -63,7 +63,7 @@ public class UpgradeManager : MonoBehaviour
         );
     }
 
-#region EVENT FUNC
+#region EVENT
     /// <summary>
     /// (강화) 공격력 업그레이드 버튼
     /// </summary>
@@ -109,10 +109,11 @@ public class UpgradeManager : MonoBehaviour
     /// <summary>
     /// 팝업 열기
     /// </summary>
-    public void ShowPopUp() {
+    public void ShowPopUp()
+    {
         windowObj.SetActive(true);
         DOTAnim.DORestart();
-        UpdateUIAndData();
+        UpdateDataAndUI();
     }
 
     private void Upgrade(UpgradeFormat upgDt) {
@@ -123,16 +124,16 @@ public class UpgradeManager : MonoBehaviour
             GM._.fm.missionArr[(int)Enum.MISSION.UPGRADE_CNT].Exp++;
             upgDt.Lv++;
 
-            UpdateUIAndData();
+            UpdateDataAndUI();
         }
         else
-            GM._.ui.ShowWarningMsgPopUp("돈이 부족합니다.");
+            GM._.ui.ShowWarningMsgPopUp("해당 재화가 부족합니다.");
     }
 
     /// <summary>
     /// 업그레이드 결과 최신화
     /// </summary>
-    private void UpdateUIAndData()
+    private void UpdateDataAndUI()
     {
         //* Data Price
         upgAttack.UpdatePrice();

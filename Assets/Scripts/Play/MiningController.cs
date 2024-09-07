@@ -363,7 +363,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     attackWaitTime = 0;
 
-                    // 타겟광석이 보물상자면 가방용량 처리 안함
+                    // 타겟광석이 보물상자가 아닌 광석인 경우
                     if(targetOre.OreType != RSC.CRISTAL)
                     {
                         // 가방용량 증가

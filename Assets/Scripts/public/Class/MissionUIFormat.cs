@@ -50,8 +50,11 @@ public class MissionUIFormat
 
         if(rewardValues.Count > 1)
         {
-            // 보상1
-            Rwd1Txt.text = rewardValues[0].ToString();
+            // 보상1 FAME
+            int val = rewardValues[0];
+            if(rewardKeys[0] == RWD.FAME) // (초월)명예 획득량
+                val += GM._.tsm.upgIncFame.Val;
+            Rwd1Txt.text = val.ToString();
             Rwd1Img.sprite = GM._.rwm.GetRewardItemSprite(rewardKeys[0]);
             // 보상2
             Rwd2Txt.text = rewardValues[1].ToString();

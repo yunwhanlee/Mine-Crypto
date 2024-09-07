@@ -98,6 +98,11 @@ public class UIManager : MonoBehaviour
         GM._.sttm.UpdateMyStatus();
     }
 
+    public void OnClickMenu_TranscendBtn() {
+        topRscGroup.SetActive(true);
+        GM._.tsm.ShowPopUp();
+    }
+
     public void OnClickMenu_SettingBtn() {
         //TODO
     }

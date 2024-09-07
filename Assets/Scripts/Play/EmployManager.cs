@@ -49,7 +49,7 @@ public class EmployManager : MonoBehaviour
     int workerCnt;
     int gachaRetryCntMax;
     int gachaRetryCnt;
-    public List<Enum.GRADE> gachaResultList = new List<Enum.GRADE>();
+    public List<GRADE> gachaResultList = new List<GRADE>();
 
 #region EVENT
     /// <summary>
@@ -103,7 +103,7 @@ public class EmployManager : MonoBehaviour
             retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
             
             // 데이터 및 오브젝트 초기화
-            gachaResultList = new List<Enum.GRADE>();
+            gachaResultList = new List<GRADE>();
             for(int i = 0; i < charaGachaContentTf.childCount; i++)
                 Destroy(charaGachaContentTf.GetChild(i).gameObject);
 
@@ -197,13 +197,17 @@ public class EmployManager : MonoBehaviour
     /// 데이터 및 UI 최신화
     /// </summary>
     private void UpdateUIAndData() {
-        // 고용 팝업
+        //* 고용 팝업
         workerCnt = 0;
+
+        // 소환캐릭 수
         workerMax = GM._.ugm.upgIncPopulation.Val
-            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION);
+            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION) // 축복 소환캐릭 증가
+            + GM._.tsm.upgIncPopulation.Val; // (초월) 소환캐릭 증가
+
         PlayBtnEmployCntTxt.text = $"{workerMax}마리 고용";
 
-        // 랜덤뽑기결과 팝업
+        //* 랜덤뽑기결과 팝업
         gachaRetryCntMax = 10;
         gachaRetryCnt = gachaRetryCntMax;
         retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
@@ -267,7 +271,7 @@ public class EmployManager : MonoBehaviour
         {
             yield return Util.TIME0_05;
             // 등급
-            Enum.GRADE grade = gachaResultList[i];
+            GRADE grade = gachaResultList[i];
             // 카드 생성
             var card = Instantiate(charaCardUIPref, charaGachaContentTf);
             // 배경 이미지 (등급)

@@ -58,10 +58,5 @@ public class ChallengeManager : MonoBehaviour
         redTicketCntTxt.text = $"{CurRedTicketCnt}";
         bestFloorTxt.text = $"{BestFloor}";
     }
-
-    private void UpdateData()
-    {
-
-    }
 #endregion
 }
