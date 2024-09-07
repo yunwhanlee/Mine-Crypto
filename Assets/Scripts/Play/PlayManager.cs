@@ -109,9 +109,6 @@ public class PlayManager : MonoBehaviour
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
         GM._.rwm.ShowGameoverReward(playResRwdArr);
 
-        // 채굴시간 미션
-        GM._.fm.missionArr[(int)MISSION.MINING_TIME].Exp += timerMax;
-
         // 광산 클리어 미션
         GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++;
     }

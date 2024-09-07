@@ -12,7 +12,7 @@ public class OreBlessManager : MonoBehaviour
 
     const int RESET_CRISTAL_PRICE = 10;         // 능력치 재설정위한 크리스탈 가격
     const int RESET_ORE_PRICE = 10000;          // 능력치 재설정위한 광석조각 가격
-    const int INT_TYPE = 0, FLOAT_TYPE = 1;     // 능력치 데이터 타입\
+    const int INT_TYPE = 0, FLOAT_TYPE = 1;     // 능력치 데이터 타입
 
     [field:Header("광산의 축복 능력치 데이터 (INT)")]
     [field:SerializeField] public OreBlessAbilityDB_Int[] Int_Abilities {get; private set;}

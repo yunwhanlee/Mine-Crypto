@@ -57,7 +57,8 @@ public class FameManager : MonoBehaviour
             new() { Type = svDts[5].Type, Lv = svDts[5].Lv, Exp = svDts[5].Exp, MaxExp = 0 },
         };
 
-        UpdateAll();
+        // UpdateAll();
+        StartCoroutine(CoUpdateAllForSecond());
     }
 
     void Update()
@@ -73,7 +74,7 @@ public class FameManager : MonoBehaviour
             missionArr[(int)MISSION.MINING_CHEST_CNT].Exp += 10;
             missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp += 10;
 
-            UpdateAll();
+            
         }
     }
 
@@ -114,6 +115,26 @@ public class FameManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    /// <summary>
+    /// 게임진행시, 1초마다 채굴미션 증가 및 전체 데이터 업데이트
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator CoUpdateAllForSecond()
+    {
+        while(true)
+        {
+            if(GM._.gameState == GameState.PLAY)
+            {
+                Debug.Log("CoUpdateAllForSecond():: gameState=PLAY, 업데이트 명예 데이터 및 UI");
+                // 채굴시간 미션
+                GM._.fm.missionArr[(int)MISSION.MINING_TIME].Exp++;
+
+                UpdateAll();
+            }
+            yield return Util.TIME1;
+        }
+    }
+
     /// <summary>
     /// 현재 명예 및 미션 데이터와 UI 업데이트
     /// </summary>
