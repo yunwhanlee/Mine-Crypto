@@ -51,10 +51,10 @@ public class StgInfo
                 DM._.DB.statusDB.OreTicket -= needTicketCnt;
 
                 // 선택한 광산종류 저장
-                GM._.stm.OreType = (Enum.RSC)id;
+                GM._.stgm.OreType = (Enum.RSC)id;
 
                 // 캐릭터 가챠뽑기 UI준비
-                GM._.stm.SetGachaUI(GM._.ssm.selectStagePopUp);
+                GM._.stgm.SetGachaUI(GM._.ssm.selectStagePopUp);
             }
             else
                 GM._.ui.ShowWarningMsgPopUp("입장티켓이 부족합니다.");

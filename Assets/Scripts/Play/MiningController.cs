@@ -316,7 +316,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         if(GM._.mnm.workerClearStageStatusCnt >= GM._.ugm.upgIncPopulation.Val)
                         {
                             // 시련의광산 층 돌파 성공
-                            if(GM._.stm.OreType == RSC.CRISTAL)
+                            if(GM._.stgm.OreType == RSC.CRISTAL)
                             {
                                 GM._.gameState = GameState.TIMEOVER;
                                 GM._.pm.StopCorTimer();
@@ -328,7 +328,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                             else
                             {
                                 GM._.mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
-                                StartCoroutine(GM._.stm.CoNextStage()); // 다음 스테이지 이동
+                                StartCoroutine(GM._.stgm.CoNextStage()); // 다음 스테이지 이동
                             }
                         }
                     }

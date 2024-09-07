@@ -101,35 +101,35 @@ public class StatusDB
             switch(idx)
             {
                 case (int)RWD.ORE1:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE1_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE1_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE2:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE2_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE2_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE3:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE3_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE3_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE4:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE4_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE4_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE5:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE5_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE5_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE6:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE6_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE6_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE7:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE7_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE7_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE8:
-                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE8_PER);
+                    extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE8_RWD_PER);
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.CRISTAL: // (Int형)

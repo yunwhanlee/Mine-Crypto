@@ -63,7 +63,7 @@ public class PlayManager : MonoBehaviour
 
     private IEnumerator CoStartCownDownTimer() {
         // 타이머 최대시간
-        if(GM._.stm.OreType == RSC.CRISTAL)
+        if(GM._.stgm.OreType == RSC.CRISTAL)
             timerVal = CRISTAL_STAGE_PLAYTIME_SEC;
         else
             timerVal = GM._.ugm.upgIncTimer.Val
@@ -90,7 +90,7 @@ public class PlayManager : MonoBehaviour
     /// </summary>
     public void Timeover() {
         // 입장티켓 1개 회수
-        if(GM._.stm.OreType == RSC.CRISTAL)
+        if(GM._.stgm.OreType == RSC.CRISTAL)
         {
             playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
             DM._.DB.statusDB.RedTicket++;               // 데이터
@@ -102,7 +102,7 @@ public class PlayManager : MonoBehaviour
         }
 
         // 광석상자 획득 (매 층마다 +1)
-        int oreChestCnt = GM._.stm.Floor - 1;
+        int oreChestCnt = GM._.stgm.Floor - 1;
         playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
         DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
 

@@ -83,7 +83,7 @@ public class StageManager : MonoBehaviour {
     public IEnumerator CoNextStage()
     {
         float upgPer = GM._.ugm.upgBagStorage.Val;
-        float oreBlessPer = GM._.obm.GetAbilityValue(OREBLESS_ABT.NEXTSTG_SKIP_PER);
+        float oreBlessPer = GM._.obm.GetAbilityValue(OREBLESS_ABT.NEXT_STG_SKIP_PER);
 
         Floor++;
 
@@ -126,7 +126,7 @@ public class StageManager : MonoBehaviour {
 
         // 게임시작전 보이는 텍스트 공백으로 정리
         GM._.pm.timerTxt.text = "";
-        GM._.stm.stageTxt.text = "캐릭터를 뽑아주세요!";
+        GM._.stgm.stageTxt.text = "캐릭터를 뽑아주세요!";
 
         // 캐릭터 고용(소환) 팝업 열기
         GM._.epm.ShowPopUp();

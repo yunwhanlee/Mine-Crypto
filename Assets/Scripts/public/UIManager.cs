@@ -92,6 +92,12 @@ public class UIManager : MonoBehaviour
         GM._.pfm.UpdateAll();
     }
 
+    public void OnClickMenu_StatusBtn() {
+        GM._.sttm.windowObj.SetActive(true);
+        GM._.sttm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+        GM._.sttm.UpdateMyStatus();
+    }
+
     public void OnClickMenu_SettingBtn() {
         //TODO
     }

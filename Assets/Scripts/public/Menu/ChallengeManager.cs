@@ -40,10 +40,10 @@ public class ChallengeManager : MonoBehaviour
             CurRedTicketCnt--;
 
             // 선택한 광산타입
-            GM._.stm.OreType = RSC.CRISTAL;
+            GM._.stgm.OreType = RSC.CRISTAL;
 
             // 캐릭터 가챠뽑기 UI준비
-            GM._.stm.SetGachaUI(windowObj);
+            GM._.stgm.SetGachaUI(windowObj);
 
             UpdateUI();
         }

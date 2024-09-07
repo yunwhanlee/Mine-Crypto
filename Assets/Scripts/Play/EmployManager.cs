@@ -83,7 +83,7 @@ public class EmployManager : MonoBehaviour
         charaGachaPopUp.SetActive(false);
 
         // 스테이지 시작
-        GM._.stm.StartStage();
+        GM._.stgm.StartStage();
 
         // 캐릭터 생성
         corCreateRandomCharaID = StartCoroutine(CoCreateRandomCharaIns());

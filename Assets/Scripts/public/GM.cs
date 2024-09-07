@@ -26,11 +26,12 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public AutoMiningManager amm;
     [field:HideInInspector] public OreProficiencyManager pfm;
     [field:HideInInspector] public ChallengeManager clm; // 시련의 광산
+    [field:HideInInspector] public StatusManager sttm;
     
     //* PLAY
     [field:HideInInspector] public PlayManager pm;
     [field:HideInInspector] public MineManager mnm;
-    [field:HideInInspector] public StageManager stm;
+    [field:HideInInspector] public StageManager stgm;
     [field:HideInInspector] public EmployManager epm;
     [field:HideInInspector] public UpgradeManager ugm;
 
@@ -55,6 +56,7 @@ public class GM : MonoBehaviour
         amm = GameObject.Find("AutoMiningManager").GetComponent<AutoMiningManager>();
         pfm = GameObject.Find("OreProficiencyManager").GetComponent<OreProficiencyManager>();
         clm = GameObject.Find("ChallengeManager").GetComponent<ChallengeManager>();
+        sttm = GameObject.Find("StatusManager").GetComponent<StatusManager>();
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();
@@ -63,7 +65,7 @@ public class GM : MonoBehaviour
         // PLAY
         pm = GameObject.Find("PlayManager").GetComponent<PlayManager>();
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();
-        stm = GameObject.Find("StageManager").GetComponent<StageManager>();
+        stgm = GameObject.Find("StageManager").GetComponent<StageManager>();
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
     }
 
@@ -73,7 +75,7 @@ public class GM : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.B))
         {
             mnm.workerClearStageStatusCnt = 0;
-            StartCoroutine(stm.CoNextStage());
+            StartCoroutine(stgm.CoNextStage());
         }
     }
 }

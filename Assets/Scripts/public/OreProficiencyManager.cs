@@ -77,6 +77,7 @@ public class OreProficiencyManager : MonoBehaviour
             proficiencyArr[i].UpdateUI();
         }
 
+        // 총 채굴 공격력 데이터 및 UI 업데이트
         UpdateTotalAtkPerDataAndUI();
     }
 

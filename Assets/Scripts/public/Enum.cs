@@ -64,16 +64,16 @@ public static class Enum
         BAG_STG_PER,
         INC_TIMER, // int
         INC_CRISTAL, // int
-        NEXTSTG_SKIP_PER,
-        INC_CHEST_PER,
-        INC_ORE1_PER,
-        INC_ORE2_PER,
-        INC_ORE3_PER,
-        INC_ORE4_PER,
-        INC_ORE5_PER,
-        INC_ORE6_PER,
-        INC_ORE7_PER,
-        INC_ORE8_PER,
+        NEXT_STG_SKIP_PER,
+        INC_CHEST_SPAWN_PER,
+        INC_ORE1_RWD_PER,
+        INC_ORE2_RWD_PER,
+        INC_ORE3_RWD_PER,
+        INC_ORE4_RWD_PER,
+        INC_ORE5_RWD_PER,
+        INC_ORE6_RWD_PER,
+        INC_ORE7_RWD_PER,
+        INC_ORE8_RWD_PER,
         INC_POPULATION // int
     }
 
