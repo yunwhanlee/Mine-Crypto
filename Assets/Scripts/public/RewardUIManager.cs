@@ -182,11 +182,22 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.ORE_CHEST: // 광석상자
                         sttDB.OreChest += val;
                         break;
+                    case RWD.MAT1:
+                    case RWD.MAT2:
+                    case RWD.MAT3:
+                    case RWD.MAT4:
+                    case RWD.MAT5:
+                    case RWD.MAT6:
+                    case RWD.MAT7:
+                    case RWD.MAT8: // 연금술 재료
+                        val = sttDB.SetMatArr((int)rwdType, val);
+                        break;
+                    //※여기에 추가
                     case RWD.FAME: // 명성포인트 + (초월) 명예 획득량
                         val += GM._.tsm.upgIncFame.Val;
                         sttDB.Fame += val;
                         break;
-                    // 여기에 추가
+                    
                 }
 
                 // 해당 보상슬롯UI 표시

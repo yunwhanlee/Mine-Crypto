@@ -66,21 +66,31 @@ public class InventoryUIManager : MonoBehaviour
     /// </summary>
     public void UpdateSlotUI() {
         StatusDB sttDB = DM._.DB.statusDB;
-
-        invSlotUIArr[(int)INV.ORE1].Active(sttDB.RscArr[(int)INV.ORE1]);
-        invSlotUIArr[(int)INV.ORE2].Active(sttDB.RscArr[(int)INV.ORE2]);
-        invSlotUIArr[(int)INV.ORE3].Active(sttDB.RscArr[(int)INV.ORE3]);
-        invSlotUIArr[(int)INV.ORE4].Active(sttDB.RscArr[(int)INV.ORE4]);
-        invSlotUIArr[(int)INV.ORE5].Active(sttDB.RscArr[(int)INV.ORE5]);
-        invSlotUIArr[(int)INV.ORE6].Active(sttDB.RscArr[(int)INV.ORE6]);
-        invSlotUIArr[(int)INV.ORE7].Active(sttDB.RscArr[(int)INV.ORE7]);
-        invSlotUIArr[(int)INV.ORE8].Active(sttDB.RscArr[(int)INV.ORE8]);
-        invSlotUIArr[(int)INV.CRISTAL].Active(sttDB.RscArr[(int)INV.CRISTAL]);
+        // 재화 종류
+        invSlotUIArr[(int)INV.ORE1].Active(sttDB.RscArr[(int)RSC.ORE1]);
+        invSlotUIArr[(int)INV.ORE2].Active(sttDB.RscArr[(int)RSC.ORE2]);
+        invSlotUIArr[(int)INV.ORE3].Active(sttDB.RscArr[(int)RSC.ORE3]);
+        invSlotUIArr[(int)INV.ORE4].Active(sttDB.RscArr[(int)RSC.ORE4]);
+        invSlotUIArr[(int)INV.ORE5].Active(sttDB.RscArr[(int)RSC.ORE5]);
+        invSlotUIArr[(int)INV.ORE6].Active(sttDB.RscArr[(int)RSC.ORE6]);
+        invSlotUIArr[(int)INV.ORE7].Active(sttDB.RscArr[(int)RSC.ORE7]);
+        invSlotUIArr[(int)INV.ORE8].Active(sttDB.RscArr[(int)RSC.ORE8]);
+        invSlotUIArr[(int)INV.CRISTAL].Active(sttDB.RscArr[(int)RSC.CRISTAL]);
+        // 아이템 종류
         invSlotUIArr[(int)INV.ORE_TICKET].Active(sttDB.OreTicket);
         invSlotUIArr[(int)INV.RED_TICKET].Active(sttDB.RedTicket);
-        invSlotUIArr[(int)INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
         invSlotUIArr[(int)INV.ORE_CHEST].Active(sttDB.OreChest);
-        //TODO 연금술 재료 등록 및 오브젝트도 추가하기!
+        invSlotUIArr[(int)INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
+        // 연금술 재료
+        invSlotUIArr[(int)INV.MAT1].Active(sttDB.MatArr[(int)MATE.MAT1]);
+        invSlotUIArr[(int)INV.MAT2].Active(sttDB.MatArr[(int)MATE.MAT2]);
+        invSlotUIArr[(int)INV.MAT3].Active(sttDB.MatArr[(int)MATE.MAT3]);
+        invSlotUIArr[(int)INV.MAT4].Active(sttDB.MatArr[(int)MATE.MAT4]);
+        invSlotUIArr[(int)INV.MAT5].Active(sttDB.MatArr[(int)MATE.MAT5]);
+        invSlotUIArr[(int)INV.MAT6].Active(sttDB.MatArr[(int)MATE.MAT6]);
+        invSlotUIArr[(int)INV.MAT7].Active(sttDB.MatArr[(int)MATE.MAT7]);
+        invSlotUIArr[(int)INV.MAT8].Active(sttDB.MatArr[(int)MATE.MAT8]);
+        //TODO 버섯도감 및 버섯 8종류
     }
 #endregion
 }
