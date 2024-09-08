@@ -107,6 +107,11 @@ public static class Enum
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
         // 아이템 종류
         ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
+        // 연금술 재료
+        MAT1, MAT2, MAT3, MAT4, MAT5, MAT6, MAT7, MAT8,
+        // 버섯도감
+        MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
         //※ 여기에 추가
     }
 
@@ -130,6 +135,45 @@ public static class Enum
         new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다."),
         // 여기에 추가
     };
+
+    /// <summary>
+    /// 연금술 카테고리
+    /// </summary>
+    public enum ALCHEMY_CATE {
+        MATERIAL, CONSUME_ITEM, EXCHANGE, DECORATION
+    }
+
+    /// <summary>
+    /// (연금술) 재료
+    /// </summary>
+    public enum MATE {
+        MAT1, MAT2, MAT3, MAT4, MAT5, MAT6, MAT7, MAT8,
+    }
+
+    /// <summary>
+    /// (연금술) 소모품
+    /// </summary>
+    public enum CONSUME {
+        ORE_TICKET, RED_TICKET,
+        MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        ORE_CHEST, TREASURE_CHEST,
+    }
+
+    /// <summary>
+    /// (연금술) 교환
+    /// </summary>
+    public enum EXCHANGE {
+        ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8,
+    }
+
+    /// <summary>
+    /// (연금술) 장식품
+    /// </summary>
+    public enum DECO {
+        PURPLE_ORE_PILE, TREE_BRANCH, SNOWED_TREE, GORILLA, 
+        PLATINUM_ORE_PILE, ICE_SHEET, DARK_CRISTAL_PILE, CANYON_ROCK,
+    }
+
 
     /// <summary>모든 재화 개수</summary>
     public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;

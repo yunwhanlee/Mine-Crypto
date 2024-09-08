@@ -127,7 +127,7 @@ public class UpgradeManager : MonoBehaviour
             UpdateDataAndUI();
         }
         else
-            GM._.ui.ShowWarningMsgPopUp("해당 재화가 부족합니다.");
+            GM._.ui.ShowWarningMsgPopUp("해당 재화가 부족합니다!");
     }
 
     /// <summary>

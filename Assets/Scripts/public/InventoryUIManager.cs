@@ -38,12 +38,12 @@ public class InventoryUIManager : MonoBehaviour
 
             invSlotUIArr[i] = new InvSlotUI
             {
-                name = Enum.INV_ITEM_INFO[i].name,
-                invType = (Enum.INV)i,
+                name = INV_ITEM_INFO[i].name,
+                invType = (INV)i,
                 obj = itemSlotUI.gameObject,
                 itemSpr = itemSlotUI.GetChild(1).GetComponent<Image>().sprite,
                 cntTxt = itemSlotUI.GetComponentInChildren<TMP_Text>(),
-                contentMsg = Enum.INV_ITEM_INFO[i].content
+                contentMsg = INV_ITEM_INFO[i].content
             };
 
             var bgBtn = invSlotUIArr[i].obj.GetComponentInChildren<Button>();
@@ -80,6 +80,7 @@ public class InventoryUIManager : MonoBehaviour
         invSlotUIArr[(int)INV.RED_TICKET].Active(sttDB.RedTicket);
         invSlotUIArr[(int)INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
         invSlotUIArr[(int)INV.ORE_CHEST].Active(sttDB.OreChest);
+        //TODO 연금술 재료 등록 및 오브젝트도 추가하기!
     }
 #endregion
 }

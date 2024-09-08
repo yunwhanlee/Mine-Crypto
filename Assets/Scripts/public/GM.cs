@@ -28,6 +28,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public ChallengeManager clm; // 시련의 광산
     [field:HideInInspector] public StatusManager sttm;
     [field:HideInInspector] public TranscendManager tsm; // 초월
+    [field:HideInInspector] public AlchemyManager acm; // 연금술
     
     //* PLAY
     [field:HideInInspector] public PlayManager pm;
@@ -36,7 +37,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public EmployManager epm;
     [field:HideInInspector] public UpgradeManager ugm;
 
-    // 광석조각 이미지배열
+    [field:Header("광석재화 이미지배열")]
     [field:SerializeField] public Sprite[] RscSprArr {get; private set;}
 
     void Awake()
@@ -59,6 +60,7 @@ public class GM : MonoBehaviour
         clm = GameObject.Find("ChallengeManager").GetComponent<ChallengeManager>();
         sttm = GameObject.Find("StatusManager").GetComponent<StatusManager>();
         tsm = GameObject.Find("TranscendManager").GetComponent<TranscendManager>();
+        acm = GameObject.Find("AlchemyManager").GetComponent<AlchemyManager>();
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();

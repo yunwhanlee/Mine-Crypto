@@ -13,6 +13,11 @@ public class StatusDB
         get => rscArr;
     }
 
+    [Header("연금술 재료 8종")]
+    [field:SerializeField] int[] matArr; public int[] MatArr {
+        get => matArr;
+    }
+
     [Header("광산 입장티켓")]
     [field:SerializeField] int oreTicket; public int OreTicket {
         get => oreTicket;
@@ -31,7 +36,6 @@ public class StatusDB
         set {
             redTicket = value;
             if(redTicket < 0) redTicket = 0;
-            //TODO 텍스트UI 업데이트
         }
     }
 
@@ -41,7 +45,6 @@ public class StatusDB
         set {
             treasureChest = value;
             if(treasureChest < 0) treasureChest = 0;
-            //TODO 텍스트UI 업데이트
         }
     }
 
@@ -51,7 +54,6 @@ public class StatusDB
         set {
             oreChest = value;
             if(oreChest < 0) oreChest = 0;
-            //TODO 텍스트UI 업데이트
         }
     }
 
@@ -61,7 +63,6 @@ public class StatusDB
         set {
             fame = value;
             if(fame < 0) fame = 0;
-            //TODO 텍스트UI 업데이트
         }
     }
 
@@ -73,6 +74,12 @@ public class StatusDB
             100000, 100000, 100000, 100000, // 광석 1,2,3,4
             100000, 100000, 100000, 100000, // 광석 5,6,7,8
             10000, // 크리스탈
+        };
+
+        // 연금술 재료
+        matArr = new int[8] {
+            0, 0, 0, 0, 
+            0, 0, 0, 0,
         };
 
         // 아이템 수
@@ -146,6 +153,25 @@ public class StatusDB
 
         // TOP RSC 재화표시 업데이트UI
         GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
+
+        // 게임플레이 경우 인벤토리 업데이트UI
+        if(GM._.gameState == GameState.PLAY)
+            GM._.ivm.UpdateSlotUI();
+
+        return val;
+    }
+
+    /// <summary>
+    /// 연금술 재료 수량 추가 및 UI업데이트
+    /// </summary>
+    /// <param name="idx">재료 타입(인덱스)</param>
+    /// <param name="val">증가량</param>
+    public int SetMatArr(int idx, int val) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
+    {
+        matArr[idx] += val;
+
+        if(matArr[idx] < 0)
+            matArr[idx] = 0;
 
         // 게임플레이 경우 인벤토리 업데이트UI
         if(GM._.gameState == GameState.PLAY)

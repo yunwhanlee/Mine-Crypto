@@ -103,6 +103,15 @@ public class UIManager : MonoBehaviour
         GM._.tsm.ShowPopUp();
     }
 
+    public void OnClickMenu_MushroomGuideBtn() {
+        //TODO
+    }
+
+    public void OnClickMenu_AlchemyBtn() {
+        topRscGroup.SetActive(true);
+        GM._.acm.ShowPopUp();
+    }
+
     public void OnClickMenu_SettingBtn() {
         //TODO
     }
