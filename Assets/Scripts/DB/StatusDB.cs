@@ -71,7 +71,7 @@ public class StatusDB
     {
         // 재화 (광석 및 크리스탈 )
         rscArr = new int[9] {
-            100000, 100000, 100000, 100000, // 광석 1,2,3,4
+            100000, 9000, 100000, 100000, // 광석 1,2,3,4
             100000, 100000, 100000, 100000, // 광석 5,6,7,8
             10000, // 크리스탈
         };
@@ -89,6 +89,34 @@ public class StatusDB
         oreChest = 5;      // 광석상자
         fame = 1;          // 명성포인트
 
+    }
+
+    public int GetInvItemVal(INV type)
+    {
+        switch(type)
+        {
+            case INV.ORE1:
+            case INV.ORE2:
+            case INV.ORE3:
+            case INV.ORE4:
+            case INV.ORE5:
+            case INV.ORE6:
+            case INV.ORE7:
+            case INV.ORE8:
+            case INV.CRISTAL:
+                return rscArr[(int)type];
+            case INV.MAT1:
+            case INV.MAT2:
+            case INV.MAT3:
+            case INV.MAT4:
+            case INV.MAT5:
+            case INV.MAT6:
+            case INV.MAT7:
+            case INV.MAT8:
+                return matArr[(int)type - (int)INV.MAT1];
+        }
+
+        return -9999999; // ERROR
     }
 
     /// <summary>
@@ -109,34 +137,42 @@ public class StatusDB
             {
                 case (int)RWD.ORE1:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE1_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE2:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE2_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE3:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE3_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE4:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE4_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE5:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE5_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE6:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE6_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE7:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE7_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE8:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE8_RWD_PER);
+                    if(val < 0) extraPer = 1;
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.CRISTAL: // (Int형)
