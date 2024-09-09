@@ -76,11 +76,6 @@ public class InventoryUIManager : MonoBehaviour
         invSlotUIArr[(int)INV.ORE7].Active(sttDB.RscArr[(int)RSC.ORE7]);
         invSlotUIArr[(int)INV.ORE8].Active(sttDB.RscArr[(int)RSC.ORE8]);
         invSlotUIArr[(int)INV.CRISTAL].Active(sttDB.RscArr[(int)RSC.CRISTAL]);
-        // 아이템 종류
-        invSlotUIArr[(int)INV.ORE_TICKET].Active(sttDB.OreTicket);
-        invSlotUIArr[(int)INV.RED_TICKET].Active(sttDB.RedTicket);
-        invSlotUIArr[(int)INV.ORE_CHEST].Active(sttDB.OreChest);
-        invSlotUIArr[(int)INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
         // 연금술 재료
         invSlotUIArr[(int)INV.MAT1].Active(sttDB.MatArr[(int)MATE.MAT1]);
         invSlotUIArr[(int)INV.MAT2].Active(sttDB.MatArr[(int)MATE.MAT2]);
@@ -90,7 +85,24 @@ public class InventoryUIManager : MonoBehaviour
         invSlotUIArr[(int)INV.MAT6].Active(sttDB.MatArr[(int)MATE.MAT6]);
         invSlotUIArr[(int)INV.MAT7].Active(sttDB.MatArr[(int)MATE.MAT7]);
         invSlotUIArr[(int)INV.MAT8].Active(sttDB.MatArr[(int)MATE.MAT8]);
-        //TODO 버섯도감 및 버섯 8종류
+        // 버섯
+        invSlotUIArr[(int)INV.MUSH1].Active(sttDB.MsrArr[(int)MUSH.MUSH1]);
+        invSlotUIArr[(int)INV.MUSH2].Active(sttDB.MsrArr[(int)MUSH.MUSH2]);
+        invSlotUIArr[(int)INV.MUSH3].Active(sttDB.MsrArr[(int)MUSH.MUSH3]);
+        invSlotUIArr[(int)INV.MUSH4].Active(sttDB.MsrArr[(int)MUSH.MUSH4]);
+        invSlotUIArr[(int)INV.MUSH5].Active(sttDB.MsrArr[(int)MUSH.MUSH5]);
+        invSlotUIArr[(int)INV.MUSH6].Active(sttDB.MsrArr[(int)MUSH.MUSH6]);
+        invSlotUIArr[(int)INV.MUSH7].Active(sttDB.MsrArr[(int)MUSH.MUSH7]);
+        invSlotUIArr[(int)INV.MUSH8].Active(sttDB.MsrArr[(int)MUSH.MUSH8]);
+        // 아이템 종류
+        invSlotUIArr[(int)INV.ORE_TICKET].Active(sttDB.OreTicket);
+        invSlotUIArr[(int)INV.RED_TICKET].Active(sttDB.RedTicket);
+        invSlotUIArr[(int)INV.ORE_CHEST].Active(sttDB.OreChest);
+        invSlotUIArr[(int)INV.TREASURE_CHEST].Active(sttDB.TreasureChest);
+        invSlotUIArr[(int)INV.MUSH_BOX1].Active(sttDB.MushBox1);
+        invSlotUIArr[(int)INV.MUSH_BOX2].Active(sttDB.MushBox2);
+        invSlotUIArr[(int)INV.MUSH_BOX3].Active(sttDB.MushBox3);
+        //※ 여기에 추가
     }
 #endregion
 }

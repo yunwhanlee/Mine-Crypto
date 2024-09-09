@@ -8,17 +8,21 @@ using static Enum;
 [Serializable]
 public class StatusDB
 {
-    [Header("광석재화 8종 및 크리스탈")]
+    [Header("(광석) 재화 8종 및 크리스탈")]
     [field:SerializeField] int[] rscArr; public int[] RscArr {
         get => rscArr;
     }
 
-    [Header("연금술 재료 8종")]
+    [Header("(연금술) 재료 8종")]
     [field:SerializeField] int[] matArr; public int[] MatArr {
         get => matArr;
     }
+    [Header("(버섯도감) 버섯 8종")]
+    [field:SerializeField] int[] msrArr; public int[] MsrArr {
+        get => msrArr;
+    }
 
-    [Header("광산 입장티켓")]
+    [Header("(소비) 광산 입장티켓")]
     [field:SerializeField] int oreTicket; public int OreTicket {
         get => oreTicket;
         set {
@@ -30,7 +34,7 @@ public class StatusDB
         }
     }
 
-    [Header("시련의광산 입장티켓")]
+    [Header("(소비) 시련의광산 입장티켓")]
     [field:SerializeField] int redTicket; public int RedTicket {
         get {return redTicket;}
         set {
@@ -39,7 +43,16 @@ public class StatusDB
         }
     }
 
-    [Header("보물상자")]
+    [Header("(소비) 광석상자")]
+    [field:SerializeField] int oreChest; public int OreChest {
+        get {return oreChest;}
+        set {
+            oreChest = value;
+            if(oreChest < 0) oreChest = 0;
+        }
+    }
+
+    [Header("(소비) 보물상자")]
     [field:SerializeField] int treasureChest; public int TreasureChest {
         get {return treasureChest;}
         set {
@@ -48,14 +61,33 @@ public class StatusDB
         }
     }
 
-    [Header("광석상자")]
-    [field:SerializeField] int oreChest; public int OreChest {
-        get {return oreChest;}
+    [Header("(소비) 버섯상자1")]
+    [field:SerializeField] int mushBox1; public int MushBox1 {
+        get {return mushBox1;}
         set {
-            oreChest = value;
-            if(oreChest < 0) oreChest = 0;
+            mushBox1 = value;
+            if(mushBox1 < 0) mushBox1 = 0;
         }
     }
+
+    [Header("(소비) 버섯상자2")]
+    [field:SerializeField] int mushBox2; public int MushBox2 {
+        get {return mushBox2;}
+        set {
+            mushBox2 = value;
+            if(mushBox2 < 0) mushBox2 = 0;
+        }
+    }
+
+    [Header("(소비) 버섯상자3")]
+    [field:SerializeField] int mushBox3; public int MushBox3 {
+        get {return mushBox3;}
+        set {
+            mushBox3 = value;
+            if(mushBox3 < 0) mushBox3 = 0;
+        }
+    }
+
 
     [Header("명예 포인트")]
     [field:SerializeField] int fame; public int Fame {
@@ -76,46 +108,62 @@ public class StatusDB
             10000, // 크리스탈
         };
 
-        // 연금술 재료
+        // (연금술) 재료 8종
         matArr = new int[8] {
             10, 10, 10, 10, 
             10, 10, 10, 10,
         };
 
-        // 아이템 수
+        // (버섯도감) 버섯 8종
+        msrArr = new int[8] {
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
+
+        // (소비) 아이템
         oreTicket = 5;     // 광산 입장티켓
         redTicket = 3;     // 시련의광산 입장티켓
-        treasureChest = 5; // 보물상자
         oreChest = 5;      // 광석상자
+        treasureChest = 5; // 보물상자
+        mushBox1 = 0;      // 의문의 버섯상자
+        mushBox2 = 0;      // 신비한 버섯상자
+        mushBox3 = 0;      // 전설의 버섯상자
+
         fame = 1;          // 명성포인트
 
     }
 
-    public int GetInvItemVal(INV type)
+    /// <summary>
+    /// 인벤토리 아이템 수량 가져오기
+    /// </summary>
+    public int GetInventoryItemVal(INV type)
     {
         switch(type)
         {
-            case INV.ORE1:
-            case INV.ORE2:
-            case INV.ORE3:
-            case INV.ORE4:
-            case INV.ORE5:
-            case INV.ORE6:
-            case INV.ORE7:
-            case INV.ORE8:
+            // (광석) 재화
+            case INV.ORE1: case INV.ORE2: case INV.ORE3: case INV.ORE4:
+            case INV.ORE5: case INV.ORE6: case INV.ORE7: case INV.ORE8:
             case INV.CRISTAL:
                 return rscArr[(int)type];
-            case INV.MAT1:
-            case INV.MAT2:
-            case INV.MAT3:
-            case INV.MAT4:
-            case INV.MAT5:
-            case INV.MAT6:
-            case INV.MAT7:
-            case INV.MAT8:
+            // (연금술) 재료
+            case INV.MAT1: case INV.MAT2: case INV.MAT3: case INV.MAT4:
+            case INV.MAT5: case INV.MAT6: case INV.MAT7: case INV.MAT8:
                 return matArr[(int)type - (int)INV.MAT1];
+            // (버섯도감) 버섯
+            case INV.MUSH1: case INV.MUSH2: case INV.MUSH3: case INV.MUSH4:
+            case INV.MUSH5: case INV.MUSH6: case INV.MUSH7: case INV.MUSH8:
+                return msrArr[(int)type - (int)INV.MUSH1];
+            // (소비) 아이템
+            case INV.ORE_TICKET:     return oreTicket;
+            case INV.RED_TICKET:     return redTicket;
+            case INV.ORE_CHEST:      return oreChest;
+            case INV.TREASURE_CHEST: return treasureChest;
+            case INV.MUSH_BOX1:      return mushBox1;
+            case INV.MUSH_BOX2:      return mushBox2;
+            case INV.MUSH_BOX3:      return mushBox3;
         }
 
+        Debug.LogError("해당하는 아이템 타입이 없어서 찾을수가 없습니다. 소스코드에서 case 타입을 추가하세요!!!");
         return -9999999; // ERROR
     }
 
@@ -208,6 +256,25 @@ public class StatusDB
 
         if(matArr[idx] < 0)
             matArr[idx] = 0;
+
+        // 게임플레이 경우 인벤토리 업데이트UI
+        if(GM._.gameState == GameState.PLAY)
+            GM._.ivm.UpdateSlotUI();
+
+        return val;
+    }
+
+    /// <summary>
+    /// (버섯도감) 버섯 추가 및 UI업데이트
+    /// </summary>
+    /// <param name="idx">버섯 타입(인덱스)</param>
+    /// <param name="val">증가량</param>
+    public int SetMsrArr(int idx, int val) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
+    {
+        msrArr[idx] += val;
+
+        if(msrArr[idx] < 0)
+            msrArr[idx] = 0;
 
         // 게임플레이 경우 인벤토리 업데이트UI
         if(GM._.gameState == GameState.PLAY)

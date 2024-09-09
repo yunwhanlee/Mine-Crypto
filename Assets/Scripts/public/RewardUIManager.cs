@@ -158,7 +158,7 @@ public class RewardUIManager : MonoBehaviour
                 int val = rwd.Value;            // 획득량
 
                 switch(rwdType)
-                {
+                {   // (광석) 재화
                     case RWD.ORE1:
                     case RWD.ORE2:
                     case RWD.ORE3:
@@ -167,21 +167,10 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.ORE6:
                     case RWD.ORE7:
                     case RWD.ORE8:
-                    case RWD.CRISTAL: // 타겟재화 추가
+                    case RWD.CRISTAL:
                         val = sttDB.SetRscArr((int)rwdType, val);
                         break;
-                    case RWD.ORE_TICKET: // 광석 입장티켓
-                        sttDB.OreTicket += val;
-                        break;
-                    case RWD.RED_TICKET: // 시련의광산 입장티켓
-                        sttDB.RedTicket += val;
-                        break;
-                    case RWD.TREASURE_CHEST: // 보물상자
-                        sttDB.TreasureChest += val;
-                        break;
-                    case RWD.ORE_CHEST: // 광석상자
-                        sttDB.OreChest += val;
-                        break;
+                    // (연금술) 재료
                     case RWD.MAT1:
                     case RWD.MAT2:
                     case RWD.MAT3:
@@ -189,9 +178,44 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.MAT5:
                     case RWD.MAT6:
                     case RWD.MAT7:
-                    case RWD.MAT8: // 연금술 재료
+                    case RWD.MAT8:
                         val = sttDB.SetMatArr((int)rwdType, val);
                         break;
+                    // (버섯도감) 버섯
+                    case RWD.MUSH1:
+                    case RWD.MUSH2:
+                    case RWD.MUSH3:
+                    case RWD.MUSH4:
+                    case RWD.MUSH5:
+                    case RWD.MUSH6:
+                    case RWD.MUSH7:
+                    case RWD.MUSH8:
+                        val = sttDB.SetMsrArr((int)rwdType, val);
+                        break;
+
+                    // (소비) 아이템
+                    case RWD.ORE_TICKET: // 광석 입장티켓
+                        sttDB.OreTicket += val;
+                        break;
+                    case RWD.RED_TICKET: // 시련의광산 입장티켓
+                        sttDB.RedTicket += val;
+                        break;
+                    case RWD.ORE_CHEST: // 광석상자
+                        sttDB.OreChest += val;
+                        break;
+                    case RWD.TREASURE_CHEST: // 보물상자
+                        sttDB.TreasureChest += val;
+                        break;
+                    case RWD.MUSH_BOX1: // 버섯상자1
+                        sttDB.MushBox1 += val;
+                        break;
+                    case RWD.MUSH_BOX2: // 버섯상자2
+                        sttDB.MushBox2 += val;
+                        break;
+                    case RWD.MUSH_BOX3: // 버섯상자3
+                        sttDB.MushBox3 += val;
+                        break;
+
                     //※여기에 추가
                     case RWD.FAME: // 명성포인트 + (초월) 명예 획득량
                         val += GM._.tsm.upgIncFame.Val;

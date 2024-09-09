@@ -91,10 +91,12 @@ public static class Enum
     public enum RWD {
         // 재화 종류
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
-        // 소비 아이템
-        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
         // 재료 아이템
         MAT1, MAT2, MAT3, MAT4, MAT5, MAT6, MAT7, MAT8,
+        // 버섯 도감
+        MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
+        // 소비 아이템
+        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST, MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
         //※ 여기에 추가
 
         // 포인트 (인벤토리 표기X)
@@ -109,13 +111,12 @@ public static class Enum
     public enum INV {
         // 재화 종류
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
-        // 아이템 종류
-        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
         // 연금술 재료
         MAT1, MAT2, MAT3, MAT4, MAT5, MAT6, MAT7, MAT8,
-        // 버섯도감
+        // 버섯 도감
         MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
-        MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        // 소비 아이템
+        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST, MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
         //※ 여기에 추가
     }
 
@@ -123,7 +124,8 @@ public static class Enum
     //* 위의 인벤토리 아이템 이름 및 정보
     /// <summary>
     //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
-    public static InvItem_Info[] INV_ITEM_INFO = new InvItem_Info[9 + 4 + 8] {
+    public static InvItem_Info[] INV_ITEM_INFO = new InvItem_Info[9 + 8 + 8 + 7] {
+        // (광석)재화
         new InvItem_Info("제1 광석", "제1 광석의 조각이다. (재화)"),
         new InvItem_Info("제2 광석", "제2 광석의 조각이다. (재화)"),
         new InvItem_Info("제3 광석", "제3 광석의 조각이다. (재화)"),
@@ -133,10 +135,7 @@ public static class Enum
         new InvItem_Info("제7 광석", "제7 광석의 조각이다. (재화)"),
         new InvItem_Info("제8 광석", "제8 광석의 조각이다. (재화)"),
         new InvItem_Info("크리스탈", "크리스탈 조각이다. (재화)"),
-        new InvItem_Info("광산티켓", "광산에 입장가능한 티켓이다."),
-        new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다."),
-        new InvItem_Info("광석상자", "어떤 광석이 나올지 알 수 없다."),
-        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다."),
+        // (연금술) 재료
         new InvItem_Info("흙덩어리", "연금술에서 제작을위한 재료이다. (재료1)"),
         new InvItem_Info("통나무", "연금술에서 제작을위한 재료이다. (재료2)"),
         new InvItem_Info("천조각", "연금술에서 제작을위한 재료이다. (재료3)"),
@@ -145,8 +144,32 @@ public static class Enum
         new InvItem_Info("황금덩어리", "연금술에서 제작을위한 재료이다. (재료6)"),
         new InvItem_Info("석탄", "연금술에서 제작을위한 재료이다. (재료7)"),
         new InvItem_Info("천연소금", "연금술에서 제작을위한 재료이다. (재료8)"),
+        // (버섯도감) 버섯
+        new InvItem_Info("버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯1)"),
+        new InvItem_Info("늪버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯2)"),
+        new InvItem_Info("능이버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯3)"),
+        new InvItem_Info("푸른버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯4)"),
+        new InvItem_Info("표고버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯5)"),
+        new InvItem_Info("붉은버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯6)"),
+        new InvItem_Info("포자버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯7)"),
+        new InvItem_Info("공포버섯", "버섯도감에서 능력업그레이드가 가능하다. (버섯8)"),
+        // (소비) 아이템
+        new InvItem_Info("광산티켓", "광산에 입장가능한 티켓이다. (소비)"),
+        new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다. (소비)"),
+        new InvItem_Info("광석상자", "어떤 광석이 나올지 알 수 없다. (소비)"),
+        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다. (소비)"),
+        new InvItem_Info("의문의 버섯상자", "일반적인 버섯이 들어있을 것 같다. (소비)"),
+        new InvItem_Info("신비한 버섯상자", "신비로운 버섯이 들어있을 것 같다. (소비)"),
+        new InvItem_Info("전설의 버섯상자", "전설적인 버섯이 들어있을 것 같다. (소비)"),
         //※ 여기에 추가
     };
+
+    /// <summary>
+    /// (버섯도감) 버섯
+    /// </summary>
+    public enum MUSH {
+        MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8
+    }
 
     /// <summary>
     /// 연금술 카테고리
@@ -166,9 +189,8 @@ public static class Enum
     /// (연금술) 소모품
     /// </summary>
     public enum CONSUME {
-        ORE_TICKET, RED_TICKET,
+        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
-        ORE_CHEST, TREASURE_CHEST,
     }
 
     /// <summary>

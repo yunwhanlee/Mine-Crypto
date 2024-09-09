@@ -35,8 +35,12 @@ public class AlchemyManager : MonoBehaviour
     public GameObject windowObj;                // 팝업
     public Image[] categoryImgArr;              // 카테고리 아이콘 이미지배열
     public GameObject[] cateScrollRectArr;      // 카테고리별 스크롤 종류배열
+
     [Header("카테고리별 버튼 이미지배열")]
     public Image[] materialItemBtnImgArr;       // 재료아이템 버튼 이미지배열
+    public Image[] consumeItemBtnImgArr;        // 소비아이템 버튼 이미지배열
+    public Image[] exchangeItemBtnImgArr;       // 교환아이템 버튼 이미지배열
+    public Image[] decoItemBtnImgArr;           // 장식아이템 버튼 이미지배열
 
     [Header("선택한 아이템 정보UI (오른쪽 제작영역)")]
     public Image targetItemImg;
@@ -50,7 +54,12 @@ public class AlchemyManager : MonoBehaviour
     public int itemBtnIdx;                          // 현재 선택한 아이템버튼 인덱스
     public int creatableMax;
     public int createCnt;                           // 생산 수량
-    public AlchemyDataSO_Material[] materialData;   // 재료 카테고리 목록 정보(SO)
+
+    [Header("(연금술) 아이템 SO데이터 정보")]
+    public AlchemyDataSO_Material[] materialData;       // 재료
+    public AlchemyDataSO_Consume[]  consumeItemData;    // 소비 아이템
+    public AlchemyDataSO_Exchange[] exchangeItemData;   // 교환 아이템
+    public AlchemyDataSO_Deco[] decoItemData;           // 장식 아이템
 
     void Start() {
         // 초기화
@@ -71,18 +80,14 @@ public class AlchemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 재료아이템 스크롤 버튼
+    /// 스크롤 아이템버튼
     /// </summary>
-    /// <param name="itemBtnIdx">재료아이템 버튼인덱스</param>
-    public void OnClickMaterialItemBtn(int itemBtnIdx)
+    /// <param name="itemBtnIdx">아이템버튼 인덱스</param>
+    public void OnClickScrollItemBtn(int itemBtnIdx)
     {
         this.itemBtnIdx = itemBtnIdx;
         UpdateUI(itemBtnIdx);
     }
-
-    //TODO OnClickConsumeItemBtn
-    //TODO OnClickExchangeItemBtn
-    //TODO OnClickDecorationItemBtn
 
     /// <summary>
     /// 생산수량 조절 슬라이더 핸들 변경시 업데이트
@@ -99,51 +104,94 @@ public class AlchemyManager : MonoBehaviour
         createAmountTxt.text = $"{createCnt}개";
     }
 
+    /// <summary>
+    /// 아이템 제작버튼
+    /// </summary>
     public void OnClickCreateBtn()
     {
         var sttDB = DM._.DB.statusDB;
+        AlchemyDataSO itemDt = null;
 
-        switch (cateIdx)
+        // 카테고리에서 선택한 아이템 데이터 취득
+        switch(cateIdx)
         {
-            //* 카테고리1: 재료
-            case (int)ALCHEMY_CATE.MATERIAL:
-                AlchemyDataSO_Material mtDt = materialData[itemBtnIdx];
-
-                if(creatableMax > 0)
-                {
-                    // 제작에 필요한 아이템 감소
-                    for(int i = 0; i < mtDt.needItemDataArr.Length; i++)
-                    {
-                        // 제작필요 아이템 데이터
-                        NeedItemData itemNeedDt = mtDt.needItemDataArr[i];
-                        int totalNeedVal = itemNeedDt.Val * createCnt;
-
-                        switch(itemNeedDt.Type)
-                        {
-                            case INV.ORE1: case INV.ORE2: case INV.ORE3: case INV.ORE4:
-                            case INV.ORE5: case INV.ORE6: case INV.ORE7: case INV.ORE8:
-                                sttDB.SetRscArr((int)itemNeedDt.Type, -totalNeedVal);
-                                break;
-                            case INV.MAT1: case INV.MAT2: case INV.MAT3: case INV.MAT4:
-                            case INV.MAT5: case INV.MAT6: case INV.MAT7: case INV.MAT8: 
-                                sttDB.SetMatArr((int)itemNeedDt.Type - (int)INV.MAT1, -totalNeedVal);
-                                break;
-                        }
-                    }
-
-                    // 제작아이템 추가
-                    sttDB.SetMatArr((int)mtDt.type, createCnt);
-
-                    GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
-                }
-                else
-                {
-                    GM._.ui.ShowWarningMsgPopUp("제작에 필요한 재료가 부족합니다!");
-                }
-
-                break;
+            case ALCHEMY_CATE.MATERIAL: itemDt = materialData[itemBtnIdx]; break;
+            case ALCHEMY_CATE.CONSUME_ITEM: itemDt = consumeItemData[itemBtnIdx]; break;
+            case ALCHEMY_CATE.EXCHANGE: itemDt = exchangeItemData[itemBtnIdx]; break;
+            case ALCHEMY_CATE.DECORATION: itemDt = decoItemData[itemBtnIdx]; break;
         }
-        UpdateUI(itemBtnIdx);
+
+        // 선택한 수량만큼 생성
+        if(creatableMax > 0)
+        {
+            //* 제작에 필요한 아이템 감소
+            for(int i = 0; i < itemDt.needItemDataArr.Length; i++)
+            {
+                // 제작필요 아이템 데이터
+                NeedItemData needItemDt = itemDt.needItemDataArr[i];
+                int totalNeedVal = needItemDt.Val * createCnt;
+
+                // 제작에 필요한 아이템 수량 감소
+                switch(needItemDt.Type)
+                {
+                    case INV.ORE1: case INV.ORE2: case INV.ORE3: case INV.ORE4:
+                    case INV.ORE5: case INV.ORE6: case INV.ORE7: case INV.ORE8:
+                        sttDB.SetRscArr((int)needItemDt.Type, -totalNeedVal);
+                        break;
+                    case INV.MAT1: case INV.MAT2: case INV.MAT3: case INV.MAT4:
+                    case INV.MAT5: case INV.MAT6: case INV.MAT7: case INV.MAT8: 
+                        sttDB.SetMatArr((int)needItemDt.Type - (int)INV.MAT1, -totalNeedVal);
+                        break;
+                    case INV.MUSH1: case INV.MUSH2: case INV.MUSH3: case INV.MUSH4:
+                    case INV.MUSH5: case INV.MUSH6: case INV.MUSH7: case INV.MUSH8:
+                        sttDB.SetMsrArr((int)needItemDt.Type - (int)INV.MUSH1, -totalNeedVal);
+                        break;
+                }
+            }
+
+            //* 제작한 아이템 증가
+            if(itemDt is AlchemyDataSO_Material) //* 재료
+            {
+                var mtDt = itemDt as AlchemyDataSO_Material;
+                // 수량 추가
+                sttDB.SetMatArr((int)mtDt.type, createCnt); 
+            }
+            else if(itemDt is AlchemyDataSO_Consume) //* 소비아이템
+            {
+                var csDt = itemDt as AlchemyDataSO_Consume;
+
+                // 수량 추가
+                switch(csDt.type)
+                {
+                    case CONSUME.ORE_TICKET: sttDB.OreTicket += createCnt; break;
+                    case CONSUME.RED_TICKET: sttDB.RedTicket += createCnt; break;
+                    case CONSUME.ORE_CHEST: sttDB.OreChest += createCnt; break;
+                    case CONSUME.TREASURE_CHEST: sttDB.TreasureChest += createCnt; break;
+                    case CONSUME.MUSH_BOX1: sttDB.MushBox1 += createCnt; break;
+                    case CONSUME.MUSH_BOX2: sttDB.MushBox2 += createCnt; break;
+                    case CONSUME.MUSH_BOX3: sttDB.MushBox3 += createCnt; break;
+                }
+            }
+            else if(itemDt is AlchemyDataSO_Exchange) //* 교환아이템
+            {
+                //TODO
+            }
+            else if(itemDt is AlchemyDataSO_Deco) //* 장식아이템
+            {
+                //TODO
+            }
+
+            // 업데이트 UI
+            UpdateUI(itemBtnIdx);
+
+            GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
+        }
+        else
+        {
+            GM._.ui.ShowWarningMsgPopUp("제작에 필요한 재료가 부족합니다!");
+        }
+
+
     }
 #endregion
 
@@ -155,6 +203,9 @@ public class AlchemyManager : MonoBehaviour
         SetCatetory();
     }
 
+    /// <summary>
+    /// 카테고리 설정
+    /// </summary>
     private void SetCatetory()
     {
         for(int i = 0; i < categoryImgArr.Length; i++)
@@ -171,23 +222,32 @@ public class AlchemyManager : MonoBehaviour
         // UpdateUI(idx);
     }
 
+    /// <summary>
+    /// 제작에 필요한 아이템 업데이트
+    /// </summary>
+    /// <param name="cateDt">현재 카테고리군 데이터</param>
+    /// <param name="idx">아이템 인덱스</param>
+    /// <returns></returns>
     private int UpdateNeedItem(AlchemyDataSO cateDt, int idx)
     {
         // 제작필요 아이템 데이터
-        NeedItemData itemNeedDt = cateDt.needItemDataArr[idx];
+        NeedItemData needItemDt = cateDt.needItemDataArr[idx];
         NeedItemUIFormat itemUI = needItemUIArr[idx];
 
         // 목록UI 표시
         itemUI.obj.SetActive(true);
         // 현재 아이템 수량
-        int curItemVal = DM._.DB.statusDB.GetInvItemVal(itemNeedDt.Type);
+        int curItemVal = DM._.DB.statusDB.GetInventoryItemVal(needItemDt.Type);
         // 아이템제작 텍스트 표시
-        string colorTag = curItemVal >= itemNeedDt.Val? "green" : "red";
-        itemUI.needCntTxt.text = $"<sprite name={itemNeedDt.Type}>  <color={colorTag}>{itemNeedDt.Val}</color> / {curItemVal}";
+        string colorTag = curItemVal >= needItemDt.Val? "green" : "red";
+        itemUI.needCntTxt.text = $"<sprite name={needItemDt.Type}>  <color={colorTag}>{needItemDt.Val}</color> / {curItemVal}";
         // 필요 아이템을 나눈 값
-        return curItemVal / itemNeedDt.Val;
+        return curItemVal / needItemDt.Val;
     }
 
+    /// <summary>
+    /// 생산수량 슬라이더 설정
+    /// </summary>
     private void SetSlider()
     {
         if(creatableMax > 0) {
@@ -201,6 +261,10 @@ public class AlchemyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 업데이트 UI
+    /// </summary>
+    /// <param name="itemBtnIdx">아이템버튼 인덱스</param>
     private void UpdateUI(int itemBtnIdx)
     {
         var sttDB = DM._.DB.statusDB;
@@ -211,9 +275,10 @@ public class AlchemyManager : MonoBehaviour
         switch (cateIdx)
         {
             //* 카테고리1: 재료
-            case (int)ALCHEMY_CATE.MATERIAL:
-                int[] maxCreateMatArr = new int[2];
-                AlchemyDataSO_Material mtDt = materialData[itemBtnIdx];
+            case ALCHEMY_CATE.MATERIAL:
+            {
+                var mtDt = materialData[itemBtnIdx];
+                int[] maxCreateMatArr = new int[mtDt.needItemDataArr.Length];
 
                 // 아이템버튼 미선택 이미지 초기화
                 Array.ForEach(materialItemBtnImgArr, btnImg => btnImg.sprite = itemBtnUnSelectedSpr);
@@ -224,9 +289,7 @@ public class AlchemyManager : MonoBehaviour
 
                 // 제작필요 아이템 업데이트
                 for(int i = 0; i < mtDt.needItemDataArr.Length; i++)
-                {
                     maxCreateMatArr[i] = UpdateNeedItem(mtDt, i);
-                }
 
                 // 제작가능한 최대수량
                 creatableMax = Mathf.Min(maxCreateMatArr[0], maxCreateMatArr[1]);
@@ -234,9 +297,50 @@ public class AlchemyManager : MonoBehaviour
                 // 슬라이더 설정
                 SetSlider();
 
+                // 현재보유량 표시
                 targetitemInfoTxt.text = $"보유량: {DM._.DB.statusDB.MatArr[itemBtnIdx]}";
 
                 break;
+            }
+            //* 카테고리2: 소비아이템
+            case ALCHEMY_CATE.CONSUME_ITEM:
+            {
+                var csDt = consumeItemData[itemBtnIdx];
+                int[] maxCreateMatArr = new int[csDt.needItemDataArr.Length];
+
+                // 아이템버튼 미선택 이미지 초기화
+                Array.ForEach(consumeItemBtnImgArr, btnImg => btnImg.sprite = itemBtnUnSelectedSpr);
+                // 선택한 아이템버튼 노란색 이미지로 변경
+                consumeItemBtnImgArr[itemBtnIdx].sprite = itemBtnSelectedSpr;
+                // 선택한 아이템 이미지
+                targetItemImg.sprite = csDt.itemSpr;
+
+                // 제작필요 아이템 업데이트
+                for(int i = 0; i < csDt.needItemDataArr.Length; i++)
+                    maxCreateMatArr[i] = UpdateNeedItem(csDt, i);
+
+                // 제작가능한 최대수량
+                creatableMax = Mathf.Min(maxCreateMatArr[0], maxCreateMatArr[1]);
+
+                // 슬라이더 설정
+                SetSlider();
+
+                // 현재보유량 표시
+                int val = 0;
+                switch(csDt.type)
+                {
+                    case CONSUME.ORE_TICKET: val = sttDB.OreTicket; break;
+                    case CONSUME.RED_TICKET: val = sttDB.RedTicket; break;
+                    case CONSUME.ORE_CHEST: val = sttDB.OreChest; break;
+                    case CONSUME.TREASURE_CHEST: val = sttDB.TreasureChest; break;
+                    case CONSUME.MUSH_BOX1: val = sttDB.MushBox1; break;
+                    case CONSUME.MUSH_BOX2: val = sttDB.MushBox2; break;
+                    case CONSUME.MUSH_BOX3: val = sttDB.MushBox3; break;
+                }
+                targetitemInfoTxt.text = $"보유량: {val}";
+
+                break;
+            }
         }
     }
 
