@@ -171,6 +171,36 @@ public class AlchemyManager : MonoBehaviour
         // UpdateUI(idx);
     }
 
+    private int UpdateNeedItem(AlchemyDataSO cateDt, int idx)
+    {
+        // 제작필요 아이템 데이터
+        NeedItemData itemNeedDt = cateDt.needItemDataArr[idx];
+        NeedItemUIFormat itemUI = needItemUIArr[idx];
+
+        // 목록UI 표시
+        itemUI.obj.SetActive(true);
+        // 현재 아이템 수량
+        int curItemVal = DM._.DB.statusDB.GetInvItemVal(itemNeedDt.Type);
+        // 아이템제작 텍스트 표시
+        string colorTag = curItemVal >= itemNeedDt.Val? "green" : "red";
+        itemUI.needCntTxt.text = $"<sprite name={itemNeedDt.Type}>  <color={colorTag}>{itemNeedDt.Val}</color> / {curItemVal}";
+        // 필요 아이템을 나눈 값
+        return curItemVal / itemNeedDt.Val;
+    }
+
+    private void SetSlider()
+    {
+        if(creatableMax > 0) {
+            createAmountControlSlider.maxValue = creatableMax; // 최대값 설정
+            createAmountControlSlider.interactable = true; // 슬라이더 활성화
+        }
+        else {
+            createAmountTxt.text = "1개";
+            createAmountControlSlider.value = 1; // 하나도 못 만들면 0으로 고정
+            createAmountControlSlider.interactable = false; // 슬라이더 비활성화
+        }
+    }
+
     private void UpdateUI(int itemBtnIdx)
     {
         var sttDB = DM._.DB.statusDB;
@@ -182,52 +212,29 @@ public class AlchemyManager : MonoBehaviour
         {
             //* 카테고리1: 재료
             case (int)ALCHEMY_CATE.MATERIAL:
+                int[] maxCreateMatArr = new int[2];
                 AlchemyDataSO_Material mtDt = materialData[itemBtnIdx];
 
                 // 아이템버튼 미선택 이미지 초기화
                 Array.ForEach(materialItemBtnImgArr, btnImg => btnImg.sprite = itemBtnUnSelectedSpr);
-
                 // 선택한 아이템버튼 노란색 이미지로 변경
                 materialItemBtnImgArr[itemBtnIdx].sprite = itemBtnSelectedSpr;
-
                 // 선택한 아이템 이미지
                 targetItemImg.sprite = mtDt.itemSpr;
 
-                int[] maxCreateMatArr = new int[2];
-
+                // 제작필요 아이템 업데이트
                 for(int i = 0; i < mtDt.needItemDataArr.Length; i++)
                 {
-                    // 제작필요 아이템 데이터
-                    NeedItemData itemNeedDt = mtDt.needItemDataArr[i];
-                    NeedItemUIFormat itemUI = needItemUIArr[i];
-
-                    // 목록UI 표시
-                    itemUI.obj.SetActive(true);
-
-                    // 현재 아이템 수량
-                    int curItemVal = sttDB.GetInvItemVal(itemNeedDt.Type);
-
-                    // 필요 아이템을 나눈 값
-                    maxCreateMatArr[i] = curItemVal / itemNeedDt.Val;
-
-                    // 아이템제작 텍스트 표시
-                    string colorTag = curItemVal >= itemNeedDt.Val? "green" : "red";
-                    itemUI.needCntTxt.text = $"<sprite name={itemNeedDt.Type}>  <color={colorTag}>{itemNeedDt.Val}</color> / {curItemVal}";
+                    maxCreateMatArr[i] = UpdateNeedItem(mtDt, i);
                 }
 
                 // 제작가능한 최대수량
                 creatableMax = Mathf.Min(maxCreateMatArr[0], maxCreateMatArr[1]);
 
                 // 슬라이더 설정
-                if(creatableMax > 0) {
-                    createAmountControlSlider.maxValue = creatableMax; // 최대값 설정
-                    createAmountControlSlider.interactable = true; // 슬라이더 활성화
-                }
-                else {
-                    createAmountTxt.text = "1개";
-                    createAmountControlSlider.value = 1; // 하나도 못 만들면 0으로 고정
-                    createAmountControlSlider.interactable = false; // 슬라이더 비활성화
-                }
+                SetSlider();
+
+                targetitemInfoTxt.text = $"보유량: {DM._.DB.statusDB.MatArr[itemBtnIdx]}";
 
                 break;
         }
