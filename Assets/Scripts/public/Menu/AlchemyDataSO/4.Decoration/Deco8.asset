@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3229454c8cff342b09d4c3e8a0883a, type: 3}
+  m_Name: Deco8
+  m_EditorClassIdentifier: 
+  needItemDataArr:
+  - type: 27
+    val: 200
+  - type: 16
+    val: 1000
+  type: 7
+  itemSpr: {fileID: -184914165, guid: a54107c711dd44b40b4f7aedcff341f4, type: 3}
+  isBuyed: 0
+  abilityType: 3
+  abilityVal: 3

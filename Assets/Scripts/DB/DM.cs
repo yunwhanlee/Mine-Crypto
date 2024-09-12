@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +16,7 @@ public class DB {
     public AutoMiningDB autoMiningDB;
     public OreProficiencyDB proficiencyDB;
     public StageDB stageDB;
+    public DecoDB decoDB;
 }
 
 /// <summary>
@@ -44,5 +47,6 @@ public class DM : MonoBehaviour {
         DB.autoMiningDB.Init();
         DB.proficiencyDB.Init();
         DB.stageDB.Init();
+        DB.decoDB.Init();
     }
 }

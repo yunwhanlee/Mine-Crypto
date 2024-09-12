@@ -42,6 +42,9 @@ public class AlchemyManager : MonoBehaviour
     public Image[] exchangeItemBtnImgArr;       // 교환아이템 버튼 이미지배열
     public Image[] decoItemBtnImgArr;           // 장식아이템 버튼 이미지배열
 
+    [Header("장식 오브젝트배열")]
+    public GameObject[] decoObjArr;             // 장식 오브젝트배열
+
     [Header("선택한 아이템 정보UI (오른쪽 제작영역)")]
     public Image targetItemImg;
     public TMP_Text targetitemInfoTxt;
@@ -101,7 +104,7 @@ public class AlchemyManager : MonoBehaviour
         // 슬라이더 이동
         createAmountControlSlider.value = createCnt;
         // 텍스트 수량 표시
-        createAmountTxt.text = $"{createCnt}개";
+        createAmountTxt.text = $"{createCnt * (cateIdx == ALCHEMY_CATE.EXCHANGE? 100 : 1)}개";
     }
 
     /// <summary>
@@ -146,17 +149,29 @@ public class AlchemyManager : MonoBehaviour
                     case INV.MUSH5: case INV.MUSH6: case INV.MUSH7: case INV.MUSH8:
                         sttDB.SetMsrArr((int)needItemDt.Type - (int)INV.MUSH1, -totalNeedVal);
                         break;
+                    case INV.ORE_TICKET:
+                        sttDB.OreTicket -= totalNeedVal;
+                        break;
+                    case INV.RED_TICKET:
+                        sttDB.RedTicket -= totalNeedVal;
+                        break;
+                    case INV.ORE_CHEST: 
+                        sttDB.OreChest -= totalNeedVal;
+                        break;
+                    case INV.TREASURE_CHEST:
+                        sttDB.TreasureChest -= totalNeedVal;
+                        break;
                 }
             }
 
             //* 제작한 아이템 증가
-            if(itemDt is AlchemyDataSO_Material) //* 재료
+            if(itemDt is AlchemyDataSO_Material) // 재료
             {
                 var mtDt = itemDt as AlchemyDataSO_Material;
                 // 수량 추가
                 sttDB.SetMatArr((int)mtDt.type, createCnt); 
             }
-            else if(itemDt is AlchemyDataSO_Consume) //* 소비아이템
+            else if(itemDt is AlchemyDataSO_Consume) // 소비아이템
             {
                 var csDt = itemDt as AlchemyDataSO_Consume;
 
@@ -172,13 +187,19 @@ public class AlchemyManager : MonoBehaviour
                     case CONSUME.MUSH_BOX3: sttDB.MushBox3 += createCnt; break;
                 }
             }
-            else if(itemDt is AlchemyDataSO_Exchange) //* 교환아이템
+            else if(itemDt is AlchemyDataSO_Exchange) // 교환아이템
             {
-                //TODO
+                var excDt = itemDt as AlchemyDataSO_Exchange;
+                Debug.Log($"Exchange:: type={(int)excDt.type}");
+                // 수량 추가
+                sttDB.SetRscArr((int)excDt.type, createCnt * 100);
             }
-            else if(itemDt is AlchemyDataSO_Deco) //* 장식아이템
+            else if(itemDt is AlchemyDataSO_Deco) // 장식아이템
             {
-                //TODO
+                Debug.Log("OnClickCreateBtn():: (int)dcDt.type= {(int)dcDt.type}");
+                var dcDt = itemDt as AlchemyDataSO_Deco;
+                decoObjArr[(int)dcDt.type].SetActive(true);
+                DM._.DB.decoDB.IsBuyedArr[(int)dcDt.type] = true;
             }
 
             // 업데이트 UI
@@ -190,8 +211,6 @@ public class AlchemyManager : MonoBehaviour
         {
             GM._.ui.ShowWarningMsgPopUp("제작에 필요한 재료가 부족합니다!");
         }
-
-
     }
 #endregion
 
@@ -292,7 +311,7 @@ public class AlchemyManager : MonoBehaviour
                     maxCreateMatArr[i] = UpdateNeedItem(mtDt, i);
 
                 // 제작가능한 최대수량
-                creatableMax = Mathf.Min(maxCreateMatArr[0], maxCreateMatArr[1]);
+                creatableMax = Mathf.Min(maxCreateMatArr);
 
                 // 슬라이더 설정
                 SetSlider();
@@ -320,7 +339,7 @@ public class AlchemyManager : MonoBehaviour
                     maxCreateMatArr[i] = UpdateNeedItem(csDt, i);
 
                 // 제작가능한 최대수량
-                creatableMax = Mathf.Min(maxCreateMatArr[0], maxCreateMatArr[1]);
+                creatableMax = Mathf.Min(maxCreateMatArr);
 
                 // 슬라이더 설정
                 SetSlider();
@@ -339,6 +358,78 @@ public class AlchemyManager : MonoBehaviour
                 }
                 targetitemInfoTxt.text = $"보유량: {val}";
 
+                break;
+            }
+            //* 카테고리3: 교환
+            case ALCHEMY_CATE.EXCHANGE:
+            {
+                var excDt = exchangeItemData[itemBtnIdx];
+                int[] maxCreateMatArr = new int[excDt.needItemDataArr.Length];
+
+                // 아이템버튼 미선택 이미지 초기화
+                Array.ForEach(exchangeItemBtnImgArr, btnImg => btnImg.sprite = itemBtnUnSelectedSpr);
+                // 선택한 아이템버튼 노란색 이미지로 변경
+                exchangeItemBtnImgArr[itemBtnIdx].sprite = itemBtnSelectedSpr;
+                // 선택한 아이템 이미지
+                targetItemImg.sprite = excDt.itemSpr;
+
+                // 제작필요 아이템 업데이트
+                for(int i = 0; i < excDt.needItemDataArr.Length; i++)
+                    maxCreateMatArr[i] = UpdateNeedItem(excDt, i);
+
+                // 제작가능한 최대수량
+                creatableMax = Mathf.Min(maxCreateMatArr);
+
+                // 슬라이더 설정
+                SetSlider();
+
+                // 현재보유량 표시
+                targetitemInfoTxt.text = $"보유량: {DM._.DB.statusDB.RscArr[itemBtnIdx]}";
+
+                break;
+            }
+            //* 카테고리4: 장식
+            case ALCHEMY_CATE.DECORATION:
+            {
+                var dcDt = decoItemData[itemBtnIdx];
+                int[] maxCreateMatArr = new int[dcDt.needItemDataArr.Length];
+
+                // 아이템버튼 미선택 이미지 초기화
+                Array.ForEach(decoItemBtnImgArr, btnImg => btnImg.sprite = itemBtnUnSelectedSpr);
+                // 선택한 아이템버튼 노란색 이미지로 변경
+                decoItemBtnImgArr[itemBtnIdx].sprite = itemBtnSelectedSpr;
+                // 선택한 아이템 이미지
+                targetItemImg.sprite = dcDt.itemSpr;
+
+                // 제작필요 아이템 업데이트
+                for(int i = 0; i < dcDt.needItemDataArr.Length; i++)
+                    maxCreateMatArr[i] = UpdateNeedItem(dcDt, i);
+
+                // 제작가능한 최대수량
+                creatableMax = Mathf.Min(maxCreateMatArr);
+
+                // 슬라이더 설정
+                SetSlider();
+
+                // 추가능력 표시
+                switch (dcDt.abilityType)
+                {
+                    case DECO_ABT.ATK_PER:
+                        targetitemInfoTxt.text = $"추가 공격력 +{dcDt.abilityVal * 100}%";
+                        break;
+                    case DECO_ABT.ATKSPD_PER:
+                        targetitemInfoTxt.text = $"추가 이동속도 +{dcDt.abilityVal * 100}%";
+                        break;
+                    case DECO_ABT.MOVSPD_PER:
+                        targetitemInfoTxt.text = $"공격속도 +{dcDt.abilityVal * 100}%";
+                        break;
+                    case DECO_ABT.INC_POPULATION:
+                        targetitemInfoTxt.text = $"소환 캐릭터 +{dcDt.abilityVal}%";
+                        break;
+                    case DECO_ABT.INC_FAME:
+                        targetitemInfoTxt.text = $"추가 명예 +{dcDt.abilityVal}%";
+                        break;
+                }
                 break;
             }
         }

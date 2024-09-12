@@ -11,5 +11,6 @@ public class AlchemyDataSO_Deco : AlchemyDataSO
 {
     public DECO type;                      // 장식타입
     public Sprite itemSpr;                 // 아이템 이미지
-    public float ability;                  // 추가능력치
+    public DECO_ABT abilityType;           // 장식 추가능력 타입
+    public float abilityVal;               // 장식 추가능력치 값
 }

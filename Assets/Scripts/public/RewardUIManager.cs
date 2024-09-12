@@ -17,6 +17,8 @@ public class RewardUIManager : MonoBehaviour
     [Header("모든 보상템을 ContentTf안에 미리 만들고 IDX로 처리")]
     public Transform contentTf;
 
+    int rwdCnt = 0;
+
     void Start()
     {
         InitDataAndUI();
@@ -25,16 +27,47 @@ public class RewardUIManager : MonoBehaviour
     void Update() {
         //! 보상 테스트
         if(Input.GetKeyDown(KeyCode.V)) {
-
             // 보상획득 (결과팝업 표시)
-            ShowReward (
-                new Dictionary<RWD, int>
-                {
-                    { RWD.CRISTAL, 1000 },
-                    { RWD.ORE1, 100 },
-                    { RWD.ORE_CHEST, 10 },
-                }
-            );
+            if(rwdCnt % 2 == 0) // 짝수
+            {
+                ShowReward (
+                    new Dictionary<RWD, int>
+                    {
+                        { RWD.CRISTAL, 1000 },
+                        { RWD.ORE_CHEST, 10 },
+                        { RWD.TREASURE_CHEST, 10 },
+                        { RWD.MAT1, 100 },
+                        { RWD.MAT2, 100 },
+                        { RWD.MAT3, 100 },
+                        { RWD.MAT4, 100 },
+                        { RWD.MAT5, 100 },
+                        { RWD.MAT6, 100 },
+                        { RWD.MAT7, 100 },
+                        { RWD.MAT8, 100 },
+                    }
+                );
+                rwdCnt++;
+            }
+            else // 홀수
+            {
+                ShowReward (
+                    new Dictionary<RWD, int>
+                    {
+                        { RWD.CRISTAL, 1000 },
+                        { RWD.ORE_CHEST, 10 },
+                        { RWD.TREASURE_CHEST, 10 },
+                        { RWD.MUSH1, 100 },
+                        { RWD.MUSH2, 100 },
+                        { RWD.MUSH3, 100 },
+                        { RWD.MUSH4, 100 },
+                        { RWD.MUSH5, 100 },
+                        { RWD.MUSH6, 100 },
+                        { RWD.MUSH7, 100 },
+                        { RWD.MUSH8, 100 },
+                    }
+                );
+                rwdCnt++;
+            }
         }
     }
 
@@ -179,7 +212,7 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.MAT6:
                     case RWD.MAT7:
                     case RWD.MAT8:
-                        val = sttDB.SetMatArr((int)rwdType, val);
+                        val = sttDB.SetMatArr((int)rwdType - (int)RWD.MAT1, val);
                         break;
                     // (버섯도감) 버섯
                     case RWD.MUSH1:
@@ -190,7 +223,7 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.MUSH6:
                     case RWD.MUSH7:
                     case RWD.MUSH8:
-                        val = sttDB.SetMsrArr((int)rwdType, val);
+                        val = sttDB.SetMsrArr((int)rwdType - (int)RWD.MUSH1, val);
                         break;
 
                     // (소비) 아이템

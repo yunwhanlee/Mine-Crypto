@@ -78,6 +78,17 @@ public static class Enum
     }
 
     /// <summary>
+    /// 장식품 추가 능력치 종류
+    /// </summary>
+    public enum DECO_ABT {
+        ATK_PER,
+        ATKSPD_PER,
+        MOVSPD_PER,
+        INC_POPULATION, // int
+        INC_FAME, // int
+    }
+
+    /// <summary>
     ///* 표시 재화 아이템 종류
     /// </summary>
     public enum RSC {
@@ -204,8 +215,8 @@ public static class Enum
     /// (연금술) 장식품
     /// </summary>
     public enum DECO {
-        PURPLE_ORE_PILE, TREE_BRANCH, SNOWED_TREE, GORILLA, 
-        PLATINUM_ORE_PILE, ICE_SHEET, DARK_CRISTAL_PILE, CANYON_ROCK,
+        PURPLE_ORE_PILE_1, TREE_BRANCH_2, SNOWED_TREE_3, GORILLA_4, 
+        PLATINUM_ORE_PILE_5, ICE_SHEET_6, DARK_CRISTAL_PILE_7, CANYON_ROCK_8,
     }
 
 

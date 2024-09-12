@@ -109,7 +109,7 @@ public class TranscendManager : MonoBehaviour
         {
             GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
             DM._.DB.statusDB.SetRscArr((int)upgDt.NeedRsc, -upgDt.Price);
-            GM._.fm.missionArr[(int)Enum.MISSION.UPGRADE_CNT].Exp++;
+            GM._.fm.missionArr[(int)MISSION.UPGRADE_CNT].Exp++;
             upgDt.Lv++;
 
             UpdateDataAndUI();
