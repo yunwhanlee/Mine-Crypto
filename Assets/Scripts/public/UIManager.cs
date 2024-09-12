@@ -104,7 +104,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenu_MushroomGuideBtn() {
-        //TODO
+        topRscGroup.SetActive(false);
+        GM._.mrm.ShowPopUp();
     }
 
     public void OnClickMenu_AlchemyBtn() {

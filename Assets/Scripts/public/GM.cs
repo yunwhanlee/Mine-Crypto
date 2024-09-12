@@ -28,6 +28,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public ChallengeManager clm; // 시련의 광산
     [field:HideInInspector] public StatusManager sttm;
     [field:HideInInspector] public TranscendManager tsm; // 초월
+    [field:HideInInspector] public MushroomManager mrm; // 버섯도감
     [field:HideInInspector] public AlchemyManager acm; // 연금술
     
     //* PLAY
@@ -39,6 +40,9 @@ public class GM : MonoBehaviour
 
     [field:Header("광석재화 이미지배열")]
     [field:SerializeField] public Sprite[] RscSprArr {get; private set;}
+
+    [field:Header("버섯도감 이미지배열")]
+    [field:SerializeField] public Sprite[] MushSprArr {get; private set;}
 
     void Awake()
     {
@@ -60,6 +64,7 @@ public class GM : MonoBehaviour
         clm = GameObject.Find("ChallengeManager").GetComponent<ChallengeManager>();
         sttm = GameObject.Find("StatusManager").GetComponent<StatusManager>();
         tsm = GameObject.Find("TranscendManager").GetComponent<TranscendManager>();
+        mrm = GameObject.Find("MushroomManager").GetComponent<MushroomManager>();
         acm = GameObject.Find("AlchemyManager").GetComponent<AlchemyManager>();
 
         // HOME

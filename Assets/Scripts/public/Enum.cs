@@ -92,7 +92,7 @@ public static class Enum
     ///* 표시 재화 아이템 종류
     /// </summary>
     public enum RSC {
-        ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL
+        ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
     }
 
     /// <summary>

@@ -116,7 +116,8 @@ public class UpgradeManager : MonoBehaviour
         UpdateDataAndUI();
     }
 
-    private void Upgrade(UpgradeFormat upgDt) {
+    private void Upgrade(UpgradeFormat upgDt)
+    {
         if(DM._.DB.statusDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
         {
             GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
