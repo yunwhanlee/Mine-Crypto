@@ -9,12 +9,25 @@ public class StatusManager : MonoBehaviour
     const int DEF_POPULATION = 3;
     const int DEF_TIMER = 30;
 
-    // Element
+    //* Element
     public GameObject windowObj;
     public TMP_Text fameLvTxt;
     public TMP_Text[] myStatusTxtArr; // [0]: LeftArea, [1]: RightArea
 
-    // Value
+    //* Value
+    public int TotalPopulation { // 최종 소환캐릭터 수
+        get => GM._.ugm.upgIncPopulation.Val
+            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION) // (축복)
+            + GM._.tsm.upgIncPopulation.Val // (초월)
+            + (int)GM._.acm.decoItemData[(int)DECO.SNOWED_TREE_3].AbilityVal // (연금술) 장식
+            + (int)GM._.acm.decoItemData[(int)DECO.ICE_SHEET_6].AbilityVal // (연금술) 장식
+            + (int)GM._.acm.decoItemData[(int)DECO.CANYON_ROCK_8].AbilityVal; // (연금술) 장식
+    }
+    public int IncFame { // 명성 추가 획득량
+        get => GM._.tsm.upgIncFame.Val
+            + (int)GM._.acm.decoItemData[(int)DECO.GORILLA_4].AbilityVal
+            + (int)GM._.acm.decoItemData[(int)DECO.DARK_CRISTAL_PILE_7].AbilityVal;
+    }
 
 #region FUNC
     /// <summary>
@@ -33,26 +46,43 @@ public class StatusManager : MonoBehaviour
         myStatusTxtArr[0].text = "";
         myStatusTxtArr[1].text = "";
 
-        // 추가능력치 계산
+        //* 추가능력치 계산
+        // 공격력 +
         int Atk = ugm.upgAttack.Val;
+        // 공격력 %
         float AtkPer = obm.GetAbilityValue(OREBLESS_ABT.ATK_PER)
-            + GM._.pfm.totalAttackPer;
+            + GM._.pfm.totalAttackPer
+            + GM._.acm.decoItemData[(int)DECO.PURPLE_ORE_PILE_1].AbilityVal;
+        // 공격속도 %
         float AtkSpdPer = ugm.upgAttackSpeed.Val
-            + obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER);
+            + obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER)
+            + GM._.acm.decoItemData[(int)DECO.PLATINUM_ORE_PILE_5].AbilityVal;
+        // 이동속도 %
         float MovSpdPer = ugm.upgMoveSpeed.Val
-            + obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER);
+            + obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER)
+            + GM._.acm.decoItemData[(int)DECO.TREE_BRANCH_2].AbilityVal;
+        // 가방용량 %
         float BagStgPer = ugm.upgBagStorage.Val
             + obm.GetAbilityValue(OREBLESS_ABT.BAG_STG_PER);
+        // 제한시간 +
         int IncTimer = ugm.upgIncTimer.Val
             + (int)obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
+        // 다음층 스킵 %
         float NextSkipPer = ugm.upgNextStageSkip.Val
             + obm.GetAbilityValue(OREBLESS_ABT.NEXT_STG_SKIP_PER);
+        // 크리스탈 획득량 +
         int IncCristal = ugm.upgIncCristal.Val
             + (int)obm.GetAbilityValue(OREBLESS_ABT.INC_CRISTAL);
-        int IncPopulation = ugm.upgIncPopulation.Val
-            + (int)obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION)
-            + tsm.upgIncPopulation.Val;
+        // 소환캐릭터 + //! 그냥 변수로 선언
+        // Population = ugm.upgIncPopulation.Val
+        //     + (int)obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION)
+        //     + tsm.upgIncPopulation.Val
+        //     + (int)GM._.acm.decoItemData[(int)DECO.SNOWED_TREE_3].abilityVal
+        //     + (int)GM._.acm.decoItemData[(int)DECO.ICE_SHEET_6].abilityVal
+        //     + (int)GM._.acm.decoItemData[(int)DECO.CANYON_ROCK_8].abilityVal;
+        // 보물상자 소환확률 %
         float ChestSpawnPer = obm.GetAbilityValue(OREBLESS_ABT.INC_CHEST_SPAWN_PER);
+        // 광석 보상 획득량 %
         float Ore1RwdPer = obm.GetAbilityValue(OREBLESS_ABT.INC_ORE1_RWD_PER);
         float Ore2RwdPer = obm.GetAbilityValue(OREBLESS_ABT.INC_ORE2_RWD_PER);
         float Ore3RwdPer = obm.GetAbilityValue(OREBLESS_ABT.INC_ORE3_RWD_PER);
@@ -61,13 +91,22 @@ public class StatusManager : MonoBehaviour
         float Ore6RwdPer = obm.GetAbilityValue(OREBLESS_ABT.INC_ORE6_RWD_PER);
         float Ore7RwdPer = obm.GetAbilityValue(OREBLESS_ABT.INC_ORE7_RWD_PER);
         float Ore8RwdPer = obm.GetAbilityValue(OREBLESS_ABT.INC_ORE8_RWD_PER);
+        // 자동채굴 광석 %
         float IncAutoOrePer = tsm.upgIncAutoOrePer.Val;
+        // 자동채굴 크리스탈 %
         float IncAutoCristalPer = tsm.upgIncAutoCristalPer.Val;
+        // 제작비용 감소 %
         float DecAutoProducePer = tsm.upgDecAutoProducePer.Val;
+        // 보물상자 획득 +
         int IncTreasureChest = tsm.upgIncTreasureChest.Val;
+        // 자동채굴 광석 수용량 %
         float IncAutoOreBagStoragePer = tsm.upgIncAutoOreBagStoragePer.Val;
+        // 자동채굴 크리스탈 수용량 %
         float IncAutoCristalBagStoragePer = tsm.upgIncAutoCristalBagStoragePer.Val;
-        int IncFame = tsm.upgIncFame.Val;
+        // 명성 획득 + //! 그냥 변수로 선언
+        // int IncFame = tsm.upgIncFame.Val
+        //     + (int)GM._.acm.decoItemData[(int)DECO.GORILLA_4].abilityVal
+        //     + (int)GM._.acm.decoItemData[(int)DECO.DARK_CRISTAL_PILE_7].abilityVal;
 
         // 텍스트 변환
         string ATK = Atk > 0? $"공격력 : +{Atk}\n" : "";
@@ -78,7 +117,7 @@ public class StatusManager : MonoBehaviour
         string INC_TIMER = IncTimer > DEF_TIMER? $"채굴시간 : +{IncTimer - DEF_TIMER}초\n" : "";
         string NEXT_SKIP_PER = NextSkipPer > 0? $"다음층 스킵 : +{NextSkipPer * 100}%\n" : "";
         string INC_CRSITAL = IncCristal > 0? $"크리스탈 획득량 : +{IncCristal}\n" : "";
-        string INC_POPULATION = IncPopulation > DEF_POPULATION? $"소환캐릭 증가 : +{IncPopulation - DEF_POPULATION}\n" : "";
+        string INC_POPULATION = TotalPopulation > DEF_POPULATION? $"소환캐릭 증가 : +{TotalPopulation - DEF_POPULATION}\n" : "";
         string CHEST_SPAWN_PER = ChestSpawnPer > 0? $"상자 등장확률 : +{ChestSpawnPer * 100}%\n" : "";
         string ORE1_RWD_PER = Ore1RwdPer > 0? $"광석1 획득량 : +{Ore1RwdPer * 100}%\n" : "";
         string ORE2_RWD_PER = Ore2RwdPer > 0? $"광석2 획득량 : +{Ore2RwdPer * 100}%\n" : "";

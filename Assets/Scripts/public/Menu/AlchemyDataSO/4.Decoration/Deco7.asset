@@ -17,8 +17,8 @@ MonoBehaviour:
     val: 5000
   - type: 15
     val: 2000
+  id: 6
   type: 6
   itemSpr: {fileID: 956202455, guid: a54107c711dd44b40b4f7aedcff341f4, type: 3}
-  isBuyed: 0
   abilityType: 4
   abilityVal: 2

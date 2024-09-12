@@ -51,6 +51,7 @@ public class AlchemyManager : MonoBehaviour
     public NeedItemUIFormat[] needItemUIArr;        // 필요한 아이템UI
     public Slider createAmountControlSlider;        // 생산량 컨트롤 슬라이더UI
     public TMP_Text createAmountTxt;                // 생산량 표시
+    public Button createBtn;                        // 생산 버튼
 
     // Value
     public ALCHEMY_CATE cateIdx;                    // 현재 선택한 카테고리 인덱스
@@ -80,6 +81,7 @@ public class AlchemyManager : MonoBehaviour
     {
         this.cateIdx = (ALCHEMY_CATE)cateIdx;
         SetCatetory();
+        UpdateUI(0);
     }
 
     /// <summary>
@@ -196,10 +198,10 @@ public class AlchemyManager : MonoBehaviour
             }
             else if(itemDt is AlchemyDataSO_Deco) // 장식아이템
             {
-                Debug.Log("OnClickCreateBtn():: (int)dcDt.type= {(int)dcDt.type}");
                 var dcDt = itemDt as AlchemyDataSO_Deco;
-                decoObjArr[(int)dcDt.type].SetActive(true);
-                DM._.DB.decoDB.IsBuyedArr[(int)dcDt.type] = true;
+
+                dcDt.IsBuyed = true;
+                dcDt.Obj.SetActive(true);
             }
 
             // 업데이트 UI
@@ -274,10 +276,13 @@ public class AlchemyManager : MonoBehaviour
             createAmountControlSlider.interactable = true; // 슬라이더 활성화
         }
         else {
-            createAmountTxt.text = "1개";
+            // createAmountTxt.text = "1개";
             createAmountControlSlider.value = 1; // 하나도 못 만들면 0으로 고정
             createAmountControlSlider.interactable = false; // 슬라이더 비활성화
         }
+        
+        // 슬라이더UI 업데이트
+        OnSliderValueChanged();
     }
 
     /// <summary>
@@ -288,8 +293,13 @@ public class AlchemyManager : MonoBehaviour
     {
         var sttDB = DM._.DB.statusDB;
 
+        //* 초기화
         // 제작필요 아이템UI 리스트 비표시
         Array.ForEach(needItemUIArr, needItemUI => needItemUI.obj.SetActive(false));
+        // 슬라이더 표시
+        createAmountControlSlider.gameObject.SetActive(true);
+        // 생산버튼 활성화
+        createBtn.interactable = true;
 
         switch (cateIdx)
         {
@@ -402,32 +412,41 @@ public class AlchemyManager : MonoBehaviour
                 targetItemImg.sprite = dcDt.itemSpr;
 
                 // 제작필요 아이템 업데이트
-                for(int i = 0; i < dcDt.needItemDataArr.Length; i++)
-                    maxCreateMatArr[i] = UpdateNeedItem(dcDt, i);
+                if(dcDt.IsBuyed)
+                {
+                    createAmountTxt.text = "보유 중";
+                    createBtn.interactable = false; // 생산버튼 비활성화
+                }
+                else
+                {
+                    createAmountTxt.text = "";
+                    for(int i = 0; i < dcDt.needItemDataArr.Length; i++)
+                        maxCreateMatArr[i] = UpdateNeedItem(dcDt, i);
+                }
 
                 // 제작가능한 최대수량
                 creatableMax = Mathf.Min(maxCreateMatArr);
 
                 // 슬라이더 설정
-                SetSlider();
+                createAmountControlSlider.gameObject.SetActive(false);
 
                 // 추가능력 표시
                 switch (dcDt.abilityType)
                 {
                     case DECO_ABT.ATK_PER:
-                        targetitemInfoTxt.text = $"추가 공격력 +{dcDt.abilityVal * 100}%";
+                        targetitemInfoTxt.text = $"추가 공격력 +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.ATKSPD_PER:
-                        targetitemInfoTxt.text = $"추가 이동속도 +{dcDt.abilityVal * 100}%";
+                        targetitemInfoTxt.text = $"추가 이동속도 +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.MOVSPD_PER:
-                        targetitemInfoTxt.text = $"공격속도 +{dcDt.abilityVal * 100}%";
+                        targetitemInfoTxt.text = $"공격속도 +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.INC_POPULATION:
-                        targetitemInfoTxt.text = $"소환 캐릭터 +{dcDt.abilityVal}%";
+                        targetitemInfoTxt.text = $"소환 캐릭터 +{dcDt.AbilityVal_ShowTxt}";
                         break;
                     case DECO_ABT.INC_FAME:
-                        targetitemInfoTxt.text = $"추가 명예 +{dcDt.abilityVal}%";
+                        targetitemInfoTxt.text = $"추가 명예 +{dcDt.AbilityVal_ShowTxt}";
                         break;
                 }
                 break;

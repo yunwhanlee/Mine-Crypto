@@ -201,9 +201,7 @@ public class EmployManager : MonoBehaviour
         workerCnt = 0;
 
         // 소환캐릭 수
-        workerMax = GM._.ugm.upgIncPopulation.Val
-            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION) // 축복 소환캐릭 증가
-            + GM._.tsm.upgIncPopulation.Val; // (초월) 소환캐릭 증가
+        workerMax = GM._.sttm.TotalPopulation;
 
         PlayBtnEmployCntTxt.text = $"{workerMax}마리 고용";
 

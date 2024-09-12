@@ -53,7 +53,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 int extraVal = GM._.ugm.upgAttack.Val;
                 float extraPer = 1
                     + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATK_PER)
-                    + GM._.pfm.totalAttackPer;
+                    + GM._.pfm.totalAttackPer
+                    + GM._.acm.decoItemData[(int)DECO.PURPLE_ORE_PILE_1].AbilityVal;
 
                 int result = Mathf.RoundToInt((attackVal + extraVal) * extraPer);
                 Debug.Log($"AttackVal: ({attackVal} + {extraVal}) * {extraPer}=" + result);
@@ -67,7 +68,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             get {
                 float extraPer = 1
                     + GM._.ugm.upgAttackSpeed.Val
-                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER);
+                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER)
+                    + GM._.acm.decoItemData[(int)DECO.PLATINUM_ORE_PILE_5].AbilityVal;
 
                 float result = attackSpeed * extraPer;
                 Debug.Log($"AttackSpeed: {attackSpeed} * {extraPer}=" + result);
@@ -75,13 +77,14 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             }
         }
 
-        // 移動速度
+        // 이동속도
         [SerializeField] float moveSpeed;
         public float MoveSpeed {
             get {
                 float extraPer = 1
                     + GM._.ugm.upgMoveSpeed.Val
-                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER);
+                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER)
+                    + GM._.acm.decoItemData[(int)DECO.TREE_BRANCH_2].AbilityVal;
                 
                 float result = moveSpeed * extraPer;
                 Debug.Log($"MoveSpeed: {moveSpeed} * {extraPer}=" + result);
@@ -313,7 +316,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         GM._.mnm.workerClearStageStatusCnt++;
 
                         // 모든 캐릭터가 클리어 카운트 됬다면
-                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.ugm.upgIncPopulation.Val)
+                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.sttm.TotalPopulation)
                         {
                             // 시련의광산 층 돌파 성공
                             if(GM._.stgm.OreType == RSC.CRISTAL)
