@@ -60,7 +60,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
         // 공격속도
-        [SerializeField] [Range(1, 7.5f)] float attackSpeed;
+        [SerializeField] [Range(0.5f, 7.5f)] float attackSpeed;
         public float AttackSpeed {
             get {
                 float extraPer = 1 + GM._.sttm.ExtraAtkSpdPer;

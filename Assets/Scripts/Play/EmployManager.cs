@@ -153,14 +153,14 @@ public class EmployManager : MonoBehaviour
         // 고용횟수 만큼 반복
         for(int i = 0; i < gachaResultList.Count; i++)
         {
-            Enum.GRADE grade = gachaResultList[i];
+            GRADE grade = gachaResultList[i];
 
             // 한국어로 등급이름 번역
-            string gradeName = grade == Enum.GRADE.COMMON? "일반"
-                : grade == Enum.GRADE.UNCOMMON? "<color=green>고급</color>"
-                : grade == Enum.GRADE.RARE? "<color=blue>레어</color>"
-                : grade == Enum.GRADE.UNIQUE? "<color=purple>유니크</color>"
-                : grade == Enum.GRADE.LEGEND? "<color=yellow>전설</color>"
+            string gradeName = grade == GRADE.COMMON? "일반"
+                : grade == GRADE.UNCOMMON? "<color=green>고급</color>"
+                : grade == GRADE.RARE? "<color=blue>레어</color>"
+                : grade == GRADE.UNIQUE? "<color=purple>유니크</color>"
+                : grade == GRADE.LEGEND? "<color=yellow>전설</color>"
                 : "<color=red>신화</color>";
 
             GM._.ui.ShowNoticeMsgPopUp($"{workerCnt}. {gradeName} 등급 소환!");
@@ -203,7 +203,7 @@ public class EmployManager : MonoBehaviour
         // 소환캐릭 수
         workerMax = GM._.sttm.TotalPopulation;
 
-        PlayBtnEmployCntTxt.text = $"{workerMax}마리 고용";
+        PlayBtnEmployCntTxt.text = $"{workerMax}마리 소환";
 
         //* 랜덤뽑기결과 팝업
         gachaRetryCntMax = 10;
