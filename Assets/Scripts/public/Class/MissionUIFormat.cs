@@ -53,7 +53,7 @@ public class MissionUIFormat
             // 보상1 FAME
             int val = rewardValues[0];
             if(rewardKeys[0] == RWD.FAME) // (초월)명예 획득량
-                val += GM._.tsm.upgIncFame.Val;
+                val += GM._.sttm.IncFame;
             Rwd1Txt.text = val.ToString();
             Rwd1Img.sprite = GM._.rwm.GetRewardItemSprite(rewardKeys[0]);
             // 보상2

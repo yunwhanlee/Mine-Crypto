@@ -66,8 +66,7 @@ public class PlayManager : MonoBehaviour
         if(GM._.stgm.OreType == RSC.CRISTAL)
             timerVal = CRISTAL_STAGE_PLAYTIME_SEC;
         else
-            timerVal = GM._.ugm.upgIncTimer.Val
-                + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
+            timerVal = GM._.sttm.ExtraIncTimer;
 
         // 시작전에 최대타이머 시간 대입 -> 종료시, 채굴시간미션에 적용
         timerMax = timerVal;

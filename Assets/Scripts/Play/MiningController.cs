@@ -46,15 +46,12 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         [field: SerializeField] public Enum.GRADE Grade {get; private set;}
 
         [Header("능력치")]
-        // 攻撃力
+        // 공격력
         [SerializeField] int attackVal;
         public int AttackVal {
             get {
-                int extraVal = GM._.ugm.upgAttack.Val;
-                float extraPer = 1
-                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATK_PER)
-                    + GM._.pfm.totalAttackPer
-                    + GM._.acm.decoItemData[(int)DECO.PURPLE_ORE_PILE_1].AbilityVal;
+                int extraVal = GM._.sttm.ExtraAtk;
+                float extraPer = 1 + GM._.sttm.ExtraAtkPer;
 
                 int result = Mathf.RoundToInt((attackVal + extraVal) * extraPer);
                 Debug.Log($"AttackVal: ({attackVal} + {extraVal}) * {extraPer}=" + result);
@@ -62,14 +59,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             }
         }
 
-        // 攻撃速度
+        // 공격속도
         [SerializeField] [Range(1, 7.5f)] float attackSpeed;
         public float AttackSpeed {
             get {
-                float extraPer = 1
-                    + GM._.ugm.upgAttackSpeed.Val
-                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER)
-                    + GM._.acm.decoItemData[(int)DECO.PLATINUM_ORE_PILE_5].AbilityVal;
+                float extraPer = 1 + GM._.sttm.ExtraAtkSpdPer;
 
                 float result = attackSpeed * extraPer;
                 Debug.Log($"AttackSpeed: {attackSpeed} * {extraPer}=" + result);
@@ -81,24 +75,19 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         [SerializeField] float moveSpeed;
         public float MoveSpeed {
             get {
-                float extraPer = 1
-                    + GM._.ugm.upgMoveSpeed.Val
-                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER)
-                    + GM._.acm.decoItemData[(int)DECO.TREE_BRANCH_2].AbilityVal;
-                
+                float extraPer = 1 + GM._.sttm.ExtraMovSpdPer;
+
                 float result = moveSpeed * extraPer;
                 Debug.Log($"MoveSpeed: {moveSpeed} * {extraPer}=" + result);
                 return result;
             }
         }
 
-        // カバンサイズ保管量
+        // 가방 수용량
         [SerializeField] int bagStorageSize;
         public int BagStorageSize {
             get {
-                float extraPer = 1
-                    + GM._.ugm.upgBagStorage.Val
-                    + GM._.obm.GetAbilityValue(OREBLESS_ABT.BAG_STG_PER);
+                float extraPer = 1 + GM._.sttm.ExtraBagStgPer;
 
                 int result = Mathf.RoundToInt(bagStorageSize * extraPer);
                 Debug.Log($"BagStorageSize: {bagStorageSize} * {extraPer}=" + result);

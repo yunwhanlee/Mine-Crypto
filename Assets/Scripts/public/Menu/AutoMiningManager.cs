@@ -132,13 +132,13 @@ public class AutoMiningManager : MonoBehaviour
             {
                 // (초월) 자동 광석 수량%
                 default: {
-                    float extraPer = 1 + GM._.tsm.upgIncAutoOrePer.Val; 
+                    float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
                     val = Mathf.RoundToInt(stgDB.BestFloorArr[idx] * extraPer);
                     break;
                 }
                 // (초월) 자동 크리스탈 수량%
                 case (int)RSC.CRISTAL: {
-                    float extraPer = 1 + GM._.tsm.upgIncAutoCristalPer.Val; 
+                    float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
                     val = Mathf.RoundToInt(stgDB.BestFloorArr[idx] * extraPer);
                     break;
                 }
@@ -280,7 +280,7 @@ public class AutoMiningManager : MonoBehaviour
 
         // 추가 수량
         float extraPer = 1
-            + GM._.tsm.upgIncAutoOreBagStoragePer.Val; // (초월) 자동 광석 보관량%
+            + GM._.sttm.ExtraAutoOreBagStoragePer; // (초월) 자동 광석 보관량%
 
         int val = DEF + (lv - 1) * INC;
 
@@ -293,7 +293,7 @@ public class AutoMiningManager : MonoBehaviour
 
         // 추가 수량
         float extraPer = 1
-            + GM._.tsm.upgIncAutoCristalBagStoragePer.Val; // (초월) 자동 크리스탈 보관량%
+            + GM._.sttm.ExtraAutoCristalBagStoragePer; // (초월) 자동 크리스탈 보관량%
 
         int val = DEF + (lv - 1) * INC;
 

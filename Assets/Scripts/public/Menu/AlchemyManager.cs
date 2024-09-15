@@ -134,7 +134,10 @@ public class AlchemyManager : MonoBehaviour
             {
                 // 제작필요 아이템 데이터
                 NeedItemData needItemDt = itemDt.needItemDataArr[i];
-                int totalNeedVal = needItemDt.Val * createCnt;
+
+                // 제작비용 감소 % 적용
+                int needItemVal = ApplyDecMatPer(needItemDt.Val);
+                int totalNeedVal = needItemVal * createCnt;
 
                 // 제작에 필요한 아이템 수량 감소
                 switch(needItemDt.Type)
@@ -170,6 +173,7 @@ public class AlchemyManager : MonoBehaviour
             if(itemDt is AlchemyDataSO_Material) // 재료
             {
                 var mtDt = itemDt as AlchemyDataSO_Material;
+
                 // 수량 추가
                 sttDB.SetMatArr((int)mtDt.type, createCnt); 
             }
@@ -225,6 +229,17 @@ public class AlchemyManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 강화에 필요한 재료 제작비용 감소 적용
+    /// </summary>
+    /// <returns></returns>
+    private int ApplyDecMatPer(int needItemVal)
+    {
+        // 제작비용 감소 % 적용
+        float decMatPer = 1 - GM._.sttm.DecAlchemyMaterialPer;
+        return Mathf.RoundToInt(needItemVal * decMatPer);
+    }
+
+    /// <summary>
     /// 카테고리 설정
     /// </summary>
     private void SetCatetory()
@@ -255,15 +270,18 @@ public class AlchemyManager : MonoBehaviour
         NeedItemData needItemDt = cateDt.needItemDataArr[idx];
         NeedItemUIFormat itemUI = needItemUIArr[idx];
 
+        // 제작비용 감소 % 적용
+        int needItemVal = ApplyDecMatPer(needItemDt.Val);
+
         // 목록UI 표시
         itemUI.obj.SetActive(true);
         // 현재 아이템 수량
         int curItemVal = DM._.DB.statusDB.GetInventoryItemVal(needItemDt.Type);
         // 아이템제작 텍스트 표시
-        string colorTag = curItemVal >= needItemDt.Val? "green" : "red";
-        itemUI.needCntTxt.text = $"<sprite name={needItemDt.Type}>  <color={colorTag}>{needItemDt.Val}</color> / {curItemVal}";
+        string colorTag = curItemVal >= needItemVal? "green" : "red";
+        itemUI.needCntTxt.text = $"<sprite name={needItemDt.Type}>  <color={colorTag}>{needItemVal}</color> / {curItemVal}";
         // 필요 아이템을 나눈 값
-        return curItemVal / needItemDt.Val;
+        return curItemVal / needItemVal;
     }
 
     /// <summary>

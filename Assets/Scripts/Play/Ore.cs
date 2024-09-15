@@ -77,7 +77,7 @@ public class Ore : MonoBehaviour
             if(OreType == RSC.CRISTAL) 
             {   
                 // 수량 1 + (초월)보물상자 획득량
-                int ammount = 1 + GM._.tsm.upgIncTreasureChest.Val;
+                int ammount = 1 + GM._.sttm.ExtraTreasureChest;
 
                 GM._.pm.playResRwdArr[(int)RWD.TREASURE_CHEST] += ammount; // 결과수치 UI
                 DM._.DB.statusDB.TreasureChest += ammount; // 데이터

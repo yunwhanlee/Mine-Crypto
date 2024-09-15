@@ -224,7 +224,7 @@ public class StatusDB
                     val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.CRISTAL: // (Int형)
-                    int extraVal = GM._.ugm.upgIncCristal.Val + (int)obm.GetAbilityValue(OREBLESS_ABT.INC_CRISTAL);
+                    int extraVal = GM._.sttm.ExtraIncCristal;
                     val += extraVal;
                     break;
             }

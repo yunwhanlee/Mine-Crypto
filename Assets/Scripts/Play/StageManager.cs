@@ -26,7 +26,7 @@ public class StageManager : MonoBehaviour {
 
     //* Value
     [Header("생성시 보물상자로 랜덤변경 확률%")]
-    [Range(1, 100)] public int treasureChestSpawnPer;
+    [Range(1, 1000)] public int treasureChestSpawnDefPer;
 
     [field:SerializeField] RSC oreType;  public RSC OreType {
         get => oreType;
@@ -82,13 +82,10 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     public IEnumerator CoNextStage()
     {
-        float upgPer = GM._.ugm.upgBagStorage.Val;
-        float oreBlessPer = GM._.obm.GetAbilityValue(OREBLESS_ABT.NEXT_STG_SKIP_PER);
-
         Floor++;
 
         // 2층 이동확률% 적용 (소수점 3자리까지)
-        int skipFloorPer = Mathf.RoundToInt((upgPer + oreBlessPer) * 1000);
+        int skipFloorPer = Mathf.RoundToInt(GM._.sttm.ExtraNextSkipPer * 1000);
         int randPer = Random.Range(0, 1000);
         Debug.Log($"2층 이동확률%:: skipFloorPer({skipFloorPer}) <= randPer({randPer})");
         if(skipFloorPer <= randPer)
@@ -205,9 +202,10 @@ public class StageManager : MonoBehaviour {
                 //* 일반광산
                 default:
                     // 낮은확률 광석 -> 보물상자로 랜덤변경
-                    int randPer = Random.Range(0, 100);
-                    obj = (randPer <= treasureChestSpawnPer)? treasureChestPref : orePrefs[(int)oreType];
-                    Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= treasureChestSpawnPer({treasureChestSpawnPer})");
+                    int randPer = Random.Range(0, 1000);
+                    int spawnPer = treasureChestSpawnDefPer + Mathf.RoundToInt(GM._.sttm.ExtraChestSpawnPer * 1000);
+                    obj = (randPer <= spawnPer)? treasureChestPref : orePrefs[(int)oreType];
+                    Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= sapwnPer({spawnPer})");
                     break;
             }
 

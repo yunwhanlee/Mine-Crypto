@@ -251,7 +251,7 @@ public class RewardUIManager : MonoBehaviour
 
                     //※여기에 추가
                     case RWD.FAME: // 명성포인트 + (초월) 명예 획득량
-                        val += GM._.tsm.upgIncFame.Val;
+                        val += GM._.sttm.IncFame;
                         sttDB.Fame += val;
                         break;
                     

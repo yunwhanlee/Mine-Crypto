@@ -164,7 +164,7 @@ public class MushroomManager : MonoBehaviour
                 break;
             case (int)MUSH.MUSH8:
                 mushFormat = ms8_IncPopulation;
-                targetAbilityTxt.text = $"소환캐릭터 증가 +{ms8_IncPopulation.Val} => +{ms8_IncPopulation.GetNextVal() * 100}";
+                targetAbilityTxt.text = $"소환캐릭터 증가 +{ms8_IncPopulation.Val} => +{ms8_IncPopulation.GetNextVal()}";
                 break;
         }
 
