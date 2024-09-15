@@ -28,6 +28,6 @@ public class UpgradeUIFormat
         Debug.Log($"UpdateUI():: {upgFormat.NeedRsc} => idx: {(int)upgFormat.NeedRsc}");
         PriceRscImg.sprite = GM._.RscSprArr[(int)upgFormat.NeedRsc];
         PriceTxt.text = $"{upgFormat.Price}";
-        InfoTxt.text = $"{upgFormat.Val * 100} => {upgFormat.GetNextVal() * 100}%";
+        InfoTxt.text = $"{Mathf.Round(upgFormat.Val * 100)} => {Mathf.Round(upgFormat.GetNextVal() * 100)}%";
     }
 }
