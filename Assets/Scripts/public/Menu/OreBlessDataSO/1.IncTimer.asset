@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd791022a44231b48aab4b1f3331fed7, type: 3}
-  m_Name: 17.IncPopulation
+  m_Name: 1.IncTimer
   m_EditorClassIdentifier: 
-  type: 16
-  abtName: "\uC18C\uD658\uCE90\uB9AD\uD130 \uC99D\uAC00"
-  minArr: 010000000200000003000000040000000500000006000000
-  maxArr: 020000000300000004000000050000000600000007000000
+  type: 0
+  abtName: "\uCC44\uAD74\uC2DC\uAC04"
+  minArr: 0a0000001f000000650000002d010000f5010000e8030000
+  maxArr: 1e000000640000002c010000f4010000e7030000e9030000

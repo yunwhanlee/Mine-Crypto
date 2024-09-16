@@ -58,12 +58,13 @@ public static class Enum
     /// 축복 능력치 (int OR Float)
     /// </summary>
     public enum OREBLESS_ABT {
+        INC_TIMER, // int
+        INC_CRISTAL, // int
+        INC_POPULATION, // int
         ATK_PER,
         ATKSPD_PER,
         MOVSPD_PER,
         BAG_STG_PER,
-        INC_TIMER, // int
-        INC_CRISTAL, // int
         NEXT_STG_SKIP_PER,
         INC_CHEST_SPAWN_PER,
         INC_ORE1_RWD_PER,
@@ -74,7 +75,6 @@ public static class Enum
         INC_ORE6_RWD_PER,
         INC_ORE7_RWD_PER,
         INC_ORE8_RWD_PER,
-        INC_POPULATION // int
     }
 
     /// <summary>

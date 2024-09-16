@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd05d3cad5870a943a3718b8d7ebe551, type: 3}
-  m_Name: 11.IncOre3Per
+  m_Name: 9.IncChestPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
-  type: 10
-  abtName: "\uAD11\uC11D3 \uD68D\uB4DD\uB7C9"
+  type: 8
+  abtName: "\uC0C1\uC790 \uB4F1\uC7A5\uD655\uB960"
   minArr:
-  - 0.01
-  - 0.05
-  - 0.11
-  - 0.21
-  - 0.31
-  - 0.4
+  - 0.001
+  - 0.006
+  - 0.011
+  - 0.016
+  - 0.021
+  - 0.025
   maxArr:
-  - 0.04
-  - 0.1
-  - 0.2
-  - 0.3
-  - 0.39
-  - 0.41
+  - 0.005
+  - 0.01
+  - 0.015
+  - 0.02
+  - 0.024
+  - 0.026

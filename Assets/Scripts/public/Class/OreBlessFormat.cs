@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 /// </summary>
 [Serializable]
 public struct OreBlessAbilityData {
-    public Enum.OREBLESS_ABT type;
+    public Enum.OREBLESS_ABT type; // 능력타입
     public Enum.GRADE grade;
     public float val; // int형 능력치일 경우 (int)로 형변환 할 것!
 }

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd05d3cad5870a943a3718b8d7ebe551, type: 3}
-  m_Name: 9.IncOre1Per
+  m_Name: 16.IncOre7Per
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
-  type: 8
-  abtName: "\uAD11\uC11D1 \uD68D\uB4DD\uB7C9"
+  type: 15
+  abtName: "\uAD11\uC11D7 \uD68D\uB4DD\uB7C9"
   minArr:
   - 0.01
   - 0.05

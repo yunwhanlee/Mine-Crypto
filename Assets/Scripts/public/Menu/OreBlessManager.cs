@@ -22,7 +22,10 @@ public class OreBlessManager : MonoBehaviour
     public GameObject windowObj;
     public OreBlessFormat[] oreBlessFormatArr;
 
-    void Start() {
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         sttDB = DM._.DB.statusDB;
         oreDB = DM._.DB.oreBlessDB;
 
@@ -93,12 +96,18 @@ public class OreBlessManager : MonoBehaviour
                     // 자료형에 따른 처리
                     if(isInt)
                     {
-                        intAbility = Int_Abilities[(int)ability.type];
+                        // 정수형 능력 인덱스 정규화
+                        int idx = (int)ability.type;
+
+                        intAbility = Int_Abilities[idx];
                         unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
                     }
                     else 
                     {
-                        floatAbility = Float_Abilities[(int)ability.type];
+                        // 소수형 능력 인덱스 정규화
+                        int idx = (int)ability.type - (int)OREBLESS_ABT.ATK_PER;
+
+                        floatAbility = Float_Abilities[idx];
                         unit = "%";
                     }
 
@@ -121,6 +130,8 @@ public class OreBlessManager : MonoBehaviour
     /// </summary>
     /// <param name="oreBlessIdx">축복의 광산 IDX</param>
     public void ResetAbilities(int oreBlessIdx) {
+        OreBlessSaveData saveDt = oreDB.saveDts[oreBlessIdx];
+
         // 능력리스트 리셋
         oreBlessFormatArr[oreBlessIdx].AbilityList = new List<OreBlessAbilityData>();
         oreBlessFormatArr[oreBlessIdx].AbilityTxt.text = "";
@@ -164,17 +175,19 @@ public class OreBlessManager : MonoBehaviour
         switch(dataType)
         {
             case INT_TYPE: {
-                int rdType = Random.Range(0, Int_Abilities.Length);
-                intAbility = Int_Abilities[rdType];
+                int rdTypeIdx = Random.Range(0, Int_Abilities.Length);
+                intAbility = Int_Abilities[rdTypeIdx];
+                // Debug.Log($"Int_Abilities.Length= {Int_Abilities.Length}, rdTypeIdx= {rdTypeIdx}, intAbility.Type=" + intAbility.Type);
                 value = Random.Range(intAbility.MinArr[gradeIdx], intAbility.MaxArr[gradeIdx]);
                 unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
                 break;
             }
             case FLOAT_TYPE: {
-                int rdType = Random.Range(0, Float_Abilities.Length);
-                floatAbility = Float_Abilities[rdType];
+                int rdTypeIdx = Random.Range(0, Float_Abilities.Length);
+                floatAbility = Float_Abilities[rdTypeIdx];
+                // Debug.Log($"Float_Abilities.Length= {Float_Abilities.Length}, rdTypeIdx= {rdTypeIdx}, floatAbility.Type=" + floatAbility.Type);
                 value = Random.Range(floatAbility.MinArr[gradeIdx], floatAbility.MaxArr[gradeIdx]);
-                value = (float)Math.Round(value, 3);
+                value = (float)Math.Round(value, 3); // 최대 소수점 3자리수
                 unit = "%";
                 break;
             }
@@ -182,7 +195,7 @@ public class OreBlessManager : MonoBehaviour
 
         bool isInt = dataType == INT_TYPE;
 
-        //* 능력치 데이터 추가
+        //* 능력치 DB데이터 추가
         oreBlessFormatArr[oreBlessIdx].AbilityList.Add (
             new OreBlessAbilityData {
                 grade = (GRADE)gradeIdx,

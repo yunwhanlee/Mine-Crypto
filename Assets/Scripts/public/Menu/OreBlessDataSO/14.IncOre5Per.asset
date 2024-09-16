@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd05d3cad5870a943a3718b8d7ebe551, type: 3}
-  m_Name: 3.MovSpdPer
+  m_Name: 14.IncOre5Per
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
-  type: 2
-  abtName: "\uC774\uB3D9\uC18D\uB3C4"
+  type: 13
+  abtName: "\uAD11\uC11D5 \uD68D\uB4DD\uB7C9"
   minArr:
-  - 0.001
-  - 0.021
-  - 0.051
-  - 0.101
-  - 0.151
-  - 0.2
-  maxArr:
-  - 0.02
+  - 0.01
   - 0.05
-  - 0.1
-  - 0.15
-  - 0.199
+  - 0.11
   - 0.21
+  - 0.31
+  - 0.4
+  maxArr:
+  - 0.04
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.39
+  - 0.41
