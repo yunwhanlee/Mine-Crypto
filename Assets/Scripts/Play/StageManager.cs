@@ -142,9 +142,8 @@ public class StageManager : MonoBehaviour {
         yield return Util.TIME0_5;
 
         // RESET : 모든 광석 오브젝트 삭제
-        for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++) {
+        for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
             Destroy(GM._.mnm.oreGroupTf.GetChild(i).gameObject);
-        }
 
         UpdateOreValueByStage();
         InitOrePosList(interval);
@@ -156,9 +155,20 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     private void UpdateOreValueByStage()
     {
-        const int DEF_HP = 1000;
-        oreHp = DEF_HP + ((floor-1) * 100);
-        oreCnt = (floor + 10) / 10;
+        int hp = 1000;
+
+        // 101층부터 체력 100씩 증가
+        if(floor > 100)
+            hp += (floor - 100) * 100; 
+
+        // 광석 체력
+        oreHp = hp + ((floor-1) * 100);
+
+        // 광석 숫자
+        if(floor < 100)
+            oreCnt = floor;
+        else
+            oreCnt = 100;
     }
     
     /// <summary>

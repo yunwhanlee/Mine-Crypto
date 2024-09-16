@@ -135,8 +135,7 @@ public class AlchemyManager : MonoBehaviour
                 // 제작필요 아이템 데이터
                 NeedItemData needItemDt = itemDt.needItemDataArr[i];
 
-                // 제작비용 감소 % 적용
-                int needItemVal = ApplyDecMatPer(needItemDt.Val);
+                int needItemVal = cateIdx == ALCHEMY_CATE.MATERIAL? ApplyDecMatPer(needItemDt.Val) : needItemDt.Val;
                 int totalNeedVal = needItemVal * createCnt;
 
                 // 제작에 필요한 아이템 수량 감소
@@ -271,7 +270,8 @@ public class AlchemyManager : MonoBehaviour
         NeedItemUIFormat itemUI = needItemUIArr[idx];
 
         // 제작비용 감소 % 적용
-        int needItemVal = ApplyDecMatPer(needItemDt.Val);
+
+        int needItemVal = cateIdx == ALCHEMY_CATE.MATERIAL? ApplyDecMatPer(needItemDt.Val) : needItemDt.Val;
 
         // 목록UI 표시
         itemUI.obj.SetActive(true);
