@@ -43,8 +43,11 @@ public class FameManager : MonoBehaviour
     [Header("미션 UI")]
     public MissionUIFormat[] missionUIArr;
 
-    void Start()
+    IEnumerator Start()
     {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         var svDts = DM._.DB.missionDB.saveDts;
 
         // 객체생성 및 데이터 로드 (MapExp는 UpdateAll에서 계산식으로 대입)

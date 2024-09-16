@@ -17,10 +17,6 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public InventoryUIManager ivm;
     [field:HideInInspector] public InventoryDescriptionManager idm;
     [field:HideInInspector] public RewardUIManager rwm;
-
-    //* HOME
-    [field:HideInInspector] public HomeManager hm;
-    [field:HideInInspector] public SelectStageManager ssm;
     [field:HideInInspector] public FameManager fm; // 명성 및 미션
     [field:HideInInspector] public OreBlessManager obm;
     [field:HideInInspector] public AutoMiningManager amm;
@@ -30,6 +26,11 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public TranscendManager tsm; // 초월
     [field:HideInInspector] public MushroomManager mrm; // 버섯도감
     [field:HideInInspector] public AlchemyManager acm; // 연금술
+
+    //* HOME
+    [field:HideInInspector] public HomeManager hm;
+    [field:HideInInspector] public SelectStageManager ssm;
+    [field:HideInInspector] public SettingManager stm;
     
     //* PLAY
     [field:HideInInspector] public PlayManager pm;
@@ -69,6 +70,7 @@ public class GM : MonoBehaviour
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();
+        stm = GameObject.Find("SettingManager").GetComponent<SettingManager>();
         ssm = GameObject.Find("SelectStageManager").GetComponent<SelectStageManager>();
 
         // PLAY

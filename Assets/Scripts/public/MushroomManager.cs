@@ -33,7 +33,10 @@ public class MushroomManager : MonoBehaviour
     public UpgradeMushFormatFloat ms7_UpgAtkSpeedPer;
     public UpgradeMushFormatInt ms8_IncPopulation;
 
-    void Start() {
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         mushIdx = 0;
 
         ms1_UpgAttack = new UpgradeMushFormatInt(

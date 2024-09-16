@@ -23,8 +23,11 @@ public class OreProficiencyManager : MonoBehaviour
     [field:Header("숙련도 미션 객체배열")]
     public ProficiencyFormat[] proficiencyArr; // 숙련도 클래스 배열
 
-    void Start()
+    IEnumerator Start()
     {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         // 객체 초기화
         for(int i = 0; i < proficiencyArr.Length; i++)
             proficiencyArr[i].Init();

@@ -24,8 +24,11 @@ public class ChallengeManager : MonoBehaviour
         set => DM._.DB.stageDB.BestFloorArr[(int)RSC.CRISTAL] = value;
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         UpdateUI();
     }
 

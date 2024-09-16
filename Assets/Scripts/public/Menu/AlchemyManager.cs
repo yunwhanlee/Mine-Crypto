@@ -65,7 +65,10 @@ public class AlchemyManager : MonoBehaviour
     public AlchemyDataSO_Exchange[] exchangeItemData;   // 교환 아이템
     public AlchemyDataSO_Deco[] decoItemData;           // 장식 아이템
 
-    void Start() {
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         // 초기화
         createCnt = 1;
         cateIdx = ALCHEMY_CATE.MATERIAL;

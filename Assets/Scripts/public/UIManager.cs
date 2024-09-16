@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AssetKits.ParticleImage;
@@ -12,6 +13,8 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
+    public Action OnClickConfirmBtnAction = () => {};    // 재확인용팝업 확인버튼 클릭액션
+
     [Header("TOP RSC CNT GROUP")]
     public GameObject topRscGroup;
     public TMP_Text[] topRscTxtArr;
@@ -24,6 +27,11 @@ public class UIManager : MonoBehaviour
 
     public GameObject noticeMsgPopUp;
     public TMP_Text noticeMsgTxt;
+
+    public GameObject confirmPopUp;                     // 재확인용 팝업 : 정말 하시겠습니까?
+    public TMP_Text confirmMsgTxt;                      // 메세지 내용
+    public TMP_Text confirmBtnTxt;                      // 확인버튼 텍스트
+    public TMP_Text cancelBtnTxt;                       // 취소버튼 텍스트
 
     [Header("EFFECT")]
     public ParticleImage coinAttractionPtcImg;          // 광석조각 획득 UI-EF
@@ -114,12 +122,32 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenu_SettingBtn() {
-        //TODO
+        GM._.stm.ShowPopUp();
     }
 
 #endregion
 
 #region FUNC
+    /// <summary>
+    /// 재확인용 팝업 표시 + OnClickConfirmBtnAction = () => { 처리할 내용 작성하기 }
+    /// </summary>
+    public void ShowConfirmPopUp(string msgTxt, string confirmTxt = "", string cancelTxt = "")
+    {
+        confirmPopUp.SetActive(true);
+        confirmMsgTxt.text = msgTxt;
+        confirmBtnTxt.text = (confirmTxt == "")? "네" : confirmTxt;
+        cancelBtnTxt.text = (cancelTxt == "")? "아니오" : cancelTxt;
+    }
+
+    /// <summary>
+    /// 재확인용 팝업 확인버튼 클릭
+    /// </summary>
+    public void OnClickConfirmPopUp_ConfirmBtn()
+    {
+        confirmPopUp.SetActive(false);
+        OnClickConfirmBtnAction.Invoke(); // 구독한 확인버튼 액션실행
+    }
+
     /// <summary>
     /// 경고 메세지 팝업
     /// </summary>
