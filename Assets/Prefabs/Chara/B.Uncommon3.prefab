@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8007824805813938150}
   - component: {fileID: 3155968093292501926}
   m_Layer: 0
-  m_Name: Uncommon3
+  m_Name: B.Uncommon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

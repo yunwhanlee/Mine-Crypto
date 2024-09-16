@@ -49,7 +49,7 @@ public class EmployManager : MonoBehaviour
     int workerCnt;
     int gachaRetryCntMax;
     int gachaRetryCnt;
-    public List<GRADE> gachaResultList = new List<GRADE>();
+    public List<(GRADE, int)> gachaResultList = new List<(GRADE, int)>();
 
 #region EVENT
     /// <summary>
@@ -103,7 +103,7 @@ public class EmployManager : MonoBehaviour
             retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
             
             // 데이터 및 오브젝트 초기화
-            gachaResultList = new List<GRADE>();
+            gachaResultList = new List<(GRADE, int)>();
             for(int i = 0; i < charaGachaContentTf.childCount; i++)
                 Destroy(charaGachaContentTf.GetChild(i).gameObject);
 
@@ -117,7 +117,7 @@ public class EmployManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 랜덤뽑기 데이터 작성
+    ///* 랜덤뽑기 데이터 작성
     /// </summary>
     private void SetRandomGachaGradeList()
     {
@@ -138,14 +138,26 @@ public class EmployManager : MonoBehaviour
                 : rdPer < gTb[A] + gTb[B] + gTb[C] + gTb[D] + gTb[E]? GRADE.LEGEND
                 : GRADE.MYTH;
 
-            Debug.Log($"Create Chara: workerCnt({workerCnt}) < workerMax({workerMax}), Random Grade Per= {rdPer} => {grade}");
+            // 같은 등급안에서 랜덤 선택
+            int randIdx = -1;
+            switch(grade)
+            {
+                case GRADE.COMMON: randIdx = Random.Range(0, 4); break;
+                case GRADE.UNCOMMON: randIdx = Random.Range(4, 8); break;
+                case GRADE.RARE: randIdx = Random.Range(8, 11); break;
+                case GRADE.UNIQUE: randIdx = Random.Range(11, 14); break;
+                case GRADE.LEGEND: randIdx = Random.Range(14, 16); break;
+                case GRADE.MYTH: randIdx = 16; break;
+            }
 
-            gachaResultList.Add(grade);
+            Debug.Log($"Create Chara: workerCnt({workerCnt}) < workerMax({workerMax}), Random Grade Per= {rdPer} => grade={grade}, randIdx={randIdx}");
+
+            gachaResultList.Add((grade, randIdx));
         }
     }
 
     /// <summary>
-    /// 캐릭터 생성 (랜덤뽑기 결과 데이터)
+    ///* 캐릭터 생성 (랜덤뽑기 결과 데이터)
     /// </summary>
     /// <returns></returns>
     IEnumerator CoCreateRandomCharaIns()
@@ -153,7 +165,10 @@ public class EmployManager : MonoBehaviour
         // 고용횟수 만큼 반복
         for(int i = 0; i < gachaResultList.Count; i++)
         {
-            GRADE grade = gachaResultList[i];
+            var tupleGachaRes = gachaResultList[i];
+
+            GRADE grade = tupleGachaRes.Item1;
+            int charaIdx = tupleGachaRes.Item2;
 
             // 한국어로 등급이름 번역
             string gradeName = grade == GRADE.COMMON? "일반"
@@ -167,7 +182,7 @@ public class EmployManager : MonoBehaviour
             yield return Util.TIME0_5; // 약간 대기하여 캐릭터가 겹치지 않도록
 
             // 캐릭터 생성
-            var ins = Instantiate(GM._.mnm.goblinPrefs[(int)grade], GM._.mnm.workerGroupTf);
+            var ins = Instantiate(GM._.mnm.goblinPrefs[charaIdx], GM._.mnm.workerGroupTf);
             ins.transform.position = GM._.mnm.homeTf.position;
         }
     }
@@ -209,7 +224,7 @@ public class EmployManager : MonoBehaviour
         gachaRetryCntMax = 10;
         gachaRetryCnt = gachaRetryCntMax;
         retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
-        gachaResultList = new List<Enum.GRADE>();
+        gachaResultList = new List<(GRADE, int)>();
 
         DOTAnim.DORestart();
 
@@ -269,14 +284,18 @@ public class EmployManager : MonoBehaviour
         {
             yield return Util.TIME0_05;
             // 등급
-            GRADE grade = gachaResultList[i];
+            (GRADE, int) tupleGachaRes = gachaResultList[i];
+
+            var grade = tupleGachaRes.Item1;
+            var charaIdx = tupleGachaRes.Item2;
+
             // 카드 생성
             var card = Instantiate(charaCardUIPref, charaGachaContentTf);
             // 배경 이미지 (등급)
             Sprite bgSpr = cardGradeBgSprs[(int)grade];
             card.transform.GetChild(BG).GetComponent<Image>().sprite = bgSpr;
             // 캐릭터 이미지
-            card.transform.GetChild(CHARA_IMG).GetComponent<Image>().sprite = charaPrefArr[(int)grade].iconCharaImg;
+            card.transform.GetChild(CHARA_IMG).GetComponent<Image>().sprite = charaPrefArr[charaIdx].iconCharaImg;
         }
 
         corCreateGachaResultID = null;
