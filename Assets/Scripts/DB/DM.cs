@@ -11,6 +11,7 @@ using UnityEngine;
 [Serializable]
 public class DB {
     public StatusDB statusDB;
+    public UpgradeDB upgradeDB;
     public MissionDB missionDB;
     public OreBlessDB oreBlessDB;
     public AutoMiningDB autoMiningDB;
@@ -128,6 +129,7 @@ public class DM : MonoBehaviour {
 
         // 데이터 초기화
         DB.statusDB.Init();
+        DB.upgradeDB.Init();
         DB.missionDB.Init();
         DB.oreBlessDB.Init();
         DB.autoMiningDB.Init();

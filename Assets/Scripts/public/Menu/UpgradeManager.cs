@@ -35,32 +35,20 @@ public class UpgradeManager : MonoBehaviour
     public UpgradeFormatFloat upgMoveSpeed;
     public UpgradeFormatInt upgIncCristal;
 
-    void Start()
+    IEnumerator Start()
     {
-        upgAttack = new UpgradeFormatInt(
-            Lv: 0, Unit: 1, NeedRsc: Enum.RSC.ORE1, PriceDef: 200, DefVal: 0, MaxLv: 1000
-        );
-        upgIncTimer = new UpgradeFormatInt(
-            Lv: 0, Unit: 10, NeedRsc: Enum.RSC.ORE2, PriceDef: 200, DefVal: 30, MaxLv: 3000
-        );
-        upgAttackSpeed = new UpgradeFormatFloat(
-            Lv: 0, Unit: 0.05f, NeedRsc: Enum.RSC.ORE3, PriceDef: 200, DefVal: 0, MaxLv: 20
-        );
-        upgBagStorage = new UpgradeFormatFloat(
-            Lv: 0, Unit: 0.05f, NeedRsc: Enum.RSC.ORE4, PriceDef: 200, DefVal: 0, MaxLv: 40
-        );
-        upgNextStageSkip = new UpgradeFormatFloat(
-            Lv: 0, Unit: 0.002f, NeedRsc: Enum.RSC.ORE5, PriceDef: 200, DefVal: 0, MaxLv: 50
-        );
-        upgIncPopulation = new UpgradeFormatInt(
-            Lv: 0, Unit: 1, NeedRsc: Enum.RSC.ORE6, PriceDef: 200, DefVal: 3, MaxLv: 7
-        );
-        upgMoveSpeed = new UpgradeFormatFloat(
-            Lv: 0, Unit: 0.05f, NeedRsc: Enum.RSC.ORE7, PriceDef: 200, DefVal: 0, MaxLv: 20
-        );
-        upgIncCristal = new UpgradeFormatInt(
-            Lv: 0, Unit: 1, NeedRsc: Enum.RSC.ORE8, PriceDef: 200, DefVal: 0, MaxLv: 100
-        );
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
+        // 데이터 로드
+        upgAttack = DM._.DB.upgradeDB.upgAttack;
+        upgIncTimer = DM._.DB.upgradeDB.upgIncTimer;
+        upgAttackSpeed = DM._.DB.upgradeDB.upgAttackSpeed;
+        upgBagStorage = DM._.DB.upgradeDB.upgBagStorage;
+        upgNextStageSkip = DM._.DB.upgradeDB.upgNextStageSkip;
+        upgIncPopulation = DM._.DB.upgradeDB.upgIncPopulation;
+        upgMoveSpeed = DM._.DB.upgradeDB.upgMoveSpeed;
+        upgIncCristal = DM._.DB.upgradeDB.upgIncCristal;
     }
 
 #region EVENT

@@ -8,10 +8,10 @@ using UnityEngine;
 public class UpgradeFormat
 {
     [field:SerializeField] public int Lv {get; set;}
-    [field:HideInInspector] public int MaxLv {get; protected set;}
+    [field:SerializeField] public int MaxLv {get; protected set;}
     [field:SerializeField] public Enum.RSC NeedRsc {get; protected set;} // 업그레이드에 필요한 재화종류
     [field:SerializeField] public int Price {get; set;}                 // 업그레이드 가격
-    [field:HideInInspector] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
+    [field:SerializeField] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
 
     public void UpdatePrice()
     {
