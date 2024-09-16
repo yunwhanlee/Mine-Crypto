@@ -88,6 +88,11 @@ public class StatusDB
         }
     }
 
+    [Header("명예 레벨")]
+    [field:SerializeField] int fameLv; public int FameLv {
+        get => fameLv;
+        set => fameLv = value;
+    }
 
     [Header("명예 포인트")]
     [field:SerializeField] int fame; public int Fame {
@@ -129,8 +134,8 @@ public class StatusDB
         mushBox2 = 0;      // 신비한 버섯상자
         mushBox3 = 0;      // 전설의 버섯상자
 
-        fame = 1;          // 명성포인트
-
+        fameLv = 1;        // 명성 레벨
+        fame = 0;          // 명성경험치 포인트
     }
 
     /// <summary>

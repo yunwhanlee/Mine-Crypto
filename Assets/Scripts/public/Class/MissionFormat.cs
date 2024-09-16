@@ -11,7 +11,34 @@ using static Enum;
 public class MissionFormat
 {
     [field:SerializeField] public MISSION Type {get; set;}      // 타입
-    [field:SerializeField] public int Lv {get; set;}            // 레벨
+    [field:SerializeField] public int Lv {                      // 레벨
+        get {
+            var msDB = DM._.DB.missionDB;
+            switch(Type)
+            {
+                case MISSION.MINING_ORE_CNT: return msDB.saveDts[0].Lv;
+                case MISSION.MINING_TIME: return msDB.saveDts[1].Lv;
+                case MISSION.UPGRADE_CNT: return msDB.saveDts[2].Lv;
+                case MISSION.STAGE_CLEAR_CNT:  return msDB.saveDts[3].Lv; //* 고정
+                case MISSION.MINING_CHEST_CNT: return msDB.saveDts[4].Lv;
+                case MISSION.CHALLENGE_CLEAR_CNT: return msDB.saveDts[5].Lv;
+            }
+            Debug.LogError("MissionFormat:: Type Error : 맞는 타입이 없습니다.");
+            return -1;
+        }
+        set {
+            var msDB = DM._.DB.missionDB;
+            switch(Type)
+            {
+                case MISSION.MINING_ORE_CNT: msDB.saveDts[0].Lv = value; break;
+                case MISSION.MINING_TIME: msDB.saveDts[1].Lv = value; break;
+                case MISSION.UPGRADE_CNT: msDB.saveDts[2].Lv = value; break;
+                case MISSION.STAGE_CLEAR_CNT:  msDB.saveDts[3].Lv = value; break;
+                case MISSION.MINING_CHEST_CNT: msDB.saveDts[4].Lv = value; break;
+                case MISSION.CHALLENGE_CLEAR_CNT: msDB.saveDts[5].Lv = value; break;
+            }
+        }
+    }            
     [field:SerializeField] public int MaxExp {get; set;}        // 필요경험치
     [field:SerializeField] public int Exp {                     // 현재경험치
         get {

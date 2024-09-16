@@ -28,7 +28,10 @@ public class FameManager : MonoBehaviour
     public TMP_Text fameLevelUpInfoPanelLvTxt;
     public TMP_Text employRandomTableValTxt;
 
-    public int fameLv;
+    public int FameLv {
+        get => DM._.DB.statusDB.FameLv;
+        set => DM._.DB.statusDB.FameLv = value;
+    }
     public int FameExp { 
         get => DM._.DB.statusDB.Fame;
         set => DM._.DB.statusDB.Fame = value;
@@ -163,15 +166,15 @@ public class FameManager : MonoBehaviour
     /// </summary>
     private void UpdateFameMapExp()
     {
-        fameMaxExp = CalcFameMaxExp(fameLv);
+        fameMaxExp = CalcFameMaxExp(FameLv);
 
         // 명성 레벨업인 경우
-        if(FameExp >= fameMaxExp && fameLv < FAME_MAXLV)
+        if(FameExp >= fameMaxExp && FameLv < FAME_MAXLV)
         {
             // 업데이트
-            fameLv++;
+            FameLv++;
             FameExp = 0;
-            fameMaxExp = CalcFameMaxExp(fameLv);
+            fameMaxExp = CalcFameMaxExp(FameLv);
 
             GM._.ui.ShowNoticeMsgPopUp("명성 레벨업!");
             FameLevelUp();
@@ -191,12 +194,12 @@ public class FameManager : MonoBehaviour
     /// </summary>
     private void UpdateFameUI()
     {
-        fameLvTxt.text = fameLv.ToString();
+        fameLvTxt.text = FameLv.ToString();
         fameExpSlider.value = (float)FameExp / fameMaxExp;
         fameExpTxt.text = $"{FameExp} / {fameMaxExp}";
 
         // MAX 레벨이라면
-        if(fameLv >= FAME_MAXLV)
+        if(FameLv >= FAME_MAXLV)
         {
             fameExpSlider.value = 1; // FULL
             fameExpTxt.text = "MAX";
@@ -212,11 +215,11 @@ public class FameManager : MonoBehaviour
 
         GM._.rwm.ShowReward (
             new Dictionary<RWD, int> {
-                { RWD.ORE_CHEST,      (fameLv - 1) * 5 },
-                { RWD.TREASURE_CHEST, (fameLv - 1) * 2 },
-                { RWD.ORE_TICKET,     (fameLv - 1) * 5 },
-                { RWD.RED_TICKET,     (fameLv - 1) * 2 },
-                { RWD.CRISTAL,        (fameLv - 1) * 10 },
+                { RWD.ORE_CHEST,      (FameLv - 1) * 5 },
+                { RWD.TREASURE_CHEST, (FameLv - 1) * 2 },
+                { RWD.ORE_TICKET,     (FameLv - 1) * 5 },
+                { RWD.RED_TICKET,     (FameLv - 1) * 2 },
+                { RWD.CRISTAL,        (FameLv - 1) * 10 },
             }
         );
     }
@@ -231,7 +234,7 @@ public class FameManager : MonoBehaviour
         // 타이틀
         fameLevelUpInfoPanelTitleTxt.text = isLvUp? "명성 레벨업!" : "명성 레벨";
         // 레벨 텍스트
-        fameLevelUpInfoPanelLvTxt.text = fameLv.ToString();
+        fameLevelUpInfoPanelLvTxt.text = FameLv.ToString();
 
         // 등급표 데이터
         int[] curLvGrdValTb = GM._.fm.GetRandomGradeArrByFame(); // 레벨업한 현재 레벨확률
@@ -269,7 +272,7 @@ public class FameManager : MonoBehaviour
         // 타이틀
         fameLevelUpInfoPanelTitleTxt.text = "다음명성 레벨등급표";
         // 레벨 텍스트
-        fameLevelUpInfoPanelLvTxt.text = (fameLv + 1).ToString();
+        fameLevelUpInfoPanelLvTxt.text = (FameLv + 1).ToString();
 
         // 등급표 데이터
         int[] curLvGrdValTb = GM._.fm.GetRandomGradeArrByFame(); // 현재 레벨확률
@@ -300,7 +303,7 @@ public class FameManager : MonoBehaviour
     /// </summary>
     /// <returns>[일반 , 고급 , 희귀 , 유니크 , 전설 , 신화]</returns>
     public int[] GetRandomGradeArrByFame(int extraLv = 0) {
-        int lv = fameLv + extraLv;
+        int lv = FameLv + extraLv;
         switch(lv) {
             case 1: return new int[] {70, 25, 3, 2, 0, 0};
             case 2: return new int[] {65, 30, 3, 2, 0, 0};

@@ -147,7 +147,7 @@ public class StatusManager : MonoBehaviour
         var tsm = GM._.tsm; // 초월
 
         // 명성레벨 표시
-        fameLvTxt.text = $"LV.{GM._.fm.fameLv}";
+        fameLvTxt.text = $"LV.{GM._.fm.FameLv}";
 
         // 공백으로 초기화
         myStatusTxtArr[0].text = "";
