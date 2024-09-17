@@ -387,16 +387,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         if(targetOre.OreType != RSC.CRISTAL)
                         {
                             status = Status.BACKHOME; // 귀가
+                            targetOre = null;
                         }
                         // 보물상자인 경우
                         else
                         {
-                            GM._.fm.missionArr[(int)MISSION.MINING_CHEST_CNT].Exp++;
                             status = Status.GO;
                         }
-
-                        targetOre = null;
-                        GM._.fm.missionArr[(int)MISSION.MINING_ORE_CNT].Exp++;
                     }
                 }
             }

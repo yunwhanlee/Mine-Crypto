@@ -14,8 +14,9 @@ public class DB {
     public UpgradeDB upgradeDB;
     public MissionDB missionDB;
     public OreBlessDB oreBlessDB;
-    public AutoMiningDB autoMiningDB;
     public OreProficiencyDB proficiencyDB;
+    public TranscendDB transcendDB;
+    public AutoMiningDB autoMiningDB;
     public StageDB stageDB;
     public DecoDB decoDB;
 }
@@ -131,6 +132,7 @@ public class DM : MonoBehaviour {
         DB.statusDB.Init();
         DB.upgradeDB.Init();
         DB.missionDB.Init();
+        DB.transcendDB.Init();
         DB.oreBlessDB.Init();
         DB.autoMiningDB.Init();
         DB.proficiencyDB.Init();

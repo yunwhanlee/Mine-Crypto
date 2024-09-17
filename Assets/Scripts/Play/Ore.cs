@@ -84,6 +84,17 @@ public class Ore : MonoBehaviour
 
                 Debug.Log("보물상자 획득 EF표시!");
                 GM._.ui.PlayTreasureChestAttractionPtcUIEF();
+
+                // 보물상자캐기 미션 +
+                GM._.fm.missionArr[(int)MISSION.MINING_CHEST_CNT].Exp++;
+            }
+            // 일반광석인 경우
+            else 
+            {   
+                // 광석캐기 미션 +
+                GM._.fm.missionArr[(int)MISSION.MINING_ORE_CNT].Exp++;
+                // 숙련도 경험치 UP
+                GM._.pfm.proficiencyArr[(int)OreType].Exp++;
             }
 
             Destroy(gameObject);

@@ -33,32 +33,27 @@ public class TranscendManager : MonoBehaviour
     public UpgradeFormatInt upgIncPopulation;                   // 소환캐릭 증가
     public UpgradeFormatInt upgIncFame;                         // 명예 획득량 +
 
-    void Start()
+    IEnumerator Start()
     {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
         // 자동 광석 수량%
-        upgIncAutoOrePer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+        upgIncAutoOrePer = DM._.DB.transcendDB.upgIncAutoOrePer;
         // 자동 크리스탈 수량%
-        upgIncAutoCristalPer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+        upgIncAutoCristalPer = DM._.DB.transcendDB.upgIncAutoCristalPer;
         // 재료 제작비용 감소
-        upgDecAlchemyMaterialPer = new ( 
-            Lv: 0, Unit: 0.01f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 90);
+        upgDecAlchemyMaterialPer = DM._.DB.transcendDB.upgDecAlchemyMaterialPer;
         // 보물상자 획득량 (int)
-        upgIncTreasureChest = new ( 
-            Lv: 0, Unit: 1, NeedRsc: RSC.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 1000);
+        upgIncTreasureChest = DM._.DB.transcendDB.upgIncTreasureChest;
         // 자동 광석 보관량%
-        upgIncAutoOreBagStoragePer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+        upgIncAutoOreBagStoragePer = DM._.DB.transcendDB.upgIncAutoOreBagStoragePer;
         // 자동 크리스탈 보관량%
-        upgIncAutoCristalBagStoragePer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+        upgIncAutoCristalBagStoragePer = DM._.DB.transcendDB.upgIncAutoCristalBagStoragePer;
         // 소환캐릭 증가 (int)
-        upgIncPopulation = new ( 
-            Lv: 0, Unit: 1, NeedRsc: RSC.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 30);
+        upgIncPopulation = DM._.DB.transcendDB.upgIncPopulation;
         // 명예 획득량 (int)
-        upgIncFame = new ( 
-            Lv: 0, Unit: 1, NeedRsc: RSC.CRISTAL, PriceDef: 5000, DefVal: 0, MaxLv: 1000);
+        upgIncFame = DM._.DB.transcendDB.upgIncFame;
     }
 
 #region EVENT
