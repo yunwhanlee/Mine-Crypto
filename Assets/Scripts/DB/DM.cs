@@ -18,8 +18,8 @@ public class DB {
     public AutoMiningDB autoMiningDB;       //TODO 자동채굴
     public TranscendDB transcendDB;         // 초월
     public MushDB mushDB;                   // 버섯도감
-    public DecoDB decoDB;
-    public StageDB stageDB;
+    public DecoDB decoDB;                   // 장식품 오브젝트
+    public StageDB stageDB;                 // 스테이지 (잠금, 최고층)
 }
 
 /// <summary>

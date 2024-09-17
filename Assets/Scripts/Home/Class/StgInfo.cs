@@ -14,7 +14,11 @@ public class StgInfo
     public int id;
     public int needTicketCnt = 1;       // 필요 입장티켓
     public int unlockPrice;             // 바로 전단계 광석조각 필요
-    public bool isUnlocked;             // 잠금상태 (TRUE: 열림, FALSE: 잠김)
+    public bool IsUnlocked              // 잠금상태 (TRUE: 열림, FALSE: 잠김)
+    {            
+        get => DM._.DB.stageDB.IsUnlockArr[id];
+        set => DM._.DB.stageDB.IsUnlockArr[id] = value;
+    }
 
     public GameObject lockedPanel;      // 잠금패널
     public Button EnterBtn;             // 입장버튼
@@ -28,15 +32,15 @@ public class StgInfo
         RegistEventHandler();
 
         // 잠금상태에 따른 버튼표시
-        EnterBtn.gameObject.SetActive(isUnlocked);
-        UnlockPriceBtn.gameObject.SetActive(!isUnlocked);
+        EnterBtn.gameObject.SetActive(IsUnlocked);
+        UnlockPriceBtn.gameObject.SetActive(!IsUnlocked);
 
         // 가격 표시
         EnterBtn.GetComponentInChildren<TMP_Text>().text = needTicketCnt.ToString();
         UnlockPriceBtn.GetComponentInChildren<TMP_Text>().text = unlockPrice.ToString();
 
         // 잠금패널 표시
-        lockedPanel.SetActive(!isUnlocked);
+        lockedPanel.SetActive(!IsUnlocked);
     }
 
     /// <summary>
@@ -78,7 +82,7 @@ public class StgInfo
                 GM._.obm.ResetAbilities(id);
 
                 // 해금 UI
-                isUnlocked = true;
+                IsUnlocked = true;
                 EnterBtn.gameObject.SetActive(true);
                 UnlockPriceBtn.gameObject.SetActive(false);
                 lockedPanel.SetActive(false);
