@@ -88,6 +88,9 @@ void Start() {
                         }
                     }
 
+                    //* 숙련도 경험치 증가
+                    GM._.pfm.proficiencyArr[(int)PROFICIENCY.TREASURE_CHEST].Exp += sttDB.TreasureChest;
+
                     // 인벤토리 소비아이템 수량 감소
                     sttDB.TreasureChest = 0;
 
@@ -121,8 +124,6 @@ void Start() {
                         {RWD.ORE5, 0}, {RWD.ORE6, 0}, {RWD.ORE7, 0}, {RWD.ORE8, 0}
                     };
 
-
-
                     // 광석 3종류 랜덤
                     RWD[] rwdArr = new RWD[3];
                     int[] cntArr = new int[3];
@@ -154,6 +155,9 @@ void Start() {
                             rwdList.RemoveAt(randIdx);
                         }
                     }
+
+                    //* 숙련도 경험치 증가
+                    GM._.pfm.proficiencyArr[(int)PROFICIENCY.ORE_CHEST].Exp += sttDB.OreChest;
 
                     // 인벤토리 소비아이템 수량 감소
                     sttDB.OreChest = 0;
