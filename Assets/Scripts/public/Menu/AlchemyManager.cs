@@ -74,6 +74,12 @@ public class AlchemyManager : MonoBehaviour
         cateIdx = ALCHEMY_CATE.MATERIAL;
         SetCatetory();
         UpdateUI(0);
+
+        // 구매한 장식품 표시 (최신화)
+        for(int i = 0; i < decoObjArr.Length; i++)
+        {
+            decoObjArr[i].SetActive(decoItemData[i].IsBuyed);
+        }
     }
 
 #region EVENT

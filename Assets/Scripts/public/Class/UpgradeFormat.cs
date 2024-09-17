@@ -15,7 +15,7 @@ public class UpgradeFormat
 
     public void UpdatePrice()
     {
-        Price = PriceDef + Lv * (Lv - 1) * PriceDef / 2;
+        Price = PriceDef + Lv * (Lv) * PriceDef / 2;
     }
 }
 

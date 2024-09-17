@@ -11,14 +11,15 @@ using UnityEngine;
 [Serializable]
 public class DB {
     public StatusDB statusDB;
-    public UpgradeDB upgradeDB;
-    public MissionDB missionDB;
-    public OreBlessDB oreBlessDB;
-    public OreProficiencyDB proficiencyDB;
-    public TranscendDB transcendDB;
-    public AutoMiningDB autoMiningDB;
-    public StageDB stageDB;
+    public UpgradeDB upgradeDB;             // 강화
+    public MissionDB missionDB;             // 명예미션
+    public OreBlessDB oreBlessDB;           // 축복
+    public OreProficiencyDB proficiencyDB;  // 숙련도
+    public AutoMiningDB autoMiningDB;       //TODO 자동채굴
+    public TranscendDB transcendDB;         // 초월
+    public MushDB mushDB;                   // 버섯도감
     public DecoDB decoDB;
+    public StageDB stageDB;
 }
 
 /// <summary>
@@ -132,12 +133,13 @@ public class DM : MonoBehaviour {
         DB.statusDB.Init();
         DB.upgradeDB.Init();
         DB.missionDB.Init();
-        DB.transcendDB.Init();
         DB.oreBlessDB.Init();
-        DB.autoMiningDB.Init();
         DB.proficiencyDB.Init();
-        DB.stageDB.Init();
+        DB.autoMiningDB.Init();
+        DB.transcendDB.Init();
+        DB.mushDB.Init();
         DB.decoDB.Init();
+        DB.stageDB.Init();
     }
 #endregion
 }
