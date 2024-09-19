@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,8 +8,8 @@ using static Enum;
 
 public class AutoMiningManager : MonoBehaviour
 {
-    const int MINUTE = 60;
-    const int HOUR = MINUTE * 60;
+    const int MINUTE = 1;//60;
+    const int HOUR = 5;//MINUTE * 60;
 
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
@@ -24,13 +25,49 @@ public class AutoMiningManager : MonoBehaviour
     StageDB stgDB;
     AutoMiningDB autoDB;
 
-    void Start() {
-        time = MINUTE;
-        cristalTime = HOUR;
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+        // yield return new WaitUntil(() => autoMiningArr != null);
 
         sttDB = DM._.DB.statusDB;
         stgDB = DM._.DB.stageDB;
         autoDB = DM._.DB.autoMiningDB;
+
+        AutoMiningSaveData[] svDts = DM._.DB.autoMiningDB.saveDts;
+        int[] autoMiningRwdArr = new int[9];
+        var rewardList = new Dictionary<RWD, int>();
+
+        // 어플시작시 이전까지 경과한시간
+        int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
+
+        // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
+        for(int i = 0; i < autoMiningArr.Length; i++)
+        {
+            Debug.Log($"aa 자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}");
+
+            var type = autoMiningArr[i].Type;
+
+            autoMiningArr[i].IsUnlock = svDts[i].IsUnlock;
+            autoMiningArr[i].Lv = svDts[i].Lv;
+            autoMiningArr[i].Time = svDts[i].Time;
+            autoMiningArr[i].CurStorage = svDts[i].CurStorage;
+
+            // 자동채굴 획득량 계산
+            int cnt = passedTime / (type == RSC.CRISTAL? HOUR : MINUTE);
+
+            float extraPer = 1 + (type == RSC.CRISTAL? GM._.sttm.ExtraAutoOrePer : GM._.sttm.ExtraAutoCristalPer);
+            int val = Mathf.RoundToInt(stgDB.BestFloorArr[i] * extraPer);
+
+            // 자동채굴 결과수량
+            int resVal = cnt * val;
+
+            Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}, 획득량= {resVal}");
+            autoMiningArr[i].CurStorage += resVal;
+        }
+
+        time = MINUTE;
+        cristalTime = HOUR;
 
         UpdateAll();
         StartCoroutine(CoTimerStart());
@@ -45,7 +82,7 @@ public class AutoMiningManager : MonoBehaviour
     {
         AutoMiningFormat am = autoMiningArr[idx];
 
-        if(am.curStorage <= 0)
+        if(am.CurStorage <= 0)
         {
             GM._.ui.ShowWarningMsgPopUp("현재 모인 광석이 없습니다.");
             return;
@@ -54,10 +91,10 @@ public class AutoMiningManager : MonoBehaviour
         GM._.ui.ShowNoticeMsgPopUp("수령 완료!");
 
         // 재화 증가
-        sttDB.SetRscArr(idx, am.curStorage);
+        sttDB.SetRscArr(idx, am.CurStorage);
         
         // 보관량 초기화
-        am.curStorage = 0;
+        am.CurStorage = 0;
 
         // 업데이트 UI
         UpdateUI();
@@ -145,13 +182,13 @@ public class AutoMiningManager : MonoBehaviour
             }
 
             // 수량 증가
-            am.curStorage += val; 
+            am.CurStorage += val; 
 
             // 최대수량 다 채웠을 경우
-            if(am.curStorage >= am.maxStorage)
+            if(am.CurStorage >= am.maxStorage)
             {
                 am.curStorageTxt.color = Color.red;
-                am.curStorage = am.maxStorage;
+                am.CurStorage = am.maxStorage;
             }
         }
     }
@@ -246,7 +283,7 @@ public class AutoMiningManager : MonoBehaviour
                 am.titleTxt.text = $"크리스탈 광산 {stgDB.BestFloorArr[i]}층";
 
             // 현재수량
-            am.curStorageTxt.text = $"<sprite name={am.Type}> {am.curStorage} / {am.maxStorage}";
+            am.curStorageTxt.text = $"<sprite name={am.Type}> {am.CurStorage} / {am.maxStorage}";
 
             // 채굴량
             am.productionValTxt.text = $"채굴량 {am.productionVal}";

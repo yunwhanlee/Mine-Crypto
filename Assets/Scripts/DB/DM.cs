@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -15,7 +14,7 @@ public class DB {
     public MissionDB missionDB;             // 명예미션
     public OreBlessDB oreBlessDB;           // 축복
     public OreProficiencyDB proficiencyDB;  // 숙련도
-    public AutoMiningDB autoMiningDB;       //TODO 자동채굴
+    public AutoMiningDB autoMiningDB;       // 자동채굴
     public TranscendDB transcendDB;         // 초월
     public MushDB mushDB;                   // 버섯도감
     public DecoDB decoDB;                   // 장식품 오브젝트
@@ -28,6 +27,7 @@ public class DB {
 public class DM : MonoBehaviour {
     public static DM _ {get; private set;}
     const string DB_KEY = "DB";
+    public const string PASSEDTIME_KEY = "PASSEDTIME";
 
     //* ★데이터베이스
     [field: SerializeField] public DB DB {get; private set;}
@@ -84,7 +84,11 @@ public class DM : MonoBehaviour {
     {
         if(DB == null) return;
 
-        //TODO 자동채굴 현재시간 저장 및 차이 계산
+        //* 어플종료시 종료한시간을 저장
+        // 현재 시간을 UTC 기준으로 가져와서 1970년 1월 1일 0시 0분 0초와의 시간 차이를 구합니다.
+        TimeSpan curTimeStamp = DateTime.UtcNow - new DateTime(1970,1,1,0,0,0);
+        // 시간 차이를 정수형으로 변환하여 저장
+        PlayerPrefs.SetInt(PASSEDTIME_KEY, (int)curTimeStamp.TotalSeconds);
         
         //* Serialize DB To Json
         string jsonDB = JsonUtility.ToJson(DB, true);

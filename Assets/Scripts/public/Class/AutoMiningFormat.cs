@@ -40,12 +40,12 @@ public class AutoMiningFormat
         }
     }   
     // 경과시간
-    public int time { 
+    public int Time { 
         get => DM._.DB.autoMiningDB.saveDts[(int)type].Time;
         set => DM._.DB.autoMiningDB.saveDts[(int)type].Time = value;
     }
     // 현재수량
-    public int curStorage { 
+    public int CurStorage { 
         get => DM._.DB.autoMiningDB.saveDts[(int)type].CurStorage;
         set => DM._.DB.autoMiningDB.saveDts[(int)type].CurStorage = value;
     }
