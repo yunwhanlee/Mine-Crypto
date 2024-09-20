@@ -155,7 +155,7 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     private void UpdateOreValueByStage()
     {
-        int hp = 1000;
+        int hp = 100;
 
         // 101층부터 체력 100씩 증가
         if(floor > 100)

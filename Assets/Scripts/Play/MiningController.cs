@@ -271,15 +271,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     int effectPlayCnt = bagStorage / ratio;
                     Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
 
-                    if(targetOre != null) {
-                        // 재화 이펙트 재생
+                    if(BagStorage > 0) {
+                        //* 재화 이펙트 재생
                         StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
                             (effectPlayCnt <= 0)? 1 : effectPlayCnt, targetOre.OreType
                         ));
-                    }
 
-                    //* 재화 획득
-                    if(targetOre != null) {
+                        //* 재화 획득
                         // 타겟재화 증가
                         DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
                         // 게임결과 획득한 보상 중 재화에 반영
@@ -387,7 +385,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         if(targetOre.OreType != RSC.CRISTAL)
                         {
                             status = Status.BACKHOME; // 귀가
-                            targetOre = null;
+                            // 채굴한 광석이 없다면, 바로 광석타켓 삭제
+                            if(bagStorage == 0)
+                                targetOre = null;
                         }
                         // 보물상자인 경우
                         else
