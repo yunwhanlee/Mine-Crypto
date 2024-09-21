@@ -88,6 +88,16 @@ public class PlayManager : MonoBehaviour
     ///* 타임오버 (제공 보상표시)
     /// </summary>
     public void Timeover() {
+        var stageType = (int)GM._.stgm.OreType;
+        var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
+
+        // 광산 최고층 기록
+        if(GM._.stgm.Floor > bestFloorArr[stageType])
+        {
+            bestFloorArr[stageType] = GM._.stgm.Floor;
+            GM._.ui.ShowNoticeMsgPopUp($"광산{stageType+1} {GM._.stgm.Floor}층 최고기록 달성!");
+        }
+
         // 입장티켓 1개 회수
         if(GM._.stgm.OreType == RSC.CRISTAL)
         {

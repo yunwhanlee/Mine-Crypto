@@ -140,17 +140,6 @@ public class AutoMiningManager : MonoBehaviour
 #endregion
 
 #region FUNC
-    private IEnumerator CoTimerStart()
-    {
-        while(true)
-        {
-            SetOreTimer();
-            SetCristalTimer();
-
-            yield return Util.TIME1;
-        }
-    }
-
     /// <summary>
     /// 자동채굴 광석 증가 (광석타입)
     /// </summary>

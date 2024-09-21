@@ -295,7 +295,7 @@ MonoBehaviour:
   <Grade>k__BackingField: 2
   attackVal: 35
   attackSpeed: 1.8
-  moveSpeed: 27
+  moveSpeed: 17
   bagStorageSize: 120
   bagStorage: 0
 --- !u!114 &2944285913796612606

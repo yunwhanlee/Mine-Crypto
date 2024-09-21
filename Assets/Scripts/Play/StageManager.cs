@@ -88,11 +88,11 @@ public class StageManager : MonoBehaviour {
         // 2층 이동확률% 적용 (소수점 3자리까지)
         int skipFloorPer = Mathf.RoundToInt(GM._.sttm.ExtraNextSkipPer * 1000);
         int randPer = Random.Range(0, 1000);
-        Debug.Log($"2층 이동확률%:: skipFloorPer({skipFloorPer}) <= randPer({randPer})");
-        if(skipFloorPer <= randPer)
+        Debug.Log($"2층 이동확률%:: skipFloorPer(randPer({randPer}) <= {skipFloorPer})");
+        if(randPer <= skipFloorPer)
         {
             Floor++; // 현재층 스킵
-            GM._.ui.ShowNoticeMsgPopUp($"2층 이동확률 발동! 다음층으로 바로 이동합니다. skip%({skipFloorPer}) <= rand%({randPer})");
+            GM._.ui.ShowNoticeMsgPopUp($"2층 이동확률 발동! 다음층으로 바로 이동합니다. 랜덤%({randPer}) <= 스킵%({skipFloorPer})");
         }
 
         yield return Util.TIME0_5;

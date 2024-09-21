@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
 using DG.Tweening;
 using TMPro;
@@ -27,9 +26,7 @@ public class EmployManager : MonoBehaviour
 
     [Header("SECTION1: 캐릭터 랜덤 확률표")]
     public TMP_Text randomGradeTableValTxt;
-
-    public GameObject fameInfoPanel; // 다음 명성레벨에 따른 캐릭터 고용(소환) 등급표
-    public TMP_Text nextLvRandomGradeTableValTxt;
+    public TMP_Text curFameLvTxt;
     public TMP_Text PlayBtnEmployCntTxt;
 
     [Header("SECTION2: 캐릭터 카드 리스트")]
@@ -243,6 +240,8 @@ public class EmployManager : MonoBehaviour
     /// 캐릭터 소환등급 확률표 표시 (섹션1)
     /// </summary>
     public void SetRandomGradeTableUI() {
+        curFameLvTxt.text = $"LV.{GM._.fm.FameLv}";
+
         int[] gTb = GM._.fm.GetRandomGradeArrByFame();
         // 등급표 작성
         randomGradeTableValTxt.text = $"{gTb[0]}%" + $"\n<color=green>{gTb[1]}%</color>" + $"\n<color=blue>{gTb[2]}%</color>" + $"\n<color=purple>{gTb[3]}%</color>" + $"\n<color=yellow>{gTb[4]}%</color>" + $"\n<color=red>{gTb[5]}%</color>";
