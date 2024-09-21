@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using static Enum;
+using System.Security.Cryptography;
 
 public class EmployManager : MonoBehaviour
 {
@@ -55,6 +56,15 @@ public class EmployManager : MonoBehaviour
     }
 
 #region EVENT
+    public void OnClickCloseBtn()
+    {
+        GM._.ui.ShowConfirmPopUp("정말로 포기하시겠습니까?\n(소모된 입장권은 복구되지않지롱~)");
+        GM._.ui.OnClickConfirmBtnAction = () => {
+            GM._.hm.HomeWindow.SetActive(true);
+            GM._.epm.employPopUp.SetActive(false);
+        };
+    }
+
     /// <summary>
     /// 캐릭터 랜덤뽑기
     /// </summary>

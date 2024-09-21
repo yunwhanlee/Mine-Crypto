@@ -80,14 +80,13 @@ public class PlayManager : MonoBehaviour
         //! 타이머 0 -> 게임오버로 상태 변경
         GM._.gameState = GameState.TIMEOVER;
         timerTxt.text = "TIME OVER!";
-
         Timeover(); // 타임오버
     }
 
     /// <summary>
     ///* 타임오버 (제공 보상표시)
     /// </summary>
-    public void Timeover() {
+    public void Timeover(bool isGiveUp = false) {
         var stageType = (int)GM._.stgm.OreType;
         var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
 
@@ -98,16 +97,19 @@ public class PlayManager : MonoBehaviour
             GM._.ui.ShowNoticeMsgPopUp($"광산{stageType+1} {GM._.stgm.Floor}층 최고기록 달성!");
         }
 
-        // 입장티켓 1개 회수
-        if(GM._.stgm.OreType == RSC.CRISTAL)
+        // 입장티켓 1개 회수 (게임포기 안했을때만 해당)
+        if(!isGiveUp)
         {
-            playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
-            DM._.DB.statusDB.RedTicket++;               // 데이터
-        }
-        else
-        {
-            playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
-            DM._.DB.statusDB.OreTicket++;               // 데이터
+            if(GM._.stgm.OreType == RSC.CRISTAL)
+            {
+                playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
+                DM._.DB.statusDB.RedTicket++;               // 데이터
+            }
+            else
+            {
+                playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
+                DM._.DB.statusDB.OreTicket++;               // 데이터
+            }
         }
 
         // 광석상자 획득 (매 층마다 +1)
@@ -136,6 +138,10 @@ public class PlayManager : MonoBehaviour
 
         pausePopUp.SetActive(false);
     }
+
+    /// <summary>
+    /// 게임포기 버튼 (지금까지 획득 데이터는 그대로 반영)
+    /// </summary>
     public void OnClickGiveUpBtn() {
         GM._.gameState = GameState.HOME;
         Time.timeScale = 1;
@@ -144,8 +150,12 @@ public class PlayManager : MonoBehaviour
         GM._.epm.employPopUp.SetActive(false);
         GM._.hm.HomeWindow.SetActive(true);
 
-        //TODO 게임뷰 초기화
-        InitPlayData();
+        // 현재까지 진행한 데이터 획득
+        GM._.gameState = GameState.TIMEOVER;
+        timerTxt.text = "GIVE UP!";
+        Timeover(isGiveUp: true); // 타임오버
+
+        InitPlayData(); //! 타이머 0 -> 게임오버로 상태 변경
     }
 #endregion
 }
