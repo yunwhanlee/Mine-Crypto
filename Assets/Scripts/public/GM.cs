@@ -80,6 +80,14 @@ public class GM : MonoBehaviour
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
     }
 
+    
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
+        StartCoroutine(CoTimerStart());
+    }
+
     void Update()
     {
         //! TEST NEXT STAGE
@@ -89,4 +97,18 @@ public class GM : MonoBehaviour
             StartCoroutine(stgm.CoNextStage());
         }
     }
+
+#region FUNC
+    private IEnumerator CoTimerStart()
+    {
+        while(true)
+        {
+            ssm.SetOreTicketTimer();
+            amm.SetOreTimer();
+            amm.SetCristalTimer();
+
+            yield return Util.TIME1;
+        }
+    }
+#endregion
 }

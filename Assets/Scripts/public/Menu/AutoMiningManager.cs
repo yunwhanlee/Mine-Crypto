@@ -8,8 +8,8 @@ using static Enum;
 
 public class AutoMiningManager : MonoBehaviour
 {
-    const int MINUTE = 1;//60;
-    const int HOUR = 5;//MINUTE * 60;
+    const int MINUTE = 60;
+    const int HOUR = MINUTE * 60;
 
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
@@ -28,7 +28,6 @@ public class AutoMiningManager : MonoBehaviour
     IEnumerator Start() {
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
-        // yield return new WaitUntil(() => autoMiningArr != null);
 
         sttDB = DM._.DB.statusDB;
         stgDB = DM._.DB.stageDB;
@@ -44,7 +43,7 @@ public class AutoMiningManager : MonoBehaviour
         // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
         for(int i = 0; i < autoMiningArr.Length; i++)
         {
-            Debug.Log($"aa 자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}");
+            // Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}");
 
             var type = autoMiningArr[i].Type;
 
@@ -70,7 +69,7 @@ public class AutoMiningManager : MonoBehaviour
         cristalTime = HOUR;
 
         UpdateAll();
-        StartCoroutine(CoTimerStart());
+        // StartCoroutine(CoTimerStart());
     }
 
 #region EVENT
@@ -196,7 +195,7 @@ public class AutoMiningManager : MonoBehaviour
     /// <summary>
     /// 광석 자동채굴 (1분)
     /// </summary>
-    private void SetOreTimer()
+    public void SetOreTimer()
     {
         time--;
         string timeFormat = Util.ConvertTimeFormat(time);
@@ -219,7 +218,7 @@ public class AutoMiningManager : MonoBehaviour
     /// <summary>
     /// 크리스탈 자동채굴 (1시간)
     /// </summary>
-    private void SetCristalTimer()
+    public void SetCristalTimer()
     {
         cristalTime--;
         string timeFormat = Util.ConvertTimeFormat(cristalTime);

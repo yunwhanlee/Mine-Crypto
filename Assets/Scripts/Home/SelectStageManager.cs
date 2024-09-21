@@ -10,14 +10,36 @@ using UnityEngine;
 /// </summary>
 public class SelectStageManager : MonoBehaviour
 {
+    //* ELEMENT
     public GameObject selectStagePopUp;
-    public TMP_Text stageTicketCntTxt;
+    public TMP_Text stageTicketCntTxt;      // 광산입장 티켓수 
+    public TMP_Text timerTxt;               // 티켓자동획득 시간표시
+
+    //* VALUE
+    const int HALF_HOUR = 60 * 30;
+    const int ORE_TICKET_MAX = 10;
 
     [Header("스테이지 정보 배열 (버튼 포함)")]
     public StgInfo[] stgInfoArr;
 
-    void Start() {
-        stageTicketCntTxt.text = $"{DM._.DB.statusDB.OreTicket} / 10";
+    private int time;
+
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
+        // 어플시작시 이전까지 경과한시간
+        int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
+
+        // 티켓자동획득량 계산
+        int cnt = passedTime / HALF_HOUR; // 획득수
+        int remainTime = passedTime % HALF_HOUR; // 남은시간
+        Debug.Log($"<color=yellow>티켓자동획득:: 경과시간({passedTime}) / 대기시간({HALF_HOUR})초, 획득량={cnt}, 남은시간={remainTime}</color>");
+
+        // 대기시간 최신화 (30분에서 남은시간 뺌)
+        time = HALF_HOUR - remainTime;
+
+        stageTicketCntTxt.text = $"({DM._.DB.statusDB.OreTicket} / {ORE_TICKET_MAX})";
 
         for(int i = 0; i < stgInfoArr.Length; i++) {
             Debug.Log($"{stgInfoArr[i].name}: EnterBtn= {stgInfoArr[i].EnterBtn}, UnlockPriceBtn= {stgInfoArr[i].UnlockPriceBtn}");
@@ -30,6 +52,23 @@ public class SelectStageManager : MonoBehaviour
         GM._.ui.topRscGroup.SetActive(true);
         selectStagePopUp.SetActive(true);
         selectStagePopUp.GetComponent<DOTweenAnimation>().DORestart();
+    }
+
+    /// <summary>
+    /// 광석입장티켓 자동채굴 (30분)
+    /// </summary>
+    public void SetOreTicketTimer()
+    {
+        time--;
+        string timeFormat = Util.ConvertTimeFormat(time);
+        timerTxt.text = timeFormat;
+
+        // 리셋
+        if(time < 1)
+        {
+            time = HALF_HOUR;
+            DM._.DB.statusDB.OreTicket++;
+        }
     }
 #endregion
 }
