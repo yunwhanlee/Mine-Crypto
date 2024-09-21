@@ -33,9 +33,12 @@ public class RewardUIManager : MonoBehaviour
                 ShowReward (
                     new Dictionary<RWD, int>
                     {
+                        { RWD.ORE1, 50000 },
+                        { RWD.ORE2, 50000 },
+                        { RWD.ORE3, 50000 },
+                        { RWD.ORE4, 50000 },
                         { RWD.CRISTAL, 1000 },
                         { RWD.ORE_CHEST, 10 },
-                        { RWD.TREASURE_CHEST, 10 },
                         { RWD.MAT1, 100 },
                         { RWD.MAT2, 100 },
                         { RWD.MAT3, 100 },
@@ -53,8 +56,11 @@ public class RewardUIManager : MonoBehaviour
                 ShowReward (
                     new Dictionary<RWD, int>
                     {
+                        { RWD.ORE5, 50000 },
+                        { RWD.ORE6, 50000 },
+                        { RWD.ORE7, 50000 },
+                        { RWD.ORE8, 50000 },
                         { RWD.CRISTAL, 1000 },
-                        { RWD.ORE_CHEST, 10 },
                         { RWD.TREASURE_CHEST, 10 },
                         { RWD.MUSH1, 100 },
                         { RWD.MUSH2, 100 },
