@@ -45,10 +45,11 @@ public class StatusManager : MonoBehaviour
             + GM._.obm.GetAbilityValue(OREBLESS_ABT.BAG_STG_PER)
             + GM._.mrm.ms3_UpgBagStoragePer.Val;
     }
-    // 제한시간 +
+    // 채굴시간 +
     public int ExtraIncTimer {
         get => GM._.ugm.upgIncTimer.Val
-            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER);
+            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_TIMER)
+            + GM._.mrm.ms5_UpgIncTimer.Val;
     }
     // 다음층 스킵 %
     public float ExtraNextSkipPer {
