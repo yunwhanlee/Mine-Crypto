@@ -50,6 +50,12 @@ public class EmployManager : MonoBehaviour
     int gachaRetryCntMax;
     int gachaRetryCnt;
     public List<(GRADE, int)> gachaResultList = new List<(GRADE, int)>();
+    public WaitForSeconds waitCreateCharaSec;   // 캐릭터 오브젝트 생성시 대기간격
+
+
+    void Start() {
+        waitCreateCharaSec = Util.TIME0_1;
+    }
 
 #region EVENT
     /// <summary>
@@ -157,7 +163,7 @@ public class EmployManager : MonoBehaviour
     }
 
     /// <summary>
-    ///* 캐릭터 생성 (랜덤뽑기 결과 데이터)
+    ///* 랜덤뽑기 캐릭터 오브젝트 생성
     /// </summary>
     /// <returns></returns>
     IEnumerator CoCreateRandomCharaIns()
@@ -179,7 +185,7 @@ public class EmployManager : MonoBehaviour
                 : "<color=red>신화</color>";
 
             GM._.ui.ShowNoticeMsgPopUp($"{workerCnt}. {gradeName} 등급 소환!");
-            yield return Util.TIME0_5; // 약간 대기하여 캐릭터가 겹치지 않도록
+            yield return Util.TIME0_1; // 약간 대기하여 캐릭터가 겹치지 않도록
 
             // 캐릭터 생성
             var ins = Instantiate(GM._.mnm.goblinPrefs[charaIdx], GM._.mnm.workerGroupTf);

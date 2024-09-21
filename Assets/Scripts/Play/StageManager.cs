@@ -47,6 +47,7 @@ public class StageManager : MonoBehaviour {
     [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
     [field:SerializeField] int oreCnt;                  // 스테이지별 적용할 광석 수
 
+
 #region FUNC
     /// <summary>
     /// 선택한 스테이지 시작
@@ -64,7 +65,7 @@ public class StageManager : MonoBehaviour {
         GM._.pm.StartCowndownTimer();
 
         // 게임결과 획득한 재화배열 초기화
-        GM._.pm.playResRwdArr = new int[Enum.GetEnumRWDLenght()];
+        GM._.pm.playResRwdArr = new int[GetEnumRWDLenght()];
 
         // 광석 생성 영역
         topLeftPos = oreAreaTopLeftTf.position;
@@ -137,9 +138,16 @@ public class StageManager : MonoBehaviour {
             return $"제{(int)oreType + 1} 광산 {floor}층";
     }
 
+    /// <summary>
+    /// 광석 오브젝트 생성
+    /// </summary>
+    /// <param name="interval"></param>
+    /// <returns></returns>
     IEnumerator CoUpdateAndCreateOre(int interval)
     {
-        yield return Util.TIME0_5;
+        // CutOutMask UI 애니메이션 대기
+        yield return GM._.epm.waitCreateCharaSec;
+        yield return GM._.mnm.waitSpawnToGoSec;
 
         // RESET : 모든 광석 오브젝트 삭제
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
