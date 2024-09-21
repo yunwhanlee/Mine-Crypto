@@ -21,6 +21,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Status status;
 
         //* COMPONENT
+        private MineManager mnm;
         private CharacterAnimation _animation;
         private Rigidbody2D rigid;
         private SpriteRenderer sprRdr;
@@ -119,6 +120,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         public void Start()
         {
+            mnm = GM._.mnm;
             _animation = GetComponent<CharacterAnimation>();
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
@@ -138,7 +140,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public IEnumerator CoInitStatus()
         {
             status = Status.SPAWN;
-            yield return Util.TIME0_2;
+            yield return mnm.waitSpawnToGoSec;
             status = Status.GO;
         }
 
@@ -340,6 +342,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
             //* 채굴중인 경우
             if(status == Status.MINING) {
+                // 도중에 타겟광석이 파괴된다면
+                if(targetOre == null)
+                {
+                    status = Status.BACKHOME; // 귀가
+                    return;
+                }
+
                 attackWaitTime += Time.deltaTime;
 
                 // 実際の攻撃速度(秒)
