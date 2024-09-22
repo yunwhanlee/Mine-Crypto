@@ -32,6 +32,58 @@ public class PlayManager : MonoBehaviour
         }
     }
 
+
+#region EVENT
+    public void OnClickPauseIconBtn() {
+        GM._.gameState = GameState.STOP;
+        Time.timeScale = 0;
+
+        pausePopUp.SetActive(true);
+    }
+    public void OnClickContinueBtn() {
+        GM._.gameState = GameState.PLAY;
+        Time.timeScale = 1;
+
+        pausePopUp.SetActive(false);
+    }
+
+    /// <summary>
+    /// 게임포기 버튼 (지금까지 획득 데이터는 그대로 반영)
+    /// </summary>
+    public void OnClickGiveUpBtn() {
+        Time.timeScale = 1;
+        pausePopUp.SetActive(false);
+
+        if(GM._.stgm.OreType != RSC.CRISTAL)
+        {
+            // GM._.gameState = GameState.HOME;
+            GM._.epm.employPopUp.SetActive(false);
+            GM._.hm.HomeWindow.SetActive(true);
+
+            // 현재까지 진행한 데이터 획득
+            GM._.gameState = GameState.TIMEOVER;
+            timerTxt.text = "GIVE UP!";
+            Timeover(isBackTicket: false);
+
+            InitPlayData();
+        }
+        else
+        {
+            ShowDefeatPopUp();
+        }
+    }
+
+    /// <summary>
+    /// 시련의광산 도전실패 팝업 닫기
+    /// </summary>
+    public void OnClickDefeatPopUpDimScreenBtn()
+    {
+        GM._.gameState = GameState.HOME;
+        GM._.ui.defeatPopUp.SetActive(false);
+        GM._.hm.HomeWindow.SetActive(true);
+    }
+#endregion
+
 #region FUNC
     public void InitPlayData() {
         // 캐릭터 생성시 등급표시 메세지 정지
@@ -82,9 +134,19 @@ public class PlayManager : MonoBehaviour
         timerTxt.text = "TIME OVER!";
 
         if(GM._.stgm.OreType == RSC.CRISTAL)
-            GM._.ui.defeatPopUp.SetActive(true); // 시련의광산 도전실패 팝업
+            ShowDefeatPopUp();
         else
             Timeover(isBackTicket: true);
+    }
+
+    /// <summary>
+    /// 시련의광산 도전실패 팝업
+    /// </summary>
+    public void ShowDefeatPopUp()
+    {
+        GM._.gameState = GameState.TIMEOVER;
+        GM._.ui.defeatPopUp.SetActive(true);
+        InitPlayData();
     }
 
     /// <summary>
@@ -114,6 +176,9 @@ public class PlayManager : MonoBehaviour
                 playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
                 DM._.DB.statusDB.OreTicket++;               // 데이터
             }
+
+            // 광산 클리어 미션
+            GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++;
         }
 
         // 광석상자 획득 (매 층마다 +1)
@@ -124,53 +189,9 @@ public class PlayManager : MonoBehaviour
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
         GM._.rwm.ShowGameoverReward(playResRwdArr);
 
-        // 광산 클리어 미션
-        GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++;
+
     }
 #endregion
 
-#region EVENT
-    public void OnClickPauseIconBtn() {
-        GM._.gameState = GameState.STOP;
-        Time.timeScale = 0;
 
-        pausePopUp.SetActive(true);
-    }
-    public void OnClickContinueBtn() {
-        GM._.gameState = GameState.PLAY;
-        Time.timeScale = 1;
-
-        pausePopUp.SetActive(false);
-    }
-
-    /// <summary>
-    /// 게임포기 버튼 (지금까지 획득 데이터는 그대로 반영)
-    /// </summary>
-    public void OnClickGiveUpBtn() {
-        GM._.gameState = GameState.HOME;
-        Time.timeScale = 1;
-
-        pausePopUp.SetActive(false);
-        GM._.epm.employPopUp.SetActive(false);
-        GM._.hm.HomeWindow.SetActive(true);
-
-        // 현재까지 진행한 데이터 획득
-        GM._.gameState = GameState.TIMEOVER;
-        timerTxt.text = "GIVE UP!";
-        Timeover(isBackTicket: false);
-
-        InitPlayData(); //! 타이머 0 -> 게임오버로 상태 변경
-    }
-
-    /// <summary>
-    /// 시련의광산 도전실패 팝업 닫기
-    /// </summary>
-    public void OnClickDefeatPopUpDimScreenBtn()
-    {
-        GM._.gameState = GameState.HOME;
-        GM._.ui.defeatPopUp.SetActive(false);
-        GM._.hm.HomeWindow.SetActive(true);
-        GM._.pm.InitPlayData();
-    }
-#endregion
 }
