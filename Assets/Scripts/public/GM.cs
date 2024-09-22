@@ -88,16 +88,6 @@ public class GM : MonoBehaviour
         StartCoroutine(CoTimerStart());
     }
 
-    void Update()
-    {
-        //! TEST NEXT STAGE
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            mnm.workerClearStageStatusCnt = 0;
-            StartCoroutine(stgm.CoNextStage());
-        }
-    }
-
 #region FUNC
     private IEnumerator CoTimerStart()
     {

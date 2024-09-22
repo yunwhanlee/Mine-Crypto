@@ -33,6 +33,9 @@ public class StageManager : MonoBehaviour {
         set => oreType = value;
     }
 
+    // 시련의광산 모드
+    public bool IsChallengeMode {get => oreType == RSC.CRISTAL;}
+
     [field:SerializeField] int floor;  public int Floor {
         get => floor;
         set {
@@ -56,7 +59,7 @@ public class StageManager : MonoBehaviour {
     {
         Debug.Log("StartStage()::");
         GM._.gameState = GameState.PLAY;
-        Floor = (OreType == RSC.CRISTAL)? GM._.clm.BestFloor : 1;
+        Floor = IsChallengeMode? GM._.clm.BestFloor : 1;
 
         // 스테이지층
         stageTxt.text = GetStageName();
@@ -132,7 +135,7 @@ public class StageManager : MonoBehaviour {
 
     private string GetStageName()
     {
-        if(OreType == RSC.CRISTAL)
+        if(IsChallengeMode)
             return $"시련의광산 {floor}층";
         else
             return $"제{(int)oreType + 1} 광산 {floor}층";

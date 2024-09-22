@@ -49,6 +49,15 @@ public class ChallengeManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    /// <summary>
+    /// 시련의광산 팝업 표시
+    /// </summary>
+    public void ShowPopUp()
+    {
+        windowObj.SetActive(true);
+        UpdateUI();
+    }
+
     public void UpdateUI()
     {
         redTicketCntTxt.text = $"{CurRedTicketCnt}";

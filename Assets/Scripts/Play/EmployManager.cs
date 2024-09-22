@@ -23,6 +23,7 @@ public class EmployManager : MonoBehaviour
     private Coroutine corCreateGachaResultID;
     public Transform charaGachaContentTf;
     public TMP_Text retryCntTxt;
+    public TMP_Text CurNeedTicketCntTxt;
 
     [Header("SECTION1: 캐릭터 랜덤 확률표")]
     public TMP_Text randomGradeTableValTxt;
@@ -100,6 +101,10 @@ public class EmployManager : MonoBehaviour
         employPopUp.SetActive(false);
         charaGachaPopUp.SetActive(true);
 
+        // 현재 소지중인 티켓 수량 표시
+        CurNeedTicketCntTxt.gameObject.SetActive(true);
+        CurNeedTicketCntTxt.text = $"<sprite name=ORE_TICKET> {DM._.DB.statusDB.OreTicket}";
+
         // 랜덤뽑기 리스트 데이터 작성
         SetRandomGachaGradeList();
 
@@ -134,26 +139,35 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickRetryBtn()
     {
-        if(gachaRetryCnt <= 0) {
+        if(gachaRetryCnt < 1)
+        {
             GM._.ui.ShowWarningMsgPopUp("재시도 횟수를 전부 사용했습니다!");
             return;
         }
-        else {
-            gachaRetryCnt--;
-            retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
-            
-            // 데이터 및 오브젝트 초기화
-            gachaResultList = new List<(GRADE, int)>();
-            for(int i = 0; i < charaGachaContentTf.childCount; i++)
-                Destroy(charaGachaContentTf.GetChild(i).gameObject);
-
-            // 랜덤뽑기 데이터 작성
-            SetRandomGachaGradeList();
-
-            // 랜덤뽑기 결과UI 표시
-            if(corCreateGachaResultID != null) StopCoroutine(corCreateGachaResultID);
-            corCreateGachaResultID = StartCoroutine(CoCreateGachaResultCardUIContent());
+        if(DM._.DB.statusDB.OreTicket < 1)
+        {
+            GM._.ui.ShowWarningMsgPopUp("광산티켓이 부족합니다!");
+            return;
         }
+
+        gachaRetryCnt--;
+        DM._.DB.statusDB.OreTicket -= 1;
+        retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
+
+        // 데이터 및 오브젝트 초기화
+        gachaResultList = new List<(GRADE, int)>();
+        for(int i = 0; i < charaGachaContentTf.childCount; i++)
+            Destroy(charaGachaContentTf.GetChild(i).gameObject);
+
+        // 현재 소지중인 티켓 수량 표시
+        CurNeedTicketCntTxt.text = $"<sprite name=ORE_TICKET> {DM._.DB.statusDB.OreTicket}";
+
+        // 랜덤뽑기 데이터 작성
+        SetRandomGachaGradeList();
+
+        // 랜덤뽑기 결과UI 표시
+        if(corCreateGachaResultID != null) StopCoroutine(corCreateGachaResultID);
+        corCreateGachaResultID = StartCoroutine(CoCreateGachaResultCardUIContent());
     }
 
     /// <summary>
@@ -243,9 +257,10 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void ShowPopUp()
     {
+        CurNeedTicketCntTxt.gameObject.SetActive(false);
         employPopUp.SetActive(true);
         DOTAnim.DORestart();
-        UpdateUIAndData();
+        UpdateUIAndData(); //* 리스트초기화 및 UI업데이트
     }
 
     /// <summary>
@@ -256,7 +271,7 @@ public class EmployManager : MonoBehaviour
         workerCnt = 0;
 
         // 입장소비 티켓 표시
-        var ticketTag = GM._.stgm.OreType == RSC.CRISTAL? INV.RED_TICKET : INV.ORE_TICKET;
+        var ticketTag = GM._.stgm.IsChallengeMode? INV.RED_TICKET : INV.ORE_TICKET;
         PlayBtnNeedTicketCntTxt.text = $"<size=70%><sprite name={ticketTag}></size> {NEED_TICKET_CNT}";
 
         // 소환캐릭 수

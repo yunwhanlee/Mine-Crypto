@@ -57,8 +57,8 @@ public class PlayManager : MonoBehaviour
         if(GM._.stgm.OreType != RSC.CRISTAL)
         {
             // GM._.gameState = GameState.HOME;
-            GM._.epm.employPopUp.SetActive(false);
-            GM._.hm.HomeWindow.SetActive(true);
+            // GM._.epm.employPopUp.SetActive(true);
+            GM._.hm.HomeWindow.SetActive(false);
 
             // 현재까지 진행한 데이터 획득
             GM._.gameState = GameState.TIMEOVER;
@@ -81,6 +81,7 @@ public class PlayManager : MonoBehaviour
         GM._.gameState = GameState.HOME;
         GM._.ui.defeatPopUp.SetActive(false);
         GM._.hm.HomeWindow.SetActive(true);
+        GM._.clm.ShowPopUp();
     }
 #endregion
 
@@ -115,7 +116,7 @@ public class PlayManager : MonoBehaviour
 
     private IEnumerator CoStartCownDownTimer() {
         // 타이머 최대시간
-        if(GM._.stgm.OreType == RSC.CRISTAL)
+        if(GM._.stgm.IsChallengeMode)
             timerVal = CHANLLENGE_PLAYTIME_SEC;
         else
             timerVal = GM._.sttm.ExtraIncTimer;
@@ -133,14 +134,16 @@ public class PlayManager : MonoBehaviour
         GM._.gameState = GameState.TIMEOVER;
         timerTxt.text = "TIME OVER!";
 
-        if(GM._.stgm.OreType == RSC.CRISTAL)
+        // 시련의동굴 패배
+        if(GM._.stgm.IsChallengeMode)
             ShowDefeatPopUp();
+        // 일반광산 게임종료
         else
             Timeover(isBackTicket: true);
     }
 
     /// <summary>
-    /// 시련의광산 도전실패 팝업
+    /// 시련의광산 도전실패 팝업 표시
     /// </summary>
     public void ShowDefeatPopUp()
     {
@@ -166,7 +169,7 @@ public class PlayManager : MonoBehaviour
         // 입장티켓 1개 회수 (게임포기 안했을때만 해당)
         if(isBackTicket)
         {
-            if(GM._.stgm.OreType == RSC.CRISTAL)
+            if(GM._.stgm.IsChallengeMode)
             {
                 playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
                 DM._.DB.statusDB.RedTicket++;               // 데이터
@@ -188,8 +191,6 @@ public class PlayManager : MonoBehaviour
 
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
         GM._.rwm.ShowGameoverReward(playResRwdArr);
-
-
     }
 #endregion
 

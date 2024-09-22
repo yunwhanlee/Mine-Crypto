@@ -87,12 +87,15 @@ public class RewardUIManager : MonoBehaviour
             case GameState.TIMEOVER:
                 GM._.gameState = GameState.HOME;
                 rewardUIPopUp.SetActive(false);
-                GM._.hm.HomeWindow.SetActive(true);
+
                 GM._.pm.InitPlayData();
 
-                // 시련의광산일경우 종료시 시련의광산팝업 표시
-                if(GM._.stgm.OreType == RSC.CRISTAL)
-                    GM._.clm.windowObj.SetActive(true);
+                // 시련의광산 경우 종료시 
+                if(GM._.stgm.IsChallengeMode)
+                    GM._.clm.ShowPopUp(); // 시련의광산 팝업 표시
+                // 일반광산의 경우 종료시
+                else
+                    GM._.hm.HomeWindow.SetActive(true); //GM._.epm.ShowPopUp(); // 고용 팝업 표시
 
                 break;
             default:

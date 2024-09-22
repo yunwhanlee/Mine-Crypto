@@ -91,8 +91,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickChallengeBtn() {
         topRscGroup.SetActive(true);
-        GM._.clm.windowObj.SetActive(true);
-        GM._.clm.UpdateUI();
+        GM._.clm.ShowPopUp();
     }
 
     public void OnClickMenu_OreProficiencyBtn() {

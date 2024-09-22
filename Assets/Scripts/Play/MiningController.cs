@@ -309,7 +309,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         if(GM._.mnm.workerClearStageStatusCnt >= GM._.sttm.TotalPopulation)
                         {
                             // 시련의광산 층 돌파 성공
-                            if(GM._.stgm.OreType == RSC.CRISTAL)
+                            if(GM._.stgm.IsChallengeMode)
                             {
                                 // 스테이지 클리어
                                 GM._.gameState = GameState.TIMEOVER;
