@@ -89,6 +89,11 @@ public class RewardUIManager : MonoBehaviour
                 rewardUIPopUp.SetActive(false);
                 GM._.hm.HomeWindow.SetActive(true);
                 GM._.pm.InitPlayData();
+
+                // 시련의광산일경우 종료시 시련의광산팝업 표시
+                if(GM._.stgm.OreType == RSC.CRISTAL)
+                    GM._.clm.windowObj.SetActive(true);
+
                 break;
             default:
                 rewardUIPopUp.SetActive(false);

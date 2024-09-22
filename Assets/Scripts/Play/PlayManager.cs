@@ -8,8 +8,7 @@ using static Enum;
 
 public class PlayManager : MonoBehaviour
 {
-    
-    const int CRISTAL_STAGE_PLAYTIME_SEC = 10;// 시련의광산 플레이타임
+    const int CHANLLENGE_PLAYTIME_SEC = 60;// 시련의광산 플레이타임
 
     //* Element
     public GameObject pausePopUp;
@@ -65,7 +64,7 @@ public class PlayManager : MonoBehaviour
     private IEnumerator CoStartCownDownTimer() {
         // 타이머 최대시간
         if(GM._.stgm.OreType == RSC.CRISTAL)
-            timerVal = CRISTAL_STAGE_PLAYTIME_SEC;
+            timerVal = CHANLLENGE_PLAYTIME_SEC;
         else
             timerVal = GM._.sttm.ExtraIncTimer;
 
