@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using static Enum;
-using System.Security.Cryptography;
 
 public class EmployManager : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class EmployManager : MonoBehaviour
     [Header("SECTION1: 캐릭터 랜덤 확률표")]
     public TMP_Text randomGradeTableValTxt;
     public TMP_Text curFameLvTxt;
+    public TMP_Text PlayBtnNeedTicketCntTxt;
     public TMP_Text PlayBtnEmployCntTxt;
 
     [Header("SECTION2: 캐릭터 카드 리스트")]
@@ -43,6 +43,7 @@ public class EmployManager : MonoBehaviour
     public TMP_Text charaAbilityValTxt;
 
     //* Value
+    const int NEED_TICKET_CNT = 1;
     int workerMax;
     int workerCnt;
     int gachaRetryCntMax;
@@ -58,7 +59,7 @@ public class EmployManager : MonoBehaviour
 #region EVENT
     public void OnClickCloseBtn()
     {
-        GM._.ui.ShowConfirmPopUp("정말로 포기하시겠습니까?\n(소모된 입장권은 복구되지않지롱~)");
+        GM._.ui.ShowConfirmPopUp("홈으로 돌아가시겠습니까?");
         GM._.ui.OnClickConfirmBtnAction = () => {
             GM._.hm.HomeWindow.SetActive(true);
             GM._.epm.employPopUp.SetActive(false);
@@ -70,6 +71,32 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickCharaGachaBtn()
     {
+        var sttDB = DM._.DB.statusDB;
+
+        // 입장티켓 수량 확인처리
+        switch(GM._.stgm.OreType)
+        {
+            case RSC.CRISTAL:
+                if(sttDB.RedTicket < NEED_TICKET_CNT)
+                {
+                    GM._.ui.ShowWarningMsgPopUp("붉은티켓이 부족합니다.");
+                    return;
+                }
+                else
+                    sttDB.RedTicket -= NEED_TICKET_CNT; // 붉은티겟 수량 감소
+                break;
+            default:
+                if(sttDB.OreTicket < NEED_TICKET_CNT)
+                {
+                    GM._.ui.ShowWarningMsgPopUp("광석티켓이 부족합니다.");
+                    return;
+                }
+                else
+                    sttDB.OreTicket -= NEED_TICKET_CNT; // 광석티겟 수량 감소
+                break;
+        }
+
+        // 팝업 표시
         employPopUp.SetActive(false);
         charaGachaPopUp.SetActive(true);
 
@@ -228,9 +255,12 @@ public class EmployManager : MonoBehaviour
         //* 고용 팝업
         workerCnt = 0;
 
+        // 입장소비 티켓 표시
+        var ticketTag = GM._.stgm.OreType == RSC.CRISTAL? INV.RED_TICKET : INV.ORE_TICKET;
+        PlayBtnNeedTicketCntTxt.text = $"<size=70%><sprite name={ticketTag}></size> {NEED_TICKET_CNT}";
+
         // 소환캐릭 수
         workerMax = GM._.sttm.TotalPopulation;
-
         PlayBtnEmployCntTxt.text = $"{workerMax}마리 소환";
 
         //* 랜덤뽑기결과 팝업

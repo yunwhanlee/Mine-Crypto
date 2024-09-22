@@ -38,20 +38,13 @@ public class ChallengeManager : MonoBehaviour
     /// </summary>
     public void OnClickEnterBtn()
     {
-        if(CurRedTicketCnt >= 1)
-        {
-            CurRedTicketCnt--;
+        // 선택한 광산타입
+        GM._.stgm.OreType = RSC.CRISTAL;
 
-            // 선택한 광산타입
-            GM._.stgm.OreType = RSC.CRISTAL;
+        // 캐릭터 가챠뽑기 UI준비
+        GM._.stgm.SetGachaUI(windowObj);
 
-            // 캐릭터 가챠뽑기 UI준비
-            GM._.stgm.SetGachaUI(windowObj);
-
-            UpdateUI();
-        }
-        else
-            GM._.ui.ShowWarningMsgPopUp("입장티켓이 부족합니다.");
+        UpdateUI();
     }
 #endregion
 
