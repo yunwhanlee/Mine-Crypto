@@ -143,38 +143,13 @@ public class AlchemyManager : MonoBehaviour
             {
                 // 제작필요 아이템 데이터
                 NeedItemData needItemDt = itemDt.needItemDataArr[i];
-
+                // 필요 아이템
                 int needItemVal = cateIdx == ALCHEMY_CATE.MATERIAL? ApplyDecMatPer(needItemDt.Val) : needItemDt.Val;
+                // 결과
                 int totalNeedVal = needItemVal * createCnt;
 
                 // 제작에 필요한 아이템 수량 감소
-                switch(needItemDt.Type)
-                {
-                    case INV.ORE1: case INV.ORE2: case INV.ORE3: case INV.ORE4:
-                    case INV.ORE5: case INV.ORE6: case INV.ORE7: case INV.ORE8:
-                        sttDB.SetRscArr((int)needItemDt.Type, -totalNeedVal);
-                        break;
-                    case INV.MAT1: case INV.MAT2: case INV.MAT3: case INV.MAT4:
-                    case INV.MAT5: case INV.MAT6: case INV.MAT7: case INV.MAT8: 
-                        sttDB.SetMatArr((int)needItemDt.Type - (int)INV.MAT1, -totalNeedVal);
-                        break;
-                    case INV.MUSH1: case INV.MUSH2: case INV.MUSH3: case INV.MUSH4:
-                    case INV.MUSH5: case INV.MUSH6: case INV.MUSH7: case INV.MUSH8:
-                        sttDB.SetMsrArr((int)needItemDt.Type - (int)INV.MUSH1, -totalNeedVal);
-                        break;
-                    case INV.ORE_TICKET:
-                        sttDB.OreTicket -= totalNeedVal;
-                        break;
-                    case INV.RED_TICKET:
-                        sttDB.RedTicket -= totalNeedVal;
-                        break;
-                    case INV.ORE_CHEST: 
-                        sttDB.OreChest -= totalNeedVal;
-                        break;
-                    case INV.TREASURE_CHEST:
-                        sttDB.TreasureChest -= totalNeedVal;
-                        break;
-                }
+                sttDB.SetInventoryItemVal(needItemDt.Type, -totalNeedVal);
             }
 
             //* 제작한 아이템 증가

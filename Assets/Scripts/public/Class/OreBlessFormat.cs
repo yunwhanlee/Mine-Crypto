@@ -5,14 +5,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static Enum;
+
+/// <summary>
+/// 재설정에 필요한 아이템
+/// </summary>
+[Serializable]
+public struct ResetNeedItem {
+    public INV type;
+    public int val;
+}
 
 /// <summary>
 /// 광석의축복 실제 적용데이터
 /// </summary>
 [Serializable]
 public struct OreBlessAbilityData {
-    public Enum.OREBLESS_ABT type; // 능력타입
-    public Enum.GRADE grade;
+    public OREBLESS_ABT type; // 능력타입
+    public GRADE grade;
     public float val; // int형 능력치일 경우 (int)로 형변환 할 것!
 }
 
@@ -25,10 +35,13 @@ public class OreBlessFormat
     //* Elements
     [field:SerializeField] public GameObject LockedPanel;
     [field:SerializeField] public TMP_Text AbilityTxt;
+    [field:SerializeField] public TMP_Text ResetNeedItemTxt;
 
     //* Value
     public int id;
-    [field:SerializeField] public Enum.RSC Type {get; set;}
+    [field:SerializeField] public RSC Type {get; set;} // 축복 광석타입
+    [field:SerializeField] public ResetNeedItem ResetNeedItem {get; private set;} // 재설정에 필요한 아이템목록
+
     [field:SerializeField] public bool IsUnlock {
         get => DM._.DB.oreBlessDB.saveDts[id].IsUnlock;
         set {
@@ -47,5 +60,12 @@ public class OreBlessFormat
     }
 
 #region FUNC
+    /// <summary>
+    /// 재설정에 필요한 아이템목록 텍스트 표시
+    /// </summary>
+    public void UpdateResetNeedItemTxtUI()
+    {
+        ResetNeedItemTxt.text = $"<size=75%><sprite name={ResetNeedItem.type}></size> {ResetNeedItem.val}";
+    }
 #endregion
 }

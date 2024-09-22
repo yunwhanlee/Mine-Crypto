@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using static Enum;
@@ -139,7 +140,7 @@ public class StatusDB
     }
 
     /// <summary>
-    /// 인벤토리 아이템 수량 가져오기
+    /// 모든 인벤토리 아이템수량 가져오기
     /// </summary>
     public int GetInventoryItemVal(INV type)
     {
@@ -170,6 +171,46 @@ public class StatusDB
 
         Debug.LogError("해당하는 아이템 타입이 없어서 찾을수가 없습니다. 소스코드에서 case 타입을 추가하세요!!!");
         return -9999999; // ERROR
+    }
+
+    /// <summary>
+    /// 모든 인벤토리 아이템수량 설정
+    /// </summary>
+    /// <param name="itemType">아이템 타입(인벤토리 Enum)</param>
+    /// <param name="val">증가 또는 감소시킬 수량</param>
+    public void SetInventoryItemVal(INV itemType, int val)
+    {
+        const int matIdxOffset = (int)INV.MAT1;
+        const int mushIdxOffset = (int)INV.MUSH1;
+
+        switch(itemType)
+        {
+            case INV.ORE1: case INV.ORE2: case INV.ORE3: case INV.ORE4:
+            case INV.ORE5: case INV.ORE6: case INV.ORE7: case INV.ORE8:
+            case INV.CRISTAL:
+                SetRscArr((int)itemType, val);
+                break;
+            case INV.MAT1: case INV.MAT2: case INV.MAT3: case INV.MAT4:
+            case INV.MAT5: case INV.MAT6: case INV.MAT7: case INV.MAT8: 
+                SetMatArr((int)itemType - matIdxOffset, val);
+                break;
+            case INV.MUSH1: case INV.MUSH2: case INV.MUSH3: case INV.MUSH4:
+            case INV.MUSH5: case INV.MUSH6: case INV.MUSH7: case INV.MUSH8:
+                SetMsrArr((int)itemType - mushIdxOffset, val);
+                break;
+            case INV.ORE_TICKET:
+                OreTicket += val;
+                break;
+            case INV.RED_TICKET:
+                RedTicket += val;
+                break;
+            case INV.ORE_CHEST: 
+                OreChest += val;
+                break;
+            case INV.TREASURE_CHEST:
+                TreasureChest += val;
+                break;
+        }
     }
 
     /// <summary>

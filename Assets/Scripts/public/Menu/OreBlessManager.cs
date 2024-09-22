@@ -29,33 +29,38 @@ public class OreBlessManager : MonoBehaviour
         sttDB = DM._.DB.statusDB;
         oreDB = DM._.DB.oreBlessDB;
 
+        // 재설정에 필요한 아이템 텍스트 표시
+        for(int i = 0; i < oreBlessFormatArr.Length; i++)
+            oreBlessFormatArr[i].UpdateResetNeedItemTxtUI();
+
         UpdateUI();
     }
 
 #region EVENT
     /// <summary>
-    /// 축복 능력지 재설정
+    /// 축복 능력지 재설정 버튼
     /// </summary>
     /// <param name="oreBlessIdx">광석축복 슬롯 IDX</param>
     public void OnClickAbilityResetBtn(int oreBlessIdx) {
+        // 재설정에 필요한 아이템
+        ResetNeedItem NeedItem = oreBlessFormatArr[oreBlessIdx].ResetNeedItem;
 
         // 필요재화 수량 체크
-        if(sttDB.RscArr[(int)RSC.CRISTAL] >= RESET_CRISTAL_PRICE
-        && sttDB.RscArr[oreBlessIdx] >= RESET_ORE_PRICE)
+        if(sttDB.GetInventoryItemVal(NeedItem.type) >= NeedItem.val)
         {
-            GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
+            // 재설정에 사용한 아이템 수량 감소
+            sttDB.SetInventoryItemVal(NeedItem.type, -NeedItem.val);
 
-            // 재화 데이터 수치 감소
-            sttDB.SetRscArr((int)RSC.CRISTAL, -RESET_CRISTAL_PRICE);
-            sttDB.SetRscArr(oreBlessIdx, -RESET_ORE_PRICE);
+            // 능력치 리셋 
+            ResetAbilities(oreBlessIdx);
+
+            GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
         }
         else
         {
             GM._.ui.ShowWarningMsgPopUp($"재화가 부족합니다!");
             return;
         }
-
-        ResetAbilities(oreBlessIdx);
     }
 #endregion
 
