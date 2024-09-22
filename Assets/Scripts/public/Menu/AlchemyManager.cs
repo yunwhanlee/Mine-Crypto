@@ -108,6 +108,8 @@ public class AlchemyManager : MonoBehaviour
     /// </summary>
     public void OnSliderValueChanged()
     {
+        Debug.Log("OnSliderValueChanged()::");
+
         // 최대 제작수량
         int creatableMax = (int)createAmountControlSlider.maxValue;
         // 제작수량 (기준 정수단위)
@@ -116,6 +118,36 @@ public class AlchemyManager : MonoBehaviour
         createAmountControlSlider.value = createCnt;
         // 텍스트 수량 표시
         createAmountTxt.text = $"{createCnt * (cateIdx == ALCHEMY_CATE.EXCHANGE? 100 : 1)}개";
+        
+        // 제작필요 아이템 개수 곱하여 수량 업데이트
+        switch(cateIdx)
+        {
+            case ALCHEMY_CATE.MATERIAL:
+                var mtDt = materialData[itemBtnIdx];
+                // 제작필요 아이템 업데이트
+                for(int i = 0; i < mtDt.needItemDataArr.Length; i++)
+                    UpdateNeedItem(mtDt, i, createCnt);
+                break;
+            case ALCHEMY_CATE.CONSUME_ITEM:
+                var csDt = consumeItemData[itemBtnIdx];
+                // 제작필요 아이템 업데이트
+                for(int i = 0; i < csDt.needItemDataArr.Length; i++)
+                    UpdateNeedItem(csDt, i, createCnt);
+                break;
+            case ALCHEMY_CATE.EXCHANGE:
+                var excDt = exchangeItemData[itemBtnIdx];
+                // 제작필요 아이템 업데이트
+                for(int i = 0; i < excDt.needItemDataArr.Length; i++)
+                    UpdateNeedItem(excDt, i, createCnt);
+                break;
+        }
+
+        Array.ForEach(needItemUIArr, needItemUI => {
+            if(needItemUI.obj.activeSelf)
+            {
+                
+            }
+        });
     }
 
     /// <summary>
@@ -247,7 +279,7 @@ public class AlchemyManager : MonoBehaviour
     /// <param name="cateDt">현재 카테고리군 데이터</param>
     /// <param name="idx">아이템 인덱스</param>
     /// <returns></returns>
-    private int UpdateNeedItem(AlchemyDataSO cateDt, int idx)
+    private int UpdateNeedItem(AlchemyDataSO cateDt, int idx, int createCnt = 1)
     {
         // 제작필요 아이템 데이터
         NeedItemData needItemDt = cateDt.needItemDataArr[idx];
@@ -263,7 +295,7 @@ public class AlchemyManager : MonoBehaviour
         int curItemVal = DM._.DB.statusDB.GetInventoryItemVal(needItemDt.Type);
         // 아이템제작 텍스트 표시
         string colorTag = curItemVal >= needItemVal? "green" : "red";
-        itemUI.needCntTxt.text = $"<sprite name={needItemDt.Type}>  <color={colorTag}>{needItemVal}</color> / {curItemVal}";
+        itemUI.needCntTxt.text = $"<sprite name={needItemDt.Type}> {curItemVal} / <color={colorTag}>{needItemVal * createCnt}</color>";
         // 필요 아이템을 나눈 값
         return curItemVal / needItemVal;
     }
