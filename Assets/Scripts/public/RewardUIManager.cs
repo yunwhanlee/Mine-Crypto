@@ -91,7 +91,6 @@ public class RewardUIManager : MonoBehaviour
                 GM._.pm.InitPlayData();
                 break;
             default:
-                //TODO
                 rewardUIPopUp.SetActive(false);
                 break;
         }

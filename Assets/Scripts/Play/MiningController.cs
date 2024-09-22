@@ -311,10 +311,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                             // 시련의광산 층 돌파 성공
                             if(GM._.stgm.OreType == RSC.CRISTAL)
                             {
+                                // 스테이지 클리어
                                 GM._.gameState = GameState.TIMEOVER;
                                 GM._.pm.StopCorTimer();
                                 GM._.pm.timerTxt.text = "CLEAR!";
-                                GM._.pm.Timeover(); // 타임오버
+                                GM._.pm.Timeover(isBackTicket: true);
                                 GM._.clm.BestFloor++;
                             }
                             // 일반광산 다음층으로

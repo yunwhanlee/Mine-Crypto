@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Search;
 using UnityEngine;
 using static Enum;
 
 public class PlayManager : MonoBehaviour
 {
     
-    const int CRISTAL_STAGE_PLAYTIME_SEC = 30;// 시련의광산 플레이타임
+    const int CRISTAL_STAGE_PLAYTIME_SEC = 10;// 시련의광산 플레이타임
 
     //* Element
     public GameObject pausePopUp;
@@ -77,16 +78,20 @@ public class PlayManager : MonoBehaviour
             TimerVal -= 1;
         }
 
-        //! 타이머 0 -> 게임오버로 상태 변경
+        //* 타이머0 게임종료
         GM._.gameState = GameState.TIMEOVER;
         timerTxt.text = "TIME OVER!";
-        Timeover(); // 타임오버
+
+        if(GM._.stgm.OreType == RSC.CRISTAL)
+            GM._.ui.defeatPopUp.SetActive(true); // 시련의광산 도전실패 팝업
+        else
+            Timeover(isBackTicket: true);
     }
 
     /// <summary>
     ///* 타임오버 (제공 보상표시)
     /// </summary>
-    public void Timeover(bool isGiveUp = false) {
+    public void Timeover(bool isBackTicket) {
         var stageType = (int)GM._.stgm.OreType;
         var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
 
@@ -98,7 +103,7 @@ public class PlayManager : MonoBehaviour
         }
 
         // 입장티켓 1개 회수 (게임포기 안했을때만 해당)
-        if(!isGiveUp)
+        if(isBackTicket)
         {
             if(GM._.stgm.OreType == RSC.CRISTAL)
             {
@@ -153,9 +158,20 @@ public class PlayManager : MonoBehaviour
         // 현재까지 진행한 데이터 획득
         GM._.gameState = GameState.TIMEOVER;
         timerTxt.text = "GIVE UP!";
-        Timeover(isGiveUp: true); // 타임오버
+        Timeover(isBackTicket: false);
 
         InitPlayData(); //! 타이머 0 -> 게임오버로 상태 변경
+    }
+
+    /// <summary>
+    /// 시련의광산 도전실패 팝업 닫기
+    /// </summary>
+    public void OnClickDefeatPopUpDimScreenBtn()
+    {
+        GM._.gameState = GameState.HOME;
+        GM._.ui.defeatPopUp.SetActive(false);
+        GM._.hm.HomeWindow.SetActive(true);
+        GM._.pm.InitPlayData();
     }
 #endregion
 }

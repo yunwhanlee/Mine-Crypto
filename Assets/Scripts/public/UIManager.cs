@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text confirmBtnTxt;                      // 확인버튼 텍스트
     public TMP_Text cancelBtnTxt;                       // 취소버튼 텍스트
 
+    public GameObject defeatPopUp;                      // 시련의광산 실패팝업
+
     [Header("EFFECT")]
     public ParticleImage coinAttractionPtcImg;          // 광석조각 획득 UI-EF
     public ParticleImage treasureChestAttractionPtcImg; // 보물상자 획득 UI-EF

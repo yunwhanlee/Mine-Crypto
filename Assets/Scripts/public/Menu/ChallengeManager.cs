@@ -38,7 +38,7 @@ public class ChallengeManager : MonoBehaviour
     /// </summary>
     public void OnClickEnterBtn()
     {
-        if(CurRedTicketCnt > 1)
+        if(CurRedTicketCnt >= 1)
         {
             CurRedTicketCnt--;
 
