@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using static Enum;
 
 /// <summary>
@@ -35,6 +34,7 @@ public class OreBlessFormat
     //* Elements
     [field:SerializeField] public GameObject LockedPanel;
     [field:SerializeField] public TMP_Text AbilityTxt;
+    [field:SerializeField] public Image ResetBtnImg;
     [field:SerializeField] public TMP_Text ResetNeedItemTxt;
 
     //* Value
@@ -63,9 +63,22 @@ public class OreBlessFormat
     /// <summary>
     /// 재설정에 필요한 아이템목록 텍스트 표시
     /// </summary>
-    public void UpdateResetNeedItemTxtUI()
+    public void SetResetNeedItemTxtUI()
     {
         ResetNeedItemTxt.text = $"<size=75%><sprite name={ResetNeedItem.type}></size> {ResetNeedItem.val}";
+    }
+
+    /// <summary>
+    /// 재설정 가능여부에 따라 버튼색상 변경
+    /// </summary>
+    public void SetResetBtnColorUI()
+    {
+        if(IsUnlock)
+        {
+            bool isPossible = DM._.DB.statusDB.GetInventoryItemVal(ResetNeedItem.type) > ResetNeedItem.val;
+
+            ResetBtnImg.sprite = isPossible? GM._.obm.YellowBtnSpr : GM._.obm.GrayBtnSpr;
+        }
     }
 #endregion
 }

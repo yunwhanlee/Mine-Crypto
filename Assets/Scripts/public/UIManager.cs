@@ -77,8 +77,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickMenu_OreBlessBtn() {
         topRscGroup.SetActive(true);
-        GM._.obm.windowObj.SetActive(true);
-        GM._.obm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
+        GM._.obm.ShowPopUp();
     }
 
     public void OnClickMenu_AutoMiningBtn() {

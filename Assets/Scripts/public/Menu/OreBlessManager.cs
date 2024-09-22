@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using static Enum;
 using Random = UnityEngine.Random;
@@ -10,9 +11,11 @@ public class OreBlessManager : MonoBehaviour
     StatusDB sttDB;
     OreBlessDB oreDB;
 
-    const int RESET_CRISTAL_PRICE = 10;         // 능력치 재설정위한 크리스탈 가격
-    const int RESET_ORE_PRICE = 10000;          // 능력치 재설정위한 광석조각 가격
     const int INT_TYPE = 0, FLOAT_TYPE = 1;     // 능력치 데이터 타입
+
+    [field:Header("재설정버튼 : 구입가능(노랑버튼), 불가능(회색버튼)")]
+    public Sprite YellowBtnSpr;
+    public Sprite GrayBtnSpr;
 
     [field:Header("광산의 축복 능력치 데이터 (INT)")]
     [field:SerializeField] public OreBlessAbilityDB_Int[] Int_Abilities {get; private set;}
@@ -31,7 +34,7 @@ public class OreBlessManager : MonoBehaviour
 
         // 재설정에 필요한 아이템 텍스트 표시
         for(int i = 0; i < oreBlessFormatArr.Length; i++)
-            oreBlessFormatArr[i].UpdateResetNeedItemTxtUI();
+            oreBlessFormatArr[i].SetResetNeedItemTxtUI();
 
         UpdateUI();
     }
@@ -54,6 +57,8 @@ public class OreBlessManager : MonoBehaviour
             // 능력치 리셋 
             ResetAbilities(oreBlessIdx);
 
+            UpdateUI();
+
             GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
         }
         else
@@ -65,6 +70,13 @@ public class OreBlessManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    public void ShowPopUp()
+    {
+        windowObj.SetActive(true);
+        windowObj.GetComponent<DOTweenAnimation>().DORestart();
+        UpdateUI();
+    }
+
     /// <summary>
     /// 로드한 데이터로 잠금해제 및 능력치UI 표시
     /// </summary>
@@ -79,6 +91,9 @@ public class OreBlessManager : MonoBehaviour
 
             // 능력치 텍스트 초기화
             oreBlessFormatArr[i].AbilityTxt.text = "";
+
+            // 구입가능 여부에 따라, 버튼색상 변경
+            oreBlessFormatArr[i].SetResetBtnColorUI();
 
             // 능력치
             if(saveDt.AbilityList != null)
