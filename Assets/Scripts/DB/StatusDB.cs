@@ -50,6 +50,7 @@ public class StatusDB
         set {
             oreChest = value;
             if(oreChest < 0) oreChest = 0;
+            GM._.ivm.UpdateAlertRedDot();
         }
     }
 
@@ -59,6 +60,7 @@ public class StatusDB
         set {
             treasureChest = value;
             if(treasureChest < 0) treasureChest = 0;
+            GM._.ivm.UpdateAlertRedDot();
         }
     }
 
@@ -68,6 +70,7 @@ public class StatusDB
         set {
             mushBox1 = value;
             if(mushBox1 < 0) mushBox1 = 0;
+            GM._.ivm.UpdateAlertRedDot();
         }
     }
 
@@ -77,6 +80,7 @@ public class StatusDB
         set {
             mushBox2 = value;
             if(mushBox2 < 0) mushBox2 = 0;
+            GM._.ivm.UpdateAlertRedDot();
         }
     }
 
@@ -86,6 +90,7 @@ public class StatusDB
         set {
             mushBox3 = value;
             if(mushBox3 < 0) mushBox3 = 0;
+            GM._.ivm.UpdateAlertRedDot();
         }
     }
 

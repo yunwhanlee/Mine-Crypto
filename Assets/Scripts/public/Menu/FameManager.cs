@@ -343,8 +343,9 @@ public class FameManager : MonoBehaviour
     /// <summary>
     /// 수령가능한 버튼이 있다면, 알림아이콘UI 🔴표시
     /// </summary>
-    public void UpdateAlertRedDot() {
-        Debug.Log($"UpdateAlertRedDot()::");
+    public void UpdateAlertRedDot()
+    {
+        Debug.Log($"명성 미션:: UpdateAlertRedDot()::");
         bool isAcceptable = Array.Exists(missionArr, msi => msi.Exp >= msi.MaxExp);
         alertRedDotObj.SetActive(isAcceptable);
     }

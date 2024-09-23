@@ -9,6 +9,7 @@ public class InventoryUIManager : MonoBehaviour
 {
     //* ELEMENT
     public GameObject windowObj;                // 인벤토리 팝업
+    public GameObject alertRedDotObj;
     public InvSlotUI[] invSlotUIArr;      // 인벤토리 슬롯UI 객체배열
 
     [Header("모든 인벤토리 아이템슬롯을 ContentTf안에 미리 만들고 IDX로 처리")]
@@ -16,6 +17,7 @@ public class InventoryUIManager : MonoBehaviour
 
     void Start() {
         InitDataAndUI();
+        UpdateAlertRedDot();
     }
 
 #region FUNC
@@ -103,6 +105,26 @@ public class InventoryUIManager : MonoBehaviour
         invSlotUIArr[(int)INV.MUSH_BOX2].Active(sttDB.MushBox2);
         invSlotUIArr[(int)INV.MUSH_BOX3].Active(sttDB.MushBox3);
         //※ 여기에 추가
+    }
+
+    /// <summary>
+    /// 수령가능한 버튼이 있다면, 알림아이콘UI 🔴표시
+    /// </summary>
+    public void UpdateAlertRedDot()
+    {
+        var sttDB = DM._.DB.statusDB;
+
+        Debug.Log($"인벤토리:: UpdateAlertRedDot()::");
+        bool isAcceptable = false;
+
+        // 알림아이콘을 표시할 아이템
+        if(sttDB.OreChest > 0) isAcceptable = true;
+        else if(sttDB.TreasureChest > 0) isAcceptable = true;
+        else if(sttDB.MushBox1 > 0) isAcceptable = true;
+        else if(sttDB.MushBox2 > 0) isAcceptable = true;
+        else if(sttDB.MushBox3 > 0) isAcceptable = true;
+
+        alertRedDotObj.SetActive(isAcceptable);
     }
 #endregion
 }
