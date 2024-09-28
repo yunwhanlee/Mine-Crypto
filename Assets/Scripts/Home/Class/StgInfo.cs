@@ -78,7 +78,7 @@ public class StgInfo
                 GM._.amm.autoMiningArr[id].IsUnlock = true;
 
                 // 광산의 축복 개방
-                GM._.obm.oreBlessFormatArr[id].IsUnlock = true;
+                // GM._.obm.oreBlessFormatArr[id].IsUnlock = true;
 
                 // 광산의 축복 능력치 설정 (초기)
                 GM._.obm.ResetAbilities(id);

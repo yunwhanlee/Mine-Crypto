@@ -17,6 +17,9 @@ public class OreBlessManager : MonoBehaviour
     public Sprite YellowBtnSpr;
     public Sprite GrayBtnSpr;
 
+    [field:Header("광산의 축복 개방 층수")]
+    public int[] UnlockFloorArr;
+
     [field:Header("광산의 축복 능력치 데이터 (INT)")]
     [field:SerializeField] public OreBlessAbilityDB_Int[] Int_Abilities {get; private set;}
     [field:Header("광산의 축복 능력치 데이터 (FLOAT)")]
@@ -257,6 +260,24 @@ public class OreBlessManager : MonoBehaviour
             });
         });
         return val; // 다 더해진 능력치 반환
+    }
+
+    /// <summary>
+    /// 축복 개방
+    /// </summary>
+    public void CheckUnlock()
+    {
+        var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
+        var obm = GM._.obm;
+
+        for(int i = 0; i < UnlockFloorArr.Length; i++)
+        {
+            if(bestFloorArr[i] >= UnlockFloorArr[i] && !obm.oreBlessFormatArr[i].IsUnlock)
+            {
+                obm.oreBlessFormatArr[i].IsUnlock = true;
+                GM._.ui.ShowNoticeMsgPopUp($"제{i + 1} 광산의축복 개방!!!");
+            }
+        }
     }
 #endregion
 }

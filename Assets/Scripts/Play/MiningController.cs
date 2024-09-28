@@ -279,7 +279,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         GM._.mnm.workerClearStageStatusCnt++;
 
                         // 모든 캐릭터가 클리어 카운트 됬다면
-                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.sttm.TotalPopulation)
+                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.mnm.workerGroupTf.childCount)
                         {
                             //* 시련의광산 층 돌파 성공
                             if(GM._.stgm.IsChallengeMode)
