@@ -81,7 +81,7 @@ public class PlayManager : MonoBehaviour
             Destroy(GM._.mnm.workerGroupTf.GetChild(i).gameObject); 
         }
         // 모든 재화 UI 업데이트
-        DM._.DB.statusDB.UpdateAllRscUIAtHome();
+        DM._.DB.statusDB.UpdateAllTopUIAtHome();
     }
 
     public void StopCorTimer() {

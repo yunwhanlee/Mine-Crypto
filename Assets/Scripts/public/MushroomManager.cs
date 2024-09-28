@@ -84,6 +84,7 @@ public class MushroomManager : MonoBehaviour
     {
         windowObj.SetActive(true);
         DOTAnim.DORestart();
+        GM._.ui.topMushGroup.SetActive(true);
     }
 
     private void Upgrade(UpgradeMushFormat upgDt)

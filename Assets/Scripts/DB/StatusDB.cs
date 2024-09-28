@@ -287,7 +287,7 @@ public class StatusDB
             rscArr[idx] = 0;
 
         // TOP RSC 재화표시 업데이트UI
-        GM._.hm.topRscTxtArr[idx].text = $"{rscArr[idx]}";
+        GM._.ui.topRscTxtArr[idx].text = $"{rscArr[idx]}";
 
         // 게임플레이 경우 인벤토리 업데이트UI
         if(GM._.gameState == GameState.PLAY)
@@ -327,6 +327,9 @@ public class StatusDB
         if(msrArr[idx] < 0)
             msrArr[idx] = 0;
 
+        // TOP 버섯표시 업데이트UI
+        GM._.ui.topMushTxtArr[idx].text = $"{msrArr[idx]}";
+
         // 게임플레이 경우 인벤토리 업데이트UI
         if(GM._.gameState == GameState.PLAY)
             GM._.ivm.UpdateSlotUI();
@@ -337,9 +340,12 @@ public class StatusDB
     /// <summary>
     /// (홈) 모든재화 텍스트UI 업데이트
     /// </summary>
-    public void UpdateAllRscUIAtHome() {
+    public void UpdateAllTopUIAtHome() {
         for(int i = 0; i < rscArr.Length; i++){
-            GM._.hm.topRscTxtArr[i].text = $"{rscArr[i]}";
+            GM._.ui.topRscTxtArr[i].text = $"{rscArr[i]}";
+        }
+        for(int i = 0; i < msrArr.Length; i++){
+            GM._.ui.topMushTxtArr[i].text = $"{msrArr[i]}";
         }
     }
 #endregion

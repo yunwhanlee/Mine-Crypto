@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     public GameObject topRscGroup;
     public TMP_Text[] topRscTxtArr;
 
+    public GameObject topMushGroup;
+    public TMP_Text[] topMushTxtArr;
+
     [Header("POP UP")]
     public GameObject menuPopUp;
 
@@ -38,13 +41,19 @@ public class UIManager : MonoBehaviour
     public ParticleImage treasureChestAttractionPtcImg; // 보물상자 획득 UI-EF
 
     void Start() {
-        // TOP 재화표시창 끄기
+        // TOP 표시창 끄기
         topRscGroup.SetActive(false);
+        topMushGroup.SetActive(false);
         
-        // 재화표시창 업데이트UI
+        // TOP 재화표시창 업데이트UI
         for(int i = 0; i < topRscTxtArr.Length; i++)
         {
             topRscTxtArr[i].text = $"{DM._.DB.statusDB.RscArr[i]}";
+        }
+        // TOP 버섯표시창 업데이트UI
+        for(int i = 0; i < topMushTxtArr.Length; i++)
+        {
+            topMushTxtArr[i].text = $"{DM._.DB.statusDB.MsrArr[i]}";
         }
     }
 
@@ -54,6 +63,9 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnCloseTopRscGroup() {
         topRscGroup.SetActive(false);
+    }
+    public void OnCloseTopMushGroup() {
+        topMushGroup.SetActive(false);
     }
 
     public void OnClickMenuIconBtn() {
