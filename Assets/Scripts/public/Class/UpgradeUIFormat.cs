@@ -21,7 +21,7 @@ public class UpgradeUIFormat
         string colorTag = DM._.DB.statusDB.RscArr[(int)needRscType] >= price? "white" : "grey";
 
         // 필요재화 가격 + 이미지 적용
-        return $"<sprite name={needRscType}><color={colorTag}> {price}</color>";
+        return $"<size=75%><sprite name={needRscType}><color={colorTag}></size> {price}</color>";
     }
 
     /// <summary>
