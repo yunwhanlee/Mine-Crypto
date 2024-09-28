@@ -9,7 +9,6 @@ using static Enum;
 [Serializable]
 public class ProficiencyFormat
 {
-    const int MAX_LV = 7;
     // UI
     [field:SerializeField] public TMP_Text LvTxt {get; private set;}
     [field:SerializeField] public Slider ExpSlider {get; private set;}
@@ -102,7 +101,7 @@ public class ProficiencyFormat
     public void UpdateUI()
     {
         // 레벨 텍스트
-        LvTxt.text = Lv < MAX_LV? $"Lv{Lv}" : "MAX";
+        LvTxt.text = $"Lv{Lv}";
 
         // 경험치 슬라이더
         ExpSlider.value = (float)Exp / MaxExp;

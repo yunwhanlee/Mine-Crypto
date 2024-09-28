@@ -44,6 +44,8 @@ public class OreProficiencyManager : MonoBehaviour
             for(int i = 0; i < proficiencyArr.Length; i++)
                 proficiencyArr[i].Exp += 5000;
 
+            GM._.ui.ShowNoticeMsgPopUp("(테스트모드) 모든 명예와 숙련도 <color=green>EXP</color> 증가");
+
             UpdateAll();
         }
     }
@@ -93,9 +95,12 @@ public class OreProficiencyManager : MonoBehaviour
         totalAttackPerTxt.text = $"총 채굴 공격력 +{totalAttackPer * 100}%";
     }
 
+    /// <summary>
+    /// 전체 추가공격력% 계산
+    /// </summary>
     private float CalcTotalAttackPer()
     {
-        const float UNIT_PER = 0.05f;
+        const float UNIT_PER = 0.01f;
 
         int lvUpCnt = 0;
 
