@@ -8,8 +8,8 @@ using static Enum;
 
 public class AutoMiningManager : MonoBehaviour
 {
-    const int MINUTE = 1;//60;
-    const int HOUR = 5;//MINUTE * 60;
+    int WAIT_TIME = 60; // 채굴 획득 대기시간
+    const int ORE_INC_UNIT = 100;
 
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
@@ -57,13 +57,10 @@ public class AutoMiningManager : MonoBehaviour
             autoMiningArr[i].CurStorage = svDts[i].CurStorage;
 
             // 자동채굴 획득량 계산
-            int cnt = passedTime / (type == RSC.CRISTAL? HOUR : MINUTE);
-
-            float extraPer = 1 + (type == RSC.CRISTAL? GM._.sttm.ExtraAutoCristalPer : GM._.sttm.ExtraAutoOrePer);
-            int val = Mathf.RoundToInt(stgDB.BestFloorArr[i] * extraPer);
+            int cnt = passedTime / WAIT_TIME; //(type == RSC.CRISTAL? HOUR : MINUTE);
 
             // 자동채굴 결과수량
-            int resVal = cnt * val;
+            int resVal = cnt * GetProductionVal((RSC)i);
 
             // 최대수량보다 높다면 최대수량만큼으로 수정
             if(resVal > autoMiningArr[i].maxStorage)
@@ -73,11 +70,27 @@ public class AutoMiningManager : MonoBehaviour
             autoMiningArr[i].CurStorage += resVal;
         }
 
-        time = MINUTE;
-        cristalTime = HOUR;
+        time = WAIT_TIME;
+        cristalTime = WAIT_TIME;
 
         UpdateAll();
         // StartCoroutine(CoTimerStart());
+    }
+
+    void Update() {
+        //! TEST 자동채굴 대기시간 5초 <-> 1분
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            if(WAIT_TIME == 60)
+                WAIT_TIME = 5;
+            else
+                WAIT_TIME = 60;
+            
+            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 대기시간 <color=red>{WAIT_TIME}</color>초로 변경");
+
+            time = WAIT_TIME;
+            cristalTime = WAIT_TIME;
+        }
     }
 
 #region EVENT
@@ -149,6 +162,25 @@ public class AutoMiningManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
+    /// 광석 및 크리스탈 자동채굴량 반환
+    /// </summary>
+    /// <param name="rscType"></param>
+    /// <returns></returns>
+    private int GetProductionVal(RSC rscType)
+    {
+        if(rscType != RSC.CRISTAL)
+        {
+            float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
+            return Mathf.RoundToInt(stgDB.BestFloorArr[(int)rscType] * ORE_INC_UNIT * extraPer);
+        }
+        else
+        {
+            float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
+            return Mathf.RoundToInt(stgDB.BestFloorArr[(int)rscType] * extraPer);
+        }
+    }
+
+    /// <summary>
     /// 자동채굴 광석 증가 (광석타입)
     /// </summary>
     private void SetStorage(int idx)
@@ -158,25 +190,8 @@ public class AutoMiningManager : MonoBehaviour
         // 잠금해제된 광석만
         if(am.IsUnlock)
         {
-            int val = 0;
-
-            // 추가 수량 계산
-            switch(idx)
-            {
-                // (초월) 자동 광석 수량%
-                default: {
-                    float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
-                    val = Mathf.RoundToInt(stgDB.BestFloorArr[idx] * extraPer);
-                    break;
-                }
-                // (초월) 자동 크리스탈 수량%
-                case (int)RSC.CRISTAL: {
-                    float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
-                    val = Mathf.RoundToInt(stgDB.BestFloorArr[idx] * extraPer);
-                    Debug.Log($"SetStorage( idx= {idx} ):: CRISTAL val= {val}");
-                    break;
-                }
-            }
+            // 광석 및 크리스탈 자동채굴량
+            int val = GetProductionVal((RSC)idx);
 
             // 수량 증가
             am.CurStorage += val; 
@@ -202,7 +217,7 @@ public class AutoMiningManager : MonoBehaviour
         // 리셋
         if(time < 1)
         {
-            time = MINUTE;
+            time = WAIT_TIME;
 
             // 자동채굴 처리
             int oreLenght = autoMiningArr.Length - 1; // 크리스탈은 제외
@@ -227,7 +242,7 @@ public class AutoMiningManager : MonoBehaviour
         if(cristalTime < 1)
         {
             Debug.Log($"SetCristalTimer():: cristalTime= {cristalTime}");
-            cristalTime = HOUR;
+            cristalTime = WAIT_TIME;
 
             // 크리스탈 자동채굴 처리
             SetStorage((int)RSC.CRISTAL);
@@ -286,17 +301,19 @@ public class AutoMiningManager : MonoBehaviour
             am.curStorageTxt.text = $"<color={isFullcolorTag}><sprite name={am.Type}> {am.CurStorage} / {am.maxStorage}</color>";
 
             // 채굴량
-            am.productionValTxt.text = $"채굴량 {am.productionVal}";
+            am.productionValTxt.text = $"+채굴량 {GetProductionVal((RSC)i)}";
 
-            // 가격
             if(i == (int)RSC.CRISTAL)
             {
+                // 가격
                 int rotateOreIdx = GetCristalUpgradeOreIdx(am.Lv);
                 am.UpgradePriceBtnTxt.text = $"<size=65%><sprite name=ORE{rotateOreIdx + 1}></size>{am.upgradePrice}";
             }
-                
             else
+            {
+                // 가격
                 am.UpgradePriceBtnTxt.text = $"{am.upgradePrice}";
+            }
 
             // 다음 업그레이드 최대보관량 표시
             if(i == (int)RSC.CRISTAL)
@@ -316,8 +333,7 @@ public class AutoMiningManager : MonoBehaviour
         const int DEF = 100, INC = 100;
 
         // 추가 수량
-        float extraPer = 1
-            + GM._.sttm.ExtraAutoOreBagStoragePer; // (초월) 자동 광석 보관량%
+        float extraPer = 1 + GM._.sttm.ExtraAutoOreBagStoragePer; // (초월) 자동 광석 보관량%
 
         int val = DEF + (lv - 1) * INC;
 
@@ -329,8 +345,7 @@ public class AutoMiningManager : MonoBehaviour
         const int DEF = 5, INC = 1;
 
         // 추가 수량
-        float extraPer = 1
-            + GM._.sttm.ExtraAutoCristalBagStoragePer; // (초월) 자동 크리스탈 보관량%
+        float extraPer = 1 + GM._.sttm.ExtraAutoCristalBagStoragePer; // (초월) 자동 크리스탈 보관량%
 
         int val = DEF + (lv - 1) * INC;
 
