@@ -37,7 +37,7 @@ public class AutoMiningManager : MonoBehaviour
         int[] autoMiningRwdArr = new int[9];
         var rewardList = new Dictionary<RWD, int>();
 
-        // 어플시작시 이전까지 경과한시간
+        //* 어플시작시 이전까지 경과한시간
         int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
 
         // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
@@ -64,6 +64,10 @@ public class AutoMiningManager : MonoBehaviour
 
             // 자동채굴 결과수량
             int resVal = cnt * val;
+
+            // 최대수량보다 높다면 최대수량만큼으로 수정
+            if(resVal > autoMiningArr[i].maxStorage)
+                resVal = autoMiningArr[i].maxStorage;
 
             Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}, 획득량= {resVal}");
             autoMiningArr[i].CurStorage += resVal;
@@ -272,10 +276,8 @@ public class AutoMiningManager : MonoBehaviour
             am.IsUnlock = saveDt.IsUnlock;
 
             // 타이틀
-            if(i == (int)RSC.CRISTAL)
+            if(i != (int)RSC.CRISTAL)
                 am.titleTxt.text = $"제 {i + 1} 광산 {stgDB.BestFloorArr[i]}층";
-            else
-                am.titleTxt.text = $"크리스탈 광산 {stgDB.BestFloorArr[i]}층";
 
             // 현재수량이 최대수량만큼 쌓였는지에 따른 색깔태그
             string isFullcolorTag = am.CurStorage >= am.maxStorage? "red" : "white";
