@@ -194,7 +194,7 @@ MonoBehaviour:
   bagStorageSlider: {fileID: 6422424142031809963}
   bagStorageSliderTxt: {fileID: 7669896351486754374}
   targetOre: {fileID: 0}
-  <Name>k__BackingField: "\uC720\uB2C8\uD06C2"
+  <Name>k__BackingField: "\uC545\uB9C8\uACE0\uBE14\uB9B0"
   <Grade>k__BackingField: 3
   attackVal: 60
   attackSpeed: 2

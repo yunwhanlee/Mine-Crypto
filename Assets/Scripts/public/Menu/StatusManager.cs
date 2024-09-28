@@ -12,6 +12,7 @@ public class StatusManager : MonoBehaviour
     //* Element
     public GameObject windowObj;
     public TMP_Text fameLvTxt;
+    public TMP_Text[] oreBestFloorTxtArr;
     public TMP_Text[] myStatusTxtArr; // [0]: LeftArea, [1]: RightArea
 
     //* Value
@@ -139,13 +140,22 @@ public class StatusManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
+    /// 상태창 광산 최대기록 표시
+    /// </summary>
+    private void SetOreBestFloorUI()
+    {
+        for(int i = 0; i < oreBestFloorTxtArr.Length; i++)
+        {
+            oreBestFloorTxtArr[i].text = $"{DM._.DB.stageDB.BestFloorArr[i]} F";
+        }
+    }
+
+    /// <summary>
     /// 현재 내 상태창 업데이트
     /// </summary>
     public void UpdateMyStatus()
     {
-        var ugm = GM._.ugm; // 강화
-        var obm = GM._.obm; // 축복
-        var tsm = GM._.tsm; // 초월
+        SetOreBestFloorUI();
 
         // 명성레벨 표시
         fameLvTxt.text = $"LV.{GM._.fm.FameLv}";

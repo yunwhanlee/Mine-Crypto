@@ -20,6 +20,7 @@ public class StgInfo
     }
 
     public GameObject lockedPanel;      // 잠금패널
+    public TMP_Text BestFloorTxt;       // 최대기록
     public Button EnterBtn;             // 입장버튼
     public Button UnlockPriceBtn;       // 잠금해제 가격버튼
 
@@ -29,6 +30,9 @@ public class StgInfo
     public void InitUI() {
         // 이벤트 버튼 등록
         RegistEventHandler();
+
+        // 최대기록 표시
+        BestFloorTxt.text = $"최대기록 : {DM._.DB.stageDB.BestFloorArr[id]}층";
 
         // 잠금상태에 따른 버튼표시
         EnterBtn.gameObject.SetActive(IsUnlocked);
