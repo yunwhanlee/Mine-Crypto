@@ -72,38 +72,16 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickCharaGachaBtn()
     {
-        var sttDB = DM._.DB.statusDB;
+        CurNeedTicketCntTxt.gameObject.SetActive(true); // 현재 소지중인 티켓 텍스트 표시
 
-        // 입장티켓 수량 확인처리
-        switch(GM._.stgm.OreType)
-        {
-            case RSC.CRISTAL:
-                if(sttDB.RedTicket < NEED_TICKET_CNT)
-                {
-                    GM._.ui.ShowWarningMsgPopUp("붉은티켓이 부족합니다.");
-                    return;
-                }
-                else
-                    sttDB.RedTicket -= NEED_TICKET_CNT; // 붉은티겟 수량 감소
-                break;
-            default:
-                if(sttDB.OreTicket < NEED_TICKET_CNT)
-                {
-                    GM._.ui.ShowWarningMsgPopUp("광석티켓이 부족합니다.");
-                    return;
-                }
-                else
-                    sttDB.OreTicket -= NEED_TICKET_CNT; // 광석티겟 수량 감소
-                break;
-        }
+        // 티켓 수량 확인처리
+        CheckTicketByMode();
 
         // 팝업 표시
         employPopUp.SetActive(false);
         charaGachaPopUp.SetActive(true);
 
-        // 현재 소지중인 티켓 수량 표시
-        CurNeedTicketCntTxt.gameObject.SetActive(true);
-        CurNeedTicketCntTxt.text = $"<sprite name=ORE_TICKET> {DM._.DB.statusDB.OreTicket}";
+
 
         // 랜덤뽑기 리스트 데이터 작성
         SetRandomGachaGradeList();
@@ -139,16 +117,17 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickRetryBtn()
     {
+        var sttDB = DM._.DB.statusDB;
+        var stgm = GM._.stgm;
+
         if(gachaRetryCnt < 1)
         {
             GM._.ui.ShowWarningMsgPopUp("재시도 횟수를 전부 사용했습니다!");
             return;
         }
-        if(DM._.DB.statusDB.OreTicket < 1)
-        {
-            GM._.ui.ShowWarningMsgPopUp("광산티켓이 부족합니다!");
-            return;
-        }
+
+        // 입장티켓 수량 확인처리
+        CheckTicketByMode();
 
         gachaRetryCnt--;
         DM._.DB.statusDB.OreTicket -= 1;
@@ -158,9 +137,6 @@ public class EmployManager : MonoBehaviour
         gachaResultList = new List<(GRADE, int)>();
         for(int i = 0; i < charaGachaContentTf.childCount; i++)
             Destroy(charaGachaContentTf.GetChild(i).gameObject);
-
-        // 현재 소지중인 티켓 수량 표시
-        CurNeedTicketCntTxt.text = $"<sprite name=ORE_TICKET> {DM._.DB.statusDB.OreTicket}";
 
         // 랜덤뽑기 데이터 작성
         SetRandomGachaGradeList();
@@ -244,6 +220,44 @@ public class EmployManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
+    /// 입장티켓 수량 확인처리
+    /// </summary>
+    private void CheckTicketByMode()
+    {
+        var sttDB = DM._.DB.statusDB;
+        var stgm = GM._.stgm;
+
+        // 입장티켓 수량 확인처리
+        if(stgm.IsChallengeMode)
+        {
+            if(sttDB.RedTicket < NEED_TICKET_CNT)
+            {
+                GM._.ui.ShowWarningMsgPopUp("붉은티켓이 부족합니다.");
+                return;
+            }
+            else
+                sttDB.RedTicket -= NEED_TICKET_CNT; // 붉은티겟 수량 감소
+        }
+        else
+        {
+            if(sttDB.OreTicket < NEED_TICKET_CNT)
+            {
+                GM._.ui.ShowWarningMsgPopUp("광석티켓이 부족합니다.");
+                return;
+            }
+            else
+                sttDB.OreTicket -= NEED_TICKET_CNT; // 광석티겟 수량 감소
+        }
+
+        // 모드에 따른 티켓타입
+        string ticketTag = stgm.IsChallengeMode? "RED_TICKET" : "ORE_TICKET";
+        int ticketVal = stgm.IsChallengeMode? sttDB.RedTicket : sttDB.OreTicket;
+
+        // 현재 소지중인 티켓 수량 표시
+        CurNeedTicketCntTxt.text = $"<sprite name={ticketTag}> {ticketVal}";
+    }
+
+    /// <summary>
     /// 캐릭터 생성시 등급표시 메세지 코루틴 정지
     /// </summary>
     public void StopCorCreateRandomCharaID()
@@ -316,14 +330,17 @@ public class EmployManager : MonoBehaviour
         for(int i = 0; i < charaPrefArr.Length; i++)
         {
             var card = Instantiate(charaCardUIPref, charaCardContentTf);
+
             // 배경 이미지 (등급)
             Sprite bgSpr = cardGradeBgSprs[(int)charaPrefArr[i].Grade];
             card.transform.GetChild(BG).GetComponent<Image>().sprite = bgSpr;
+
             // 배경 버튼 (클릭 이벤트 등록)
             int copyIdx = i;
             card.transform.GetChild(BG).GetComponent<Button>().onClick.AddListener(() => {
                 ShowSelectCharaInfo(copyIdx);
             });
+
             // 캐릭터 이미지
             card.transform.GetChild(CHARA_IMG).GetComponent<Image>().sprite = charaPrefArr[i].iconCharaImg;
         }
