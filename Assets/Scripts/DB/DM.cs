@@ -19,6 +19,20 @@ public class DB {
     public MushDB mushDB;                   // 버섯도감
     public DecoDB decoDB;                   // 장식품 오브젝트
     public StageDB stageDB;                 // 스테이지 (잠금, 최고층)
+
+    public void Init()
+    {
+        statusDB = new StatusDB();
+        upgradeDB = new UpgradeDB();
+        missionDB = new MissionDB();
+        oreBlessDB = new OreBlessDB();
+        proficiencyDB = new OreProficiencyDB();
+        autoMiningDB = new AutoMiningDB();
+        transcendDB = new TranscendDB();
+        mushDB = new MushDB();
+        decoDB = new DecoDB();
+        stageDB = new StageDB();
+    }
 }
 
 /// <summary>
@@ -49,7 +63,6 @@ public class DM : MonoBehaviour {
         // 로드할 데이터가 없는 경우 (게임 처음플레이시)
         if(DB == null)
         {
-            DB = new DB();
             Reset(); // 데이터 초기화
         }
     }
@@ -131,6 +144,12 @@ public class DM : MonoBehaviour {
     {
         PlayerPrefs.DeleteAll();
         Debug.Log($"★RESET:: PlayerPrefs.HasKey({DB_KEY}) -> {PlayerPrefs.HasKey(DB_KEY)}");
+
+        // 데이터 객체 생성
+        DB = new DB();
+
+        // 데이터 클래스변수 객체 생성
+        DB.Init();
 
         // 데이터 초기화
         DB.statusDB.Init();
