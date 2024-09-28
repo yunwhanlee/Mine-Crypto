@@ -60,7 +60,7 @@ public class EmployManager : MonoBehaviour
     {
         GM._.ui.ShowConfirmPopUp("홈으로 돌아가시겠습니까?");
         GM._.ui.OnClickConfirmBtnAction = () => {
-            GM._.hm.HomeWindow.SetActive(true);
+            GM._.hm.Active();
             GM._.epm.employPopUp.SetActive(false);
         };
     }

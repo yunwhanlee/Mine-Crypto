@@ -17,7 +17,6 @@ public class MineManager : MonoBehaviour
 
     public WaitForSeconds waitSpawnToGoSec; // 캐릭터 생성후, Spawn에서 Go 상태변경 대기시간
 
-
     void Start() {
         waitSpawnToGoSec = Util.TIME0_2;
     }

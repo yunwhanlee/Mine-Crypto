@@ -63,29 +63,23 @@ void Start() {
                     // 모든 보물상자 열기
                     for(int i = 0; i < sttDB.TreasureChest; i++)
                     {
-                        // 1.보상 아이템 랜덤선택
+                        // 랜덤티켓
                         int random = Random.Range(0, 100);
-                        RWD reward = (random < 50)? RWD.ORE_TICKET
-                            : (random < 80)? RWD.RED_TICKET
-                            : RWD.CRISTAL;
-                        
-                        // 2.보상 수량 설정
-                        int cnt = (reward == RWD.CRISTAL)? Random.Range(1, 6) // 크리스탈이면 1 ~ 5개 랜덤
-                            : 1; // 그 이외 1개
+                        RWD reward = (random < 50)? RWD.ORE_TICKET : RWD.RED_TICKET;
 
-                        // 3.보상 Dic에 획득할 수량 추가
+                        // 보상 랜덤티켓 추가
                         switch(reward)
                         {
                             case RWD.ORE_TICKET:
-                                rwdDic[RWD.ORE_TICKET] += cnt;
+                                rwdDic[RWD.ORE_TICKET]++;
                                 break;
                             case RWD.RED_TICKET:
-                                rwdDic[RWD.RED_TICKET] += cnt;
-                                break;
-                            case RWD.CRISTAL:
-                                rwdDic[RWD.CRISTAL] += cnt;
+                                rwdDic[RWD.RED_TICKET]++;
                                 break;
                         }
+
+                        // 보상 크리스탈 추가
+                        rwdDic[RWD.CRISTAL] += Random.Range(1, 6);
                     }
 
                     //* 숙련도 경험치 증가

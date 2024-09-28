@@ -11,6 +11,7 @@ public class TranscendManager : MonoBehaviour
 
     //* ELEMENT
     public GameObject windowObj;
+    public GameObject LockFrameObj;
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgIncAutoOrePerUI;
@@ -58,6 +59,10 @@ public class TranscendManager : MonoBehaviour
 
 #region EVENT
     /// <summary>
+    /// 잠금 아이콘 버튼
+    /// </summary>
+    public void OnClickLockFrameBtn() => GM._.ui.ShowWarningMsgPopUp("<연금술> 장식품 눈내린나무 보유시 개방!");
+    /// <summary>
     /// (강화) 자동 광석 수량
     /// </summary>
     public void OnClickUpgradeIncAutoOrePerBtn()=> Upgrade(upgIncAutoOrePer);
@@ -92,6 +97,14 @@ public class TranscendManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    /// <summary>
+    /// (초월) 시스템 잠금해제
+    /// </summary>
+    public void Unlock()
+    {
+        LockFrameObj.SetActive(false);
+    }
+
     public void ShowPopUp()
     {
         windowObj.SetActive(true);

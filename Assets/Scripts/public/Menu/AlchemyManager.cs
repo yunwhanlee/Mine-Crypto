@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -78,6 +79,9 @@ public class AlchemyManager : MonoBehaviour
         {
             decoObjArr[i].SetActive(decoItemData[i].IsBuyed);
         }
+
+        // 홈화면표시 : (초월)시스템 개방 확인
+        GM._.hm.Active();
     }
 
 #region EVENT
@@ -139,13 +143,6 @@ public class AlchemyManager : MonoBehaviour
                     UpdateNeedItem(excDt, i, createCnt);
                 break;
         }
-
-        Array.ForEach(needItemUIArr, needItemUI => {
-            if(needItemUI.obj.activeSelf)
-            {
-                
-            }
-        });
     }
 
     /// <summary>
@@ -188,7 +185,9 @@ public class AlchemyManager : MonoBehaviour
                 var mtDt = itemDt as AlchemyDataSO_Material;
 
                 // 수량 추가
-                sttDB.SetMatArr((int)mtDt.type, createCnt); 
+                sttDB.SetMatArr((int)mtDt.type, createCnt);
+
+                GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
             }
             else if(itemDt is AlchemyDataSO_Consume) // 소비아이템
             {
@@ -205,6 +204,8 @@ public class AlchemyManager : MonoBehaviour
                     case CONSUME.MUSH_BOX2: sttDB.MushBox2 += createCnt; break;
                     case CONSUME.MUSH_BOX3: sttDB.MushBox3 += createCnt; break;
                 }
+
+                GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
             }
             else if(itemDt is AlchemyDataSO_Exchange) // 교환아이템
             {
@@ -212,6 +213,8 @@ public class AlchemyManager : MonoBehaviour
                 Debug.Log($"Exchange:: type={(int)excDt.type}");
                 // 수량 추가
                 sttDB.SetRscArr((int)excDt.type, createCnt * 100);
+
+                GM._.ui.ShowNoticeMsgPopUp($"{createCnt * 100}개 제작 완료!");
             }
             else if(itemDt is AlchemyDataSO_Deco) // 장식아이템
             {
@@ -219,12 +222,19 @@ public class AlchemyManager : MonoBehaviour
 
                 dcDt.IsBuyed = true;
                 dcDt.Obj.SetActive(true);
+
+                //* 초월시스템 개방
+                if(dcDt.id == 2){
+                    GM._.tsm.Unlock();
+                    GM._.ui.ShowNoticeMsgPopUp("<메뉴> (초월)시스템이 개방되었습니다!");
+                }
+
+                GM._.ui.ShowNoticeMsgPopUp($"장식품 제작 완료!");
             }
 
             // 업데이트 UI
             UpdateUI(itemBtnIdx);
 
-            GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
         }
         else
         {

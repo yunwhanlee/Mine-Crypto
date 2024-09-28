@@ -98,10 +98,7 @@ public class RewardUIManager : MonoBehaviour
                 // 일반광산의 경우 종료시
                 else
                 {
-                    GM._.hm.HomeWindow.SetActive(true); //GM._.epm.ShowPopUp(); // 고용 팝업 표시
-
-                    // 축복 개방
-                    GM._.obm.CheckUnlock();
+                    GM._.hm.Active(); //GM._.epm.ShowPopUp(); // 고용 팝업 표시
                 }
 
                 break;

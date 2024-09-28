@@ -12,4 +12,23 @@ public class HomeManager : MonoBehaviour
             GM._.ssm.ShowPopUp();
         }
     #endregion
+
+    #region FUNC
+        /// <summary>
+        /// 홈화면 표시 (각종 잠금해제 확인)
+        /// </summary>
+        public void Active()
+        {
+            HomeWindow.SetActive(true);
+
+            // 축복 개방
+            GM._.obm.CheckUnlock();
+
+            // (초월)시스템 개방
+            if(GM._.acm.decoObjArr[2].activeSelf)
+            {
+                GM._.tsm.Unlock();
+            }
+        }
+    #endregion
 }
