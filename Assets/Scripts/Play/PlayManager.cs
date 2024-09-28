@@ -7,7 +7,7 @@ using static Enum;
 
 public class PlayManager : MonoBehaviour
 {
-    const int CHANLLENGE_PLAYTIME_SEC = 60;// 시련의광산 플레이타임
+    const int CHANLLENGE_PLAYTIME_SEC = 60; // 시련의광산 플레이타임
 
     //* Element
     public GameObject pausePopUp;
@@ -53,34 +53,16 @@ public class PlayManager : MonoBehaviour
         Time.timeScale = 1;
         pausePopUp.SetActive(false);
 
-        if(GM._.stgm.OreType != RSC.CRISTAL)
-        {
-            // GM._.gameState = GameState.HOME;
-            // GM._.epm.employPopUp.SetActive(true);
-            GM._.hm.HomeWindow.SetActive(false);
+        // GM._.gameState = GameState.HOME;
+        // GM._.epm.employPopUp.SetActive(true);
+        GM._.hm.HomeWindow.SetActive(false);
 
-            // 현재까지 진행한 데이터 획득
-            GM._.gameState = GameState.TIMEOVER;
-            timerTxt.text = "GIVE UP!";
-            Timeover(isBackTicket: false);
+        // 현재까지 진행한 데이터 획득
+        GM._.gameState = GameState.TIMEOVER;
+        timerTxt.text = "GIVE UP!";
+        Timeover(isGiveUp: true);
 
-            InitPlayData();
-        }
-        else
-        {
-            ShowDefeatPopUp();
-        }
-    }
-
-    /// <summary>
-    /// 시련의광산 도전실패 팝업 닫기
-    /// </summary>
-    public void OnClickDefeatPopUpDimScreenBtn()
-    {
-        GM._.gameState = GameState.HOME;
-        GM._.ui.defeatPopUp.SetActive(false);
-        GM._.hm.HomeWindow.SetActive(true);
-        GM._.clm.ShowPopUp();
+        InitPlayData();
     }
 #endregion
 
@@ -133,28 +115,13 @@ public class PlayManager : MonoBehaviour
         GM._.gameState = GameState.TIMEOVER;
         timerTxt.text = "TIME OVER!";
 
-        // 시련의동굴 패배
-        if(GM._.stgm.IsChallengeMode)
-            ShowDefeatPopUp();
-        // 일반광산 게임종료
-        else
-            Timeover(isBackTicket: true);
-    }
-
-    /// <summary>
-    /// 시련의광산 도전실패 팝업 표시
-    /// </summary>
-    public void ShowDefeatPopUp()
-    {
-        GM._.gameState = GameState.TIMEOVER;
-        GM._.ui.defeatPopUp.SetActive(true);
-        InitPlayData();
+        Timeover();
     }
 
     /// <summary>
     ///* 타임오버 (제공 보상표시)
     /// </summary>
-    public void Timeover(bool isBackTicket) {
+    public void Timeover(bool isGiveUp = false) {
         var stageType = (int)GM._.stgm.OreType;
         var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
 
@@ -165,14 +132,16 @@ public class PlayManager : MonoBehaviour
             GM._.ui.ShowNoticeMsgPopUp($"광산{stageType+1} {GM._.stgm.Floor}층 최고기록 달성!");
         }
 
-        // 입장티켓 1개 회수 (게임포기 안했을때만 해당)
-        if(isBackTicket)
+        // 게임포기 안했을때 (입장티켓 1개 회수)
+        if(isGiveUp == false)
         {
+            //* 시련의광산
             if(GM._.stgm.IsChallengeMode)
             {
                 playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
                 DM._.DB.statusDB.RedTicket++;               // 데이터
             }
+            //* 일반광산
             else
             {
                 playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
@@ -183,15 +152,29 @@ public class PlayManager : MonoBehaviour
             GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++;
         }
 
-        // 광석상자 획득 (매 층마다 +1)
-        int oreChestCnt = GM._.stgm.Floor - 1;
-        playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
-        DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
+        //* 시련의광산
+        if(GM._.stgm.IsChallengeMode)
+        {
+            // 게임포기 안했을때 (달성한 층수만큼 광석상자 획득)
+            if(isGiveUp == false)
+            {
+                // 광석상자 획득 (매 층마다 +1)
+                int oreChestCnt = GM._.stgm.Floor - 1;
+                playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
+                DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
+            }
+        }
+        //* 일반광산
+        else
+        {
+            // 광석상자 획득 (매 층마다 +1)
+            int oreChestCnt = GM._.stgm.Floor - 1;
+            playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
+            DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
+        }
 
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
         GM._.rwm.ShowGameoverReward(playResRwdArr);
     }
 #endregion
-
-
 }

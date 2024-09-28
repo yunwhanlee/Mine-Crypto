@@ -92,6 +92,7 @@ public class StageManager : MonoBehaviour {
         int skipFloorPer = Mathf.RoundToInt(GM._.sttm.ExtraNextSkipPer * 1000);
         int randPer = Random.Range(0, 1000);
         Debug.Log($"2층 이동확률%:: skipFloorPer(randPer({randPer}) <= {skipFloorPer})");
+
         if(randPer <= skipFloorPer)
         {
             Floor++; // 현재층 스킵
@@ -211,23 +212,21 @@ public class StageManager : MonoBehaviour {
         for(int i = 0; i < oreCnt; i++) {
             int rand = Random.Range(0, orePosList.Count);
 
-            // 스테이지 타입
-            switch(oreType)
-            {   
-                //* 시련의광산
-                case RSC.CRISTAL: 
-                    // 모든 광석 랜덤
-                    int randOreIdx = Random.Range(0, Enum.GetEnumRSCLenght());
-                    obj = orePrefs[randOreIdx];
-                    break;
-                //* 일반광산
-                default:
-                    // 낮은확률 광석 -> 보물상자로 랜덤변경
-                    int randPer = Random.Range(0, 1000);
-                    int spawnPer = treasureChestSpawnDefPer + Mathf.RoundToInt(GM._.sttm.ExtraChestSpawnPer * 1000);
-                    obj = (randPer <= spawnPer)? treasureChestPref : orePrefs[(int)oreType];
-                    Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= sapwnPer({spawnPer})");
-                    break;
+            //* 시련의광산
+            if(IsChallengeMode)
+            {
+                // 모든 광석 랜덤 (보물상자 변경 X)
+                int randOreIdx = Random.Range(0, orePrefs.Length);
+                obj = orePrefs[randOreIdx];
+            }
+            //* 일반광산
+            else
+            {
+                // 낮은확률 광석 -> 보물상자로 랜덤변경
+                int randPer = Random.Range(0, 20);
+                int spawnPer = treasureChestSpawnDefPer + Mathf.RoundToInt(GM._.sttm.ExtraChestSpawnPer * 1000);
+                obj = (randPer <= spawnPer)? treasureChestPref : orePrefs[(int)oreType];
+                Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= sapwnPer({spawnPer})");
             }
 
             // 생성

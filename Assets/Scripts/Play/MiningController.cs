@@ -237,12 +237,23 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     status = Status.MINING; // 채굴시작!
                 }
             }
-            //* 가방이 꽉차서 귀가하는 경우 (또는 광석이 채굴도중 파괴될 경우)
+            //* 귀가하는 경우
             else if(status == Status.BACKHOME)
             {
-                // 가방들고 돌아오기 애니메이션 실행 (1회)
-                if(_animation.GetState() != CharacterState.Crawl)
-                    _animation.Crawl();
+                // 가방에 채광한 광석이 있다면
+                if(bagStorage > 0)
+                {
+                    //* 가방들고 돌아오기 애니메이션 실행 (1회)
+                    if(_animation.GetState() != CharacterState.Crawl)
+                        _animation.Crawl();
+                }
+                // 없다면
+                else
+                {
+                    // 가방없이 달리기 애니메이션 실행 (1회)
+                    if(_animation.GetState() != CharacterState.Run)
+                        _animation.Run();
+                }
 
                 Vector3 homePos = GM._.mnm.homeTf.position;
 
@@ -308,17 +319,17 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         // 모든 캐릭터가 클리어 카운트 됬다면
                         if(GM._.mnm.workerClearStageStatusCnt >= GM._.sttm.TotalPopulation)
                         {
-                            // 시련의광산 층 돌파 성공
+                            //* 시련의광산 층 돌파 성공
                             if(GM._.stgm.IsChallengeMode)
                             {
                                 // 스테이지 클리어
                                 GM._.gameState = GameState.TIMEOVER;
                                 GM._.pm.StopCorTimer();
                                 GM._.pm.timerTxt.text = "CLEAR!";
-                                GM._.pm.Timeover(isBackTicket: true);
+                                GM._.pm.Timeover();
                                 GM._.clm.BestFloor++;
                             }
-                            // 일반광산 다음층으로
+                            //* 일반광산 다음층으로
                             else
                             {
                                 GM._.mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
@@ -346,8 +357,18 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // 도중에 타겟광석이 파괴된다면
                 if(targetOre == null)
                 {
-                    status = Status.BACKHOME; // 귀가
-                    return;
+                    //* 일반광석인 경우
+                    if(targetOre.OreType != RSC.CRISTAL)
+                    {
+                        status = Status.BACKHOME; // 귀가
+                        return;
+                    }
+                    //* 보물상자인 경우
+                    else
+                    {
+                        status = Status.GO; // 다음광석을 찾으러 이동
+                    }
+
                 }
 
                 attackWaitTime += Time.deltaTime;
@@ -364,7 +385,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     attackWaitTime = 0;
 
-                    // 타겟광석이 보물상자가 아닌 광석인 경우
+                    //* 일반광석인 경우
                     if(targetOre.OreType != RSC.CRISTAL)
                     {
                         // 가방용량 증가
@@ -392,7 +413,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // 광석체력 0이라면, 파괴
                     if(targetOre.IsDestroied)
                     {
-                        // 광석인 경우
+                        //* 일반광석인 경우
                         if(targetOre.OreType != RSC.CRISTAL)
                         {
                             status = Status.BACKHOME; // 귀가
@@ -400,7 +421,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                             if(bagStorage == 0)
                                 targetOre = null;
                         }
-                        // 보물상자인 경우
+                        //* 보물상자인 경우
                         else
                         {
                             status = Status.GO;

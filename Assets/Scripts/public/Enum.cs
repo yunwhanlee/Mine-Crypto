@@ -89,7 +89,7 @@ public static class Enum
     }
 
     /// <summary>
-    ///* 표시 재화 아이템 종류
+    ///* 표시 재화 아이템 종류 (광석오브젝트 IDX용으로도 쓰이는데 이때 CRISTAL은 보물상자 오브젝트임)
     /// </summary>
     public enum RSC {
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
@@ -218,10 +218,6 @@ public static class Enum
         PURPLE_ORE_PILE_1, TREE_BRANCH_2, SNOWED_TREE_3, GORILLA_4, 
         PLATINUM_ORE_PILE_5, ICE_SHEET_6, DARK_CRISTAL_PILE_7, CANYON_ROCK_8,
     }
-
-
-    /// <summary>모든 재화 개수</summary>
-    public static int GetEnumRSCLenght() => System.Enum.GetValues(typeof(RSC)).Length;
 
     /// <summary>모든 보상아이템 개수</summary>
     public static int GetEnumRWDLenght() => GetEnumRWDArr().Length;

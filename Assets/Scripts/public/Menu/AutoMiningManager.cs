@@ -43,7 +43,7 @@ public class AutoMiningManager : MonoBehaviour
         // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
         for(int i = 0; i < autoMiningArr.Length; i++)
         {
-            // 자동채굴이 해금안됬다면 처리 안함
+            // 자동채굴이 해금안됬다면 이하처리 안함
             if(!svDts[i].IsUnlock)
                 continue;
 
