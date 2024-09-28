@@ -135,16 +135,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
         /// <summary>
-        /// 첫 캐릭터 생성 시, 점프 애니메이션 0.2초 후에 이동시작
-        /// </summary>
-        public IEnumerator CoInitStatus()
-        {
-            status = Status.SPAWN;
-            yield return mnm.waitSpawnToGoSec;
-            status = Status.GO;
-        }
-
-        /// <summary>
         /// 타겟 이동관련 처리
         /// </summary>
         void FixedUpdate()
@@ -215,21 +205,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 var pos = targetOre.transform.position;
                 Vector3 underYTargetPos = new (pos.x, pos.y - TARGET_Y_UNDER_MINUS, pos.z);
 
-                // 타겟 방향
-                Vector2 dir = (underYTargetPos - transform.position).normalized;
-
-                // 캐릭터 좌・우
-                sprRdr.flipX = dir.x < 0;
-
-                Vector2 moveVec = dir * MoveSpeed * Time.fixedDeltaTime;
-
-                // 타겟으로 이동
-                rigid.MovePosition(rigid.position + moveVec);
-                rigid.velocity = Vector2.zero;
-
-                // 타겟과의 거리
-                float distance = Vector2.Distance(underYTargetPos, transform.position);
-                Debug.Log($"GO:: distance= {distance}");
+                // 타겟광석과의 거리
+                float distance = Move(underYTargetPos);
 
                 //* 타겟광석에 도착했을 경우
                 if(distance < REACH_TARGET_MIN_DIST)
@@ -257,23 +234,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                 Vector3 homePos = GM._.mnm.homeTf.position;
 
-                // 집 방향
-                Vector2 dir = (homePos - transform.position).normalized;
-
-                // 캐릭터 좌・우
-                sprRdr.flipX = dir.x < 0;
-
-                // 가방이 무거우니까 속도낮춘 방향벡터
-                const float WEIGHT_UP_SLOW_SPEED_PER = 0.9f;
-                Vector2 moveVec = dir * (MoveSpeed * WEIGHT_UP_SLOW_SPEED_PER) * Time.fixedDeltaTime;
-
-                // 집으로 이동
-                rigid.MovePosition(rigid.position + moveVec);
-                rigid.velocity = Vector2.zero;
-
                 // 집과의 거리
-                float distance = Vector2.Distance(homePos, transform.position);
-                Debug.Log($"BACKHOME:: distance= {distance}");
+                float distance = Move(homePos);
 
                 //* 집 도착
                 if(distance < REACH_TARGET_MIN_DIST)
@@ -430,5 +392,46 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 }
             }
         }
+
+#region FUNC
+        /// <summary>
+        /// 캐릭터 이동
+        /// </summary>
+        /// <param name="tgPos">타겟위치</param>
+        /// <returns>타겟과의 거리</returns>
+        private float Move(Vector3 tgPos)
+        {
+            // 방향
+            Vector2 dir = (tgPos - transform.position).normalized;
+
+            // 캐릭터 좌・우
+            sprRdr.flipX = dir.x < 0;
+
+            // 방향벡터
+            Vector2 moveVec = dir * MoveSpeed * Time.fixedDeltaTime;
+
+            // 타겟으로 이동
+            rigid.MovePosition(rigid.position + moveVec);
+            rigid.velocity = Vector2.zero;
+
+            // 타겟과의 거리
+            float distance = Vector2.Distance(tgPos, transform.position);
+            Debug.Log($"GO:: distance= {distance}");
+
+            return distance;
+        }
+
+        /// <summary>
+        /// 첫 캐릭터 생성 시, 점프 애니메이션 0.2초 후에 이동시작
+        /// </summary>
+        public IEnumerator CoInitStatus()
+        {
+            status = Status.SPAWN;
+            yield return mnm.waitSpawnToGoSec;
+            status = Status.GO;
+        }
+
+        
+#endregion
     }
 }
