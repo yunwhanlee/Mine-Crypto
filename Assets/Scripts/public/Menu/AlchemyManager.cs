@@ -69,11 +69,9 @@ public class AlchemyManager : MonoBehaviour
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
-        // 초기화
+        // 카테고리 재료로 초기화
         createCnt = 1;
         cateIdx = ALCHEMY_CATE.MATERIAL;
-        SetCatetory();
-        UpdateUI(0);
 
         // 구매한 장식품 표시 (최신화)
         for(int i = 0; i < decoObjArr.Length; i++)
@@ -241,6 +239,7 @@ public class AlchemyManager : MonoBehaviour
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         SetCatetory();
+        UpdateUI(0);
     }
 
     /// <summary>

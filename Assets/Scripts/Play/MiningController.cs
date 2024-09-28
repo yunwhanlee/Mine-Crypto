@@ -430,8 +430,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             yield return mnm.waitSpawnToGoSec;
             status = Status.GO;
         }
-
-        
 #endregion
     }
 }
