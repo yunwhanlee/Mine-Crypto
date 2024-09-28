@@ -23,7 +23,6 @@ public class EmployManager : MonoBehaviour
     private Coroutine corCreateGachaResultID;
     public Transform charaGachaContentTf;
     public TMP_Text needTicketCntTxt;
-    public TMP_Text retryCntTxt;
     public TMP_Text CurNeedTicketCntTxt;
 
     [Header("SECTION1: 캐릭터 랜덤 확률표")]
@@ -48,8 +47,6 @@ public class EmployManager : MonoBehaviour
     const int NEED_TICKET_CNT = 1;
     int workerMax;
     int workerCnt;
-    int gachaRetryCntMax;
-    int gachaRetryCnt;
     public List<(GRADE, int)> gachaResultList = new List<(GRADE, int)>();
     public WaitForSeconds waitCreateCharaSec;   // 캐릭터 오브젝트 생성시 대기간격
 
@@ -119,18 +116,9 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickRetryBtn()
     {
-        if(gachaRetryCnt < 1)
-        {
-            GM._.ui.ShowWarningMsgPopUp("재시도 횟수를 전부 사용했습니다!");
-            return;
-        }
-
         // 티켓 수량 확인 및 텍스트 업데이트 처리
         if(CheckAndUpdateTicketByMode() == false)
             return;
-
-        gachaRetryCnt--;
-        retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
 
         // 데이터 및 오브젝트 초기화
         gachaResultList = new List<(GRADE, int)>();
@@ -298,9 +286,6 @@ public class EmployManager : MonoBehaviour
         PlayBtnEmployCntTxt.text = $"{workerMax}마리 소환";
 
         //* 랜덤뽑기결과 팝업
-        gachaRetryCntMax = 10;
-        gachaRetryCnt = gachaRetryCntMax;
-        retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
         gachaResultList = new List<(GRADE, int)>();
 
         DOTAnim.DORestart();

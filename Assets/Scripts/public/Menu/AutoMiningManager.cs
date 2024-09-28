@@ -8,8 +8,8 @@ using static Enum;
 
 public class AutoMiningManager : MonoBehaviour
 {
-    const int MINUTE = 60;
-    const int HOUR = MINUTE * 60;
+    const int MINUTE = 1;//60;
+    const int HOUR = 5;//MINUTE * 60;
 
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
@@ -43,6 +43,10 @@ public class AutoMiningManager : MonoBehaviour
         // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
         for(int i = 0; i < autoMiningArr.Length; i++)
         {
+            // 자동채굴이 해금안됬다면 처리 안함
+            if(!svDts[i].IsUnlock)
+                continue;
+
             // Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}");
 
             var type = autoMiningArr[i].Type;
@@ -55,7 +59,7 @@ public class AutoMiningManager : MonoBehaviour
             // 자동채굴 획득량 계산
             int cnt = passedTime / (type == RSC.CRISTAL? HOUR : MINUTE);
 
-            float extraPer = 1 + (type == RSC.CRISTAL? GM._.sttm.ExtraAutoOrePer : GM._.sttm.ExtraAutoCristalPer);
+            float extraPer = 1 + (type == RSC.CRISTAL? GM._.sttm.ExtraAutoCristalPer : GM._.sttm.ExtraAutoOrePer);
             int val = Mathf.RoundToInt(stgDB.BestFloorArr[i] * extraPer);
 
             // 자동채굴 결과수량
@@ -165,6 +169,7 @@ public class AutoMiningManager : MonoBehaviour
                 case (int)RSC.CRISTAL: {
                     float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
                     val = Mathf.RoundToInt(stgDB.BestFloorArr[idx] * extraPer);
+                    Debug.Log($"SetStorage( idx= {idx} ):: CRISTAL val= {val}");
                     break;
                 }
             }
@@ -196,7 +201,8 @@ public class AutoMiningManager : MonoBehaviour
             time = MINUTE;
 
             // 자동채굴 처리
-            for(int i = 0; i < autoMiningArr.Length; i++)
+            int oreLenght = autoMiningArr.Length - 1; // 크리스탈은 제외
+            for(int i = 0; i < oreLenght; i++)
             {
                 SetStorage(i);
             }
@@ -216,9 +222,10 @@ public class AutoMiningManager : MonoBehaviour
         // 리셋
         if(cristalTime < 1)
         {
+            Debug.Log($"SetCristalTimer():: cristalTime= {cristalTime}");
             cristalTime = HOUR;
 
-            // 자동채굴 처리
+            // 크리스탈 자동채굴 처리
             SetStorage((int)RSC.CRISTAL);
 
             UpdateUI();
@@ -270,8 +277,11 @@ public class AutoMiningManager : MonoBehaviour
             else
                 am.titleTxt.text = $"크리스탈 광산 {stgDB.BestFloorArr[i]}층";
 
+            // 현재수량이 최대수량만큼 쌓였는지에 따른 색깔태그
+            string isFullcolorTag = am.CurStorage >= am.maxStorage? "red" : "white";
+
             // 현재수량
-            am.curStorageTxt.text = $"<sprite name={am.Type}> {am.CurStorage} / {am.maxStorage}";
+            am.curStorageTxt.text = $"<color={isFullcolorTag}><sprite name={am.Type}> {am.CurStorage} / {am.maxStorage}</color>";
 
             // 채굴량
             am.productionValTxt.text = $"채굴량 {am.productionVal}";
