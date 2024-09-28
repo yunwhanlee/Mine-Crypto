@@ -8,6 +8,7 @@ public class OreProficiencyManager : MonoBehaviour
 
     // Element
     public GameObject windowObj;
+    public GameObject alertRedDotObj;
     public TMP_Text totalAttackPerTxt;
     public Sprite grayBtnSpr;
     public Sprite yellowBtnSpr;
@@ -75,6 +76,9 @@ public class OreProficiencyManager : MonoBehaviour
 #region FUNC
     public void UpdateAll()
     {
+        // 알림 비표시 초기화
+        alertRedDotObj.SetActive(false);
+
         // 숙련도 데이터 업데이트
         for(int i = 0; i < proficiencyArr.Length; i++)
         {

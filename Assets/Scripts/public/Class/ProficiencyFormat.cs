@@ -70,7 +70,8 @@ public class ProficiencyFormat
             if(MaxExp == 0)
                 return;
 
-            //TODO 업데이트 알림UI 🔴
+            // 업데이트 알림UI 🔴
+            UpdateAlertRedDot();
         }
     }
 
@@ -110,6 +111,19 @@ public class ProficiencyFormat
         // 수령버튼
         acceptBtnTxt.text = IsAccept? "완료" : "진행중";
         acceptBtnFrameImg.sprite = IsAccept? GM._.pfm.yellowBtnSpr : GM._.pfm.grayBtnSpr;
+
+        // 업데이트 알림UI 🔴
+        UpdateAlertRedDot();
+    }
+
+    private void UpdateAlertRedDot()
+    {
+        Debug.Log($"UpdateAlertRedDot():: Type={Type}: IsAccept= {IsAccept}");
+
+        if(IsAccept && !GM._.pfm.alertRedDotObj.activeSelf)
+        {
+            GM._.pfm.alertRedDotObj.SetActive(true);
+        }
     }
 #endregion
 }
