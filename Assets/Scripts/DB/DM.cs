@@ -49,6 +49,7 @@ public class DM : MonoBehaviour {
         // 로드할 데이터가 없는 경우 (게임 처음플레이시)
         if(DB == null)
         {
+            DB = new DB();
             Reset(); // 데이터 초기화
         }
     }
@@ -107,7 +108,6 @@ public class DM : MonoBehaviour {
     {
         // Prefab KEY 존재여부 확인
         if(!PlayerPrefs.HasKey(DB_KEY)){
-            StartCoroutine(CoShowLoadErrorMsg("로드할 데이터가 없습니다."));
             return null;
         }
 
@@ -116,7 +116,6 @@ public class DM : MonoBehaviour {
 
         // JsonDB 존재여부 확인
         if (string.IsNullOrEmpty(jsonDB)) {
-            StartCoroutine(CoShowLoadErrorMsg("저장된 데이터(Json)가 없습니다."));
             return null;
         }
 
@@ -124,13 +123,6 @@ public class DM : MonoBehaviour {
         Debug.Log($"★LOAD:: PlayerPrefs.GetString({DB_KEY}) -> {jsonDB}");
         DB savedData = JsonUtility.FromJson<DB>(jsonDB);
         return savedData;
-    }
-
-    IEnumerator CoShowLoadErrorMsg(string msg)
-    {
-        // UI매니저를 Inspector에 할당할때까지 대기
-        yield return new WaitUntil(() => GM._.ui);
-        GM._.ui.ShowWarningMsgPopUp(msg);
     }
 /// -----------------------------------------------------------------------------------------------------------------
 #region RESET
