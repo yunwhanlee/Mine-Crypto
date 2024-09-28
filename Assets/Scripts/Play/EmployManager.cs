@@ -22,6 +22,7 @@ public class EmployManager : MonoBehaviour
     private Coroutine corCreateRandomCharaID;
     private Coroutine corCreateGachaResultID;
     public Transform charaGachaContentTf;
+    public TMP_Text needTicketCntTxt;
     public TMP_Text retryCntTxt;
     public TMP_Text CurNeedTicketCntTxt;
 
@@ -74,8 +75,9 @@ public class EmployManager : MonoBehaviour
     {
         CurNeedTicketCntTxt.gameObject.SetActive(true); // 현재 소지중인 티켓 텍스트 표시
 
-        // 티켓 수량 확인처리
-        CheckTicketByMode();
+        // 티켓 수량 확인 및 텍스트 업데이트 처리
+        if(CheckAndUpdateTicketByMode() == false)
+            return;
 
         // 팝업 표시
         employPopUp.SetActive(false);
@@ -117,20 +119,17 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickRetryBtn()
     {
-        var sttDB = DM._.DB.statusDB;
-        var stgm = GM._.stgm;
-
         if(gachaRetryCnt < 1)
         {
             GM._.ui.ShowWarningMsgPopUp("재시도 횟수를 전부 사용했습니다!");
             return;
         }
 
-        // 입장티켓 수량 확인처리
-        CheckTicketByMode();
+        // 티켓 수량 확인 및 텍스트 업데이트 처리
+        if(CheckAndUpdateTicketByMode() == false)
+            return;
 
         gachaRetryCnt--;
-        DM._.DB.statusDB.OreTicket -= 1;
         retryCntTxt.text = $"{gachaRetryCnt} / {gachaRetryCntMax}";
 
         // 데이터 및 오브젝트 초기화
@@ -220,41 +219,47 @@ public class EmployManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
-    /// 입장티켓 수량 확인처리
+    /// 티켓 수량 확인 및 텍스트 업데이트 처리
     /// </summary>
-    private void CheckTicketByMode()
+    private bool CheckAndUpdateTicketByMode()
     {
+        Debug.Log($"CheckAndUpdateTicketByMode():: sttDB.OreTicket= {DM._.DB.statusDB.OreTicket}, sttDB.RedTicket= {DM._.DB.statusDB.RedTicket}");
         var sttDB = DM._.DB.statusDB;
         var stgm = GM._.stgm;
 
-        // 입장티켓 수량 확인처리
+        // 티켓 수량 확인처리
         if(stgm.IsChallengeMode)
         {
             if(sttDB.RedTicket < NEED_TICKET_CNT)
             {
                 GM._.ui.ShowWarningMsgPopUp("붉은티켓이 부족합니다.");
-                return;
+                return false;
             }
             else
-                sttDB.RedTicket -= NEED_TICKET_CNT; // 붉은티겟 수량 감소
+                sttDB.RedTicket--; // 붉은티겟 수량 감소
         }
         else
         {
             if(sttDB.OreTicket < NEED_TICKET_CNT)
             {
                 GM._.ui.ShowWarningMsgPopUp("광석티켓이 부족합니다.");
-                return;
+                return false;
             }
             else
-                sttDB.OreTicket -= NEED_TICKET_CNT; // 광석티겟 수량 감소
+                sttDB.OreTicket--; // 광석티겟 수량 감소
         }
 
         // 모드에 따른 티켓타입
         string ticketTag = stgm.IsChallengeMode? "RED_TICKET" : "ORE_TICKET";
         int ticketVal = stgm.IsChallengeMode? sttDB.RedTicket : sttDB.OreTicket;
 
-        // 현재 소지중인 티켓 수량 표시
+        // 필요티켓 표시 텍스트
+        needTicketCntTxt.text = $"<size=70%><sprite name={ticketTag}></size> 1";
+
+        // 현재 소지중인 티켓 수량 표시 텍스트
         CurNeedTicketCntTxt.text = $"<sprite name={ticketTag}> {ticketVal}";
+
+        return true;
     }
 
     /// <summary>
