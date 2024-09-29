@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -131,8 +132,9 @@ public class RewardUIManager : MonoBehaviour
             {
                 name = GetRewardItemName((RWD)i),
                 rwdType = (RWD)i,
+                DOTAnim = contentTf.GetChild(i).GetComponent<DOTweenAnimation>(),
                 obj = contentTf.GetChild(i).gameObject,
-                cntTxt = contentTf.GetChild(i).GetComponentInChildren<TMP_Text>()
+                cntTxt = contentTf.GetChild(i).GetComponentInChildren<TMP_Text>(),
             };
         }
     }
@@ -277,6 +279,8 @@ public class RewardUIManager : MonoBehaviour
 
                 // 해당 보상슬롯UI 표시
                 GM._.rwm.rewardSlotUIArr[(int)rwdType].obj.SetActive(true);
+                GM._.rwm.rewardSlotUIArr[(int)rwdType].DOTAnim.DORestart();
+
                 GM._.rwm.rewardSlotUIArr[(int)rwdType].cntTxt.text = val.ToString();
             }
         }

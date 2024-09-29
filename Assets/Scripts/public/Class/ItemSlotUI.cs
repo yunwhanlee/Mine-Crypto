@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class ItemSlotUI
 public class RewardSlotUI : ItemSlotUI
 {
     public Enum.RWD rwdType;    // 보상 타입
+    public DOTweenAnimation DOTAnim;    // 애니메이션
 }
 
 /// <summary>
