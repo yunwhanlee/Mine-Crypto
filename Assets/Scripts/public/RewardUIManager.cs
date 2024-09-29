@@ -184,6 +184,7 @@ public class RewardUIManager : MonoBehaviour
             {
                 // 해당 보상슬롯 표시
                 GM._.rwm.rewardSlotUIArr[i].obj.SetActive(true);
+                GM._.rwm.rewardSlotUIArr[i].DOTAnim.DORestart();
                 GM._.rwm.rewardSlotUIArr[i].cntTxt.text = rwd.ToString();
             }
             i++;

@@ -179,6 +179,128 @@ void Start() {
 
                 };
                 break;
+            case INV.MUSH_BOX1:
+                confirmBtnTxt.text = "모두 열기";
+
+                //* 이벤트 구독
+                OnConfirmBtnClicked = () => {
+                    Debug.Log("버섯상자1 오픈!");
+
+                    // 보상으로 나오는 모든 아이템 Dic
+                    Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
+                        {RWD.MUSH1, 0}, {RWD.MUSH2, 0}, {RWD.MUSH4, 0}, {RWD.MUSH7, 0}, {RWD.MUSH8, 0}
+                    };
+
+                    for(int i = 0; i < sttDB.MushBox1; i++)
+                    {
+                        // 랜덤선택
+                        int randPer = Random.Range(0, 1000);
+                        RWD rewardIdx = (randPer < 320)? RWD.MUSH1
+                            : (randPer < 640)? RWD.MUSH2
+                            : (randPer < 960)? RWD.MUSH4
+                            : (randPer < 995)? RWD.MUSH7
+                            : RWD.MUSH8;
+
+                        // 수량 추가
+                        rwdDic[rewardIdx]++;
+                    }
+
+                    // 인벤토리 소비아이템 수량 감소
+                    sttDB.MushBox1 = 0;
+
+                    //* 보상 획득
+                    GM._.rwm.ShowReward (
+                        new Dictionary<RWD, int> {
+                            {RWD.MUSH1, rwdDic[RWD.MUSH1]},
+                            {RWD.MUSH2, rwdDic[RWD.MUSH2]},
+                            {RWD.MUSH4, rwdDic[RWD.MUSH4]},
+                            {RWD.MUSH7, rwdDic[RWD.MUSH7]},
+                            {RWD.MUSH8, rwdDic[RWD.MUSH8]},
+                        }
+                    );
+
+                    // 인벤토리 슬롯UI 최신화
+                    GM._.ivm.UpdateSlotUI();
+
+                    // 상세정보 수량UI 최신화
+                    UpdateConsumedItemCntUI(sttDB.TreasureChest);
+                };
+                break;
+            case INV.MUSH_BOX2:
+                confirmBtnTxt.text = "모두 열기";
+
+                //* 이벤트 구독
+                OnConfirmBtnClicked = () => {
+                    Debug.Log("버섯상자2 오픈!");
+
+                    // 보상으로 나오는 모든 아이템 Dic
+                    Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
+                        {RWD.MUSH3, 0}, {RWD.MUSH5, 0}, {RWD.MUSH6, 0}, {RWD.MUSH7, 0}, {RWD.MUSH8, 0}
+                    };
+
+                    for(int i = 0; i < sttDB.MushBox2; i++)
+                    {
+                        // 랜덤선택
+                        int randPer = Random.Range(0, 1000);
+                        RWD rewardIdx = (randPer < 320)? RWD.MUSH3
+                        : (randPer < 640)? RWD.MUSH5
+                        : (randPer < 960)? RWD.MUSH6
+                        : (randPer < 995)? RWD.MUSH7
+                        : RWD.MUSH8;
+
+                        // 수량 추가
+                        rwdDic[rewardIdx]++;
+                    }
+
+                    // 인벤토리 소비아이템 수량 감소
+                    sttDB.MushBox2 = 0;
+
+                    //* 보상 획득
+                    GM._.rwm.ShowReward (
+                        new Dictionary<RWD, int> {
+                            {RWD.MUSH3, rwdDic[RWD.MUSH3]},
+                            {RWD.MUSH5, rwdDic[RWD.MUSH5]},
+                            {RWD.MUSH6, rwdDic[RWD.MUSH6]},
+                            {RWD.MUSH7, rwdDic[RWD.MUSH7]},
+                            {RWD.MUSH8, rwdDic[RWD.MUSH8]},
+                        }
+                    );
+
+                    // 인벤토리 슬롯UI 최신화
+                    GM._.ivm.UpdateSlotUI();
+
+                    // 상세정보 수량UI 최신화
+                    UpdateConsumedItemCntUI(sttDB.TreasureChest);
+                };
+                break;
+            case INV.MUSH_BOX3:
+                confirmBtnTxt.text = "모두 열기";
+
+                //* 이벤트 구독
+                OnConfirmBtnClicked = () => {
+                    Debug.Log("버섯상자3 오픈!");
+
+                    // 보상으로 나오는 모든 아이템 Dic
+                    Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {{RWD.MUSH8, 0}};
+
+                    // 수량 추가
+                    rwdDic[RWD.MUSH8] = sttDB.MushBox3;
+
+                    // 인벤토리 소비아이템 수량 감소
+                    sttDB.MushBox3 = 0;
+
+                    //* 보상 획득
+                    GM._.rwm.ShowReward (
+                        new Dictionary<RWD, int> {{RWD.MUSH8, rwdDic[RWD.MUSH8]},}
+                    );
+
+                    // 인벤토리 슬롯UI 최신화
+                    GM._.ivm.UpdateSlotUI();
+
+                    // 상세정보 수량UI 최신화
+                    UpdateConsumedItemCntUI(sttDB.TreasureChest);
+                };
+                break;
             // 확인용 타입
             default:
                 confirmBtnTxt.text = "확인";

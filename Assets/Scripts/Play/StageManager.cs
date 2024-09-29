@@ -9,6 +9,11 @@ using static Enum;
 using Random = UnityEngine.Random;
 
 public class StageManager : MonoBehaviour {
+    [Header("DOT ANIM")]
+    public DOTweenAnimation cutOutMaskUIDOTAnim;
+    public DOTweenAnimation stageTitleUIDOTAnim;
+    public TMP_Text stageTitleTxt;
+
     [Header("TOP")]
     public TMP_Text stageTxt;
 
@@ -21,8 +26,6 @@ public class StageManager : MonoBehaviour {
     public Transform oreAreaBottomRightTf;
     private Vector2 topLeftPos;
     private Vector2 bottomRightPos;
-
-    public DOTweenAnimation cutOutMaskUIDOTAnim;
 
     //* Value
     [Header("생성시 보물상자로 랜덤변경 확률%")]
@@ -50,6 +53,10 @@ public class StageManager : MonoBehaviour {
     [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
     [field:SerializeField] int oreCnt;                  // 스테이지별 적용할 광석 수
 
+    void Start() {
+        cutOutMaskUIDOTAnim.gameObject.SetActive(true);
+        stageTitleUIDOTAnim.gameObject.SetActive(true);
+    }
 
 #region FUNC
     /// <summary>
@@ -74,8 +81,9 @@ public class StageManager : MonoBehaviour {
         topLeftPos = oreAreaTopLeftTf.position;
         bottomRightPos = oreAreaBottomRightTf.position;
 
-        // 컷아웃 마스크 UI효과
-        cutOutMaskUIDOTAnim.DOPlay();
+        // 스테이지 타이틀UI 애니메이션
+        stageTitleTxt.text =  IsChallengeMode? "시련의광산" : $"제{(int)oreType + 1} 광산";
+        stageTitleUIDOTAnim.DORestart();
 
         // 광석 오브젝트 생성
         StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
@@ -137,9 +145,9 @@ public class StageManager : MonoBehaviour {
     private string GetStageName()
     {
         if(IsChallengeMode)
-            return $"시련의광산 {floor}층";
+            return $"시련의광산{floor}층";
         else
-            return $"제{(int)oreType + 1} 광산 {floor}층";
+            return $"{floor}층";
     }
 
     /// <summary>
