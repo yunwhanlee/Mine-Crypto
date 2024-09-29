@@ -94,11 +94,12 @@ public class RewardUIManager : MonoBehaviour
                 if(GM._.stgm.IsChallengeMode)
                 {
                     GM._.clm.ShowPopUp(); // 시련의광산 팝업 표시
+                    GM._.hm.Active();
                 }
                 // 일반광산의 경우 종료시
                 else
                 {
-                    GM._.hm.Active(); //GM._.epm.ShowPopUp(); // 고용 팝업 표시
+                    GM._.hm.Active();
                 }
 
                 break;
