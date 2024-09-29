@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,11 +12,13 @@ public class AutoMiningManager : MonoBehaviour
 
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
+    public GameObject alertRedDotObj;
     public TMP_Text timerTxt;
     public AutoMiningFormat[] autoMiningArr;
     private int time;
 
     [Header("시련의광산 자동채굴")]
+    public GameObject cristalAlertRedDotObj;
     public TMP_Text cristalTimerTxt;
     private int cristalTime;
 
@@ -282,6 +283,9 @@ public class AutoMiningManager : MonoBehaviour
 
     private void UpdateUI()
     {
+        alertRedDotObj.SetActive(false);
+        cristalAlertRedDotObj.SetActive(false);
+
         for(int i = 0; i < autoDB.saveDts.Length; i++)
         {
             AutoMiningSaveData saveDt = autoDB.saveDts[i];
@@ -320,7 +324,26 @@ public class AutoMiningManager : MonoBehaviour
                 am.UpgradeInfoTxt.text = $"{am.maxStorage} => {CalcMaxCristalStorage(am.Lv + 1)}";
             else
                 am.UpgradeInfoTxt.text = $"{am.maxStorage} => {CalcMaxOreStorage(am.Lv + 1)}";
+
+            // 업데이트 알림UI 🔴
+            UpdateAlertRedDotUI(i);
         }
+    }
+
+    private void UpdateAlertRedDotUI(int idx)
+    {
+        AutoMiningFormat am = autoMiningArr[idx];
+
+            if(idx == (int)RSC.CRISTAL)
+            {
+                if(am.CurStorage >= am.maxStorage && !cristalAlertRedDotObj.activeSelf)
+                    cristalAlertRedDotObj.SetActive(true);
+            }
+            else
+            {
+                if(am.CurStorage >= am.maxStorage && !alertRedDotObj.activeSelf)
+                    alertRedDotObj.SetActive(true);
+            }
     }
 
     private int GetCristalUpgradeOreIdx(int lv)
