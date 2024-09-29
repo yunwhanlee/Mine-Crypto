@@ -22,10 +22,14 @@ public class StageManager : MonoBehaviour {
     public GameObject treasureChestPref;
     public GameObject[] orePrefs;
 
-    public Transform oreAreaTopLeftTf;
-    public Transform oreAreaBottomRightTf;
-    private Vector2 topLeftPos;
-    private Vector2 bottomRightPos;
+
+
+    [Header("광석생성 바깥영역")]
+    public Transform outOreAreaTopLeftTf;
+    public Transform outOreAreaBottomRightTf;
+    [Header("광석생성 안영역")]
+    public Transform inOreAreaTopLeftTf;
+    public Transform inOreAreaBottomRightTf;
 
     //* Value
     [Header("생성시 보물상자로 랜덤변경 확률%")]
@@ -47,7 +51,9 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-    [field:SerializeField] int oreAreaInterval;         // 광석 배치영역 광석 사이 간격 (작을수록 더 많은 위치리스트 생성)
+    [Header("광석 배치영역 광석 사이 간격")]
+    [field:SerializeField] int oreAreaInterval;         // (작을수록 더 많은 위치리스트 생성)
+
     [field:SerializeField] List<Vector2> orePosList = new List<Vector2>();
 
     [field:SerializeField] int oreHp;                   // 스테이지별 적용할 광석 JP
@@ -76,10 +82,6 @@ public class StageManager : MonoBehaviour {
 
         // 게임결과 획득한 재화배열 초기화
         GM._.pm.playResRwdArr = new int[GetEnumRWDLenght()];
-
-        // 광석 생성 영역
-        topLeftPos = oreAreaTopLeftTf.position;
-        bottomRightPos = oreAreaBottomRightTf.position;
 
         // 스테이지 타이틀UI 애니메이션
         stageTitleTxt.text =  IsChallengeMode? "시련의광산" : $"제{(int)oreType + 1} 광산";
@@ -196,11 +198,20 @@ public class StageManager : MonoBehaviour {
     /// </summary>
     private void InitOrePosList(int interval)
     {
-        for (float x = topLeftPos.x; x <= bottomRightPos.x; x += interval)
+        Vector2 outTLPos = outOreAreaTopLeftTf.position;
+        Vector2 outBRPos = outOreAreaBottomRightTf.position;
+        Vector2 inTLPos = inOreAreaTopLeftTf.position;
+        Vector2 inBRPos = inOreAreaBottomRightTf.position;
+
+
+        for (float x = outTLPos.x; x <= outBRPos.x; x += interval)
         {
-            for (float y = topLeftPos.y; y >= bottomRightPos.y; y -= interval * 1.4f)
+            for (float y = outTLPos.y; y >= outBRPos.y; y -= interval * 1.5f)
             {
-                orePosList.Add(new Vector2(x, y));
+                if (!(x >= inTLPos.x && x <= inBRPos.x && y <= inTLPos.y && y >= inBRPos.y))
+                {
+                    orePosList.Add(new Vector2(x, y));
+                }
             }
         }
     }
@@ -245,6 +256,15 @@ public class StageManager : MonoBehaviour {
             // 리스트 제거
             orePosList.RemoveAt(rand);
         }
+
+        // (TEST) 광석 모두 생성해보기
+        // for(int i = 0; i < orePosList.Count; i++) {
+        //     // 생성
+        //     obj = orePrefs[0];
+        //     Ore ore = Instantiate(obj, GM._.mnm.oreGroupTf).GetComponent<Ore>();
+        //     ore.transform.position = orePosList[i]; // 랜덤위치 적용
+        //     ore.MaxHp = oreHp;
+        // }
     }
 #endregion
 }
