@@ -90,11 +90,11 @@ public class ProficiencyFormat
         switch(Type)
         {
             default: // ORE1 ~ 8
-                MaxExp = GM._.pfm.oreMaxExpArr[Lv - 1];
+                MaxExp = 10 + ( Lv * ( Lv - 1 ) * 10 ) / 2; //GM._.pfm.oreMaxExpArr[Lv - 1];
                 break;
             case PROFICIENCY.ORE_CHEST:
             case PROFICIENCY.TREASURE_CHEST:
-                MaxExp = GM._.pfm.chestMaxExpArr[Lv - 1];
+                MaxExp = 5 + ( Lv * ( Lv - 1 ) * 5 ) / 2; //GM._.pfm.chestMaxExpArr[Lv - 1];
                 break;
         }
     }

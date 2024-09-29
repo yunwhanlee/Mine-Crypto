@@ -19,17 +19,21 @@ public class Ore : MonoBehaviour
 
     [field: Header("EFFECT")]
     [field: SerializeField] public ParticleSystem MiningHitPtcEF {get; private set;}
+    [field: SerializeField] public ParticleSystem DestroyPtcEF {get; private set;}
 
     [field: Header("鉱石 リソース：Large, Medium, Small")]
     const int OreLarge = 0, OreMedium = 1, OreSmall = 2;
     [field: SerializeField] public Sprite[] OreSprs {get; private set;}
 
     [field: SerializeField] public SpriteRenderer SprRdr {get; private set;}
+    [field: SerializeField] public Collider2D col {get; private set;}
     [field: SerializeField] public Slider HpSlider {get; private set;}
     [field: SerializeField] public TMP_Text HpSliderTxt {get; private set;}
 
     void Start()
     {
+        col = GetComponent<Collider2D>();
+
         // Ore スプライト
         SprRdr.sprite = OreSprs[OreLarge];
 
@@ -97,7 +101,12 @@ public class Ore : MonoBehaviour
                 GM._.pfm.proficiencyArr[(int)OreType].Exp++;
             }
 
-            Destroy(gameObject);
+            DestroyPtcEF.Play();
+            SprRdr.enabled = false;
+            col.enabled = false;
+            HpSlider.gameObject.SetActive(false);
+
+            Destroy(gameObject, 1);
         }
     }
 }

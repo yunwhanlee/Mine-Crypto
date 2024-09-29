@@ -317,8 +317,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             //* 채굴중인 경우
             if(status == Status.MINING) {
                 // 도중에 타겟광석이 파괴된다면
-                if(targetOre == null)
+                if(targetOre.IsDestroied) //targetOre == null)
                 {
+                    attackWaitTime = ATTACK_SPEED_MAX_SEC; // 공격대기시간 제거
+
                     //* 일반광석인 경우
                     if(targetOre.OreType != RSC.CRISTAL)
                     {
