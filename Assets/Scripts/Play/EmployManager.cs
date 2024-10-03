@@ -230,7 +230,7 @@ public class EmployManager : MonoBehaviour
         {
             if(sttDB.OreTicket < NEED_TICKET_CNT)
             {
-                GM._.ui.ShowWarningMsgPopUp("광석티켓이 부족합니다.");
+                GM._.ui.ShowWarningMsgPopUp("광산티켓이 부족합니다.");
                 return false;
             }
             else

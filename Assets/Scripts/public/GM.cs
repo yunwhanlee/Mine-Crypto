@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Assets.PixelFantasy.Common.Scripts;
 using UnityEngine;
 
 public enum GameState {
@@ -34,6 +35,7 @@ public class GM : MonoBehaviour
     
     //* PLAY
     [field:HideInInspector] public PlayManager pm;
+    [field:HideInInspector] public GameEffectManager efm;
     [field:HideInInspector] public MineManager mnm;
     [field:HideInInspector] public StageManager stgm;
     [field:HideInInspector] public EmployManager epm;
@@ -75,6 +77,7 @@ public class GM : MonoBehaviour
 
         // PLAY
         pm = GameObject.Find("PlayManager").GetComponent<PlayManager>();
+        efm = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();
         stgm = GameObject.Find("StageManager").GetComponent<StageManager>();
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();

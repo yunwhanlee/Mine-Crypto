@@ -22,7 +22,8 @@ public class StageManager : MonoBehaviour {
     public GameObject treasureChestPref;
     public GameObject[] orePrefs;
 
-
+    [Header("스테이지 맵")]
+    public GameObject[] stageTileMapArr;
 
     [Header("광석생성 바깥영역")]
     public Transform outOreAreaTopLeftTf;
@@ -76,6 +77,12 @@ public class StageManager : MonoBehaviour {
 
         // 스테이지층
         stageTxt.text = GetStageName();
+
+        // 스테이지맵 설정
+        for(int i = 0; i < stageTileMapArr.Length; i++)
+        {
+            stageTileMapArr[i].SetActive(i == (int)oreType);
+        }
 
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();

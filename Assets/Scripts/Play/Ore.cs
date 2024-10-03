@@ -57,6 +57,8 @@ public class Ore : MonoBehaviour
 
         Hp -= dmg;
 
+        GM._.efm.ShowDmgTxtEF(transform.position, dmg);
+
 
         if(Hp > 0)
         {
