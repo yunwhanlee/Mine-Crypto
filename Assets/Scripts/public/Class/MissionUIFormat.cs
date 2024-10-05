@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using static Enum;
 
 /// <summary>
-/// (명성) 미션 UI
+/// (명예) 미션 UI
 /// </summary>
 [System.Serializable]
 public class MissionUIFormat

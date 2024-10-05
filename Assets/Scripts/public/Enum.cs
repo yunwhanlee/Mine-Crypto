@@ -249,7 +249,7 @@ public static class Enum
             case RWD.ORE_TICKET: return "광석티켓";
             case RWD.RED_TICKET: return "붉은티켓";
             case RWD.TREASURE_CHEST: return "보물상자";
-            case RWD.FAME: return "명성";
+            case RWD.FAME: return "명예";
         }
         return "???";
     }

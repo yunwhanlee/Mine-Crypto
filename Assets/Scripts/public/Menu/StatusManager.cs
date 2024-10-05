@@ -107,7 +107,7 @@ public class StatusManager : MonoBehaviour
             + GM._.mrm.ms6_UpgChestSpawnPer.Val;
     }
 
-    // 명성 추가 획득량
+    // 명예 추가 획득량
     public int IncFame { 
         get => GM._.tsm.upgIncFame.Val
             + (int)GM._.acm.decoItemData[(int)DECO.GORILLA_4].AbilityVal
@@ -157,7 +157,7 @@ public class StatusManager : MonoBehaviour
     {
         SetOreBestFloorUI();
 
-        // 명성레벨 표시
+        // 명예레벨 표시
         fameLvTxt.text = $"LV.{GM._.fm.FameLv}";
 
         // 공백으로 초기화

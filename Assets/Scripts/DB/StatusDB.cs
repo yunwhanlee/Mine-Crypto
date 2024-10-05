@@ -140,8 +140,8 @@ public class StatusDB
         mushBox2 = 0;      // 신비한 버섯상자
         mushBox3 = 0;      // 전설의 버섯상자
 
-        fameLv = 1;        // 명성 레벨
-        fame = 0;          // 명성경험치 포인트
+        fameLv = 1;        // 명예 레벨
+        fame = 0;          // 명예경험치 포인트
     }
 
     /// <summary>

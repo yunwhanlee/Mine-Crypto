@@ -18,7 +18,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public InventoryUIManager ivm;
     [field:HideInInspector] public InventoryDescriptionManager idm;
     [field:HideInInspector] public RewardUIManager rwm;
-    [field:HideInInspector] public FameManager fm; // 명성 및 미션
+    [field:HideInInspector] public FameManager fm; // 명예 및 미션
     [field:HideInInspector] public OreBlessManager obm;
     [field:HideInInspector] public AutoMiningManager amm;
     [field:HideInInspector] public OreProficiencyManager pfm;

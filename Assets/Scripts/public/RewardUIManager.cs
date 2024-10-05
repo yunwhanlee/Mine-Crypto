@@ -274,7 +274,7 @@ public class RewardUIManager : MonoBehaviour
                         break;
 
                     //※여기에 추가
-                    case RWD.FAME: // 명성포인트 + (초월) 명예 획득량
+                    case RWD.FAME: // 명예포인트 + (초월) 명예 획득량
                         val += GM._.sttm.IncFame;
                         sttDB.Fame += val;
                         break;

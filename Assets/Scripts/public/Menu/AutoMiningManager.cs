@@ -10,11 +10,15 @@ public class AutoMiningManager : MonoBehaviour
     int WAIT_TIME = 60; // 채굴 획득 대기시간
     const int ORE_INC_UNIT = 100;
 
+    [Header("자동채굴 수령버튼 알람아이콘 표시")]
+    public GameObject[] autoMiningBtnAlertRedDotArr;
+
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
     public GameObject alertRedDotObj;
     public TMP_Text timerTxt;
     public AutoMiningFormat[] autoMiningArr;
+    
     private int time;
 
     [Header("시련의광산 자동채굴")]
@@ -303,6 +307,7 @@ public class AutoMiningManager : MonoBehaviour
 
             // 현재수량
             am.curStorageTxt.text = $"<color={isFullcolorTag}><sprite name={am.Type}> {am.CurStorage} / {am.maxStorage}</color>";
+            autoMiningBtnAlertRedDotArr[i].SetActive(am.CurStorage >= am.maxStorage);
 
             // 채굴량
             am.productionValTxt.text = $"1분당 채굴량 +{GetProductionVal((RSC)i)}";

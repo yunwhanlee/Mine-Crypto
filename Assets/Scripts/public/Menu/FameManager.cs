@@ -22,12 +22,16 @@ public class FameManager : MonoBehaviour
     public TMP_Text fameLvTxt;
     public TMP_Text fameExpTxt;
 
-    [Header("명성 레벨업 정보 패널 : 캐릭터 고용 랜덤테이블 확인용으로도 사용")]
+    [Header("명예 레벨업 정보 패널 : 캐릭터 고용 랜덤테이블 확인용으로도 사용")]
     public GameObject fameLevelUpInfoPanel;
     public TMP_Text fameLevelUpInfoPanelTitleTxt;
     public TMP_Text fameLevelUpInfoPanelLvTxt;
     public TMP_Text employRandomTableValTxt;
 
+    public Image nextLvInfoToogleFillImg;
+    public Toggle nextLvInfoToogleHandle;
+
+    public bool isNextLvInfoToogleFlag;
     public int FameLv {
         get => DM._.DB.statusDB.FameLv;
         set => DM._.DB.statusDB.FameLv = value;
@@ -110,11 +114,31 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재레벨 명성팝업 표시용 (i)정보버튼
+    /// 현재레벨 명예팝업 표시용 (i)정보버튼
     /// </summary>
     public void OnClickFameInfoIconBtn()
     {
+        SetFameLevelToogleUI(isOn: false);
         ShowFameLevelUpGradeTable(isLvUp: false);
+    }
+
+    /// <summary>
+    /// 명예정보표시 토글버튼
+    /// </summary>
+    public void OnClickNextLvInfoToogleHandle()
+    {
+        // 토글 UI
+        SetFameLevelToogleUI(nextLvInfoToogleHandle.isOn);
+
+        // 토글버튼에 따른 팝업 표시
+        if(nextLvInfoToogleHandle.isOn)
+        {
+            ShowFameNextLevelUpGradeTable();
+        }
+        else
+        {
+            ShowFameLevelUpGradeTable(false);
+        }
     }
 #endregion
 
@@ -168,7 +192,7 @@ public class FameManager : MonoBehaviour
     {
         fameMaxExp = CalcFameMaxExp(FameLv);
 
-        // 명성 레벨업인 경우
+        // 명예 레벨업인 경우
         if(FameExp >= fameMaxExp && FameLv < FAME_MAXLV)
         {
             // 업데이트
@@ -176,7 +200,7 @@ public class FameManager : MonoBehaviour
             FameExp = 0;
             fameMaxExp = CalcFameMaxExp(FameLv);
 
-            GM._.ui.ShowNoticeMsgPopUp("명성 레벨업!");
+            GM._.ui.ShowNoticeMsgPopUp("명예 레벨업!");
             FameLevelUp();
         }
     }
@@ -207,7 +231,7 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 명성레벨업 보상지급
+    /// 명예레벨업 보상지급
     /// </summary>
     private void FameLevelUp()
     {
@@ -225,14 +249,14 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 명성 레벨업 팝업 표시 (레벨업이 아닐경우, 현재 소환등급 표시용)
+    /// 명예 레벨업 팝업 표시 (레벨업이 아닐경우, 현재 소환등급 표시용)
     /// </summary>
     /// <param name="isLvUp">레벨업인지 아닌지</param>
     private void ShowFameLevelUpGradeTable(bool isLvUp) {
         // 팝업 표시
         fameLevelUpInfoPanel.SetActive(true);
         // 타이틀
-        fameLevelUpInfoPanelTitleTxt.text = isLvUp? "명성 레벨업!" : "명성 레벨";
+        fameLevelUpInfoPanelTitleTxt.text = isLvUp? "명예 레벨업!" : "명예 레벨";
         // 레벨 텍스트
         fameLevelUpInfoPanelLvTxt.text = FameLv.ToString();
 
@@ -264,13 +288,27 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 다음레벨 명성팝업 표시
+    /// 명예레벨업 토글UI 업데이트
+    /// </summary>
+    /// <param name="isOn"></param>
+    public void SetFameLevelToogleUI(bool isOn)
+    {
+        var toggleTxt = nextLvInfoToogleHandle.GetComponentInChildren<TMP_Text>();
+        var rectTf = nextLvInfoToogleHandle.GetComponent<RectTransform>();
+
+        toggleTxt.text = isOn? "ON" : "OFF";
+        rectTf.anchoredPosition = new Vector2(isOn? 55 : -55, 0);
+        nextLvInfoToogleFillImg.color = isOn? Color.green : Color.gray;
+    }
+
+    /// <summary>
+    /// 다음레벨 명예팝업 표시
     /// </summary>
     public void ShowFameNextLevelUpGradeTable() {
         // 팝업 표시
         fameLevelUpInfoPanel.SetActive(true);
         // 타이틀
-        fameLevelUpInfoPanelTitleTxt.text = "다음명성 레벨등급표";
+        fameLevelUpInfoPanelTitleTxt.text = "다음명예 레벨등급표";
         // 레벨 텍스트
         fameLevelUpInfoPanelLvTxt.text = (FameLv + 1).ToString();
 
@@ -299,7 +337,7 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 명성에 따른 캐릭터 랜덤등급 배열 반환 (MAX 20LV)
+    /// 명예에 따른 캐릭터 랜덤등급 배열 반환 (MAX 20LV)
     /// </summary>
     /// <returns>[일반 , 고급 , 희귀 , 유니크 , 전설 , 신화]</returns>
     public int[] GetRandomGradeArrByFame(int extraLv = 0) {
@@ -345,7 +383,7 @@ public class FameManager : MonoBehaviour
     /// </summary>
     public void UpdateAlertRedDot()
     {
-        Debug.Log($"명성 미션:: UpdateAlertRedDot()::");
+        Debug.Log($"명예 미션:: UpdateAlertRedDot()::");
         bool isAcceptable = Array.Exists(missionArr, msi => msi.Exp >= msi.MaxExp);
         alertRedDotObj.SetActive(isAcceptable);
     }

@@ -90,10 +90,11 @@ public class EmployManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 다음레벨 명성팝업 표시용 (i)정보버튼
+    /// 다음레벨 명예팝업 표시용 (i)정보버튼
     /// </summary>
     public void OnClickFameInfoIconBtn()
     {
+        GM._.fm.SetFameLevelToogleUI(isOn: true);
         GM._.fm.ShowFameNextLevelUpGradeTable();
     }
 

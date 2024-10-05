@@ -5,7 +5,7 @@ using UnityEngine;
 using static Enum;
 
 /// <summary>
-/// (명성) 미션 데이터
+/// (명예) 미션 데이터
 /// </summary>
 [System.Serializable]
 public class MissionFormat
