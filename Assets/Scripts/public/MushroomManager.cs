@@ -14,6 +14,7 @@ public class MushroomManager : MonoBehaviour
     public DOTweenAnimation DOTAnim;
 
     public Image targetImg;
+    public TMP_Text targetValueTxt;
     public TMP_Text targetNameTxt;
     public TMP_Text targetLvTxt;
     public TMP_Text targetAbilityTxt;
@@ -117,6 +118,7 @@ public class MushroomManager : MonoBehaviour
     {
         const int offset = 9 + 8;
         UpgradeMushFormat mushFormat = null;
+        targetValueTxt.text = $"보유량 : {DM._.DB.statusDB.MsrArr[mushIdx]}";
         totalAbilityTxt.text = "";
 
         // 현재 버섯아이템 능력 표시

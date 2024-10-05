@@ -305,7 +305,7 @@ public class AutoMiningManager : MonoBehaviour
             am.curStorageTxt.text = $"<color={isFullcolorTag}><sprite name={am.Type}> {am.CurStorage} / {am.maxStorage}</color>";
 
             // 채굴량
-            am.productionValTxt.text = $"+채굴량 {GetProductionVal((RSC)i)}";
+            am.productionValTxt.text = $"1분당 채굴량 +{GetProductionVal((RSC)i)}";
 
             if(i == (int)RSC.CRISTAL)
             {

@@ -13,6 +13,7 @@ using static Enum;
 public class RewardUIManager : MonoBehaviour
 {
     public GameObject rewardUIPopUp;            // 보상 팝업
+    public TMP_Text newBestFloorMsgTxt;         // NEW 최고층 달성 메세지 텍스트
     public RewardSlotUI[] rewardSlotUIArr;      // 보상 슬롯UI 객체배열
 
     [Header("모든 보상템을 ContentTf안에 미리 만들고 IDX로 처리")]
@@ -88,6 +89,7 @@ public class RewardUIManager : MonoBehaviour
             case GameState.TIMEOVER:
                 GM._.gameState = GameState.HOME;
                 rewardUIPopUp.SetActive(false);
+                newBestFloorMsgTxt.gameObject.SetActive(false);
 
                 GM._.pm.InitPlayData();
 
@@ -106,6 +108,7 @@ public class RewardUIManager : MonoBehaviour
                 break;
             default:
                 rewardUIPopUp.SetActive(false);
+                newBestFloorMsgTxt.gameObject.SetActive(false);
                 break;
         }
     }
