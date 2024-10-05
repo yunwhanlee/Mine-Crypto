@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -8,17 +9,36 @@ public class GameEffectManager : MonoBehaviour
 {
     List<ObjectPool<GameObject>> pool = new List<ObjectPool<GameObject>>();
 
-    public enum UI_EF
+    public enum EFIDX
     {
         NULL = -1,
+        OreBrokenEF1,
+        OreBrokenEF2,
+        OreBrokenEF3,
+        OreBrokenEF4,
+        OreBrokenEF5,
+        OreBrokenEF6,
+        OreBrokenEF7,
+        OreBrokenEF8,
+        TreasureBrokenEF,
         DmgTxtEF,
     }
 
-    [field:Header("UI EFFECT")]
-    [field:SerializeField] private GameObject DmgTxtEF;
+    [field:Header("EFFECT")]
+    [field:SerializeField] private GameObject[] OreBrokenEFArr;
+    [field:SerializeField] private GameObject DmgTxtEF; // DmgTextEF Class
 
     void Awake()
     {
+        pool.Add(Init(OreBrokenEFArr[0], max: 5));
+        pool.Add(Init(OreBrokenEFArr[1], max: 5));
+        pool.Add(Init(OreBrokenEFArr[2], max: 5));
+        pool.Add(Init(OreBrokenEFArr[3], max: 5));
+        pool.Add(Init(OreBrokenEFArr[4], max: 5));
+        pool.Add(Init(OreBrokenEFArr[5], max: 5));
+        pool.Add(Init(OreBrokenEFArr[6], max: 5));
+        pool.Add(Init(OreBrokenEFArr[7], max: 5));
+        pool.Add(Init(OreBrokenEFArr[8], max: 5));
         pool.Add(Init(DmgTxtEF, max: 50));
     }
 
@@ -43,6 +63,21 @@ public class GameEffectManager : MonoBehaviour
 #endregion
 
 #region FUNC
+    public void ShowEF(EFIDX efIdx, Vector2 pos)
+        => StartCoroutine(CoShowEF(efIdx, pos));
+
+
+    IEnumerator CoShowEF(EFIDX efIdx, Vector2 pos)
+    {
+        // 가져오기
+        GameObject ins = pool[(int)efIdx].Get();
+        ins.transform.position = pos;
+
+        // 돌려놓기
+        yield return Util.TIME1;
+        pool[(int)efIdx].Release(ins);
+    }
+
     /// <summary>
     /// 데미지 텍스트UI EF
     /// </summary>
@@ -52,7 +87,7 @@ public class GameEffectManager : MonoBehaviour
     IEnumerator CoShowDmgTxtEF(Vector2 pos, int dmg)
     {
         // 가져오기
-        GameObject ins = pool[(int)UI_EF.DmgTxtEF].Get();
+        GameObject ins = pool[(int)EFIDX.DmgTxtEF].Get();
         DmgTextEF dmgTxtEF = ins.GetComponent<DmgTextEF>();
         ins.transform.position = pos;
         dmgTxtEF.txt.text = $"{dmg}";
@@ -60,7 +95,7 @@ public class GameEffectManager : MonoBehaviour
 
         // 돌려놓기
         yield return Util.TIME1;
-        pool[(int)UI_EF.DmgTxtEF].Release(ins);
+        pool[(int)EFIDX.DmgTxtEF].Release(ins);
     }
 #endregion
 }

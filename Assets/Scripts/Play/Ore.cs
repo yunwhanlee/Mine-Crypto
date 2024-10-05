@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
+using static GameEffectManager;
 
 public class Ore : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class Ore : MonoBehaviour
 
     [field: Header("EFFECT")]
     [field: SerializeField] public ParticleSystem MiningHitPtcEF {get; private set;}
-    [field: SerializeField] public ParticleSystem DestroyPtcEF {get; private set;}
 
     [field: Header("鉱石 リソース：Large, Medium, Small")]
     const int OreLarge = 0, OreMedium = 1, OreSmall = 2;
@@ -103,12 +103,13 @@ public class Ore : MonoBehaviour
                 GM._.pfm.proficiencyArr[(int)OreType].Exp++;
             }
 
-            DestroyPtcEF.Play();
+            
+            GM._.efm.ShowEF((EFIDX)OreType, transform.position);
             SprRdr.enabled = false;
             col.enabled = false;
             HpSlider.gameObject.SetActive(false);
 
-            Destroy(gameObject, 1);
+            Destroy(gameObject);
         }
     }
 }
