@@ -154,9 +154,9 @@ public class StageManager : MonoBehaviour {
     private string GetStageName()
     {
         if(IsChallengeMode)
-            return $"시련의광산{floor}층";
+            return $"시련의광산 {floor}층";
         else
-            return $"{floor}층";
+            return $"제{(int)oreType + 1}광산 {floor}층";
     }
 
     /// <summary>
