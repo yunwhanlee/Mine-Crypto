@@ -183,19 +183,8 @@ public class EmployManager : MonoBehaviour
         for(int i = 0; i < gachaResultList.Count; i++)
         {
             var tupleGachaRes = gachaResultList[i];
-
-            GRADE grade = tupleGachaRes.Item1;
             int charaIdx = tupleGachaRes.Item2;
 
-            // 한국어로 등급이름 번역
-            string gradeName = grade == GRADE.COMMON? "일반"
-                : grade == GRADE.UNCOMMON? "<color=green>고급</color>"
-                : grade == GRADE.RARE? "<color=blue>레어</color>"
-                : grade == GRADE.UNIQUE? "<color=purple>유니크</color>"
-                : grade == GRADE.LEGEND? "<color=yellow>전설</color>"
-                : "<color=red>신화</color>";
-
-            GM._.ui.ShowNoticeMsgPopUp($"{workerCnt}. {gradeName} 등급 소환!");
             yield return Util.TIME0_1; // 약간 대기하여 캐릭터가 겹치지 않도록
 
             // 캐릭터 생성
