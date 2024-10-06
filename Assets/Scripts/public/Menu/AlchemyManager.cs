@@ -226,7 +226,11 @@ public class AlchemyManager : MonoBehaviour
                 //* 초월시스템 개방
                 if(dcDt.id == 2){
                     GM._.tsm.Unlock();
-                    GM._.ui.ShowNoticeMsgPopUp("<메뉴> (초월)시스템이 개방되었습니다!");
+                    GM._.ui.ShowUnlockContentPopUp(
+                        GM._.transcendIconSpr,
+                        "초월시스템 개방!",
+                        "축하합니다! 초월시스템으로 다양한 업그레이드를 할 수 있습니다."
+                    );
                 }
 
                 GM._.ui.ShowNoticeMsgPopUp($"장식품 제작 완료!");

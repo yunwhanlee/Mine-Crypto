@@ -36,6 +36,11 @@ public class UIManager : MonoBehaviour
     public TMP_Text confirmBtnTxt;                      // 확인버튼 텍스트
     public TMP_Text cancelBtnTxt;                       // 취소버튼 텍스트
 
+    public GameObject unlockContentPopUp;               // 컨텐츠개방 팝업
+    public Image unlockContentPopUpLogoImg;             // 컨텐츠개방 로고이미지
+    public TMP_Text unlockContentPopUpTitleTxt;         // 컨텐츠개방 타이틀 텍스트
+    public TMP_Text unlockContentPopUpMsgTxt;           // 컨텐츠개방 메세지 텍스트
+
     [Header("EFFECT")]
     public ParticleImage coinAttractionPtcImg;          // 광석조각 획득 UI-EF
     public ParticleImage treasureChestAttractionPtcImg; // 보물상자 획득 UI-EF
@@ -202,6 +207,15 @@ public class UIManager : MonoBehaviour
     public void PlayTreasureChestAttractionPtcUIEF()
     {
         treasureChestAttractionPtcImg.Play();
+    }
+
+    public void ShowUnlockContentPopUp(Sprite sprite, string titleTxt, string msgTxt)
+    {
+        unlockContentPopUp.SetActive(true);
+        unlockContentPopUp.GetComponent<DOTweenAnimation>().DORestart();
+        unlockContentPopUpLogoImg.sprite = sprite;
+        unlockContentPopUpTitleTxt.text = titleTxt;
+        unlockContentPopUpMsgTxt.text = msgTxt;
     }
 #endregion
 }

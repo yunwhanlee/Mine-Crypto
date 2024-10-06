@@ -41,6 +41,11 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public EmployManager epm;
     [field:HideInInspector] public UpgradeManager ugm;
 
+    [field:Header("컨텐츠개방팝업 이미지")]
+    [field:SerializeField] public Sprite oreBlessIconSpr;    // 광산축복 아이콘
+    [field:SerializeField] public Sprite transcendIconSpr;   // 초월 아이콘
+
+
     [field:Header("광석재화 이미지배열")]
     [field:SerializeField] public Sprite[] RscSprArr {get; private set;}
 

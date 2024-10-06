@@ -69,7 +69,7 @@ public class StgInfo
 
             if(sttDB.RscArr[previousOreId] >= unlockPrice)
             {
-                GM._.ui.ShowNoticeMsgPopUp("광산해금 완료! (광산의축복 개방)");
+                GM._.ui.ShowNoticeMsgPopUp("광산해금 완료!");
 
                 // 재료 수량 감소
                 sttDB.SetRscArr(previousOreId, -unlockPrice);

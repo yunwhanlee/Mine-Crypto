@@ -275,7 +275,11 @@ public class OreBlessManager : MonoBehaviour
             if(bestFloorArr[i] >= UnlockFloorArr[i] && !obm.oreBlessFormatArr[i].IsUnlock)
             {
                 obm.oreBlessFormatArr[i].IsUnlock = true;
-                GM._.ui.ShowNoticeMsgPopUp($"제{i + 1} 광산의축복 개방!!!");
+                GM._.ui.ShowUnlockContentPopUp(
+                    GM._.oreBlessIconSpr,
+                    $"제{i + 1} 광산의축복 개방",
+                    $"축하합니다! 제{i + 1} 광산의 축복능력을 사용할 수 있습니다."
+                );
             }
         }
     }
