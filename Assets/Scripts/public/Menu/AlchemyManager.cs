@@ -182,11 +182,8 @@ public class AlchemyManager : MonoBehaviour
             //* 제작한 아이템 증가
             if(itemDt is AlchemyDataSO_Material) // 재료
             {
-                var mtDt = itemDt as AlchemyDataSO_Material;
-
                 // 수량 추가
-                sttDB.SetMatArr((int)mtDt.type, createCnt);
-
+                sttDB.SetMatArr(itemBtnIdx, createCnt);
                 GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
             }
             else if(itemDt is AlchemyDataSO_Consume) // 소비아이템
@@ -200,12 +197,21 @@ public class AlchemyManager : MonoBehaviour
                     case CONSUME.RED_TICKET: sttDB.RedTicket += createCnt; break;
                     case CONSUME.ORE_CHEST: sttDB.OreChest += createCnt; break;
                     case CONSUME.TREASURE_CHEST: sttDB.TreasureChest += createCnt; break;
-                    case CONSUME.MUSH_BOX1: sttDB.MushBox1 += createCnt; break;
-                    case CONSUME.MUSH_BOX2: sttDB.MushBox2 += createCnt; break;
-                    case CONSUME.MUSH_BOX3: sttDB.MushBox3 += createCnt; break;
+                    case CONSUME.MUSH_BOX1:
+                        sttDB.MushBox1 += createCnt;
+                        PurchaseMushBoxAtFirst();
+                        break;
+                    case CONSUME.MUSH_BOX2:
+                        sttDB.MushBox2 += createCnt;
+                        PurchaseMushBoxAtFirst();
+                        break;
+                    case CONSUME.MUSH_BOX3:
+                        sttDB.MushBox3 += createCnt;
+                        PurchaseMushBoxAtFirst();
+                        break;
                 }
 
-                GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
+                GM._.ui.ShowNoticeMsgPopUp($"({csDt.type}) {createCnt}개 제작 완료!");
             }
             else if(itemDt is AlchemyDataSO_Exchange) // 교환아이템
             {
@@ -299,7 +305,6 @@ public class AlchemyManager : MonoBehaviour
         NeedItemUIFormat itemUI = needItemUIArr[idx];
 
         // 제작비용 감소 % 적용
-
         int needItemVal = cateIdx == ALCHEMY_CATE.MATERIAL? ApplyDecMatPer(needItemDt.Val) : needItemDt.Val;
 
         // 목록UI 표시
@@ -333,12 +338,31 @@ public class AlchemyManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 처음 버섯상자 구매시, 버섯도감 잠금해제
+    /// </summary>
+    private void PurchaseMushBoxAtFirst()
+    {
+        var mushDB = DM._.DB.mushDB;
+        if(!mushDB.isUnlock)
+        {
+            GM._.mrm.Unlock();
+            mushDB.isUnlock = true;
+            GM._.ui.ShowUnlockContentPopUp (
+                GM._.mushroomIconSpr,
+                $"버섯도감 개방",
+                $"축하합니다! 버섯도감으로 다양한 업그레이드를 할수 있습니다."
+            );
+        }
+    }
+
+    /// <summary>
     /// 업데이트 UI
     /// </summary>
     /// <param name="itemBtnIdx">아이템버튼 인덱스</param>
     private void UpdateUI(int itemBtnIdx)
     {
         var sttDB = DM._.DB.statusDB;
+        var mushDB = DM._.DB.mushDB;
 
         //* 초기화
         // 제작필요 아이템UI 리스트 비표시
@@ -405,16 +429,29 @@ public class AlchemyManager : MonoBehaviour
                 int val = 0;
                 switch(csDt.type)
                 {
-                    case CONSUME.ORE_TICKET: val = sttDB.OreTicket; break;
-                    case CONSUME.RED_TICKET: val = sttDB.RedTicket; break;
-                    case CONSUME.ORE_CHEST: val = sttDB.OreChest; break;
-                    case CONSUME.TREASURE_CHEST: val = sttDB.TreasureChest; break;
-                    case CONSUME.MUSH_BOX1: val = sttDB.MushBox1; break;
-                    case CONSUME.MUSH_BOX2: val = sttDB.MushBox2; break;
-                    case CONSUME.MUSH_BOX3: val = sttDB.MushBox3; break;
+                    case CONSUME.ORE_TICKET: 
+                        val = sttDB.OreTicket;
+                        break;
+                    case CONSUME.RED_TICKET: 
+                        val = sttDB.RedTicket;
+                        break;
+                    case CONSUME.ORE_CHEST: 
+                        val = sttDB.OreChest;
+                        break;
+                    case CONSUME.TREASURE_CHEST:
+                        val = sttDB.TreasureChest;
+                        break;
+                    case CONSUME.MUSH_BOX1:
+                        val = sttDB.MushBox1;
+                        break;
+                    case CONSUME.MUSH_BOX2:
+                        val = sttDB.MushBox2;
+                        break;
+                    case CONSUME.MUSH_BOX3:
+                        val = sttDB.MushBox3;
+                        break;
                 }
                 targetitemInfoTxt.text = $"보유량: {val}";
-
                 break;
             }
             //* 카테고리3: 교환

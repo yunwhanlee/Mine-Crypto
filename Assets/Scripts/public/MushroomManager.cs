@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -9,11 +10,18 @@ using static Enum;
 
 public class MushroomManager : MonoBehaviour
 {
+    [Header("아이템 버튼 이미지")]
+    public Sprite itemBtnSelectedSpr;           // 아이템 버튼 선택 색깔
+    public Sprite itemBtnUnSelectedSpr;         // 아이템 버튼 미선택 색깔
+
+    [Header("UI 요소")]
     // Element
     public GameObject windowObj;
+    public GameObject LockFrameObj;
     public DOTweenAnimation DOTAnim;
 
     public Image targetImg;
+    public Image[] btnImgArr;
     public TMP_Text targetValueTxt;
     public TMP_Text targetNameTxt;
     public TMP_Text targetLvTxt;
@@ -38,6 +46,9 @@ public class MushroomManager : MonoBehaviour
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
+        // 버섯도감 잠금상태
+        LockFrameObj.SetActive(!DM._.DB.mushDB.isUnlock);
+
         mushIdx = 0;
 
         ms1_UpgAttack = DM._.DB.mushDB.ms1_UpgAttack;
@@ -53,6 +64,12 @@ public class MushroomManager : MonoBehaviour
     }
 
 #region EVENT
+    /// <summary>
+    /// 잠금 아이콘 버튼
+    /// </summary>
+    public void OnClickLockFrameBtn()
+        => GM._.ui.ShowWarningMsgPopUp("<버섯도감> 개방조건 : 의문의 버섯상자 제작");
+
     public void OnClickMushroomBtn(int idx)
     {
         mushIdx = idx;
@@ -79,6 +96,14 @@ public class MushroomManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
+    /// (버섯도감) 시스템 잠금해제
+    /// </summary>
+    public void Unlock()
+    {
+        LockFrameObj.SetActive(false);
+    }
+
+    /// <summary>
     /// 팝업 열기
     /// </summary>
     public void ShowPopUp()
@@ -86,6 +111,7 @@ public class MushroomManager : MonoBehaviour
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         GM._.ui.topMushGroup.SetActive(true);
+        OnClickMushroomBtn(idx: 0); // 버섯1로 선택 초기화
     }
 
     private void Upgrade(UpgradeMushFormat upgDt)
@@ -114,12 +140,18 @@ public class MushroomManager : MonoBehaviour
         ms8_IncPopulation.UpdatePrice();
     }
 
-    private void UpgradeUI()
+    private void UpdateUI()
     {
         const int offset = 9 + 8;
         UpgradeMushFormat mushFormat = null;
         targetValueTxt.text = $"보유량 : {DM._.DB.statusDB.MsrArr[mushIdx]}";
         totalAbilityTxt.text = "";
+
+        // 선택한 버튼 색상
+        for(int i = 0; i < btnImgArr.Length; i++)
+        {
+            btnImgArr[i].sprite = (i == mushIdx)? itemBtnSelectedSpr : itemBtnUnSelectedSpr;
+        }
 
         // 현재 버섯아이템 능력 표시
         switch(mushIdx)
@@ -182,7 +214,7 @@ public class MushroomManager : MonoBehaviour
     private void UpdateDataAndUI()
     {
         UpdateData();
-        UpgradeUI();
+        UpdateUI();
     }
 #endregion
 }

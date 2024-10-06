@@ -141,16 +141,17 @@ public class PlayManager : MonoBehaviour
             {
                 playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
                 DM._.DB.statusDB.RedTicket++;               // 데이터
+                GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
             }
             //* 일반광산
             else
             {
                 playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
                 DM._.DB.statusDB.OreTicket++;               // 데이터
+                GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
             }
 
-            // 광산 클리어 미션
-            GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++;
+            
         }
 
         //* 시련의광산

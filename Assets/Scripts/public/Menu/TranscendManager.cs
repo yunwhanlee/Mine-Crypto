@@ -61,7 +61,8 @@ public class TranscendManager : MonoBehaviour
     /// <summary>
     /// 잠금 아이콘 버튼
     /// </summary>
-    public void OnClickLockFrameBtn() => GM._.ui.ShowWarningMsgPopUp("<연금술> 장식품 눈내린나무 보유시 개방!");
+    public void OnClickLockFrameBtn()
+        => GM._.ui.ShowWarningMsgPopUp("<초월> 개방조건 : 장식품 눈내린나무 제작");
     /// <summary>
     /// (강화) 자동 광석 수량
     /// </summary>

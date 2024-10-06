@@ -175,13 +175,15 @@ public class AutoMiningManager : MonoBehaviour
     {
         if(rscType != RSC.CRISTAL)
         {
+            int extraVal = stgDB.BestFloorArr[(int)rscType] * ORE_INC_UNIT;
             float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
-            return Mathf.RoundToInt(stgDB.BestFloorArr[(int)rscType] * ORE_INC_UNIT * extraPer);
+            return Mathf.RoundToInt(extraVal * extraPer);
         }
         else
         {
+            int extraVal = stgDB.BestFloorArr[(int)rscType] + GM._.sttm.ExtraIncCristal;
             float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
-            return Mathf.RoundToInt(stgDB.BestFloorArr[(int)rscType] * extraPer);
+            return Mathf.RoundToInt(extraVal * extraPer);
         }
     }
 

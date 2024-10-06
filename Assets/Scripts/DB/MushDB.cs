@@ -8,6 +8,7 @@ using static Enum;
 public class MushDB
 {
     [Header("업그레이드 데이터")]
+    public bool isUnlock;
     public UpgradeMushFormatInt ms1_UpgAttack;
     public UpgradeMushFormatFloat ms2_UpgMovSpeedPer;
     public UpgradeMushFormatFloat ms3_UpgBagStoragePer;
@@ -19,6 +20,8 @@ public class MushDB
 
     public void Init()
     {
+        isUnlock = false;
+
         ms1_UpgAttack = new UpgradeMushFormatInt(
             Lv:0, Unit: 1, NeedMush: MUSH.MUSH1, PriceDef: 1, DefVal: 0, MaxLv: 1000
         );
