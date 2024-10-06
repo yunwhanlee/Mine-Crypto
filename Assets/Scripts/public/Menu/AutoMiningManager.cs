@@ -115,6 +115,9 @@ public class AutoMiningManager : MonoBehaviour
 
         GM._.ui.ShowNoticeMsgPopUp("수령 완료!");
 
+        //* 재화 이펙트 재생
+        GM._.ui.PlayOreAttractionPtcUIEF((RSC)idx);
+
         // 재화 증가
         sttDB.SetRscArr(idx, am.CurStorage);
         

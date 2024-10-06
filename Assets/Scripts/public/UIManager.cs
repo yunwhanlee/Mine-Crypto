@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text unlockContentPopUpMsgTxt;           // 컨텐츠개방 메세지 텍스트
 
     [Header("EFFECT")]
-    public ParticleImage coinAttractionPtcImg;          // 광석조각 획득 UI-EF
+    public ParticleImage[] coinAttractionPtcImgArr;       // 광석조각 획득 UI-EF
     public ParticleImage treasureChestAttractionPtcImg; // 보물상자 획득 UI-EF
 
     void Start() {
@@ -193,15 +193,13 @@ public class UIManager : MonoBehaviour
         noticeMsgPopUp.SetActive(false);
     }
 
-    public IEnumerator CoPlayCoinAttractionPtcUIEF(int playCnt, Enum.RSC oreType)
+    /// <summary>
+    /// 광석 가방으로 파티클 효과
+    /// </summary>
+    /// <param name="oreType">광석타입</param>
+    public void PlayOreAttractionPtcUIEF(Enum.RSC oreType)
     {
-        int time = 0;
-        while(time < playCnt) {
-            time++;
-            coinAttractionPtcImg.sprite = GM._.RscSprArr[(int)oreType];
-            coinAttractionPtcImg.Play();
-            yield return Util.TIME0_1;
-        }
+        GM._.ui.coinAttractionPtcImgArr[(int)oreType].Play();
     }
 
     public void PlayTreasureChestAttractionPtcUIEF()

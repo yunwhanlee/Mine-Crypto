@@ -242,16 +242,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     Debug.Log("REACH HOME!");
 
-                    // 재화이펙트 수량
-                    const int ratio = 50;
-                    int effectPlayCnt = bagStorage / ratio;
-                    Debug.Log($"bagStorage({bagStorage}) / ratio({ratio}) -> playCnt= {effectPlayCnt}");
-
                     if(BagStorage > 0) {
                         //* 재화 이펙트 재생
-                        StartCoroutine(GM._.ui.CoPlayCoinAttractionPtcUIEF(
-                            (effectPlayCnt <= 0)? 1 : effectPlayCnt, targetOre.OreType
-                        ));
+                        GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
 
                         //* 재화 획득
                         // 타겟재화 증가
