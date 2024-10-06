@@ -80,8 +80,6 @@ public class EmployManager : MonoBehaviour
         employPopUp.SetActive(false);
         charaGachaPopUp.SetActive(true);
 
-
-
         // 랜덤뽑기 리스트 데이터 작성
         SetRandomGachaGradeList();
 
@@ -331,6 +329,9 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     IEnumerator  CoCreateGachaResultCardUIContent() {
         const int BG = 0, CHARA_IMG = 1;
+        const int RARE_EF = 2, UNIQUE_EF = 3, LEGEND_EF = 4, MYTH_EF = 5;
+
+        List<GameObject> cardList = new List<GameObject>();
 
         // 결과카드UI 초기화
         for(int i = 0; i < charaGachaContentTf.childCount; i++)
@@ -347,14 +348,30 @@ public class EmployManager : MonoBehaviour
             var charaIdx = tupleGachaRes.Item2;
 
             // 카드 생성
-            var card = Instantiate(charaCardUIPref, charaGachaContentTf);
+            cardList.Add(Instantiate(charaCardUIPref, charaGachaContentTf));
             // 배경 이미지 (등급)
             Sprite bgSpr = cardGradeBgSprs[(int)grade];
-            card.transform.GetChild(BG).GetComponent<Image>().sprite = bgSpr;
+            cardList[i].transform.GetChild(BG).GetComponent<Image>().sprite = bgSpr;
             // 캐릭터 이미지
-            card.transform.GetChild(CHARA_IMG).GetComponent<Image>().sprite = charaPrefArr[charaIdx].iconCharaImg;
+            cardList[i].transform.GetChild(CHARA_IMG).GetComponent<Image>().sprite = charaPrefArr[charaIdx].iconCharaImg;
         }
 
+        // 결과카드가 다 배치된 후에 등급이펙트 표시
+        for(int i = 0; i < gachaResultList.Count; i++)
+        {
+            // 등급
+            (GRADE, int) tupleGachaRes = gachaResultList[i];
+            var grade = tupleGachaRes.Item1;
+
+            // 등급 이펙트
+            switch(grade)
+            {
+                case GRADE.RARE:   cardList[i].transform.GetChild(RARE_EF).gameObject.SetActive(true);     break;
+                case GRADE.UNIQUE: cardList[i].transform.GetChild(UNIQUE_EF).gameObject.SetActive(true);   break;
+                case GRADE.LEGEND: cardList[i].transform.GetChild(LEGEND_EF).gameObject.SetActive(true);   break;
+                case GRADE.MYTH:   cardList[i].transform.GetChild(MYTH_EF).gameObject.SetActive(true);     break;
+            }
+        }
         corCreateGachaResultID = null;
     }
 
