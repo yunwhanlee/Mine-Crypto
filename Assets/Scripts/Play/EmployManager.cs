@@ -58,11 +58,11 @@ public class EmployManager : MonoBehaviour
 #region EVENT
     public void OnClickCloseBtn()
     {
-        GM._.ui.ShowConfirmPopUp("홈으로 돌아가시겠습니까?");
-        GM._.ui.OnClickConfirmBtnAction = () => {
-            GM._.hm.Active();
-            GM._.epm.employPopUp.SetActive(false);
-        };
+        GM._.hm.Active();
+        GM._.epm.employPopUp.SetActive(false);
+
+        if(GM._.stgm.OreType == RSC.CRISTAL)
+            GM._.clm.windowObj.SetActive(true);
     }
 
     /// <summary>
