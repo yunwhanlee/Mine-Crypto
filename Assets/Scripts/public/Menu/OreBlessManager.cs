@@ -26,6 +26,7 @@ public class OreBlessManager : MonoBehaviour
     [field:SerializeField] public OreBlessAbilityDB_Float[] Float_Abilities {get; private set;}
 
     public GameObject windowObj;
+    public GameObject AlertRedDot;
     public OreBlessFormat[] oreBlessFormatArr;
 
     IEnumerator Start() {
@@ -78,6 +79,7 @@ public class OreBlessManager : MonoBehaviour
         windowObj.SetActive(true);
         windowObj.GetComponent<DOTweenAnimation>().DORestart();
         UpdateUI();
+        AlertRedDot.SetActive(false);
     }
 
     /// <summary>
@@ -280,6 +282,8 @@ public class OreBlessManager : MonoBehaviour
                     $"제{i + 1} 광산의축복 개방",
                     $"축하합니다! 제{i + 1} 광산의 축복능력을 사용할 수 있습니다."
                 );
+
+                AlertRedDot.SetActive(true);
             }
         }
     }
