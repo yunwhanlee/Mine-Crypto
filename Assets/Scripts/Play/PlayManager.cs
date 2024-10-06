@@ -133,14 +133,14 @@ public class PlayManager : MonoBehaviour
             GM._.rwm.newBestFloorMsgTxt.gameObject.SetActive(true);
         }
 
-        // 게임포기 안했을때 (입장티켓 1개 회수)
+        // 게임포기 안했을때
         if(isGiveUp == false)
         {
             //* 시련의광산
             if(GM._.stgm.IsChallengeMode)
             {
-                playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
-                DM._.DB.statusDB.RedTicket++;               // 데이터
+                // playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
+                // DM._.DB.statusDB.RedTicket++;               // 데이터
                 GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
             }
             //* 일반광산
