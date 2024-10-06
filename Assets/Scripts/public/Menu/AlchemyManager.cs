@@ -211,7 +211,7 @@ public class AlchemyManager : MonoBehaviour
                         break;
                 }
 
-                GM._.ui.ShowNoticeMsgPopUp($"({csDt.type}) {createCnt}개 제작 완료!");
+                GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
             }
             else if(itemDt is AlchemyDataSO_Exchange) // 교환아이템
             {
