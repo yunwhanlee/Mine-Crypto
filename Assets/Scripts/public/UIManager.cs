@@ -174,7 +174,7 @@ public class UIManager : MonoBehaviour
         warningMsgPopUp.SetActive(true);
         warningMsgTxt.text = msg.ToString();
 
-        yield return Util.TIME1;
+        yield return Util.TIME3;
         warningMsgPopUp.SetActive(false);
     }
 

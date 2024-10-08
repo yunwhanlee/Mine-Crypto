@@ -11,6 +11,8 @@ public class Util : MonoBehaviour
     public static WaitForSeconds TIME0_3 = new WaitForSeconds(0.3f);
     public static WaitForSeconds TIME0_5 = new WaitForSeconds(0.5f);
     public static WaitForSeconds TIME1 = new WaitForSeconds(1);
+    public static WaitForSeconds TIME2 = new WaitForSeconds(2);
+    public static WaitForSeconds TIME3 = new WaitForSeconds(3);
 
     public static string ConvertTimeFormat(int timeSec) {
         int sec = timeSec % 60;
