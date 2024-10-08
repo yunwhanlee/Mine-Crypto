@@ -55,6 +55,7 @@ public class ChallengeManager : MonoBehaviour
     public void ShowPopUp()
     {
         windowObj.SetActive(true);
+        GM._.ui.topRscGroup.SetActive(true);
         UpdateUI();
         GM._.amm.UpdateAll(); // 시련의광산 자동채굴처리를 AutoMiningManager에서 관리함으로 호출
     }
