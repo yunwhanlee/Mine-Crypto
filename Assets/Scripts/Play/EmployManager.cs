@@ -341,6 +341,9 @@ public class EmployManager : MonoBehaviour
         for(int i = 0; i < gachaResultList.Count; i++)
         {
             yield return Util.TIME0_05;
+
+            SoundManager._.PlaySfx(SoundManager.SFX.SummonNormalSFX);
+
             // 등급
             (GRADE, int) tupleGachaRes = gachaResultList[i];
 
@@ -366,10 +369,22 @@ public class EmployManager : MonoBehaviour
             // 등급 이펙트
             switch(grade)
             {
-                case GRADE.RARE:   cardList[i].transform.GetChild(RARE_EF).gameObject.SetActive(true);     break;
-                case GRADE.UNIQUE: cardList[i].transform.GetChild(UNIQUE_EF).gameObject.SetActive(true);   break;
-                case GRADE.LEGEND: cardList[i].transform.GetChild(LEGEND_EF).gameObject.SetActive(true);   break;
-                case GRADE.MYTH:   cardList[i].transform.GetChild(MYTH_EF).gameObject.SetActive(true);     break;
+                case GRADE.RARE:
+                cardList[i].transform.GetChild(RARE_EF).gameObject.SetActive(true);
+                    SoundManager._.PlaySfx(SoundManager.SFX.SummonRareUniqueSFX);
+                    break;
+                case GRADE.UNIQUE:
+                    SoundManager._.PlaySfx(SoundManager.SFX.SummonRareUniqueSFX);
+                    cardList[i].transform.GetChild(UNIQUE_EF).gameObject.SetActive(true);
+                    break;
+                case GRADE.LEGEND:
+                    SoundManager._.PlaySfx(SoundManager.SFX.SummonLegendSFX);
+                    cardList[i].transform.GetChild(LEGEND_EF).gameObject.SetActive(true);
+                    break;
+                case GRADE.MYTH:
+                    SoundManager._.PlaySfx(SoundManager.SFX.SummonMythSFX);
+                    cardList[i].transform.GetChild(MYTH_EF).gameObject.SetActive(true);
+                    break;
             }
         }
         corCreateGachaResultID = null;

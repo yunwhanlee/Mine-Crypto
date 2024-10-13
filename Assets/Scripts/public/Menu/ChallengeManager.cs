@@ -38,6 +38,8 @@ public class ChallengeManager : MonoBehaviour
     /// </summary>
     public void OnClickEnterBtn()
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.EnterSFX);
+
         // 선택한 광산타입
         GM._.stgm.OreType = RSC.CRISTAL;
 

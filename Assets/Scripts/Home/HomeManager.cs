@@ -9,6 +9,7 @@ public class HomeManager : MonoBehaviour
 
     #region EVENT
         public void OnClickGameStartBtn() {
+            SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
             GM._.ssm.ShowPopUp();
         }
     #endregion

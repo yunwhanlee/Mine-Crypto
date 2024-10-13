@@ -176,6 +176,7 @@ public class PlayManager : MonoBehaviour
         }
 
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
+        SoundManager._.PlaySfx(SoundManager.SFX.OpenOreChestSFX);
         GM._.rwm.ShowGameoverReward(playResRwdArr);
     }
 #endregion

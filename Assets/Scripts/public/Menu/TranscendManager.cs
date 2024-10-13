@@ -116,6 +116,7 @@ public class TranscendManager : MonoBehaviour
     private void Upgrade(UpgradeFormat upgDt) {
         if(DM._.DB.statusDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
         {
+            SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
             GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
             DM._.DB.statusDB.SetRscArr((int)upgDt.NeedRsc, -upgDt.Price);
             GM._.fm.missionArr[(int)MISSION.UPGRADE_CNT].Exp++;

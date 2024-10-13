@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
+using static SoundManager;
 
 namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
@@ -124,6 +125,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             _animation = GetComponent<CharacterAnimation>();
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
+
+            // 첫 시작시 등장SFX
+            int randomSFX = Random.Range((int)SFX.Jump1SFX, (int)SFX.Jump3SFX);
+            SoundManager._.PlaySfx((SFX)randomSFX);
 
             // 実際の攻撃速度(秒)
             float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed;
@@ -340,6 +345,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 //* 광석채굴 (공격)
                 if(attackWaitTime > attackSpeedSec)
                 {
+                    SoundManager._.PlaySfx(SoundManager.SFX.AttackSFX);
                     attackWaitTime = 0;
 
                     //* 일반광석인 경우

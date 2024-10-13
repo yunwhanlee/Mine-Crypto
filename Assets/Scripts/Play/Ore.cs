@@ -96,7 +96,8 @@ public class Ore : MonoBehaviour
             }
             // 일반광석인 경우
             else 
-            {   
+            {
+                SoundManager._.PlaySfx(SoundManager.SFX.BrokenOreSFX);
                 // 광석캐기 미션 +
                 GM._.fm.missionArr[(int)MISSION.MINING_ORE_CNT].Exp++;
                 // 숙련도 경험치 UP

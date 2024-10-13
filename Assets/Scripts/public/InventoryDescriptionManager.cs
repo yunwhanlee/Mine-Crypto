@@ -33,6 +33,7 @@ void Start() {
     /// </summary>
     /// <param name="invIdx">인벤토리 아이템 인덱스</param>
     public void OnClickInvItemSlot(INV invIdx) {
+        SoundManager._.PlaySfx(SoundManager.SFX.InvSlotClickSFX);
         windowObj.SetActive(true);
 
         var invSlotUI = GM._.ivm.invSlotUIArr[(int)invIdx];
@@ -52,6 +53,7 @@ void Start() {
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("보물상자 오픈!");
+                    SoundManager._.PlaySfx(SoundManager.SFX.OpenTreasureChestSFX);
 
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
@@ -111,6 +113,7 @@ void Start() {
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("광석상자 오픈!");
+                    SoundManager._.PlaySfx(SoundManager.SFX.OpenOreChestSFX);
                     
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
@@ -185,6 +188,7 @@ void Start() {
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("버섯상자1 오픈!");
+                    SoundManager._.PlaySfx(SoundManager.SFX.OpenMushBoxSFX);
 
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
@@ -232,6 +236,7 @@ void Start() {
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("버섯상자2 오픈!");
+                    SoundManager._.PlaySfx(SoundManager.SFX.OpenMushBoxSFX);
 
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
@@ -279,6 +284,7 @@ void Start() {
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
                     Debug.Log("버섯상자3 오픈!");
+                    SoundManager._.PlaySfx(SoundManager.SFX.OpenMushBoxSFX);
 
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {{RWD.MUSH8, 0}};

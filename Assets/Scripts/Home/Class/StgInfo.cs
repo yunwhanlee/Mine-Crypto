@@ -52,6 +52,8 @@ public class StgInfo
         // 입장티켓 버튼 이벤트 등록
         EnterBtn.onClick.AddListener(() => {
             Debug.Log($"Click EnterBtn:: ");
+            SoundManager._.PlaySfx(SoundManager.SFX.EnterSFX);
+
             // 선택한 광산종류 저장
             GM._.stgm.OreType = (Enum.RSC)id;
 
@@ -69,6 +71,8 @@ public class StgInfo
 
             if(sttDB.RscArr[previousOreId] >= unlockPrice)
             {
+                SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
+
                 GM._.ui.ShowNoticeMsgPopUp("광산해금 완료!");
 
                 // 재료 수량 감소

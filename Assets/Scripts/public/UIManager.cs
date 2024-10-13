@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AssetKits.ParticleImage;
-using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -74,30 +73,36 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenuIconBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         menuPopUp.SetActive(true);
     }
 
     public void OnClickInvIconBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.ClickBagSFX);
         GM._.ivm.ShowInventory();
     }
 
     public void OnClickMenu_UpgradeBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);
         GM._.ugm.ShowPopUp();
     }
 
     public void OnClickMenu_FameBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.fm.windowObj.SetActive(true);
         GM._.fm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
         GM._.fm.UpdateAll();
     }
 
     public void OnClickMenu_OreBlessBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);
         GM._.obm.ShowPopUp();
     }
 
     public void OnClickMenu_AutoMiningBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);
         GM._.amm.windowObj.SetActive(true);
         GM._.amm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
@@ -105,38 +110,45 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickChallengeBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);
         GM._.clm.ShowPopUp();
     }
 
     public void OnClickMenu_OreProficiencyBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.pfm.windowObj.SetActive(true);
         GM._.pfm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
         GM._.pfm.UpdateAll();
     }
 
     public void OnClickMenu_StatusBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.sttm.windowObj.SetActive(true);
         GM._.sttm.windowObj.GetComponent<DOTweenAnimation>().DORestart();
         GM._.sttm.UpdateMyStatus();
     }
 
     public void OnClickMenu_TranscendBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);
         GM._.tsm.ShowPopUp();
     }
 
     public void OnClickMenu_MushroomGuideBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(false);
         GM._.mrm.ShowPopUp();
     }
 
     public void OnClickMenu_AlchemyBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);
         GM._.acm.ShowPopUp();
     }
 
     public void OnClickMenu_SettingBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.stm.ShowPopUp();
     }
 
@@ -171,6 +183,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator CoShowWarningMsg(string msg) {
         Debug.Log($"CoShowWarningMsg(msg= {msg})");
+        SoundManager._.PlaySfx(SoundManager.SFX.ErrorSFX);
         warningMsgPopUp.SetActive(true);
         warningMsgTxt.text = msg.ToString();
 

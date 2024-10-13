@@ -62,6 +62,8 @@ public class OreProficiencyManager : MonoBehaviour
             return;
         }
 
+        SoundManager._.PlaySfx(SoundManager.SFX.ProficiencyFinishSFX);
+
         GM._.ui.ShowNoticeMsgPopUp("숙련도 레벨 업!");
 
         // 미션 레벨 업

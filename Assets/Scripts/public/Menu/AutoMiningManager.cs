@@ -113,6 +113,7 @@ public class AutoMiningManager : MonoBehaviour
             return;
         }
 
+        SoundManager._.PlaySfx(SoundManager.SFX.AutoMiningTakeSFX);
         GM._.ui.ShowNoticeMsgPopUp("수령 완료!");
 
         //* 재화 이펙트 재생
@@ -154,6 +155,8 @@ public class AutoMiningManager : MonoBehaviour
                 return;
             }
         }
+
+        SoundManager._.PlaySfx(SoundManager.SFX.UpgradeSFX);
 
         GM._.ui.ShowNoticeMsgPopUp("최대보관량 업그레이드 성공!");
 

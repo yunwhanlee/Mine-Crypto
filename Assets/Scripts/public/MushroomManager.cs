@@ -78,6 +78,8 @@ public class MushroomManager : MonoBehaviour
 
     public void OnClickUpgradeBtn()
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.UpgradeMushSFX);
+
         switch(mushIdx)
         {
             case (int)MUSH.MUSH1: Upgrade(ms1_UpgAttack); break;

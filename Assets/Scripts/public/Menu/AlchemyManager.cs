@@ -90,6 +90,7 @@ public class AlchemyManager : MonoBehaviour
     /// </summary>
     public void OnClickCategoryBtn(int cateIdx)
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         this.cateIdx = (ALCHEMY_CATE)cateIdx;
         SetCatetory();
         UpdateUI(0);
@@ -101,6 +102,7 @@ public class AlchemyManager : MonoBehaviour
     /// <param name="itemBtnIdx">아이템버튼 인덱스</param>
     public void OnClickScrollItemBtn(int itemBtnIdx)
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         this.itemBtnIdx = itemBtnIdx;
         UpdateUI(itemBtnIdx);
     }
@@ -165,6 +167,8 @@ public class AlchemyManager : MonoBehaviour
         // 선택한 수량만큼 생성
         if(creatableMax > 0)
         {
+            SoundManager._.PlaySfx(SoundManager.SFX.ProductionSFX);
+
             //* 제작에 필요한 아이템 감소
             for(int i = 0; i < itemDt.needItemDataArr.Length; i++)
             {
@@ -231,6 +235,7 @@ public class AlchemyManager : MonoBehaviour
 
                 //* 초월시스템 개방
                 if(dcDt.id == 2){
+                    SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
                     GM._.tsm.Unlock();
                     GM._.ui.ShowUnlockContentPopUp(
                         GM._.transcendIconSpr,
@@ -345,6 +350,7 @@ public class AlchemyManager : MonoBehaviour
         var mushDB = DM._.DB.mushDB;
         if(!mushDB.isUnlock)
         {
+            SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
             GM._.mrm.Unlock();
             mushDB.isUnlock = true;
             GM._.ui.ShowUnlockContentPopUp (

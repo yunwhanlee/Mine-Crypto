@@ -55,6 +55,7 @@ public class OreBlessManager : MonoBehaviour
         // 필요재화 수량 체크
         if(sttDB.GetInventoryItemVal(NeedItem.type) >= NeedItem.val)
         {
+            SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
             // 재설정에 사용한 아이템 수량 감소
             sttDB.SetInventoryItemVal(NeedItem.type, -NeedItem.val);
 
@@ -276,6 +277,7 @@ public class OreBlessManager : MonoBehaviour
         {
             if(bestFloorArr[i] >= UnlockFloorArr[i] && !obm.oreBlessFormatArr[i].IsUnlock)
             {
+                SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
                 obm.oreBlessFormatArr[i].IsUnlock = true;
                 GM._.ui.ShowUnlockContentPopUp(
                     GM._.oreBlessIconSpr,

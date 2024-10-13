@@ -100,6 +100,8 @@ public class FameManager : MonoBehaviour
             return;
         }
 
+        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+
         // 미션 레벨 업
         mission.Lv++;
 
@@ -235,6 +237,8 @@ public class FameManager : MonoBehaviour
     /// </summary>
     private void FameLevelUp()
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.FameLvUpSFX);
+
         ShowFameLevelUpGradeTable(isLvUp: true);
 
         GM._.rwm.ShowReward (
