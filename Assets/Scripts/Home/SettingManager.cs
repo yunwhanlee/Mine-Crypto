@@ -11,7 +11,8 @@ public class SettingManager : MonoBehaviour
 
     // Element
     public GameObject windowObj;
-
+    public Slider bgmSlider;
+    public Slider sfxSlider;
 
     // Value
 
@@ -23,6 +24,22 @@ public class SettingManager : MonoBehaviour
             DM._.Reset();
             SceneManager.LoadScene("Game");
         };
+    }
+
+    public void OnSliderBgmVolumeChanged()
+    {
+        // 슬라이더의 값을 0.1 단위로 반올림
+        float roundedValue = Mathf.Round(bgmSlider.value * 10f) / 10f;
+        bgmSlider.value = roundedValue;
+        SoundManager._.SetBgmVolume(bgmSlider.value);
+    }
+
+    public void OnSliderSfxVolumeChanged()
+    {
+        // 슬라이더의 값을 0.1 단위로 반올림
+        float roundedValue = Mathf.Round(sfxSlider.value * 10f) / 10f;
+        sfxSlider.value = roundedValue;
+        SoundManager._.SetSfxVolume(sfxSlider.value);
     }
 #endregion
 

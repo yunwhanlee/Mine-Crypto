@@ -97,14 +97,14 @@ public class RewardUIManager : MonoBehaviour
                 // 시련의광산 경우 종료시 
                 if(GM._.stgm.IsChallengeMode)
                 {
-                    SoundManager._.PlayBgm(SoundManager.BGM.Home, isOn: true);
+                    SoundManager._.PlayBgm(SoundManager.BGM.Home);
                     GM._.clm.ShowPopUp(); // 시련의광산 팝업 표시
                     GM._.hm.Active();
                 }
                 // 일반광산의 경우 종료시
                 else
                 {
-                    SoundManager._.PlayBgm(SoundManager.BGM.Home, isOn: true);
+                    SoundManager._.PlayBgm(SoundManager.BGM.Home);
                     GM._.hm.Active();
                 }
                 break;

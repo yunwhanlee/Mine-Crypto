@@ -34,6 +34,7 @@ public class PlayManager : MonoBehaviour
 
 #region EVENT
     public void OnClickPauseIconBtn() {
+        SoundManager._.PauseBgm(isOn: true);
         SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         GM._.gameState = GameState.STOP;
         Time.timeScale = 0;
@@ -41,6 +42,7 @@ public class PlayManager : MonoBehaviour
         pausePopUp.SetActive(true);
     }
     public void OnClickContinueBtn() {
+        SoundManager._.PauseBgm(isOn: false);
         SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         GM._.gameState = GameState.PLAY;
         Time.timeScale = 1;

@@ -59,11 +59,13 @@ public class SoundManager : MonoBehaviour
     }
 
     [field: Header("BGM")]
+    GameObject bgmObj;
     public AudioClip[] bgmClips;
     public float bgmVolume;
     AudioSource bgmPlayer;
 
     [field: Header("SFX")]
+    GameObject sfxObj;
     public AudioClip[] sfxClips;
     public float sfxVolume;
     AudioSource[] sfxPlayers;
@@ -93,35 +95,68 @@ public class SoundManager : MonoBehaviour
     private void Init()
     {
         // BGM 초기화
-        GameObject bgmObj = new GameObject("BgmPlayer");
+        bgmObj = new GameObject("BgmPlayer");
         bgmObj.transform.parent = transform;
         bgmPlayer = bgmObj.AddComponent<AudioSource>();
         bgmPlayer.playOnAwake = false;
         bgmPlayer.loop = true;
-        bgmPlayer.volume = bgmVolume;
+        SetBgmVolume(bgmVolume);
+        GM._.stm.bgmSlider.value = bgmVolume;
 
         // SFX 초기화
-        GameObject sfxObj = new GameObject("SfxPlayer");
+        sfxObj = new GameObject("SfxPlayer");
         sfxObj.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];
-
         for(int i = 0; i < sfxPlayers.Length; i++)
         {
             sfxPlayers[i] = sfxObj.AddComponent<AudioSource>();
             sfxPlayers[i].playOnAwake = false;
-            sfxPlayers[i].volume = sfxVolume;
+        }
+        SetSfxVolume(sfxVolume);
+        GM._.stm.sfxSlider.value = sfxVolume;
+    }
+
+    public void SetBgmVolume(float value)
+    {
+        bgmObj.SetActive(value > 0);
+        if(value > 0 && !bgmPlayer.isPlaying)
+            bgmPlayer.Play();
+
+        bgmPlayer.volume = value;
+    }
+
+    public void SetSfxVolume(float value)
+    {
+        sfxObj.SetActive(value > 0);
+
+        for(int i = 0; i < sfxPlayers.Length; i++)
+        {
+            sfxPlayers[i].volume = value;
         }
     }
 
-    public void PlayBgm(BGM bgm, bool isOn, bool isLoop = true)
+    /// <summary>
+    /// 배경음 재생 및 정지 
+    /// </summary>
+    /// <param name="isOn">재생 or 정지 트리거</param>
+    public void PauseBgm(bool isOn)
+    {
+        if(isOn)
+            bgmPlayer.Pause();
+        else
+            bgmPlayer.Play();
+    }
+
+    /// <summary>
+    /// 배경음 재생
+    /// </summary>
+    /// <param name="bgm">배경음 종류</param>
+    /// <param name="isLoop">루프 트리거</param>
+    public void PlayBgm(BGM bgm, bool isLoop = true)
     {
         bgmPlayer.clip = bgmClips[(int)bgm];
         bgmPlayer.loop = isLoop;
-
-        if(isOn)
-            bgmPlayer.Play();
-        else
-            bgmPlayer.Stop();
+        bgmPlayer.Play();
     }
 
     /// <summary>
