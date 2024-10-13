@@ -127,7 +127,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             sprRdr = GetComponentInChildren<SpriteRenderer>();
 
             // 첫 시작시 등장SFX
-            int randomSFX = Random.Range((int)SFX.Jump1SFX, (int)SFX.Jump3SFX);
+            int randomSFX = Random.Range((int)SFX.Jump1SFX, (int)SFX.Jump3SFX + 1);
             SoundManager._.PlaySfx((SFX)randomSFX);
 
             // 実際の攻撃速度(秒)
@@ -249,6 +249,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                     if(BagStorage > 0) {
                         //* 재화 이펙트 재생
+                        int randomIdx = Random.Range((int)SFX.ItemDrop1SFX, (int)SFX.ItemDrop2SFX + 1);
+                        SoundManager._.PlaySfx((SFX)randomIdx);
                         GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
 
                         //* 재화 획득
@@ -345,7 +347,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 //* 광석채굴 (공격)
                 if(attackWaitTime > attackSpeedSec)
                 {
-                    SoundManager._.PlaySfx(SoundManager.SFX.AttackSFX);
+                    SoundManager._.PlaySfx(SFX.AttackSFX);
                     attackWaitTime = 0;
 
                     //* 일반광석인 경우

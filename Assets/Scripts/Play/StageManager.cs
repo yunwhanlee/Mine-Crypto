@@ -72,6 +72,8 @@ public class StageManager : MonoBehaviour {
     public void StartStage()
     {
         Debug.Log("StartStage()::");
+        SoundManager._.PlayBgm((SoundManager.BGM)oreType + 1, true, oreType != RSC.CRISTAL);
+
         GM._.gameState = GameState.PLAY;
         Floor = IsChallengeMode? GM._.clm.BestFloor : 1;
 

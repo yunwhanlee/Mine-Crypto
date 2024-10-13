@@ -94,6 +94,7 @@ public class GM : MonoBehaviour
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
+        SoundManager._.PlayBgm(SoundManager.BGM.Home, isOn: true);
         StartCoroutine(CoTimerStart());
     }
 

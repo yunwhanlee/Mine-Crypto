@@ -86,6 +86,7 @@ public class RewardUIManager : MonoBehaviour
     public void OnClickDimScreenBtn() {
         switch(GM._.gameState)
         {
+            //* 인게임 종료의 경우
             case GameState.TIMEOVER:
                 GM._.gameState = GameState.HOME;
                 rewardUIPopUp.SetActive(false);
@@ -96,16 +97,18 @@ public class RewardUIManager : MonoBehaviour
                 // 시련의광산 경우 종료시 
                 if(GM._.stgm.IsChallengeMode)
                 {
+                    SoundManager._.PlayBgm(SoundManager.BGM.Home, isOn: true);
                     GM._.clm.ShowPopUp(); // 시련의광산 팝업 표시
                     GM._.hm.Active();
                 }
                 // 일반광산의 경우 종료시
                 else
                 {
+                    SoundManager._.PlayBgm(SoundManager.BGM.Home, isOn: true);
                     GM._.hm.Active();
                 }
-
                 break;
+            //* 그 이외
             default:
                 rewardUIPopUp.SetActive(false);
                 newBestFloorMsgTxt.gameObject.SetActive(false);

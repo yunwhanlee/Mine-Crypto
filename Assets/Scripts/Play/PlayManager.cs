@@ -34,12 +34,14 @@ public class PlayManager : MonoBehaviour
 
 #region EVENT
     public void OnClickPauseIconBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         GM._.gameState = GameState.STOP;
         Time.timeScale = 0;
 
         pausePopUp.SetActive(true);
     }
     public void OnClickContinueBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         GM._.gameState = GameState.PLAY;
         Time.timeScale = 1;
 
@@ -150,8 +152,6 @@ public class PlayManager : MonoBehaviour
                 DM._.DB.statusDB.OreTicket++;               // 데이터
                 GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
             }
-
-            
         }
 
         //* 시련의광산

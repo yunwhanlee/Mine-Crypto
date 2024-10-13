@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
+using static SoundManager;
 using static GameEffectManager;
 
 public class Ore : MonoBehaviour
@@ -55,13 +56,16 @@ public class Ore : MonoBehaviour
         if(IsDestroied)
             return;
 
+
+
         Hp -= dmg;
-
         GM._.efm.ShowDmgTxtEF(transform.position, dmg);
-
 
         if(Hp > 0)
         {
+            int randomIdx = Random.Range((int)SFX.Metal1SFX, (int)SFX.Metal3SFX + 1);
+            SoundManager._.PlaySfx((SFX)randomIdx);
+
             MiningHitPtcEF.Play();
 
             HpSlider.value = (float)Hp / MaxHp;
@@ -82,6 +86,8 @@ public class Ore : MonoBehaviour
             // 보물상자인 경우
             if(OreType == RSC.CRISTAL) 
             {   
+                SoundManager._.PlaySfx(SFX.TreasureChestOrePickSFX);
+
                 // 수량 1 + (초월)보물상자 획득량
                 int ammount = 1 + GM._.sttm.ExtraTreasureChest;
 

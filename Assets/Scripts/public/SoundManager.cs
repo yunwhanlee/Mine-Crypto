@@ -8,7 +8,16 @@ public class SoundManager : MonoBehaviour
     static public SoundManager _;
 
     public enum BGM {
-
+        Home,
+        Stage1,
+        Stage2,
+        Stage3,
+        Stage4,
+        Stage5,
+        Stage6,
+        Stage7,
+        Stage8,
+        Challenge,
     }
 
     public enum SFX {
@@ -23,9 +32,14 @@ public class SoundManager : MonoBehaviour
         FameLvUpSFX,                // 명예레벨업
         GamePlaySFX,                // 인게임시작 효과음
         InvSlotClickSFX,            // 아이템정보열기닫기
+        ItemDrop1SFX,               // 인게임 광석 파티클1
+        ItemDrop2SFX,               // 인게임 광석 파티클2
         Jump1SFX,                   // 캐릭터점프등장1
         Jump2SFX,                   // 캐릭터점프등장2
         Jump3SFX,                   // 캐릭터점프등장3
+        Metal1SFX,                  // 광석 HIT1
+        Metal2SFX,                  // 광석 HIT2
+        Metal3SFX,                  // 광석 HIT3
         OpenMushBoxSFX,             // 버섯상자오픈
         OpenOreChestSFX,            // 광석상자오픈
         OpenTreasureChestSFX,       // 보물상자오픈
@@ -38,13 +52,14 @@ public class SoundManager : MonoBehaviour
         Tap1SFX,                    // 메뉴열기닫기,입장버튼, 카테고리선택
         Tap2SFX,                    // 연금술 목록선택, 
         TranscendUpgradeSFX,        // 초월강화
+        TreasureChestOrePickSFX,    // 인게임 보물상자 획득
         UnlockSFX,                  // 광산개방
         UpgradeMushSFX,             // 버섯도감강화
         UpgradeSFX,                 // 일반강화,자동채굴강화
     }
 
     [field: Header("BGM")]
-    public AudioClip[] bgmClip;
+    public AudioClip[] bgmClips;
     public float bgmVolume;
     AudioSource bgmPlayer;
 
@@ -96,6 +111,17 @@ public class SoundManager : MonoBehaviour
             sfxPlayers[i].playOnAwake = false;
             sfxPlayers[i].volume = sfxVolume;
         }
+    }
+
+    public void PlayBgm(BGM bgm, bool isOn, bool isLoop = true)
+    {
+        bgmPlayer.clip = bgmClips[(int)bgm];
+        bgmPlayer.loop = isLoop;
+
+        if(isOn)
+            bgmPlayer.Play();
+        else
+            bgmPlayer.Stop();
     }
 
     /// <summary>
