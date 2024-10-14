@@ -8,7 +8,7 @@ using static Enum;
 public class AutoMiningManager : MonoBehaviour
 {
     int WAIT_TIME = 60; // 채굴 획득 대기시간
-    const int ORE_INC_UNIT = 100;
+    const int ORE_INC_UNIT = 100; // 자동채굴 최대보관량 증가 단위
 
     [Header("자동채굴 수령버튼 알람아이콘 표시")]
     public GameObject[] autoMiningBtnAlertRedDotArr;
@@ -242,7 +242,7 @@ public class AutoMiningManager : MonoBehaviour
         }
     }
     /// <summary>
-    /// 크리스탈 자동채굴 (1시간)
+    /// 크리스탈 자동채굴 (1분)
     /// </summary>
     public void SetCristalTimer()
     {
@@ -387,11 +387,17 @@ public class AutoMiningManager : MonoBehaviour
         return Mathf.RoundToInt(val * extraPer);
     }
 
+    /// <summary>
+    /// 자동채굴 일반광석 최대보관량 업그레이드 가격
+    /// </summary>
     private int CalcUpgradeOrePrice(int lv)
     {
-        return 1000 + (lv - 1) * 1000;
+        return 500 + (lv - 1) * 500;
     }
 
+    /// <summary>
+    /// 자동채굴 일반광석 최대보관량 업그레이드 가격
+    /// </summary>
     private int CalcUpgradCristalPrice(int lv)
     {
         return 1000 + ( lv * ( lv - 1 ) * 1000 ) / 2;
