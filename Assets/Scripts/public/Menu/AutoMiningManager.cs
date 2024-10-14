@@ -377,7 +377,7 @@ public class AutoMiningManager : MonoBehaviour
 
     private int CalcMaxCristalStorage(int lv)
     {
-        const int DEF = 10, INC = 1;
+        const int DEF = 10, INC = 10;
 
         // 추가 수량
         float extraPer = 1 + GM._.sttm.ExtraAutoCristalBagStoragePer; // (초월) 자동 크리스탈 보관량%
