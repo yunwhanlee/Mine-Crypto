@@ -126,6 +126,7 @@ public class PlayManager : MonoBehaviour
     ///* 타임오버 (제공 보상표시)
     /// </summary>
     public void Timeover(bool isGiveUp = false) {
+        Debug.Log($"Timeover():: isGiveUp= {isGiveUp}, stageType= {GM._.stgm.OreType}");
         var stageType = (int)GM._.stgm.OreType;
         var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
 

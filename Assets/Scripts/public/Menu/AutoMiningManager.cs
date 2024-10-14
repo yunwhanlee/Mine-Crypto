@@ -172,22 +172,22 @@ public class AutoMiningManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
-    /// 광석 및 크리스탈 자동채굴량 반환
+    /// 광석 및 크리스탈 1분당 자동채굴량 반환
     /// </summary>
     /// <param name="rscType"></param>
     /// <returns></returns>
     private int GetProductionVal(RSC rscType)
     {
-        if(rscType != RSC.CRISTAL)
+        if(rscType == RSC.CRISTAL)
         {
-            int extraVal = stgDB.BestFloorArr[(int)rscType] * ORE_INC_UNIT;
-            float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
+            int extraVal = stgDB.BestFloorArr[(int)RSC.CRISTAL] + GM._.sttm.ExtraIncCristal;
+            float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
             return Mathf.RoundToInt(extraVal * extraPer);
         }
         else
         {
-            int extraVal = stgDB.BestFloorArr[(int)rscType] + GM._.sttm.ExtraIncCristal;
-            float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
+            int extraVal = stgDB.BestFloorArr[(int)rscType] * ORE_INC_UNIT;
+            float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
             return Mathf.RoundToInt(extraVal * extraPer);
         }
     }
