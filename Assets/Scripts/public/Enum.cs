@@ -167,8 +167,8 @@ public static class Enum
         // (소비) 아이템
         new InvItem_Info("광산티켓", "광산에 입장가능한 티켓이다."),
         new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다."),
-        new InvItem_Info("광석상자", "어떤 광석이 나올지 알 수 없다."),
-        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있다."),
+        new InvItem_Info("광석상자", "어떤 광석이 나올지 모릅니다. 최고층이 높을수록 많은 광석을 획득합니다."),
+        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있습니다."),
         new InvItem_Info("의문의 버섯상자", "일반적인 버섯이 들어있을 것 같다."),
         new InvItem_Info("신비한 버섯상자", "신비로운 버섯이 들어있을 것 같다."),
         new InvItem_Info("전설의 버섯상자", "전설적인 버섯이 들어있을 것 같다."),
