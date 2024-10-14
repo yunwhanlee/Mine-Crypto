@@ -50,7 +50,7 @@ public class OreBlessDB
         };
 
         saveDts = new OreBlessSaveData[8] {
-            new OreBlessSaveData(false, 0, defAbilityList),
+            new OreBlessSaveData(false, 0, null),
             new OreBlessSaveData(false, 0, null),
             new OreBlessSaveData(false, 0, null),
             new OreBlessSaveData(false, 0, null),

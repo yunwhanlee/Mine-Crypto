@@ -278,7 +278,13 @@ public class OreBlessManager : MonoBehaviour
             if(bestFloorArr[i] >= UnlockFloorArr[i] && !obm.oreBlessFormatArr[i].IsUnlock)
             {
                 SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
+
+                // 광산의 축복 개방
                 obm.oreBlessFormatArr[i].IsUnlock = true;
+
+                // 광산의 축복 능력치 설정 (초기)
+                GM._.obm.ResetAbilities(i);
+
                 GM._.ui.ShowUnlockContentPopUp(
                     GM._.oreBlessIconSpr,
                     $"제{i + 1} 광산의축복 개방",

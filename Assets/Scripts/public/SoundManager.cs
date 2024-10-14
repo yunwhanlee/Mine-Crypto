@@ -136,7 +136,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 배경음 재생 및 정지 
+    /// 배경음 재생 및 정지
     /// </summary>
     /// <param name="isOn">재생 or 정지 트리거</param>
     public void PauseBgm(bool isOn)
