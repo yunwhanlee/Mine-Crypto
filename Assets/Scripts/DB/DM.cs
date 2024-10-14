@@ -9,6 +9,8 @@ using UnityEngine;
 /// </summary>
 [Serializable]
 public class DB {
+    public float bgmVolume;                 // 배경음 볼륨
+    public float sfxVolume;                 // 효과음 볼륨
     public StatusDB statusDB;
     public UpgradeDB upgradeDB;             // 강화
     public MissionDB missionDB;             // 명예미션
@@ -19,6 +21,7 @@ public class DB {
     public MushDB mushDB;                   // 버섯도감
     public DecoDB decoDB;                   // 장식품 오브젝트
     public StageDB stageDB;                 // 스테이지 (잠금, 최고층)
+
 
     public void Init()
     {
@@ -70,15 +73,8 @@ public class DM : MonoBehaviour {
 /// -----------------------------------------------------------------------------------------------------------------
 #region QUIT GAME 
 /// -----------------------------------------------------------------------------------------------------------------
-#if UNITY_EDITOR
-    public void OnApplicationQuit() {
-        if(DB == null) return;
 
-        Debug.Log("<color=yellow>QUIT APP(PC):: SAVE</color>");
-        // DB.LastDateTicks = DateTime.UtcNow.Ticks; //* 終了した日にち時間データをTicks(longタイプ)で保存
-        Save();
-    }
-#elif UNITY_ANDROID
+#if UNITY_ANDROID
     public void OnApplicationPause(bool paused){
         if(DB == null) return;
 
@@ -87,6 +83,14 @@ public class DM : MonoBehaviour {
             // DB.LastDateTicks = DateTime.UtcNow.Ticks; //* 終了した日にち時間データをTicks(longタイプ)で保存
             Save();
         }
+    }
+#else
+    public void OnApplicationQuit() {
+        if(DB == null) return;
+
+        Debug.Log("<color=yellow>QUIT APP(PC):: SAVE</color>");
+        // DB.LastDateTicks = DateTime.UtcNow.Ticks; //* 終了した日にち時間データをTicks(longタイプ)で保存
+        Save();
     }
 #endif
 #endregion

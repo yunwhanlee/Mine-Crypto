@@ -197,7 +197,7 @@ public class StageManager : MonoBehaviour {
         // 광석 체력
         oreHp = hp + ((floor-1) * 100);
 
-        // 광석 숫자
+        // 광석수량 최대 100으로 고정
         if(floor < 100)
             oreCnt = floor;
         else
