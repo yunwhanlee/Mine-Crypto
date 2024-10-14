@@ -116,11 +116,10 @@ public class AutoMiningManager : MonoBehaviour
         SoundManager._.PlaySfx(SoundManager.SFX.AutoMiningTakeSFX);
         GM._.ui.ShowNoticeMsgPopUp("수령 완료!");
 
-        //* 재화 이펙트 재생
-        GM._.ui.PlayOreAttractionPtcUIEF((RSC)idx);
-
-        // 재화 증가
-        sttDB.SetRscArr(idx, am.CurStorage);
+        //* 보상 획득
+        GM._.rwm.ShowReward (
+            new Dictionary<RWD, int> { {(RWD)idx, am.CurStorage} }
+        );
         
         // 보관량 초기화
         am.CurStorage = 0;
