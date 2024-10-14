@@ -20,4 +20,11 @@ public class MineManager : MonoBehaviour
     void Start() {
         waitSpawnToGoSec = Util.TIME0_2;
     }
+
+    public void InitData()
+    {
+        // 여러개 광석에 분배위한 카운팅 데이터 초기화
+        workerClearStageStatusCnt = 0;
+        CurTotalMiningCnt = 0;
+    }
 }

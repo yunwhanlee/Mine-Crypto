@@ -77,6 +77,8 @@ public class StageManager : MonoBehaviour {
         GM._.gameState = GameState.PLAY;
         Floor = IsChallengeMode? GM._.clm.BestFloor : 1;
 
+        GM._.mnm.InitData();
+
         // 스테이지층
         stageTxt.text = GetStageName();
 
