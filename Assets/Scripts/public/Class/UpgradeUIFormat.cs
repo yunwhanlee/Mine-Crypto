@@ -15,10 +15,12 @@ public class UpgradeUIFormat
     /// <summary>
     /// 업그레이드 가격 표시 및 구매여부에 따른 색깔반영
     /// </summary>
-    private string GetNeedPriceTxtWithColor(RSC needRscType, int price)
+    private string GetNeedPriceTxtWithColor(INV needRscType, int price)
     {
+        var sttDB = DM._.DB.statusDB;
+
         // 구매가능한지 여부 색깔태그
-        string colorTag = DM._.DB.statusDB.RscArr[(int)needRscType] >= price? "white" : "grey";
+        string colorTag = sttDB.GetInventoryItemVal(needRscType) >= price? "white" : "grey";
 
         // 필요재화 가격 + 이미지 적용
         return $"<size=75%><sprite name={needRscType}><color={colorTag}></size> {price}</color>";

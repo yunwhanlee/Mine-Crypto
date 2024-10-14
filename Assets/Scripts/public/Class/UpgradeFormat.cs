@@ -9,7 +9,7 @@ public class UpgradeFormat
 {
     [field:SerializeField] public int Lv {get; set;}
     [field:SerializeField] public int MaxLv {get; protected set;}
-    [field:SerializeField] public Enum.RSC NeedRsc {get; protected set;} // 업그레이드에 필요한 재화종류
+    [field:SerializeField] public Enum.INV NeedRsc {get; protected set;} // 업그레이드에 필요한 재화종류
     [field:SerializeField] public int Price {get; set;}                 // 업그레이드 가격
     [field:SerializeField] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
 
@@ -29,7 +29,7 @@ public class UpgradeFormatFloat : UpgradeFormat
     [field:SerializeField] public float Val {get => DefVal + (Lv * Unit);}
     [field:SerializeField] public float Unit {get; private set;}
 
-    public UpgradeFormatFloat(int Lv, int MaxLv, float Unit, Enum.RSC NeedRsc, int PriceDef, float DefVal) {
+    public UpgradeFormatFloat(int Lv, int MaxLv, float Unit, Enum.INV NeedRsc, int PriceDef, float DefVal) {
         this.Lv = Lv;
         this.MaxLv = MaxLv;
         this.Unit = Unit;
@@ -51,7 +51,7 @@ public class UpgradeFormatInt : UpgradeFormat
     [field:SerializeField] public int Val {get => DefVal + (Lv * Unit);}
     [field:SerializeField] public int Unit {get; private set;}
 
-    public UpgradeFormatInt(int Lv, int Unit, Enum.RSC NeedRsc, int PriceDef, int DefVal, int MaxLv) {
+    public UpgradeFormatInt(int Lv, int Unit, Enum.INV NeedRsc, int PriceDef, int DefVal, int MaxLv) {
         this.Lv = Lv;
         this.MaxLv = MaxLv;
         this.Unit = Unit;

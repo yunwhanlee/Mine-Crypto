@@ -114,11 +114,20 @@ public class TranscendManager : MonoBehaviour
     }
 
     private void Upgrade(UpgradeFormat upgDt) {
-        if(DM._.DB.statusDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
+        var sttDB = DM._.DB.statusDB;
+
+        //if(sttDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
+        if(sttDB.GetInventoryItemVal(upgDt.NeedRsc) >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
             GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
-            DM._.DB.statusDB.SetRscArr((int)upgDt.NeedRsc, -upgDt.Price);
+
+            // DM._.DB.statusDB.SetRscArr((int)upgDt.NeedRsc, -upgDt.Price);
+
+            // 제작에 필요한 아이템 수량 감소
+            sttDB.SetInventoryItemVal(upgDt.NeedRsc, -upgDt.Price);
+
+
             GM._.fm.missionArr[(int)MISSION.UPGRADE_CNT].Exp++;
             upgDt.Lv++;
 

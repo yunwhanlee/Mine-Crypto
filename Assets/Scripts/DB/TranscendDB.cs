@@ -21,27 +21,27 @@ public class TranscendDB
     {
         // 자동 광석 수량%
         upgIncAutoOrePer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.MAT1, PriceDef: 10, DefVal: 0, MaxLv: 1000);
         // 자동 크리스탈 수량%
         upgIncAutoCristalPer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.MAT2, PriceDef: 10, DefVal: 0, MaxLv: 1000);
         // 재료 제작비용 감소
         upgDecAlchemyMaterialPer = new ( 
-            Lv: 0, Unit: 0.01f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 90);
+            Lv: 0, Unit: 0.01f, NeedRsc: INV.RED_TICKET, PriceDef: 10, DefVal: 0, MaxLv: 90);
         // 보물상자 획득량 (int)
         upgIncTreasureChest = new ( 
-            Lv: 0, Unit: 1, NeedRsc: RSC.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 1000);
+            Lv: 0, Unit: 1, NeedRsc: INV.ORE_TICKET, PriceDef: 10, DefVal: 0, MaxLv: 1000);
         // 자동 광석 보관량%
         upgIncAutoOreBagStoragePer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.MAT4, PriceDef: 10, DefVal: 0, MaxLv: 1000);
         // 자동 크리스탈 보관량%
         upgIncAutoCristalBagStoragePer = new ( 
-            Lv: 0, Unit: 0.1f, NeedRsc: RSC.CRISTAL, PriceDef: 100, DefVal: 0, MaxLv: 1000);
-        // 소환캐릭 증가 (int)
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.MAT3, PriceDef: 10, DefVal: 0, MaxLv: 1000);
+        //TODO 소환캐릭 증가 (int) -> 시작층수
         upgIncPopulation = new ( 
-            Lv: 0, Unit: 1, NeedRsc: RSC.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 30);
+            Lv: 0, Unit: 1, NeedRsc: INV.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 30);
         // 명예 획득량 (int)
         upgIncFame = new ( 
-            Lv: 0, Unit: 1, NeedRsc: RSC.CRISTAL, PriceDef: 5000, DefVal: 0, MaxLv: 1000);
+            Lv: 0, Unit: 1, NeedRsc: INV.MAT8, PriceDef: 5, DefVal: 0, MaxLv: 1000);
     }
 }
