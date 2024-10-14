@@ -14,7 +14,11 @@ public class SettingManager : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
-    // Value
+    void Start()
+    {
+        bgmSlider.value = DM._.DB.bgmVolume;
+        sfxSlider.value = DM._.DB.sfxVolume;
+    }
 
 #region EVENT
     public void OnClickResetBtn()

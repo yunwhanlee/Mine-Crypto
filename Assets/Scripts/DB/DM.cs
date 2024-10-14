@@ -25,6 +25,8 @@ public class DB {
 
     public void Init()
     {
+        bgmVolume = 0.5f;
+        sfxVolume = 0.4f;
         statusDB = new StatusDB();
         upgradeDB = new UpgradeDB();
         missionDB = new MissionDB();

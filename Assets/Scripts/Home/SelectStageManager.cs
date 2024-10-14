@@ -41,10 +41,7 @@ public class SelectStageManager : MonoBehaviour
 
         stageTicketCntTxt.text = $"({DM._.DB.statusDB.OreTicket} / {ORE_TICKET_MAX})";
 
-        for(int i = 0; i < stgInfoArr.Length; i++) {
-            Debug.Log($"{stgInfoArr[i].name}: EnterBtn= {stgInfoArr[i].EnterBtn}, UnlockPriceBtn= {stgInfoArr[i].UnlockPriceBtn}");
-            stgInfoArr[i].InitUI();
-        }
+        UpdateUI();
     }
 
 #region FUNC
@@ -52,6 +49,15 @@ public class SelectStageManager : MonoBehaviour
         GM._.ui.topRscGroup.SetActive(true);
         selectStagePopUp.SetActive(true);
         selectStagePopUp.GetComponent<DOTweenAnimation>().DORestart();
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        for(int i = 0; i < stgInfoArr.Length; i++) {
+            Debug.Log($"{stgInfoArr[i].name}: EnterBtn= {stgInfoArr[i].EnterBtn}, UnlockPriceBtn= {stgInfoArr[i].UnlockPriceBtn}");
+            stgInfoArr[i].InitUI();
+        }
     }
 
     /// <summary>
