@@ -12,7 +12,8 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
-    public Action OnClickConfirmBtnAction = () => {};    // 재확인용팝업 확인버튼 클릭액션
+    public Action OnClickConfirmBtnAction = () => {};       // 재확인용팝업 확인버튼 클릭액션
+    public Action OnClickUnlockPopUpDimScreen = null;   // 해금팝업 닫기 스크린 클릭시 추가액션
 
     [Header("TOP RSC CNT GROUP")]
     public GameObject topRscGroup;
@@ -220,6 +221,12 @@ public class UIManager : MonoBehaviour
         treasureChestAttractionPtcImg.Play();
     }
 
+    /// <summary>
+    /// 잠금해제 팝업 표시
+    /// </summary>
+    /// <param name="sprite">이미지</param>
+    /// <param name="titleTxt">타이틀</param>
+    /// <param name="msgTxt">메세지</param>
     public void ShowUnlockContentPopUp(Sprite sprite, string titleTxt, string msgTxt)
     {
         unlockContentPopUp.SetActive(true);
@@ -227,6 +234,19 @@ public class UIManager : MonoBehaviour
         unlockContentPopUpLogoImg.sprite = sprite;
         unlockContentPopUpTitleTxt.text = titleTxt;
         unlockContentPopUpMsgTxt.text = msgTxt;
+    }
+
+    /// <summary>
+    /// 잠금해제 팝업 스크린 클릭 닫기
+    /// </summary>
+    public void OnClickUnlockContentPopUpDimScreenAction()
+    {
+        // 구독된 액션이벤트가 있다면 실행
+        if(OnClickUnlockPopUpDimScreen != null)
+        {
+            OnClickUnlockPopUpDimScreen.Invoke();
+            OnClickUnlockPopUpDimScreen = null;
+        }
     }
 #endregion
 }

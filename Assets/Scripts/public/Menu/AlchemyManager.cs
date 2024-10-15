@@ -186,9 +186,12 @@ public class AlchemyManager : MonoBehaviour
             //* 제작한 아이템 증가
             if(itemDt is AlchemyDataSO_Material) // 재료
             {
-                // 수량 추가
-                sttDB.SetMatArr(itemBtnIdx, createCnt);
-                GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
+                //* 제작 획득
+                GM._.rwm.ShowReward (
+                    new Dictionary<RWD, int> {
+                        {RWD.MAT1 + itemBtnIdx, createCnt}
+                    }
+                );
             }
             else if(itemDt is AlchemyDataSO_Consume) // 소비아이템
             {
@@ -197,34 +200,31 @@ public class AlchemyManager : MonoBehaviour
                 // 수량 추가
                 switch(csDt.type)
                 {
-                    case CONSUME.ORE_TICKET: sttDB.OreTicket += createCnt; break;
-                    case CONSUME.RED_TICKET: sttDB.RedTicket += createCnt; break;
-                    case CONSUME.ORE_CHEST: sttDB.OreChest += createCnt; break;
-                    case CONSUME.TREASURE_CHEST: sttDB.TreasureChest += createCnt; break;
                     case CONSUME.MUSH_BOX1:
-                        sttDB.MushBox1 += createCnt;
-                        PurchaseMushBoxAtFirst();
-                        break;
                     case CONSUME.MUSH_BOX2:
-                        sttDB.MushBox2 += createCnt;
-                        PurchaseMushBoxAtFirst();
-                        break;
                     case CONSUME.MUSH_BOX3:
-                        sttDB.MushBox3 += createCnt;
                         PurchaseMushBoxAtFirst();
                         break;
                 }
 
-                GM._.ui.ShowNoticeMsgPopUp($"{createCnt}개 제작 완료!");
+                //* 제작 획득
+                GM._.rwm.ShowReward (
+                    new Dictionary<RWD, int> {
+                        {RWD.ORE_TICKET + (int)csDt.type, createCnt}
+                    }
+                );
             }
             else if(itemDt is AlchemyDataSO_Exchange) // 교환아이템
             {
                 var excDt = itemDt as AlchemyDataSO_Exchange;
                 Debug.Log($"Exchange:: type={(int)excDt.type}");
-                // 수량 추가
-                sttDB.SetRscArr((int)excDt.type, createCnt * 100);
 
-                GM._.ui.ShowNoticeMsgPopUp($"{createCnt * 100}개 제작 완료!");
+                //* 제작 획득
+                GM._.rwm.ShowReward (
+                    new Dictionary<RWD, int> {
+                        {RWD.ORE1 + (int)excDt.type, createCnt * 100}
+                    }
+                );
             }
             else if(itemDt is AlchemyDataSO_Deco) // 장식아이템
             {
@@ -233,18 +233,28 @@ public class AlchemyManager : MonoBehaviour
                 dcDt.IsBuyed = true;
                 dcDt.Obj.SetActive(true);
 
-                //* 초월시스템 개방
-                if(dcDt.id == 2){
-                    SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
-                    GM._.tsm.Unlock();
-                    GM._.ui.ShowUnlockContentPopUp(
-                        GM._.transcendIconSpr,
-                        "초월시스템 개방!",
-                        "축하합니다! 초월시스템으로 다양한 업그레이드를 할 수 있습니다."
-                    );
-                }
+                Sprite spr = decoObjArr[dcDt.id].GetComponent<Image>().sprite;
+                string name = decoItemBtnImgArr[dcDt.id].GetComponentInChildren<TMP_Text>().text;
 
-                GM._.ui.ShowNoticeMsgPopUp($"장식품 제작 완료!");
+                // 장식품 제작완료 잠금해제 팝업 표시
+                SoundManager._.PlaySfx(SoundManager.SFX.UnlockDecoSFX);
+                GM._.ui.ShowUnlockContentPopUp(spr, name, "장식품 제작 완료!");
+
+                // 2번째 장식품인경우, 이전팝업 닫을시 초월시스템 개방팝업 액션이벤트
+                GM._.ui.OnClickUnlockPopUpDimScreen = () => {
+                    if(dcDt.id == 2){
+                        SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
+                        GM._.tsm.Unlock();
+                        GM._.ui.ShowUnlockContentPopUp(
+                            GM._.transcendIconSpr,
+                            "초월시스템 개방!",
+                            "축하합니다! 초월시스템으로 다양한 업그레이드를 할 수 있습니다."
+                        );
+                    }
+                };
+
+
+                // GM._.ui.ShowNoticeMsgPopUp($"장식품 제작 완료!");
             }
 
             // 업데이트 UI

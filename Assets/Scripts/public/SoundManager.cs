@@ -53,6 +53,7 @@ public class SoundManager : MonoBehaviour
         Tap2SFX,                    // 연금술 목록선택, 
         TranscendUpgradeSFX,        // 초월강화
         TreasureChestOrePickSFX,    // 인게임 보물상자 획득
+        UnlockDecoSFX,              // 장식품 잠금해제 표시
         UnlockSFX,                  // 광산개방
         UpgradeMushSFX,             // 버섯도감강화
         UpgradeSFX,                 // 일반강화,자동채굴강화
