@@ -372,7 +372,7 @@ public class AutoMiningManager : MonoBehaviour
 
         int val = DEF + (lv - 1) * INC;
 
-        return Mathf.RoundToInt(val * extraPer);
+        return Mathf.RoundToInt(val * extraPer * GM._.fm.CalcAllAutoMiningStorageMultiVal(GM._.fm.FameLv));
     }
 
     private int CalcMaxCristalStorage(int lv)
@@ -384,7 +384,7 @@ public class AutoMiningManager : MonoBehaviour
 
         int val = DEF + (lv - 1) * INC;
 
-        return Mathf.RoundToInt(val * extraPer);
+        return Mathf.RoundToInt(val * extraPer * GM._.fm.CalcAllAutoMiningStorageMultiVal(GM._.fm.FameLv));
     }
 
     /// <summary>

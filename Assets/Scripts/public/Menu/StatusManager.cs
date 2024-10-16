@@ -129,11 +129,11 @@ public class StatusManager : MonoBehaviour
     public int ExtraTreasureChest {
         get => GM._.tsm.upgIncTreasureChest.Val;
     }
-    // 자동채굴 광석 수용량 %
+    // 자동채굴 광석 보관량  %
     public float ExtraAutoOreBagStoragePer {
         get => GM._.tsm.upgIncAutoOreBagStoragePer.Val;
     }
-    // 자동채굴 크리스탈 수용량 %
+    // 자동채굴 크리스탈 보관량 %
     public float ExtraAutoCristalBagStoragePer {
         get => GM._.tsm.upgIncAutoCristalBagStoragePer.Val;
     }

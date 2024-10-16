@@ -95,6 +95,7 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickFameInfoIconBtn()
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.ItemDrop1SFX);
         GM._.fm.SetFameLevelToogleUI(isOn: true);
         GM._.fm.ShowFameNextLevelUpGradeTable();
     }

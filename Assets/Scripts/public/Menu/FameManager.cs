@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
@@ -27,6 +28,7 @@ public class FameManager : MonoBehaviour
     public TMP_Text fameLevelUpInfoPanelTitleTxt;
     public TMP_Text fameLevelUpInfoPanelLvTxt;
     public TMP_Text employRandomTableValTxt;
+    public TMP_Text allAutoMiningStorageMultiplyValTxt; // 명예 레벨에따른 모든 자동채굴보관량 곱하기값 텍스트
 
     public Image nextLvInfoToogleFillImg;
     public Toggle nextLvInfoToogleHandle;
@@ -120,6 +122,7 @@ public class FameManager : MonoBehaviour
     /// </summary>
     public void OnClickFameInfoIconBtn()
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.ItemDrop1SFX);
         SetFameLevelToogleUI(isOn: false);
         ShowFameLevelUpGradeTable(isLvUp: false);
     }
@@ -129,6 +132,8 @@ public class FameManager : MonoBehaviour
     /// </summary>
     public void OnClickNextLvInfoToogleHandle()
     {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
+
         // 토글 UI
         SetFameLevelToogleUI(nextLvInfoToogleHandle.isOn);
 
@@ -264,6 +269,9 @@ public class FameManager : MonoBehaviour
         // 레벨 텍스트
         fameLevelUpInfoPanelLvTxt.text = FameLv.ToString();
 
+        // 모든 자동채굴보관량 곱하기값
+        allAutoMiningStorageMultiplyValTxt.text = $"x {CalcAllAutoMiningStorageMultiVal(FameLv)}";
+
         // 등급표 데이터
         int[] curLvGrdValTb = GM._.fm.GetRandomGradeArrByFame(); // 레벨업한 현재 레벨확률
         int[] befLvGrdValTb = GM._.fm.GetRandomGradeArrByFame(extraLv: -1); // 이전 레벨확률
@@ -292,6 +300,14 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 모든 자동채굴보관량 곱하기값 계산
+    /// </summary>
+    public int CalcAllAutoMiningStorageMultiVal(int fameLv)
+    {
+        return (int)Mathf.Pow(2, fameLv / 2);
+    }
+
+    /// <summary>
     /// 명예레벨업 토글UI 업데이트
     /// </summary>
     /// <param name="isOn"></param>
@@ -315,6 +331,9 @@ public class FameManager : MonoBehaviour
         fameLevelUpInfoPanelTitleTxt.text = "다음명예 레벨등급표";
         // 레벨 텍스트
         fameLevelUpInfoPanelLvTxt.text = (FameLv + 1).ToString();
+
+        // 모든 자동채굴보관량 곱하기값
+        allAutoMiningStorageMultiplyValTxt.text = $"x {CalcAllAutoMiningStorageMultiVal(FameLv + 1)}";
 
         // 등급표 데이터
         int[] curLvGrdValTb = GM._.fm.GetRandomGradeArrByFame(); // 현재 레벨확률
