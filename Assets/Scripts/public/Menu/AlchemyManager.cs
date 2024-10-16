@@ -252,14 +252,10 @@ public class AlchemyManager : MonoBehaviour
                         );
                     }
                 };
-
-
-                // GM._.ui.ShowNoticeMsgPopUp($"장식품 제작 완료!");
             }
-
             // 업데이트 UI
             UpdateUI(itemBtnIdx);
-
+            createAmountControlSlider.value = 1; // 제작후 수량 슬라이더 1로 초기화
         }
         else
         {
