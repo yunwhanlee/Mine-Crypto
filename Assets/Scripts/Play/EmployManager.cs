@@ -70,14 +70,13 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickCharaGachaBtn()
     {
-        var stageType = GM._.stgm.OreType;
-        SoundManager._.PlayBgm((SoundManager.BGM)stageType + 1); //stageType != RSC.CRISTAL);
-
-        CurNeedTicketCntTxt.gameObject.SetActive(true); // 현재 소지중인 티켓 텍스트 표시
-
         // 티켓 수량 확인 및 텍스트 업데이트 처리
         if(CheckAndUpdateTicketByMode() == false)
             return;
+
+        CurNeedTicketCntTxt.gameObject.SetActive(true); // 현재 소지중인 티켓 텍스트 표시
+
+        SoundManager._.PlayBgm((SoundManager.BGM)GM._.stgm.OreType + 1); //stageType != RSC.CRISTAL);
 
         // 팝업 표시
         employPopUp.SetActive(false);
