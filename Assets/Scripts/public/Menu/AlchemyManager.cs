@@ -93,7 +93,8 @@ public class AlchemyManager : MonoBehaviour
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         this.cateIdx = (ALCHEMY_CATE)cateIdx;
         SetCatetory();
-        UpdateUI(0);
+        this.itemBtnIdx = 0; // 버튼인덱스 초기화
+        UpdateUI(0); // UI 초기화
     }
 
     /// <summary>
