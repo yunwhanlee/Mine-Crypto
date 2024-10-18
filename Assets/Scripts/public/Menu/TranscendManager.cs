@@ -116,6 +116,12 @@ public class TranscendManager : MonoBehaviour
     private void Upgrade(UpgradeFormat upgDt) {
         var sttDB = DM._.DB.statusDB;
 
+        if(upgDt.IsMaxLv)
+        {
+            GM._.ui.ShowWarningMsgPopUp("최대레벨입니다!");
+            return;
+        }
+
         if(sttDB.GetInventoryItemVal(upgDt.NeedRsc) >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
@@ -123,7 +129,6 @@ public class TranscendManager : MonoBehaviour
 
             // 제작에 필요한 아이템 수량 감소
             sttDB.SetInventoryItemVal(upgDt.NeedRsc, -upgDt.Price);
-
 
             GM._.fm.missionArr[(int)MISSION.UPGRADE_CNT].Exp++;
             upgDt.Lv++;

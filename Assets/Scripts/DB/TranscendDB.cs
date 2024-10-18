@@ -39,7 +39,7 @@ public class TranscendDB
             Lv: 0, Unit: 0.1f, NeedRsc: INV.MAT3, PriceDef: 10, DefVal: 0, MaxLv: 1000);
         //TODO 소환캐릭 증가 (int) -> 시작층수
         upgIncPopulation = new ( 
-            Lv: 0, Unit: 1, NeedRsc: INV.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 30);
+            Lv: 0, Unit: 1, NeedRsc: INV.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 1000);
         // 명예 획득량 (int)
         upgIncFame = new ( 
             Lv: 0, Unit: 1, NeedRsc: INV.MAT8, PriceDef: 5, DefVal: 0, MaxLv: 1000);

@@ -22,4 +22,19 @@ public class Util : MonoBehaviour
 
         return $"{hourStr} {min:00} : {sec:00}";
     }
+
+    /// <summary>
+    /// 소수 문자열 자동변환 (79.999999같은 float 부동소수점 버그방지)
+    /// </summary>
+    public static string FloatToStr(float n)
+    {
+        // 소수점 첫째자리까지 반올림
+        float roundVal = Mathf.Round(n * 10) / 10;
+
+        // 소수점 첫째 자리가 0이라면
+        if (roundVal * 10 % 10 == 0)
+            return $"{(int)roundVal}"; // 정수로 반환 ToString("D")
+        else
+            return $"{roundVal:0.0}"; // 소수점 첫째 자리까지 반환 ToString("F1");
+    }
 }

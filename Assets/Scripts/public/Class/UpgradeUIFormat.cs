@@ -11,7 +11,6 @@ public class UpgradeUIFormat
     [field:SerializeField] public TMP_Text InfoTxt {get; private set;}
     [field:SerializeField] public TMP_Text PriceTxt {get; private set;}
 
-
     /// <summary>
     /// 업그레이드 가격 표시 및 구매여부에 따른 색깔반영
     /// </summary>
@@ -35,7 +34,7 @@ public class UpgradeUIFormat
         // 최대레벨
         if(upgFormat.IsMaxLv)
         {
-            PriceTxt.text = "<color=red>MAX</color>";
+            PriceTxt.text = "<color=yellow>MAX</color>";
             InfoTxt.text = $"{upgFormat.Val * 100}";
             return;
         }
@@ -56,8 +55,8 @@ public class UpgradeUIFormat
         // 최대레벨
         if(upgFormat.IsMaxLv)
         {
-            PriceTxt.text = "<color=red>MAX</color>";
-            InfoTxt.text = $"{upgFormat.Val * 100}%";
+            PriceTxt.text = "<color=yellow>MAX</color>";
+            InfoTxt.text = $"{Util.FloatToStr(upgFormat.Val * 100)}%";
             return;
         }
 
@@ -65,6 +64,6 @@ public class UpgradeUIFormat
         PriceTxt.text = GetNeedPriceTxtWithColor(upgFormat.NeedRsc, upgFormat.Price);
 
         // 능력치 표시
-        InfoTxt.text = $"{upgFormat.Val * 100} => {upgFormat.GetNextVal() * 100}%";
+        InfoTxt.text = $"{Util.FloatToStr(upgFormat.Val * 100)} => {Util.FloatToStr(upgFormat.GetNextVal() * 100)}%";
     }
 }

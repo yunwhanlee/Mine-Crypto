@@ -163,15 +163,15 @@ public class MushroomManager : MonoBehaviour
                 break;
             case (int)MUSH.MUSH2:
                 mushFormat = ms2_UpgMovSpeedPer;
-                targetAbilityTxt.text = $"이동속도 +{ms2_UpgMovSpeedPer.Val * 100} => +{ms2_UpgMovSpeedPer.GetNextVal() * 100}%";
+                targetAbilityTxt.text = $"이동속도 +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)} => +{Util.FloatToStr(ms2_UpgMovSpeedPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH3:
                 mushFormat = ms3_UpgBagStoragePer;
-                targetAbilityTxt.text = $"가방용량 +{ms3_UpgBagStoragePer.Val * 100} => +{ms3_UpgBagStoragePer.GetNextVal() * 100}%";
+                targetAbilityTxt.text = $"가방용량 +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)} => +{Util.FloatToStr(ms3_UpgBagStoragePer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH4:
                 mushFormat = ms4_UpgNextStageSkipPer;
-                targetAbilityTxt.text = $"다음 층 스킵 {ms4_UpgNextStageSkipPer.Val * 100} => +{ms4_UpgNextStageSkipPer.GetNextVal() * 100}%";
+                targetAbilityTxt.text = $"다음 층 스킵 {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)} => +{Util.FloatToStr(ms4_UpgNextStageSkipPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH5:
                 mushFormat = ms5_UpgIncTimer;
@@ -179,11 +179,11 @@ public class MushroomManager : MonoBehaviour
                 break;
             case (int)MUSH.MUSH6:
                 mushFormat =ms6_UpgChestSpawnPer;
-                targetAbilityTxt.text = $"상자 등장확률 +{ms6_UpgChestSpawnPer.Val * 100} => +{ms6_UpgChestSpawnPer.GetNextVal() * 100}%";
+                targetAbilityTxt.text = $"상자 등장확률 +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)} => +{Util.FloatToStr(ms6_UpgChestSpawnPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH7:
                 mushFormat = ms7_UpgAtkSpeedPer;
-                targetAbilityTxt.text = $"공격속도 +{ms7_UpgAtkSpeedPer.Val * 100} => +{ms7_UpgAtkSpeedPer.GetNextVal() * 100}%";
+                targetAbilityTxt.text = $"공격속도 +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)} => +{Util.FloatToStr(ms7_UpgAtkSpeedPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH8:
                 mushFormat = ms8_IncPopulation;
@@ -193,12 +193,12 @@ public class MushroomManager : MonoBehaviour
 
         // 총 획득능력치 표시
         if(ms1_UpgAttack.Lv > 0) totalAbilityTxt.text += $"공격력 +{ms1_UpgAttack.Val}\n";
-        if(ms2_UpgMovSpeedPer.Lv > 0) totalAbilityTxt.text += $"이동속도 +{ms2_UpgMovSpeedPer.Val * 100}%\n";
-        if(ms3_UpgBagStoragePer.Val > 0) totalAbilityTxt.text += $"가방용량 +{ms3_UpgBagStoragePer.Val * 100}%\n";
-        if(ms4_UpgNextStageSkipPer.Val > 0) totalAbilityTxt.text += $"다음 층 스킵 {ms4_UpgNextStageSkipPer.Val * 100}%\n";
+        if(ms2_UpgMovSpeedPer.Lv > 0) totalAbilityTxt.text += $"이동속도 +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)}%\n";
+        if(ms3_UpgBagStoragePer.Val > 0) totalAbilityTxt.text += $"가방용량 +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)}%\n";
+        if(ms4_UpgNextStageSkipPer.Val > 0) totalAbilityTxt.text += $"다음 층 스킵 {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)}%\n";
         if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"채굴시간 +{ms5_UpgIncTimer.Val}초\n";
-        if(ms6_UpgChestSpawnPer.Val > 0) totalAbilityTxt.text += $"상자 등장확률 +{ms6_UpgChestSpawnPer.Val * 100}%\n";
-        if(ms7_UpgAtkSpeedPer.Val > 0) totalAbilityTxt.text += $"공격속도 +{ms7_UpgAtkSpeedPer.Val * 100}%\n";
+        if(ms6_UpgChestSpawnPer.Val > 0) totalAbilityTxt.text += $"상자 등장확률 +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)}%\n";
+        if(ms7_UpgAtkSpeedPer.Val > 0) totalAbilityTxt.text += $"공격속도 +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)}%\n";
         if(ms8_IncPopulation.Val > 0) totalAbilityTxt.text += $"소환캐릭터 증가 +{ms8_IncPopulation.Val}\n";
 
         targetImg.sprite = GM._.MushSprArr[mushIdx];
