@@ -61,8 +61,12 @@ public class EmployManager : MonoBehaviour
         GM._.hm.Active();
         GM._.epm.employPopUp.SetActive(false);
 
+        // 시련의광산의 경우 시련의광산 팝업 표시
         if(GM._.stgm.OreType == RSC.CRISTAL)
+        {
             GM._.clm.windowObj.SetActive(true);
+            GM._.ui.topRscGroup.SetActive(true);
+        }
     }
 
     /// <summary>
