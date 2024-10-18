@@ -12,6 +12,7 @@ public class UpgradeFormat
     [field:SerializeField] public Enum.INV NeedRsc {get; protected set;} // 업그레이드에 필요한 재화종류
     [field:SerializeField] public int Price {get; set;}                 // 업그레이드 가격
     [field:SerializeField] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
+    public bool IsMaxLv {get => Lv >= MaxLv;}
 
     public void UpdatePrice()
     {

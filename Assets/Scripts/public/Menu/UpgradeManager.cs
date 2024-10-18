@@ -106,6 +106,12 @@ public class UpgradeManager : MonoBehaviour
 
     private void Upgrade(UpgradeFormat upgDt)
     {
+        if(upgDt.IsMaxLv)
+        {
+            GM._.ui.ShowWarningMsgPopUp("최대레벨입니다!");
+            return;
+        }
+
         if(DM._.DB.statusDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.UpgradeSFX);

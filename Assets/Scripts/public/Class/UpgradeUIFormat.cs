@@ -33,7 +33,12 @@ public class UpgradeUIFormat
         Debug.Log($"UpdateUI():: {upgFormat.NeedRsc} => idx: {(int)upgFormat.NeedRsc}");
 
         // 최대레벨
-        
+        if(upgFormat.IsMaxLv)
+        {
+            PriceTxt.text = "<color=red>MAX</color>";
+            InfoTxt.text = $"{upgFormat.Val * 100}";
+            return;
+        }
 
         // 가격 표시
         PriceTxt.text = GetNeedPriceTxtWithColor(upgFormat.NeedRsc, upgFormat.Price);
@@ -49,7 +54,12 @@ public class UpgradeUIFormat
         Debug.Log($"UpdateUI():: {upgFormat.NeedRsc} => idx: {(int)upgFormat.NeedRsc}");
 
         // 최대레벨
-        
+        if(upgFormat.IsMaxLv)
+        {
+            PriceTxt.text = "<color=red>MAX</color>";
+            InfoTxt.text = $"{upgFormat.Val * 100}%";
+            return;
+        }
 
         // 가격 표시
         PriceTxt.text = GetNeedPriceTxtWithColor(upgFormat.NeedRsc, upgFormat.Price);
