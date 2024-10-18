@@ -78,8 +78,6 @@ public class MushroomManager : MonoBehaviour
 
     public void OnClickUpgradeBtn()
     {
-        SoundManager._.PlaySfx(SoundManager.SFX.UpgradeMushSFX);
-
         switch(mushIdx)
         {
             case (int)MUSH.MUSH1: Upgrade(ms1_UpgAttack); break;
@@ -120,6 +118,7 @@ public class MushroomManager : MonoBehaviour
     {
         if(DM._.DB.statusDB.MsrArr[(int)upgDt.NeedMush] >= upgDt.Price)
         {
+            SoundManager._.PlaySfx(SoundManager.SFX.UpgradeMushSFX);
             GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
             DM._.DB.statusDB.SetMsrArr((int)upgDt.NeedMush, -upgDt.Price);
             upgDt.Lv++;
