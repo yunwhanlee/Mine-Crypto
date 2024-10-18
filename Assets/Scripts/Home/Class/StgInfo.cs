@@ -28,9 +28,6 @@ public class StgInfo
     /// 스테이지 UI 초기화
     /// </summary>
     public void InitUI() {
-        // 이벤트 버튼 등록
-        RegistEventHandler();
-
         // 최대기록 표시
         BestFloorTxt.text = $"최대기록 : {DM._.DB.stageDB.BestFloorArr[id]}층";
 
@@ -48,7 +45,7 @@ public class StgInfo
     /// <summary>
     /// 이벤트 버튼 등록
     /// </summary>
-    private void RegistEventHandler() {
+    public void RegistEventHandler() {
         // 입장티켓 버튼 이벤트 등록
         EnterBtn.onClick.AddListener(() => {
             Debug.Log($"Click EnterBtn:: ");

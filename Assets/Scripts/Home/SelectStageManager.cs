@@ -28,6 +28,12 @@ public class SelectStageManager : MonoBehaviour
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
+        // 이벤트 버튼 등록
+        for(int i = 0; i < stgInfoArr.Length; i++)
+        {
+            stgInfoArr[i].RegistEventHandler();
+        }
+
         // 어플시작시 이전까지 경과한시간
         int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
 
