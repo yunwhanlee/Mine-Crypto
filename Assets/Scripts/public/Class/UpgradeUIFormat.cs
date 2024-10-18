@@ -32,6 +32,9 @@ public class UpgradeUIFormat
     public void UpdateUI(UpgradeFormatInt upgFormat, string unitName = "") {
         Debug.Log($"UpdateUI():: {upgFormat.NeedRsc} => idx: {(int)upgFormat.NeedRsc}");
 
+        // 최대레벨
+        
+
         // 가격 표시
         PriceTxt.text = GetNeedPriceTxtWithColor(upgFormat.NeedRsc, upgFormat.Price);
 
@@ -44,6 +47,9 @@ public class UpgradeUIFormat
     /// </summary>
     public void UpdateUI(UpgradeFormatFloat upgFormat) {
         Debug.Log($"UpdateUI():: {upgFormat.NeedRsc} => idx: {(int)upgFormat.NeedRsc}");
+
+        // 최대레벨
+        
 
         // 가격 표시
         PriceTxt.text = GetNeedPriceTxtWithColor(upgFormat.NeedRsc, upgFormat.Price);
