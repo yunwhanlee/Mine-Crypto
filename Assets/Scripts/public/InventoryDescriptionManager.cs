@@ -179,7 +179,6 @@ void Start() {
 
                     // 상세정보 수량UI 최신화
                     UpdateConsumedItemCntUI(sttDB.OreChest);
-
                 };
                 break;
             case INV.MUSH_BOX1:
@@ -227,7 +226,7 @@ void Start() {
                     GM._.ivm.UpdateSlotUI();
 
                     // 상세정보 수량UI 최신화
-                    UpdateConsumedItemCntUI(sttDB.TreasureChest);
+                    UpdateConsumedItemCntUI(sttDB.MushBox1);
                 };
                 break;
             case INV.MUSH_BOX2:
@@ -275,7 +274,7 @@ void Start() {
                     GM._.ivm.UpdateSlotUI();
 
                     // 상세정보 수량UI 최신화
-                    UpdateConsumedItemCntUI(sttDB.TreasureChest);
+                    UpdateConsumedItemCntUI(sttDB.MushBox2);
                 };
                 break;
             case INV.MUSH_BOX3:
@@ -304,7 +303,7 @@ void Start() {
                     GM._.ivm.UpdateSlotUI();
 
                     // 상세정보 수량UI 최신화
-                    UpdateConsumedItemCntUI(sttDB.TreasureChest);
+                    UpdateConsumedItemCntUI(sttDB.MushBox3);
                 };
                 break;
             // 확인용 타입
