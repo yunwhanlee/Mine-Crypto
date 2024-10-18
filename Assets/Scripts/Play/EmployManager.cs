@@ -320,9 +320,10 @@ public class EmployManager : MonoBehaviour
             Sprite bgSpr = cardGradeBgSprs[(int)charaPrefArr[i].Grade];
             card.transform.GetChild(BG).GetComponent<Image>().sprite = bgSpr;
 
-            // 배경 버튼 (클릭 이벤트 등록)
+            //* 카드 클릭시 이벤트 등록
             int copyIdx = i;
             card.transform.GetChild(BG).GetComponent<Button>().onClick.AddListener(() => {
+                SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
                 ShowSelectCharaInfo(copyIdx);
             });
 
