@@ -36,7 +36,8 @@ public class StatusManager : MonoBehaviour
     }
     // 이동속도 %
     public float ExtraMovSpdPer {
-        get => GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER)
+        get => GM._.ugm.upgMoveSpeed.Val
+            + GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER)
             + GM._.acm.decoItemData[(int)DECO.TREE_BRANCH_2].AbilityVal
             + GM._.mrm.ms2_UpgMovSpeedPer.Val;
     }
