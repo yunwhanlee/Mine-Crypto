@@ -29,10 +29,8 @@ public class FameManager : MonoBehaviour
     public TMP_Text employRandomTableValTxt;
     public TMP_Text allAutoMiningStorageMultiplyValTxt; // 명예 레벨에따른 모든 자동채굴보관량 곱하기값 텍스트
 
-    public Image nextLvInfoToogleFillImg;
     public Toggle nextLvInfoToogleHandle;
 
-    public bool isNextLvInfoToogleFlag;
     public int FameLv {
         get => DM._.DB.statusDB.FameLv;
         set => DM._.DB.statusDB.FameLv = value;
@@ -312,12 +310,11 @@ public class FameManager : MonoBehaviour
     /// <param name="isOn"></param>
     public void SetFameLevelToogleUI(bool isOn)
     {
+        nextLvInfoToogleHandle.isOn = isOn;
         var toggleTxt = nextLvInfoToogleHandle.GetComponentInChildren<TMP_Text>();
-        var rectTf = nextLvInfoToogleHandle.GetComponent<RectTransform>();
 
         toggleTxt.text = isOn? "ON" : "OFF";
-        rectTf.anchoredPosition = new Vector2(isOn? 55 : -55, 0);
-        nextLvInfoToogleFillImg.color = isOn? Color.green : Color.gray;
+        nextLvInfoToogleHandle.GetComponent<Image>().color = isOn? Color.green : Color.white;
     }
 
     /// <summary>
