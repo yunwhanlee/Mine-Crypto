@@ -95,11 +95,15 @@ public class StatusManager : MonoBehaviour
     public int TotalPopulation { 
         get => GM._.ugm.upgIncPopulation.Val
             + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION) // (축복)
-            + GM._.tsm.upgIncPopulation.Val // (초월)
             + (int)GM._.acm.decoItemData[(int)DECO.SNOWED_TREE_3].AbilityVal // (연금술) 장식
             + (int)GM._.acm.decoItemData[(int)DECO.ICE_SHEET_6].AbilityVal // (연금술) 장식
             + (int)GM._.acm.decoItemData[(int)DECO.CANYON_ROCK_8].AbilityVal // (연금술) 장식
             + GM._.mrm.ms8_IncPopulation.Val;
+    }
+
+    // 시작층수 증가량
+    public int ExtraStartFloor {
+        get => GM._.tsm.upgIncStartFloor.Val; // (초월)
     }
 
     // 보물상자 추가 랜덤생성 %
@@ -175,6 +179,7 @@ public class StatusManager : MonoBehaviour
         string NEXT_SKIP_PER = ExtraNextSkipPer > 0? $"다음층 스킵 : +{Util.FloatToStr(ExtraNextSkipPer * 100)}%\n" : "";
         string INC_CRSITAL = ExtraIncCristal > 0? $"크리스탈 획득량 : +{ExtraIncCristal}\n" : "";
         string INC_POPULATION = TotalPopulation > DEF_POPULATION? $"소환캐릭 증가 : +{TotalPopulation - DEF_POPULATION}\n" : "";
+        string INC_STARTFLOOR = ExtraStartFloor > 0? $"시작층수 : +{ExtraStartFloor + 1}층\n" : "";
         string CHEST_SPAWN_PER = ExtraChestSpawnPer > 0? $"상자 등장확률 : +{Util.FloatToStr(ExtraChestSpawnPer * 100)}%\n" : "";
         string ORE1_RWD_PER = ExtraOre1RwdPer > 0? $"광석1 획득량 : +{Util.FloatToStr(ExtraOre1RwdPer * 100)}%\n" : "";
         string ORE2_RWD_PER = ExtraOre2RwdPer > 0? $"광석2 획득량 : +{Util.FloatToStr(ExtraOre2RwdPer * 100)}%\n" : "";
@@ -202,6 +207,7 @@ public class StatusManager : MonoBehaviour
             + NEXT_SKIP_PER
             + INC_CRSITAL
             + INC_POPULATION
+            + INC_STARTFLOOR
             + CHEST_SPAWN_PER
             + ORE1_RWD_PER
             + ORE2_RWD_PER

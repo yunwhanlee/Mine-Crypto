@@ -74,7 +74,10 @@ public class StageManager : MonoBehaviour {
         Debug.Log("StartStage()::");
 
         GM._.gameState = GameState.PLAY;
-        Floor = IsChallengeMode? GM._.clm.BestFloor : 1;
+
+        // 시작층수
+        Floor = IsChallengeMode? GM._.clm.BestFloor // 시련의광산
+            : 1 + GM._.sttm.ExtraStartFloor; // 일반광산
 
         GM._.mnm.InitData();
 

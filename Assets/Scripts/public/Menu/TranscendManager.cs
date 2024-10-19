@@ -20,7 +20,7 @@ public class TranscendManager : MonoBehaviour
     public UpgradeUIFormat upgIncTreasureChestUI;
     public UpgradeUIFormat upgIncAutoOreBagStoragePerUI;
     public UpgradeUIFormat upgIncAutoCristalBagStoragePerUI;
-    public UpgradeUIFormat upgIncPopulationUI;
+    public UpgradeUIFormat upgIncStartFloorUI;
     public UpgradeUIFormat upgIncFameUI;
 
     //* VALUE
@@ -31,7 +31,7 @@ public class TranscendManager : MonoBehaviour
     public UpgradeFormatInt upgIncTreasureChest;                // 보물상자 획득량 +
     public UpgradeFormatFloat upgIncAutoOreBagStoragePer;       // 자동 광석 보관량
     public UpgradeFormatFloat upgIncAutoCristalBagStoragePer;   // 자동 크리스탈 보관량
-    public UpgradeFormatInt upgIncPopulation;                   // 소환캐릭 증가
+    public UpgradeFormatInt upgIncStartFloor;                   // 시작층수 증가
     public UpgradeFormatInt upgIncFame;                         // 명예 획득량 +
 
     IEnumerator Start()
@@ -51,8 +51,8 @@ public class TranscendManager : MonoBehaviour
         upgIncAutoOreBagStoragePer = DM._.DB.transcendDB.upgIncAutoOreBagStoragePer;
         // 자동 크리스탈 보관량%
         upgIncAutoCristalBagStoragePer = DM._.DB.transcendDB.upgIncAutoCristalBagStoragePer;
-        // 소환캐릭 증가 (int)
-        upgIncPopulation = DM._.DB.transcendDB.upgIncPopulation;
+        // 시작층수 증가 (int)
+        upgIncStartFloor = DM._.DB.transcendDB.upgIncStartFloor;
         // 명예 획득량 (int)
         upgIncFame = DM._.DB.transcendDB.upgIncFame;
     }
@@ -88,9 +88,9 @@ public class TranscendManager : MonoBehaviour
     /// </summary>
     public void OnClickUpgradeIncAutoCristalBagStoragePerBtn() => Upgrade(upgIncAutoCristalBagStoragePer);
     /// <summary>
-    /// (강화) 소환캐릭 증가
+    /// (강화) 시작층수 증가
     /// </summary>
-    public void OnClickUpgradeIncPopulationBtn() => Upgrade(upgIncPopulation);
+    public void OnClickUpgradeIncPopulationBtn() => Upgrade(upgIncStartFloor);
     /// <summary>
     /// (강화) 명예 획득량 +
     /// </summary>
@@ -151,7 +151,7 @@ public class TranscendManager : MonoBehaviour
         upgIncTreasureChest.UpdatePrice();
         upgIncAutoOreBagStoragePer.UpdatePrice();
         upgIncAutoCristalBagStoragePer.UpdatePrice();
-        upgIncPopulation.UpdatePrice();
+        upgIncStartFloor.UpdatePrice();
         upgIncFame.UpdatePrice();
 
         //* UI
@@ -161,7 +161,7 @@ public class TranscendManager : MonoBehaviour
         upgIncTreasureChestUI.UpdateUI(upgIncTreasureChest);
         upgIncAutoOreBagStoragePerUI.UpdateUI(upgIncAutoOreBagStoragePer);
         upgIncAutoCristalBagStoragePerUI.UpdateUI(upgIncAutoCristalBagStoragePer);
-        upgIncPopulationUI.UpdateUI(upgIncPopulation);
+        upgIncStartFloorUI.UpdateUI(upgIncStartFloor, unitName: "", defVal: 1);
         upgIncFameUI.UpdateUI(upgIncFame);
     }
 #endregion

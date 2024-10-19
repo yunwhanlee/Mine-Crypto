@@ -28,7 +28,7 @@ public class UpgradeUIFormat
     /// <summary>
     /// UI 업데이트 (Int형)
     /// </summary>
-    public void UpdateUI(UpgradeFormatInt upgFormat, string unitName = "") {
+    public void UpdateUI(UpgradeFormatInt upgFormat, string unitName = "", int defVal = 0) {
         Debug.Log($"UpdateUI():: {upgFormat.NeedRsc} => idx: {(int)upgFormat.NeedRsc}");
 
         // 최대레벨
@@ -43,7 +43,7 @@ public class UpgradeUIFormat
         PriceTxt.text = GetNeedPriceTxtWithColor(upgFormat.NeedRsc, upgFormat.Price);
 
         // 능력치 표시
-        InfoTxt.text = $"{upgFormat.Val} => {upgFormat.GetNextVal()}{unitName}";
+        InfoTxt.text = $"{upgFormat.Val + defVal} => {upgFormat.GetNextVal() + defVal}{unitName}";
     }
 
     /// <summary>
