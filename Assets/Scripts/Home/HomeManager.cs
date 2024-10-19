@@ -22,8 +22,12 @@ public class HomeManager : MonoBehaviour
         {
             HomeWindow.SetActive(true);
 
+            // 숙련도 알람UI 업데이트
+            GM._.pfm.UpdateAll();
+
             // 축복 개방
             GM._.obm.CheckUnlock();
+
 
             // (초월)시스템 개방
             if(GM._.acm.decoObjArr[2].activeSelf)

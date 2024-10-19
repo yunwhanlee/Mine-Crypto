@@ -35,7 +35,7 @@ public class UpgradeUIFormat
         if(upgFormat.IsMaxLv)
         {
             PriceTxt.text = "<color=yellow>MAX</color>";
-            InfoTxt.text = $"{upgFormat.Val * 100}";
+            InfoTxt.text = $"{upgFormat.Val}";
             return;
         }
 
