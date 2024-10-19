@@ -38,46 +38,10 @@ public class AutoMiningManager : MonoBehaviour
         stgDB = DM._.DB.stageDB;
         autoDB = DM._.DB.autoMiningDB;
 
-        AutoMiningSaveData[] svDts = DM._.DB.autoMiningDB.saveDts;
-        int[] autoMiningRwdArr = new int[9];
-        var rewardList = new Dictionary<RWD, int>();
+        //* 오프라인 자동채굴 결과처리
+        yield return new WaitForSeconds(1); // 저장된 추가획득량 데이터가 로드안되는 문제가 있어 1초 대기
 
-        //* 어플시작시 이전까지 경과한시간
-        int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
-
-        // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
-        for(int i = 0; i < autoMiningArr.Length; i++)
-        {
-            // 자동채굴이 해금안됬다면 이하처리 안함
-            if(!svDts[i].IsUnlock)
-                continue;
-
-            // Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}");
-
-            var type = autoMiningArr[i].Type;
-
-            autoMiningArr[i].IsUnlock = svDts[i].IsUnlock;
-            autoMiningArr[i].Lv = svDts[i].Lv;
-            autoMiningArr[i].Time = svDts[i].Time;
-            autoMiningArr[i].CurStorage = svDts[i].CurStorage;
-
-            // 자동채굴 획득량 계산
-            int cnt = passedTime / WAIT_TIME; //(type == RSC.CRISTAL? HOUR : MINUTE);
-
-            // 자동채굴 결과수량
-            int resVal = cnt * GetProductionVal((RSC)i);
-
-            // 최대수량보다 높다면 최대수량만큼으로 수정
-            if(resVal > autoMiningArr[i].maxStorage)
-                resVal = autoMiningArr[i].maxStorage;
-
-            Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}, 획득량= {resVal}");
-            autoMiningArr[i].CurStorage += resVal;
-        }
-
-        time = WAIT_TIME;
-        cristalTime = WAIT_TIME;
-
+        OfflineAutoMining();
         UpdateAll();
         // StartCoroutine(CoTimerStart());
     }
@@ -172,6 +136,63 @@ public class AutoMiningManager : MonoBehaviour
 
 #region FUNC
     /// <summary>
+    /// 오프라인 자동채굴 결과처리
+    /// </summary>
+    private void OfflineAutoMining()
+    {
+        Debug.Log("OfflineAutoMining():: 자동채굴 오프라인 처리");
+
+        AutoMiningSaveData[] svDts = DM._.DB.autoMiningDB.saveDts;
+
+        //* 어플시작시 이전까지 경과한시간
+        int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
+
+        // 데이터로드 : AutoMiningFormat클래스가 UI변수도 있어서 객체생성은 안되고, 저장된 데이터만 대입
+        for(int i = 0; i < autoMiningArr.Length; i++)
+        {
+            // 잠금해제가 안됬다면 이하처리 안함
+            if(!svDts[i].IsUnlock)
+                continue;
+
+            // Debug.Log($"자동채굴 광석{i+1} : 이전량= {autoMiningArr[i].CurStorage}");
+
+            // 데이터 로드 최신화
+            RSC oreType = autoMiningArr[i].Type;
+            {
+                // 잠금해제 상태
+                autoMiningArr[i].IsUnlock = svDts[i].IsUnlock;
+                // 레벨
+                autoMiningArr[i].Lv = svDts[i].Lv;
+                // 경과시간
+                autoMiningArr[i].Time = svDts[i].Time;  
+                // 현재보관량
+                autoMiningArr[i].CurStorage = svDts[i].CurStorage; 
+                // 최대보관량
+                if(i == (int)RSC.CRISTAL)
+                    autoMiningArr[i].maxStorage = CalcMaxCristalStorage(autoMiningArr[i].Lv);
+                else
+                    autoMiningArr[i].maxStorage = CalcMaxOreStorage(autoMiningArr[i].Lv);
+            }
+
+            // 자동채굴 획득량 계산
+            int cnt = passedTime / WAIT_TIME; //(type == RSC.CRISTAL? HOUR : MINUTE);
+
+            // 자동채굴 결과수량
+            int resVal = autoMiningArr[i].CurStorage + cnt * GetProductionVal((RSC)i);
+
+            // 최대수량보다 높다면 최대수량만큼으로 수정
+            if(resVal > autoMiningArr[i].maxStorage)
+                resVal = autoMiningArr[i].maxStorage;
+
+            Debug.Log($"<color=white>자동채굴 오프라인 처리 {oreType}: 이전수량= {autoMiningArr[i].CurStorage} / {autoMiningArr[i].maxStorage}, 획득량: {resVal} (경과시간: {passedTime} / {WAIT_TIME} = {cnt})</color>");
+            autoMiningArr[i].CurStorage = resVal;
+        }
+
+        time = WAIT_TIME;
+        cristalTime = WAIT_TIME;
+    }
+
+    /// <summary>
     /// 광석 및 크리스탈 1분당 자동채굴량 반환
     /// </summary>
     /// <param name="rscType"></param>
@@ -182,12 +203,14 @@ public class AutoMiningManager : MonoBehaviour
         {
             int extraVal = stgDB.BestFloorArr[(int)RSC.CRISTAL] + GM._.sttm.ExtraIncCristal;
             float extraPer = 1 + GM._.sttm.ExtraAutoCristalPer;
+            Debug.Log($"자동채굴 생산량: GetProductionVal({rscType}):: extraVal({extraVal}) * extraPer({extraPer})");
             return Mathf.RoundToInt(extraVal * extraPer);
         }
         else
         {
             int extraVal = stgDB.BestFloorArr[(int)rscType] * ORE_INC_UNIT;
             float extraPer = 1 + GM._.sttm.ExtraAutoOrePer;
+            Debug.Log($"자동채굴 생산량: GetProductionVal({rscType}):: extraVal({extraVal}) * extraPer({extraPer})");
             return Mathf.RoundToInt(extraVal * extraPer);
         }
     }
