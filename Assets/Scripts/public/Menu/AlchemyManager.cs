@@ -411,7 +411,7 @@ public class AlchemyManager : MonoBehaviour
                 SetSlider();
 
                 // 현재보유량 표시
-                targetitemInfoTxt.text = $"보유량: {DM._.DB.statusDB.MatArr[itemBtnIdx]}";
+                targetitemInfoTxt.text = $"{LM._.Localize(LM.Ammount)}: {DM._.DB.statusDB.MatArr[itemBtnIdx]}";
 
                 break;
             }
@@ -464,7 +464,7 @@ public class AlchemyManager : MonoBehaviour
                         val = sttDB.MushBox3;
                         break;
                 }
-                targetitemInfoTxt.text = $"보유량: {val}";
+                targetitemInfoTxt.text = $"{LM._.Localize(LM.Ammount)}: {val}";
                 break;
             }
             //* 카테고리3: 교환
@@ -491,7 +491,7 @@ public class AlchemyManager : MonoBehaviour
                 SetSlider();
 
                 // 현재보유량 표시
-                targetitemInfoTxt.text = $"보유량: {DM._.DB.statusDB.RscArr[itemBtnIdx]}";
+                targetitemInfoTxt.text = $"{LM._.Localize(LM.Ammount)}: {DM._.DB.statusDB.RscArr[itemBtnIdx]}";
 
                 break;
             }
@@ -511,7 +511,7 @@ public class AlchemyManager : MonoBehaviour
                 // 제작필요 아이템 업데이트
                 if(dcDt.IsBuyed)
                 {
-                    createAmountTxt.text = "보유 중";
+                    createAmountTxt.text = LM._.Localize(LM.Owned);
                     createBtn.interactable = false; // 생산버튼 비활성화
                 }
                 else
@@ -531,19 +531,19 @@ public class AlchemyManager : MonoBehaviour
                 switch (dcDt.abilityType)
                 {
                     case DECO_ABT.ATK_PER:
-                        targetitemInfoTxt.text = $"추가 공격력 +{dcDt.AbilityVal_ShowTxt * 100}%";
+                        targetitemInfoTxt.text = $"{LM._.Localize(LM.Attack)} +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.ATKSPD_PER:
-                        targetitemInfoTxt.text = $"추가 이동속도 +{dcDt.AbilityVal_ShowTxt * 100}%";
+                        targetitemInfoTxt.text = $"{LM._.Localize(LM.MoveSpeed)} +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.MOVSPD_PER:
-                        targetitemInfoTxt.text = $"공격속도 +{dcDt.AbilityVal_ShowTxt * 100}%";
+                        targetitemInfoTxt.text = $"{LM._.Localize(LM.AttackSpeed)} +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.INC_POPULATION:
-                        targetitemInfoTxt.text = $"소환 캐릭터 +{dcDt.AbilityVal_ShowTxt}";
+                        targetitemInfoTxt.text = $"{LM._.Localize(LM.IncPopulation)} +{dcDt.AbilityVal_ShowTxt}";
                         break;
                     case DECO_ABT.INC_FAME:
-                        targetitemInfoTxt.text = $"추가 명예 +{dcDt.AbilityVal_ShowTxt}";
+                        targetitemInfoTxt.text = $"{LM._.Localize(LM.Fame)} +{dcDt.AbilityVal_ShowTxt}";
                         break;
                 }
                 break;

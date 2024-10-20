@@ -22,6 +22,8 @@ public class LM : MonoBehaviour
         MiningPerMin = "UI_MiningPerMin",
         Complete = "UI_Complete",
         InProgress = "UI_InProgress",
+        Ammount = "UI_Ammount",
+        Owned = "UI_Owned",
 
         Ore1 = "UI_Ore1",
         Ore2 = "UI_Ore2",

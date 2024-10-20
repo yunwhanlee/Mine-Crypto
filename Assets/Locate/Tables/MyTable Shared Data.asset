@@ -635,6 +635,18 @@ MonoBehaviour:
     m_Key: UI_InProgress
     m_Metadata:
       m_Items: []
+  - m_Id: 159701683900416
+    m_Key: UI_NeedItems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160136318652416
+    m_Key: UI_Ammount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160799995957248
+    m_Key: UI_Owned
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
