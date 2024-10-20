@@ -18,6 +18,7 @@ public class LM : MonoBehaviour
         Lv = "UI_Lv",
         Floor = "UI_Floor",
         ChallengeMine = "UI_ChallengeMine",
+        MiningPerMin = "UI_MiningPerMin",
 
         Ore1 = "UI_Ore1",
         Ore2 = "UI_Ore2",

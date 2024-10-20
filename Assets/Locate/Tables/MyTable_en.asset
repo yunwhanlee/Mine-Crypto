@@ -574,6 +574,42 @@ MonoBehaviour:
     m_Localized: Chest spawn
     m_Metadata:
       m_Items: []
+  - m_Id: 144357741268992
+    m_Localized: Extra Ore1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144410920849408
+    m_Localized: Extra Ore2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144426691432448
+    m_Localized: Extra Ore3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144432127250432
+    m_Localized: Extra Ore4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144436661293056
+    m_Localized: Extra Ore5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144441929338880
+    m_Localized: Extra Ore6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144449105793024
+    m_Localized: Extra Ore7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144456215138304
+    m_Localized: Extra Ore8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149492588580864
+    m_Localized: per 1min
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

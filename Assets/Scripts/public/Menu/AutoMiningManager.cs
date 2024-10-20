@@ -330,7 +330,7 @@ public class AutoMiningManager : MonoBehaviour
 
             // 타이틀
             if(i != (int)RSC.CRISTAL)
-                am.titleTxt.text = $"제 {i + 1} 광산 {stgDB.BestFloorArr[i]}층";
+                am.titleTxt.text = $"{LM._.Localize($"UI_MineStage{i + 1}")} {stgDB.BestFloorArr[i]}{LM._.Localize(LM.Floor)}";
 
             // 현재수량이 최대수량만큼 쌓였는지에 따른 색깔태그
             string isFullcolorTag = am.CurStorage >= am.maxStorage? "red" : "white";
@@ -340,7 +340,7 @@ public class AutoMiningManager : MonoBehaviour
             autoMiningBtnAlertRedDotArr[i].SetActive(am.CurStorage >= am.maxStorage);
 
             // 채굴량
-            am.productionValTxt.text = $"1분당 채굴량 +{GetProductionVal((RSC)i)}";
+            am.productionValTxt.text = $"{LM._.Localize(LM.MiningPerMin)} +{GetProductionVal((RSC)i)}";
 
             if(i == (int)RSC.CRISTAL)
             {

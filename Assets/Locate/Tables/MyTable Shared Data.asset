@@ -555,6 +555,42 @@ MonoBehaviour:
     m_Key: UI_IncChestSpawnPer
     m_Metadata:
       m_Items: []
+  - m_Id: 144357741268992
+    m_Key: UI_ExtraOre1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144410920849408
+    m_Key: UI_ExtraOre2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144426691432448
+    m_Key: UI_ExtraOre3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144432127250432
+    m_Key: UI_ExtraOre4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144436661293056
+    m_Key: UI_ExtraOre5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144441929338880
+    m_Key: UI_ExtraOre6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144449105793024
+    m_Key: UI_ExtraOre7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144456215138304
+    m_Key: UI_ExtraOre8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149492588580864
+    m_Key: UI_MiningPerMin
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
