@@ -456,6 +456,112 @@ MonoBehaviour:
     m_Localized: Give up
     m_Metadata:
       m_Items: []
+  - m_Id: 118914371784704
+    m_Localized: Best record
+    m_Metadata:
+      m_Items: []
+  - m_Id: 120889528258560
+    m_Localized: Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122033319153664
+    m_Localized: Cnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122455240970240
+    m_Localized: Summon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 123513111547904
+    m_Localized: 'Common
+
+      <color=green>Uncommon</color>
+
+      <color=blue>Rare</color>
+
+      <color=purple>Unique</color>
+
+      <color=yellow>Legend</color>
+
+      <color=red>Myth</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126383210860544
+    m_Localized: Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127384798072832
+    m_Localized: LV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129950005039104
+    m_Localized: Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130209364021248
+    m_Localized: Boy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130247372804096
+    m_Localized: Thief cat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130290813210624
+    m_Localized: Little witch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130339555217408
+    m_Localized: Silver goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130409205829632
+    m_Localized: Barbarian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130454869217280
+    m_Localized: Guard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130461252947968
+    m_Localized: Fairy Peter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130511253245952
+    m_Localized: Mine Officer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130597270032384
+    m_Localized: Pumpkin knight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130623954194432
+    m_Localized: Guard Captain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130634536423424
+    m_Localized: Magic Nun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130654492921856
+    m_Localized: Demon Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130660998287360
+    m_Localized: Dragon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130670011846656
+    m_Localized: Baby Angel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130692073885696
+    m_Localized: Chieftain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130696733757440
+    m_Localized: Pharaoh
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -273,7 +273,7 @@ MonoBehaviour:
   bagStorageSlider: {fileID: 8514685687017294841}
   bagStorageSliderTxt: {fileID: 1932040126447091498}
   targetOre: {fileID: 0}
-  <Name>k__BackingField: "\uC2E4\uBC84\uD574\uBA38\uACE0\uBE14\uB9B0"
+  <Name>k__BackingField: Chara_Uncommon1
   <Grade>k__BackingField: 1
   attackVal: 18
   attackSpeed: 1.2

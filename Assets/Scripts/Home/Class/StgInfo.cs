@@ -29,7 +29,7 @@ public class StgInfo
     /// </summary>
     public void InitUI() {
         // 최대기록 표시
-        BestFloorTxt.text = $"최대기록 : {DM._.DB.stageDB.BestFloorArr[id]}층";
+        BestFloorTxt.text = $"{LM._.Localize(LM.BestRecord)} : {DM._.DB.stageDB.BestFloorArr[id]} {LM._.Localize(LM.Floor)}";
 
         // 잠금상태에 따른 버튼표시
         EnterBtn.gameObject.SetActive(IsUnlocked);

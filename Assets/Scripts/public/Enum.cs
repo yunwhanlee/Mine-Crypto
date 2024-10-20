@@ -237,19 +237,19 @@ public static class Enum
     /// <param name="rwdType">RWD 인덱스</param>
     public static string GetRewardItemName(RWD rwdType) {
         switch(rwdType) {
-            case RWD.ORE1: return "광석1";
-            case RWD.ORE2: return "광석2";
-            case RWD.ORE3: return "광석3";
-            case RWD.ORE4: return "광석4";
-            case RWD.ORE5: return "광석5";
-            case RWD.ORE6: return "광석6";
-            case RWD.ORE7: return "광석7";
-            case RWD.ORE8: return "광석8";
-            case RWD.CRISTAL: return "크리스탈";
-            case RWD.ORE_TICKET: return "광석티켓";
-            case RWD.RED_TICKET: return "붉은티켓";
-            case RWD.TREASURE_CHEST: return "보물상자";
-            case RWD.FAME: return "명예";
+            case RWD.ORE1: return LM._.Localize(LM.Ore1);
+            case RWD.ORE2: return LM._.Localize(LM.Ore2);
+            case RWD.ORE3: return LM._.Localize(LM.Ore3);
+            case RWD.ORE4: return LM._.Localize(LM.Ore4);
+            case RWD.ORE5: return LM._.Localize(LM.Ore5);
+            case RWD.ORE6: return LM._.Localize(LM.Ore6);
+            case RWD.ORE7: return LM._.Localize(LM.Ore7);
+            case RWD.ORE8: return LM._.Localize(LM.Ore8);
+            case RWD.CRISTAL: return LM._.Localize(LM.Cristal);
+            case RWD.ORE_TICKET: return LM._.Localize(LM.OreTicket);
+            case RWD.RED_TICKET: return LM._.Localize(LM.RedTicket);
+            case RWD.TREASURE_CHEST: return LM._.Localize(LM.TreasureChest);
+            case RWD.FAME: return LM._.Localize(LM.Fame);
         }
         return "???";
     }

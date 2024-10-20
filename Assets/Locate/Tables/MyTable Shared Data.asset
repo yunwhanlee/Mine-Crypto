@@ -300,31 +300,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 100233822572544
-    m_Key: UI_Consumable1
+    m_Key: UI_OreTicket
     m_Metadata:
       m_Items: []
   - m_Id: 100312759373824
-    m_Key: UI_Consumable2
+    m_Key: UI_RedTicket
     m_Metadata:
       m_Items: []
   - m_Id: 100328991330304
-    m_Key: UI_Consumable3
+    m_Key: UI_OreChest
     m_Metadata:
       m_Items: []
   - m_Id: 100335437975552
-    m_Key: UI_Consumable4
+    m_Key: UI_TreasureChest
     m_Metadata:
       m_Items: []
   - m_Id: 100340106235904
-    m_Key: UI_Consumable5
+    m_Key: UI_MushBox1
     m_Metadata:
       m_Items: []
   - m_Id: 100382774890496
-    m_Key: UI_Consumable6
+    m_Key: UI_MushBox2
     m_Metadata:
       m_Items: []
   - m_Id: 100390937006080
-    m_Key: UI_Consumable7
+    m_Key: UI_MushBox3
     m_Metadata:
       m_Items: []
   - m_Id: 101030576754688
@@ -445,6 +445,102 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 111353224466432
     m_Key: UI_GiveUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118914371784704
+    m_Key: UI_BestRecord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 120889528258560
+    m_Key: UI_Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122033319153664
+    m_Key: UI_Cnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122455240970240
+    m_Key: UI_Summon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 123513111547904
+    m_Key: UI_RandomGradeTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126383210860544
+    m_Key: UI_Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127384798072832
+    m_Key: UI_Lv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129950005039104
+    m_Key: Chara_Common1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130209364021248
+    m_Key: Chara_Common2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130247372804096
+    m_Key: Chara_Common3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130290813210624
+    m_Key: Chara_Common4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130339555217408
+    m_Key: Chara_Uncommon1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130409205829632
+    m_Key: Chara_Uncommon2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130454869217280
+    m_Key: Chara_Uncommon3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130461252947968
+    m_Key: Chara_Uncommon4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130511253245952
+    m_Key: Chara_Rare1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130597270032384
+    m_Key: Chara_Rare2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130623954194432
+    m_Key: Chara_Rare3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130634536423424
+    m_Key: Chara_Unique1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130654492921856
+    m_Key: Chara_Unique2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130660998287360
+    m_Key: Chara_Unique3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130670011846656
+    m_Key: Chara_Legend1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130692073885696
+    m_Key: Chara_Legend2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130696733757440
+    m_Key: Chara_Myth1
     m_Metadata:
       m_Items: []
   m_Metadata:

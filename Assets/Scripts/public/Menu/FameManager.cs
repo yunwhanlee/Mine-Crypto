@@ -204,7 +204,7 @@ public class FameManager : MonoBehaviour
             FameExp = 0;
             fameMaxExp = CalcFameMaxExp(FameLv);
 
-            GM._.ui.ShowNoticeMsgPopUp("명예 레벨업!");
+            GM._.ui.ShowNoticeMsgPopUp($"{LM._.Localize(LM.Fame)} {LM._.Localize(LM.Lv)} UP!");
             FameLevelUp();
         }
     }
@@ -262,7 +262,7 @@ public class FameManager : MonoBehaviour
         // 팝업 표시
         fameLevelUpInfoPanel.SetActive(true);
         // 타이틀
-        fameLevelUpInfoPanelTitleTxt.text = isLvUp? "명예 레벨업!" : "명예 레벨";
+        fameLevelUpInfoPanelTitleTxt.text = isLvUp? $"{LM._.Localize(LM.Fame)} {LM._.Localize(LM.Lv)} UP!" : $"{LM._.Localize(LM.Fame)} {LM._.Localize(LM.Lv)}";
         // 레벨 텍스트
         fameLevelUpInfoPanelLvTxt.text = FameLv.ToString();
 

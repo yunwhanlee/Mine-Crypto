@@ -278,7 +278,7 @@ public class EmployManager : MonoBehaviour
 
         // 소환캐릭 수
         workerMax = GM._.sttm.TotalPopulation;
-        PlayBtnEmployCntTxt.text = $"{workerMax}마리 소환";
+        PlayBtnEmployCntTxt.text = $"{workerMax} {LM._.Localize(LM.Cnt)} {LM._.Localize(LM.Summon)}";
 
         //* 랜덤뽑기결과 팝업
         gachaResultList = new List<(GRADE, int)>();
@@ -294,7 +294,7 @@ public class EmployManager : MonoBehaviour
     /// 캐릭터 소환등급 확률표 표시 (섹션1)
     /// </summary>
     public void SetRandomGradeTableUI() {
-        curFameLvTxt.text = $"LV.{GM._.fm.FameLv}";
+        curFameLvTxt.text = $"{LM._.Localize(LM.Fame)} LV.{GM._.fm.FameLv}";
 
         int[] gTb = GM._.fm.GetRandomGradeArrByFame();
         // 등급표 작성
@@ -407,7 +407,7 @@ public class EmployManager : MonoBehaviour
 
         charaImg.sprite = charaDt.iconCharaImg;
         charaBg.sprite = cardGradeBgSprs[(int)charaDt.Grade];
-        charaNameTxt.text = charaDt.Name;
+        charaNameTxt.text = LM._.Localize(charaDt.Name);
         charaAbilityValTxt.text = $"{charaDt.AttackVal}"
             + $"\n{charaDt.AttackSpeed}"
             + $"\n{charaDt.MoveSpeed}"

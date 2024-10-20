@@ -40,7 +40,7 @@ public class SettingManager : MonoBehaviour
     public void OnClickChangeLanguage(int lauguageIdx)
     {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
-        LocaleManager._.ChangeLocale(lauguageIdx);
+        LM._.ChangeLocale(lauguageIdx);
         languagePanel.SetActive(false);
         languageSelectBtnImg.sprite = languageIconSprs[lauguageIdx];
     }
