@@ -551,6 +551,10 @@ MonoBehaviour:
     m_Key: UI_PickCharaMsg
     m_Metadata:
       m_Items: []
+  - m_Id: 143497896366080
+    m_Key: UI_IncChestSpawnPer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

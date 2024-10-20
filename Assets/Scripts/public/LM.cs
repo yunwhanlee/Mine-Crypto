@@ -9,7 +9,8 @@ public class LM : MonoBehaviour
     public static LM _;
 
     //* TABLE KEY
-    public const string BestRecord = "UI_BestRecord",
+    public const string
+        BestRecord = "UI_BestRecord",
         Cnt = "UI_Cnt",
         Summon = "UI_Summon",
         Fame = "UI_Fame",
@@ -35,6 +36,32 @@ public class LM : MonoBehaviour
         MushBox1 = "UI_MushBox1",
         MushBox2 = "UI_MushBox2",
         MushBox3 = "UI_MushBox3",
+
+        Attack = "UI_Attack",
+        AttackSpeed = "UI_AttackSpeed",
+        MoveSpeed = "UI_MoveSpeed",
+        BagStorage = "UI_BagStorage",
+        MiningTime = "UI_MiningTime",
+        NextStageSkip = "UI_NextStageSkip",
+        ExtraCristal = "UI_ExtraCristal",
+        IncPopulation = "UI_IncPopulation",
+        StartingFloor = "UI_StartingFloor",
+        IncChestSpawnPer = "UI_IncChestSpawnPer",
+        ExtraOre1 = "UI_ExtraOre1",
+        ExtraOre2 = "UI_ExtraOre2",
+        ExtraOre3 = "UI_ExtraOre3",
+        ExtraOre4 = "UI_ExtraOre4",
+        ExtraOre5 = "UI_ExtraOre5",
+        ExtraOre6 = "UI_ExtraOre6",
+        ExtraOre7 = "UI_ExtraOre7",
+        ExtraOre8 = "UI_ExtraOre8",
+        AutoOrePer = "UI_AutoOrePer",
+        AutoCristalPer = "UI_AutoCristalPer",
+        DecAlchemyMaterialPer = "UI_DecAlchemyMaterialPer",
+        IncTreasureChest = "UI_IncTreasureChest",
+        AutoOreBagStorage = "UI_AutoOreBagStorage",
+        AutoCristalBagStorage = "UI_AutoCristalBagStorage",
+        IncFame = "UI_IncFame",
 
         PickCharaMsg = "UI_PickCharaMsg",
 

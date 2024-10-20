@@ -570,6 +570,10 @@ MonoBehaviour:
     m_Localized: Please Pick Charactors!
     m_Metadata:
       m_Items: []
+  - m_Id: 143497896366080
+    m_Localized: Chest spawn
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
