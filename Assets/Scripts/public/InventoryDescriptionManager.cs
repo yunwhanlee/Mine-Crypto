@@ -23,9 +23,13 @@ public class InventoryDescriptionManager : MonoBehaviour
     public TMP_Text confirmBtnTxt;
 
     private StatusDB sttDB;
-void Start() {
-    sttDB = DM._.DB.statusDB;
-}
+
+    public InvItem_Info[] INV_ITEM_INFO;
+
+    void Awake() {
+        sttDB = DM._.DB.statusDB;
+        INV_ITEM_INFO = SetInvItemDescriptionInfo();
+    }
 
 #region EVENT
     /// <summary>
@@ -48,7 +52,7 @@ void Start() {
         {
             // 소비아이템 타입
             case INV.TREASURE_CHEST:
-                confirmBtnTxt.text = "모두 열기";
+                confirmBtnTxt.text = LM._.Localize(LM.OpenAll);
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
@@ -108,7 +112,7 @@ void Start() {
                 };
                 break;
             case INV.ORE_CHEST:
-                confirmBtnTxt.text = "모두 열기";
+                confirmBtnTxt.text = LM._.Localize(LM.OpenAll);
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
@@ -182,7 +186,7 @@ void Start() {
                 };
                 break;
             case INV.MUSH_BOX1:
-                confirmBtnTxt.text = "모두 열기";
+                confirmBtnTxt.text = LM._.Localize(LM.OpenAll);
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
@@ -230,7 +234,7 @@ void Start() {
                 };
                 break;
             case INV.MUSH_BOX2:
-                confirmBtnTxt.text = "모두 열기";
+                confirmBtnTxt.text = LM._.Localize(LM.OpenAll);
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
@@ -278,7 +282,7 @@ void Start() {
                 };
                 break;
             case INV.MUSH_BOX3:
-                confirmBtnTxt.text = "모두 열기";
+                confirmBtnTxt.text = LM._.Localize(LM.OpenAll);
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
@@ -308,7 +312,7 @@ void Start() {
                 break;
             // 확인용 타입
             default:
-                confirmBtnTxt.text = "확인";
+                confirmBtnTxt.text = LM._.Localize(LM.Confirm);
 
                 //* 이벤트 구독
                 OnConfirmBtnClicked = () => {
@@ -329,6 +333,53 @@ void Start() {
 #endregion
 
 #region FUNC
+    /// <summary>
+    //* 위의 인벤토리 아이템 이름 및 정보
+    /// <summary>
+    //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
+    public InvItem_Info[] SetInvItemDescriptionInfo()
+    {
+        return new InvItem_Info[9 + 8 + 8 + 7] {
+        // (광석)재화
+        new InvItem_Info(LM._.Localize(LM.Ore1), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore2), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore3), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore4), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore5), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore6), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore7), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Ore8), LM._.Localize(LM.Detail_Ore)),
+        new InvItem_Info(LM._.Localize(LM.Cristal), LM._.Localize(LM.Detail_Cristal)),
+        // (연금술) 재료
+        new InvItem_Info(LM._.Localize(LM.Mat1), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat2), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat3), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat4), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat5), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat6), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat7), LM._.Localize(LM.Detail_Mat)),
+        new InvItem_Info(LM._.Localize(LM.Mat8), LM._.Localize(LM.Detail_Mat)),
+        // (버섯도감) 버섯
+        new InvItem_Info(LM._.Localize(LM.Mush1), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush2), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush3), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush4), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush5), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush6), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush7), LM._.Localize(LM.Detail_Mush)),
+        new InvItem_Info(LM._.Localize(LM.Mush8), LM._.Localize(LM.Detail_Mush)),
+        // (소비) 아이템
+        new InvItem_Info(LM._.Localize(LM.OreTicket), LM._.Localize(LM.Detail_OreTicket)),
+        new InvItem_Info(LM._.Localize(LM.RedTicket), LM._.Localize(LM.Detail_RedTicket)),
+        new InvItem_Info(LM._.Localize(LM.OreChest), LM._.Localize(LM.Detail_OreChest)),
+        new InvItem_Info(LM._.Localize(LM.TreasureChest), LM._.Localize(LM.Detail_TreasureChest)),
+        new InvItem_Info(LM._.Localize(LM.MushBox1), LM._.Localize(LM.Detail_MushBox1)),
+        new InvItem_Info(LM._.Localize(LM.MushBox2), LM._.Localize(LM.Detail_MushBox2)),
+        new InvItem_Info(LM._.Localize(LM.MushBox3), LM._.Localize(LM.Detail_MushBox3)),
+        //※ 여기에 추가
+        };
+    }
+
     /// <summary>
     /// (소비아이템) 사용한 뒤에 수량UI 업데이트
     /// </summary>

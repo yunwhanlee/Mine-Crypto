@@ -132,50 +132,6 @@ public static class Enum
     }
 
     /// <summary>
-    //* 위의 인벤토리 아이템 이름 및 정보
-    /// <summary>
-    //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
-    public static InvItem_Info[] INV_ITEM_INFO = new InvItem_Info[9 + 8 + 8 + 7] {
-        // (광석)재화
-        new InvItem_Info("제1 광석", "제1 광석의 조각이다. (재화)"),
-        new InvItem_Info("제2 광석", "제2 광석의 조각이다. (재화)"),
-        new InvItem_Info("제3 광석", "제3 광석의 조각이다. (재화)"),
-        new InvItem_Info("제4 광석", "제4 광석의 조각이다. (재화)"),
-        new InvItem_Info("제5 광석", "제5 광석의 조각이다. (재화)"),
-        new InvItem_Info("제6 광석", "제6 광석의 조각이다. (재화)"),
-        new InvItem_Info("제7 광석", "제7 광석의 조각이다. (재화)"),
-        new InvItem_Info("제8 광석", "제8 광석의 조각이다. (재화)"),
-        new InvItem_Info("크리스탈", "크리스탈 조각이다. (재화)"),
-        // (연금술) 재료
-        new InvItem_Info("흙덩어리", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("통나무", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("천조각", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("유리", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("슬라임", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("황금덩어리", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("석탄", "연금술에서 제작을위한 재료이다."),
-        new InvItem_Info("천연소금", "연금술에서 제작을위한 재료이다."),
-        // (버섯도감) 버섯
-        new InvItem_Info("1.버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("2.늪버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("3.능이버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("4.푸른버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("5.표고버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("6.붉은버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("7.포자버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        new InvItem_Info("8.공포버섯", "버섯도감에서 능력업그레이드가 가능하다."),
-        // (소비) 아이템
-        new InvItem_Info("광산티켓", "광산에 입장가능한 티켓이다."),
-        new InvItem_Info("붉은티켓", "시련의광산에 입장가능한 티켓이다."),
-        new InvItem_Info("광석상자", "어떤 광석이 나올지 모릅니다. 최고층이 높을수록 많은 광석을 획득합니다."),
-        new InvItem_Info("보물상자", "랜덤으로 티켓 또는 크리스탈을 획득할 수 있습니다."),
-        new InvItem_Info("의문의 버섯상자", "일반적인 버섯이 들어있을 것 같다."),
-        new InvItem_Info("신비한 버섯상자", "신비로운 버섯이 들어있을 것 같다."),
-        new InvItem_Info("전설의 버섯상자", "전설적인 버섯이 들어있을 것 같다."),
-        //※ 여기에 추가
-    };
-
-    /// <summary>
     /// (버섯도감) 버섯
     /// </summary>
     public enum MUSH {

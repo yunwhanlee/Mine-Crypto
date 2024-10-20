@@ -682,6 +682,95 @@ MonoBehaviour:
     m_Localized: Owned
     m_Metadata:
       m_Items: []
+  - m_Id: 164851215470592
+    m_Localized: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175693105434624
+    m_Localized: 1. Mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175756452007936
+    m_Localized: 2. Swamp mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175764144361472
+    m_Localized: 3. Neungi mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175768418357248
+    m_Localized: 4. Blue mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175772860125184
+    m_Localized: 5. Shiitake mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175777549357056
+    m_Localized: 6. Red mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175784058916864
+    m_Localized: 7. Spore mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175791449280512
+    m_Localized: 8. Horror mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180643826995200
+    m_Localized: Used for various upgrades.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180658939072512
+    m_Localized: Used for advanced upgrades.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180672377622528
+    m_Localized: Used in alchemy crafting and various applications.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180683949707264
+    m_Localized: Can be used for ability upgrades in the Mushroom Encyclopedia.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180694028619776
+    m_Localized: A ticket to enter the mine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180706301153280
+    m_Localized: A ticket to enter the Trial Mine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180718615629824
+    m_Localized: "The type of mineral is unknown. \n(The higher the top floor, the
+      more minerals are obtained.)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180728983949312
+    m_Localized: You can randomly obtain either a ticket or a crystal.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180738756677632
+    m_Localized: It seems to contain a common mushroom.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180749489901568
+    m_Localized: It seems to contain a mystical mushroom.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180759728197632
+    m_Localized: It seems to contain a legendary mushroom.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 186323011080192
+    m_Localized: Open all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 186349611356160
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

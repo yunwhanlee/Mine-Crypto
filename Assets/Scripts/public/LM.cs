@@ -24,6 +24,9 @@ public class LM : MonoBehaviour
         InProgress = "UI_InProgress",
         Ammount = "UI_Ammount",
         Owned = "UI_Owned",
+        Upgrade = "UI_Upgrade",
+        OpenAll = "UI_OpenAll",
+        Confirm = "UI_Confirm",
 
         Ore1 = "UI_Ore1",
         Ore2 = "UI_Ore2",
@@ -34,6 +37,36 @@ public class LM : MonoBehaviour
         Ore7 = "UI_Ore7",
         Ore8 = "UI_Ore8",
         Cristal = "UI_Cristal",
+
+        Detail_Ore = "Detail_Ore",
+        Detail_Cristal = "Detail_Cristal",
+        Detail_Mat = "Detail_Mat",
+        Detail_Mush = "Detail_Mush",
+        Detail_OreTicket = "Detail_OreTicket",
+        Detail_RedTicket = "Detail_RedTicket",
+        Detail_OreChest = "Detail_OreChest",
+        Detail_TreasureChest = "Detail_TreasureChest",
+        Detail_MushBox1 = "Detail_MushBox1",
+        Detail_MushBox2 = "Detail_MushBox2",
+        Detail_MushBox3 = "Detail_MushBox3",
+
+        Mat1 = "UI_Mat1",
+        Mat2 = "UI_Mat2",
+        Mat3 = "UI_Mat3",
+        Mat4 = "UI_Mat4",
+        Mat5 = "UI_Mat5",
+        Mat6 = "UI_Mat6",
+        Mat7 = "UI_Mat7",
+        Mat8 = "UI_Mat8",
+
+        Mush1 = "UI_Mush1",
+        Mush2 = "UI_Mush2",
+        Mush3 = "UI_Mush3",
+        Mush4 = "UI_Mush4",
+        Mush5 = "UI_Mush5",
+        Mush6 = "UI_Mush6",
+        Mush7 = "UI_Mush7",
+        Mush8 = "UI_Mush8",
 
         OreTicket = "UI_OreTicket",
         RedTicket = "UI_RedTicket",
@@ -113,6 +146,10 @@ public class LM : MonoBehaviour
 
         // 언어 변경
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIdx];
+
+        // 인벤토리 상세페이지 아이템 정보 언어변경
+        GM._.idm.INV_ITEM_INFO = GM._.idm.SetInvItemDescriptionInfo();
+        GM._.ivm.InitDataAndUI();
 
         isChaning = false;
     }

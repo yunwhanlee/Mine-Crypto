@@ -15,7 +15,10 @@ public class InventoryUIManager : MonoBehaviour
     [Header("모든 인벤토리 아이템슬롯을 ContentTf안에 미리 만들고 IDX로 처리")]
     public Transform contentTf;
 
-    void Start() {
+    IEnumerator Start() {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null && GM._.idm != null && LM._ != null);
+
         InitDataAndUI();
         UpdateAlertRedDot();
     }
@@ -24,7 +27,7 @@ public class InventoryUIManager : MonoBehaviour
     /// <summary>
     /// 인벤토리 모든 아이템 데이터 및 객체 초기화 (1회)
     /// </summary>
-    private void InitDataAndUI() {
+    public void InitDataAndUI() {
         // 인벤토리 슬롯UI를 배열로 저장 (미리 ContentTf에 슬롯UI 추가하여 준비)
         invSlotUIArr = new InvSlotUI[contentTf.childCount];
         InitElement();
@@ -40,12 +43,12 @@ public class InventoryUIManager : MonoBehaviour
 
             invSlotUIArr[i] = new InvSlotUI
             {
-                name = INV_ITEM_INFO[i].name,
+                name = GM._.idm.INV_ITEM_INFO[i].name,
                 invType = (INV)i,
                 obj = itemSlotUI.gameObject,
                 itemSpr = itemSlotUI.GetChild(1).GetComponent<Image>().sprite,
                 cntTxt = itemSlotUI.GetComponentInChildren<TMP_Text>(),
-                contentMsg = INV_ITEM_INFO[i].content
+                contentMsg = GM._.idm.INV_ITEM_INFO[i].content
             };
 
             var bgBtn = invSlotUIArr[i].obj.GetComponentInChildren<Button>();
@@ -54,8 +57,6 @@ public class InventoryUIManager : MonoBehaviour
             //* 아이템슬롯 클릭이벤트 등록 => Description팝업 표시
             bgBtn.onClick.AddListener(() =>  GM._.idm.OnClickInvItemSlot((Enum.INV)copyIdx));
         }
-
-        
     }
 
     public void ShowInventory() {

@@ -647,6 +647,94 @@ MonoBehaviour:
     m_Key: UI_Owned
     m_Metadata:
       m_Items: []
+  - m_Id: 164851215470592
+    m_Key: UI_Upgrad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175693105434624
+    m_Key: UI_Mush1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175756452007936
+    m_Key: UI_Mush2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175764144361472
+    m_Key: UI_Mush3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175768418357248
+    m_Key: UI_Mush4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175772860125184
+    m_Key: UI_Mush5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175777549357056
+    m_Key: UI_Mush6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175784058916864
+    m_Key: UI_Mush7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175791449280512
+    m_Key: UI_Mush8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180643826995200
+    m_Key: Detail_Ore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180658939072512
+    m_Key: Detail_Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180672377622528
+    m_Key: Detail_Mat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180683949707264
+    m_Key: Detail_Mush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180694028619776
+    m_Key: Detail_OreTicket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180706301153280
+    m_Key: Detail_RedTicket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180718615629824
+    m_Key: Detail_OreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180728983949312
+    m_Key: Detail_TreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180738756677632
+    m_Key: Detail_MushBox1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180749489901568
+    m_Key: Detail_MushBox2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180759728197632
+    m_Key: Detail_MushBox3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 186323011080192
+    m_Key: UI_OpenAll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 186349611356160
+    m_Key: UI_Confirm
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

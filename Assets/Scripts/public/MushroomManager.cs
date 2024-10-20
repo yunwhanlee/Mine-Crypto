@@ -145,7 +145,7 @@ public class MushroomManager : MonoBehaviour
     {
         const int offset = 9 + 8;
         UpgradeMushFormat mushFormat = null;
-        targetValueTxt.text = $"보유량 : {DM._.DB.statusDB.MsrArr[mushIdx]}";
+        targetValueTxt.text = $"{LM._.Localize(LM.Ammount)} : {DM._.DB.statusDB.MsrArr[mushIdx]}";
         totalAbilityTxt.text = "";
 
         // 선택한 버튼 색상
@@ -159,54 +159,54 @@ public class MushroomManager : MonoBehaviour
         {
             case (int)MUSH.MUSH1:
                 mushFormat = ms1_UpgAttack;
-                targetAbilityTxt.text = $"공격력 +{ms1_UpgAttack.Val} => +{ms1_UpgAttack.GetNextVal()}";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.Attack)} +{ms1_UpgAttack.Val} => +{ms1_UpgAttack.GetNextVal()}";
                 break;
             case (int)MUSH.MUSH2:
                 mushFormat = ms2_UpgMovSpeedPer;
-                targetAbilityTxt.text = $"이동속도 +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)} => +{Util.FloatToStr(ms2_UpgMovSpeedPer.GetNextVal() * 100)}%";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.MoveSpeed)} +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)} => +{Util.FloatToStr(ms2_UpgMovSpeedPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH3:
                 mushFormat = ms3_UpgBagStoragePer;
-                targetAbilityTxt.text = $"가방용량 +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)} => +{Util.FloatToStr(ms3_UpgBagStoragePer.GetNextVal() * 100)}%";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.BagStorage)} +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)} => +{Util.FloatToStr(ms3_UpgBagStoragePer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH4:
                 mushFormat = ms4_UpgNextStageSkipPer;
-                targetAbilityTxt.text = $"다음 층 스킵 {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)} => +{Util.FloatToStr(ms4_UpgNextStageSkipPer.GetNextVal() * 100)}%";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.NextStageSkip)} {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)} => +{Util.FloatToStr(ms4_UpgNextStageSkipPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH5:
                 mushFormat = ms5_UpgIncTimer;
-                targetAbilityTxt.text = $"채굴시간 +{ms5_UpgIncTimer.Val} => +{ms5_UpgIncTimer.GetNextVal()}초";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val} => +{ms5_UpgIncTimer.GetNextVal()}초";
                 break;
             case (int)MUSH.MUSH6:
                 mushFormat =ms6_UpgChestSpawnPer;
-                targetAbilityTxt.text = $"상자 등장확률 +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)} => +{Util.FloatToStr(ms6_UpgChestSpawnPer.GetNextVal() * 100)}%";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.IncChestSpawnPer)} +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)} => +{Util.FloatToStr(ms6_UpgChestSpawnPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH7:
                 mushFormat = ms7_UpgAtkSpeedPer;
-                targetAbilityTxt.text = $"공격속도 +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)} => +{Util.FloatToStr(ms7_UpgAtkSpeedPer.GetNextVal() * 100)}%";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.AttackSpeed)} +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)} => +{Util.FloatToStr(ms7_UpgAtkSpeedPer.GetNextVal() * 100)}%";
                 break;
             case (int)MUSH.MUSH8:
                 mushFormat = ms8_IncPopulation;
-                targetAbilityTxt.text = $"소환캐릭터 증가 +{ms8_IncPopulation.Val} => +{ms8_IncPopulation.GetNextVal()}";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.IncPopulation)} +{ms8_IncPopulation.Val} => +{ms8_IncPopulation.GetNextVal()}";
                 break;
         }
 
         // 총 획득능력치 표시
-        if(ms1_UpgAttack.Lv > 0) totalAbilityTxt.text += $"공격력 +{ms1_UpgAttack.Val}\n";
-        if(ms2_UpgMovSpeedPer.Lv > 0) totalAbilityTxt.text += $"이동속도 +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)}%\n";
-        if(ms3_UpgBagStoragePer.Val > 0) totalAbilityTxt.text += $"가방용량 +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)}%\n";
-        if(ms4_UpgNextStageSkipPer.Val > 0) totalAbilityTxt.text += $"다음 층 스킵 {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)}%\n";
-        if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"채굴시간 +{ms5_UpgIncTimer.Val}초\n";
-        if(ms6_UpgChestSpawnPer.Val > 0) totalAbilityTxt.text += $"상자 등장확률 +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)}%\n";
-        if(ms7_UpgAtkSpeedPer.Val > 0) totalAbilityTxt.text += $"공격속도 +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)}%\n";
-        if(ms8_IncPopulation.Val > 0) totalAbilityTxt.text += $"소환캐릭터 증가 +{ms8_IncPopulation.Val}\n";
+        if(ms1_UpgAttack.Lv > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.Attack)} +{ms1_UpgAttack.Val}\n";
+        if(ms2_UpgMovSpeedPer.Lv > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MoveSpeed)} +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)}%\n";
+        if(ms3_UpgBagStoragePer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.BagStorage)} +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)}%\n";
+        if(ms4_UpgNextStageSkipPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.NextStageSkip)} {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)}%\n";
+        if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val}초\n";
+        if(ms6_UpgChestSpawnPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.IncChestSpawnPer)} +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)}%\n";
+        if(ms7_UpgAtkSpeedPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.AttackSpeed)} +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)}%\n";
+        if(ms8_IncPopulation.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.IncPopulation)} +{ms8_IncPopulation.Val}\n";
 
         targetImg.sprite = GM._.MushSprArr[mushIdx];
-        targetNameTxt.text = $"{INV_ITEM_INFO[offset + mushIdx].name}";
+        targetNameTxt.text = $"{GM._.idm.INV_ITEM_INFO[offset + mushIdx].name}";
         targetLvTxt.text = $"LV. {mushFormat.Lv}";
 
         string colorTag = DM._.DB.statusDB.MsrArr[(int)mushFormat.NeedMush] >= mushFormat.Price? "white" : "red";
-        upgradeBtnTxt.text = $"업그레이드\n<sprite name={mushFormat.NeedMush}> <color={colorTag}>{mushFormat.Price}</color>";
+        upgradeBtnTxt.text = $"{LM._.Localize(LM.Upgrade)}\n<sprite name={mushFormat.NeedMush}> <color={colorTag}>{mushFormat.Price}</color>";
     }
 
     /// <summary>
