@@ -324,7 +324,7 @@ public class FameManager : MonoBehaviour
         // 팝업 표시
         fameLevelUpInfoPanel.SetActive(true);
         // 타이틀
-        fameLevelUpInfoPanelTitleTxt.text = "다음명예 레벨등급표";
+        fameLevelUpInfoPanelTitleTxt.text = LM._.Localize(LM.NextFameLvGradeTable);
         // 레벨 텍스트
         fameLevelUpInfoPanelLvTxt.text = (FameLv + 1).ToString();
 

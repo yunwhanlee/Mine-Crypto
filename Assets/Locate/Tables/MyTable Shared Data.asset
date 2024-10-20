@@ -543,6 +543,14 @@ MonoBehaviour:
     m_Key: Chara_Myth1
     m_Metadata:
       m_Items: []
+  - m_Id: 135358769762304
+    m_Key: UI_NextFameLvGradeTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 136462815432704
+    m_Key: UI_PickCharaMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

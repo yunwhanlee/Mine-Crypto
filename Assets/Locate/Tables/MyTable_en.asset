@@ -71,35 +71,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 49049262854144
-    m_Localized: Mine Stage 1
+    m_Localized: 'MINE1 '
     m_Metadata:
       m_Items: []
   - m_Id: 50101139771392
-    m_Localized: Mine Stage 2
+    m_Localized: 'MINE2 '
     m_Metadata:
       m_Items: []
   - m_Id: 50507072901120
-    m_Localized: Mine Stage 3
+    m_Localized: 'MINE3 '
     m_Metadata:
       m_Items: []
   - m_Id: 50638962790400
-    m_Localized: Mine Stage 4
+    m_Localized: 'MINE4 '
     m_Metadata:
       m_Items: []
   - m_Id: 50655962304512
-    m_Localized: Mine Stage 5
+    m_Localized: 'MINE5 '
     m_Metadata:
       m_Items: []
   - m_Id: 50671909048320
-    m_Localized: Mine Stage 6
+    m_Localized: 'MINE6 '
     m_Metadata:
       m_Items: []
   - m_Id: 50683275612160
-    m_Localized: Mine Stage 7
+    m_Localized: 'MINE7 '
     m_Metadata:
       m_Items: []
   - m_Id: 51149233426432
-    m_Localized: Mine Stage 8
+    m_Localized: 'MINE8 '
     m_Metadata:
       m_Items: []
   - m_Id: 60649466204160
@@ -560,6 +560,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 130696733757440
     m_Localized: Pharaoh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 135358769762304
+    m_Localized: Next FameLv Grade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 136462815432704
+    m_Localized: Please Pick Charactors!
     m_Metadata:
       m_Items: []
   references:

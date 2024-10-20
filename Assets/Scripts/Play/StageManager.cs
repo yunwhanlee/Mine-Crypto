@@ -97,7 +97,8 @@ public class StageManager : MonoBehaviour {
         GM._.pm.playResRwdArr = new int[GetEnumRWDLenght()];
 
         // 스테이지 타이틀UI 애니메이션
-        stageTitleTxt.text =  IsChallengeMode? "시련의광산" : $"제{(int)oreType + 1} 광산";
+        stageTitleTxt.text =  IsChallengeMode? $"{LM._.Localize(LM.ChallengeMine)}"
+            : $"{LM._.Localize($"UI_MineStage{(int)oreType + 1}")}";
         stageTitleUIDOTAnim.DORestart();
 
         // 광석 오브젝트 생성
@@ -151,7 +152,7 @@ public class StageManager : MonoBehaviour {
 
         // 게임시작전 보이는 텍스트 공백으로 정리
         GM._.pm.timerTxt.text = "";
-        GM._.stgm.stageTxt.text = "캐릭터를 뽑아주세요!";
+        GM._.stgm.stageTxt.text = LM._.Localize(LM.PickCharaMsg);
 
         // 캐릭터 고용(소환) 팝업 열기
         GM._.epm.ShowPopUp();
@@ -159,10 +160,10 @@ public class StageManager : MonoBehaviour {
 
     private string GetStageName()
     {
-        if(IsChallengeMode)
-            return $"시련의광산 {floor}층";
-        else
-            return $"제{(int)oreType + 1}광산 {floor}층";
+        if(IsChallengeMode) // 시련의광산 N층
+            return $"{LM._.Localize(LM.ChallengeMine)} {floor}{LM._.Localize(LM.Floor)}";
+        else // 제 N광산 N층
+            return $"{LM._.Localize($"UI_MineStage{(int)oreType + 1}")} {floor}{LM._.Localize(LM.Floor)}";
     }
 
     /// <summary>

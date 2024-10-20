@@ -10,11 +10,13 @@ public class LM : MonoBehaviour
 
     //* TABLE KEY
     public const string BestRecord = "UI_BestRecord",
-        Floor = "UI_Floor",
         Cnt = "UI_Cnt",
         Summon = "UI_Summon",
         Fame = "UI_Fame",
+        NextFameLvGradeTable = "UI_NextFameLvGradeTable",
         Lv = "UI_Lv",
+        Floor = "UI_Floor",
+        ChallengeMine = "UI_ChallengeMine",
 
         Ore1 = "UI_Ore1",
         Ore2 = "UI_Ore2",
@@ -33,6 +35,8 @@ public class LM : MonoBehaviour
         MushBox1 = "UI_MushBox1",
         MushBox2 = "UI_MushBox2",
         MushBox3 = "UI_MushBox3",
+
+        PickCharaMsg = "UI_PickCharaMsg",
 
         NONE = "";
 
