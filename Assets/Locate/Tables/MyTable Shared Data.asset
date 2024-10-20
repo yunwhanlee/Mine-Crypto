@@ -63,6 +63,58 @@ MonoBehaviour:
     m_Key: UI_Transcend
     m_Metadata:
       m_Items: []
+  - m_Id: 47164065812480
+    m_Key: UI_MainEntrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49049262854144
+    m_Key: UI_MineStage1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50101139771392
+    m_Key: UI_MineStage2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50507072901120
+    m_Key: UI_MineStage3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50638962790400
+    m_Key: UI_MineStage4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50655962304512
+    m_Key: UI_MineStage5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50671909048320
+    m_Key: UI_MineStage6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50683275612160
+    m_Key: UI_MineStage7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51149233426432
+    m_Key: UI_MineStage8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60649466204160
+    m_Key: UI_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60864491393024
+    m_Key: UI_Bgm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61082653921280
+    m_Key: UI_SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61386841624576
+    m_Key: UI_Language
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

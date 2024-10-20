@@ -66,6 +66,58 @@ MonoBehaviour:
     m_Localized: Transcend
     m_Metadata:
       m_Items: []
+  - m_Id: 47164065812480
+    m_Localized: Mine Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49049262854144
+    m_Localized: Mine Stage 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50101139771392
+    m_Localized: Mine Stage 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50507072901120
+    m_Localized: Mine Stage 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50638962790400
+    m_Localized: Mine Stage 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50655962304512
+    m_Localized: Mine Stage 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50671909048320
+    m_Localized: Mine Stage 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50683275612160
+    m_Localized: Mine Stage 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51149233426432
+    m_Localized: Mine Stage 8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60649466204160
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60864491393024
+    m_Localized: BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61082653921280
+    m_Localized: Sound EF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61386841624576
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
