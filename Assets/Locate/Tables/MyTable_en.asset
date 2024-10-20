@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1383086657536
-    m_Localized: ChallengeMine
+    m_Localized: Challenge Mine
     m_Metadata:
       m_Items: []
   - m_Id: 4548246867968
@@ -116,6 +116,344 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 61386841624576
     m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64796412317696
+    m_Localized: Random Gacha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65148163428352
+    m_Localized: Infomation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65482738864128
+    m_Localized: 'ATK
+
+      ATK SPD
+
+      MOV SPD
+
+      BAG STRG'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73796956688384
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73966788251648
+    m_Localized: Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74824011714560
+    m_Localized: Clear the current floor in 60 seconds!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75252136906752
+    m_Localized: Best Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75934789242880
+    m_Localized: Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76231544639488
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77592516595712
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78012794245120
+    m_Localized: Mining Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78404097642496
+    m_Localized: Attack Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78546401988608
+    m_Localized: Bag Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80228238200832
+    m_Localized: NextStage Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80535781347328
+    m_Localized: Worker Cnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81738267332608
+    m_Localized: Move Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81923852701696
+    m_Localized: Extra Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82590994501632
+    m_Localized: Mining Ore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83338759213056
+    m_Localized: Stage Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83672537731072
+    m_Localized: ChallengeMine Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84093947842560
+    m_Localized: Mining TreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84522521825280
+    m_Localized: All of Auto Mine Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84982741831680
+    m_Localized: Next Lv Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85887511924736
+    m_Localized: Max Storage Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89132737204224
+    m_Localized: Mining Ore1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89960671842304
+    m_Localized: Mining Ore8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89599768760320
+    m_Localized: Mining Ore2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89620400541696
+    m_Localized: Mining Ore3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89626239012864
+    m_Localized: Mining Ore4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89636942876672
+    m_Localized: Mining Ore5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89644559732736
+    m_Localized: Mining Ore6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89652482772992
+    m_Localized: Mining Ore7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90468585279488
+    m_Localized: Open OreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90848169791488
+    m_Localized: Open TreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91212319264768
+    m_Localized: Material
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91599310917632
+    m_Localized: Consumable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91910528274432
+    m_Localized: Exchange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92156775862272
+    m_Localized: Decoration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94389068337152
+    m_Localized: Soil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99172407808000
+    m_Localized: Log
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99214136938496
+    m_Localized: Cloth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99229504868352
+    m_Localized: Glass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99234303152128
+    m_Localized: Slime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99264938348544
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99272941080576
+    m_Localized: Coal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99280218198016
+    m_Localized: Natural Salt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100233822572544
+    m_Localized: "OreTicket\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100312759373824
+    m_Localized: RedTicket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100328991330304
+    m_Localized: OreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100335437975552
+    m_Localized: TreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100340106235904
+    m_Localized: Mystery MushBox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100382774890496
+    m_Localized: Fantastic MushBox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100390937006080
+    m_Localized: Legend MushBox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101030576754688
+    m_Localized: Purple ore pile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101066651963392
+    m_Localized: Branch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101082711953408
+    m_Localized: Snowy tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101091142504448
+    m_Localized: Gorilla statue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101101456297984
+    m_Localized: Platinum ore pile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101106518822912
+    m_Localized: Ice sheet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101112139190272
+    m_Localized: Dark crystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101130455715840
+    m_Localized: Rock of canyon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102387618648064
+    m_Localized: Ore2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102395067731968
+    m_Localized: Ore3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102399903764480
+    m_Localized: Ore4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102404592996352
+    m_Localized: Ore5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102409143816192
+    m_Localized: Ore6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102416051834880
+    m_Localized: Ore7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102423278620672
+    m_Localized: Ore8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102345189068800
+    m_Localized: Ore1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103360709758976
+    m_Localized: Create
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104202036809728
+    m_Localized: Abilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105730357301248
+    m_Localized: Auto Ore Cnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106112580030464
+    m_Localized: Auto Ore Bag Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106620350861312
+    m_Localized: Auto Cristal Cnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106925062852608
+    m_Localized: Auto Cristal Bag Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 107335043485696
+    m_Localized: Reduce material production costs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108369010724864
+    m_Localized: Starting floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108692513198080
+    m_Localized: TreasureChest acquisition +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109514533867520
+    m_Localized: Fame acquisition +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110246918066176
+    m_Localized: Reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110510588792832
+    m_Localized: Please tap screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111038785884160
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111353224466432
+    m_Localized: Give up
     m_Metadata:
       m_Items: []
   references:

@@ -115,6 +115,338 @@ MonoBehaviour:
     m_Key: UI_Language
     m_Metadata:
       m_Items: []
+  - m_Id: 64796412317696
+    m_Key: UI_RandomGacha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65148163428352
+    m_Key: UI_Infomation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65482738864128
+    m_Key: UI_CharaAbilityTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73796956688384
+    m_Key: UI_Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73966788251648
+    m_Key: UI_Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74824011714560
+    m_Key: UI_ChallengeMineMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75252136906752
+    m_Key: UI_BestFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75934789242880
+    m_Key: UI_Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76231544639488
+    m_Key: UI_Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77592516595712
+    m_Key: UI_Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78012794245120
+    m_Key: UI_MiningTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78404097642496
+    m_Key: UI_AttackSpeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78546401988608
+    m_Key: UI_BagStorage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80228238200832
+    m_Key: UI_NextStageSkip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80535781347328
+    m_Key: UI_IncPopulation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81738267332608
+    m_Key: UI_MoveSpeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81923852701696
+    m_Key: UI_ExtraCristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82590994501632
+    m_Key: UI_MiningOre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83338759213056
+    m_Key: UI_StageClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83672537731072
+    m_Key: UI_ChallengeClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84093947842560
+    m_Key: UI_MiningTreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84522521825280
+    m_Key: UI_AllAutoMineStorage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84982741831680
+    m_Key: UI_NextLvInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85887511924736
+    m_Key: UI_UpgradeMaxStorage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89132737204224
+    m_Key: UI_MiningOre1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89599768760320
+    m_Key: UI_MiningOre2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89620400541696
+    m_Key: UI_MiningOre3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89626239012864
+    m_Key: UI_MiningOre4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89636942876672
+    m_Key: UI_MiningOre5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89644559732736
+    m_Key: UI_MiningOre6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89652482772992
+    m_Key: UI_MiningOre7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89960671842304
+    m_Key: UI_MiningOre8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90468585279488
+    m_Key: UI_OpenOreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90848169791488
+    m_Key: UI_OpenTreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91212319264768
+    m_Key: UI_Material
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91599310917632
+    m_Key: UI_Consumable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91910528274432
+    m_Key: UI_Exchange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92156775862272
+    m_Key: UI_Decoration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94389068337152
+    m_Key: UI_Mat1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99172407808000
+    m_Key: UI_Mat2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99214136938496
+    m_Key: UI_Mat3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99229504868352
+    m_Key: UI_Mat4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99234303152128
+    m_Key: UI_Mat5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99264938348544
+    m_Key: UI_Mat6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99272941080576
+    m_Key: UI_Mat7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99280218198016
+    m_Key: UI_Mat8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100233822572544
+    m_Key: UI_Consumable1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100312759373824
+    m_Key: UI_Consumable2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100328991330304
+    m_Key: UI_Consumable3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100335437975552
+    m_Key: UI_Consumable4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100340106235904
+    m_Key: UI_Consumable5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100382774890496
+    m_Key: UI_Consumable6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100390937006080
+    m_Key: UI_Consumable7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101030576754688
+    m_Key: UI_Deco1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101066651963392
+    m_Key: UI_Deco2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101082711953408
+    m_Key: UI_Deco3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101091142504448
+    m_Key: UI_Deco4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101101456297984
+    m_Key: UI_Deco5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101106518822912
+    m_Key: UI_Deco6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101112139190272
+    m_Key: UI_Deco7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101130455715840
+    m_Key: UI_Deco8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102345189068800
+    m_Key: UI_Ore1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102387618648064
+    m_Key: UI_Ore2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102395067731968
+    m_Key: UI_Ore3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102399903764480
+    m_Key: UI_Ore4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102404592996352
+    m_Key: UI_Ore5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102409143816192
+    m_Key: UI_Ore6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102416051834880
+    m_Key: UI_Ore7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102423278620672
+    m_Key: UI_Ore8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103360709758976
+    m_Key: UI_Create
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104202036809728
+    m_Key: UI_AcquireAbility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105730357301248
+    m_Key: UI_AutoOrePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106112580030464
+    m_Key: UI_AutoOreBagStorage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106620350861312
+    m_Key: UI_AutoCristalPer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106925062852608
+    m_Key: UI_AutoCristalBagStorage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 107335043485696
+    m_Key: UI_DecAlchemyMaterialPer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108369010724864
+    m_Key: UI_StartingFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108692513198080
+    m_Key: UI_IncTreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109514533867520
+    m_Key: UI_IncFame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110246918066176
+    m_Key: UI_Reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110510588792832
+    m_Key: UI_TapScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111038785884160
+    m_Key: UI_Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111353224466432
+    m_Key: UI_GiveUp
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
