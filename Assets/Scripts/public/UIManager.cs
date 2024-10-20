@@ -163,8 +163,8 @@ public class UIManager : MonoBehaviour
     {
         confirmPopUp.SetActive(true);
         confirmMsgTxt.text = msgTxt;
-        confirmBtnTxt.text = (confirmTxt == "")? "네" : confirmTxt;
-        cancelBtnTxt.text = (cancelTxt == "")? "아니오" : cancelTxt;
+        confirmBtnTxt.text = (confirmTxt == "")? LM._.Localize(LM.Yes) : confirmTxt;
+        cancelBtnTxt.text = (cancelTxt == "")? LM._.Localize(LM.No) : cancelTxt;
     }
 
     /// <summary>

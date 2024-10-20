@@ -771,6 +771,104 @@ MonoBehaviour:
     m_Localized: Confirm
     m_Metadata:
       m_Items: []
+  - m_Id: 188127505518592
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188143326433280
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188859243794432
+    m_Localized: Not Enough Item.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190042842828800
+    m_Localized: No ore has been gathered yet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190552471736320
+    m_Localized: The mission is still in progress.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191305986838528
+    m_Localized: Not enough Exp.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191913649213440
+    m_Localized: '<Transcend> Opening Condition: Making Snowy Trees for Deco.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192762945441792
+    m_Localized: It's the maximum level.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192831962714112
+    m_Localized: '<Mushroom Dic> Opening Condition: Making any Mushroom box.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194073153736704
+    m_Localized: Do you want to really reset your data?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196068338012160
+    m_Localized: Unlock of Mine Complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196120968138752
+    m_Localized: Next floor movement actived! Go straight to the next floor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196222491267072
+    m_Localized: Receipt completed!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196251146752000
+    m_Localized: Upgrade complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196338405052416
+    m_Localized: Blessing ability reset complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196387700707328
+    m_Localized: Proficiency level up!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200101597515776
+    m_Localized: Congraturation!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200128462032896
+    m_Localized: Bless Unlock!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200434574921728
+    m_Localized: You can use Ore Bless Ability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 202660726935552
+    m_Localized: Unlocked the transcend system!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203356880736256
+    m_Localized: Congratulations! You can make a variety of upgrades with a transcendental
+      system.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204210631315456
+    m_Localized: Unlock Mushroom Dictionary!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204240272461824
+    m_Localized: Congratulations! You can get a variety of upgrades with mushroom
+      Dictionary.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 205296167522304
+    m_Localized: Decoration Crafting Complete!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

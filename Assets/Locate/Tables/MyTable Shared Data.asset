@@ -15,6 +15,474 @@ MonoBehaviour:
   m_TableCollectionName: MyTable
   m_TableCollectionNameGuidString: 70eb81de8e065d44f926f0315607d322
   m_Entries:
+  - m_Id: 188127505518592
+    m_Key: UI_Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85887511924736
+    m_Key: UI_UpgradeMaxStorage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196251146752000
+    m_Key: UI_UpgradeCompleteMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35801675304960
+    m_Key: UI_Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 164851215470592
+    m_Key: UI_Upgrad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 202660726935552
+    m_Key: UI_UnlockTranscendTitleMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191913649213440
+    m_Key: UI_UnlockTranscendMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203356880736256
+    m_Key: UI_UnlockTranscendContentMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196068338012160
+    m_Key: UI_UnlockOreMineMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154999860727808
+    m_Key: UI_UnlockOre8BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154982957682688
+    m_Key: UI_UnlockOre7BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154946697924608
+    m_Key: UI_UnlockOre6BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154936761618432
+    m_Key: UI_UnlockOre5BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154926779174912
+    m_Key: UI_UnlockOre4BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154917040001024
+    m_Key: UI_UnlockOre3BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154890334867456
+    m_Key: UI_UnlockOre2BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 153382050566144
+    m_Key: UI_UnlockOre1BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192831962714112
+    m_Key: UI_UnlockMushroomDicMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200128462032896
+    m_Key: UI_UnlockBlessTitleMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200434574921728
+    m_Key: UI_UnlockBlessContentMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100335437975552
+    m_Key: UI_TreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38622961307648
+    m_Key: UI_Transcend
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110510588792832
+    m_Key: UI_TapScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122455240970240
+    m_Key: UI_Summon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4548246867968
+    m_Key: UI_Status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108369010724864
+    m_Key: UI_StartingFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73796956688384
+    m_Key: UI_Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83338759213056
+    m_Key: UI_StageClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61082653921280
+    m_Key: UI_SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60649466204160
+    m_Key: UI_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110246918066176
+    m_Key: UI_Reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73966788251648
+    m_Key: UI_Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76231544639488
+    m_Key: UI_Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100312759373824
+    m_Key: UI_RedTicket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196222491267072
+    m_Key: UI_ReceiptCompletedMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 123513111547904
+    m_Key: UI_RandomGradeTableName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64796412317696
+    m_Key: UI_RandomGacha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196387700707328
+    m_Key: UI_ProficiencyLvUpMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37076974407680
+    m_Key: UI_Proficiency
+    m_Metadata:
+      m_Items: []
+  - m_Id: 136462815432704
+    m_Key: UI_PickCharaMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160799995957248
+    m_Key: UI_Owned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100233822572544
+    m_Key: UI_OreTicket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100328991330304
+    m_Key: UI_OreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102423278620672
+    m_Key: UI_Ore8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102416051834880
+    m_Key: UI_Ore7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102409143816192
+    m_Key: UI_Ore6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102404592996352
+    m_Key: UI_Ore5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102399903764480
+    m_Key: UI_Ore4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102395067731968
+    m_Key: UI_Ore3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102387618648064
+    m_Key: UI_Ore2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102345189068800
+    m_Key: UI_Ore1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90848169791488
+    m_Key: UI_OpenTreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90468585279488
+    m_Key: UI_OpenOreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 186323011080192
+    m_Key: UI_OpenAll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188859243794432
+    m_Key: UI_NotEnoughItemMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191305986838528
+    m_Key: UI_NotEnoughExpMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190042842828800
+    m_Key: UI_NoOreYetMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188143326433280
+    m_Key: UI_No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196120968138752
+    m_Key: UI_NextStageSkipMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80228238200832
+    m_Key: UI_NextStageSkip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84982741831680
+    m_Key: UI_NextLvInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 135358769762304
+    m_Key: UI_NextFameLvGradeTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159701683900416
+    m_Key: UI_NeedItems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37804371578880
+    m_Key: UI_MushroomDic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100390937006080
+    m_Key: UI_MushBox3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100382774890496
+    m_Key: UI_MushBox2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100340106235904
+    m_Key: UI_MushBox1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175791449280512
+    m_Key: UI_Mush8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175784058916864
+    m_Key: UI_Mush7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175777549357056
+    m_Key: UI_Mush6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175772860125184
+    m_Key: UI_Mush5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175768418357248
+    m_Key: UI_Mush4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175764144361472
+    m_Key: UI_Mush3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175756452007936
+    m_Key: UI_Mush2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175693105434624
+    m_Key: UI_Mush1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81738267332608
+    m_Key: UI_MoveSpeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190552471736320
+    m_Key: UI_MissionStillMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84093947842560
+    m_Key: UI_MiningTreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78012794245120
+    m_Key: UI_MiningTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149492588580864
+    m_Key: UI_MiningPerMin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89960671842304
+    m_Key: UI_MiningOre8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89652482772992
+    m_Key: UI_MiningOre7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89644559732736
+    m_Key: UI_MiningOre6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89636942876672
+    m_Key: UI_MiningOre5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89626239012864
+    m_Key: UI_MiningOre4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89620400541696
+    m_Key: UI_MiningOre3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89599768760320
+    m_Key: UI_MiningOre2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89132737204224
+    m_Key: UI_MiningOre1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82590994501632
+    m_Key: UI_MiningOre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51149233426432
+    m_Key: UI_MineStage8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50683275612160
+    m_Key: UI_MineStage7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50671909048320
+    m_Key: UI_MineStage6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50655962304512
+    m_Key: UI_MineStage5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50638962790400
+    m_Key: UI_MineStage4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50507072901120
+    m_Key: UI_MineStage3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50101139771392
+    m_Key: UI_MineStage2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49049262854144
+    m_Key: UI_MineStage1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192762945441792
+    m_Key: UI_MaxLvMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91212319264768
+    m_Key: UI_Material
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99280218198016
+    m_Key: UI_Mat8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99272941080576
+    m_Key: UI_Mat7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99264938348544
+    m_Key: UI_Mat6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99234303152128
+    m_Key: UI_Mat5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99229504868352
+    m_Key: UI_Mat4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99214136938496
+    m_Key: UI_Mat3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99172407808000
+    m_Key: UI_Mat2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94389068337152
+    m_Key: UI_Mat1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47164065812480
+    m_Key: UI_MainEntrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127384798072832
+    m_Key: UI_Lv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61386841624576
+    m_Key: UI_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158005490585600
+    m_Key: UI_InProgress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65148163428352
+    m_Key: UI_Infomation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108692513198080
+    m_Key: UI_IncTreasureChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80535781347328
+    m_Key: UI_IncPopulation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109514533867520
+    m_Key: UI_IncFame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143497896366080
+    m_Key: UI_IncChestSpawnPer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111353224466432
+    m_Key: UI_GiveUp
+    m_Metadata:
+      m_Items: []
   - m_Id: 369289826304
     m_Key: UI_GameStart
     m_Metadata:
@@ -23,380 +491,168 @@ MonoBehaviour:
     m_Key: UI_GameQuit
     m_Metadata:
       m_Items: []
-  - m_Id: 1383086657536
-    m_Key: UI_ChallengeMine
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4548246867968
-    m_Key: UI_Status
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35801675304960
-    m_Key: UI_Upgrade
+  - m_Id: 120889528258560
+    m_Key: UI_Floor
     m_Metadata:
       m_Items: []
   - m_Id: 36068579840000
     m_Key: UI_Fame
     m_Metadata:
       m_Items: []
-  - m_Id: 36438794276864
-    m_Key: UI_AutoMining
+  - m_Id: 144456215138304
+    m_Key: UI_ExtraOre8
     m_Metadata:
       m_Items: []
-  - m_Id: 36857754914816
-    m_Key: UI_Bless
+  - m_Id: 144449105793024
+    m_Key: UI_ExtraOre7
     m_Metadata:
       m_Items: []
-  - m_Id: 37076974407680
-    m_Key: UI_Proficiency
+  - m_Id: 144441929338880
+    m_Key: UI_ExtraOre6
     m_Metadata:
       m_Items: []
-  - m_Id: 37575178031104
-    m_Key: UI_Alchemy
+  - m_Id: 144436661293056
+    m_Key: UI_ExtraOre5
     m_Metadata:
       m_Items: []
-  - m_Id: 37804371578880
-    m_Key: UI_MushroomDic
+  - m_Id: 144432127250432
+    m_Key: UI_ExtraOre4
     m_Metadata:
       m_Items: []
-  - m_Id: 38622961307648
-    m_Key: UI_Transcend
+  - m_Id: 144426691432448
+    m_Key: UI_ExtraOre3
     m_Metadata:
       m_Items: []
-  - m_Id: 47164065812480
-    m_Key: UI_MainEntrance
+  - m_Id: 144410920849408
+    m_Key: UI_ExtraOre2
     m_Metadata:
       m_Items: []
-  - m_Id: 49049262854144
-    m_Key: UI_MineStage1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50101139771392
-    m_Key: UI_MineStage2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50507072901120
-    m_Key: UI_MineStage3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50638962790400
-    m_Key: UI_MineStage4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50655962304512
-    m_Key: UI_MineStage5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50671909048320
-    m_Key: UI_MineStage6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50683275612160
-    m_Key: UI_MineStage7
-    m_Metadata:
-      m_Items: []
-  - m_Id: 51149233426432
-    m_Key: UI_MineStage8
-    m_Metadata:
-      m_Items: []
-  - m_Id: 60649466204160
-    m_Key: UI_Settings
-    m_Metadata:
-      m_Items: []
-  - m_Id: 60864491393024
-    m_Key: UI_Bgm
-    m_Metadata:
-      m_Items: []
-  - m_Id: 61082653921280
-    m_Key: UI_SFX
-    m_Metadata:
-      m_Items: []
-  - m_Id: 61386841624576
-    m_Key: UI_Language
-    m_Metadata:
-      m_Items: []
-  - m_Id: 64796412317696
-    m_Key: UI_RandomGacha
-    m_Metadata:
-      m_Items: []
-  - m_Id: 65148163428352
-    m_Key: UI_Infomation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 65482738864128
-    m_Key: UI_CharaAbilityTable
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73796956688384
-    m_Key: UI_Start
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73966788251648
-    m_Key: UI_Retry
-    m_Metadata:
-      m_Items: []
-  - m_Id: 74824011714560
-    m_Key: UI_ChallengeMineMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 75252136906752
-    m_Key: UI_BestFloor
-    m_Metadata:
-      m_Items: []
-  - m_Id: 75934789242880
-    m_Key: UI_Entrance
-    m_Metadata:
-      m_Items: []
-  - m_Id: 76231544639488
-    m_Key: UI_Reset
-    m_Metadata:
-      m_Items: []
-  - m_Id: 77592516595712
-    m_Key: UI_Attack
-    m_Metadata:
-      m_Items: []
-  - m_Id: 78012794245120
-    m_Key: UI_MiningTime
-    m_Metadata:
-      m_Items: []
-  - m_Id: 78404097642496
-    m_Key: UI_AttackSpeed
-    m_Metadata:
-      m_Items: []
-  - m_Id: 78546401988608
-    m_Key: UI_BagStorage
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80228238200832
-    m_Key: UI_NextStageSkip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80535781347328
-    m_Key: UI_IncPopulation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 81738267332608
-    m_Key: UI_MoveSpeed
+  - m_Id: 144357741268992
+    m_Key: UI_ExtraOre1
     m_Metadata:
       m_Items: []
   - m_Id: 81923852701696
     m_Key: UI_ExtraCristal
     m_Metadata:
       m_Items: []
-  - m_Id: 82590994501632
-    m_Key: UI_MiningOre
-    m_Metadata:
-      m_Items: []
-  - m_Id: 83338759213056
-    m_Key: UI_StageClear
-    m_Metadata:
-      m_Items: []
-  - m_Id: 83672537731072
-    m_Key: UI_ChallengeClear
-    m_Metadata:
-      m_Items: []
-  - m_Id: 84093947842560
-    m_Key: UI_MiningTreasureChest
-    m_Metadata:
-      m_Items: []
-  - m_Id: 84522521825280
-    m_Key: UI_AllAutoMineStorage
-    m_Metadata:
-      m_Items: []
-  - m_Id: 84982741831680
-    m_Key: UI_NextLvInfo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85887511924736
-    m_Key: UI_UpgradeMaxStorage
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89132737204224
-    m_Key: UI_MiningOre1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89599768760320
-    m_Key: UI_MiningOre2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89620400541696
-    m_Key: UI_MiningOre3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89626239012864
-    m_Key: UI_MiningOre4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89636942876672
-    m_Key: UI_MiningOre5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89644559732736
-    m_Key: UI_MiningOre6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89652482772992
-    m_Key: UI_MiningOre7
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89960671842304
-    m_Key: UI_MiningOre8
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90468585279488
-    m_Key: UI_OpenOreChest
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90848169791488
-    m_Key: UI_OpenTreasureChest
-    m_Metadata:
-      m_Items: []
-  - m_Id: 91212319264768
-    m_Key: UI_Material
-    m_Metadata:
-      m_Items: []
-  - m_Id: 91599310917632
-    m_Key: UI_Consumable
-    m_Metadata:
-      m_Items: []
   - m_Id: 91910528274432
     m_Key: UI_Exchange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75934789242880
+    m_Key: UI_Entrance
     m_Metadata:
       m_Items: []
   - m_Id: 92156775862272
     m_Key: UI_Decoration
     m_Metadata:
       m_Items: []
-  - m_Id: 94389068337152
-    m_Key: UI_Mat1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99172407808000
-    m_Key: UI_Mat2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99214136938496
-    m_Key: UI_Mat3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99229504868352
-    m_Key: UI_Mat4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99234303152128
-    m_Key: UI_Mat5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99264938348544
-    m_Key: UI_Mat6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99272941080576
-    m_Key: UI_Mat7
-    m_Metadata:
-      m_Items: []
-  - m_Id: 99280218198016
-    m_Key: UI_Mat8
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100233822572544
-    m_Key: UI_OreTicket
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100312759373824
-    m_Key: UI_RedTicket
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100328991330304
-    m_Key: UI_OreChest
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100335437975552
-    m_Key: UI_TreasureChest
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100340106235904
-    m_Key: UI_MushBox1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100382774890496
-    m_Key: UI_MushBox2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100390937006080
-    m_Key: UI_MushBox3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101030576754688
-    m_Key: UI_Deco1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101066651963392
-    m_Key: UI_Deco2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101082711953408
-    m_Key: UI_Deco3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101091142504448
-    m_Key: UI_Deco4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101101456297984
-    m_Key: UI_Deco5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101106518822912
-    m_Key: UI_Deco6
+  - m_Id: 101130455715840
+    m_Key: UI_Deco8
     m_Metadata:
       m_Items: []
   - m_Id: 101112139190272
     m_Key: UI_Deco7
     m_Metadata:
       m_Items: []
-  - m_Id: 101130455715840
-    m_Key: UI_Deco8
+  - m_Id: 101106518822912
+    m_Key: UI_Deco6
     m_Metadata:
       m_Items: []
-  - m_Id: 102345189068800
-    m_Key: UI_Ore1
+  - m_Id: 101101456297984
+    m_Key: UI_Deco5
     m_Metadata:
       m_Items: []
-  - m_Id: 102387618648064
-    m_Key: UI_Ore2
+  - m_Id: 101091142504448
+    m_Key: UI_Deco4
     m_Metadata:
       m_Items: []
-  - m_Id: 102395067731968
-    m_Key: UI_Ore3
+  - m_Id: 101082711953408
+    m_Key: UI_Deco3
     m_Metadata:
       m_Items: []
-  - m_Id: 102399903764480
-    m_Key: UI_Ore4
+  - m_Id: 101066651963392
+    m_Key: UI_Deco2
     m_Metadata:
       m_Items: []
-  - m_Id: 102404592996352
-    m_Key: UI_Ore5
+  - m_Id: 101030576754688
+    m_Key: UI_Deco1
     m_Metadata:
       m_Items: []
-  - m_Id: 102409143816192
-    m_Key: UI_Ore6
+  - m_Id: 107335043485696
+    m_Key: UI_DecAlchemyMaterialPer
     m_Metadata:
       m_Items: []
-  - m_Id: 102416051834880
-    m_Key: UI_Ore7
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102423278620672
-    m_Key: UI_Ore8
+  - m_Id: 126383210860544
+    m_Key: UI_Cristal
     m_Metadata:
       m_Items: []
   - m_Id: 103360709758976
     m_Key: UI_Create
     m_Metadata:
       m_Items: []
-  - m_Id: 104202036809728
-    m_Key: UI_AcquireAbility
+  - m_Id: 111038785884160
+    m_Key: UI_Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91599310917632
+    m_Key: UI_Consumable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200101597515776
+    m_Key: UI_CongraturationMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 186349611356160
+    m_Key: UI_Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157977862705152
+    m_Key: UI_Complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122033319153664
+    m_Key: UI_Cnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65482738864128
+    m_Key: UI_CharaAbilityTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74824011714560
+    m_Key: UI_ChallengeMineMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383086657536
+    m_Key: UI_ChallengeMine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83672537731072
+    m_Key: UI_ChallengeClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196338405052416
+    m_Key: UI_BlessResetCompleteMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36857754914816
+    m_Key: UI_Bless
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60864491393024
+    m_Key: UI_Bgm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118914371784704
+    m_Key: UI_BestRecord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75252136906752
+    m_Key: UI_BestFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78546401988608
+    m_Key: UI_BagStorage
     m_Metadata:
       m_Items: []
   - m_Id: 105730357301248
@@ -407,6 +663,10 @@ MonoBehaviour:
     m_Key: UI_AutoOreBagStorage
     m_Metadata:
       m_Items: []
+  - m_Id: 36438794276864
+    m_Key: UI_AutoMining
+    m_Metadata:
+      m_Items: []
   - m_Id: 106620350861312
     m_Key: UI_AutoCristalPer
     m_Metadata:
@@ -415,324 +675,160 @@ MonoBehaviour:
     m_Key: UI_AutoCristalBagStorage
     m_Metadata:
       m_Items: []
-  - m_Id: 107335043485696
-    m_Key: UI_DecAlchemyMaterialPer
+  - m_Id: 78404097642496
+    m_Key: UI_AttackSpeed
     m_Metadata:
       m_Items: []
-  - m_Id: 108369010724864
-    m_Key: UI_StartingFloor
+  - m_Id: 77592516595712
+    m_Key: UI_Attack
     m_Metadata:
       m_Items: []
-  - m_Id: 108692513198080
-    m_Key: UI_IncTreasureChest
-    m_Metadata:
-      m_Items: []
-  - m_Id: 109514533867520
-    m_Key: UI_IncFame
-    m_Metadata:
-      m_Items: []
-  - m_Id: 110246918066176
-    m_Key: UI_Reward
-    m_Metadata:
-      m_Items: []
-  - m_Id: 110510588792832
-    m_Key: UI_TapScreen
-    m_Metadata:
-      m_Items: []
-  - m_Id: 111038785884160
-    m_Key: UI_Continue
-    m_Metadata:
-      m_Items: []
-  - m_Id: 111353224466432
-    m_Key: UI_GiveUp
-    m_Metadata:
-      m_Items: []
-  - m_Id: 118914371784704
-    m_Key: UI_BestRecord
-    m_Metadata:
-      m_Items: []
-  - m_Id: 120889528258560
-    m_Key: UI_Floor
-    m_Metadata:
-      m_Items: []
-  - m_Id: 122033319153664
-    m_Key: UI_Cnt
-    m_Metadata:
-      m_Items: []
-  - m_Id: 122455240970240
-    m_Key: UI_Summon
-    m_Metadata:
-      m_Items: []
-  - m_Id: 123513111547904
-    m_Key: UI_RandomGradeTableName
-    m_Metadata:
-      m_Items: []
-  - m_Id: 126383210860544
-    m_Key: UI_Cristal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 127384798072832
-    m_Key: UI_Lv
-    m_Metadata:
-      m_Items: []
-  - m_Id: 129950005039104
-    m_Key: Chara_Common1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130209364021248
-    m_Key: Chara_Common2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130247372804096
-    m_Key: Chara_Common3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130290813210624
-    m_Key: Chara_Common4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130339555217408
-    m_Key: Chara_Uncommon1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130409205829632
-    m_Key: Chara_Uncommon2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130454869217280
-    m_Key: Chara_Uncommon3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130461252947968
-    m_Key: Chara_Uncommon4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130511253245952
-    m_Key: Chara_Rare1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130597270032384
-    m_Key: Chara_Rare2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130623954194432
-    m_Key: Chara_Rare3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130634536423424
-    m_Key: Chara_Unique1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130654492921856
-    m_Key: Chara_Unique2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130660998287360
-    m_Key: Chara_Unique3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130670011846656
-    m_Key: Chara_Legend1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130692073885696
-    m_Key: Chara_Legend2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130696733757440
-    m_Key: Chara_Myth1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 135358769762304
-    m_Key: UI_NextFameLvGradeTable
-    m_Metadata:
-      m_Items: []
-  - m_Id: 136462815432704
-    m_Key: UI_PickCharaMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 143497896366080
-    m_Key: UI_IncChestSpawnPer
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144357741268992
-    m_Key: UI_ExtraOre1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144410920849408
-    m_Key: UI_ExtraOre2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144426691432448
-    m_Key: UI_ExtraOre3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144432127250432
-    m_Key: UI_ExtraOre4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144436661293056
-    m_Key: UI_ExtraOre5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144441929338880
-    m_Key: UI_ExtraOre6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144449105793024
-    m_Key: UI_ExtraOre7
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144456215138304
-    m_Key: UI_ExtraOre8
-    m_Metadata:
-      m_Items: []
-  - m_Id: 149492588580864
-    m_Key: UI_MiningPerMin
-    m_Metadata:
-      m_Items: []
-  - m_Id: 153382050566144
-    m_Key: UI_UnlockOre1BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154890334867456
-    m_Key: UI_UnlockOre2BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154917040001024
-    m_Key: UI_UnlockOre3BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154926779174912
-    m_Key: UI_UnlockOre4BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154936761618432
-    m_Key: UI_UnlockOre5BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154946697924608
-    m_Key: UI_UnlockOre6BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154982957682688
-    m_Key: UI_UnlockOre7BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154999860727808
-    m_Key: UI_UnlockOre8BlessMsg
-    m_Metadata:
-      m_Items: []
-  - m_Id: 157257415495680
-    m_Key: UI_All
-    m_Metadata:
-      m_Items: []
-  - m_Id: 157977862705152
-    m_Key: UI_Complete
-    m_Metadata:
-      m_Items: []
-  - m_Id: 158005490585600
-    m_Key: UI_InProgress
-    m_Metadata:
-      m_Items: []
-  - m_Id: 159701683900416
-    m_Key: UI_NeedItems
+  - m_Id: 194073153736704
+    m_Key: UI_AskResetDataMsg
     m_Metadata:
       m_Items: []
   - m_Id: 160136318652416
     m_Key: UI_Ammount
     m_Metadata:
       m_Items: []
-  - m_Id: 160799995957248
-    m_Key: UI_Owned
+  - m_Id: 84522521825280
+    m_Key: UI_AllAutoMineStorage
     m_Metadata:
       m_Items: []
-  - m_Id: 164851215470592
-    m_Key: UI_Upgrad
+  - m_Id: 157257415495680
+    m_Key: UI_All
     m_Metadata:
       m_Items: []
-  - m_Id: 175693105434624
-    m_Key: UI_Mush1
+  - m_Id: 37575178031104
+    m_Key: UI_Alchemy
     m_Metadata:
       m_Items: []
-  - m_Id: 175756452007936
-    m_Key: UI_Mush2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 175764144361472
-    m_Key: UI_Mush3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 175768418357248
-    m_Key: UI_Mush4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 175772860125184
-    m_Key: UI_Mush5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 175777549357056
-    m_Key: UI_Mush6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 175784058916864
-    m_Key: UI_Mush7
-    m_Metadata:
-      m_Items: []
-  - m_Id: 175791449280512
-    m_Key: UI_Mush8
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180643826995200
-    m_Key: Detail_Ore
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180658939072512
-    m_Key: Detail_Cristal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180672377622528
-    m_Key: Detail_Mat
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180683949707264
-    m_Key: Detail_Mush
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180694028619776
-    m_Key: Detail_OreTicket
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180706301153280
-    m_Key: Detail_RedTicket
-    m_Metadata:
-      m_Items: []
-  - m_Id: 180718615629824
-    m_Key: Detail_OreChest
+  - m_Id: 104202036809728
+    m_Key: UI_AcquireAbility
     m_Metadata:
       m_Items: []
   - m_Id: 180728983949312
     m_Key: Detail_TreasureChest
     m_Metadata:
       m_Items: []
-  - m_Id: 180738756677632
-    m_Key: Detail_MushBox1
+  - m_Id: 180706301153280
+    m_Key: Detail_RedTicket
     m_Metadata:
       m_Items: []
-  - m_Id: 180749489901568
-    m_Key: Detail_MushBox2
+  - m_Id: 180694028619776
+    m_Key: Detail_OreTicket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180718615629824
+    m_Key: Detail_OreChest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180643826995200
+    m_Key: Detail_Ore
     m_Metadata:
       m_Items: []
   - m_Id: 180759728197632
     m_Key: Detail_MushBox3
     m_Metadata:
       m_Items: []
-  - m_Id: 186323011080192
-    m_Key: UI_OpenAll
+  - m_Id: 180749489901568
+    m_Key: Detail_MushBox2
     m_Metadata:
       m_Items: []
-  - m_Id: 186349611356160
-    m_Key: UI_Confirm
+  - m_Id: 180738756677632
+    m_Key: Detail_MushBox1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180683949707264
+    m_Key: Detail_Mush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180672377622528
+    m_Key: Detail_Mat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180658939072512
+    m_Key: Detail_Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130660998287360
+    m_Key: Chara_Unique3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130654492921856
+    m_Key: Chara_Unique2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130634536423424
+    m_Key: Chara_Unique1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130461252947968
+    m_Key: Chara_Uncommon4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130454869217280
+    m_Key: Chara_Uncommon3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130409205829632
+    m_Key: Chara_Uncommon2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130339555217408
+    m_Key: Chara_Uncommon1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130623954194432
+    m_Key: Chara_Rare3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130597270032384
+    m_Key: Chara_Rare2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130511253245952
+    m_Key: Chara_Rare1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130696733757440
+    m_Key: Chara_Myth1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130692073885696
+    m_Key: Chara_Legend2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130670011846656
+    m_Key: Chara_Legend1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130290813210624
+    m_Key: Chara_Common4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130247372804096
+    m_Key: Chara_Common3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130209364021248
+    m_Key: Chara_Common2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129950005039104
+    m_Key: Chara_Common1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204210631315456
+    m_Key: UI_UnlockMushroomDicTitleMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 204240272461824
+    m_Key: UI_UnlockMushroomDicContentMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 205296167522304
+    m_Key: UI_DecoCompleteMsg
     m_Metadata:
       m_Items: []
   m_Metadata:

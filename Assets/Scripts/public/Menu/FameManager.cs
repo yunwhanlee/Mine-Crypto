@@ -95,7 +95,7 @@ public class FameManager : MonoBehaviour
 
         if(mission.Exp < mission.MaxExp)
         {
-            GM._.ui.ShowWarningMsgPopUp("미션을 아직 수행중입니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.MissionStillMsg));
             return;
         }
 

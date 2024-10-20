@@ -108,14 +108,14 @@ public class UpgradeManager : MonoBehaviour
     {
         if(upgDt.IsMaxLv)
         {
-            GM._.ui.ShowWarningMsgPopUp("최대레벨입니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.MaxLvMsg));
             return;
         }
 
         if(DM._.DB.statusDB.RscArr[(int)upgDt.NeedRsc] >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.UpgradeSFX);
-            GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.UpgradeCompleteMsg));
             DM._.DB.statusDB.SetRscArr((int)upgDt.NeedRsc, -upgDt.Price);
             GM._.fm.missionArr[(int)Enum.MISSION.UPGRADE_CNT].Exp++;
             upgDt.Lv++;
@@ -123,7 +123,7 @@ public class UpgradeManager : MonoBehaviour
             UpdateDataAndUI();
         }
         else
-            GM._.ui.ShowWarningMsgPopUp("해당 재화가 부족합니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
     }
 
     /// <summary>

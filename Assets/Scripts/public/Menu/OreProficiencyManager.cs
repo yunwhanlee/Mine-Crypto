@@ -58,7 +58,7 @@ public class OreProficiencyManager : MonoBehaviour
 
         if(!proficiency.IsAccept)
         {   
-            GM._.ui.ShowWarningMsgPopUp("아직 경험치가 부족합니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughExpMsg));
             return;
         }
 

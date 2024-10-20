@@ -68,7 +68,7 @@ public class MushroomManager : MonoBehaviour
     /// 잠금 아이콘 버튼
     /// </summary>
     public void OnClickLockFrameBtn()
-        => GM._.ui.ShowWarningMsgPopUp("<버섯도감> 개방조건 : 의문의 버섯상자 제작");
+        => GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.UnlockMushroomDicMsg));
 
     public void OnClickMushroomBtn(int idx)
     {
@@ -119,14 +119,14 @@ public class MushroomManager : MonoBehaviour
         if(DM._.DB.statusDB.MsrArr[(int)upgDt.NeedMush] >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.UpgradeMushSFX);
-            GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.UpgradeCompleteMsg));
             DM._.DB.statusDB.SetMsrArr((int)upgDt.NeedMush, -upgDt.Price);
             upgDt.Lv++;
 
             UpdateDataAndUI();
         }
         else
-            GM._.ui.ShowWarningMsgPopUp("해당 버섯이 부족합니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
     }
 
     private void UpdateData()

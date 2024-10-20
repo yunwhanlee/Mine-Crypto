@@ -27,6 +27,9 @@ public class LM : MonoBehaviour
         Upgrade = "UI_Upgrade",
         OpenAll = "UI_OpenAll",
         Confirm = "UI_Confirm",
+        Yes = "UI_Yes",
+        No = "UI_No",
+        UpgradeMaxStorage = "UI_UpgradeMaxStorage",
 
         Ore1 = "UI_Ore1",
         Ore2 = "UI_Ore2",
@@ -103,6 +106,33 @@ public class LM : MonoBehaviour
         IncFame = "UI_IncFame",
 
         PickCharaMsg = "UI_PickCharaMsg",
+        NotEnoughItemMsg = "UI_NotEnoughItemMsg",
+        NoOreYetMsg = "UI_NoOreYetMsg",
+        MissionStillMsg = "UI_MissionStillMsg",
+        NotEnoughExpMsg = "UI_NotEnoughExpMsg",
+        UnlockTranscendMsg = "UI_UnlockTranscendMsg",
+        MaxLvMsg = "UI_MaxLvMsg",
+        UnlockMushroomDicMsg = "UI_UnlockMushroomDicMsg",
+        AskResetDataMsg = "UI_AskResetDataMsg",
+
+        UnlockOreMineMsg = "UI_UnlockOreMineMsg",
+        NextStageSkipMsg = "UI_NextStageSkipMsg",
+        ReceiptCompletedMsg = "UI_ReceiptCompletedMsg",
+        UpgradeCompleteMsg = "UI_UpgradeCompleteMsg",
+        BlessResetCompleteMsg = "UI_BlessResetCompleteMsg",
+        ProficiencyLvUpMsg = "UI_ProficiencyLvUpMsg",
+
+        Congraturation = "UI_CongraturationMsg",
+        UnlockBlessTitleMsg = "UI_UnlockBlessTitleMsg",
+        UnlockBlessContentMsg = "UI_UnlockBlessContentMsg",
+
+        UnlockTranscendTitleMsg = "UI_UnlockTranscendTitleMsg",
+        UnlockTranscendContentMsg = "UI_UnlockTranscendContentMsg",
+
+        UnlockMushroomDicTitleMsg = "UI_UnlockMushroomDicTitleMsg",
+        UnlockMushroomDicContentMsg = "UI_UnlockMushroomDicContentMsg",
+
+        DecoCompleteMsg = "UI_DecoCompleteMsg",
 
         NONE = "";
 

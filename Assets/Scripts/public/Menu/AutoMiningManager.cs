@@ -73,12 +73,13 @@ public class AutoMiningManager : MonoBehaviour
 
         if(am.CurStorage <= 0)
         {
-            GM._.ui.ShowWarningMsgPopUp("현재 모인 광석이 없습니다.");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NoOreYetMsg));
             return;
         }
 
         SoundManager._.PlaySfx(SoundManager.SFX.AutoMiningTakeSFX);
-        GM._.ui.ShowNoticeMsgPopUp("수령 완료!");
+        GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.ReceiptCompletedMsg));
+
 
         //* 보상 획득
         GM._.rwm.ShowReward (
@@ -106,7 +107,7 @@ public class AutoMiningManager : MonoBehaviour
 
             if(sttDB.RscArr[idx] < am.upgradePrice)
             {
-                GM._.ui.ShowWarningMsgPopUp("재화가 부족합니다.");
+                GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
                 return;
             }
         }
@@ -114,14 +115,14 @@ public class AutoMiningManager : MonoBehaviour
         {
             if(sttDB.RscArr[idx] < am.upgradePrice)
             {
-                GM._.ui.ShowWarningMsgPopUp("재화가 부족합니다.");
+                GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
                 return;
             }
         }
 
         SoundManager._.PlaySfx(SoundManager.SFX.UpgradeSFX);
 
-        GM._.ui.ShowNoticeMsgPopUp("최대보관량 업그레이드 성공!");
+        GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.UpgradeMaxStorage) + "!");
 
         // 재화 감소
         sttDB.SetRscArr(idx, -am.upgradePrice);

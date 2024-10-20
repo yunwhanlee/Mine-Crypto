@@ -239,7 +239,7 @@ public class AlchemyManager : MonoBehaviour
 
                 // 장식품 제작완료 잠금해제 팝업 표시
                 SoundManager._.PlaySfx(SoundManager.SFX.UnlockDecoSFX);
-                GM._.ui.ShowUnlockContentPopUp(spr, name, "장식품 제작 완료!");
+                GM._.ui.ShowUnlockContentPopUp(spr, name, LM._.Localize(LM.DecoCompleteMsg));
 
                 // 2번째 장식품인경우, 이전팝업 닫을시 초월시스템 개방팝업 액션이벤트
                 GM._.ui.OnClickUnlockPopUpDimScreen = () => {
@@ -248,8 +248,8 @@ public class AlchemyManager : MonoBehaviour
                         GM._.tsm.Unlock();
                         GM._.ui.ShowUnlockContentPopUp(
                             GM._.transcendIconSpr,
-                            "초월시스템 개방!",
-                            "축하합니다! 초월시스템으로 다양한 업그레이드를 할 수 있습니다."
+                            LM._.Localize(LM.UnlockTranscendTitleMsg),
+                            LM._.Localize(LM.UnlockTranscendContentMsg)
                         );
                     }
                 };
@@ -260,7 +260,7 @@ public class AlchemyManager : MonoBehaviour
         }
         else
         {
-            GM._.ui.ShowWarningMsgPopUp("제작에 필요한 재료가 부족합니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
         }
     }
 #endregion
@@ -362,8 +362,8 @@ public class AlchemyManager : MonoBehaviour
             mushDB.isUnlock = true;
             GM._.ui.ShowUnlockContentPopUp (
                 GM._.mushroomIconSpr,
-                $"버섯도감 개방",
-                $"축하합니다! 버섯도감으로 다양한 업그레이드를 할수 있습니다."
+                LM._.Localize(LM.UnlockMushroomDicTitleMsg),
+                LM._.Localize(LM.UnlockMushroomDicContentMsg)
             );
         }
     }

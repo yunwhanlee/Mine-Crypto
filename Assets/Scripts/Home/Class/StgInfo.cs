@@ -85,7 +85,7 @@ public class StgInfo
                 lockedPanel.SetActive(false);
             }
             else
-                GM._.ui.ShowWarningMsgPopUp("광석이 부족합니다.");
+                GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
         });
     }
 

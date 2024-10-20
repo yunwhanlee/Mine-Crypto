@@ -62,7 +62,7 @@ public class TranscendManager : MonoBehaviour
     /// 잠금 아이콘 버튼
     /// </summary>
     public void OnClickLockFrameBtn()
-        => GM._.ui.ShowWarningMsgPopUp("<초월> 개방조건 : 장식품 눈내린나무 제작");
+        => GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.UnlockTranscendMsg));
     /// <summary>
     /// (강화) 자동 광석 수량
     /// </summary>
@@ -118,14 +118,14 @@ public class TranscendManager : MonoBehaviour
 
         if(upgDt.IsMaxLv)
         {
-            GM._.ui.ShowWarningMsgPopUp("최대레벨입니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.MaxLvMsg));
             return;
         }
 
         if(sttDB.GetInventoryItemVal(upgDt.NeedRsc) >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
-            GM._.ui.ShowNoticeMsgPopUp("업그레이드 성공!");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.UpgradeCompleteMsg));
 
             // 제작에 필요한 아이템 수량 감소
             sttDB.SetInventoryItemVal(upgDt.NeedRsc, -upgDt.Price);
@@ -136,7 +136,7 @@ public class TranscendManager : MonoBehaviour
             UpdateDataAndUI();
         }
         else
-            GM._.ui.ShowWarningMsgPopUp("해당 재화가 부족합니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
     }
 
     /// <summary>

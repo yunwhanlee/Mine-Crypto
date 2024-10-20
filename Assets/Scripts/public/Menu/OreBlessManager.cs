@@ -64,11 +64,12 @@ public class OreBlessManager : MonoBehaviour
 
             UpdateUI();
 
-            GM._.ui.ShowNoticeMsgPopUp($"제{oreBlessIdx + 1}광산 축복 능력 재설정 성공!");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.BlessResetCompleteMsg));
+
         }
         else
         {
-            GM._.ui.ShowWarningMsgPopUp($"재화가 부족합니다!");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
             return;
         }
     }
@@ -287,8 +288,8 @@ public class OreBlessManager : MonoBehaviour
 
                 GM._.ui.ShowUnlockContentPopUp(
                     GM._.oreBlessIconSpr,
-                    $"제{i + 1} 광산의축복 개방",
-                    $"축하합니다! 제{i + 1} 광산의 축복능력을 사용할 수 있습니다."
+                    $"{LM._.Localize($"UI_MineStage{i + 1}")} {LM._.Localize(LM.UnlockBlessTitleMsg)}",
+                    $"{LM._.Localize(LM.Congraturation)} {LM._.Localize($"UI_MineStage{i + 1}")} {LM._.Localize(LM.UnlockBlessContentMsg)}"
                 );
 
                 AlertRedDot.SetActive(true);

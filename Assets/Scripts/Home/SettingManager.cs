@@ -47,7 +47,7 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickResetBtn()
     {
-        GM._.ui.ShowConfirmPopUp("정말로 데이터를 리셋하겠습니까?");
+        GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.AskResetDataMsg));
         GM._.ui.OnClickConfirmBtnAction = () => {
             DM._.Reset();
             SceneManager.LoadScene("Game");
