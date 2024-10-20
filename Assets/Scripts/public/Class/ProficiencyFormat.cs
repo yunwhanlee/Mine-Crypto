@@ -109,7 +109,7 @@ public class ProficiencyFormat
         ExpTxt.text = $"{Exp} / {MaxExp}";
 
         // 수령버튼
-        acceptBtnTxt.text = IsAccept? "완료" : "진행중";
+        acceptBtnTxt.text = IsAccept? LM._.Localize(LM.Complete) : LM._.Localize(LM.InProgress);
         acceptBtnFrameImg.sprite = IsAccept? GM._.pfm.yellowBtnSpr : GM._.pfm.grayBtnSpr;
 
         // 업데이트 알림UI 🔴

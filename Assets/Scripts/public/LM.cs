@@ -12,6 +12,7 @@ public class LM : MonoBehaviour
     public const string
         BestRecord = "UI_BestRecord",
         Cnt = "UI_Cnt",
+        All = "UI_All",
         Summon = "UI_Summon",
         Fame = "UI_Fame",
         NextFameLvGradeTable = "UI_NextFameLvGradeTable",
@@ -19,6 +20,8 @@ public class LM : MonoBehaviour
         Floor = "UI_Floor",
         ChallengeMine = "UI_ChallengeMine",
         MiningPerMin = "UI_MiningPerMin",
+        Complete = "UI_Complete",
+        InProgress = "UI_InProgress",
 
         Ore1 = "UI_Ore1",
         Ore2 = "UI_Ore2",

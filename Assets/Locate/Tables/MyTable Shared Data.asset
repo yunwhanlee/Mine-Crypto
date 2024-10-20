@@ -623,6 +623,18 @@ MonoBehaviour:
     m_Key: UI_UnlockOre8BlessMsg
     m_Metadata:
       m_Items: []
+  - m_Id: 157257415495680
+    m_Key: UI_All
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157977862705152
+    m_Key: UI_Complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158005490585600
+    m_Key: UI_InProgress
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

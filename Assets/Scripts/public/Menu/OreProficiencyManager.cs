@@ -98,7 +98,7 @@ public class OreProficiencyManager : MonoBehaviour
     private void UpdateTotalAtkPerDataAndUI()
     {
         totalAttackPer = CalcTotalAttackPer();
-        totalAttackPerTxt.text = $"총 채굴 공격력 +{Mathf.RoundToInt(totalAttackPer * 100)}%";
+        totalAttackPerTxt.text = $"{LM._.Localize(LM.All)} {LM._.Localize(LM.Attack)} +{Mathf.RoundToInt(totalAttackPer * 100)}%";
     }
 
     /// <summary>
