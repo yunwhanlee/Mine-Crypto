@@ -120,7 +120,7 @@ public class StageManager : MonoBehaviour {
         if(randPer <= skipFloorPer)
         {
             Floor++; // 현재층 스킵
-            GM._.ui.ShowNoticeMsgPopUp($"2층 이동확률 발동! 다음층으로 바로 이동합니다. 랜덤%({randPer}) <= 스킵%({skipFloorPer})");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.NextStageSkipMsg));
         }
 
         yield return Util.TIME0_5;

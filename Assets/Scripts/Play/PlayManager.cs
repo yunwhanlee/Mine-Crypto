@@ -134,7 +134,7 @@ public class PlayManager : MonoBehaviour
         if(GM._.stgm.Floor > bestFloorArr[stageType])
         {
             bestFloorArr[stageType] = GM._.stgm.Floor;
-            GM._.rwm.newBestFloorMsgTxt.text = $"{GM._.stgm.Floor}층 최고기록 달성!"; // <제 {stageType+1}광산> 
+            GM._.rwm.newBestFloorMsgTxt.text = $"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)} {LM._.Localize(LM.BestRecord)}!"; // <제 {stageType+1}광산> 
             GM._.rwm.newBestFloorMsgTxt.gameObject.SetActive(true);
         }
 

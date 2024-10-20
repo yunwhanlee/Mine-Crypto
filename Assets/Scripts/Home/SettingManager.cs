@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Localization.Settings;
 
 public class SettingManager : MonoBehaviour
 {
@@ -25,6 +26,18 @@ public class SettingManager : MonoBehaviour
 
         bgmSlider.value = DM._.DB.bgmVolume;
         sfxSlider.value = DM._.DB.sfxVolume;
+
+        // 게임 맨처음 또는 리셋이라면 최초 언어설정
+        if(DM._.DB.languageIdx == -1)
+        {
+            languagePanel.SetActive(true);
+        }
+        // 저장된 언어 적용
+        else
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[DM._.DB.languageIdx];
+            languageSelectBtnImg.sprite = languageIconSprs[DM._.DB.languageIdx]; // 국가아이콘 최신화
+        }
     }
 
 #region EVENT

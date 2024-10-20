@@ -142,6 +142,14 @@ public class LM : MonoBehaviour
         _ = this;
     }
 
+    IEnumerator Start()
+    {
+        // 데이터가 먼저 로드될때까지 대기
+        yield return new WaitUntil(() => DM._.DB != null);
+
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[DM._.DB.languageIdx];
+    }
+
 #region FUNC
     /// <summary>
     /// 현재선택한 언어에 맞게 로컬라이징
@@ -176,6 +184,7 @@ public class LM : MonoBehaviour
 
         // 언어 변경
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIdx];
+        DM._.DB.languageIdx = languageIdx; // 언어설정 데이터 저장
 
         // 인벤토리 상세페이지 아이템 정보 언어변경
         GM._.idm.INV_ITEM_INFO = GM._.idm.SetInvItemDescriptionInfo();

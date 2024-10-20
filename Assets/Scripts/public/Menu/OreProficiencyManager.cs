@@ -64,7 +64,7 @@ public class OreProficiencyManager : MonoBehaviour
 
         SoundManager._.PlaySfx(SoundManager.SFX.ProficiencyFinishSFX);
 
-        GM._.ui.ShowNoticeMsgPopUp("숙련도 레벨 업!");
+        GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.ProficiencyLvUpMsg));
 
         // 미션 레벨 업
         proficiency.Lv++;

@@ -70,7 +70,7 @@ public class StgInfo
             {
                 SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
 
-                GM._.ui.ShowNoticeMsgPopUp("광산해금 완료!");
+                GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.UnlockOreMineMsg));
 
                 // 재료 수량 감소
                 sttDB.SetRscArr(previousOreId, -unlockPrice);
