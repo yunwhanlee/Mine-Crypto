@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5.AtkSpdPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 4
-  abtName: "\uACF5\uACA9\uC18D\uB3C4"
+  abtName: UI_AttackSpeed
   minArr:
   - 0.001
   - 0.021

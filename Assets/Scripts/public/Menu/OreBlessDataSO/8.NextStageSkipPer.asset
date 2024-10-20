@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 8.NextStageSkipPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 7
-  abtName: "\uB2E4\uC74C\uCE35 \uC2A4\uD0B5"
+  abtName: UI_NextStageSkip
   minArr:
   - 0.001
   - 0.006

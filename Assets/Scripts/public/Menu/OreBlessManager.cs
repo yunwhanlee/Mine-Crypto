@@ -126,7 +126,7 @@ public class OreBlessManager : MonoBehaviour
                         int idx = (int)ability.type;
 
                         intAbility = Int_Abilities[idx];
-                        unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
+                        unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "sec" : ""; // 단위표시
                     }
                     else 
                     {
@@ -145,7 +145,7 @@ public class OreBlessManager : MonoBehaviour
 
                     //* 능력치 UI텍스트 업데이트
                     oreBlessFormatArr[i].AbilityTxt.text += 
-                        $"<color={colorTag}>{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{displayValue}{unit}</color>\n";
+                        $"<color={colorTag}>{(isInt? LM._.Localize(intAbility.AbtName) : LM._.Localize(floatAbility.AbtName))} +{displayValue}{unit}</color>\n";
                 });
             }
         }
@@ -205,7 +205,7 @@ public class OreBlessManager : MonoBehaviour
                 intAbility = Int_Abilities[rdTypeIdx];
                 // Debug.Log($"Int_Abilities.Length= {Int_Abilities.Length}, rdTypeIdx= {rdTypeIdx}, intAbility.Type=" + intAbility.Type);
                 value = Random.Range(intAbility.MinArr[gradeIdx], intAbility.MaxArr[gradeIdx]);
-                unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "초" : ""; // 단위표시
+                unit = (intAbility.Type == OREBLESS_ABT.INC_TIMER)? "sec" : ""; // 단위표시
                 break;
             }
             case FLOAT_TYPE: {
@@ -238,7 +238,7 @@ public class OreBlessManager : MonoBehaviour
 
         //* 능력치 UI텍스트 업데이트
         oreBlessFormatArr[oreBlessIdx].AbilityTxt.text += 
-            $"<color={colorTag}>{(isInt? intAbility.AbtName : floatAbility.AbtName)} +{displayValue}{unit}</color>\n";
+            $"<color={colorTag}>{(isInt? LM._.Localize(intAbility.AbtName) : LM._.Localize(floatAbility.AbtName))} +{displayValue}{unit}</color>\n";
     }
 
     /// <summary>

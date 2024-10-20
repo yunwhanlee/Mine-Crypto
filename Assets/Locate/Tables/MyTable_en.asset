@@ -610,6 +610,54 @@ MonoBehaviour:
     m_Localized: per 1min
     m_Metadata:
       m_Items: []
+  - m_Id: 153382050566144
+    m_Localized: 'Reach 2floor
+
+      at Mine1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154890334867456
+    m_Localized: 'Reach 5floor
+
+      at Mine2'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154917040001024
+    m_Localized: 'Reach 10floor
+
+      at Mine3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154926779174912
+    m_Localized: 'Reach 20floor
+
+      at Mine4'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154936761618432
+    m_Localized: 'Reach 50floor
+
+      at Mine5'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154946697924608
+    m_Localized: 'Reach 100floor
+
+      at Mine6'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154982957682688
+    m_Localized: 'Reach 500floor
+
+      at Mine7'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154999860727808
+    m_Localized: 'Reach 1000floor
+
+      at Mine8'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

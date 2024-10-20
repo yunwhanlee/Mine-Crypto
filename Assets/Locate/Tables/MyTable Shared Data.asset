@@ -591,6 +591,38 @@ MonoBehaviour:
     m_Key: UI_MiningPerMin
     m_Metadata:
       m_Items: []
+  - m_Id: 153382050566144
+    m_Key: UI_UnlockOre1BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154890334867456
+    m_Key: UI_UnlockOre2BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154917040001024
+    m_Key: UI_UnlockOre3BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154926779174912
+    m_Key: UI_UnlockOre4BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154936761618432
+    m_Key: UI_UnlockOre5BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154946697924608
+    m_Key: UI_UnlockOre6BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154982957682688
+    m_Key: UI_UnlockOre7BlessMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 154999860727808
+    m_Key: UI_UnlockOre8BlessMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

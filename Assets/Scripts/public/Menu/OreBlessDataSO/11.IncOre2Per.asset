@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 11.IncOre2Per
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 10
-  abtName: "\uAD11\uC11D2 \uD68D\uB4DD\uB7C9"
+  abtName: UI_ExtraOre2
   minArr:
   - 0.01
   - 0.05

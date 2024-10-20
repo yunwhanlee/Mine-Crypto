@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4.AtkPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 3
-  abtName: "\uACF5\uACA9\uB825"
+  abtName: UI_Attack
   minArr:
   - 0.001
   - 0.021

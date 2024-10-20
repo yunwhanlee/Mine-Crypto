@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 6.MovSpdPer
   m_EditorClassIdentifier: Assembly-CSharp::OreBlessAbilityData_Float
   type: 5
-  abtName: "\uC774\uB3D9\uC18D\uB3C4"
+  abtName: UI_MoveSpeed
   minArr:
   - 0.001
   - 0.021
