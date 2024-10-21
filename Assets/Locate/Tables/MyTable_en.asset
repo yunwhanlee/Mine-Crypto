@@ -869,6 +869,10 @@ MonoBehaviour:
     m_Localized: Decoration Crafting Complete!
     m_Metadata:
       m_Items: []
+  - m_Id: 475274330476544
+    m_Localized: It is not available during Play.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

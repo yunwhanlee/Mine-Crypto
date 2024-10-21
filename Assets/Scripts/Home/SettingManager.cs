@@ -34,6 +34,13 @@ public class SettingManager : MonoBehaviour
 #region EVENT
     public void OnClickSelectLanguage()
     {
+        if(GM._.gameState != GameState.HOME)
+        {
+            // 플레이중에는 불가능합니다 메세지 표시
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotAvailableInPlayMsg));
+            return;
+        }
+
         languagePanel.SetActive(true);
     }
 
@@ -51,6 +58,13 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickResetBtn()
     {
+        if(GM._.gameState != GameState.HOME)
+        {
+            // 플레이중에는 불가능합니다 메세지 표시
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotAvailableInPlayMsg));
+            return;
+        }
+
         GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.AskResetDataMsg));
         GM._.ui.OnClickConfirmBtnAction = () => {
             DM._.Reset();

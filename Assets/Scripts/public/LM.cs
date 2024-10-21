@@ -133,6 +133,7 @@ public class LM : MonoBehaviour
         UnlockMushroomDicContentMsg = "UI_UnlockMushroomDicContentMsg",
 
         DecoCompleteMsg = "UI_DecoCompleteMsg",
+        NotAvailableInPlayMsg = "UI_NotAvailableInPlayMsg",
 
         NONE = "";
 
