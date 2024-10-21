@@ -142,12 +142,24 @@ public class LM : MonoBehaviour
         _ = this;
     }
 
-    IEnumerator Start()
-    {
-        // 데이터가 먼저 로드될때까지 대기
-        yield return new WaitUntil(() => DM._.DB != null);
+    void Start() {
+        GM._.idm.INV_ITEM_INFO = GM._.idm.SetInvItemDescriptionInfo();
 
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[DM._.DB.languageIdx];
+        // 게임 맨처음 실행 또는 리셋
+        if(DM._.DB.languageIdx == -1)
+        {
+            // 최초 언어설정
+            GM._.stm.languagePanel.SetActive(true);
+        }
+        else
+        {
+            // 언어 적용
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[DM._.DB.languageIdx];
+            // 국가아이콘 최신화
+            GM._.stm.SetConturyIcon(DM._.DB.languageIdx);
+            // 타이블 언어 최신화
+            GM._.stm.SetTitleLogo(DM._.DB.languageIdx);
+        }
     }
 
 #region FUNC
@@ -189,6 +201,10 @@ public class LM : MonoBehaviour
         // 인벤토리 상세페이지 아이템 정보 언어변경
         GM._.idm.INV_ITEM_INFO = GM._.idm.SetInvItemDescriptionInfo();
         GM._.ivm.InitDataAndUI();
+        // 국가아이콘 최신화
+        GM._.stm.SetConturyIcon(languageIdx);
+        // 타이블 언어 최신화
+        GM._.stm.SetTitleLogo(languageIdx);
 
         isChaning = false;
     }

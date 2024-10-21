@@ -19,6 +19,9 @@ public class SettingManager : MonoBehaviour
     public Sprite[] languageIconSprs;
     public Image languageSelectBtnImg;
 
+    public Sprite[] languageTitleSprs; // 홈 타이틀 국가별 이미지
+    public Image TitleImg;
+
     IEnumerator Start()
     {
         // 데이터가 먼저 로드될때까지 대기
@@ -26,18 +29,6 @@ public class SettingManager : MonoBehaviour
 
         bgmSlider.value = DM._.DB.bgmVolume;
         sfxSlider.value = DM._.DB.sfxVolume;
-
-        // 게임 맨처음 또는 리셋이라면 최초 언어설정
-        if(DM._.DB.languageIdx == -1)
-        {
-            languagePanel.SetActive(true);
-        }
-        // 저장된 언어 적용
-        else
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[DM._.DB.languageIdx];
-            languageSelectBtnImg.sprite = languageIconSprs[DM._.DB.languageIdx]; // 국가아이콘 최신화
-        }
     }
 
 #region EVENT
@@ -89,6 +80,22 @@ public class SettingManager : MonoBehaviour
     {
         windowObj.SetActive(true);
         DOTAnim.DORestart();
+    }
+
+    /// <summary>
+    /// 국가아이콘 최신화
+    /// </summary>
+    public void SetConturyIcon(int curLanguageIdx)
+    {
+        languageSelectBtnImg.sprite = languageIconSprs[curLanguageIdx];
+    }
+
+    /// <summary>
+    /// 타이블 언어 최신화
+    /// </summary>
+    public void SetTitleLogo(int curLanguageIdx)
+    {
+        TitleImg.sprite = languageTitleSprs[curLanguageIdx];
     }
 #endregion
 }

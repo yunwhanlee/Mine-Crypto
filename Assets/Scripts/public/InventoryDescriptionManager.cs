@@ -26,9 +26,8 @@ public class InventoryDescriptionManager : MonoBehaviour
 
     public InvItem_Info[] INV_ITEM_INFO;
 
-    void Awake() {
+    void Start() {
         sttDB = DM._.DB.statusDB;
-        INV_ITEM_INFO = SetInvItemDescriptionInfo();
     }
 
 #region EVENT
