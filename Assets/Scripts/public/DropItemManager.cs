@@ -35,7 +35,7 @@ public class DropItemManager : MonoBehaviour
         List<RWD> rwdList = new List<RWD>(); // 드랍보상 리스트
 
         // 드랍아이템 가챠
-        ItemGacha(rwdList, RWD.CRISTAL, 10000);
+        ItemGacha(rwdList, RWD.CRISTAL, 1000);
         ItemGacha(rwdList, RWD.MUSH1, 10000);
         ItemGacha(rwdList, RWD.MUSH2, 10000);
         ItemGacha(rwdList, RWD.MUSH3, 10000);
