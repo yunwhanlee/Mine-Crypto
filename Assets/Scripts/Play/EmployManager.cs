@@ -409,8 +409,8 @@ public class EmployManager : MonoBehaviour
         charaBg.sprite = cardGradeBgSprs[(int)charaDt.Grade];
         charaNameTxt.text = LM._.Localize(charaDt.Name);
         charaAbilityValTxt.text = $"{charaDt.AttackVal}"
-            + $"\n{charaDt.AttackSpeed}"
-            + $"\n{charaDt.MoveSpeed}"
+            + $"\n{Util.FloatToStr(charaDt.AttackSpeed)}"
+            + $"\n{Util.FloatToStr(charaDt.MoveSpeed)}"
             + $"\n{charaDt.BagStorageSize}";
     }
 #endregion
