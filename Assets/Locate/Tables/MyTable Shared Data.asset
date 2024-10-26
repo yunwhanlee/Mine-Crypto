@@ -188,35 +188,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 102423278620672
-    m_Key: UI_Ore8
+    m_Key: ORE8
     m_Metadata:
       m_Items: []
   - m_Id: 102416051834880
-    m_Key: UI_Ore7
+    m_Key: ORE7
     m_Metadata:
       m_Items: []
   - m_Id: 102409143816192
-    m_Key: UI_Ore6
+    m_Key: ORE6
     m_Metadata:
       m_Items: []
   - m_Id: 102404592996352
-    m_Key: UI_Ore5
+    m_Key: ORE5
     m_Metadata:
       m_Items: []
   - m_Id: 102399903764480
-    m_Key: UI_Ore4
+    m_Key: ORE4
     m_Metadata:
       m_Items: []
   - m_Id: 102395067731968
-    m_Key: UI_Ore3
+    m_Key: ORE3
     m_Metadata:
       m_Items: []
   - m_Id: 102387618648064
-    m_Key: UI_Ore2
+    m_Key: ORE2
     m_Metadata:
       m_Items: []
   - m_Id: 102345189068800
-    m_Key: UI_Ore1
+    m_Key: ORE1
     m_Metadata:
       m_Items: []
   - m_Id: 90848169791488
@@ -284,35 +284,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 175791449280512
-    m_Key: UI_Mush8
+    m_Key: MUSH8
     m_Metadata:
       m_Items: []
   - m_Id: 175784058916864
-    m_Key: UI_Mush7
+    m_Key: MUSH7
     m_Metadata:
       m_Items: []
   - m_Id: 175777549357056
-    m_Key: UI_Mush6
+    m_Key: MUSH6
     m_Metadata:
       m_Items: []
   - m_Id: 175772860125184
-    m_Key: UI_Mush5
+    m_Key: MUSH5
     m_Metadata:
       m_Items: []
   - m_Id: 175768418357248
-    m_Key: UI_Mush4
+    m_Key: MUSH4
     m_Metadata:
       m_Items: []
   - m_Id: 175764144361472
-    m_Key: UI_Mush3
+    m_Key: MUSH3
     m_Metadata:
       m_Items: []
   - m_Id: 175756452007936
-    m_Key: UI_Mush2
+    m_Key: MUSH2
     m_Metadata:
       m_Items: []
   - m_Id: 175693105434624
-    m_Key: UI_Mush1
+    m_Key: MUSH1
     m_Metadata:
       m_Items: []
   - m_Id: 81738267332608
@@ -412,35 +412,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99280218198016
-    m_Key: UI_Mat8
+    m_Key: MAT8
     m_Metadata:
       m_Items: []
   - m_Id: 99272941080576
-    m_Key: UI_Mat7
+    m_Key: MAT7
     m_Metadata:
       m_Items: []
   - m_Id: 99264938348544
-    m_Key: UI_Mat6
+    m_Key: MAT6
     m_Metadata:
       m_Items: []
   - m_Id: 99234303152128
-    m_Key: UI_Mat5
+    m_Key: MAT5
     m_Metadata:
       m_Items: []
   - m_Id: 99229504868352
-    m_Key: UI_Mat4
+    m_Key: MAT4
     m_Metadata:
       m_Items: []
   - m_Id: 99214136938496
-    m_Key: UI_Mat3
+    m_Key: MAT3
     m_Metadata:
       m_Items: []
   - m_Id: 99172407808000
-    m_Key: UI_Mat2
+    m_Key: MAT2
     m_Metadata:
       m_Items: []
   - m_Id: 94389068337152
-    m_Key: UI_Mat1
+    m_Key: MAT1
     m_Metadata:
       m_Items: []
   - m_Id: 47164065812480
@@ -584,7 +584,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 126383210860544
-    m_Key: UI_Cristal
+    m_Key: UI_CRISTAL
     m_Metadata:
       m_Items: []
   - m_Id: 103360709758976
@@ -833,6 +833,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 475274330476544
     m_Key: UI_NotAvailableInPlayMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2204531721211904
+    m_Key: UI_DropItemMsg
     m_Metadata:
       m_Items: []
   m_Metadata:

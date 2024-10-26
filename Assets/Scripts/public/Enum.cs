@@ -100,6 +100,7 @@ public static class Enum
     //! (에디터) 보상팝업 아이템 순서와 서로같게 하기
     /// </summary>
     public enum RWD {
+        NONE = -1,
         // 재화 종류
         ORE1, ORE2, ORE3, ORE4, ORE5, ORE6, ORE7, ORE8, CRISTAL,
         // 재료 아이템
