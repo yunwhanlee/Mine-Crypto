@@ -201,7 +201,7 @@ public class RewardUIManager : MonoBehaviour
     /// 수령할 보상 팝업 표시 및 수치 증가
     /// </summary>
     /// <param name="rwdDic">수령할 보상 Dic리스트</param>
-    public void ShowReward(Dictionary<RWD, int> rwdDic) {
+    public void ShowReward(Dictionary<RWD, int> rwdDic, bool isAutoMine = false) {
         // 보상슬롯 팝업 표시
         GM._.rwm.rewardUIPopUp.SetActive(true);
 
@@ -228,7 +228,7 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.ORE7:
                     case RWD.ORE8:
                     case RWD.CRISTAL:
-                        val = sttDB.SetRscArr((int)rwdType, val);
+                        val = sttDB.SetRscArr((int)rwdType, val, isAutoMine);
                         break;
                     // (연금술) 재료
                     case RWD.MAT1:

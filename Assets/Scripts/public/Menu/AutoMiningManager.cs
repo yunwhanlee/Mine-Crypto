@@ -83,7 +83,8 @@ public class AutoMiningManager : MonoBehaviour
 
         //* 보상 획득
         GM._.rwm.ShowReward (
-            new Dictionary<RWD, int> { {(RWD)idx, am.CurStorage} }
+            new Dictionary<RWD, int> { {(RWD)idx, am.CurStorage} },
+            isAutoMine: true
         );
         
         // 보관량 초기화
@@ -178,7 +179,7 @@ public class AutoMiningManager : MonoBehaviour
             // 자동채굴 획득량 계산
             int cnt = passedTime / WAIT_TIME; //(type == RSC.CRISTAL? HOUR : MINUTE);
 
-            // 자동채굴 결과수량
+            // 자동채굴 결과수량 //! 이미 수령할때 모두 적용된상태로 얻기때문에 현재 아래의 GetProductionVal가 있으면 중복이 되는 상태임.
             int resVal = autoMiningArr[i].CurStorage + cnt * GetProductionVal((RSC)i);
 
             // 최대수량보다 높다면 최대수량만큼으로 수정
