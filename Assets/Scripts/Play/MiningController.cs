@@ -39,7 +39,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         //* VALUE
         const float TARGET_Y_UNDER_MINUS = 0.5f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
-        const float REACH_TARGET_MIN_DIST = 0.375f;    // 타겟지점 도달판단 최소거리(집, 광석)
+        const float REACH_TARGET_MIN_DIST = 0.35f;    // 타겟지점 도달판단 최소거리(집, 광석)
 
         // 이름
         [field: SerializeField] public string Name {get; private set;}
@@ -213,8 +213,11 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // 타겟광석과의 거리
                 float distance = Move(underYTargetPos);
 
+                // 캐릭터의 이동 속도에 비례해 동적 거리 조건 생성
+                float dynamicReachDist = REACH_TARGET_MIN_DIST + (MoveSpeed * 0.05f); // 0.05f는 보정 비율
+
                 //* 타겟광석에 도착했을 경우
-                if(distance < REACH_TARGET_MIN_DIST)
+                if(distance < dynamicReachDist)
                 {
                     status = Status.MINING; // 채굴시작!
                 }
