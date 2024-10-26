@@ -27,6 +27,10 @@ public class DropItemManager : MonoBehaviour
     /// </summary>
     public void DropBonusItem()
     {
+        // 시련의광산모드의 경우 실행안함
+        if(GM._.stgm.IsChallengeMode)
+            return;
+
         StatusDB sttDB = DM._.DB.statusDB;
         List<RWD> rwdList = new List<RWD>(); // 드랍보상 리스트
 
@@ -48,7 +52,7 @@ public class DropItemManager : MonoBehaviour
         ItemGacha(rwdList, RWD.MAT6, 100000);
         ItemGacha(rwdList, RWD.MAT7, 1000000);
         ItemGacha(rwdList, RWD.MAT8, 10000000);
-
+        
         if(rwdList.Count == 0)
             return;
 

@@ -149,6 +149,7 @@ public class PlayManager : MonoBehaviour
                 {
                     GM._.pm.timerTxt.text = "FAIL!";
                 }
+                // 돌파성공시
                 else
                 {
                     GM._.pm.timerTxt.text = "CLEAR!";
