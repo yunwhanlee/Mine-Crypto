@@ -67,6 +67,10 @@ public class UIManager : MonoBehaviour
     /// TOP 재화표시창 끄기
     /// </summary>
     public void OnCloseTopRscGroup() {
+        //* (BUG) 인게임종료후, 다른메뉴팝업 닫을경우 재화그룹사라지는 문제대응
+        if(GM._.clm.windowObj.activeSelf)
+            return;
+
         topRscGroup.SetActive(false);
     }
     public void OnCloseTopMushGroup() {
