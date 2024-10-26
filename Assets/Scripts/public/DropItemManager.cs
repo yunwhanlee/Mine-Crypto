@@ -35,10 +35,10 @@ public class DropItemManager : MonoBehaviour
         List<RWD> rwdList = new List<RWD>(); // 드랍보상 리스트
 
         // 드랍아이템 가챠
-        ItemGacha(rwdList, RWD.CRISTAL, 1);
-        ItemGacha(rwdList, RWD.MUSH1, 1);
+        ItemGacha(rwdList, RWD.CRISTAL, 10000);
+        ItemGacha(rwdList, RWD.MUSH1, 10000);
         ItemGacha(rwdList, RWD.MUSH2, 10000);
-        ItemGacha(rwdList, RWD.MUSH3, 1);
+        ItemGacha(rwdList, RWD.MUSH3, 10000);
         ItemGacha(rwdList, RWD.MUSH4, 10000);
         ItemGacha(rwdList, RWD.MUSH5, 10000);
         ItemGacha(rwdList, RWD.MUSH6, 10000);
@@ -46,7 +46,7 @@ public class DropItemManager : MonoBehaviour
         ItemGacha(rwdList, RWD.MUSH8, 10000000);
         ItemGacha(rwdList, RWD.MAT1, 1000);
         ItemGacha(rwdList, RWD.MAT2, 1000);
-        ItemGacha(rwdList, RWD.MAT3, 1);
+        ItemGacha(rwdList, RWD.MAT3, 1000);
         ItemGacha(rwdList, RWD.MAT4, 1000);
         ItemGacha(rwdList, RWD.MAT5, 10000);
         ItemGacha(rwdList, RWD.MAT6, 100000);
