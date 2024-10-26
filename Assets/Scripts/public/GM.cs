@@ -40,6 +40,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public StageManager stgm;
     [field:HideInInspector] public EmployManager epm;
     [field:HideInInspector] public UpgradeManager ugm;
+    [field:HideInInspector] public DropItemManager dim;
 
     [field:Header("컨텐츠개방팝업 이미지")]
     [field:SerializeField] public Sprite oreBlessIconSpr;    // 광산축복 아이콘
@@ -87,6 +88,7 @@ public class GM : MonoBehaviour
         mnm = GameObject.Find("MineManager").GetComponent<MineManager>();
         stgm = GameObject.Find("StageManager").GetComponent<StageManager>();
         epm = GameObject.Find("EmployManager").GetComponent<EmployManager>();
+        dim = GameObject.Find("DropItemManager").GetComponent<DropItemManager>();
     }
 
     

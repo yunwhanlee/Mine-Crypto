@@ -40,6 +40,7 @@ public class SoundManager : MonoBehaviour
         Metal1SFX,                  // 광석 HIT1
         Metal2SFX,                  // 광석 HIT2
         Metal3SFX,                  // 광석 HIT3
+        DropItemSFX,                // 인게임 아이템드랍 메세지
         OpenMushBoxSFX,             // 버섯상자오픈
         OpenOreChestSFX,            // 광석상자오픈
         OpenTreasureChestSFX,       // 보물상자오픈

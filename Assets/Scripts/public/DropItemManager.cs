@@ -18,7 +18,7 @@ public class DropItemManager : MonoBehaviour
 
     void Start() {
         //! TEST
-        InvokeRepeating("DropBonusItem", 1, 0.4f);
+        // InvokeRepeating("DropBonusItem", 1, 0.4f);
     }
 
 #region FUNC
@@ -27,27 +27,32 @@ public class DropItemManager : MonoBehaviour
     /// </summary>
     public void DropBonusItem()
     {
-        // 드랍보상 리스트
-        List<RWD> rwdList = new List<RWD>();
+        StatusDB sttDB = DM._.DB.statusDB;
+        List<RWD> rwdList = new List<RWD>(); // 드랍보상 리스트
 
         // 드랍아이템 가챠
-        ItemGacha(rwdList, RWD.CRISTAL, 10000);
+        ItemGacha(rwdList, RWD.CRISTAL, 1);
         ItemGacha(rwdList, RWD.MUSH1, 1);
-        ItemGacha(rwdList, RWD.MUSH2, 1);
+        ItemGacha(rwdList, RWD.MUSH2, 10000);
         ItemGacha(rwdList, RWD.MUSH3, 1);
-        ItemGacha(rwdList, RWD.MUSH4, 1);
-        ItemGacha(rwdList, RWD.MUSH5, 1);
+        ItemGacha(rwdList, RWD.MUSH4, 10000);
+        ItemGacha(rwdList, RWD.MUSH5, 10000);
         ItemGacha(rwdList, RWD.MUSH6, 10000);
         ItemGacha(rwdList, RWD.MUSH7, 100000);
         ItemGacha(rwdList, RWD.MUSH8, 10000000);
         ItemGacha(rwdList, RWD.MAT1, 1000);
-        ItemGacha(rwdList, RWD.MAT2, 1);
+        ItemGacha(rwdList, RWD.MAT2, 1000);
         ItemGacha(rwdList, RWD.MAT3, 1);
-        ItemGacha(rwdList, RWD.MAT4, 1);
+        ItemGacha(rwdList, RWD.MAT4, 1000);
         ItemGacha(rwdList, RWD.MAT5, 10000);
         ItemGacha(rwdList, RWD.MAT6, 100000);
         ItemGacha(rwdList, RWD.MAT7, 1000000);
         ItemGacha(rwdList, RWD.MAT8, 10000000);
+
+        if(rwdList.Count == 0)
+            return;
+
+        SoundManager._.PlaySfx(SoundManager.SFX.DropItemSFX);
 
         int randIdx = Random.Range(0, rwdList.Count);
 
@@ -67,6 +72,34 @@ public class DropItemManager : MonoBehaviour
             // 밑에서부터 메시지바 표시 추가
             Transform msgBarTf = inActiveGroup.GetChild(0);
             StartCoroutine(CoShowDropMsgBar(rwdList[randIdx], msgBarTf));
+        }
+
+        //* 아이템 획득
+        switch(rwdList[randIdx])
+        {
+            case RWD.CRISTAL:
+                sttDB.SetRscArr((int)rwdList[randIdx], 1);
+                break;
+            case RWD.MAT1:
+            case RWD.MAT2:
+            case RWD.MAT3:
+            case RWD.MAT4:
+            case RWD.MAT5:
+            case RWD.MAT6:
+            case RWD.MAT7:
+            case RWD.MAT8:
+                sttDB.SetMatArr((int)rwdList[randIdx] - (int)RWD.MAT1, 1);
+                break;
+            case RWD.MUSH1:
+            case RWD.MUSH2:
+            case RWD.MUSH3:
+            case RWD.MUSH4:
+            case RWD.MUSH5:
+            case RWD.MUSH6:
+            case RWD.MUSH7:
+            case RWD.MUSH8:
+                sttDB.SetMsrArr((int)rwdList[randIdx] - (int)RWD.MUSH1, 1);
+                break;
         }
     }
 

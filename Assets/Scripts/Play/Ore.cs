@@ -110,6 +110,7 @@ public class Ore : MonoBehaviour
                 GM._.pfm.proficiencyArr[(int)OreType].Exp++;
             }
 
+            GM._.dim.DropBonusItem();
             
             GM._.efm.ShowEF((EFIDX)OreType, transform.position);
             SprRdr.enabled = false;
