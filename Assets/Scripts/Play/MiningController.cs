@@ -290,7 +290,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                                 // 스테이지 클리어
                                 GM._.gameState = GameState.TIMEOVER;
                                 GM._.pm.StopCorTimer();
-                                GM._.pm.timerTxt.text = "CLEAR!";
                                 GM._.pm.Timeover();
                                 GM._.clm.BestFloor++;
                             }

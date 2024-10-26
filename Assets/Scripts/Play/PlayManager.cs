@@ -143,10 +143,17 @@ public class PlayManager : MonoBehaviour
         {
             //* 시련의광산
             if(GM._.stgm.IsChallengeMode)
-            {
-                // playResRwdArr[(int)RWD.RED_TICKET]++;        // 결과수치 UI
-                // DM._.DB.statusDB.RedTicket++;               // 데이터
-                GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
+            {   
+                // 돌파실패시
+                if(GM._.mnm.oreGroupTf.childCount > 0)
+                {
+                    GM._.pm.timerTxt.text = "FAIL!";
+                }
+                else
+                {
+                    GM._.pm.timerTxt.text = "CLEAR!";
+                    GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
+                }
             }
             //* 일반광산
             else

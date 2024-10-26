@@ -91,13 +91,20 @@ public class GM : MonoBehaviour
         dim = GameObject.Find("DropItemManager").GetComponent<DropItemManager>();
     }
 
-    
     IEnumerator Start() {
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
         SoundManager._.PlayBgm(SoundManager.BGM.Home);
         StartCoroutine(CoTimerStart());
+    }
+
+    //! 테스트용으로 속도 x1 <-> x3으로함. 실제출시시 Update함수자체를 지우기
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            Time.timeScale = (Time.timeScale != 1)? 1 : 3;
+        }
     }
 
 #region FUNC
