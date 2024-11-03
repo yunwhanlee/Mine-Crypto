@@ -35,7 +35,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         //* VALUE
         const float TARGET_Y_UNDER_MINUS = 0.5f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
-        const float REACH_TARGET_MIN_DIST = 0.3f;    // 타겟지점 도달판단 최소거리(집, 광석)
+        const float REACH_TARGET_MIN_DIST = 0.225f;    // 타겟지점 도달판단 최소거리(집, 광석)
 
         // 이름
         [field: SerializeField] public string Name {get; private set;}
@@ -244,6 +244,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 // 캐릭터의 이동 속도에 비례해 동적 거리 조건 생성
                 float dynamicReachDist = REACH_TARGET_MIN_DIST + (MoveSpeed * 0.05f); // 보정 비율
 
+                if(MoveSpeed > 40)
+                    Debug.Log($"moveSpeed={MoveSpeed}, distance({distance}) < dynamicReachDist({dynamicReachDist})");
+
                 //* 집 도착
                 if(distance < dynamicReachDist)
                 {
@@ -397,6 +400,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             }
         }
 
+private float prevDistance = Mathf.Infinity;
 #region FUNC
         /// <summary>
         /// 캐릭터 이동
@@ -420,7 +424,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
             // 타겟과의 거리
             float distance = Vector2.Distance(tgPos, transform.position);
-            Debug.Log($"GO:: distance= {distance}");
 
             return distance;
         }

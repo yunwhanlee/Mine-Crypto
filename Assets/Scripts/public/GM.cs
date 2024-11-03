@@ -56,6 +56,8 @@ public class GM : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
+
         gameState = GameState.HOME;
         _ = this;
 
