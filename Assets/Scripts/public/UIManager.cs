@@ -87,6 +87,11 @@ public class UIManager : MonoBehaviour
         GM._.ivm.ShowInventory();
     }
 
+    public void OnClickTimePieceIconBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        GM._.tpm.ShowPopUp();
+    }
+
     public void OnClickMenu_UpgradeBtn() {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         topRscGroup.SetActive(true);

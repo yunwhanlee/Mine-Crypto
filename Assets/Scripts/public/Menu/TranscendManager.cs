@@ -105,14 +105,19 @@ public class TranscendManager : MonoBehaviour
     {
         LockFrameObj.SetActive(false);
     }
-
+    /// <summary>
+    /// 팝업표시
+    /// </summary>
     public void ShowPopUp()
     {
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         UpdateDataAndUI();
     }
-
+    /// <summary>
+    /// 업그레이드 처리
+    /// </summary>
+    /// <param name="upgDt">업그레이드할 데이터</param>
     private void Upgrade(UpgradeFormat upgDt) {
         var sttDB = DM._.DB.statusDB;
 

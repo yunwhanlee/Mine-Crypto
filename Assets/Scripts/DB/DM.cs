@@ -22,6 +22,7 @@ public class DB {
     public MushDB mushDB;                   // 버섯도감
     public DecoDB decoDB;                   // 장식품 오브젝트
     public StageDB stageDB;                 // 스테이지 (잠금, 최고층)
+    public TimePieceDB timePieceDB;         // 시간의조각
 
 
     public void Init()
@@ -39,6 +40,7 @@ public class DB {
         mushDB = new MushDB();
         decoDB = new DecoDB();
         stageDB = new StageDB();
+        timePieceDB = new TimePieceDB();
     }
 }
 
@@ -170,6 +172,7 @@ public class DM : MonoBehaviour {
         DB.mushDB.Init();
         DB.decoDB.Init();
         DB.stageDB.Init();
+        DB.timePieceDB.Init();
     }
 #endregion
 }
