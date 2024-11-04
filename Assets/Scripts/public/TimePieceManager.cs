@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class TimePieceManager : MonoBehaviour
 {
+    public Coroutine CorActiveTimePieceID;
     const int WAIT_TIME = 5; // 1분당 회복
 
     public Sprite activeBtnSpr;
@@ -80,15 +82,29 @@ public class TimePieceManager : MonoBehaviour
             activeBtnImg.sprite = inActiveBtnSpr;
             iconDOTAnim.DOPause();
             rotateDOTAnim.DOPause();
+            if(CorActiveTimePieceID != null)
+                StopCoroutine(CorActiveTimePieceID);
         }
         // STOP -> ACTIVE
         else
         {
+            if(GM._.gameState != GameState.PLAY)
+            {   // 인게임에서만 가능합니다.
+                GM._.ui.ShowWarningMsgPopUp("(TODO 로컬라이징)인게임에서만 가능합니다.");
+                return;
+            }
+            if(curStorage <= 0)
+            {   // 아이템이 부족합니다.
+                GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
+                return;
+            }
+
             SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
             isActive = true;
             activeBtnImg.sprite = activeBtnSpr;
             iconDOTAnim.DORestart();
             rotateDOTAnim.DORestart();
+            CorActiveTimePieceID = StartCoroutine(CoActiveTimePiece());
         }
     }
     /// <summary>
@@ -177,10 +193,10 @@ public class TimePieceManager : MonoBehaviour
     /// <summary>
     /// 자동회복 보관량 설정
     /// </summary>
-    private void SetStorage()
+    private void SetStorage(int val)
     {
         // 보관량 증가
-        curStorage += GetProductionVal();
+        curStorage += val;
 
         // 최대수량 다 채웠을 경우
         if(curStorage >= MaxStorage)
@@ -204,6 +220,19 @@ public class TimePieceManager : MonoBehaviour
         }
     }
 
+    public IEnumerator CoActiveTimePiece()
+    {
+        while(isActive)
+        {
+            if(!isActive)
+                break;
+
+            yield return Util.RT_TIME0_1;
+            SetStorage(-1); // 게이지 감소
+            SetSliderUI();
+        }
+    }
+
     /// <summary>
     /// 타이머 (1분)
     /// </summary>
@@ -219,7 +248,7 @@ public class TimePieceManager : MonoBehaviour
             time = WAIT_TIME;
 
             // 자동회복 처리
-            SetStorage();
+            SetStorage(GetProductionVal());
             SetSliderUI();
         }
     }

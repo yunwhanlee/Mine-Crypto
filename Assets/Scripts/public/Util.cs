@@ -14,6 +14,8 @@ public class Util : MonoBehaviour
     public static WaitForSeconds TIME2 = new WaitForSeconds(2);
     public static WaitForSeconds TIME3 = new WaitForSeconds(3);
 
+    public static WaitForSecondsRealtime RT_TIME0_1 = new WaitForSecondsRealtime(0.1f);
+
     public static string ConvertTimeFormat(int timeSec) {
         int sec = timeSec % 60;
         int min = timeSec / 60;
