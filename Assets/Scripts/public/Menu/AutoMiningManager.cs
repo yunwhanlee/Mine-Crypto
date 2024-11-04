@@ -195,7 +195,7 @@ public class AutoMiningManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 광석 및 크리스탈 1분당 자동채굴량 반환
+    /// 광석 및 크리스탈 1분당 자동채굴량 계산 및 반환
     /// </summary>
     /// <param name="rscType"></param>
     /// <returns></returns>

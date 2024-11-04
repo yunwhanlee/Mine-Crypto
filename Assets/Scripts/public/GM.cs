@@ -116,9 +116,15 @@ public class GM : MonoBehaviour
     {
         while(true)
         {
+            // 티켓 자동획득 
             ssm.SetOreTicketTimer();
+
+            // 광석 자동채굴
             amm.SetOreTimer();
             amm.SetCristalTimer();
+
+            // 시간의조각 자동회복
+            tpm.SetTimer();
 
             yield return Util.TIME1;
         }

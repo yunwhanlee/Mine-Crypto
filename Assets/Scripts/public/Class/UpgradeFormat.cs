@@ -14,9 +14,21 @@ public class UpgradeFormat
     [field:SerializeField] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
     public bool IsMaxLv {get => Lv >= MaxLv;}
 
+    /// <summary>
+    /// 가격 업데이트 (기본)
+    /// </summary>
     public void UpdatePrice()
     {
         Price = PriceDef + Lv * (Lv) * PriceDef / 2;
+    }
+
+    /// <summary>
+    /// 가격 업데이트 (밸런스 조절방식)
+    /// </summary>
+    /// <param name="balanceVal">밸런스 조절 파라메터</param>
+    public void UpdatePrice(int balanceVal)
+    {
+        Price = PriceDef + Lv * (Lv) * balanceVal / 2;
     }
 }
 
@@ -64,8 +76,7 @@ public class UpgradeFormatInt : UpgradeFormat
     public int GetNextVal() => DefVal + (Lv + 1) * Unit;
 }
 
-//----------------------------------------------------------------------
-
+#region MUSHRROM FORMAT
 /// <summary>
 ///* 버섯 업그레이드 포멧 (최상위)
 /// </summary>
@@ -126,3 +137,5 @@ public class UpgradeMushFormatInt : UpgradeMushFormat
 
     public int GetNextVal() => DefVal + (Lv + 1) * Unit;
 }
+#endregion
+

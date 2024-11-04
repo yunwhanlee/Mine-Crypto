@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimePieceManager : MonoBehaviour
 {
-    const int WAIT_TIME = 60; // 1분당 회복
+    const int WAIT_TIME = 5; // 1분당 회복
+
+    public Sprite activeBtnSpr;
+    public Sprite inActiveBtnSpr;
 
     public DOTweenAnimation DOTAnim;
+    public DOTweenAnimation iconDOTAnim;
+    public DOTweenAnimation rotateDOTAnim;
 
     //* ELEMENT
     public GameObject windowObj;
     public TMP_Text timerTxt;
+    public Image activeBtnImg;
+    public TMP_Text gaugeValTxt;
+    public Slider gaugeSlider;
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgFillValUI;         // 1분당 회복UI
@@ -20,9 +29,14 @@ public class TimePieceManager : MonoBehaviour
     public UpgradeUIFormat upgIncTimeScaleUI;    // 시간속도증가UI
 
     //* VALUE
-    private int time;                            // 회복 타이머시간
-    public int maxStorage;                       // 시간의조각 최대보관량
-    public int curStorage;                       // 시간의조각 현재보관량
+    // 발동 트리거
+    public bool isActive;
+    // 회복 타이머시간
+    private int time;                            
+    // 시간의조각 최대보관량
+    public int MaxStorage {get => upgIncStorage.Val;}
+    // 시간의조각 현재보관량         
+    public int curStorage;                       
 
     [Header("업그레이드 데이터")]
     public UpgradeFormatInt upgFillVal;          // 1분당 회복 데이터
@@ -48,9 +62,35 @@ public class TimePieceManager : MonoBehaviour
         upgIncStorage = DM._.DB.timePieceDB.upgIncStorage;
         // 시간속도증가 데이터  
         upgIncTimeScale = DM._.DB.timePieceDB.upgIncTimeScale;
+
+        SetSliderUI();
     }
 
 #region EVENT
+    /// <summary>
+    /// 발동버튼
+    /// </summary>
+    public void OnClickActiveBtn()
+    {
+        // ACTIVE -> STOP
+        if(isActive)
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+            isActive = false;
+            activeBtnImg.sprite = inActiveBtnSpr;
+            iconDOTAnim.DOPause();
+            rotateDOTAnim.DOPause();
+        }
+        // STOP -> ACTIVE
+        else
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
+            isActive = true;
+            activeBtnImg.sprite = activeBtnSpr;
+            iconDOTAnim.DORestart();
+            rotateDOTAnim.DORestart();
+        }
+    }
     /// <summary>
     /// (업그레이드) 1분당 회복 버튼
     /// </summary>
@@ -109,14 +149,79 @@ public class TimePieceManager : MonoBehaviour
     /// </summary>
     private void UpdateDataAndUI()
     {
-        upgFillVal.UpdatePrice();
-        upgIncStorage.UpdatePrice();
+        upgFillVal.UpdatePrice(upgFillVal.PriceDef / 2);
+        upgIncStorage.UpdatePrice(upgIncStorage.PriceDef / 2);
         upgIncTimeScale.UpdatePrice();
 
         upgFillValUI.UpdateUI(upgFillVal);
         upgIncStorageUI.UpdateUI(upgIncStorage);
         upgIncTimeScaleUI.UpdateUI(upgIncTimeScale);
+
+        // 슬라이더UI 최신화
+        SetSliderUI();
+    }
+
+    /// <summary>
+    /// 오프라인 자동회복 결과처리
+    /// </summary>
+    private void OfflineAutoFill()
+    {
+
+    }
+
+    /// <summary>
+    /// 자동회복량 계산 및 반환
+    /// </summary>
+    private int GetProductionVal() => upgFillVal.Val;
+
+    /// <summary>
+    /// 자동회복 보관량 설정
+    /// </summary>
+    private void SetStorage()
+    {
+        // 보관량 증가
+        curStorage += GetProductionVal();
+
+        // 최대수량 다 채웠을 경우
+        if(curStorage >= MaxStorage)
+        {
+            curStorage = MaxStorage;
+        }
+    }
+
+    private void SetSliderUI()
+    {
+        gaugeValTxt.text = $"{curStorage} / {MaxStorage}";
+        
+        // 분모가 0일경우, 나누기 에러 발생하는 부분 대응
+        if (MaxStorage != 0)
+        {
+            gaugeSlider.value = (float)curStorage / MaxStorage;
+        }
+        else
+        {
+            gaugeSlider.value = 0;
+        }
+    }
+
+    /// <summary>
+    /// 타이머 (1분)
+    /// </summary>
+    public void SetTimer()
+    {
+        time--;
+        string timeFormat = Util.ConvertTimeFormat(time);
+        timerTxt.text = timeFormat;
+
+        // 리셋
+        if(time < 1)
+        {
+            time = WAIT_TIME;
+
+            // 자동회복 처리
+            SetStorage();
+            SetSliderUI();
+        }
     }
 #endregion
-
 }
