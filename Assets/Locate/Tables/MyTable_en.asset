@@ -877,6 +877,10 @@ MonoBehaviour:
     m_Localized: acquired!
     m_Metadata:
       m_Items: []
+  - m_Id: 5546089698791424
+    m_Localized: Skill
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

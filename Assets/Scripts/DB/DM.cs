@@ -23,6 +23,7 @@ public class DB {
     public DecoDB decoDB;                   // 장식품 오브젝트
     public StageDB stageDB;                 // 스테이지 (잠금, 최고층)
     public TimePieceDB timePieceDB;         // 시간의조각
+    public SkillTreeDB skillTreeDB;         // 스킬
 
     public void Init()
     {
@@ -51,6 +52,8 @@ public class DB {
         stageDB.Init();
         timePieceDB = new TimePieceDB();
         timePieceDB.Init();
+        skillTreeDB = new SkillTreeDB();
+        skillTreeDB.Init();
     }
 }
 

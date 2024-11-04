@@ -700,7 +700,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37575178031104
-    m_Key: UI_Alchemy
+    m_Key: UI_Skil
     m_Metadata:
       m_Items: []
   - m_Id: 104202036809728
@@ -837,6 +837,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2204531721211904
     m_Key: UI_DropItemMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5546089698791424
+    m_Key: UI_Skill
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -157,6 +157,11 @@ public class UIManager : MonoBehaviour
         GM._.acm.ShowPopUp();
     }
 
+    public void OnClickMenu_SkillBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        GM._.skm.ShowPopUp();
+    }
+
     public void OnClickMenu_SettingBtn() {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.stm.ShowPopUp();

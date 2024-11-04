@@ -28,6 +28,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public MushroomManager mrm; // 버섯도감
     [field:HideInInspector] public AlchemyManager acm; // 연금술
     [field:HideInInspector] public TimePieceManager tpm; // 시간의조각
+    [field:HideInInspector] public SkillManager skm; // 스킬
 
     //* HOME
     [field:HideInInspector] public HomeManager hm;
@@ -80,6 +81,7 @@ public class GM : MonoBehaviour
         mrm = GameObject.Find("MushroomManager").GetComponent<MushroomManager>();
         acm = GameObject.Find("AlchemyManager").GetComponent<AlchemyManager>();
         tpm = GameObject.Find("TimePieceManager").GetComponent<TimePieceManager>();
+        skm = GameObject.Find("SkillManager").GetComponent<SkillManager>();
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();
