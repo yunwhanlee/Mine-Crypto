@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using AssetKits.ParticleImage.Enumerations;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 public class TimePieceManager : MonoBehaviour
 {
-    public Coroutine CorActiveTimePieceID;
+    public Coroutine CorActiveTimerID;
     const int WAIT_TIME = 5; // 1분당 회복
 
     public Sprite activeBtnSpr;
@@ -16,6 +17,7 @@ public class TimePieceManager : MonoBehaviour
 
     public DOTweenAnimation DOTAnim;
     public DOTweenAnimation iconDOTAnim;
+    public DOTweenAnimation iconrotateDOTAnim;
     public DOTweenAnimation rotateDOTAnim;
 
     //* ELEMENT
@@ -77,13 +79,8 @@ public class TimePieceManager : MonoBehaviour
         // ACTIVE -> STOP
         if(isActive)
         {
-            SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
             isActive = false;
-            activeBtnImg.sprite = inActiveBtnSpr;
-            iconDOTAnim.DOPause();
-            rotateDOTAnim.DOPause();
-            if(CorActiveTimePieceID != null)
-                StopCoroutine(CorActiveTimePieceID);
+            ActiveProcess(isActive);
         }
         // STOP -> ACTIVE
         else
@@ -99,12 +96,8 @@ public class TimePieceManager : MonoBehaviour
                 return;
             }
 
-            SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
             isActive = true;
-            activeBtnImg.sprite = activeBtnSpr;
-            iconDOTAnim.DORestart();
-            rotateDOTAnim.DORestart();
-            CorActiveTimePieceID = StartCoroutine(CoActiveTimePiece());
+            ActiveProcess(isActive);
         }
     }
     /// <summary>
@@ -130,6 +123,35 @@ public class TimePieceManager : MonoBehaviour
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         UpdateDataAndUI();
+    }
+
+    /// <summary>
+    /// 시간의조각 활성화 및 비활성화 처리
+    /// </summary>
+    public void ActiveProcess(bool isActive)
+    {
+        if(!isActive)
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+            activeBtnImg.sprite = inActiveBtnSpr;
+            iconDOTAnim.DOPause();
+            rotateDOTAnim.DOPause();
+            iconrotateDOTAnim.DOPause();
+            if(CorActiveTimerID != null)
+                StopCoroutine(CorActiveTimerID);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
+            activeBtnImg.sprite = activeBtnSpr;
+            iconDOTAnim.DORestart();
+            rotateDOTAnim.DORestart();
+            iconrotateDOTAnim.DORestart();
+            CorActiveTimerID = StartCoroutine(CoActiveTimer());
+            Time.timeScale = upgIncTimeScale.Val;
+        }
+
     }
 
     /// <summary>
@@ -220,7 +242,7 @@ public class TimePieceManager : MonoBehaviour
         }
     }
 
-    public IEnumerator CoActiveTimePiece()
+    public IEnumerator CoActiveTimer()
     {
         while(isActive)
         {
