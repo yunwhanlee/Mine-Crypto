@@ -55,7 +55,7 @@ public class AutoMiningManager : MonoBehaviour
             else
                 WAIT_TIME = 60;
             
-            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 대기시간 <color=red>{WAIT_TIME}</color>초로 변경");
+            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 및 시간조각 자동획득 대기시간 <color=red>{WAIT_TIME}</color>초로 변경");
 
             time = WAIT_TIME;
             cristalTime = WAIT_TIME;

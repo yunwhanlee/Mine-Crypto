@@ -24,23 +24,33 @@ public class DB {
     public StageDB stageDB;                 // 스테이지 (잠금, 최고층)
     public TimePieceDB timePieceDB;         // 시간의조각
 
-
     public void Init()
     {
         languageIdx = -1;
         bgmVolume = 0.5f;
         sfxVolume = 0.4f;
         statusDB = new StatusDB();
+        statusDB.Init();
         upgradeDB = new UpgradeDB();
+        upgradeDB.Init();
         missionDB = new MissionDB();
+        missionDB.Init();
         oreBlessDB = new OreBlessDB();
+        oreBlessDB.Init();
         proficiencyDB = new OreProficiencyDB();
+        proficiencyDB.Init();
         autoMiningDB = new AutoMiningDB();
+        autoMiningDB.Init();
         transcendDB = new TranscendDB();
+        transcendDB.Init();
         mushDB = new MushDB();
+        mushDB.Init();
         decoDB = new DecoDB();
+        decoDB.Init();
         stageDB = new StageDB();
+        stageDB.Init();
         timePieceDB = new TimePieceDB();
+        timePieceDB.Init();
     }
 }
 
@@ -114,6 +124,11 @@ public class DM : MonoBehaviour {
         // 시간 차이를 정수형으로 변환하여 저장
         PlayerPrefs.SetInt(PASSEDTIME_KEY, (int)curTimeStamp.TotalSeconds);
         
+        // 일반단위 데이터 저장
+        DB.bgmVolume = GM._.stm.bgmSlider.value;
+        DB.sfxVolume = GM._.stm.sfxSlider.value;
+        DB.timePieceDB.curStorage = GM._.tpm.curStorage;
+
         //* Serialize DB To Json
         string jsonDB = JsonUtility.ToJson(DB, true);
         //* Save Data
@@ -158,21 +173,8 @@ public class DM : MonoBehaviour {
         // 데이터 객체 생성
         DB = new DB();
 
-        // 데이터 클래스변수 객체 생성
+        // 데이터 클래스변수 객체 생성 및 초기화
         DB.Init();
-
-        // 데이터 초기화
-        DB.statusDB.Init();
-        DB.upgradeDB.Init();
-        DB.missionDB.Init();
-        DB.oreBlessDB.Init();
-        DB.proficiencyDB.Init();
-        DB.autoMiningDB.Init();
-        DB.transcendDB.Init();
-        DB.mushDB.Init();
-        DB.decoDB.Init();
-        DB.stageDB.Init();
-        DB.timePieceDB.Init();
     }
 #endregion
 }

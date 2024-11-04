@@ -37,6 +37,11 @@ public class PlayManager : MonoBehaviour
         SoundManager._.PauseBgm(isOn: true);
         SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         GM._.gameState = GameState.STOP;
+
+        // 시간의조각 발동중이었다면, 정지
+        if(GM._.tpm.isActive)
+            GM._.tpm.ActiveProcess(false);
+
         Time.timeScale = 0;
 
         pausePopUp.SetActive(true);
@@ -46,6 +51,10 @@ public class PlayManager : MonoBehaviour
         SoundManager._.PlaySfx(SoundManager.SFX.Tap2SFX);
         GM._.gameState = GameState.PLAY;
         Time.timeScale = 1;
+
+        // 시간의조각 발동중이었다면, 재발동처리
+        if(GM._.tpm.isActive)
+            GM._.tpm.ActiveProcess(true);
 
         pausePopUp.SetActive(false);
     }
@@ -189,6 +198,14 @@ public class PlayManager : MonoBehaviour
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)
         SoundManager._.PlaySfx(SoundManager.SFX.OpenOreChestSFX);
         GM._.rwm.ShowGameoverReward(playResRwdArr);
+
+        // 시간의조각 비활성화
+        if(GM._.tpm.isActive)
+        {
+            GM._.tpm.isActive = false;
+            GM._.tpm.ActiveProcess(GM._.tpm.isActive);
+        }
+            
     }
 #endregion
 }

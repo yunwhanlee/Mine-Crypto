@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class TimePieceManager : MonoBehaviour
 {
     public Coroutine CorActiveTimerID;
-    const int WAIT_TIME = 5; // 1분당 회복
+    int WAIT_TIME = 60; // 1분당 회복
 
     public Sprite activeBtnSpr;
     public Sprite inActiveBtnSpr;
@@ -51,6 +51,7 @@ public class TimePieceManager : MonoBehaviour
     {
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
+        // yield return new WaitUntil(() => DM._.DB.timePieceDB != null);
         
         // timePieceDB가 null일 경우 새로 초기화
         if (DM._.DB.timePieceDB == null)
@@ -60,6 +61,8 @@ public class TimePieceManager : MonoBehaviour
             DM._.DB.timePieceDB.Init();
         }
 
+        // 현재보관량 데이터
+        curStorage = DM._.DB.timePieceDB.curStorage;
         // 1분당 회복 데이터
         upgFillVal = DM._.DB.timePieceDB.upgFillVal;
         // 보관량 증가 데이터
@@ -67,7 +70,24 @@ public class TimePieceManager : MonoBehaviour
         // 시간속도증가 데이터  
         upgIncTimeScale = DM._.DB.timePieceDB.upgIncTimeScale;
 
+        //* 오프라인 자동획득 결과처리
+        yield return new WaitForSeconds(1); // 저장된 추가획득량 데이터가 로드안되는 문제가 있어 1초 대기
+
+        OfflineAutoFill();
         SetSliderUI();
+    }
+
+    void Update() {
+        //! TEST 자동채굴 대기시간 5초 <-> 1분
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            if(WAIT_TIME == 60)
+                WAIT_TIME = 5;
+            else
+                WAIT_TIME = 60;
+
+            time = WAIT_TIME;
+        }
     }
 
 #region EVENT
@@ -177,6 +197,7 @@ public class TimePieceManager : MonoBehaviour
             upgDt.Lv++;
 
             UpdateDataAndUI();
+            ActiveProcess(isActive); // 적용데이터 최신화
         }
         else
             GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
@@ -204,7 +225,23 @@ public class TimePieceManager : MonoBehaviour
     /// </summary>
     private void OfflineAutoFill()
     {
+        //* 어플시작시 이전까지 경과한시간
+        int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
 
+        // 자동획득량 계산
+        int cnt = passedTime / WAIT_TIME;
+
+        // 결과
+        int resVal = curStorage + cnt * GetProductionVal();
+
+        // 최대수량보다 높다면 최대수량만큼으로 수정
+        if(resVal > MaxStorage)
+            resVal = MaxStorage;
+
+        Debug.Log($"<color=white>자동획득 오프라인 처리: 이전수량= {curStorage} / {MaxStorage}, 획득량: {resVal} (경과시간: {passedTime} / {WAIT_TIME} = {cnt})</color>");
+        curStorage = resVal;
+
+        time = WAIT_TIME;
     }
 
     /// <summary>
