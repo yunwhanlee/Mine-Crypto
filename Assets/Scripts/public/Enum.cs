@@ -20,7 +20,7 @@ public struct InvItem_Info {
 public static class Enum
 {
     public enum GRADE {
-        COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH
+        COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH, CNT
     }
 
     public static string GetGradeTagColor(GRADE grade)

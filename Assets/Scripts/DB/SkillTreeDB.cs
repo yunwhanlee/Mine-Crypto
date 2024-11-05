@@ -11,8 +11,8 @@ public class SkillTreeDB : MonoBehaviour
 
     public void Init()
     {
-        buffSkillTreeLv = 0;
-        attackSkillTreeLv = 0;
-        skipSkillTreeLv = 0;
+        buffSkillTreeLv = 1;
+        attackSkillTreeLv = 1;
+        skipSkillTreeLv = 1;
     }
 }

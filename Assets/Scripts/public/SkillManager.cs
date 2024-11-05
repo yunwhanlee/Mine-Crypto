@@ -12,13 +12,16 @@ public class SkillManager : MonoBehaviour
 
     //* ELEMENT
     public GameObject windowObj;
+    public Image skillImg;
+    public TMP_Text titleTxt;
+    public TMP_Text descriptionTxt;
 
     //* VALUE
     public SkillTreeCate cate;
     public int curIdx;
 
     // Skill UI & Data
-    public SkillTree[] buffSkillTreeArr;
+    public buffSkillTree buffSkill;
     public SkillTree[] attackSkillTreeArr;
     public SkillTree[] skipSkillTreeArr;
 
@@ -35,7 +38,7 @@ public class SkillManager : MonoBehaviour
             DM._.DB.skillTreeDB.Init();
         }
 
-        Array.ForEach(buffSkillTreeArr, skillTree => skillTree.UpdateDimUI());
+        Array.ForEach(buffSkill.skillTreeArr, skillTree => skillTree.UpdateDimUI());
         Array.ForEach(attackSkillTreeArr, skillTree => skillTree.UpdateDimUI());
         Array.ForEach(skipSkillTreeArr, skillTree => skillTree.UpdateDimUI());
     }
@@ -44,6 +47,9 @@ public class SkillManager : MonoBehaviour
     public void OnClickBuffSkillIconBtn(int idx)
     {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
+        titleTxt.text = $"힘내라 친구여 ! Lv{idx + 1}";
+        descriptionTxt.text = buffSkill.GetDescription(idx);
     }
     public void OnClickAttackSkillIconBtn(int idx)
     {
