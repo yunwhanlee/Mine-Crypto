@@ -6,6 +6,11 @@ using TMPro;
 using DG.Tweening;
 using System;
 
+/// <summary>
+/// 스킬 카테고리
+/// </summary>
+public enum SkillCate {Buff, Attack, Skip }
+
 public class SkillManager : MonoBehaviour
 {
     public DOTweenAnimation DOTAnim;
@@ -17,13 +22,15 @@ public class SkillManager : MonoBehaviour
     public TMP_Text descriptionTxt;
 
     //* VALUE
-    public SkillTreeCate cate;
+    string[] skillNameArr = { "힘내라 친구여", "우주 대폭발", "시공을 거슬러" };
+    public SkillCate cate;
+    
     public int curIdx;
 
     // Skill UI & Data
-    public buffSkillTree buffSkill;
-    public SkillTree[] attackSkillTreeArr;
-    public SkillTree[] skipSkillTreeArr;
+    public BuffSkillTree buffSkill;
+    public AttackSkillTree attackSkill;
+    public SkipSkillTree skipSkill;
 
     IEnumerator Start()
     {
@@ -39,25 +46,22 @@ public class SkillManager : MonoBehaviour
         }
 
         Array.ForEach(buffSkill.skillTreeArr, skillTree => skillTree.UpdateDimUI());
-        Array.ForEach(attackSkillTreeArr, skillTree => skillTree.UpdateDimUI());
-        Array.ForEach(skipSkillTreeArr, skillTree => skillTree.UpdateDimUI());
+        Array.ForEach(attackSkill.skillTreeArr, skillTree => skillTree.UpdateDimUI());
+        Array.ForEach(skipSkill.skillTreeArr, skillTree => skillTree.UpdateDimUI());
     }
 
 #region EVENT
     public void OnClickBuffSkillIconBtn(int idx)
     {
-        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
-        skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
-        titleTxt.text = $"힘내라 친구여 ! Lv{idx + 1}";
-        descriptionTxt.text = buffSkill.GetDescription(idx);
+        DisplaySkillDetail(idx, SkillCate.Buff);
     }
     public void OnClickAttackSkillIconBtn(int idx)
     {
-        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        DisplaySkillDetail(idx, SkillCate.Attack);
     }
     public void OnClickSkipSkillIconBtn(int idx)
     {
-        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        DisplaySkillDetail(idx, SkillCate.Skip);
     }
 #endregion
 
@@ -70,6 +74,30 @@ public class SkillManager : MonoBehaviour
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         // UpdateDataAndUI();
+    }
+
+    /// <summary>
+    /// 선택한 스킬 상세설명 표시
+    /// </summary>
+    public void DisplaySkillDetail(int idx, SkillCate skillCate)
+    {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        titleTxt.text = $"{skillNameArr[(int)skillCate]} Lv{idx + 1}";
+
+        switch(skillCate) {
+            case SkillCate.Buff:
+                skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
+                descriptionTxt.text = buffSkill.GetDescription(idx);
+                break;
+            case SkillCate.Attack:
+                skillImg.sprite = attackSkill.skillTreeArr[idx].IconSpr;
+                descriptionTxt.text = attackSkill.GetDescription(idx);
+                break;
+            case SkillCate.Skip:
+                skillImg.sprite = skipSkill.skillTreeArr[idx].IconSpr;
+                descriptionTxt.text = skipSkill.GetDescription(idx);
+                break;
+        }
     }
 #endregion
 }
