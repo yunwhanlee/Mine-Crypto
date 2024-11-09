@@ -56,8 +56,6 @@ public class Ore : MonoBehaviour
         if(IsDestroied)
             return;
 
-
-
         Hp -= dmg;
         GM._.efm.ShowDmgTxtEF(transform.position, dmg);
 

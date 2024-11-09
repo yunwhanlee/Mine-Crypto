@@ -259,16 +259,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     Debug.Log("REACH HOME!");
 
                     if(BagStorage > 0) {
-                        //* 재화 이펙트 재생
-                        int randomIdx = Random.Range((int)SFX.ItemDrop1SFX, (int)SFX.ItemDrop2SFX + 1);
-                        SoundManager._.PlaySfx((SFX)randomIdx);
-                        GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
-
-                        //* 재화 획득
-                        // 타겟재화 증가
-                        DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, BagStorage);
-                        // 게임결과 획득한 보상 중 재화에 반영
-                        GM._.pm.playResRwdArr[(int)targetOre.OreType] += BagStorage;
+                        // 재화 수령
+                        AcceptRsc(targetOre, BagStorage);
                     }
 
                     // 가방 비우기
@@ -378,12 +370,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     // 채굴 애니메이션
                     _animation.Slash();
 
-                    // 광석 HpBar 표시
-                    if(targetOre && !targetOre.HpSlider.gameObject.activeSelf)
-                        targetOre.HpSlider.gameObject.SetActive(true);
-
                     // 광석 체력감소
-                    targetOre.DecreaseHp(AttackVal);
+                    DecreaseOreHpBar(targetOre, AttackVal);
 
                     // 광석체력 0이라면, 파괴
                     if(targetOre.IsDestroied)
@@ -407,6 +395,37 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
 #region FUNC
+        /// <summary>
+        /// 인게임 채굴재화 수령
+        /// </summary>
+        public static void AcceptRsc(Ore targetOre, int val)
+        {
+            //* 재화 이펙트 재생
+            _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+            GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
+            //* 재화 획득(타겟재화 증가)
+            DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, val);
+            // 게임결과 획득한 보상 중 재화에 반영
+            GM._.pm.playResRwdArr[(int)targetOre.OreType] += val;
+        }
+
+        /// <summary>
+        /// 타겟광석 HP감소 및 HP Bar표시
+        /// </summary>
+        public static void DecreaseOreHpBar(Ore targetOre, int val)
+        {
+            if(targetOre == null)
+                return;
+
+            // 광석 체력감소
+            targetOre.DecreaseHp(val);
+
+            // 광석 HpBar 표시
+            if(targetOre && !targetOre.HpSlider.gameObject.activeSelf)
+                targetOre.HpSlider.gameObject.SetActive(true);
+        }
+
+
         /// <summary>
         /// 캐릭터 이동
         /// </summary>

@@ -5,14 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class SkillTreeDB
 {
-    public int buffSkillTreeLv;
     public int attackSkillTreeLv;
+    public int buffSkillTreeLv;
     public int skipSkillTreeLv;
 
     public void Init()
     {
-        buffSkillTreeLv = 1;
         attackSkillTreeLv = 1;
+        buffSkillTreeLv = 1;
         skipSkillTreeLv = 1;
     }
 }

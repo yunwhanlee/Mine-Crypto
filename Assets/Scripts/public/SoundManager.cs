@@ -60,6 +60,8 @@ public class SoundManager : MonoBehaviour
         UpgradeSFX,                 // 일반강화,자동채굴강화
         EarthQuakeA_SFX,            // 지진A
         EarthQuakeB_SFX,            // 지진B
+        FireballA_SFX,              // 메테오A
+        FireballB_SFX,              // 메테오B
     }
 
     [field: Header("BGM")]

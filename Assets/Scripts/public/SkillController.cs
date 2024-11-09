@@ -18,9 +18,10 @@ public class SkillController : MonoBehaviour
     Coroutine corActiveSkillID;                     // 1분마다 스킬발동 ID
     Coroutine corSkillIntroGradeAnimID;             // 스킬 인트로 등급 애니메이션 ID
     Coroutine corAttackSkillID;                     // 공격용 지진스킬 ID
+    Coroutine corActiveMeteoSkillID;                // 공격용 메테오스킬 ID
+    Coroutine corMeteoLoopID;                       // 공격용 메테오루프 ID
 
     public bool isActiveBuff;
-    public int randomGrade;
 
     IEnumerator Start() {
         // 데이터가 먼저 로드될때까지 대기
@@ -59,6 +60,16 @@ public class SkillController : MonoBehaviour
             StopCoroutine(corSkillIntroGradeAnimID);
             corSkillIntroGradeAnimID = null;
         }
+        if(corActiveMeteoSkillID != null)
+        {
+            StopCoroutine(corActiveMeteoSkillID);
+            corActiveMeteoSkillID = null;
+        }
+        if(corMeteoLoopID != null)
+        {
+            StopCoroutine(corMeteoLoopID);
+            corMeteoLoopID = null;
+        }
     }
 
     /// <summary>
@@ -68,7 +79,11 @@ public class SkillController : MonoBehaviour
     {
         while(true)
         {
+            // 1분 대기
             yield return Util.TIME10;
+            // 만약에 공격용스킬 : 올 클리어 보너스가 발동중이라면, 끝날때까지 추가대기
+            yield return new WaitUntil(() => GM._.skm.attackSkill.allClearBonusCnt <= 0);
+            // 랜덤스킬 발동
             RandomSkill();
         }
     }
@@ -96,6 +111,10 @@ public class SkillController : MonoBehaviour
                         // (중복지진 방지) 아직 올클리어카운트가 남았는데 실행될 경우, 이전 코루틴ID를 종료 후 재시작
                         StopCoroutine(corAttackSkillID);
                         corAttackSkillID = null;
+                        StopCoroutine(corActiveMeteoSkillID);
+                        corActiveMeteoSkillID = null;
+                        StopCoroutine(corMeteoLoopID);
+                        corMeteoLoopID = null;
                     }
                 }
                 corAttackSkillID = StartCoroutine(CoAttackSkill());
@@ -158,6 +177,9 @@ public class SkillController : MonoBehaviour
 
         skill.SetAllClearBonusCntMax();
 
+        corActiveMeteoSkillID = StartCoroutine(skill.CoActiveMeteoSkill());
+        corMeteoLoopID = StartCoroutine(skill.CoMeteoLoop());
+
         yield return CoAttackSkill_EarthQauke(skill);
     }
 
@@ -167,10 +189,10 @@ public class SkillController : MonoBehaviour
     public IEnumerator CoAttackSkill_EarthQauke(AttackSkillTree atkSkill)
     {
         //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
-        randomGrade = Random.Range(0, (int)Enum.GRADE.CNT);
+        atkSkill.skillGrade = Random.Range(0, (int)Enum.GRADE.CNT);
 
         // 캐릭터 등급 인트로 애니메이션
-        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[randomGrade].CoPlay(SkillCate.Attack));
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[atkSkill.skillGrade].CoPlay(SkillCate.Attack));
 
         // 카메라 흔들림 애니메이션
         Camera.main.GetComponent<DOTweenAnimation>().DORestart();
@@ -179,10 +201,8 @@ public class SkillController : MonoBehaviour
         SoundManager._.PlayRandomSfxs(SFX.EarthQuakeA_SFX, SFX.EarthQuakeA_SFX);
 
         // 지진오브젝트 활성화
-        atkSkill.ActiveEarthQuakeObj(randomGrade);
+        atkSkill.ActiveEarthQuakeObj(atkSkill.skillGrade);
 
-        // 지진 데미지
-        int dmg = atkSkill.EarthQuakeDmg;
         SoundManager._.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
 
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
@@ -193,14 +213,11 @@ public class SkillController : MonoBehaviour
             if(targetOre == null)
                 continue;
 
-            //* 재화 이펙트 재생
-            GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
-            //* 재화 획득 (타겟재화 증가)
-            DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, dmg);
-            // 게임결과 획득한 보상 중 재화에 반영
-            GM._.pm.playResRwdArr[(int)targetOre.OreType] += dmg;
+            // 인게임 채굴재화 수령
+            MiningController.AcceptRsc(targetOre, atkSkill.EarthQuakeDmg);
+
             // 광석 체력감소
-            targetOre.DecreaseHp(dmg);
+            MiningController.DecreaseOreHpBar(targetOre, atkSkill.EarthQuakeDmg);
         }
 
         yield return null;
@@ -209,7 +226,7 @@ public class SkillController : MonoBehaviour
         if(GM._.mnm.oreGroupTf.childCount <= 0 && atkSkill.allClearBonusCnt > 0)
         {
             atkSkill.allClearBonusCnt--;
-            GM._.ui.ShowNoticeMsgPopUp($"올 클리어 보너스! (남은횟수: {atkSkill.allClearBonusCnt})");
+            atkSkill.SetAllClearBonusEF(true);
         }
         // 광석을 전부 제거못했을경우, 카운트를 0으로 없애고 종료
         else
@@ -221,6 +238,7 @@ public class SkillController : MonoBehaviour
 
         yield return Util.TIME2;
         atkSkill.InitEarthQuakeObj();
+        atkSkill.SetAllClearBonusEF(false);
     }
     #endregion
 #endregion
