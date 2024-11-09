@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using static SoundManager;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 /// <summary>
 /// 실제 인게임에서의 스킬 발동 컨트롤
@@ -101,6 +102,8 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
+        randSkillCate = SkillCate.Skip;
+
         switch(randSkillCate)
         {
             case SkillCate.Attack:
@@ -123,7 +126,7 @@ public class SkillController : MonoBehaviour
                 StartCoroutine(CoBuffSkill());
                 break;
             case SkillCate.Skip:
-                GM._.ui.ShowNoticeMsgPopUp("스킵스킬 발동");
+                StartCoroutine(CoSkipSkill());
                 break;
         }
     }
@@ -239,6 +242,41 @@ public class SkillController : MonoBehaviour
         yield return Util.TIME2;
         atkSkill.InitEarthQuakeObj();
         atkSkill.SetAllClearBonusEF(false);
+    }
+    #endregion
+
+    #region SKIP
+    public IEnumerator CoSkipSkill()
+    {
+        var skill = skm.skipSkill;
+
+        _.PlaySfx(SFX.OpenMushBoxSFX);
+
+        //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
+        skill.grade = Random.Range(0, (int)Enum.GRADE.CNT);
+
+        GM._.gameState = GameState.STOP;
+
+        // 캐릭터 등급 인트로 애니메이션
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[skill.grade].CoPlay(SkillCate.Skip));
+
+        for(int j = 0; j < GM._.mnm.oreGroupTf.childCount; j++)
+        {
+            // 타겟 광석
+            Ore targetOre = GM._.mnm.oreGroupTf.GetChild(j).GetComponent<Ore>();
+
+            if(targetOre == null)
+                continue;
+
+            MiningController.DecreaseOreHpBar(targetOre, targetOre.MaxHp);
+            MiningController.AcceptRsc(targetOre, targetOre.MaxHp);
+        }
+
+        skill.PlaySkipAnim(skill.grade);
+
+        yield return Util.TIME5;
+
+        skill.EndSkipAnim();
     }
     #endregion
 #endregion

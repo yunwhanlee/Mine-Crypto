@@ -414,9 +414,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// </summary>
         public static void DecreaseOreHpBar(Ore targetOre, int val)
         {
-            if(targetOre == null)
-                return;
-
             // 광석 체력감소
             targetOre.DecreaseHp(val);
 

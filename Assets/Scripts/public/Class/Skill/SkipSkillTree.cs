@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 세번째 스킬(스킵형)
@@ -9,6 +12,14 @@ using UnityEngine;
 public class SkipSkillTree
 {
     public SkillTree[] skillTreeArr;
+
+    public DOTweenAnimation spaceDarkFadeEFAnim;
+    public GameObject skipEmitterParticleEFObj;
+    public GameObject[] portalGradeParticleEFArr;
+    public DOTweenAnimation[] charaFallInAnimArr;
+
+
+    public int grade;
 
     // 스킬레벨
     public int Lv {
@@ -40,6 +51,40 @@ public class SkipSkillTree
     }
     // 보너스상자 (광석상자 및 보물상자 획득)
     public bool IsBonusChest { get => Lv >= 4;}
+
+    /// <summary>
+    /// 포탈 애니메이션 비표시 초기화
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    public void InitPortalEF()
+    {
+        for(int i = 0; i < portalGradeParticleEFArr.Length; i++)
+            portalGradeParticleEFArr[i].SetActive(false);
+    }
+
+    /// <summary>
+    /// 포탈 애니메이션 재생
+    /// </summary>
+    public void PlayPortalEF(int gradeIdx)
+    {
+        InitPortalEF();
+        portalGradeParticleEFArr[gradeIdx].SetActive(true);
+    }
+
+    public void PlaySkipAnim(int gradeIdx)
+    {
+        skipEmitterParticleEFObj.SetActive(true);
+        spaceDarkFadeEFAnim.DORestart();
+        PlayPortalEF(gradeIdx);
+        Array.ForEach(charaFallInAnimArr, anim => anim.DORestart());
+    }
+
+    public void EndSkipAnim()
+    {
+        skipEmitterParticleEFObj.SetActive(false);
+        InitPortalEF();
+    }
 
     /// <summary>
     /// 스킬 상세설명

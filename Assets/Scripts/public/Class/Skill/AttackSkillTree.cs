@@ -23,6 +23,7 @@ public class AttackSkillTree
     public TMP_Text allClearBonusTxt; // 올클리어 보너스 텍스트
 
     public int skillGrade;
+
     // 스킬레벨
     public int Lv {
         get => DM._.DB.skillTreeDB.attackSkillTreeLv;
