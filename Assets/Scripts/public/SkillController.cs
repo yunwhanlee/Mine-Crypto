@@ -43,7 +43,7 @@ public class SkillController : MonoBehaviour
         isActiveBuff = false;
 
         // 버프인트로 애니메이션 팝업 비표시
-        Array.ForEach(skm.buffSkill.introLvAnimArr, introLvAnim => introLvAnim.windowObj.SetActive(false));
+        Array.ForEach(skm.introGradeAnimArr, introGradeAnim => introGradeAnim.windowObj.SetActive(false));
 
         if(corActiveSkillID != null)
         {
@@ -101,10 +101,13 @@ public class SkillController : MonoBehaviour
         int lv = skill.Lv;
         int buffColorIdx = (lv <= 1)? 0 : (lv <= 3)? 1 : (lv <= 4)? 2 : 3;
 
+        //! 캐릭터 등급랜덤 설정해야됨
+        int grade = lv;
+
         SoundManager._.PlaySfx(SoundManager.SFX.OpenMushBoxSFX);
 
         GM._.ui.ShowNoticeMsgPopUp("버프스킬 발동");
-        corBuffSkillIntroID = StartCoroutine(skill.introLvAnimArr[lv].CoPlay());
+        corBuffSkillIntroID = StartCoroutine(skm.introGradeAnimArr[grade].CoPlay());
         isActiveBuff = true;
         SetAllWorkerBuffFireEF(true, buffColorIdx);
 

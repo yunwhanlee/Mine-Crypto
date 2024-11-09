@@ -12,6 +12,27 @@ using AssetKits.ParticleImage;
 /// </summary>
 public enum SkillCate {Buff, Attack, Skip}
 
+[System.Serializable]
+public class SkillGradeIntroAnim
+{
+    public GameObject windowObj;
+    public DOTweenAnimation msgBarAnim;
+    public DOTweenAnimation charaAnim;
+
+    /// <summary>
+    /// 버프스킬 인트로 애니메이션 실행
+    /// </summary>
+    public IEnumerator CoPlay()
+    {
+        windowObj.SetActive(true);
+        msgBarAnim.DORestart();
+        charaAnim.DORestart();
+        yield return Util.TIME2_5;
+        windowObj.SetActive(false);
+    }
+}
+
+
 public class SkillManager : MonoBehaviour
 {
     public DOTweenAnimation DOTAnim;
@@ -29,8 +50,10 @@ public class SkillManager : MonoBehaviour
     public SkillCate cate;
     public SkillCate curSelectCate;  // 현재 선택된 스킬 카테고리
     public int curSelectIdx; // 현재 선택된 스킬 LV인덱스
-    string[] skillNameArr = { "힘내라 친구여", "우주 대폭발", "시공을 거슬러" };
-    int[] skillPriceArr = { 0, 10, 20, 30 ,40 }; // 스킬가격 LV1은 기본적용 되어있음
+    public SkillGradeIntroAnim[] introGradeAnimArr; // 스킬 인트로 등급 애니메이션
+
+    private string[] skillNameArr = { "힘내라 친구여", "우주 대폭발", "시공을 거슬러" };
+    private int[] skillPriceArr = { 0, 10, 20, 30 ,40 }; // 스킬가격 LV1은 기본적용 되어있음
     
 
     // Skill UI & Data

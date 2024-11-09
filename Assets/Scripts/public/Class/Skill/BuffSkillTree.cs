@@ -5,26 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
 
-[System.Serializable]
-public class BuffSkillIntroAnim
-{
-    public GameObject windowObj;
-    public DOTweenAnimation msgBarAnim;
-    public DOTweenAnimation charaAnim;
-
-    /// <summary>
-    /// 버프스킬 인트로 애니메이션 실행
-    /// </summary>
-    public IEnumerator CoPlay()
-    {
-        windowObj.SetActive(true);
-        msgBarAnim.DORestart();
-        charaAnim.DORestart();
-        yield return Util.TIME2_5;
-        windowObj.SetActive(false);
-    }
-}
-
 /// <summary>
 /// 첫번째 스킬(버프형)
 /// </summary>
@@ -32,7 +12,6 @@ public class BuffSkillIntroAnim
 public class BuffSkillTree
 {
     public SkillTree[] skillTreeArr;
-    public BuffSkillIntroAnim[] introLvAnimArr; // 인트로 애니메이션
 
     // 스킬레벨
     public int Lv {
