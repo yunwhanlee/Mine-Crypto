@@ -11,6 +11,7 @@ using static Enum;
 public class AttackSkillTree
 {
     public SkillTree[] skillTreeArr;
+    public GameObject[] earthQuakeEFArr;    // 지진공격이펙트 배열 
 
     // 스킬레벨
     public int Lv {
@@ -18,7 +19,7 @@ public class AttackSkillTree
         set => DM._.DB.skillTreeDB.attackSkillTreeLv = value;
     }
     // 올클리어 지진 발동횟수 (다음층마다 1번씩 발동)
-    public int AllClearBonusCnt = 0;
+    public int allClearBonusCnt = 0;
     // 올클리어 지진 최대횟수
     public int AllClearBonusMax {
         get {
@@ -38,8 +39,8 @@ public class AttackSkillTree
     // 지진 공격력
     public int EarthQuakeDmg {
         get {
-            int[] dmgGradeArr = { 200, 400, 800, 1500, 3000 };
-            int dmg = dmgGradeArr[Random.Range(0, dmgGradeArr.Length)];
+            int[] dmgGradeArr = { 200, 400, 800, 1500, 3000, 6000 };
+            int dmg = dmgGradeArr[GM._.skc.randomGrade];
             int extraVal = GM._.sttm.ExtraAtk;
             float extraPer = 1 + GM._.sttm.ExtraAtkPer;
 
@@ -50,13 +51,54 @@ public class AttackSkillTree
     // 메테오 공격력
     public int MeteoDmg {
         get {
-            int[] dmgGradeArr = { 50, 100, 200, 400, 1000 };
-            int dmg = Random.Range(0, dmgGradeArr.Length);
+            int[] dmgGradeArr = { 50, 100, 200, 400, 1000, 2000 };
+            int dmg = dmgGradeArr[GM._.skc.randomGrade];
             int extraVal = GM._.sttm.ExtraAtk;
             float extraPer = 1 + GM._.sttm.ExtraAtkPer;
 
             int result = Mathf.RoundToInt((dmg + extraVal) * extraPer);
             return result;
+        }
+    }
+
+    /// <summary>
+    /// 올클리어 카운트 설정
+    /// </summary>
+    public void SetAllClearBonusCntMax()
+    {
+        if(allClearBonusCnt <= 0)
+            allClearBonusCnt = AllClearBonusMax;
+    }
+
+    /// <summary>
+    /// 올클리어 보너스 남은카운트 체크(남은 횟수만큼 다음층마다 발동)
+    /// </summary>
+    public bool CheckAllClearBonusCnt()
+    {
+        int cnt = allClearBonusCnt;
+        int max = AllClearBonusMax;
+
+        Debug.Log($"CheckAllClearBonusCnt():: {cnt > 0 && cnt < max} = AllClearBonusCnt= {cnt}, allClearBonusMax= {max}");
+        return 0 < cnt && cnt < max;
+    }
+
+    public void InitEarthQuakeObj()
+    {
+        for(int i = 0; i < earthQuakeEFArr.Length; i++)
+            earthQuakeEFArr[i].SetActive(false);
+    }
+
+    /// <summary>
+    /// 등급만큼 지진오브젝트 숫자 활성화
+    /// </summary>
+    /// <param name="maxIdx">활성화할 지진오브젝트 인덱스</param>
+    public void ActiveEarthQuakeObj(int maxIdx)
+    {
+        InitEarthQuakeObj();
+
+        for(int i = 0; i < earthQuakeEFArr.Length; i++)
+        {
+            earthQuakeEFArr[i].SetActive(i <= maxIdx);
         }
     }
 

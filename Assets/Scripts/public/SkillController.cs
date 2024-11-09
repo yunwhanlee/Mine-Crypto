@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using static SoundManager;
 
 /// <summary>
 /// 실제 인게임에서의 스킬 발동 컨트롤
@@ -13,10 +15,12 @@ public class SkillController : MonoBehaviour
     //* VALUE
     SkillManager skm;
     MineManager mnm;
-    Coroutine corActiveSkillID;
-    Coroutine corBuffSkillIntroID;
+    Coroutine corActiveSkillID;                     // 1분마다 스킬발동 ID
+    Coroutine corSkillIntroGradeAnimID;             // 스킬 인트로 등급 애니메이션 ID
+    Coroutine corAttackSkillID;                     // 공격용 지진스킬 ID
 
     public bool isActiveBuff;
+    public int randomGrade;
 
     IEnumerator Start() {
         // 데이터가 먼저 로드될때까지 대기
@@ -50,21 +54,21 @@ public class SkillController : MonoBehaviour
             StopCoroutine(corActiveSkillID);
             corActiveSkillID = null;
         }
-        if(corBuffSkillIntroID != null)
+        if(corSkillIntroGradeAnimID != null)
         {
-            StopCoroutine(corBuffSkillIntroID);
-            corBuffSkillIntroID = null;
+            StopCoroutine(corSkillIntroGradeAnimID);
+            corSkillIntroGradeAnimID = null;
         }
     }
 
     /// <summary>
-    /// 스킬발동 처리
+    /// 1분마다 스킬발동 처리
     /// </summary>
     IEnumerator CoActiveSkill()
     {
         while(true)
         {
-            yield return Util.TIME5;
+            yield return Util.TIME10;
             RandomSkill();
         }
     }
@@ -74,45 +78,59 @@ public class SkillController : MonoBehaviour
     /// </summary>
     private void RandomSkill()
     {
-        SkillCate randSkillCate = (SkillCate)Random.Range((int)SkillCate.Buff, (int)SkillCate.Skip + 1);
+        SkillCate randSkillCate;
 
-        //! TEST BUFF
-        randSkillCate = SkillCate.Buff;
+        // 공격용스킬 올클리어가 남아있다면, 랜덤스킬에서 제외
+        int start = skm.attackSkill.allClearBonusCnt > 0? (int)SkillCate.Buff : (int)SkillCate.Attack;
+        int end = (int)SkillCate.Skip + 1;
+
+        randSkillCate = (SkillCate)Random.Range(start, end);
 
         switch(randSkillCate)
         {
+            case SkillCate.Attack:
+                if(skm.attackSkill.allClearBonusCnt > 0)
+                {
+                    if(corAttackSkillID != null)
+                    {
+                        // (중복지진 방지) 아직 올클리어카운트가 남았는데 실행될 경우, 이전 코루틴ID를 종료 후 재시작
+                        StopCoroutine(corAttackSkillID);
+                        corAttackSkillID = null;
+                    }
+                }
+                corAttackSkillID = StartCoroutine(CoAttackSkill());
+                break;
             case SkillCate.Buff:
                 StartCoroutine(CoBuffSkill());
                 break;
-            case SkillCate.Attack:
-                break;
             case SkillCate.Skip:
+                GM._.ui.ShowNoticeMsgPopUp("스킵스킬 발동");
                 break;
         }
     }
 
+    #region BUFF
     /// <summary>
     /// 버프스킬
     /// </summary>
     IEnumerator CoBuffSkill()
     {
-        BuffSkillTree skill = skm.buffSkill;
-
-        int lv = skill.Lv;
-        int buffColorIdx = (lv <= 1)? 0 : (lv <= 3)? 1 : (lv <= 4)? 2 : 3;
-
-        //! 캐릭터 등급랜덤 설정해야됨
-        int grade = lv;
-
         SoundManager._.PlaySfx(SoundManager.SFX.OpenMushBoxSFX);
 
-        GM._.ui.ShowNoticeMsgPopUp("버프스킬 발동");
-        corBuffSkillIntroID = StartCoroutine(skm.introGradeAnimArr[grade].CoPlay());
+        // 스킬레벨
+        BuffSkillTree skill = skm.buffSkill;
+        int skLv = skill.Lv;
+
+        int buffColorIdx = (skLv <= 1)? 0 : (skLv <= 3)? 1 : (skLv <= 4)? 2 : 3;
+
+        //! 캐릭터 등급랜덤 설정해야됨
+        int gradeIdx = skLv - 1;
+
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[gradeIdx].CoPlay(SkillCate.Buff));
         isActiveBuff = true;
         SetAllWorkerBuffFireEF(true, buffColorIdx);
 
         yield return skill.Time;
-        GM._.ui.ShowNoticeMsgPopUp("버프스킬 종료");
         SetAllWorkerBuffFireEF(false, 0);
         isActiveBuff = false;
     }
@@ -128,5 +146,82 @@ public class SkillController : MonoBehaviour
             worker.SetBuffFireEF(isActive, buffColorIdx);
         }
     }
+    #endregion
+
+    #region ATTACK
+    public IEnumerator CoAttackSkill()
+    {
+        SoundManager._.PlaySfx(SFX.OpenMushBoxSFX);
+
+        // 스킬레벨
+        AttackSkillTree skill = skm.attackSkill;
+
+        skill.SetAllClearBonusCntMax();
+
+        yield return CoAttackSkill_EarthQauke(skill);
+    }
+
+    /// <summary>
+    /// 공격용버프 지진
+    /// </summary>
+    public IEnumerator CoAttackSkill_EarthQauke(AttackSkillTree atkSkill)
+    {
+        //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
+        randomGrade = Random.Range(0, (int)Enum.GRADE.CNT);
+
+        // 캐릭터 등급 인트로 애니메이션
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[randomGrade].CoPlay(SkillCate.Attack));
+
+        // 카메라 흔들림 애니메이션
+        Camera.main.GetComponent<DOTweenAnimation>().DORestart();
+
+        yield return Util.TIME1;
+        SoundManager._.PlayRandomSfxs(SFX.EarthQuakeA_SFX, SFX.EarthQuakeA_SFX);
+
+        // 지진오브젝트 활성화
+        atkSkill.ActiveEarthQuakeObj(randomGrade);
+
+        // 지진 데미지
+        int dmg = atkSkill.EarthQuakeDmg;
+        SoundManager._.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+
+        for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
+        {
+            // 타겟 광석
+            Ore targetOre = GM._.mnm.oreGroupTf.GetChild(i).GetComponent<Ore>();
+
+            if(targetOre == null)
+                continue;
+
+            //* 재화 이펙트 재생
+            GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
+            //* 재화 획득 (타겟재화 증가)
+            DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, dmg);
+            // 게임결과 획득한 보상 중 재화에 반영
+            GM._.pm.playResRwdArr[(int)targetOre.OreType] += dmg;
+            // 광석 체력감소
+            targetOre.DecreaseHp(dmg);
+        }
+
+        yield return null;
+
+        // 광석을 전부 제거했을시, 올클리어카운트 살리고, -1 카운팅
+        if(GM._.mnm.oreGroupTf.childCount <= 0 && atkSkill.allClearBonusCnt > 0)
+        {
+            atkSkill.allClearBonusCnt--;
+            GM._.ui.ShowNoticeMsgPopUp($"올 클리어 보너스! (남은횟수: {atkSkill.allClearBonusCnt})");
+        }
+        // 광석을 전부 제거못했을경우, 카운트를 0으로 없애고 종료
+        else
+        {
+            atkSkill.allClearBonusCnt = 0;
+        }
+
+        Debug.Log($"지진후 남아있는 광석수: {GM._.mnm.oreGroupTf.childCount}, 올클리어카운트: {atkSkill.allClearBonusCnt}");
+
+        yield return Util.TIME2;
+        atkSkill.InitEarthQuakeObj();
+    }
+    #endregion
 #endregion
 }

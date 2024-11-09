@@ -58,6 +58,8 @@ public class SoundManager : MonoBehaviour
         UnlockSFX,                  // 광산개방
         UpgradeMushSFX,             // 버섯도감강화
         UpgradeSFX,                 // 일반강화,자동채굴강화
+        EarthQuakeA_SFX,            // 지진A
+        EarthQuakeB_SFX,            // 지진B
     }
 
     [field: Header("BGM")]
@@ -191,6 +193,15 @@ public class SoundManager : MonoBehaviour
                 break; // for문 종료
             }
         }
+    }
+
+    /// <summary>
+    /// 복수의 사운드 랜덤재생
+    /// </summary>
+    public void PlayRandomSfxs(SFX start, SFX end)
+    {
+        SFX randomSFX = (SFX)Random.Range((int)start, (int)end + 1);
+        PlaySfx(randomSFX);
     }
 #endregion
 }

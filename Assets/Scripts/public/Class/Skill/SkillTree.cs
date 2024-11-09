@@ -21,10 +21,10 @@ public class SkillTree
         get {
             // 레벨로 현재 잠김을 파악
             switch(Cate) {
-                case SkillCate.Buff:
-                    return DM._.DB.skillTreeDB.buffSkillTreeLv < Id;
                 case SkillCate.Attack:
                     return DM._.DB.skillTreeDB.attackSkillTreeLv < Id;
+                case SkillCate.Buff:
+                    return DM._.DB.skillTreeDB.buffSkillTreeLv < Id;
                 case SkillCate.Skip:
                     return DM._.DB.skillTreeDB.skipSkillTreeLv < Id;
             }

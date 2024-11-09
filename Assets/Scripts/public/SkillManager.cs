@@ -10,20 +10,23 @@ using AssetKits.ParticleImage;
 /// <summary>
 /// 스킬 카테고리
 /// </summary>
-public enum SkillCate {Buff, Attack, Skip}
+public enum SkillCate {Attack, Buff, Skip}
 
 [System.Serializable]
 public class SkillGradeIntroAnim
 {
     public GameObject windowObj;
+    public TMP_Text TitleTxt;
     public DOTweenAnimation msgBarAnim;
     public DOTweenAnimation charaAnim;
 
     /// <summary>
     /// 버프스킬 인트로 애니메이션 실행
     /// </summary>
-    public IEnumerator CoPlay()
+    public IEnumerator CoPlay(SkillCate cate)
     {
+        TitleTxt.text = $"{GM._.skm.skillNameArr[(int)cate]}";
+
         windowObj.SetActive(true);
         msgBarAnim.DORestart();
         charaAnim.DORestart();
@@ -52,13 +55,12 @@ public class SkillManager : MonoBehaviour
     public int curSelectIdx; // 현재 선택된 스킬 LV인덱스
     public SkillGradeIntroAnim[] introGradeAnimArr; // 스킬 인트로 등급 애니메이션
 
-    private string[] skillNameArr = { "힘내라 친구여", "우주 대폭발", "시공을 거슬러" };
+    public string[] skillNameArr = { "우주 대폭발", "힘내라 친구여", "시공을 거슬러" };
     private int[] skillPriceArr = { 0, 10, 20, 30 ,40 }; // 스킬가격 LV1은 기본적용 되어있음
-    
 
     // Skill UI & Data
-    public BuffSkillTree buffSkill;
     public AttackSkillTree attackSkill;
+    public BuffSkillTree buffSkill;
     public SkipSkillTree skipSkill;
 
     IEnumerator Start()
@@ -79,15 +81,15 @@ public class SkillManager : MonoBehaviour
 
 #region EVENT
     /// <summary>
-    /// 스킬아이콘 클릭 버프형, 공격형, 스킵형 3가지 함수
+    /// 스킬아이콘 클릭 공격형, 버프형, 스킵형 3가지 함수
     /// </summary>
-    public void OnClickBuffSkillIconBtn(int idx)
-    {
-        DisplaySkillDetail(idx, SkillCate.Buff);
-    }
     public void OnClickAttackSkillIconBtn(int idx)
     {
         DisplaySkillDetail(idx, SkillCate.Attack);
+    }
+    public void OnClickBuffSkillIconBtn(int idx)
+    {
+        DisplaySkillDetail(idx, SkillCate.Buff);
     }
     public void OnClickSkipSkillIconBtn(int idx)
     {
@@ -100,11 +102,11 @@ public class SkillManager : MonoBehaviour
     public void OnClickLearnSkill()
     {
         switch(curSelectCate) {
-            case SkillCate.Buff:
-                buffSkill.Lv += LearnSkill(buffSkill.Lv);
-                break;
             case SkillCate.Attack:
                 attackSkill.Lv += LearnSkill(attackSkill.Lv);
+                break;
+            case SkillCate.Buff:
+                buffSkill.Lv += LearnSkill(buffSkill.Lv);
                 break;
             case SkillCate.Skip:
                 skipSkill.Lv += LearnSkill(skipSkill.Lv);
@@ -182,15 +184,15 @@ public class SkillManager : MonoBehaviour
         InitSkillIconBorder();
 
         switch(skillCate) {
-            case SkillCate.Buff:
-                buffSkill.skillTreeArr[idx].SetSelectedBorderUI();
-                skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
-                descriptionTxt.text = buffSkill.GetDescription(idx);
-                break;
             case SkillCate.Attack:
                 attackSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = attackSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = attackSkill.GetDescription(idx);
+                break;
+            case SkillCate.Buff:
+                buffSkill.skillTreeArr[idx].SetSelectedBorderUI();
+                skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
+                descriptionTxt.text = buffSkill.GetDescription(idx);
                 break;
             case SkillCate.Skip:
                 skipSkill.skillTreeArr[idx].SetSelectedBorderUI();

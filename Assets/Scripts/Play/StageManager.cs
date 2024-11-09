@@ -143,6 +143,13 @@ public class StageManager : MonoBehaviour {
             var worker = workerGroup.GetChild(i).GetComponent<MiningController>();
             StartCoroutine(worker.CoInitStatus());
         }
+
+        // 공격용 스킬 : 올 클리어 보너스 (남은 횟수만큼 다음층마다 발동)
+        if(GM._.skm.attackSkill.CheckAllClearBonusCnt())
+        {
+            // 올 클리어 보너스 지진 발동
+            StartCoroutine(GM._.skc.CoAttackSkill_EarthQauke(GM._.skm.attackSkill));
+        }
     }
 
     /// <summary>
