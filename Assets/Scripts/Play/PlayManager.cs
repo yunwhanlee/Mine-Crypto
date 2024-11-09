@@ -139,6 +139,9 @@ public class PlayManager : MonoBehaviour
         var stageType = (int)GM._.stgm.OreType;
         var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
 
+        // 스킬발동 종료
+        GM._.skc.StopActiveSkill();
+
         // 광산 최고층 기록
         if(GM._.stgm.Floor > bestFloorArr[stageType])
         {
@@ -168,7 +171,7 @@ public class PlayManager : MonoBehaviour
             //* 일반광산
             else
             {
-                playResRwdArr[(int)RWD.ORE_TICKET]++;        // 결과수치 UI
+                playResRwdArr[(int)RWD.ORE_TICKET]++;       // 결과수치 UI
                 DM._.DB.statusDB.OreTicket++;               // 데이터
                 GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
             }

@@ -25,21 +25,24 @@ public class StatusManager : MonoBehaviour
     public float ExtraAtkPer { 
         get => GM._.obm.GetAbilityValue(OREBLESS_ABT.ATK_PER)
             + GM._.pfm.totalAttackPer
-            + GM._.acm.decoItemData[(int)DECO.PURPLE_ORE_PILE_1].AbilityVal;
+            + GM._.acm.decoItemData[(int)DECO.PURPLE_ORE_PILE_1].AbilityVal
+            + GM._.skm.buffSkill.ExtraAttackPer;
     }
     // 공격속도 %
     public float ExtraAtkSpdPer {
         get => GM._.ugm.upgAttackSpeed.Val
             + GM._.obm.GetAbilityValue(OREBLESS_ABT.ATKSPD_PER)
             + GM._.acm.decoItemData[(int)DECO.PLATINUM_ORE_PILE_5].AbilityVal
-            + GM._.mrm.ms7_UpgAtkSpeedPer.Val;
+            + GM._.mrm.ms7_UpgAtkSpeedPer.Val
+            + GM._.skm.buffSkill.ExtraAttackSpeedPer;
     }
     // 이동속도 %
     public float ExtraMovSpdPer {
         get => GM._.ugm.upgMoveSpeed.Val
             + GM._.obm.GetAbilityValue(OREBLESS_ABT.MOVSPD_PER)
             + GM._.acm.decoItemData[(int)DECO.TREE_BRANCH_2].AbilityVal
-            + GM._.mrm.ms2_UpgMovSpeedPer.Val;
+            + GM._.mrm.ms2_UpgMovSpeedPer.Val
+            + GM._.skm.buffSkill.ExtraMoveSpeedPer;
     }
     // 가방용량 %
     public float ExtraBagStgPer {

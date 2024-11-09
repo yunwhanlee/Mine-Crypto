@@ -10,7 +10,7 @@ using AssetKits.ParticleImage;
 /// <summary>
 /// 스킬 카테고리
 /// </summary>
-public enum SkillCate {Buff, Attack, Skip }
+public enum SkillCate {Buff, Attack, Skip}
 
 public class SkillManager : MonoBehaviour
 {

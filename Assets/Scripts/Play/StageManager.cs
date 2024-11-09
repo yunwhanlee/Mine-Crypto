@@ -67,7 +67,7 @@ public class StageManager : MonoBehaviour {
 
 #region FUNC
     /// <summary>
-    /// 선택한 스테이지 시작
+    /// *선택한 스테이지 게임시작
     /// </summary>
     public void StartStage()
     {
@@ -103,6 +103,12 @@ public class StageManager : MonoBehaviour {
 
         // 광석 오브젝트 생성
         StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
+
+        // 스킬발동 실행 (시련의광산 제외)
+        if(!GM._.stgm.IsChallengeMode)
+        {
+            GM._.skc.ActiveSkill();
+        }
     }
 
     /// <summary>

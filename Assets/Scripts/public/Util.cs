@@ -12,7 +12,13 @@ public class Util : MonoBehaviour
     public static WaitForSeconds TIME0_5 = new WaitForSeconds(0.5f);
     public static WaitForSeconds TIME1 = new WaitForSeconds(1);
     public static WaitForSeconds TIME2 = new WaitForSeconds(2);
+    public static WaitForSeconds TIME2_5 = new WaitForSeconds(2.5f);
     public static WaitForSeconds TIME3 = new WaitForSeconds(3);
+    public static WaitForSeconds TIME5 = new WaitForSeconds(5);
+    public static WaitForSeconds TIME10 = new WaitForSeconds(10);
+    public static WaitForSeconds TIME15 = new WaitForSeconds(15);
+    public static WaitForSeconds TIME30 = new WaitForSeconds(30);
+    public static WaitForSeconds TIME60 = new WaitForSeconds(60);
 
     public static WaitForSecondsRealtime RT_TIME0_1 = new WaitForSecondsRealtime(0.1f);
 

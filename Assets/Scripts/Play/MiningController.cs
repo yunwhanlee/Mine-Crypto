@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts;
 using TMPro;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Enum;
 using static SoundManager;
+using Random = UnityEngine.Random;
 
 namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
@@ -31,6 +33,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Slider bagStorageSlider;                // カバン保管量 スライダーバー
         public TMP_Text bagStorageSliderTxt;           // カバン保管量 スライダーバー テキスト
         public Ore targetOre;
+        public GameObject[] buffFireEFArr;             // 버프 파이어 이펙트 배열 
 
         //* VALUE
         const float TARGET_Y_UNDER_MINUS = 0.5f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
@@ -121,6 +124,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             _animation = GetComponent<CharacterAnimation>();
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
+
+            // 버프이펙트 비표시 초기화
+            SetBuffFireEF(isActive: false);
 
             // 첫 시작시 등장SFX
             int randomSFX = Random.Range((int)SFX.Jump1SFX, (int)SFX.Jump3SFX + 1);
@@ -400,7 +406,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             }
         }
 
-private float prevDistance = Mathf.Infinity;
 #region FUNC
         /// <summary>
         /// 캐릭터 이동
@@ -436,6 +441,23 @@ private float prevDistance = Mathf.Infinity;
             status = Status.SPAWN;
             yield return mnm.waitSpawnToGoSec;
             status = Status.GO;
+        }
+
+        /// <summary>
+        /// 캐릭터 버프파이어이펙트 활성화
+        /// </summary>
+        /// <param name="isActive">활성화, 비활성화</param>
+        /// <param name="buffColorIdx">버프파이어 색상 인덱스</param>
+        public void SetBuffFireEF(bool isActive, int buffColorIdx = 0)
+        {
+            if(isActive)
+            {
+                buffFireEFArr[buffColorIdx].gameObject.SetActive(true);
+            }
+            else 
+            {
+                Array.ForEach(buffFireEFArr, buffFireEF => buffFireEF.gameObject.SetActive(false));
+            }
         }
 #endregion
     }
