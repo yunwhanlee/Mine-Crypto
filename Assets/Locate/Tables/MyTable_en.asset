@@ -881,6 +881,22 @@ MonoBehaviour:
     m_Localized: Skill
     m_Metadata:
       m_Items: []
+  - m_Id: 7240710627758080
+    m_Localized: Skill Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7240834884014080
+    m_Localized: It is used to learn skills.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7241333595148288
+    m_Localized: Light Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7241522728898560
+    m_Localized: It is a legendary stone that can be reincarnated and obtained.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

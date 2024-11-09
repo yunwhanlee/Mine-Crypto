@@ -11,7 +11,10 @@ public class SkipSkillTree
     public SkillTree[] skillTreeArr;
 
     // 스킬레벨
-    public int Lv {get => DM._.DB.skillTreeDB.skipSkillTreeLv;}
+    public int Lv {
+        get => DM._.DB.skillTreeDB.skipSkillTreeLv;
+        set => DM._.DB.skillTreeDB.skipSkillTreeLv = value;
+    }
     // 다음층 이동
     public int MoveNextFloor {
         get {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SkillTreeDB : MonoBehaviour
+public class SkillTreeDB
 {
     public int buffSkillTreeLv;
     public int attackSkillTreeLv;

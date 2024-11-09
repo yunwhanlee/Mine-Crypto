@@ -52,6 +52,8 @@ public class LM : MonoBehaviour
         Detail_MushBox1 = "Detail_MushBox1",
         Detail_MushBox2 = "Detail_MushBox2",
         Detail_MushBox3 = "Detail_MushBox3",
+        Detail_SkillPotion = "Detail_SkillPotion",
+        Detail_LightStone = "Detail_LightStone",
 
         Mat1 = "MAT1",
         Mat2 = "MAT2",
@@ -78,6 +80,8 @@ public class LM : MonoBehaviour
         MushBox1 = "UI_MushBox1",
         MushBox2 = "UI_MushBox2",
         MushBox3 = "UI_MushBox3",
+        SkillPotion = "UI_SkillPotion",
+        LightStone = "UI_LightStone",
 
         Attack = "UI_Attack",
         AttackSpeed = "UI_AttackSpeed",

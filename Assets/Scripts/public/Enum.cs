@@ -98,6 +98,7 @@ public static class Enum
     /// <summary>
     ///* 보상 아이템 종류
     //! (에디터) 보상팝업 아이템 순서와 서로같게 하기
+    //! 인벤토리 추가의경우, 인벤토리랑 보상팝업 전부 Hierarchy와 데이터를 추가해줘야 됨!
     /// </summary>
     public enum RWD {
         NONE = -1,
@@ -108,17 +109,20 @@ public static class Enum
         // 버섯 도감
         MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
         // 소비 아이템
-        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST, MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
-        //※ 여기에 추가
+        ORE_TICKET, RED_TICKET,
+        ORE_CHEST, TREASURE_CHEST,
+        MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        SKILLPOTION, LIGHTSTONE,
+        //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
 
         // 포인트 (인벤토리 표기X)
         FAME,
-
     }
 
     /// <summary>
     ///* 인벤토리 아이템 종류
     //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
+    //! 인벤토리 추가의경우, 인벤토리랑 보상팝업 전부 Hierarchy와 데이터를 추가해줘야 됨!
     /// </summary>
     public enum INV {
         // 재화 종류
@@ -128,8 +132,11 @@ public static class Enum
         // 버섯 도감
         MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
         // 소비 아이템
-        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST, MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
-        //※ 여기에 추가
+        ORE_TICKET, RED_TICKET,
+        ORE_CHEST, TREASURE_CHEST,
+        MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        SKILLPOTION, LIGHTSTONE,
+        //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
     }
 
     /// <summary>
@@ -206,7 +213,10 @@ public static class Enum
             case RWD.ORE_TICKET: return LM._.Localize(LM.OreTicket);
             case RWD.RED_TICKET: return LM._.Localize(LM.RedTicket);
             case RWD.TREASURE_CHEST: return LM._.Localize(LM.TreasureChest);
+            case RWD.SKILLPOTION: return LM._.Localize(LM.SkillPotion);
+            case RWD.LIGHTSTONE: return LM._.Localize(LM.LightStone);
             case RWD.FAME: return LM._.Localize(LM.Fame);
+            //※여기 위에 추가
         }
         return "???";
     }

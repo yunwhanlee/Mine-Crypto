@@ -843,6 +843,22 @@ MonoBehaviour:
     m_Key: UI_Skill
     m_Metadata:
       m_Items: []
+  - m_Id: 7240710627758080
+    m_Key: SkillPotion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7240834884014080
+    m_Key: Detail_SkillPotion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7241333595148288
+    m_Key: LightStone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7241522728898560
+    m_Key: Detail_LightStone
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

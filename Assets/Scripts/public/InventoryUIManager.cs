@@ -105,7 +105,9 @@ public class InventoryUIManager : MonoBehaviour
         invSlotUIArr[(int)INV.MUSH_BOX1].Active(sttDB.MushBox1);
         invSlotUIArr[(int)INV.MUSH_BOX2].Active(sttDB.MushBox2);
         invSlotUIArr[(int)INV.MUSH_BOX3].Active(sttDB.MushBox3);
-        //※ 여기에 추가
+        invSlotUIArr[(int)INV.SKILLPOTION].Active(sttDB.SkillPotion);
+        invSlotUIArr[(int)INV.LIGHTSTONE].Active(sttDB.LightStone);
+        //※ 여기 위에 추가
     }
 
     /// <summary>

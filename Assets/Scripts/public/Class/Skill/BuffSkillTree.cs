@@ -13,7 +13,10 @@ public class BuffSkillTree
     public SkillTree[] skillTreeArr;
 
     // 스킬레벨
-    public int Lv {get => DM._.DB.skillTreeDB.buffSkillTreeLv;}
+    public int Lv {
+        get => DM._.DB.skillTreeDB.buffSkillTreeLv;
+        set => DM._.DB.skillTreeDB.buffSkillTreeLv = value;
+    }
     // 지속시간
     public int Time {
         get {

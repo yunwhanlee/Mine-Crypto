@@ -13,7 +13,10 @@ public class AttackSkillTree
     public SkillTree[] skillTreeArr;
 
     // 스킬레벨
-    public int Lv {get => DM._.DB.skillTreeDB.attackSkillTreeLv;}
+    public int Lv {
+        get => DM._.DB.skillTreeDB.attackSkillTreeLv;
+        set => DM._.DB.skillTreeDB.attackSkillTreeLv = value;
+    }
     // 올클리어 지진 발동횟수 (다음층마다 1번씩 발동)
     public int AllClearBonusCnt = 0;
     // 올클리어 지진 최대횟수

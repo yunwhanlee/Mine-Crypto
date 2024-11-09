@@ -34,6 +34,8 @@ public class SkillTree
 
     /// <summary> 선택테두리 초기화 </summary>
     public void InitBorderUI() => Border.color = Color.white;
+    /// <summary> 선택테두리 색상변경 </summary>
+    public void SetSelectedBorderUI() => Border.color = Color.yellow;
     /// <summary> 잠김상태 최신화 </summary>
     public void UpdateDimUI() => Dim.SetActive(IsLock);
 }

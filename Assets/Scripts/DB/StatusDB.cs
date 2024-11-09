@@ -94,6 +94,24 @@ public class StatusDB
         }
     }
 
+    [Header("(소비) 스킬포션")]
+    [field:SerializeField] int skillPotion; public int SkillPotion {
+        get {return skillPotion;}
+        set {
+            skillPotion = value;
+            if(skillPotion < 0) skillPotion = 0;
+        }
+    }
+
+    [Header("(소비) 빛나는돌")]
+    [field:SerializeField] int lightStone; public int LightStone {
+        get {return lightStone;}
+        set {
+            lightStone = value;
+            if(lightStone < 0) lightStone = 0;
+        }
+    }
+
     [Header("명예 레벨")]
     [field:SerializeField] int fameLv; public int FameLv {
         get => fameLv;
@@ -139,6 +157,8 @@ public class StatusDB
         mushBox1 = 0;      // 의문의 버섯상자
         mushBox2 = 0;      // 신비한 버섯상자
         mushBox3 = 0;      // 전설의 버섯상자
+        skillPotion = 0;   // 스킬포션
+        lightStone = 0;    // 빛나는돌
 
         fameLv = 1;        // 명예 레벨
         fame = 0;          // 명예경험치 포인트
@@ -172,6 +192,9 @@ public class StatusDB
             case INV.MUSH_BOX1:      return mushBox1;
             case INV.MUSH_BOX2:      return mushBox2;
             case INV.MUSH_BOX3:      return mushBox3;
+            case INV.SKILLPOTION:    return skillPotion;
+            case INV.LIGHTSTONE:     return lightStone;
+            //※ 여기위에 추가
         }
 
         Debug.LogError("해당하는 아이템 타입이 없어서 찾을수가 없습니다. 소스코드에서 case 타입을 추가하세요!!!");
@@ -215,6 +238,13 @@ public class StatusDB
             case INV.TREASURE_CHEST:
                 TreasureChest += val;
                 break;
+            case INV.SKILLPOTION:
+                skillPotion += val;
+                break;
+            case INV.LIGHTSTONE:
+                lightStone += val;
+                break;
+            //※ 여기위에 추가
         }
     }
 

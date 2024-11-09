@@ -49,6 +49,7 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.MAT6, 100 },
                         { RWD.MAT7, 100 },
                         { RWD.MAT8, 100 },
+                        { RWD.SKILLPOTION, 50 },
                     }
                 );
                 rwdCnt++;
@@ -72,6 +73,7 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.MUSH6, 100 },
                         { RWD.MUSH7, 100 },
                         { RWD.MUSH8, 100 },
+                        { RWD.LIGHTSTONE, 200 },
                     }
                 );
                 rwdCnt++;
@@ -275,8 +277,14 @@ public class RewardUIManager : MonoBehaviour
                     case RWD.MUSH_BOX3: // 버섯상자3
                         sttDB.MushBox3 += val;
                         break;
+                    case RWD.SKILLPOTION: // 스킬포션
+                        sttDB.SkillPotion += val;
+                        break;
+                    case RWD.LIGHTSTONE: // 빛나는돌
+                        sttDB.LightStone += val;
+                        break;
 
-                    //※여기에 추가
+                    // ※여기 위에 추가
                     case RWD.FAME: // 명예포인트 + (초월) 명예 획득량
                         val += GM._.sttm.IncFame;
                         sttDB.Fame += val;
