@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 using System;
 using AssetKits.ParticleImage;
+using static Enum;
 
 /// <summary>
 /// 스킬 카테고리
@@ -76,6 +77,7 @@ public class SkillManager : MonoBehaviour
             DM._.DB.skillTreeDB.Init();
         }
 
+        OnClickAttackSkillIconBtn(0);
         UpdateUI();
     }
 
@@ -121,14 +123,43 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     public void OnClickResetBtn()
     {
+        // 구매한 스킬이 없다면 실행 안 함
+        if(attackSkill.Lv == 1 && buffSkill.Lv == 1 && skipSkill.Lv == 1)
+            return;
+
         GM._.ui.ShowConfirmPopUp("스킬을 전부 리셋하시겠습니까?\n스킬포인트 물약은 전부 반환됩니다.");
         GM._.ui.OnClickConfirmBtnAction = () => {
+
+            if(DM._.DB.statusDB.GetInventoryItemVal(INV.CRISTAL) < 1000)
+            {
+                // 구매를위한 아이템이 부족합니다.
+                GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
+                return;
+            }
+
+
             SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
             GM._.ui.ShowNoticeMsgPopUp("스킬 초기화 완료!");
 
+            // 스킬포인트 물약 반환
+            int total = 0;
+            for(int i = 0; i < skillPriceArr.Length; i++)
+            {
+                int val = skillPriceArr[i];
+                if(i <= attackSkill.Lv - 1) total += val;
+                if(i <= buffSkill.Lv - 1) total += val;
+                if(i <= skipSkill.Lv - 1) total += val;
+            }
+
+            Debug.Log($"SkillPoint Reset total= {total}");
+
+            // 포션 반환
+            GM._.rwm.ShowReward ( new Dictionary<RWD, int> {
+                { RWD.SKILLPOTION, total }
+            });
+
             // 스킬레벨 데이터 초기화
             DM._.DB.skillTreeDB.Init();
-            // 스킬포인트 물약 반환
 
             UpdateUI();
         };
