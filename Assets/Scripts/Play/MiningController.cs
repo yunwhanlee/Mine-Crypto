@@ -153,8 +153,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 return;
             }
 
-            if(status == Status.SPAWN
-            || status == Status.CLEARSTAGE)
+            if(status == Status.SPAWN || status == Status.CLEARSTAGE)
             {
                 Debug.Log($"status= {status}");
                 return;

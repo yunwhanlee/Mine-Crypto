@@ -7,12 +7,16 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using static SoundManager;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
+using static Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts.MiningController;
 
 /// <summary>
 /// 실제 인게임에서의 스킬 발동 컨트롤
 /// </summary>
 public class SkillController : MonoBehaviour
 {
+    const int WAIT_COOLTIME = 10;
+    public int coolTime;
+
     //* VALUE
     SkillManager skm;
     MineManager mnm;
@@ -51,23 +55,19 @@ public class SkillController : MonoBehaviour
         // 버프인트로 애니메이션 팝업 비표시
         Array.ForEach(skm.introGradeAnimArr, introGradeAnim => introGradeAnim.windowObj.SetActive(false));
 
-        if(corActiveSkillID != null)
-        {
+        if(corActiveSkillID != null) {
             StopCoroutine(corActiveSkillID);
             corActiveSkillID = null;
         }
-        if(corSkillIntroGradeAnimID != null)
-        {
+        if(corSkillIntroGradeAnimID != null) {
             StopCoroutine(corSkillIntroGradeAnimID);
             corSkillIntroGradeAnimID = null;
         }
-        if(corActiveMeteoSkillID != null)
-        {
+        if(corActiveMeteoSkillID != null) {
             StopCoroutine(corActiveMeteoSkillID);
             corActiveMeteoSkillID = null;
         }
-        if(corMeteoLoopID != null)
-        {
+        if(corMeteoLoopID != null) {
             StopCoroutine(corMeteoLoopID);
             corMeteoLoopID = null;
         }
@@ -78,14 +78,26 @@ public class SkillController : MonoBehaviour
     /// </summary>
     IEnumerator CoActiveSkill()
     {
+        coolTime = WAIT_COOLTIME;
+
         while(true)
         {
-            // 1분 대기
-            yield return Util.TIME10;
-            // 만약에 공격용스킬 : 올 클리어 보너스가 발동중이라면, 끝날때까지 추가대기
-            yield return new WaitUntil(() => GM._.skm.attackSkill.allClearBonusCnt <= 0);
-            // 랜덤스킬 발동
-            RandomSkill();
+            if(coolTime <= 0)
+            {
+                // 스킬쿨타임 초기화
+                coolTime = WAIT_COOLTIME;
+                // 만약에 공격용스킬 : 올 클리어 보너스가 발동중이라면, 끝날때까지 추가대기
+                yield return new WaitUntil(() => GM._.skm.attackSkill.allClearBonusCnt <= 0);
+                yield return Util.TIME1;
+                // 랜덤스킬 발동
+                RandomSkill();
+            }
+            
+            else
+            {
+                --coolTime;
+                yield return Util.TIME1;
+            }
         }
     }
 
@@ -94,7 +106,7 @@ public class SkillController : MonoBehaviour
     /// </summary>
     private void RandomSkill()
     {
-        // 타이머가 5초 이하로 남았다면, 버그방지로 실행하지 않음.
+        // 타이머가 8초 이하로 남았다면, 버그방지로 실행하지 않음.
         if(GM._.pm.TimerVal <= 8)
             return;
 
@@ -106,11 +118,12 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
-        // randSkillCate = SkillCate.Skip; //! TEST
+        randSkillCate = SkillCate.Skip; //! TEST
 
         switch(randSkillCate)
         {
             case SkillCate.Attack:
+                /*
                 if(skm.attackSkill.allClearBonusCnt > 0)
                 {
                     if(corAttackSkillID != null)
@@ -124,6 +137,7 @@ public class SkillController : MonoBehaviour
                         corMeteoLoopID = null;
                     }
                 }
+                */
                 corAttackSkillID = StartCoroutine(CoAttackSkill());
                 break;
             case SkillCate.Buff:
@@ -259,7 +273,7 @@ public class SkillController : MonoBehaviour
         //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
         skill.grade = Random.Range(0, (int)Enum.GRADE.CNT);
 
-        GM._.gameState = GameState.TIMEOVER;
+        // GM._.gameState = GameState.TIMEOVER;
 
         // 캐릭터 등급 인트로 애니메이션
         corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[skill.grade].CoPlay(SkillCate.Skip));
@@ -279,17 +293,6 @@ public class SkillController : MonoBehaviour
             MiningController.AcceptRsc(targetOre, targetOre.MaxHp);
         }
 
-        skill.PlaySkipAnim(skill.grade);
-
-        int targetFloor = GM._.stgm.Floor + skill.MoveNextFloor;
-        StartCoroutine(GM._.stgm.ShowStageUpAnim(targetFloor));
-
-        GM._.stgm.Floor = targetFloor;
-        GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
-
-        yield return Util.TIME3;
-
-
         // 캐릭터 가운데로 강제이동
         for(int i = 0; i < mnm.workerGroupTf.childCount; i++)
         {
@@ -297,8 +300,25 @@ public class SkillController : MonoBehaviour
             worker.transform.position = GM._.mnm.homeTf.position;
         }
 
+        skill.PlaySkipAnim(skill.grade);
+
+        int targetFloor = GM._.stgm.Floor + skill.MoveNextFloor;
+        StartCoroutine(GM._.stgm.ShowStageUpAnim(targetFloor));
+
+        // 스테이지 층 상승
+        GM._.stgm.Floor = targetFloor;
+        // 타이머 % 감소
+        GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
+        // 스킬쿨타임 % 감소
+        coolTime = (int)(coolTime * skill.DecSkillCoolTimePer);
+
+        yield return Util.TIME3;
+
+
+
+
         yield return Util.TIME1;
-        GM._.gameState = GameState.PLAY;
+        // GM._.gameState = GameState.PLAY;
         skill.EndSkipAnim();
 
         yield return Util.TIME1;
