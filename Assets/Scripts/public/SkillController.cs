@@ -117,8 +117,6 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
-        randSkillCate = SkillCate.Skip; //! TEST
-
         switch(randSkillCate)
         {
             case SkillCate.Attack:
@@ -159,8 +157,9 @@ public class SkillController : MonoBehaviour
         // 스킬레벨
         BuffSkillTree bufskill = skm.buffSkill;
 
-        //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
-        bufskill.skillGrade = Random.Range(0, (int)Enum.GRADE.CNT);
+        // 소환된 캐릭터 등급배열표에 따른 랜덤 스킬등급 선택
+        int[] workerGradeTbArr = GM._.mnm.GetWorkerGradeTableArr();
+        bufskill.skillGrade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
 
         corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[bufskill.skillGrade].CoPlay(SkillCate.Buff));
         isActiveBuff = true;
@@ -206,8 +205,9 @@ public class SkillController : MonoBehaviour
     /// </summary>
     public IEnumerator CoAttackSkill_EarthQauke(AttackSkillTree atkSkill)
     {
-        //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
-        atkSkill.skillGrade = Random.Range(0, (int)Enum.GRADE.CNT);
+        // 소환된 캐릭터 등급배열표에 따른 랜덤 스킬등급 선택
+        int[] workerGradeTbArr = GM._.mnm.GetWorkerGradeTableArr();
+        atkSkill.skillGrade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
 
         // 캐릭터 등급 인트로 애니메이션
         corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[atkSkill.skillGrade].CoPlay(SkillCate.Attack));
@@ -267,10 +267,9 @@ public class SkillController : MonoBehaviour
 
         _.PlaySfx(SFX.Portal_SFX);
 
-        //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
-        skill.grade = Random.Range(0, (int)Enum.GRADE.CNT);
-
-        // GM._.gameState = GameState.TIMEOVER;
+        // 소환된 캐릭터 등급배열표에 따른 랜덤 스킬등급 선택
+        int[] workerGradeTbArr = GM._.mnm.GetWorkerGradeTableArr();
+        skill.grade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
 
         // 캐릭터 등급 인트로 애니메이션
         corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[skill.grade].CoPlay(SkillCate.Skip));
@@ -313,9 +312,7 @@ public class SkillController : MonoBehaviour
         coolTime = (int)(coolTime * skill.DecSkillCoolTimePer);
 
         yield return Util.TIME3;
-
         yield return Util.TIME1;
-        // GM._.gameState = GameState.PLAY;
         skill.EndSkipAnim();
 
         yield return Util.TIME1;

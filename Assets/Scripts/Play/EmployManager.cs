@@ -197,6 +197,9 @@ public class EmployManager : MonoBehaviour
             var ins = Instantiate(GM._.mnm.goblinPrefs[charaIdx], GM._.mnm.workerGroupTf);
             ins.transform.position = GM._.mnm.homeTf.position;
         }
+
+        // 생성된 캐릭터 등급표 배열 작성
+        GM._.mnm.CalcWorkerGradeTableArr();
     }
 #endregion
 
