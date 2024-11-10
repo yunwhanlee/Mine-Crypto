@@ -157,19 +157,16 @@ public class SkillController : MonoBehaviour
         _.PlaySfx(SFX.OpenMushBoxSFX);
 
         // 스킬레벨
-        BuffSkillTree skill = skm.buffSkill;
-        int skLv = skill.Lv;
+        BuffSkillTree bufskill = skm.buffSkill;
 
-        int buffColorIdx = (skLv <= 1)? 0 : (skLv <= 3)? 1 : (skLv <= 4)? 2 : 3;
+        //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
+        bufskill.skillGrade = Random.Range(0, (int)Enum.GRADE.CNT);
 
-        //! 캐릭터 등급랜덤 설정해야됨
-        int gradeIdx = skLv - 1;
-
-        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[gradeIdx].CoPlay(SkillCate.Buff));
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[bufskill.skillGrade].CoPlay(SkillCate.Buff));
         isActiveBuff = true;
-        SetAllWorkerBuffFireEF(true, buffColorIdx);
+        SetAllWorkerBuffFireEF(true, bufskill.skillGrade);
 
-        yield return skill.Time;
+        yield return bufskill.Time;
         SetAllWorkerBuffFireEF(false, 0);
         isActiveBuff = false;
     }
@@ -177,6 +174,7 @@ public class SkillController : MonoBehaviour
     /// <summary>
     /// 버프 파이어 이펙트 ON
     /// </summary>
+    /// <param name="isActive"></param>
     private void SetAllWorkerBuffFireEF(bool isActive, int buffColorIdx = 0)
     {
         for(int i = 0; i < mnm.workerGroupTf.childCount; i++)
@@ -218,12 +216,12 @@ public class SkillController : MonoBehaviour
         Camera.main.GetComponent<DOTweenAnimation>().DORestart();
 
         yield return Util.TIME1;
-        SoundManager._.PlayRandomSfxs(SFX.EarthQuakeA_SFX, SFX.EarthQuakeA_SFX);
+        _.PlayRandomSfxs(SFX.EarthQuakeA_SFX, SFX.EarthQuakeA_SFX);
 
         // 지진오브젝트 활성화
         atkSkill.ActiveEarthQuakeObj(atkSkill.skillGrade);
 
-        SoundManager._.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+        _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
 
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
         {

@@ -462,12 +462,12 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// 캐릭터 버프파이어이펙트 활성화
         /// </summary>
         /// <param name="isActive">활성화, 비활성화</param>
-        /// <param name="buffColorIdx">버프파이어 색상 인덱스</param>
-        public void SetBuffFireEF(bool isActive, int buffColorIdx = 0)
+        /// <param name="buffGradeIdx">버프파이어 색상 인덱스</param>
+        public void SetBuffFireEF(bool isActive, int buffGradeIdx = 0)
         {
             if(isActive)
             {
-                buffFireEFArr[buffColorIdx].gameObject.SetActive(true);
+                buffFireEFArr[buffGradeIdx].gameObject.SetActive(true);
             }
             else 
             {

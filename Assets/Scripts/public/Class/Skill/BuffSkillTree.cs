@@ -12,6 +12,7 @@ using static Enum;
 public class BuffSkillTree
 {
     public SkillTree[] skillTreeArr;
+    public int skillGrade;
 
     // 스킬레벨
     public int Lv {
