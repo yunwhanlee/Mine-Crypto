@@ -84,7 +84,7 @@ public class Ore : MonoBehaviour
             // 보물상자인 경우
             if(OreType == RSC.CRISTAL) 
             {   
-                SoundManager._.PlaySfx(SFX.TreasureChestOrePickSFX);
+                _.PlaySfx(SFX.TreasureChestOrePickSFX);
 
                 // 수량 1 + (초월)보물상자 획득량
                 int ammount = 1 + GM._.sttm.ExtraTreasureChest;
@@ -101,7 +101,7 @@ public class Ore : MonoBehaviour
             // 일반광석인 경우
             else 
             {
-                SoundManager._.PlaySfx(SoundManager.SFX.BrokenOreSFX);
+                _.PlaySfx(SFX.BrokenOreSFX);
                 // 광석캐기 미션 +
                 GM._.fm.missionArr[(int)MISSION.MINING_ORE_CNT].Exp++;
                 // 숙련도 경험치 UP

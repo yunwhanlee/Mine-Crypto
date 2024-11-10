@@ -6,8 +6,7 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using static SoundManager;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
-using static Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts.MiningController;
+using static Enum;
 
 /// <summary>
 /// 실제 인게임에서의 스킬 발동 컨트롤
@@ -302,6 +301,9 @@ public class SkillController : MonoBehaviour
 
         skill.PlaySkipAnim(skill.grade);
 
+        // 보너스상자 획득 (스킬레벨 LV4이상)
+        skill.CheckBonusChestLv4();
+
         int targetFloor = GM._.stgm.Floor + skill.MoveNextFloor;
         StartCoroutine(GM._.stgm.ShowStageUpAnim(targetFloor));
 
@@ -313,9 +315,6 @@ public class SkillController : MonoBehaviour
         coolTime = (int)(coolTime * skill.DecSkillCoolTimePer);
 
         yield return Util.TIME3;
-
-
-
 
         yield return Util.TIME1;
         // GM._.gameState = GameState.PLAY;

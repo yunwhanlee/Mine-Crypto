@@ -5,6 +5,7 @@ using AssetKits.ParticleImage;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using static Enum;
 
 /// <summary>
 /// 세번째 스킬(스킵형)
@@ -18,6 +19,7 @@ public class SkipSkillTree
     public ParticleImage skipEmitterParticleEF;
     public GameObject[] portalGradeParticleEFArr;
     public DOTweenAnimation[] charaFallInAnimArr;
+    public ParticleSystem chestShowerParticleEF;
 
     public int grade;
 
@@ -83,6 +85,28 @@ public class SkipSkillTree
     public void EndSkipAnim()
     {
         InitPortalEF();
+    }
+
+    /// <summary>
+    /// 보너스상자 획득 (스킬레벨 LV4이상)
+    /// </summary>
+    public void CheckBonusChestLv4()
+    {
+        // 스킬레벨 4이상인지 확인
+        if(!IsBonusChest) return;
+
+        chestShowerParticleEF.Play();
+
+        const int ORECHEST_CNT = 30;
+        const int TREASURECHEST_CNT = 10;
+
+        // 광석상자 획득
+        GM._.pm.playResRwdArr[(int)RWD.ORE_CHEST] += ORECHEST_CNT; // 결과수치 UI
+        DM._.DB.statusDB.TreasureChest += ORECHEST_CNT; // 데이터
+        // 보물상자 획득
+        GM._.pm.playResRwdArr[(int)RWD.TREASURE_CHEST] += TREASURECHEST_CNT; // 결과수치 UI
+        DM._.DB.statusDB.TreasureChest += TREASURECHEST_CNT; // 데이터
+        GM._.fm.missionArr[(int)MISSION.MINING_CHEST_CNT].Exp++;
     }
 
     /// <summary>
