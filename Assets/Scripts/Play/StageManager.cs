@@ -16,6 +16,7 @@ public class StageManager : MonoBehaviour {
 
     [Header("TOP")]
     public TMP_Text stageTxt;
+    public TMP_Text stageUpAnimTxt;
 
     //* Ore Object
     [Header("보물상자 및 광석 Prefs")]
@@ -97,9 +98,7 @@ public class StageManager : MonoBehaviour {
         GM._.pm.playResRwdArr = new int[GetEnumRWDLenght()];
 
         // 스테이지 타이틀UI 애니메이션
-        stageTitleTxt.text =  IsChallengeMode? $"{LM._.Localize(LM.ChallengeMine)}"
-            : $"{LM._.Localize($"UI_MineStage{(int)oreType + 1}")}";
-        stageTitleUIDOTAnim.DORestart();
+        ShowStageTitleUIAnim(IsChallengeMode? $"{LM._.Localize(LM.ChallengeMine)}" : $"{LM._.Localize($"UI_MineStage{(int)oreType + 1}")}");
 
         // 광석 오브젝트 생성
         StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
@@ -109,6 +108,15 @@ public class StageManager : MonoBehaviour {
         {
             GM._.skc.ActiveSkill();
         }
+    }
+
+    /// <summary>
+    /// 스테이지 타이틀UI 애니메이션
+    /// </summary>
+    public void ShowStageTitleUIAnim(string str)
+    {
+        stageTitleTxt.text = str;
+        stageTitleUIDOTAnim.DORestart();
     }
 
     /// <summary>
@@ -292,6 +300,24 @@ public class StageManager : MonoBehaviour {
         //     ore.transform.position = orePosList[i]; // 랜덤위치 적용
         //     ore.MaxHp = oreHp;
         // }
+    }
+
+    public IEnumerator ShowStageUpAnim(int targetFloor)
+    {
+        int tempFloor = GM._.stgm.Floor;
+
+        stageTxt.gameObject.SetActive(false);
+        stageUpAnimTxt.gameObject.SetActive(true);
+
+        while(tempFloor < targetFloor)
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.CountDown_SFX);
+            stageUpAnimTxt.text = $"{LM._.Localize($"UI_MineStage{(int)oreType + 1}")} {++tempFloor}{LM._.Localize(LM.Floor)}";
+            yield return Util.TIME0_2;
+        }
+
+        stageTxt.gameObject.SetActive(true);
+        stageUpAnimTxt.gameObject.SetActive(false);
     }
 #endregion
 }

@@ -62,6 +62,8 @@ public class SoundManager : MonoBehaviour
         EarthQuakeB_SFX,            // 지진B
         FireballA_SFX,              // 메테오A
         FireballB_SFX,              // 메테오B
+        Portal_SFX,                 // 포탈
+        CountDown_SFX,              // 카운트다운
     }
 
     [field: Header("BGM")]

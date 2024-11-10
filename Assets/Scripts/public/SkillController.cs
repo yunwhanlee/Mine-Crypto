@@ -94,6 +94,10 @@ public class SkillController : MonoBehaviour
     /// </summary>
     private void RandomSkill()
     {
+        // 타이머가 5초 이하로 남았다면, 버그방지로 실행하지 않음.
+        if(GM._.pm.TimerVal <= 8)
+            return;
+
         SkillCate randSkillCate;
 
         // 공격용스킬 올클리어가 남아있다면, 랜덤스킬에서 제외
@@ -102,7 +106,7 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
-        randSkillCate = SkillCate.Skip;
+        // randSkillCate = SkillCate.Skip; //! TEST
 
         switch(randSkillCate)
         {
@@ -137,7 +141,7 @@ public class SkillController : MonoBehaviour
     /// </summary>
     IEnumerator CoBuffSkill()
     {
-        SoundManager._.PlaySfx(SoundManager.SFX.OpenMushBoxSFX);
+        _.PlaySfx(SFX.OpenMushBoxSFX);
 
         // 스킬레벨
         BuffSkillTree skill = skm.buffSkill;
@@ -250,16 +254,19 @@ public class SkillController : MonoBehaviour
     {
         var skill = skm.skipSkill;
 
-        _.PlaySfx(SFX.OpenMushBoxSFX);
+        _.PlaySfx(SFX.Portal_SFX);
 
         //! 캐릭터 수량에 따른 랜덤등급 설정해야됨!
         skill.grade = Random.Range(0, (int)Enum.GRADE.CNT);
 
-        GM._.gameState = GameState.STOP;
+        GM._.gameState = GameState.TIMEOVER;
 
         // 캐릭터 등급 인트로 애니메이션
         corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[skill.grade].CoPlay(SkillCate.Skip));
 
+        yield return Util.TIME0_5;
+
+        // 광석 전부제거
         for(int j = 0; j < GM._.mnm.oreGroupTf.childCount; j++)
         {
             // 타겟 광석
@@ -274,9 +281,29 @@ public class SkillController : MonoBehaviour
 
         skill.PlaySkipAnim(skill.grade);
 
-        yield return Util.TIME5;
+        int targetFloor = GM._.stgm.Floor + skill.MoveNextFloor;
+        StartCoroutine(GM._.stgm.ShowStageUpAnim(targetFloor));
 
+        GM._.stgm.Floor = targetFloor;
+        GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
+
+        yield return Util.TIME3;
+
+
+        // 캐릭터 가운데로 강제이동
+        for(int i = 0; i < mnm.workerGroupTf.childCount; i++)
+        {
+            MiningController worker = mnm.workerGroupTf.GetChild(i).GetComponent<MiningController>();
+            worker.transform.position = GM._.mnm.homeTf.position;
+        }
+
+        yield return Util.TIME1;
+        GM._.gameState = GameState.PLAY;
         skill.EndSkipAnim();
+
+        yield return Util.TIME1;
+        // 타이틀표시 및 이펙트
+        GM._.stgm.ShowStageTitleUIAnim($"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)}");
     }
     #endregion
 #endregion

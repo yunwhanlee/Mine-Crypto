@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AssetKits.ParticleImage;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,10 +15,9 @@ public class SkipSkillTree
     public SkillTree[] skillTreeArr;
 
     public DOTweenAnimation spaceDarkFadeEFAnim;
-    public GameObject skipEmitterParticleEFObj;
+    public ParticleImage skipEmitterParticleEF;
     public GameObject[] portalGradeParticleEFArr;
     public DOTweenAnimation[] charaFallInAnimArr;
-
 
     public int grade;
 
@@ -74,7 +74,7 @@ public class SkipSkillTree
 
     public void PlaySkipAnim(int gradeIdx)
     {
-        skipEmitterParticleEFObj.SetActive(true);
+        skipEmitterParticleEF.Play();
         spaceDarkFadeEFAnim.DORestart();
         PlayPortalEF(gradeIdx);
         Array.ForEach(charaFallInAnimArr, anim => anim.DORestart());
@@ -82,7 +82,6 @@ public class SkipSkillTree
 
     public void EndSkipAnim()
     {
-        skipEmitterParticleEFObj.SetActive(false);
         InitPortalEF();
     }
 
