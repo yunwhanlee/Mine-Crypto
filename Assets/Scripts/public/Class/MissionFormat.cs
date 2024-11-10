@@ -147,7 +147,7 @@ public class MissionFormat
                 MaxExp = 1 + (Lv - 1);
                 Reward = new Dictionary<RWD, int> {
                     { RWD.FAME, 1 },
-                    { RWD.TREASURE_CHEST, Lv },
+                    { RWD.SKILLPOTION, 1 },
                 };
                 break;
         }

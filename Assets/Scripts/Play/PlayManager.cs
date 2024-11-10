@@ -186,6 +186,10 @@ public class PlayManager : MonoBehaviour
                 int oreChestCnt = GM._.stgm.Floor - 1;
                 playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
                 DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
+
+                // 스킬포션 획득
+                // playResRwdArr[(int)RWD.SKILLPOTION]++;
+                // DM._.DB.statusDB.SkillPotion++;
             }
         }
         //* 일반광산

@@ -13,7 +13,7 @@ using static Enum;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 10;
+    const int WAIT_COOLTIME = 60;
     public int coolTime;
 
     //* VALUE
