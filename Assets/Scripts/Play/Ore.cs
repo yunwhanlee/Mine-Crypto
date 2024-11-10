@@ -62,7 +62,7 @@ public class Ore : MonoBehaviour
         if(Hp > 0)
         {
             int randomIdx = Random.Range((int)SFX.Metal1SFX, (int)SFX.Metal3SFX + 1);
-            SoundManager._.PlaySfx((SFX)randomIdx);
+            _.PlaySfx((SFX)randomIdx);
 
             MiningHitPtcEF.Play();
 

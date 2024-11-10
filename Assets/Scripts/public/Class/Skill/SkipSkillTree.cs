@@ -92,6 +92,7 @@ public class SkipSkillTree
     /// </summary>
     public void CheckBonusChestLv4()
     {
+        Debug.Log($"CheckBonusChestLv4():: IsBonusChest= {IsBonusChest}");
         // 스킬레벨 4이상인지 확인
         if(!IsBonusChest) return;
 
@@ -102,11 +103,10 @@ public class SkipSkillTree
 
         // 광석상자 획득
         GM._.pm.playResRwdArr[(int)RWD.ORE_CHEST] += ORECHEST_CNT; // 결과수치 UI
-        DM._.DB.statusDB.TreasureChest += ORECHEST_CNT; // 데이터
+        DM._.DB.statusDB.OreChest += ORECHEST_CNT; // 데이터
         // 보물상자 획득
         GM._.pm.playResRwdArr[(int)RWD.TREASURE_CHEST] += TREASURECHEST_CNT; // 결과수치 UI
         DM._.DB.statusDB.TreasureChest += TREASURECHEST_CNT; // 데이터
-        GM._.fm.missionArr[(int)MISSION.MINING_CHEST_CNT].Exp++;
     }
 
     /// <summary>

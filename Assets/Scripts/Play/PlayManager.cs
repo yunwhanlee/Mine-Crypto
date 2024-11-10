@@ -31,7 +31,6 @@ public class PlayManager : MonoBehaviour
         }
     }
 
-
 #region EVENT
     public void OnClickPauseIconBtn() {
         SoundManager._.PauseBgm(isOn: true);
@@ -185,7 +184,7 @@ public class PlayManager : MonoBehaviour
             {
                 // 광석상자 획득 (매 층마다 +1)
                 int oreChestCnt = GM._.stgm.Floor - 1;
-                playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
+                playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
                 DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
             }
         }
@@ -194,7 +193,7 @@ public class PlayManager : MonoBehaviour
         {
             // 광석상자 획득 (매 층마다 +1)
             int oreChestCnt = GM._.stgm.Floor - 1;
-            playResRwdArr[(int)RWD.ORE_CHEST] = oreChestCnt; // 결과수치 UI
+            playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
             DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
         }
 
