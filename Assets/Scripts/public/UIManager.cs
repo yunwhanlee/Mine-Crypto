@@ -162,6 +162,11 @@ public class UIManager : MonoBehaviour
         GM._.skm.ShowPopUp();
     }
 
+    public void OnClickMenu_RebornBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        GM._.rbm.ShowPopUp();
+    }
+
     public void OnClickMenu_SettingBtn() {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.stm.ShowPopUp();

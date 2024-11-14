@@ -72,7 +72,7 @@ public class SkillManager : MonoBehaviour
         // skillTreeDB가 null일 경우 새로 초기화
         if (DM._.DB.skillTreeDB == null)
         {
-            Debug.Log("<color=red>데이터가 없음으로 자체 초기화</color>");
+            Debug.Log($"<color=red>{this.name}DB데이터가 없음으로 자체 초기화</color>");
             DM._.DB.skillTreeDB = new SkillTreeDB();
             DM._.DB.skillTreeDB.Init();
         }

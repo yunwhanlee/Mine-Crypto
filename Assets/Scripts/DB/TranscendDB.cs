@@ -7,7 +7,7 @@ using static Enum;
 [Serializable]
 public class TranscendDB
 {
-    [Header("업그레이드 데이터")]
+    [Header("업그레이드 저장용 데이터")]
     public UpgradeFormatFloat upgIncAutoOrePer;                 // 자동 광석 수량
     public UpgradeFormatFloat upgIncAutoCristalPer;             // 자동 크리스탈 수량
     public UpgradeFormatFloat upgDecAlchemyMaterialPer;         // 재료 제작비용 감소

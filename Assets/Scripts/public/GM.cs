@@ -30,6 +30,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public TimePieceManager tpm; // 시간의조각
     [field:HideInInspector] public SkillManager skm; // 스킬
     [field:HideInInspector] public SkillController skc; // 스킬발동 컨트롤러
+    [field:HideInInspector] public RebornManager rbm; // 환생
 
     //* HOME
     [field:HideInInspector] public HomeManager hm;
@@ -84,6 +85,7 @@ public class GM : MonoBehaviour
         tpm = GameObject.Find("TimePieceManager").GetComponent<TimePieceManager>();
         skm = GameObject.Find("SkillManager").GetComponent<SkillManager>();
         skc = GameObject.Find("SkillController").GetComponent<SkillController>();
+        rbm = GameObject.Find("RebornManager").GetComponent<RebornManager>();
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();

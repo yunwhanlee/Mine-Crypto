@@ -22,6 +22,11 @@ public class UpgradeFormat
         Price = PriceDef + Lv * (Lv) * PriceDef / 2;
     }
 
+    public void UpdatePriceFreeSet(int[] priceArr)
+    {
+        Price = priceArr[Lv];
+    }
+
     /// <summary>
     /// 가격 업데이트 (밸런스 조절방식)
     /// </summary>
