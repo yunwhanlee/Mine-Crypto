@@ -176,7 +176,7 @@ public class AlchemyManager : MonoBehaviour
                 // 제작필요 아이템 데이터
                 NeedItemData needItemDt = itemDt.needItemDataArr[i];
                 // 필요 아이템
-                int needItemVal = cateIdx == ALCHEMY_CATE.MATERIAL? ApplyDecMatPer(needItemDt.Val) : needItemDt.Val;
+                int needItemVal = ApplyDecValPer(cateIdx, needItemDt.Val);
                 // 결과
                 int totalNeedVal = needItemVal * createCnt;
 
@@ -275,14 +275,30 @@ public class AlchemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 강화에 필요한 재료 제작비용 감소 적용
+    /// 강화에 필요한 제작비용 감소 적용
     /// </summary>
     /// <returns></returns>
-    private int ApplyDecMatPer(int needItemVal)
+    private int ApplyDecValPer(ALCHEMY_CATE cate, int needItemVal)
     {
+        // (버그)만약에 수치가 1이라면, 감소적용 없이 그대로 반환
+        if(needItemVal == 1)
+            return needItemVal;
+
         // 제작비용 감소 % 적용
-        float decMatPer = 1 - GM._.sttm.DecAlchemyMaterialPer;
-        return Mathf.RoundToInt(needItemVal * decMatPer);
+        switch(cate)
+        {
+            case ALCHEMY_CATE.MATERIAL:
+                float decMatPer = 1 - GM._.sttm.DecAlchemyMaterialPer;
+                return Mathf.RoundToInt(needItemVal * decMatPer);
+            case ALCHEMY_CATE.CONSUME_ITEM:
+                float decConsumePer = 1 - GM._.rbm.upgDecConsumePricePer.Val;
+                return Mathf.RoundToInt(needItemVal * decConsumePer);
+            case ALCHEMY_CATE.DECORATION:
+                float decDecoPer = 1 - GM._.rbm.upgDecDecoPricePer.Val;
+                return Mathf.RoundToInt(needItemVal * decDecoPer);
+            default:
+                return needItemVal;
+        }
     }
 
     /// <summary>
@@ -317,7 +333,7 @@ public class AlchemyManager : MonoBehaviour
         NeedItemUIFormat itemUI = needItemUIArr[idx];
 
         // 제작비용 감소 % 적용
-        int needItemVal = cateIdx == ALCHEMY_CATE.MATERIAL? ApplyDecMatPer(needItemDt.Val) : needItemDt.Val;
+        int needItemVal = ApplyDecValPer(cateIdx, needItemDt.Val);
 
         // 목록UI 표시
         itemUI.obj.SetActive(true);

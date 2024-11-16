@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 [Serializable]
 public class StageDB
@@ -39,5 +40,20 @@ public class StageDB
             1,  // 제 8 광산
             1   // 시련의 광산
         };
+    }
+
+    /// <summary>
+    /// 최고층 합산
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalBestFloor()
+    {
+        int result = 0;
+        for(int i = 0; i < bestFloorArr.Length; i++)
+        {
+            result += bestFloorArr[i];
+        }
+
+        return result;
     }
 }

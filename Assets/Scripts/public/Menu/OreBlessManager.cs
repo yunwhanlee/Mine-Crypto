@@ -164,7 +164,10 @@ public class OreBlessManager : MonoBehaviour
         oreBlessFormatArr[oreBlessIdx].AbilityTxt.text = "";
 
         // 랜덤 능력치 개수 설정 (1개 ~ 3개)
-        int abilityLen = Random.Range(1, 3 + 1);
+        const int MAX = 3 + 1;
+        const int OFFSET_CNT = 1; // 기본 1개이상임으로, 환생 최소축복개수 반영에서 -1을 빼줘야됨
+        int min = 1 + (GM._.rbm.upgMinOreBlessCnt.Val - OFFSET_CNT);
+        int abilityLen = Random.Range(min, MAX);
         oreBlessFormatArr[oreBlessIdx].AbilityCnt = abilityLen;
 
         for(int i = 0; i < abilityLen; i++)

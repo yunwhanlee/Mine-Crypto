@@ -77,14 +77,18 @@ public class SkillController : MonoBehaviour
     /// </summary>
     IEnumerator CoActiveSkill()
     {
-        coolTime = WAIT_COOLTIME;
+        // 스킬 쿨타임시간 
+        int skipDefCoolTime = Mathf.RoundToInt(WAIT_COOLTIME * skm.skipSkill.DecSkillCoolTimePer);
+        int waitTime = skipDefCoolTime - GM._.rbm.upgDecSkillTime.Val;
+        // 스킬쿨타임 처음 초기화
+        coolTime = waitTime;
 
         while(true)
         {
             if(coolTime <= 0)
             {
                 // 스킬쿨타임 초기화
-                coolTime = WAIT_COOLTIME;
+                coolTime = waitTime;
                 // 만약에 공격용스킬 : 올 클리어 보너스가 발동중이라면, 끝날때까지 추가대기
                 yield return new WaitUntil(() => GM._.skm.attackSkill.allClearBonusCnt <= 0);
                 yield return Util.TIME1;
@@ -309,7 +313,7 @@ public class SkillController : MonoBehaviour
         // 타이머 % 감소
         GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
         // 스킬쿨타임 % 감소
-        coolTime = (int)(coolTime * skill.DecSkillCoolTimePer);
+        // RandomSkill()발동 쿨타임변수에 직접적용
 
         yield return Util.TIME3;
         yield return Util.TIME1;

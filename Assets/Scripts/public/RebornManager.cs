@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.GlobalVariables;
 using static Enum;
 
 public class RebornManager : MonoBehaviour
@@ -11,6 +13,8 @@ public class RebornManager : MonoBehaviour
 
     //* ELEMENT
     public GameObject windowObj;
+    public TMP_Text myLightStoneCntTxt;                       // 현재 빛의돌 수량 텍스트
+    public TMP_Text myTotleBestFloorTxt;                      // 나의 최고점수 합 텍스트
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgIncLightStonePerUI;             // 빛의돌 획득량%
@@ -28,7 +32,7 @@ public class RebornManager : MonoBehaviour
     public UpgradeFormatFloat upgIncOrePer;                   // 모든광석 획득량%
     public UpgradeFormatInt upgDecSkillTime;                  // (int) 스킬쿨타임 감소
     public UpgradeFormatInt upgMinOreBlessCnt;                // (int) 축복옵션 최소개수
-    public UpgradeFormatFloat upgDecUpgradePricePer;          // 강화비용 감소%
+    public UpgradeFormatFloat upgDecUpgradePricePer;          // 강화비용 감소% -> 「모든 업그레이드강화, 자동채굴강화, 시련의광산 크리스탈보관량강화」
     public UpgradeFormatFloat upgDecConsumePricePer;          // 소모품 제작 비용감소%
     public UpgradeFormatFloat upgDecDecoPricePer;             // 장식 제작 비용감소%
     public UpgradeFormatFloat upgDecTranscendPircePer;        // 초월 강화비용감소%
@@ -90,9 +94,30 @@ public class RebornManager : MonoBehaviour
     /// <summary>
     /// 환생하기
     /// </summary>
-    public void Reborn()
+    private void Reborn()
     {
+        int val = DM._.DB.stageDB.GetTotalBestFloor() / 5;
 
+        string title = "모든 기억을 잃고 환생하시겠습니까?";
+        string content = "숙련도, 명예레벨, 환생강화를 제외한 모든것이 초기화됩니다.";
+        string extraRwd = upgIncLightStonePer.Lv > 0? $"(+ {val / 10})" : "";
+        string reward = $"보상 : <sprite name=LIGHTSTONE> {val} {extraRwd}";
+
+        GM._.ui.ShowConfirmPopUp($"{title}\n{content}\n{reward}");
+        GM._.ui.OnClickConfirmBtnAction = () => {
+            if(DM._.DB.stageDB.GetTotalBestFloor() < 100)
+            {
+                GM._.ui.ShowWarningMsgPopUp("최고층 합이 100층 이상에서만 가능합니다.");
+                return;
+            }
+
+            Debug.Log("환생!");
+            // 화이트 페이드인아웃 이펙트
+
+            // 데이터 초기화
+
+            // 빛의돌 획득
+        };
     }
 
     /// <summary>
@@ -141,6 +166,9 @@ public class RebornManager : MonoBehaviour
     /// </summary>
     private void UpdateDataAndUI()
     {
+        myLightStoneCntTxt.text = DM._.DB.statusDB.GetInventoryItemVal(INV.LIGHTSTONE).ToString();
+        myTotleBestFloorTxt.text = $"현재 최고층 합 : {DM._.DB.stageDB.GetTotalBestFloor()}층";
+
         //* Data Price
         upgIncLightStonePer.UpdatePrice();
         upgIncOrePer.UpdatePrice();

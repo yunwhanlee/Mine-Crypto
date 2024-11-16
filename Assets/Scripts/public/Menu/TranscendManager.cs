@@ -150,14 +150,14 @@ public class TranscendManager : MonoBehaviour
     private void UpdateDataAndUI()
     {
         //* Data Price
-        upgIncAutoOrePer.UpdatePrice();
-        upgIncAutoCristalPer.UpdatePrice();
-        upgDecAlchemyMaterialPer.UpdatePrice();
-        upgIncTreasureChest.UpdatePrice();
-        upgIncAutoOreBagStoragePer.UpdatePrice();
-        upgIncAutoCristalBagStoragePer.UpdatePrice();
-        upgIncStartFloor.UpdatePrice();
-        upgIncFame.UpdatePrice();
+        upgIncAutoOrePer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncAutoCristalPer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgDecAlchemyMaterialPer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncTreasureChest.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncAutoOreBagStoragePer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncAutoCristalBagStoragePer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncStartFloor.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncFame.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
 
         //* UI
         upgIncAutoOrePerUI.UpdateUI(upgIncAutoOrePer);

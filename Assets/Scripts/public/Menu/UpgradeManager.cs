@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enum;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -132,14 +133,14 @@ public class UpgradeManager : MonoBehaviour
     private void UpdateDataAndUI()
     {
         //* Data Price
-        upgAttack.UpdatePrice();
-        upgIncTimer.UpdatePrice();
-        upgAttackSpeed.UpdatePrice();
-        upgBagStorage.UpdatePrice();
-        upgNextStageSkip.UpdatePrice();
-        upgIncPopulation.UpdatePrice();
-        upgMoveSpeed.UpdatePrice();
-        upgIncCristal.UpdatePrice();
+        upgAttack.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgIncTimer.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgAttackSpeed.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgBagStorage.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgNextStageSkip.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgIncPopulation.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgMoveSpeed.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
+        upgIncCristal.UpdatePrice(DEC_UPG_TYPE.UPGRADE);
 
         //* UI
         upgAttackUI.UpdateUI(upgAttack);

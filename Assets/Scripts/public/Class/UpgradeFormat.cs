@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enum;
 
 /// <summary>
 ///* 업그레이드 포멧 (최상위)
@@ -17,14 +18,29 @@ public class UpgradeFormat
     /// <summary>
     /// 가격 업데이트 (기본)
     /// </summary>
-    public void UpdatePrice()
+    public void UpdatePrice(DEC_UPG_TYPE decUpgType = DEC_UPG_TYPE.NONE)
     {
+        var rbm = GM._.rbm;
         Price = PriceDef + Lv * (Lv) * PriceDef / 2;
+
+        // 강화비용 감소%
+        if(rbm.upgDecUpgradePricePer.Lv > 0 && decUpgType == DEC_UPG_TYPE.UPGRADE) {
+            float decreasePer = 1 - rbm.upgDecUpgradePricePer.Val;
+            Price = Mathf.RoundToInt(Price * decreasePer);
+        }
+        // 초월 강화비용 감소%
+        else if(rbm.upgDecTranscendPircePer.Lv > 0 && decUpgType == DEC_UPG_TYPE.TRANSCEND) {
+            float decreasePer = 1 - rbm.upgDecTranscendPircePer.Val;
+            Price = Mathf.RoundToInt(Price * decreasePer);
+        }
     }
 
     public void UpdatePriceFreeSet(int[] priceArr)
     {
-        Price = priceArr[Lv];
+        if(Lv >= priceArr.Length)
+            Price = 9999; // MAX LV
+        else
+            Price = priceArr[Lv];
     }
 
     /// <summary>

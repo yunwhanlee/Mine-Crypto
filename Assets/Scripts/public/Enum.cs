@@ -36,6 +36,13 @@ public static class Enum
         return colorTag;
     }
 
+    /// <summary>
+    /// (환생) 업그레이드 가격감소% 적용할 업그레이드 가격대상
+    /// </summary>
+    public enum DEC_UPG_TYPE {
+        NONE, UPGRADE, TRANSCEND,
+    }
+
     public enum MISSION {
         MINING_ORE_CNT,
         MINING_TIME,

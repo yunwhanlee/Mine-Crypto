@@ -296,6 +296,9 @@ public class AutoMiningManager : MonoBehaviour
 
     private void UpdateData()
     {
+        // 강화비용 감소%
+        float decreasePer = 1 - GM._.rbm.upgDecUpgradePricePer.Val;
+
         for(int i = 0; i < autoDB.saveDts.Length; i++)
         {
             AutoMiningFormat am = autoMiningArr[i];
@@ -311,9 +314,13 @@ public class AutoMiningManager : MonoBehaviour
 
             // 가격
             if(i == (int)RSC.CRISTAL)
-                am.upgradePrice = CalcUpgradCristalPrice(am.Lv);
+            {
+                am.upgradePrice = Mathf.RoundToInt(CalcUpgradCristalPrice(am.Lv) * decreasePer);
+            }
             else
-                am.upgradePrice = CalcUpgradeOrePrice(am.Lv);
+            {
+                am.upgradePrice = Mathf.RoundToInt(CalcUpgradeOrePrice(am.Lv) * decreasePer);
+            }
         }
     }
 
