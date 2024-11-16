@@ -64,6 +64,7 @@ public class SoundManager : MonoBehaviour
         FireballB_SFX,              // 메테오B
         Portal_SFX,                 // 포탈
         CountDown_SFX,              // 카운트다운
+        Reborn_SFX,                 // 환생
     }
 
     [field: Header("BGM")]

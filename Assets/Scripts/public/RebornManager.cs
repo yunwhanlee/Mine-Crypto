@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.GlobalVariables;
 using static Enum;
 
 public class RebornManager : MonoBehaviour
@@ -15,6 +14,7 @@ public class RebornManager : MonoBehaviour
     public GameObject windowObj;
     public TMP_Text myLightStoneCntTxt;                       // 현재 빛의돌 수량 텍스트
     public TMP_Text myTotleBestFloorTxt;                      // 나의 최고점수 합 텍스트
+    public DOTweenAnimation whiteFadeInOutEFAnim;             // 환생 페이드인아웃 이펙트 애니메이션
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgIncLightStonePerUI;             // 빛의돌 획득량%
@@ -27,6 +27,8 @@ public class RebornManager : MonoBehaviour
     public UpgradeUIFormat upgDecTranscendPircePerUI;         // 초월 강화비용감소%
 
     //* VALUE
+    const int REBORN_MIN_FLOOR = 100;                         // 환생 최소가능 최고층 합 수치
+
     [Header("업그레이드 데이터")]
     public UpgradeFormatFloat upgIncLightStonePer;            // 빛의돌 획득량%
     public UpgradeFormatFloat upgIncOrePer;                   // 모든광석 획득량%
@@ -39,6 +41,8 @@ public class RebornManager : MonoBehaviour
 
     IEnumerator Start()
     {
+        whiteFadeInOutEFAnim.gameObject.SetActive(false);
+
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
@@ -87,37 +91,105 @@ public class RebornManager : MonoBehaviour
     // 초월 강화비용감소% 버튼
     public void OnClickUpgDecTranscendPircePerBtn() => Upgrade(upgDecTranscendPircePer);
     // 환생 버튼
-    public void OnClickRebornBtn() => Reborn();
+    public void OnClickRebornBtn() {
+        if(DM._.DB.stageDB.GetTotalBestFloor() < REBORN_MIN_FLOOR)
+        {
+            GM._.ui.ShowWarningMsgPopUp("최고층 합이 100층 이상에서만 가능합니다.");
+            return;
+        }
+
+        AskConfirmReborn();
+    } 
 #endregion
 
 #region FUNC
     /// <summary>
-    /// 환생하기
+    /// 환생하시겠습니까?
     /// </summary>
-    private void Reborn()
+    private void AskConfirmReborn()
     {
         int val = DM._.DB.stageDB.GetTotalBestFloor() / 5;
 
         string title = "모든 기억을 잃고 환생하시겠습니까?";
         string content = "숙련도, 명예레벨, 환생강화를 제외한 모든것이 초기화됩니다.";
-        string extraRwd = upgIncLightStonePer.Lv > 0? $"(+ {val / 10})" : "";
-        string reward = $"보상 : <sprite name=LIGHTSTONE> {val} {extraRwd}";
+        string extraRwd = upgIncLightStonePer.Lv > 0? $"(+ {GetExtraRwdVal()})" : "";
+        string reward = $"보상 : <sprite name=LIGHTSTONE> {GetRwdVal()} {extraRwd}";
 
         GM._.ui.ShowConfirmPopUp($"{title}\n{content}\n{reward}");
         GM._.ui.OnClickConfirmBtnAction = () => {
-            if(DM._.DB.stageDB.GetTotalBestFloor() < 100)
-            {
-                GM._.ui.ShowWarningMsgPopUp("최고층 합이 100층 이상에서만 가능합니다.");
+            if(GM._.gameState != GameState.HOME)
+            {   // 플레이중에는 불가능합니다 메세지 표시
+                GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotAvailableInPlayMsg));
                 return;
             }
 
-            Debug.Log("환생!");
-            // 화이트 페이드인아웃 이펙트
-
-            // 데이터 초기화
-
-            // 빛의돌 획득
+            StartCoroutine(CoReborn());
         };
+    }
+
+    /// <summary>
+    /// 환생하기
+    /// </summary>
+    IEnumerator CoReborn()
+    {
+        Debug.Log("CoReborn():: 환생!");
+
+        DB db = DM._.DB;
+
+        //* 화이트 페이드인아웃 이펙트
+        SoundManager._.PlaySfx(SoundManager.SFX.Reborn_SFX);
+        whiteFadeInOutEFAnim.gameObject.SetActive(true);
+        whiteFadeInOutEFAnim.DORestart();
+
+        yield return Util.TIME2;
+        //* 데이터 초기화 
+        // 명예레벨, 숙련도, 환생강화 제외
+        var prevFameLv = db.statusDB.FameLv;
+        var prevProficiencyDB = db.proficiencyDB;
+        var prevRebornDB = db.rebornDB;
+        int prevLightStone = db.statusDB.LightStone;
+
+        // 빛의돌 보상수량
+        
+        int rewardCnt = GetRwdVal() + GetExtraRwdVal();
+
+        // 모든 데이터 초기화
+        db.Init();
+
+        // 초기화전 유지해둔 데이터 반영
+        db.statusDB.FameLv = prevFameLv;            // 명예레벨
+        db.statusDB.LightStone = prevLightStone;    // 빛의돌
+        db.proficiencyDB = prevProficiencyDB;       // 숙련도 데이터
+        db.rebornDB = prevRebornDB;                 // 환생업그레이드 데이터
+
+        //* 빛의돌 보상획득
+        GM._.rwm.ShowReward (
+            new Dictionary<RWD, int> {
+                { RWD.LIGHTSTONE, rewardCnt },
+            }
+        );
+
+        yield return Util.TIME3;
+        whiteFadeInOutEFAnim.gameObject.SetActive(false);
+        UpdateDataAndUI();
+    }
+
+    /// <summary>
+    /// 빛의돌 획득량 반환
+    /// </summary>
+    private int GetRwdVal()
+    {
+        float pow = Mathf.Pow(DM._.DB.stageDB.GetTotalBestFloor(), 2);
+        return Mathf.RoundToInt(pow / 100);
+    }
+
+    /// <summary>
+    /// 빛의돌 추가획득량 반환
+    /// </summary>
+    /// <returns></returns>
+    private int GetExtraRwdVal()
+    {
+        return Mathf.RoundToInt(GetRwdVal() * upgIncLightStonePer.Val);
     }
 
     /// <summary>
