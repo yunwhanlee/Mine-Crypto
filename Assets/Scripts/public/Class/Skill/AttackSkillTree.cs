@@ -142,6 +142,10 @@ public class AttackSkillTree
     /// </summary>
     public void SetAllClearBonusEF(bool isActive)
     {
+        // 올클리어 이펙트 레벨3 이하라면 안함
+        if(Lv < 3)
+            return;
+
         if(isActive)
         {
             allClearBonusEFObj.SetActive(true);
