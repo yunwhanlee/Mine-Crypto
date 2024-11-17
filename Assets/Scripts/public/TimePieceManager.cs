@@ -26,6 +26,7 @@ public class TimePieceManager : MonoBehaviour
     public Image activeBtnImg;
     public TMP_Text gaugeValTxt;
     public Slider gaugeSlider;
+    public TMP_Text timeScaleTxt;
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgFillValUI;         // 1분당 회복UI
@@ -172,6 +173,7 @@ public class TimePieceManager : MonoBehaviour
             Time.timeScale = upgIncTimeScale.Val;
         }
 
+        timeScaleTxt.text = $"x {Time.timeScale}";
     }
 
     /// <summary>
@@ -257,6 +259,12 @@ public class TimePieceManager : MonoBehaviour
         // 보관량 증가
         curStorage += val;
 
+        // 시간의결정이 0인경우 정지
+        if(curStorage <= 0)
+        {
+            isActive = false;
+            ActiveProcess(isActive);
+        }
         // 최대수량 다 채웠을 경우
         if(curStorage >= MaxStorage)
         {

@@ -897,6 +897,14 @@ MonoBehaviour:
     m_Localized: It is a legendary stone that can be reincarnated and obtained.
     m_Metadata:
       m_Items: []
+  - m_Id: 10134517824327680
+    m_Localized: SkillPotion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10134598224941056
+    m_Localized: LightStone
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

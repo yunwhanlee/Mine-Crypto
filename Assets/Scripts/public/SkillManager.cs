@@ -48,6 +48,8 @@ public class SkillManager : MonoBehaviour
     public TMP_Text titleTxt;
     public TMP_Text descriptionTxt;
     public TMP_Text priceTxt;
+    public GameObject skillCooltimeObj;    // 스킬쿨타임 오브젝트
+    public TMP_Text skillCooltimeTxt;      // 스킬쿨타임 텍스트
     public ParticleImage learnBtnParticleEF;
 
     //* VALUE
@@ -77,6 +79,7 @@ public class SkillManager : MonoBehaviour
             DM._.DB.skillTreeDB.Init();
         }
 
+        skillCooltimeObj.SetActive(false);
         OnClickAttackSkillIconBtn(0);
         UpdateUI();
     }

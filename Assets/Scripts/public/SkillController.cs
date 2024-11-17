@@ -50,6 +50,7 @@ public class SkillController : MonoBehaviour
     public void StopActiveSkill()
     {
         isActiveBuff = false;
+        GM._.skm.skillCooltimeObj.SetActive(false);
 
         // 버프인트로 애니메이션 팝업 비표시
         Array.ForEach(skm.introGradeAnimArr, introGradeAnim => introGradeAnim.windowObj.SetActive(false));
@@ -83,8 +84,12 @@ public class SkillController : MonoBehaviour
         // 스킬쿨타임 처음 초기화
         coolTime = waitTime;
 
+        GM._.skm.skillCooltimeObj.SetActive(true);
+
         while(true)
         {
+            GM._.skm.skillCooltimeTxt.text = $"{coolTime}";
+
             if(coolTime <= 0)
             {
                 // 스킬쿨타임 초기화
@@ -95,7 +100,6 @@ public class SkillController : MonoBehaviour
                 // 랜덤스킬 발동
                 RandomSkill();
             }
-            
             else
             {
                 --coolTime;

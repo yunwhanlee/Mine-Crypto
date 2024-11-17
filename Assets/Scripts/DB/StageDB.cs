@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 [Serializable]
 public class StageDB
