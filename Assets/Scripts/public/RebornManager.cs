@@ -28,6 +28,7 @@ public class RebornManager : MonoBehaviour
 
     //* VALUE
     const int REBORN_MIN_FLOOR = 100;                         // 환생 최소가능 최고층 합 수치
+    public bool isRebornTrigger;                              // 환생 게임재시작 트리거
 
     [Header("업그레이드 데이터")]
     public UpgradeFormatFloat upgIncLightStonePer;            // 빛의돌 획득량%
@@ -133,6 +134,7 @@ public class RebornManager : MonoBehaviour
     IEnumerator CoReborn()
     {
         Debug.Log("CoReborn():: 환생!");
+        isRebornTrigger = true;
 
         DB db = DM._.DB;
 
@@ -147,6 +149,7 @@ public class RebornManager : MonoBehaviour
         //* 데이터 초기화 
         // 명예레벨, 숙련도, 환생강화 제외
         var prevFameLv = db.statusDB.FameLv;
+        var prevFame = db.statusDB.Fame;
         var prevProficiencyDB = db.proficiencyDB;
         var prevRebornDB = db.rebornDB;
         int prevLightStone = db.statusDB.LightStone;
@@ -157,8 +160,9 @@ public class RebornManager : MonoBehaviour
         // 모든 데이터 초기화
         db.Init();
 
-        // 초기화전 유지해둔 데이터 반영
+        // 환생이후도 유지될 데이터 반영
         db.statusDB.FameLv = prevFameLv;            // 명예레벨
+        db.statusDB.Fame = prevFame;                // 명예포인트
         db.statusDB.LightStone = prevLightStone;    // 빛의돌
         db.proficiencyDB = prevProficiencyDB;       // 숙련도 데이터
         db.rebornDB = prevRebornDB;                 // 환생업그레이드 데이터
@@ -170,19 +174,7 @@ public class RebornManager : MonoBehaviour
             }
         );
 
-        // 구매한 장식품 비표시
-        for(int i = 0; i < GM._.acm.decoObjArr.Length; i++)
-        {
-            GM._.acm.decoObjArr[i].SetActive(false);
-        }
-
-        // 초월 버튼 잠금 초기화
-        GM._.tsm.LockFrameObj.SetActive(true);
-        // 버섯도감 버튼 잠금 초기화
-        GM._.mrm.LockFrameObj.SetActive(true);
-
         yield return Util.TIME3;
-        SoundManager._.PlayBgm(SoundManager.BGM.Home);
         whiteFadeInOutEFAnim.gameObject.SetActive(false);
         UpdateDataAndUI();
     }

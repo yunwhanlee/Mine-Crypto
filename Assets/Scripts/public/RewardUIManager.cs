@@ -4,6 +4,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Enum;
 
@@ -86,6 +87,13 @@ public class RewardUIManager : MonoBehaviour
     ///  보상 슬롯UI 팝업 닫기
     /// </summary>
     public void OnClickDimScreenBtn() {
+        // 환생하고난뒤 보상닫기시 게임 재로드
+        if(GM._.rbm.isRebornTrigger)
+        {
+            SceneManager.LoadScene("Game");
+            return;
+        }
+
         switch(GM._.gameState)
         {
             //* 인게임 종료의 경우
