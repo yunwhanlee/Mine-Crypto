@@ -19,15 +19,15 @@ public class TimePieceDB
         curStorage = 0;
         // 1분당 회복 데이터
         upgFillVal = new (
-            Lv: 0, Unit: 10, NeedRsc: INV.ORE1, PriceDef: 10, DefVal: 100, MaxLv: 1000
+            Lv: 0, Unit: 10, NeedRsc: INV.LIGHTSTONE, PriceDef: 10, DefVal: 100, MaxLv: 1000
         );
         // 보관량 증가 데이터
         upgIncStorage = new (
-            Lv: 0, Unit: 100, NeedRsc: INV.ORE1, PriceDef: 10, DefVal: 1000, MaxLv: 1000
+            Lv: 0, Unit: 100, NeedRsc: INV.LIGHTSTONE, PriceDef: 10, DefVal: 1000, MaxLv: 1000
         );
         // 시간속도증가 데이터
         upgIncTimeScale = new (
-            Lv: 0, Unit: 0.1f, NeedRsc: INV.ORE1, PriceDef: 30, DefVal: 1.2f, MaxLv: 98
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.LIGHTSTONE, PriceDef: 30, DefVal: 1.2f, MaxLv: 48
         );
     }
 }

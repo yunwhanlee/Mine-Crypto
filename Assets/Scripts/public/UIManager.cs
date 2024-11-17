@@ -88,8 +88,15 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickTimePieceIconBtn() {
-        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
-        GM._.tpm.ShowPopUp();
+        if(GM._.gameState == GameState.HOME)
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+            GM._.tpm.ShowPopUp();
+        }
+        else
+        {
+            GM._.tpm.OnClickActiveBtn();
+        }
     }
 
     public void OnClickMenu_UpgradeBtn() {

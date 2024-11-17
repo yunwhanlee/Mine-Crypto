@@ -22,6 +22,8 @@ public class TimePieceManager : MonoBehaviour
 
     //* ELEMENT
     public GameObject windowObj;
+    public Slider iconStorageSlider;
+    public TMP_Text myLightStoneTxt;
     public TMP_Text timerTxt;
     public Image activeBtnImg;
     public TMP_Text gaugeValTxt;
@@ -106,11 +108,6 @@ public class TimePieceManager : MonoBehaviour
         // STOP -> ACTIVE
         else
         {
-            if(GM._.gameState != GameState.PLAY)
-            {   // 인게임에서만 가능합니다.
-                GM._.ui.ShowWarningMsgPopUp("(TODO 로컬라이징)인게임에서만 가능합니다.");
-                return;
-            }
             if(curStorage <= 0)
             {   // 아이템이 부족합니다.
                 GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
@@ -218,6 +215,8 @@ public class TimePieceManager : MonoBehaviour
         upgIncStorageUI.UpdateUI(upgIncStorage);
         upgIncTimeScaleUI.UpdateUI(upgIncTimeScale);
 
+        myLightStoneTxt.text = $"{DM._.DB.statusDB.LightStone}";
+
         // 슬라이더UI 최신화
         SetSliderUI();
     }
@@ -280,22 +279,43 @@ public class TimePieceManager : MonoBehaviour
         if (MaxStorage != 0)
         {
             gaugeSlider.value = (float)curStorage / MaxStorage;
+            iconStorageSlider.value = (float)curStorage / MaxStorage;
         }
         else
         {
             gaugeSlider.value = 0;
+            iconStorageSlider.value = 0;
         }
+
+        
     }
 
     public IEnumerator CoActiveTimer()
     {
+        // 소수점 나머지
+        float remain = 0;
+
         while(isActive)
         {
             if(!isActive)
                 break;
 
             yield return Util.RT_TIME0_1;
-            SetStorage(-1); // 게이지 감소
+
+            // 시간속도 업글시, 그 수치만큼 %로 더 감속이 빨리되도록 나머지값 적용
+            float remainVal = (int)upgIncTimeScale.Val - upgIncTimeScale.Val;
+            remain += remainVal;
+            // 소수점 나머지값이 합산되어 1보다높다면 추가적으로 게이지 감소
+            if(remain >= 1)
+            {
+                SetStorage(-(int)upgIncTimeScale.Val - 1);
+                remain -= 1;
+            }
+            else
+            {
+                SetStorage(-(int)upgIncTimeScale.Val); // 게이지 감소
+            }
+
             SetSliderUI();
         }
     }

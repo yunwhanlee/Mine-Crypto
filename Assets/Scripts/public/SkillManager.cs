@@ -53,6 +53,8 @@ public class SkillManager : MonoBehaviour
     public ParticleImage learnBtnParticleEF;
 
     //* VALUE
+    const int RESET_CRISTAL_PRICE = 1000;
+
     public SkillCate cate;
     public SkillCate curSelectCate;  // 현재 선택된 스킬 카테고리
     public int curSelectIdx; // 현재 선택된 스킬 LV인덱스
@@ -133,16 +135,18 @@ public class SkillManager : MonoBehaviour
         GM._.ui.ShowConfirmPopUp("스킬을 전부 리셋하시겠습니까?\n스킬포인트 물약은 전부 반환됩니다.");
         GM._.ui.OnClickConfirmBtnAction = () => {
 
-            if(DM._.DB.statusDB.GetInventoryItemVal(INV.CRISTAL) < 1000)
+            if(DM._.DB.statusDB.GetInventoryItemVal(INV.CRISTAL) < RESET_CRISTAL_PRICE)
             {
                 // 구매를위한 아이템이 부족합니다.
                 GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
                 return;
             }
 
-
             SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
             GM._.ui.ShowNoticeMsgPopUp("스킬 초기화 완료!");
+
+            // 크리스탈 수량 감소
+            DM._.DB.statusDB.SetInventoryItemVal(INV.CRISTAL, -RESET_CRISTAL_PRICE);
 
             // 스킬포인트 물약 반환
             int total = 0;

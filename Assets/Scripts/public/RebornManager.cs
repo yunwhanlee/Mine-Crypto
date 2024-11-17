@@ -259,7 +259,7 @@ public class RebornManager : MonoBehaviour
         //* UI
         upgIncLightStonePerUI.UpdateUI(upgIncLightStonePer);
         upgIncOrePerUI.UpdateUI(upgIncOrePer);
-        upgDecSkillTimeUI.UpdateUI(upgDecSkillTime);
+        upgDecSkillTimeUI.UpdateUI(upgDecSkillTime, "sec");
         upgMinOreBlessCntUI.UpdateUI(upgMinOreBlessCnt);
         upgDecUpgradePricePerUI.UpdateUI(upgDecUpgradePricePer);
         upgDecConsumePricePerUI.UpdateUI(upgDecConsumePricePer);
