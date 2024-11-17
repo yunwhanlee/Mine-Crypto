@@ -16,7 +16,7 @@ public class SelectStageManager : MonoBehaviour
     public TMP_Text timerTxt;               // 티켓자동획득 시간표시
 
     //* VALUE
-    const int HALF_HOUR = 60 * 30;
+    const int ONE_MINUTE = 60;
     const int ORE_TICKET_MAX = 10;
 
     [Header("스테이지 정보 배열 (버튼 포함)")]
@@ -38,12 +38,12 @@ public class SelectStageManager : MonoBehaviour
         int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
 
         // 티켓자동획득량 계산
-        int cnt = passedTime / HALF_HOUR; // 획득수
-        int remainTime = passedTime % HALF_HOUR; // 남은시간
-        Debug.Log($"<color=yellow>티켓자동획득:: 경과시간({passedTime}) / 대기시간({HALF_HOUR})초, 획득량={cnt}, 남은시간={remainTime}</color>");
+        int cnt = passedTime / ONE_MINUTE; // 획득수
+        int remainTime = passedTime % ONE_MINUTE; // 남은시간
+        Debug.Log($"<color=yellow>티켓자동획득:: 경과시간({passedTime}) / 대기시간({ONE_MINUTE})초, 획득량={cnt}, 남은시간={remainTime}</color>");
 
         // 대기시간 최신화 (30분에서 남은시간 뺌)
-        time = HALF_HOUR - remainTime;
+        time = ONE_MINUTE - remainTime;
 
         stageTicketCntTxt.text = $"({DM._.DB.statusDB.OreTicket} / {ORE_TICKET_MAX})";
 
@@ -78,7 +78,7 @@ public class SelectStageManager : MonoBehaviour
         // 리셋
         if(time < 1)
         {
-            time = HALF_HOUR;
+            time = ONE_MINUTE;
             DM._.DB.statusDB.OreTicket++;
         }
     }

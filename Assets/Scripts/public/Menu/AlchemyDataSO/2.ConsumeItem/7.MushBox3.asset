@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 7.MushBox3
   m_EditorClassIdentifier: 
   needItemDataArr:
-  - type: 16
-    val: 1
+  - type: 15
+    val: 100
   - type: 8
     val: 1000
   type: 6
