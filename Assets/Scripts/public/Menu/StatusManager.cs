@@ -146,6 +146,17 @@ public class StatusManager : MonoBehaviour
         get => GM._.tsm.upgIncAutoCristalBagStoragePer.Val;
     }
 
+#region EVENT
+    /// <summary>
+    /// 상태창에서 캐릭터 정보버튼으로 employ팝업 표시
+    /// </summary>
+    public void OnClickShowEmployPopUp()
+    {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        GM._.epm.ShowPopUp(isPlayBtnActive: false);
+    }
+#endregion
+
 #region FUNC
     /// <summary>
     /// 상태창 광산 최대기록 표시

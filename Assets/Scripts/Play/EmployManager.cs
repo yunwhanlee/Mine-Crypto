@@ -30,6 +30,7 @@ public class EmployManager : MonoBehaviour
     public TMP_Text curFameLvTxt;
     public TMP_Text PlayBtnNeedTicketCntTxt;
     public TMP_Text PlayBtnEmployCntTxt;
+    public Button PlayBtn;
 
     [Header("SECTION2: 캐릭터 카드 리스트")]
     public MiningController[] charaPrefArr;
@@ -58,8 +59,12 @@ public class EmployManager : MonoBehaviour
 #region EVENT
     public void OnClickCloseBtn()
     {
-        GM._.hm.Active();
         GM._.epm.employPopUp.SetActive(false);
+
+        if(PlayBtn.interactable == false)
+            return;
+
+        GM._.hm.Active();
 
         // 시련의광산의 경우 시련의광산 팝업 표시
         if(GM._.stgm.OreType == RSC.CRISTAL)
@@ -74,6 +79,12 @@ public class EmployManager : MonoBehaviour
     /// </summary>
     public void OnClickCharaGachaBtn()
     {
+        if(GM._.gameState == GameState.PLAY)
+        {
+            GM._.ui.ShowWarningMsgPopUp("이미 게임이 진행중입니다.");
+            return;
+        }
+
         // 티켓 수량 확인 및 텍스트 업데이트 처리
         if(CheckAndUpdateTicketByMode() == false)
             return;
@@ -260,8 +271,9 @@ public class EmployManager : MonoBehaviour
     /// <summary>
     /// 팝업 열기
     /// </summary>
-    public void ShowPopUp()
+    public void ShowPopUp(bool isPlayBtnActive = true)
     {
+        PlayBtn.interactable = isPlayBtnActive;
         CurNeedTicketCntTxt.gameObject.SetActive(false);
         employPopUp.SetActive(true);
         DOTAnim.DORestart();

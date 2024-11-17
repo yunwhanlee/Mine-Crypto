@@ -142,6 +142,8 @@ public class RebornManager : MonoBehaviour
         whiteFadeInOutEFAnim.DORestart();
 
         yield return Util.TIME2;
+        windowObj.SetActive(false);
+
         //* 데이터 초기화 
         // 명예레벨, 숙련도, 환생강화 제외
         var prevFameLv = db.statusDB.FameLv;
@@ -150,7 +152,6 @@ public class RebornManager : MonoBehaviour
         int prevLightStone = db.statusDB.LightStone;
 
         // 빛의돌 보상수량
-        
         int rewardCnt = GetRwdVal() + GetExtraRwdVal();
 
         // 모든 데이터 초기화
@@ -169,7 +170,19 @@ public class RebornManager : MonoBehaviour
             }
         );
 
+        // 구매한 장식품 비표시
+        for(int i = 0; i < GM._.acm.decoObjArr.Length; i++)
+        {
+            GM._.acm.decoObjArr[i].SetActive(false);
+        }
+
+        // 초월 버튼 잠금 초기화
+        GM._.tsm.LockFrameObj.SetActive(true);
+        // 버섯도감 버튼 잠금 초기화
+        GM._.mrm.LockFrameObj.SetActive(true);
+
         yield return Util.TIME3;
+        SoundManager._.PlayBgm(SoundManager.BGM.Home);
         whiteFadeInOutEFAnim.gameObject.SetActive(false);
         UpdateDataAndUI();
     }
