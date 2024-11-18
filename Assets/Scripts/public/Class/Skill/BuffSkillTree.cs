@@ -67,10 +67,10 @@ public class BuffSkillTree
     {
         switch(idx)
         {
-            default: return "10초간 이동속도(10/20/30/40/50/60)(일반/고급/희귀/영웅/전설/신화)% 증가.";
-            case 1: return "추가로 공격속도(10/20/30/40/50/60)% 증가.";
+            default: return "10초간 이동속도(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)(일반/고급/희귀/영웅/전설/신화)% 증가.";
+            case 1: return "추가로 공격속도(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)% 증가.";
             case 2: return "지속시간이 15초로 증가.";
-            case 3: return "추가로 공격력(10/20/30/40/50/60)% 증가.";
+            case 3: return "추가로 공격력(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)% 증가.";
             case 4: return "지속시간이 30초로 증가.";
         }
     }

@@ -51,6 +51,7 @@ public class SkillManager : MonoBehaviour
     public GameObject skillCooltimeObj;    // 스킬쿨타임 오브젝트
     public TMP_Text skillCooltimeTxt;      // 스킬쿨타임 텍스트
     public ParticleImage learnBtnParticleEF;
+    public Button learnBtn;                // 스킬획득 버튼
 
     //* VALUE
     const int RESET_CRISTAL_PRICE = 1000;
@@ -226,16 +227,19 @@ public class SkillManager : MonoBehaviour
                 attackSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = attackSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = attackSkill.GetDescription(idx);
+                learnBtn.gameObject.SetActive(attackSkill.Lv <= idx);
                 break;
             case SkillCate.Buff:
                 buffSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = buffSkill.GetDescription(idx);
+                learnBtn.gameObject.SetActive(buffSkill.Lv <= idx);
                 break;
             case SkillCate.Skip:
                 skipSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = skipSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = skipSkill.GetDescription(idx);
+                learnBtn.gameObject.SetActive(skipSkill.Lv <= idx);
                 break;
         }
     }
@@ -250,30 +254,31 @@ public class SkillManager : MonoBehaviour
         var sttDB = DM._.DB.statusDB;
         int skillPrice = skillPriceArr[curSelectIdx];
 
-        if(lv > curSelectIdx)
+        // if(lv > curSelectIdx)
+        // {
+        //     GM._.ui.ShowWarningMsgPopUp("이미 습득한 스킬입니다.");
+        //     return 0;
+        // }
+        // else if(lv < curSelectIdx)
+        // {   
+        //     GM._.ui.ShowWarningMsgPopUp("이전 레벨스킬을 배워야됩니다.");
+        //     return 0;
+        // }
+        // else {
+        // 스킬포션 수량 체크
+        if(sttDB.GetInventoryItemVal(INV.SKILLPOTION) < skillPrice )
         {
-            GM._.ui.ShowWarningMsgPopUp("이미 습득한 스킬입니다.");
+            GM._.ui.ShowWarningMsgPopUp("스킬포인트 물약이 부족합니다.");
             return 0;
         }
-        else if(lv < curSelectIdx)
-        {   
-            GM._.ui.ShowWarningMsgPopUp("이전 레벨스킬을 배워야됩니다.");
-            return 0;
-        }
-        else {
-            // 스킬포션 수량 체크
-            if(sttDB.GetInventoryItemVal(Enum.INV.SKILLPOTION) < skillPrice )
-            {
-                GM._.ui.ShowWarningMsgPopUp("스킬포인트 물약이 부족합니다.");
-                return 0;
-            }
 
-            learnBtnParticleEF.Play();
-            SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
-            GM._.ui.ShowNoticeMsgPopUp("스킬 습득완료!");
-            sttDB.SetInventoryItemVal(Enum.INV.SKILLPOTION, -skillPrice);
-            return 1;
-        }
+        learnBtnParticleEF.Play();
+        learnBtn.gameObject.SetActive(false);
+        SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
+        GM._.ui.ShowNoticeMsgPopUp("스킬 습득완료!");
+        sttDB.SetInventoryItemVal(INV.SKILLPOTION, -skillPrice);
+        return 1;
+        // }
     }
 #endregion
 }

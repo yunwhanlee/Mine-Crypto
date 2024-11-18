@@ -14,6 +14,11 @@ public class StageManager : MonoBehaviour {
     public DOTweenAnimation stageTitleUIDOTAnim;
     public TMP_Text stageTitleTxt;
 
+    public GameObject nextFloorSkipAnimObj;
+    public DOTweenAnimation nextFloorSkipCharaAnim;
+    public DOTweenAnimation nextFloorSkipTitle1Anim;
+    public DOTweenAnimation nextFloorSkipTitle2Anim;
+
     [Header("TOP")]
     public TMP_Text stageTxt;
     public TMP_Text stageUpAnimTxt;
@@ -133,8 +138,13 @@ public class StageManager : MonoBehaviour {
 
         if(randPer <= skipFloorPer)
         {
+            SoundManager._.PlaySfx(SoundManager.SFX.NextFloor_SFX);
             Floor++; // 현재층 스킵
-            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.NextStageSkipMsg));
+            // GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.NextStageSkipMsg));
+            // nextFloorSkipAnimObj.SetActive(true);
+            nextFloorSkipCharaAnim.DORestart();
+            nextFloorSkipTitle1Anim.DORestart();
+            nextFloorSkipTitle2Anim.DORestart();
         }
 
         yield return Util.TIME0_5;
@@ -142,6 +152,8 @@ public class StageManager : MonoBehaviour {
         cutOutMaskUIDOTAnim.DORestart();
         yield return CoUpdateAndCreateOre(oreAreaInterval);
         yield return Util.TIME1;
+
+        // nextFloorSkipAnimObj.SetActive(false);
 
         // 고블린 채광이동 시작!
         Transform workerGroup = GM._.mnm.workerGroupTf;

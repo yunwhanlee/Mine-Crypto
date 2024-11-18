@@ -62,7 +62,8 @@ public class InventoryDescriptionManager : MonoBehaviour
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
                         {RWD.ORE_TICKET, 0},
                         {RWD.RED_TICKET, 0},
-                        {RWD.CRISTAL, 0}
+                        {RWD.CRISTAL, 0},
+                        {RWD.SKILLPOTION, Random.Range(0, 1000) < 5? 1: 0}, // 5%확률 스킬포인트물약 획득
                     };
 
                     // 모든 보물상자 열기

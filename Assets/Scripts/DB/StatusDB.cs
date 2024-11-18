@@ -153,7 +153,7 @@ public class StatusDB
         oreTicket = 5;     // 광산 입장티켓
         redTicket = 0;     // 시련의광산 입장티켓
         oreChest = 0;      // 광석상자
-        treasureChest = 0; // 보물상자
+        treasureChest = 5; // 보물상자
         mushBox1 = 0;      // 의문의 버섯상자
         mushBox2 = 0;      // 신비한 버섯상자
         mushBox3 = 0;      // 전설의 버섯상자

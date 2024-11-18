@@ -116,7 +116,7 @@ public class SkipSkillTree
     {
         switch(idx)
         {
-            default: return "광산의 남은시간이 50% 감소하고 (3/4/5/6/7/8)층 이동.";
+            default: return "광산의 남은시간이 50% 감소하고 (3/<color=green>4</color>/<color=blue>5</color>/<color=purple>6</color>/<color=orange>7</color>/<color=red>8</color>)층 이동.";
             case 1: return "남은 스킬쿨타임이 10% 감소.";
             case 2: return "광산의 남은시간 감소수치가 35%로 줄어듦.";
             case 3: return "발동시 광석상자 30개와 보물상자 10개를 획득.";
