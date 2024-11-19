@@ -140,6 +140,10 @@ public class LM : MonoBehaviour
         NotAvailableInPlayMsg = "UI_NotAvailableInPlayMsg",
         DropItemMsg = "UI_DropItemMsg",
 
+        ComingSoonMsg = "UI_ComingSoonMsg",
+
+        MyTotleBestFloor = "UI_MyTotleBestFloor",
+
         NONE = "";
 
     bool isChaning;

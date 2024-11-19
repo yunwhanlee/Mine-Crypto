@@ -120,7 +120,7 @@ public class SkipSkillTree
             case 1: return "남은 스킬쿨타임이 10% 감소.";
             case 2: return "광산의 남은시간 감소수치가 35%로 줄어듦.";
             case 3: return "발동시 광석상자 30개와 보물상자 10개를 획득.";
-            case 4: return "남은 스킬쿨타임이 20%로 감소, 광산의 남은시간 감소수치가 20%로 줄어듦.";
+            case 4: return "남은 스킬쿨타임이 20% 감소, 광산의 남은시간 감소수치가 20% 줄어듦.";
         }
     }
 }

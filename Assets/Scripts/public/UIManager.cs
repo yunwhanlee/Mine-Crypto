@@ -179,6 +179,10 @@ public class UIManager : MonoBehaviour
         GM._.stm.ShowPopUp();
     }
 
+    public void OnClickMenu_RankBtn() {
+        GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+    }
+
 #endregion
 
 #region FUNC

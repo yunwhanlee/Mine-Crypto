@@ -244,7 +244,7 @@ public class RebornManager : MonoBehaviour
     private void UpdateDataAndUI()
     {
         myLightStoneCntTxt.text = DM._.DB.statusDB.GetInventoryItemVal(INV.LIGHTSTONE).ToString();
-        myTotleBestFloorTxt.text = $"현재 최고층 합 : {DM._.DB.stageDB.GetTotalBestFloor()}층";
+        myTotleBestFloorTxt.text = $"{LM._.Localize(LM.MyTotleBestFloor)} : {DM._.DB.stageDB.GetTotalBestFloor()}{LM._.Localize(LM.Floor)}";
 
         //* Data Price
         upgIncLightStonePer.UpdatePrice();

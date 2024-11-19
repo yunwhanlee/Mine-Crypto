@@ -867,6 +867,46 @@ MonoBehaviour:
     m_Key: UI_LightStone
     m_Metadata:
       m_Items: []
+  - m_Id: 10977943679635456
+    m_Key: UI_ComingSoonMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10978794620030976
+    m_Key: UI_TimePiece
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10979353443930112
+    m_Key: UI_Rank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10980199657345024
+    m_Key: UI_UpgFillValUI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10980817834840064
+    m_Key: UI_UpgIncStorageUI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10981073075015680
+    m_Key: UI_UpgIncTimeScaleUI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10982580587565056
+    m_Key: UI_Reborn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10983093773242368
+    m_Key: UI_DoReborn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10983817085161472
+    m_Key: UI_MyTotleBestFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10985764106244096
+    m_Key: UI_CharaInfo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
