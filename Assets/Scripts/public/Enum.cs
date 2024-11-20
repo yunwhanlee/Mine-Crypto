@@ -119,7 +119,7 @@ public static class Enum
         ORE_TICKET, RED_TICKET,
         ORE_CHEST, TREASURE_CHEST,
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
-        SKILLPOTION, LIGHTSTONE,
+        SKILLPOTION, LIGHTSTONE, TIMEPOTION,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
 
         // 포인트 (인벤토리 표기X)
@@ -142,7 +142,7 @@ public static class Enum
         ORE_TICKET, RED_TICKET,
         ORE_CHEST, TREASURE_CHEST,
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
-        SKILLPOTION, LIGHTSTONE,
+        SKILLPOTION, LIGHTSTONE, TIMEPOTION,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
     }
 
@@ -222,6 +222,7 @@ public static class Enum
             case RWD.TREASURE_CHEST: return LM._.Localize(LM.TreasureChest);
             case RWD.SKILLPOTION: return LM._.Localize(LM.SkillPotion);
             case RWD.LIGHTSTONE: return LM._.Localize(LM.LightStone);
+            case RWD.TIMEPOTION: return LM._.Localize(LM.TimePotion);
             case RWD.FAME: return LM._.Localize(LM.Fame);
             //※여기 위에 추가
         }

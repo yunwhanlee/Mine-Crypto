@@ -748,7 +748,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -769,7 +769,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -777,6 +777,27 @@ TextureImporter:
       bones: []
       spriteID: 415c039f17dbb0847bd076c22ec96288
       internalID: 1419994860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasAsset_32
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 408a8d9314b59564c9560926dd4df9d8
+      internalID: 884548180
       vertices: []
       indices: 
       edges: []
@@ -818,6 +839,7 @@ TextureImporter:
       SpriteAtlasAsset_3: 1190058078
       SpriteAtlasAsset_30: 447892114
       SpriteAtlasAsset_31: 1419994860
+      SpriteAtlasAsset_32: 884548180
       SpriteAtlasAsset_4: 1731851910
       SpriteAtlasAsset_5: -960003432
       SpriteAtlasAsset_6: -1524385637

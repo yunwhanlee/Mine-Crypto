@@ -112,6 +112,15 @@ public class StatusDB
         }
     }
 
+    [Header("(소비) 시간의포션")]
+    [field:SerializeField] int timePotion; public int TimePotion {
+        get {return timePotion;}
+        set {
+            timePotion = value;
+            if(timePotion < 0) timePotion = 0;
+        }
+    }
+
     [Header("명예 레벨")]
     [field:SerializeField] int fameLv; public int FameLv {
         get => fameLv;
@@ -159,6 +168,7 @@ public class StatusDB
         mushBox3 = 0;      // 전설의 버섯상자
         skillPotion = 0;   // 스킬포션
         lightStone = 0;    // 빛나는돌
+        timePotion = 0;    // 시간의포션
 
         fameLv = 1;        // 명예 레벨
         fame = 0;          // 명예경험치 포인트
@@ -194,6 +204,7 @@ public class StatusDB
             case INV.MUSH_BOX3:      return mushBox3;
             case INV.SKILLPOTION:    return skillPotion;
             case INV.LIGHTSTONE:     return lightStone;
+            case INV.TIMEPOTION:     return timePotion;
             //※ 여기위에 추가
         }
 
@@ -243,6 +254,9 @@ public class StatusDB
                 break;
             case INV.LIGHTSTONE:
                 lightStone += val;
+                break;
+            case INV.TIMEPOTION:
+                timePotion += val;
                 break;
             //※ 여기위에 추가
         }

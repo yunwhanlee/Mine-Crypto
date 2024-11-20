@@ -51,6 +51,7 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.MAT7, 100 },
                         { RWD.MAT8, 100 },
                         { RWD.SKILLPOTION, 50 },
+                        { RWD.TIMEPOTION, 10 },
                     }
                 );
                 rwdCnt++;
@@ -290,6 +291,9 @@ public class RewardUIManager : MonoBehaviour
                         break;
                     case RWD.LIGHTSTONE: // 빛나는돌
                         sttDB.LightStone += val;
+                        break;
+                    case RWD.TIMEPOTION: // 시간의포션
+                        sttDB.TimePotion += val;
                         break;
 
                     // ※여기 위에 추가

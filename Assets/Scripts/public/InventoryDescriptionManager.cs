@@ -339,7 +339,8 @@ public class InventoryDescriptionManager : MonoBehaviour
     //! (에디터) 인벤토리팝업 아이템 순서와 서로같게 하기
     public InvItem_Info[] SetInvItemDescriptionInfo()
     {
-        return new InvItem_Info[9 + 8 + 8 + 9] {
+        //! 배열 숫자 증가시키기!
+        return new InvItem_Info[9 + 8 + 8 + 10] {
         // (광석)재화
         new InvItem_Info(LM._.Localize(LM.Ore1), LM._.Localize(LM.Detail_Ore)),
         new InvItem_Info(LM._.Localize(LM.Ore2), LM._.Localize(LM.Detail_Ore)),
@@ -378,6 +379,7 @@ public class InventoryDescriptionManager : MonoBehaviour
         new InvItem_Info(LM._.Localize(LM.MushBox3), LM._.Localize(LM.Detail_MushBox3)),
         new InvItem_Info(LM._.Localize(LM.SkillPotion), LM._.Localize(LM.Detail_SkillPotion)),
         new InvItem_Info(LM._.Localize(LM.LightStone), LM._.Localize(LM.Detail_LightStone)),
+        new InvItem_Info(LM._.Localize(LM.TimePotion), LM._.Localize(LM.Detail_TimePotion)),
         //※ 여기 위에 추가
         };
     }
