@@ -16,7 +16,7 @@ public class TimePieceDB
     public void Init()
     {
         // 현재 보관량 데이터
-        curStorage = 0;
+        curStorage = 1000;
         // 1분당 회복 데이터
         upgFillVal = new (
             Lv: 0, Unit: 10, NeedRsc: INV.LIGHTSTONE, PriceDef: 10, DefVal: 100, MaxLv: 1000
