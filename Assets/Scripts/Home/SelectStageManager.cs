@@ -67,10 +67,14 @@ public class SelectStageManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 광석입장티켓 자동채굴 (30분)
+    /// 광석입장티켓 자동획득 (1분)
     /// </summary>
     public void SetOreTicketTimer()
     {
+        // 자동획득 최대치 체크
+        if(DM._.DB.statusDB.OreTicket >= ORE_TICKET_MAX)
+            return;
+
         time--;
         string timeFormat = Util.ConvertTimeFormat(time);
         timerTxt.text = timeFormat;
