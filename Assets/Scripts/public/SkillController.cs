@@ -13,7 +13,7 @@ using static Enum;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 60;
+    const int WAIT_COOLTIME = 10;
     public int coolTime;
 
     //* VALUE
@@ -128,21 +128,6 @@ public class SkillController : MonoBehaviour
         switch(randSkillCate)
         {
             case SkillCate.Attack:
-                /*
-                if(skm.attackSkill.allClearBonusCnt > 0)
-                {
-                    if(corAttackSkillID != null)
-                    {
-                        // (중복지진 방지) 아직 올클리어카운트가 남았는데 실행될 경우, 이전 코루틴ID를 종료 후 재시작
-                        StopCoroutine(corAttackSkillID);
-                        corAttackSkillID = null;
-                        StopCoroutine(corActiveMeteoSkillID);
-                        corActiveMeteoSkillID = null;
-                        StopCoroutine(corMeteoLoopID);
-                        corMeteoLoopID = null;
-                    }
-                }
-                */
                 corAttackSkillID = StartCoroutine(CoAttackSkill());
                 break;
             case SkillCate.Buff:
@@ -325,7 +310,7 @@ public class SkillController : MonoBehaviour
 
         yield return Util.TIME1;
         // 타이틀표시 및 이펙트
-        GM._.stgm.ShowStageTitleUIAnim($"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)}");
+        GM._.stgm.ShowStageTitleUIAnim($"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)}\n<color=yellow><size=30%>( +{skill.MoveNextFloor}{LM._.Localize(LM.Floor)} )</size></color>");
     }
     #endregion
 #endregion
