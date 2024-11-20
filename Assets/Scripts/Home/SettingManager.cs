@@ -72,6 +72,15 @@ public class SettingManager : MonoBehaviour
         };
     }
 
+    public void OnClickAppQuitBtn()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
+    }
+
     public void OnSliderBgmVolumeChanged()
     {
         // 슬라이더의 값을 0.1 단위로 반올림
