@@ -115,7 +115,10 @@ public class SkillController : MonoBehaviour
     {
         // 타이머가 8초 이하로 남았다면, 버그방지로 실행하지 않음.
         if(GM._.pm.TimerVal <= 8)
+        {
+            GM._.ui.ShowNoticeMsgPopUp("종료시간이 임박해서 스킬발동이 사라집니다.");
             return;
+        }
 
         SkillCate randSkillCate;
 
@@ -124,6 +127,8 @@ public class SkillController : MonoBehaviour
         int end = (int)SkillCate.Skip + 1;
 
         randSkillCate = (SkillCate)Random.Range(start, end);
+
+        randSkillCate = SkillCate.Skip;
 
         switch(randSkillCate)
         {
@@ -270,6 +275,7 @@ public class SkillController : MonoBehaviour
         yield return Util.TIME0_5;
 
         // 광석 전부제거
+        GM._.mnm.CurTotalMiningCnt = 0;
         for(int j = 0; j < GM._.mnm.oreGroupTf.childCount; j++)
         {
             // 타겟 광석
@@ -278,8 +284,11 @@ public class SkillController : MonoBehaviour
             if(targetOre == null)
                 continue;
 
-            MiningController.DecreaseOreHpBar(targetOre, targetOre.MaxHp);
-            MiningController.AcceptRsc(targetOre, targetOre.MaxHp);
+            targetOre.IsDestroied = true;
+            Destroy(targetOre.gameObject);
+
+            // MiningController.DecreaseOreHpBar(targetOre, targetOre.MaxHp);
+            // MiningController.AcceptRsc(targetOre, targetOre.MaxHp);
         }
 
         // 캐릭터 가운데로 강제이동
