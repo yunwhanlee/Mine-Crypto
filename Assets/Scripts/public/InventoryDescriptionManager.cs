@@ -64,6 +64,7 @@ public class InventoryDescriptionManager : MonoBehaviour
                         {RWD.RED_TICKET, 0},
                         {RWD.CRISTAL, 0},
                         {RWD.SKILLPOTION, Random.Range(0, 1000) < 50? 1: 0}, // 5%확률 스킬포인트물약 획득
+                        {RWD.TIMEPOTION, Random.Range(0, 1000) < 50? 1: 0}, // 5%확률 시간의물약 획득
                     };
 
                     // 모든 보물상자 열기

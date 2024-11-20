@@ -147,12 +147,13 @@ public class RebornManager : MonoBehaviour
         windowObj.SetActive(false);
 
         //* 데이터 초기화 
-        // 명예레벨, 숙련도, 환생강화 제외
+        // 명예레벨, 빛의돌, 숙련도, 시간의결정, 환생강화 제외
         var prevFameLv = db.statusDB.FameLv;
         var prevFame = db.statusDB.Fame;
+        int prevLightStone = db.statusDB.LightStone;
         var prevProficiencyDB = db.proficiencyDB;
         var prevRebornDB = db.rebornDB;
-        int prevLightStone = db.statusDB.LightStone;
+        var prevTimePieceDB = db.timePieceDB;
 
         // 빛의돌 보상수량
         int rewardCnt = GetRwdVal() + GetExtraRwdVal();
@@ -165,7 +166,8 @@ public class RebornManager : MonoBehaviour
         db.statusDB.Fame = prevFame;                // 명예포인트
         db.statusDB.LightStone = prevLightStone;    // 빛의돌
         db.proficiencyDB = prevProficiencyDB;       // 숙련도 데이터
-        db.rebornDB = prevRebornDB;                 // 환생업그레이드 데이터
+        db.timePieceDB = prevTimePieceDB;           // 시간의결정 데이터
+        db.rebornDB = prevRebornDB;                 // 환생강화 데이터
 
         //* 빛의돌 보상획득
         GM._.rwm.ShowReward (

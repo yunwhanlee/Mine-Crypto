@@ -103,7 +103,7 @@ public class MissionFormat
 
 #region FUNC
     /// <summary>
-    /// 레벨에 따른 필요경험치 업데이트
+    /// 레벨에 따른 필요경험치 및 보상 업데이트
     /// </summary>
     public void UpdateData() {
         switch(Type)
@@ -126,7 +126,7 @@ public class MissionFormat
                 MaxExp = 5 + (Lv * (Lv - 1) * 5) / 2;
                 Reward = new Dictionary<RWD, int> {
                     { RWD.FAME, 1 },
-                    { RWD.ORE_CHEST, Lv },
+                    { RWD.TIMEPOTION, 1 }, // { RWD.ORE_CHEST, Lv },
                 };
                 break;
             case MISSION.STAGE_CLEAR_CNT: //* 고정
