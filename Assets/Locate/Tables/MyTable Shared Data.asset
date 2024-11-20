@@ -907,6 +907,10 @@ MonoBehaviour:
     m_Key: UI_CharaInfo
     m_Metadata:
       m_Items: []
+  - m_Id: 11355860171460608
+    m_Key: UI_Bag
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -22,6 +22,7 @@ public class TimePieceManager : MonoBehaviour
 
     //* ELEMENT
     public GameObject windowObj;
+    public GameObject ingameActiveBtnObj;
     public Slider iconStorageSlider;
     public TMP_Text myLightStoneTxt;
     public TMP_Text timerTxt;
@@ -52,6 +53,8 @@ public class TimePieceManager : MonoBehaviour
 
     IEnumerator Start()
     {
+        ingameActiveBtnObj.SetActive(false);
+
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
         // yield return new WaitUntil(() => DM._.DB.timePieceDB != null);

@@ -138,6 +138,9 @@ public class PlayManager : MonoBehaviour
         var stageType = (int)GM._.stgm.OreType;
         var bestFloorArr = DM._.DB.stageDB.BestFloorArr;
 
+        // 인게임 시간의결정 활성화버튼
+        GM._.tpm.ingameActiveBtnObj.SetActive(false);
+
         // 스킬발동 종료
         GM._.skc.StopActiveSkill();
 

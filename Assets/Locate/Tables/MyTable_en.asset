@@ -945,6 +945,10 @@ MonoBehaviour:
     m_Localized: Chara Info
     m_Metadata:
       m_Items: []
+  - m_Id: 11355860171460608
+    m_Localized: Bag
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

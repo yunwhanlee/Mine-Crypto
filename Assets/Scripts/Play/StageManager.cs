@@ -108,6 +108,9 @@ public class StageManager : MonoBehaviour {
         // 광석 오브젝트 생성
         StartCoroutine(CoUpdateAndCreateOre(oreAreaInterval));
 
+        // 인게임 시간의결정 활성화버튼
+        GM._.tpm.ingameActiveBtnObj.SetActive(true);
+
         // 스킬발동 실행 (시련의광산 제외)
         if(!GM._.stgm.IsChallengeMode)
         {

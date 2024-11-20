@@ -93,10 +93,6 @@ public class UIManager : MonoBehaviour
             SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
             GM._.tpm.ShowPopUp();
         }
-        else
-        {
-            GM._.tpm.OnClickActiveBtn();
-        }
     }
 
     public void OnClickMenu_UpgradeBtn() {
