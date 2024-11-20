@@ -79,7 +79,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 float extraPer = 1 + GM._.sttm.ExtraMovSpdPer;
 
                 float result = moveSpeed * extraPer;
-                Debug.Log($"MoveSpeed: {moveSpeed} * {extraPer}=" + result);
+                Debug.Log($"{this.name}:: MoveSpeed: {moveSpeed} * <color=yellow>{extraPer}</color>=" + result);
                 return result;
             }
         }

@@ -301,6 +301,7 @@ public class SkillController : MonoBehaviour
         GM._.stgm.Floor = targetFloor;
         // 타이머 % 감소
         GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
+
         // 스킬쿨타임 % 감소
         // RandomSkill()발동 쿨타임변수에 직접적용
 

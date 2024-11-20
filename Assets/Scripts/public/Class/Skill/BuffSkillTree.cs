@@ -34,7 +34,7 @@ public class BuffSkillTree
                 return 0;
 
             const float UNIT = 0.1f;
-            return Random.Range((int)GRADE.COMMON, (int)GRADE.CNT) * UNIT;
+            return UNIT + skillGrade * UNIT;
         }
     }
     // 추가 공격속도 %
@@ -44,7 +44,7 @@ public class BuffSkillTree
                 return 0;
 
             const float UNIT = 0.1f;
-            if(Lv >= 2) return Random.Range((int)GRADE.COMMON, (int)GRADE.CNT) * UNIT;
+            if(Lv >= 2) return UNIT + skillGrade * UNIT;
             else return 0;
         }
     }
@@ -55,7 +55,7 @@ public class BuffSkillTree
                 return 0;
 
             const float UNIT = 0.1f;
-            if(Lv >= 4) return Random.Range((int)GRADE.COMMON, (int)GRADE.CNT) * UNIT;
+            if(Lv >= 4) return UNIT + skillGrade * UNIT;
             else return 0;
         }
     }
