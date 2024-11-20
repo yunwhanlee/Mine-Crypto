@@ -919,6 +919,10 @@ MonoBehaviour:
     m_Key: Detail_TimePotion
     m_Metadata:
       m_Items: []
+  - m_Id: 11396052685131776
+    m_Key: UI_MaxValMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

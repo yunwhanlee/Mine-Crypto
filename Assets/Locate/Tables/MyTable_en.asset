@@ -957,6 +957,10 @@ MonoBehaviour:
     m_Localized: Charging 500 Time Pieces.
     m_Metadata:
       m_Items: []
+  - m_Id: 11396052685131776
+    m_Localized: It's the maximum.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

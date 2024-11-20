@@ -144,6 +144,8 @@ public class LM : MonoBehaviour
 
         ComingSoonMsg = "UI_ComingSoonMsg",
 
+        MaxValMsg = "UI_MaxValMsg", // 현재 최대치입니다.
+
         MyTotleBestFloor = "UI_MyTotleBestFloor",
 
         NONE = "";

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using AssetKits.ParticleImage.Enumerations;
+using AssetKits.ParticleImage;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -10,6 +9,7 @@ using UnityEngine.UI;
 public class TimePieceManager : MonoBehaviour
 {
     public Coroutine CorActiveTimerID;
+    const int TIMEPOTION_FILL_VAL = 500;
     int WAIT_TIME = 60; // 1분당 회복
 
     public Sprite activeBtnSpr;
@@ -30,6 +30,9 @@ public class TimePieceManager : MonoBehaviour
     public TMP_Text gaugeValTxt;
     public Slider gaugeSlider;
     public TMP_Text timeScaleTxt;
+    public TMP_Text decreaseValTxt;              // 1초당 소모량 표시텍스트
+    public TMP_Text timePotionCntTxt;            // 시간의포션 수량 표시텍스트
+    public ParticleImage timePotionChargeParticleEF; // 시간의포션 충전 이펙트
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgFillValUI;         // 1분당 회복UI
@@ -133,6 +136,26 @@ public class TimePieceManager : MonoBehaviour
     /// (업그레이드) 시간속도 증가
     /// </summary>
     public void OnClickUpgradeIncTimeScaleBtn() => Upgrade(upgIncTimeScale);
+    /// <summary>
+    /// 시간의포션 사용 버튼
+    /// </summary>
+    public void OnClickUseTimePotion()
+    {
+        if(curStorage >= MaxStorage)
+        {   // 현재 최대치입니다.
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.MaxValMsg));
+            return;
+        }
+
+        SoundManager._.PlaySfx(SoundManager.SFX.ItemDrop1SFX);
+        timePotionChargeParticleEF.Play();
+
+        // 시간의포션 수량감소
+        DM._.DB.statusDB.SetInventoryItemVal(Enum.INV.TIMEPOTION, -1);
+        curStorage += TIMEPOTION_FILL_VAL;
+
+        UpdateDataAndUI();
+    }
 #endregion
 
 #region FUNC
@@ -219,6 +242,8 @@ public class TimePieceManager : MonoBehaviour
         upgIncTimeScaleUI.UpdateUI(upgIncTimeScale);
 
         myLightStoneTxt.text = $"{DM._.DB.statusDB.LightStone}";
+        timePotionCntTxt.text = $"{DM._.DB.statusDB.TimePotion}";
+        decreaseValTxt.text = $"1초당 소모량 : {upgIncTimeScale.Val}";
 
         // 슬라이더UI 최신화
         SetSliderUI();
