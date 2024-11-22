@@ -158,11 +158,8 @@ public class TimePieceManager : MonoBehaviour
 
         // 시간의포션 수량감소
         DM._.DB.statusDB.SetInventoryItemVal(Enum.INV.TIMEPOTION, -1);
-        curStorage += TIMEPOTION_FILL_VAL;
-
-        // 최대수량 넘어갈시 보정
-        if(curStorage > MaxStorage)
-            curStorage = MaxStorage;
+        // curStorage += TIMEPOTION_FILL_VAL;
+        SetStorage(+TIMEPOTION_FILL_VAL);
 
         UpdateDataAndUI();
     }
@@ -289,11 +286,11 @@ public class TimePieceManager : MonoBehaviour
     private int GetProductionVal() => upgFillVal.Val;
 
     /// <summary>
-    /// 자동회복 보관량 설정
+    /// 시간의결정 현재보관량 설정
     /// </summary>
     private void SetStorage(int val)
     {
-        // 보관량 증가
+        // 보관량 증가 또는 감소
         curStorage += val;
 
         // 시간의결정이 0인경우 정지
@@ -301,11 +298,6 @@ public class TimePieceManager : MonoBehaviour
         {
             isActive = false;
             ActiveProcess(isActive);
-        }
-        // 최대수량 다 채웠을 경우
-        if(curStorage >= MaxStorage)
-        {
-            curStorage = MaxStorage;
         }
     }
 
@@ -363,6 +355,14 @@ public class TimePieceManager : MonoBehaviour
     /// </summary>
     public void SetTimer()
     {
+        // 최대수량 넘어갈시 처리안함
+        if(curStorage >= MaxStorage)
+        {
+            if(timerTxt.text != "00 : 00")
+                timerTxt.text = "00 : 00";
+            return;
+        }
+        
         time--;
         string timeFormat = Util.ConvertTimeFormat(time);
         timerTxt.text = timeFormat;
@@ -371,8 +371,6 @@ public class TimePieceManager : MonoBehaviour
         if(time < 1)
         {
             time = WAIT_TIME;
-
-            // 자동회복 처리
             SetStorage(GetProductionVal());
             SetSliderUI();
         }
