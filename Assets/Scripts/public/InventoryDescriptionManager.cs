@@ -63,8 +63,8 @@ public class InventoryDescriptionManager : MonoBehaviour
                         {RWD.ORE_TICKET, 0},
                         {RWD.RED_TICKET, 0},
                         {RWD.CRISTAL, 0},
-                        {RWD.SKILLPOTION, Random.Range(0, 1000) < 50? 1: 0}, // 5%확률 스킬포인트물약 획득
-                        {RWD.TIMEPOTION, Random.Range(0, 1000) < 50? 1: 0}, // 5%확률 시간의물약 획득
+                        {RWD.SKILLPOTION, 0},
+                        {RWD.TIMEPOTION, 0},
                     };
 
                     // 모든 보물상자 열기
@@ -87,6 +87,10 @@ public class InventoryDescriptionManager : MonoBehaviour
 
                         // 보상 크리스탈 추가
                         rwdDic[RWD.CRISTAL] += Random.Range(1, 6);
+                        // 5%확률 스킬포인트물약 획득
+                        rwdDic[RWD.SKILLPOTION] += Random.Range(0, 100) < 5? 1: 0;
+                        // 5%확률 시간의물약 획득
+                        rwdDic[RWD.TIMEPOTION] += Random.Range(0, 100) < 5? 1: 0;
                     }
 
                     //* 숙련도 경험치 증가
@@ -101,7 +105,9 @@ public class InventoryDescriptionManager : MonoBehaviour
                         {
                             {RWD.ORE_TICKET, rwdDic[RWD.ORE_TICKET]},
                             {RWD.RED_TICKET, rwdDic[RWD.RED_TICKET]},
-                            {RWD.CRISTAL, rwdDic[RWD.CRISTAL]}
+                            {RWD.CRISTAL, rwdDic[RWD.CRISTAL]},
+                            {RWD.SKILLPOTION, rwdDic[RWD.SKILLPOTION]},
+                            {RWD.TIMEPOTION, rwdDic[RWD.TIMEPOTION]}
                         }
                     );
 

@@ -748,7 +748,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 180728983949312
-    m_Localized: You can randomly obtain either a ticket or a crystal, skillpotion.
+    m_Localized: You can randomly obtain either a ticket, crystals, skillpotion,
+      timepotion.
     m_Metadata:
       m_Items: []
   - m_Id: 180738756677632

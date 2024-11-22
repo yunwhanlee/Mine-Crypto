@@ -147,6 +147,12 @@ public class TimePieceManager : MonoBehaviour
             return;
         }
 
+        if(DM._.DB.statusDB.GetInventoryItemVal(Enum.INV.TIMEPOTION) < 0) 
+        {
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
+            return;
+        }
+
         SoundManager._.PlaySfx(SoundManager.SFX.ItemDrop1SFX);
         timePotionChargeParticleEF.Play();
 
@@ -243,7 +249,7 @@ public class TimePieceManager : MonoBehaviour
 
         myLightStoneTxt.text = $"{DM._.DB.statusDB.LightStone}";
         timePotionCntTxt.text = $"{DM._.DB.statusDB.TimePotion}";
-        decreaseValTxt.text = $"1초당 소모량 : {upgIncTimeScale.Val}";
+        decreaseValTxt.text = $"1초당 소모량 : {upgIncTimeScale.Val * 10}";
 
         // 슬라이더UI 최신화
         SetSliderUI();

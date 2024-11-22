@@ -40,7 +40,7 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.ORE2, 50000 },
                         { RWD.ORE3, 50000 },
                         { RWD.ORE4, 50000 },
-                        { RWD.CRISTAL, 1000 },
+                        { RWD.CRISTAL, 10000 },
                         { RWD.ORE_CHEST, 10 },
                         { RWD.MAT1, 100 },
                         { RWD.MAT2, 100 },
@@ -51,7 +51,7 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.MAT7, 100 },
                         { RWD.MAT8, 100 },
                         { RWD.SKILLPOTION, 50 },
-                        { RWD.TIMEPOTION, 10 },
+                        { RWD.TIMEPOTION, 50 },
                     }
                 );
                 rwdCnt++;
@@ -65,17 +65,17 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.ORE6, 50000 },
                         { RWD.ORE7, 50000 },
                         { RWD.ORE8, 50000 },
-                        { RWD.CRISTAL, 1000 },
-                        { RWD.TREASURE_CHEST, 10 },
-                        { RWD.MUSH1, 100 },
-                        { RWD.MUSH2, 100 },
-                        { RWD.MUSH3, 100 },
-                        { RWD.MUSH4, 100 },
-                        { RWD.MUSH5, 100 },
-                        { RWD.MUSH6, 100 },
-                        { RWD.MUSH7, 100 },
-                        { RWD.MUSH8, 100 },
-                        { RWD.LIGHTSTONE, 200 },
+                        { RWD.CRISTAL, 50000 },
+                        { RWD.TREASURE_CHEST, 100 },
+                        { RWD.MUSH1, 200 },
+                        { RWD.MUSH2, 200 },
+                        { RWD.MUSH3, 200 },
+                        { RWD.MUSH4, 200 },
+                        { RWD.MUSH5, 200 },
+                        { RWD.MUSH6, 200 },
+                        { RWD.MUSH7, 200 },
+                        { RWD.MUSH8, 200 },
+                        { RWD.LIGHTSTONE, 10000 },
                     }
                 );
                 rwdCnt++;

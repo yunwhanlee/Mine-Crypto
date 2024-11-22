@@ -32,7 +32,7 @@ public class SkipSkillTree
     public int MoveNextFloor {
         get {
             int[] skipGradeFloorArr = {3, 4, 5, 6, 7, 8};
-            return skipGradeFloorArr[Random.Range(0, skipGradeFloorArr.Length)];
+            return skipGradeFloorArr[grade];
         }
     }
     // 광산 남은시간 감소%
