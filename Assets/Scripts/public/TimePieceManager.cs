@@ -160,6 +160,10 @@ public class TimePieceManager : MonoBehaviour
         DM._.DB.statusDB.SetInventoryItemVal(Enum.INV.TIMEPOTION, -1);
         curStorage += TIMEPOTION_FILL_VAL;
 
+        // 최대수량 넘어갈시 보정
+        if(curStorage > MaxStorage)
+            curStorage = MaxStorage;
+
         UpdateDataAndUI();
     }
 #endregion
