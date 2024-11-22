@@ -73,7 +73,11 @@ public class SelectStageManager : MonoBehaviour
     {
         // 자동획득 최대치 체크
         if(DM._.DB.statusDB.OreTicket >= ORE_TICKET_MAX)
+        {
+            if(timerTxt.text != "00 : 00")
+                timerTxt.text = "00 : 00";
             return;
+        }
 
         time--;
         string timeFormat = Util.ConvertTimeFormat(time);
