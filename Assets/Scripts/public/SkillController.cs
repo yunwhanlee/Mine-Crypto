@@ -323,11 +323,14 @@ public class SkillController : MonoBehaviour
         GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
 
         // 스킬쿨타임 감소 텍스트 애니메이션 표시
-        float decSkillCoolTimeValPer = 1 - skill.DecSkillCoolTimePer;
-        int decSkillCoolTime = Mathf.RoundToInt(GM._.skc.coolTime * decSkillCoolTimeValPer);
-        skill.DecSkillCoolTimeTxtAnim.GetComponent<TMP_Text>().text = $"-{decSkillCoolTime}";
-        skill.DecSkillCoolTimeTxtAnim.DORestart();
-        skill.DecSkillCoolTimePtcEF.Play();
+        if(skill.Lv < 2) 
+        {
+            float decSkillCoolTimeValPer = 1 - skill.DecSkillCoolTimePer;
+            int decSkillCoolTime = Mathf.RoundToInt(GM._.skc.coolTime * decSkillCoolTimeValPer);
+            skill.DecSkillCoolTimeTxtAnim.GetComponent<TMP_Text>().text = $"-{decSkillCoolTime}";
+            skill.DecSkillCoolTimeTxtAnim.DORestart();
+            skill.DecSkillCoolTimePtcEF.Play();
+        }
 
         // 스킬쿨타임 % 감소
         // RandomSkill()발동 쿨타임변수에 직접적용
