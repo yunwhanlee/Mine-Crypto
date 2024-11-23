@@ -21,6 +21,15 @@ public class SkipSkillTree
     public DOTweenAnimation[] charaFallInAnimArr;
     public ParticleSystem chestShowerParticleEF;
 
+    // 타이머시간 감소 텍스트 애니메이션 표시
+    public DOTweenAnimation DecTimerTxtAnim;
+    public ParticleImage DecTimerPtcEF;
+    // 스킬쿨타임 감소 텍스트 애니메이션 표시
+    public DOTweenAnimation DecSkillCoolTimeTxtAnim;
+    public ParticleImage DecSkillCoolTimePtcEF;
+
+
+
     public int grade;
 
     // 스킬레벨

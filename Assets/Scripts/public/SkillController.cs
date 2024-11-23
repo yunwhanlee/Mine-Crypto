@@ -7,13 +7,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using static SoundManager;
 using static Enum;
+using TMPro;
 
 /// <summary>
 /// 실제 인게임에서의 스킬 발동 컨트롤
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 60;
+    const int WAIT_COOLTIME = 10;
     public int coolTime;
 
     //* VALUE
@@ -128,7 +129,7 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
-        randSkillCate = SkillCate.Skip;
+        randSkillCate = SkillCate.Skip; //! TEST
 
         switch(randSkillCate)
         {
@@ -308,8 +309,25 @@ public class SkillController : MonoBehaviour
 
         // 스테이지 층 상승
         GM._.stgm.Floor = targetFloor;
+
+        // 타이머시간 감소 텍스트 애니메이션 표시
+        float decTimeValPer = 1 - skill.DecTimerPer;
+        int decTimeVal = (int)(GM._.pm.TimerVal * decTimeValPer);
+        int min = decTimeVal / 60;
+        int sec = decTimeVal % 60;
+        skill.DecTimerTxtAnim.GetComponent<TMP_Text>().text = $"-{min:00} : {sec:00}";
+        skill.DecTimerTxtAnim.DORestart();
+        skill.DecTimerPtcEF.Play();
+
         // 타이머 % 감소
         GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
+
+        // 스킬쿨타임 감소 텍스트 애니메이션 표시
+        float decSkillCoolTimeValPer = 1 - skill.DecSkillCoolTimePer;
+        int decSkillCoolTime = Mathf.RoundToInt(GM._.skc.coolTime * decSkillCoolTimeValPer);
+        skill.DecSkillCoolTimeTxtAnim.GetComponent<TMP_Text>().text = $"-{decSkillCoolTime}";
+        skill.DecSkillCoolTimeTxtAnim.DORestart();
+        skill.DecSkillCoolTimePtcEF.Play();
 
         // 스킬쿨타임 % 감소
         // RandomSkill()발동 쿨타임변수에 직접적용
