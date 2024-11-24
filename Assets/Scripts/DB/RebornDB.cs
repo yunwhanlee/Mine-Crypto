@@ -21,7 +21,7 @@ public class RebornDB
     {
         // 빛의돌 획득량%
         upgIncLightStonePer = new (
-            Lv: 0, Unit: 0.1f, NeedRsc: INV.LIGHTSTONE, PriceDef: 10, DefVal: 0, MaxLv: 9999);
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.CRISTAL, PriceDef: 1000, DefVal: 0, MaxLv: 9999);
         // 모든광석 획득량%
         upgIncOrePer = new (
             Lv: 0, Unit: 0.1f, NeedRsc: INV.LIGHTSTONE, PriceDef: 10, DefVal: 0, MaxLv: 9999);

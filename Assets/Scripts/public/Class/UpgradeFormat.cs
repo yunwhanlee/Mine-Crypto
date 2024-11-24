@@ -20,8 +20,10 @@ public class UpgradeFormat
     /// </summary>
     public void UpdatePrice(DEC_UPG_TYPE decUpgType = DEC_UPG_TYPE.NONE)
     {
-        var rbm = GM._.rbm;
         Price = PriceDef + Lv * (Lv) * PriceDef / 2;
+
+        //* 비용감소 추가처리
+        var rbm = GM._.rbm;
 
         // 강화비용 감소%
         if(rbm.upgDecUpgradePricePer.Lv > 0 && decUpgType == DEC_UPG_TYPE.UPGRADE) {
@@ -35,6 +37,26 @@ public class UpgradeFormat
         }
     }
 
+    /// <summary>
+    /// 가격 업데이트 (등차수열)
+    /// </summary>
+    public void UpdatePriceArithmetic(DEC_UPG_TYPE decUpgType = DEC_UPG_TYPE.NONE)
+    {
+        Price = PriceDef + Lv * PriceDef;
+
+        //* 비용감소 추가처리
+        var rbm = GM._.rbm;
+
+        // 강화비용 감소%
+        if(rbm.upgDecUpgradePricePer.Lv > 0 && decUpgType == DEC_UPG_TYPE.UPGRADE) {
+            float decreasePer = 1 - rbm.upgDecUpgradePricePer.Val;
+            Price = Mathf.RoundToInt(Price * decreasePer);
+        }
+    }
+
+    /// <summary>
+    /// 가격 업데이트 배열설정 프리셋 
+    /// </summary>
     public void UpdatePriceFreeSet(int[] priceArr)
     {
         if(Lv >= priceArr.Length)
@@ -109,9 +131,13 @@ public class UpgradeMushFormat
     [field:SerializeField] public int Price {get; set;}                 // 업그레이드 가격
     [field:HideInInspector] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
 
+    /// <summary>
+    /// 버섯 가격 업데이트
+    /// </summary>
     public void UpdatePrice()
     {
-        Price = 1 + (Lv * (Lv - 1) * 1) / 2;
+        // 소수점 올림처리를 위해 Lv를 float로 형변환
+        Price = 1 + Mathf.CeilToInt((float)Lv * Lv / 2);
     }
 }
 

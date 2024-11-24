@@ -254,11 +254,11 @@ public class RebornManager : MonoBehaviour
         myTotleBestFloorTxt.text = $"{LM._.Localize(LM.MyTotleBestFloor)} : {DM._.DB.stageDB.GetTotalBestFloor()}{LM._.Localize(LM.Floor)}";
 
         //* Data Price
-        upgIncLightStonePer.UpdatePrice();
+        upgIncLightStonePer.UpdatePriceArithmetic();
         upgIncOrePer.UpdatePrice();
         upgDecSkillTime.UpdatePrice();
         upgMinOreBlessCnt.UpdatePriceFreeSet(new int[] {500, 1000});
-        upgDecUpgradePricePer.UpdatePrice();
+        upgDecUpgradePricePer.UpdatePriceArithmetic();
         upgDecConsumePricePer.UpdatePrice();
         upgDecDecoPricePer.UpdatePrice();
         upgDecTranscendPircePer.UpdatePrice();

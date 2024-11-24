@@ -62,7 +62,7 @@ public class SkillManager : MonoBehaviour
     public SkillGradeIntroAnim[] introGradeAnimArr; // 스킬 인트로 등급 애니메이션
 
     public string[] skillNameArr = { "우주 대폭발", "힘내라 친구여", "시공을 거슬러" };
-    private int[] skillPriceArr = { 0, 10, 20, 30 ,40 }; // 스킬가격 LV1은 기본적용 되어있음
+    private int[] skillPriceArr = { 0, 5, 10, 25 ,50 }; // 스킬가격 LV1은 기본적용 되어있음
 
     // Skill UI & Data
     public AttackSkillTree attackSkill;

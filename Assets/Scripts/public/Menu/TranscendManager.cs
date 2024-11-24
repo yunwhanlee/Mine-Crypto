@@ -156,7 +156,7 @@ public class TranscendManager : MonoBehaviour
         upgIncTreasureChest.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
         upgIncAutoOreBagStoragePer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
         upgIncAutoCristalBagStoragePer.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
-        upgIncStartFloor.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
+        upgIncStartFloor.UpdatePriceArithmetic(DEC_UPG_TYPE.TRANSCEND);
         upgIncFame.UpdatePrice(DEC_UPG_TYPE.TRANSCEND);
 
         //* UI

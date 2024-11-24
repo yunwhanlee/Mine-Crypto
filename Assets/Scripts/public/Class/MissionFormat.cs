@@ -140,7 +140,7 @@ public class MissionFormat
                 MaxExp = 1 + (Lv * (Lv - 1) * 2) / 2;
                 Reward = new Dictionary<RWD, int> {
                     { RWD.FAME, 1 },
-                    { RWD.TREASURE_CHEST, Lv },
+                    { RWD.ORE_CHEST, Lv },
                 };
                 break;
             case MISSION.CHALLENGE_CLEAR_CNT:
