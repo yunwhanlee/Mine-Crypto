@@ -75,7 +75,7 @@ public class OreBlessFormat
     {
         if(IsUnlock)
         {
-            bool isPossible = DM._.DB.statusDB.GetInventoryItemVal(ResetNeedItem.type) > ResetNeedItem.val;
+            bool isPossible = DM._.DB.statusDB.GetInventoryItemVal(ResetNeedItem.type) >= ResetNeedItem.val;
 
             ResetBtnImg.sprite = isPossible? GM._.obm.YellowBtnSpr : GM._.obm.GrayBtnSpr;
         }
