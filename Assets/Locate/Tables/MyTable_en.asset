@@ -962,6 +962,10 @@ MonoBehaviour:
     m_Localized: It's the maximum.
     m_Metadata:
       m_Items: []
+  - m_Id: 12718725881106432
+    m_Localized: Accept All
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

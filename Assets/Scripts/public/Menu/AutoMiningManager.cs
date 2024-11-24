@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -64,6 +65,44 @@ public class AutoMiningManager : MonoBehaviour
 
 #region EVENT
     /// <summary>
+    /// 일괄수령 버튼
+    /// </summary>
+    public void OnClickAcceptAllBtn()
+    {
+        // 모인광석이 하나도 없을경우
+        if(Array.TrueForAll(autoMiningArr, mine => mine.CurStorage <= 0))
+        {   // 모인광석이 없습니다 메세지 표시
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NoOreYetMsg));
+            return;
+        }
+
+        SoundManager._.PlaySfx(SoundManager.SFX.AutoMiningTakeSFX);
+
+        //* 보상 획득
+        GM._.rwm.ShowReward (
+            new Dictionary<RWD, int> { 
+                {RWD.ORE1, autoMiningArr[0].CurStorage},
+                {RWD.ORE2, autoMiningArr[1].CurStorage},
+                {RWD.ORE3, autoMiningArr[2].CurStorage},
+                {RWD.ORE4, autoMiningArr[3].CurStorage},
+                {RWD.ORE5, autoMiningArr[4].CurStorage},
+                {RWD.ORE6, autoMiningArr[5].CurStorage},
+                {RWD.ORE7, autoMiningArr[6].CurStorage},
+                {RWD.ORE8, autoMiningArr[7].CurStorage},
+            },
+            isAutoMine: true
+        );
+
+        // 보관량 0으로 초기화
+        for(int i = 0; i < autoMiningArr.Length; i++)
+        {
+            autoMiningArr[i].CurStorage = 0;
+        }
+
+        // 업데이트 UI
+        UpdateUI();
+    }
+    /// <summary>
     /// 자동채굴 광석 수령 버튼 
     /// </summary>
     /// <param name="idx">광석:(0 ~ 7), 크리스탈 : 8</param>
@@ -79,7 +118,6 @@ public class AutoMiningManager : MonoBehaviour
 
         SoundManager._.PlaySfx(SoundManager.SFX.AutoMiningTakeSFX);
         GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.ReceiptCompletedMsg));
-
 
         //* 보상 획득
         GM._.rwm.ShowReward (

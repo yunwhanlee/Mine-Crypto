@@ -923,6 +923,10 @@ MonoBehaviour:
     m_Key: UI_MaxValMsg
     m_Metadata:
       m_Items: []
+  - m_Id: 12718725881106432
+    m_Key: UI_AcceptAll
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
