@@ -17,6 +17,7 @@ public class AutoMiningManager : MonoBehaviour
     [Header("자동채굴 팝업")]
     public GameObject windowObj;
     public GameObject alertRedDotObj;
+    public GameObject acceptAllAlertRedDotObj;
     public TMP_Text timerTxt;
     public AutoMiningFormat[] autoMiningArr;
     
@@ -365,6 +366,7 @@ public class AutoMiningManager : MonoBehaviour
     private void UpdateUI()
     {
         alertRedDotObj.SetActive(false);
+        acceptAllAlertRedDotObj.SetActive(false);
         cristalAlertRedDotObj.SetActive(false);
 
         for(int i = 0; i < autoDB.saveDts.Length; i++)
@@ -410,6 +412,8 @@ public class AutoMiningManager : MonoBehaviour
             // 업데이트 알림UI 🔴
             UpdateAlertRedDotUI(i);
         }
+
+        acceptAllAlertRedDotObj.SetActive(alertRedDotObj.activeSelf);
     }
 
     private void UpdateAlertRedDotUI(int idx)
