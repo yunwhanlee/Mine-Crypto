@@ -89,6 +89,10 @@ public class SoundManager : MonoBehaviour
     }
 
 #region EVENT
+    public void OnClickBtnTap1SFX()
+    {
+        PlaySfx(SFX.Tap1SFX);
+    }
     /// <summary>
     /// 화면 닫을때 효과음 이벤트처리
     /// </summary>

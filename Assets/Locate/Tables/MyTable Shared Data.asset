@@ -927,6 +927,10 @@ MonoBehaviour:
     m_Key: UI_AcceptAll
     m_Metadata:
       m_Items: []
+  - m_Id: 12731400186990592
+    m_Key: UI_GoldMine
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

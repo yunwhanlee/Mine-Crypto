@@ -966,6 +966,10 @@ MonoBehaviour:
     m_Localized: Accept All
     m_Metadata:
       m_Items: []
+  - m_Id: 12731400186990592
+    m_Localized: GoldMine
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
