@@ -12,7 +12,22 @@ public class StgInfo
 {
     public string name;
     public int id;
-    public int unlockPrice;             // 바로 전단계 광석조각 필요
+    // 바로 전단계 광석조각 필요
+    [field:SerializeField] int unlockPrice; public int UnlockPrice {
+        get {
+            int res = unlockPrice;
+
+            //* 비용감소 추가처리
+            var rbm = GM._.rbm;
+            // 강화비용 감소%
+            if(rbm.upgDecUpgradePricePer.Lv > 0) {
+                float decreasePer = 1 - rbm.upgDecUpgradePricePer.Val;
+                res = Mathf.RoundToInt(res * decreasePer);
+            }
+
+            return res;
+        }
+    }           
     public bool IsUnlocked              // 잠금상태 (TRUE: 열림, FALSE: 잠김)
     {            
         get => DM._.DB.stageDB.IsUnlockArr[id];
@@ -36,7 +51,7 @@ public class StgInfo
         UnlockPriceBtn.gameObject.SetActive(!IsUnlocked);
 
         // 가격 표시
-        UnlockPriceBtn.GetComponentInChildren<TMP_Text>().text = unlockPrice.ToString();
+        UnlockPriceBtn.GetComponentInChildren<TMP_Text>().text = UnlockPrice.ToString();
 
         // 잠금패널 표시
         lockedPanel.SetActive(!IsUnlocked);
@@ -60,20 +75,20 @@ public class StgInfo
 
         // 잠금해제 버튼 이벤트 등록
         UnlockPriceBtn.onClick.AddListener(() => {
-            Debug.Log($"Click UnlockPriceBtn:: unlockPrice= {unlockPrice}");
+            Debug.Log($"Click UnlockPriceBtn:: unlockPrice= {UnlockPrice}");
 
             var sttDB = DM._.DB.statusDB;
 
             int previousOreId = id - 1;
 
-            if(sttDB.RscArr[previousOreId] >= unlockPrice)
+            if(sttDB.RscArr[previousOreId] >= UnlockPrice)
             {
                 SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
 
                 GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.UnlockOreMineMsg));
 
                 // 재료 수량 감소
-                sttDB.SetRscArr(previousOreId, -unlockPrice);
+                sttDB.SetRscArr(previousOreId, -UnlockPrice);
 
                 // 광산개방
                 GM._.amm.autoMiningArr[id].IsUnlock = true;
