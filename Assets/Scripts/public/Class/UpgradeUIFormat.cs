@@ -19,10 +19,10 @@ public class UpgradeUIFormat
         var sttDB = DM._.DB.statusDB;
 
         // 구매가능한지 여부 색깔태그
-        string colorTag = sttDB.GetInventoryItemVal(needRscType) >= price? "white" : "grey";
+        PriceTxt.color = sttDB.GetInventoryItemVal(needRscType) >= price? Color.white : Color.gray;
 
         // 필요재화 가격 + 이미지 적용
-        return $"<size=75%><sprite name={needRscType}><color={colorTag}></size> {price}</color>";
+        return $"<size=75%><sprite name={needRscType}></size> {price}";
     }
 
     /// <summary>

@@ -15,6 +15,8 @@ public class UpgradeManager : MonoBehaviour
     //* ELEMENT
     public GameObject windowObj;
 
+    public GameObject alertRedDotObj;
+
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgAttackUI;
     public UpgradeUIFormat upgIncTimerUI;
@@ -50,6 +52,8 @@ public class UpgradeManager : MonoBehaviour
         upgIncPopulation = DM._.DB.upgradeDB.upgIncPopulation;
         upgMoveSpeed = DM._.DB.upgradeDB.upgMoveSpeed;
         upgIncCristal = DM._.DB.upgradeDB.upgIncCristal;
+
+        UpdateDataAndUI();
     }
 
 #region EVENT
@@ -105,6 +109,26 @@ public class UpgradeManager : MonoBehaviour
         UpdateDataAndUI();
     }
 
+    /// <summary>
+    /// 업그레이드 가능 알림UI 🔴
+    /// </summary>
+    public void UpdateAlertRedDotUI()
+    {
+        Debug.Log("UpdateAlertRedDotUI()::");
+
+        bool isAlertOn = (
+            upgAttackUI.PriceTxt.color == Color.white
+            || upgIncTimerUI.PriceTxt.color == Color.white
+            || upgAttackSpeedUI.PriceTxt.color == Color.white
+            || upgBagStorageUI.PriceTxt.color == Color.white
+            || upgNextStageSkipUI.PriceTxt.color == Color.white
+            || upgIncPopulationUI.PriceTxt.color == Color.white
+            || upgMoveSpeedUI.PriceTxt.color == Color.white
+            || upgIncCristalUI.PriceTxt.color == Color.white
+        );
+        alertRedDotObj.SetActive(isAlertOn);
+    }
+
     private void Upgrade(UpgradeFormat upgDt)
     {
         if(upgDt.IsMaxLv)
@@ -151,6 +175,8 @@ public class UpgradeManager : MonoBehaviour
         upgIncPopulationUI.UpdateUI(upgIncPopulation);
         upgMoveSpeedUI.UpdateUI(upgMoveSpeed);
         upgIncCristalUI.UpdateUI(upgIncCristal);
+
+        UpdateAlertRedDotUI();
     }
 #endregion
 }
