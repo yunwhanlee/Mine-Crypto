@@ -129,8 +129,6 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
-        randSkillCate = SkillCate.Skip; //! TEST
-
         switch(randSkillCate)
         {
             case SkillCate.Attack:
@@ -160,7 +158,7 @@ public class SkillController : MonoBehaviour
         int[] workerGradeTbArr = GM._.mnm.GetWorkerGradeTableArr();
         bufskill.skillGrade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
 
-        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[bufskill.skillGrade].CoPlay(SkillCate.Buff));
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[bufskill.skillGrade].CoPlay(SkillCate.Buff, bufskill.Lv));
         isActiveBuff = true;
         SetAllWorkerBuffFireEF(true, bufskill.skillGrade);
 
@@ -209,7 +207,7 @@ public class SkillController : MonoBehaviour
         atkSkill.skillGrade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
 
         // 캐릭터 등급 인트로 애니메이션
-        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[atkSkill.skillGrade].CoPlay(SkillCate.Attack));
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[atkSkill.skillGrade].CoPlay(SkillCate.Attack, atkSkill.Lv));
 
         // 카메라 흔들림 애니메이션
         Camera.main.GetComponent<DOTweenAnimation>().DORestart();
@@ -262,16 +260,16 @@ public class SkillController : MonoBehaviour
     #region SKIP
     public IEnumerator CoSkipSkill()
     {
-        var skill = skm.skipSkill;
+        var skipSkill = skm.skipSkill;
 
         _.PlaySfx(SFX.Portal_SFX);
 
         // 소환된 캐릭터 등급배열표에 따른 랜덤 스킬등급 선택
         int[] workerGradeTbArr = GM._.mnm.GetWorkerGradeTableArr();
-        skill.grade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
+        skipSkill.grade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
 
         // 캐릭터 등급 인트로 애니메이션
-        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[skill.grade].CoPlay(SkillCate.Skip));
+        corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[skipSkill.grade].CoPlay(SkillCate.Skip, skipSkill.Lv));
 
         yield return Util.TIME0_5;
 
@@ -299,37 +297,37 @@ public class SkillController : MonoBehaviour
             worker.transform.position = GM._.mnm.homeTf.position;
         }
 
-        skill.PlaySkipAnim(skill.grade);
+        skipSkill.PlaySkipAnim(skipSkill.grade);
 
         // 보너스상자 획득 (스킬레벨 LV4이상)
-        skill.CheckBonusChestLv4();
+        skipSkill.CheckBonusChestLv4();
 
-        int targetFloor = GM._.stgm.Floor + skill.MoveNextFloor;
+        int targetFloor = GM._.stgm.Floor + skipSkill.MoveNextFloor;
         StartCoroutine(GM._.stgm.ShowStageUpAnim(targetFloor));
 
         // 스테이지 층 상승
         GM._.stgm.Floor = targetFloor;
 
         // 타이머시간 감소 텍스트 애니메이션 표시
-        float decTimeValPer = 1 - skill.DecTimerPer;
+        float decTimeValPer = 1 - skipSkill.DecTimerPer;
         int decTimeVal = (int)(GM._.pm.TimerVal * decTimeValPer);
         int min = decTimeVal / 60;
         int sec = decTimeVal % 60;
-        skill.DecTimerTxtAnim.GetComponent<TMP_Text>().text = $"-{min:00} : {sec:00}";
-        skill.DecTimerTxtAnim.DORestart();
-        skill.DecTimerPtcEF.Play();
+        skipSkill.DecTimerTxtAnim.GetComponent<TMP_Text>().text = $"-{min:00} : {sec:00}";
+        skipSkill.DecTimerTxtAnim.DORestart();
+        skipSkill.DecTimerPtcEF.Play();
 
         // 타이머 % 감소
-        GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skill.DecTimerPer);
+        GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skipSkill.DecTimerPer);
 
         // 스킬쿨타임 감소 텍스트 애니메이션 표시
-        if(skill.Lv < 2) 
+        if(skipSkill.Lv < 2) 
         {
-            float decSkillCoolTimeValPer = 1 - skill.DecSkillCoolTimePer;
+            float decSkillCoolTimeValPer = 1 - skipSkill.DecSkillCoolTimePer;
             int decSkillCoolTime = Mathf.RoundToInt(GM._.skc.coolTime * decSkillCoolTimeValPer);
-            skill.DecSkillCoolTimeTxtAnim.GetComponent<TMP_Text>().text = $"-{decSkillCoolTime}";
-            skill.DecSkillCoolTimeTxtAnim.DORestart();
-            skill.DecSkillCoolTimePtcEF.Play();
+            skipSkill.DecSkillCoolTimeTxtAnim.GetComponent<TMP_Text>().text = $"-{decSkillCoolTime}";
+            skipSkill.DecSkillCoolTimeTxtAnim.DORestart();
+            skipSkill.DecSkillCoolTimePtcEF.Play();
         }
 
         // 스킬쿨타임 % 감소
@@ -337,11 +335,11 @@ public class SkillController : MonoBehaviour
 
         yield return Util.TIME3;
         yield return Util.TIME1;
-        skill.EndSkipAnim();
+        skipSkill.EndSkipAnim();
 
         yield return Util.TIME1;
         // 타이틀표시 및 이펙트
-        GM._.stgm.ShowStageTitleUIAnim($"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)}\n<color=yellow><size=30%>( +{skill.MoveNextFloor}{LM._.Localize(LM.Floor)} )</size></color>");
+        GM._.stgm.ShowStageTitleUIAnim($"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)}\n<color=yellow><size=30%>( +{skipSkill.MoveNextFloor}{LM._.Localize(LM.Floor)} )</size></color>");
     }
     #endregion
 #endregion

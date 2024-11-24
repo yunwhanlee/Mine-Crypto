@@ -24,9 +24,9 @@ public class SkillGradeIntroAnim
     /// <summary>
     /// 버프스킬 인트로 애니메이션 실행
     /// </summary>
-    public IEnumerator CoPlay(SkillCate cate)
+    public IEnumerator CoPlay(SkillCate cate, int lv)
     {
-        TitleTxt.text = $"{GM._.skm.skillNameArr[(int)cate]}";
+        TitleTxt.text = $"{GM._.skm.skillNameArr[(int)cate]} Lv{lv}";
 
         windowObj.SetActive(true);
         msgBarAnim.DORestart();

@@ -549,10 +549,10 @@ public class AlchemyManager : MonoBehaviour
                     case DECO_ABT.ATK_PER:
                         targetitemInfoTxt.text = $"{LM._.Localize(LM.Attack)} +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
-                    case DECO_ABT.ATKSPD_PER:
+                    case DECO_ABT.MOVSPD_PER:
                         targetitemInfoTxt.text = $"{LM._.Localize(LM.MoveSpeed)} +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
-                    case DECO_ABT.MOVSPD_PER:
+                    case DECO_ABT.ATKSPD_PER:
                         targetitemInfoTxt.text = $"{LM._.Localize(LM.AttackSpeed)} +{dcDt.AbilityVal_ShowTxt * 100}%";
                         break;
                     case DECO_ABT.INC_POPULATION:

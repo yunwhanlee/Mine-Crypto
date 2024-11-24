@@ -146,14 +146,16 @@ public class RebornManager : MonoBehaviour
         yield return Util.TIME2;
         windowObj.SetActive(false);
 
-        //* 데이터 초기화 
-        // 명예레벨, 빛의돌, 숙련도, 시간의결정, 환생강화 제외
-        var prevFameLv = db.statusDB.FameLv;
-        var prevFame = db.statusDB.Fame;
-        int prevLightStone = db.statusDB.LightStone;
-        var prevProficiencyDB = db.proficiencyDB;
-        var prevRebornDB = db.rebornDB;
-        var prevTimePieceDB = db.timePieceDB;
+        //* 데이터 초기화전 유지될 데이터 사전준비
+        var prevlanguageIdx = db.languageIdx; // 언어
+        var prevBgmVolume = db.bgmVolume; // 배경음
+        var prevSfxVolume = db.sfxVolume; // 효과음
+        var prevFameLv = db.statusDB.FameLv; // 명예레벨
+        var prevFame = db.statusDB.Fame; // 명예경험치
+        int prevLightStone = db.statusDB.LightStone; // 빛의돌
+        var prevProficiencyDB = db.proficiencyDB; // 숙련도 데이터
+        var prevRebornDB = db.rebornDB; // 환생강화 데이터
+        var prevTimePieceDB = db.timePieceDB; // 시간의결정 데이터
 
         // 빛의돌 보상수량
         int rewardCnt = GetRwdVal() + GetExtraRwdVal();
@@ -161,7 +163,10 @@ public class RebornManager : MonoBehaviour
         // 모든 데이터 초기화
         db.Init();
 
-        // 환생이후도 유지될 데이터 반영
+        //* 환생이후도 유지될 데이터 반영
+        db.languageIdx = prevlanguageIdx;
+        db.bgmVolume = prevBgmVolume;
+        db.sfxVolume = prevSfxVolume;
         db.statusDB.FameLv = prevFameLv;            // 명예레벨
         db.statusDB.Fame = prevFame;                // 명예포인트
         db.statusDB.LightStone = prevLightStone;    // 빛의돌

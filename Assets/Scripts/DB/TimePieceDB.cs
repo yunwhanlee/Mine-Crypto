@@ -8,6 +8,7 @@ using System;
 public class TimePieceDB
 {
     [Header("업그레이드 데이터")]
+    public bool isAutoActiveTimePiece;           // 자동시작 트리거
     public int curStorage;                       // 현재 보관량 데이터
     public UpgradeFormatInt upgFillVal;          // 1분당 회복 데이터
     public UpgradeFormatInt upgIncStorage;       // 보관량 증가 데이터

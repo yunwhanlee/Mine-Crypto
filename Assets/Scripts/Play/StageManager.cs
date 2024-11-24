@@ -116,6 +116,12 @@ public class StageManager : MonoBehaviour {
         {
             GM._.skc.ActiveSkill();
         }
+
+        // 시간의결정 자동시작
+        if(GM._.tpm.IsOnAutoActive)
+        {
+            GM._.tpm.OnClickActiveBtn();
+        }
     }
 
     /// <summary>

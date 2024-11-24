@@ -33,6 +33,8 @@ public class TimePieceManager : MonoBehaviour
     public TMP_Text decreaseValTxt;              // 1초당 소모량 표시텍스트
     public TMP_Text timePotionCntTxt;            // 시간의포션 수량 표시텍스트
     public ParticleImage timePotionChargeParticleEF; // 시간의포션 충전 이펙트
+    public Button autoActiveToggleBtn;           // 자동사용 토글버튼
+    public TMP_Text autoActiveToggleBtnTxt;      // 자동사용 토글버튼 텍스트
 
     [Header("업그레이드 UI")]
     public UpgradeUIFormat upgFillValUI;         // 1분당 회복UI
@@ -40,6 +42,8 @@ public class TimePieceManager : MonoBehaviour
     public UpgradeUIFormat upgIncTimeScaleUI;    // 시간속도증가UI
 
     //* VALUE
+    // 자동시작 트리거
+    public bool IsOnAutoActive {get => DM._.DB.timePieceDB.isAutoActiveTimePiece;}
     // 발동 트리거
     public bool isActive;
     // 회복 타이머시간
@@ -84,6 +88,7 @@ public class TimePieceManager : MonoBehaviour
 
         OfflineAutoFill();
         SetSliderUI();
+        UpdateToggleBtnUI(IsOnAutoActive);
     }
 
     void Update() {
@@ -100,6 +105,16 @@ public class TimePieceManager : MonoBehaviour
     }
 
 #region EVENT
+    /// <summary>
+    /// 자동시작 토글버튼
+    /// </summary>
+    public void OnToogleAutoActiveToggleBtn()
+    {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        DM._.DB.timePieceDB.isAutoActiveTimePiece = !IsOnAutoActive;
+        UpdateToggleBtnUI(IsOnAutoActive);
+    }
+
     /// <summary>
     /// 발동버튼
     /// </summary>
@@ -174,6 +189,12 @@ public class TimePieceManager : MonoBehaviour
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         UpdateDataAndUI();
+    }
+
+    private void UpdateToggleBtnUI(bool isOn)
+    {
+        autoActiveToggleBtnTxt.text = isOn? "ON" : "OFF";
+        autoActiveToggleBtnTxt.color = isOn? Color.green : Color.white;
     }
 
     /// <summary>
