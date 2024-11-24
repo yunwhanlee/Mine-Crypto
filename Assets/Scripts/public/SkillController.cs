@@ -14,7 +14,7 @@ using TMPro;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 60;
+    const int WAIT_COOLTIME = 10;
     public int coolTime;
 
     //* VALUE
@@ -328,7 +328,7 @@ public class SkillController : MonoBehaviour
         GM._.pm.TimerVal = (int)(GM._.pm.TimerVal * skipSkill.DecTimerPer);
 
         // 스킬쿨타임 감소 텍스트 애니메이션 표시
-        if(skipSkill.Lv < 2) 
+        if(skipSkill.Lv >= 2) 
         {
             float decSkillCoolTimeValPer = 1 - skipSkill.DecSkillCoolTimePer;
             int decSkillCoolTime = Mathf.RoundToInt(GM._.skc.coolTime * decSkillCoolTimeValPer);
