@@ -156,6 +156,7 @@ public class RebornManager : MonoBehaviour
         var prevProficiencyDB = db.proficiencyDB; // 숙련도 데이터
         var prevRebornDB = db.rebornDB; // 환생강화 데이터
         var prevTimePieceDB = db.timePieceDB; // 시간의결정 데이터
+        var prevMushDB = db.mushDB; // 버섯도감 데이터
 
         // 빛의돌 보상수량
         int rewardCnt = GetRwdVal() + GetExtraRwdVal();
@@ -173,6 +174,7 @@ public class RebornManager : MonoBehaviour
         db.proficiencyDB = prevProficiencyDB;       // 숙련도 데이터
         db.timePieceDB = prevTimePieceDB;           // 시간의결정 데이터
         db.rebornDB = prevRebornDB;                 // 환생강화 데이터
+        db.mushDB = prevMushDB;                     // 버섯도감 데이터
 
         //* 빛의돌 보상획득
         GM._.rwm.ShowReward (

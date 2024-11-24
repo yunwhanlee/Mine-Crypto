@@ -152,10 +152,10 @@ public class PlayManager : MonoBehaviour
             GM._.rwm.newBestFloorMsgTxt.gameObject.SetActive(true);
         }
 
-        // 게임포기 안했을때
+        //* 게임포기 안했을시 추가 처리
         if(isGiveUp == false)
         {
-            //* 시련의광산
+            // 시련의광산
             if(GM._.stgm.IsChallengeMode)
             {   
                 // 돌파실패시
@@ -168,9 +168,10 @@ public class PlayManager : MonoBehaviour
                 {
                     GM._.pm.timerTxt.text = "CLEAR!";
                     GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
+                    playResRwdArr[(int)RWD.TIMEPOTION]++;
                 }
             }
-            //* 일반광산
+            // 일반광산
             else
             {
                 playResRwdArr[(int)RWD.ORE_TICKET]++;       // 결과수치 UI
@@ -179,7 +180,8 @@ public class PlayManager : MonoBehaviour
             }
         }
 
-        //* 시련의광산
+        //* 결과처리
+        // 시련의광산
         if(GM._.stgm.IsChallengeMode)
         {
             // 게임포기 안했을때 (달성한 층수만큼 광석상자 획득)
@@ -195,7 +197,7 @@ public class PlayManager : MonoBehaviour
                 // DM._.DB.statusDB.SkillPotion++;
             }
         }
-        //* 일반광산
+        // 일반광산
         else
         {
             // 광석상자 획득 (매 층마다 +1)

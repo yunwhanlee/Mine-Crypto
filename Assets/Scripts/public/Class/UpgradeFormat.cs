@@ -71,7 +71,7 @@ public class UpgradeFormat
     /// <param name="balanceVal">밸런스 조절 파라메터</param>
     public void UpdatePrice(int balanceVal)
     {
-        Price = PriceDef + Lv * (Lv) * balanceVal / 2;
+        Price = PriceDef + (Lv * Lv * balanceVal) / 2;
     }
 }
 
