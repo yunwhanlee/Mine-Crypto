@@ -147,7 +147,7 @@ public class StageManager : MonoBehaviour {
 
         if(randPer <= skipFloorPer)
         {
-            SoundManager._.PlaySfx(SoundManager.SFX.NextFloor_SFX);
+            SoundManager._.PlaySfx(SoundManager.SFX.SkipFloor_SFX);
             Floor++; // 현재층 스킵
             // GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.NextStageSkipMsg));
             // nextFloorSkipAnimObj.SetActive(true);
@@ -155,6 +155,8 @@ public class StageManager : MonoBehaviour {
             nextFloorSkipTitle1Anim.DORestart();
             nextFloorSkipTitle2Anim.DORestart();
         }
+        else
+            SoundManager._.PlaySfx(SoundManager.SFX.NextFloor_SFX);
 
         yield return Util.TIME0_5;
 

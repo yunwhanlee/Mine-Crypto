@@ -14,7 +14,7 @@ using TMPro;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 10;
+    const int WAIT_COOLTIME = 60;
     public int coolTime;
 
     //* VALUE
@@ -149,7 +149,7 @@ public class SkillController : MonoBehaviour
     /// </summary>
     IEnumerator CoBuffSkill()
     {
-        _.PlaySfx(SFX.OpenMushBoxSFX);
+        SoundManager._.PlaySfx(SFX.OpenMushBoxSFX);
 
         // 스킬레벨
         BuffSkillTree bufskill = skm.buffSkill;
@@ -157,6 +157,13 @@ public class SkillController : MonoBehaviour
         // 소환된 캐릭터 등급배열표에 따른 랜덤 스킬등급 선택
         int[] workerGradeTbArr = GM._.mnm.GetWorkerGradeTableArr();
         bufskill.skillGrade = workerGradeTbArr[Random.Range(0, workerGradeTbArr.Length)];
+
+        // 함성사운드
+        if(bufskill.skillGrade == (int)GRADE.UNIQUE
+        || bufskill.skillGrade == (int)GRADE.LEGEND)
+            SoundManager._.PlaySfx(SFX.SkillBuffWoman_SFX);
+        else
+            SoundManager._.PlaySfx(SFX.SkillBuffMan_SFX);
 
         corSkillIntroGradeAnimID = StartCoroutine(skm.introGradeAnimArr[bufskill.skillGrade].CoPlay(SkillCate.Buff, bufskill.Lv));
         isActiveBuff = true;

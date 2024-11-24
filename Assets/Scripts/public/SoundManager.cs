@@ -65,7 +65,10 @@ public class SoundManager : MonoBehaviour
         Portal_SFX,                 // 포탈
         CountDown_SFX,              // 카운트다운
         Reborn_SFX,                 // 환생
-        NextFloor_SFX,              // 다음층 스킵
+        NextFloor_SFX,              // 다음층 이동
+        SkillBuffMan_SFX,           // 스킬버프 남자
+        SkillBuffWoman_SFX,         // 스킬버프 여자
+        SkipFloor_SFX,              // 다음층 스킵발동
     }
 
     [field: Header("BGM")]
