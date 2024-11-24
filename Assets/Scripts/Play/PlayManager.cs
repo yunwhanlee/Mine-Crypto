@@ -16,7 +16,7 @@ public class PlayManager : MonoBehaviour
     //* Value
     private Coroutine corTimerCowndownID;
 
-    [Header("(인게임) 게임오버시 획득한 보상수량 결과표시 데이터")]
+    [Header("(인게임) 게임오버시 획득한 보상수량 결과표시용 (실제로는 수령안되므로 수령처리 해야됨)")]
     public int[] playResRwdArr; // 정의는 StageManager:: StageStart()에서 매번 초기화
 
     [field:SerializeField] int timerMax;
@@ -168,7 +168,9 @@ public class PlayManager : MonoBehaviour
                 {
                     GM._.pm.timerTxt.text = "CLEAR!";
                     GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
+                    // 타임포션 1개 획득
                     playResRwdArr[(int)RWD.TIMEPOTION]++;
+                    DM._.DB.statusDB.SetInventoryItemVal(INV.TIMEPOTION, 1);
                 }
             }
             // 일반광산

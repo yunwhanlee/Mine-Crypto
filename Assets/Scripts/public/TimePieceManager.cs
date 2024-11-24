@@ -162,7 +162,8 @@ public class TimePieceManager : MonoBehaviour
             return;
         }
 
-        if(DM._.DB.statusDB.GetInventoryItemVal(Enum.INV.TIMEPOTION) < 0) 
+        // 수량체크
+        if(DM._.DB.statusDB.GetInventoryItemVal(Enum.INV.TIMEPOTION) <= 0) 
         {
             GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
             return;
