@@ -148,8 +148,9 @@ public class RebornManager : MonoBehaviour
 
         //* 데이터 초기화전 유지될 데이터 사전준비
         var prevlanguageIdx = db.languageIdx; // 언어
-        var prevBgmVolume = db.bgmVolume; // 배경음
-        var prevSfxVolume = db.sfxVolume; // 효과음
+        var prevRebornCnt = db.rebornCnt; // 환생횟수
+        var prevBgmVolume = GM._.stm.bgmSlider.value; // 배경음
+        var prevSfxVolume = GM._.stm.sfxSlider.value; // 효과음
         var prevFameLv = db.statusDB.FameLv; // 명예레벨
         var prevFame = db.statusDB.Fame; // 명예경험치
         int prevLightStone = db.statusDB.LightStone; // 빛의돌
@@ -166,6 +167,7 @@ public class RebornManager : MonoBehaviour
 
         //* 환생이후도 유지될 데이터 반영
         db.languageIdx = prevlanguageIdx;
+        db.rebornCnt = prevRebornCnt;
         db.bgmVolume = prevBgmVolume;
         db.sfxVolume = prevSfxVolume;
         db.statusDB.FameLv = prevFameLv;            // 명예레벨
@@ -175,6 +177,9 @@ public class RebornManager : MonoBehaviour
         db.timePieceDB = prevTimePieceDB;           // 시간의결정 데이터
         db.rebornDB = prevRebornDB;                 // 환생강화 데이터
         db.mushDB = prevMushDB;                     // 버섯도감 데이터
+
+        //* 환생횟수 증가
+        DM._.DB.rebornCnt++;
 
         //* 빛의돌 보상획득
         GM._.rwm.ShowReward (

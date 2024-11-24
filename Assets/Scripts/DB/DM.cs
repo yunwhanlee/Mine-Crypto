@@ -10,6 +10,7 @@ using UnityEngine;
 [Serializable]
 public class DB {
     public int languageIdx;                 // 언어설정 인덱스
+    public int rebornCnt;                   // 환생횟수
     public float bgmVolume;                 // 배경음 볼륨
     public float sfxVolume;                 // 효과음 볼륨
     public StatusDB statusDB;
@@ -29,6 +30,7 @@ public class DB {
     public void Init()
     {
         languageIdx = -1;
+        rebornCnt = 0;
         bgmVolume = 0.5f;
         sfxVolume = 0.4f;
         statusDB = new StatusDB();

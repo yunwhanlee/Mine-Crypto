@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
+using TMPro;
 
 public class SettingManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SettingManager : MonoBehaviour
 
     // Element
     public GameObject windowObj;
+    public TMP_Text rebornCntTxt;
     public Slider bgmSlider;
     public Slider sfxSlider;
 
@@ -27,6 +29,7 @@ public class SettingManager : MonoBehaviour
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
+        rebornCntTxt.text = $": {DM._.DB.rebornCnt}";
         bgmSlider.value = DM._.DB.bgmVolume;
         sfxSlider.value = DM._.DB.sfxVolume;
     }
