@@ -635,25 +635,25 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 154936761618432
-    m_Localized: 'Reach 50floor
+    m_Localized: 'Reach 30floor
 
       at Mine5'
     m_Metadata:
       m_Items: []
   - m_Id: 154946697924608
-    m_Localized: 'Reach 100floor
+    m_Localized: 'Reach 50floor
 
       at Mine6'
     m_Metadata:
       m_Items: []
   - m_Id: 154982957682688
-    m_Localized: 'Reach 500floor
+    m_Localized: 'Reach 100floor
 
       at Mine7'
     m_Metadata:
       m_Items: []
   - m_Id: 154999860727808
-    m_Localized: 'Reach 1000floor
+    m_Localized: 'Reach 500floor
 
       at Mine8'
     m_Metadata:

@@ -352,7 +352,7 @@ public class TimePieceManager : MonoBehaviour
             if(!isActive)
                 break;
 
-            yield return Util.RT_TIME0_1;
+            yield return Util.TIME0_1;
 
             // 시간속도 업글시, 그 수치만큼 %로 더 감속이 빨리되도록 나머지값 적용
             float remainVal = (int)upgIncTimeScale.Val - upgIncTimeScale.Val;
