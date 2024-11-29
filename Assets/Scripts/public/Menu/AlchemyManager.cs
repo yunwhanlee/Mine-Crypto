@@ -271,7 +271,7 @@ public class AlchemyManager : MonoBehaviour
         windowObj.SetActive(true);
         DOTAnim.DORestart();
         SetCatetory();
-        UpdateUI(0);
+        UpdateUI(itemBtnIdx);
     }
 
     /// <summary>

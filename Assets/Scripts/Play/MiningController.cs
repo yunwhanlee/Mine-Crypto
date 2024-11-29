@@ -399,13 +399,17 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// </summary>
         public static void AcceptRsc(Ore targetOre, int val)
         {
-            //* 재화 이펙트 재생
-            _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
-            GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
-            //* 재화 획득(타겟재화 증가)
-            DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, val);
-            // 게임결과 획득한 보상 중 재화에 반영
-            GM._.pm.playResRwdArr[(int)targetOre.OreType] += val;
+            // 크리스탈타입(보물상자)인 경우, 획득 제외
+            if(targetOre.OreType != RSC.CRISTAL)
+            {
+                //* 재화 이펙트 재생
+                _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+                GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
+                //* 재화 획득(타겟재화 증가)
+                DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, val);
+                // 게임결과 획득한 보상 중 재화에 반영
+                GM._.pm.playResRwdArr[(int)targetOre.OreType] += val;
+            }
         }
 
         /// <summary>

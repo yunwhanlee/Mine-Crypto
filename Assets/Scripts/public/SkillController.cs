@@ -14,7 +14,7 @@ using TMPro;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 60;
+    const int WAIT_COOLTIME = 10;
     public int coolTime;
 
     //* VALUE
@@ -128,6 +128,9 @@ public class SkillController : MonoBehaviour
         int end = (int)SkillCate.Skip + 1;
 
         randSkillCate = (SkillCate)Random.Range(start, end);
+
+        //! TEST
+        randSkillCate = SkillCate.Attack;
 
         switch(randSkillCate)
         {
