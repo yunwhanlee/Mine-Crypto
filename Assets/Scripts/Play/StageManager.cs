@@ -73,6 +73,17 @@ public class StageManager : MonoBehaviour {
 
 #region FUNC
     /// <summary>
+    /// 선택한 스테이지맵 표시
+    /// </summary>
+    public void SetSelectMap()
+    {
+        for(int i = 0; i < stageTileMapArr.Length; i++)
+        {
+            stageTileMapArr[i].SetActive(i == (int)oreType);
+        }
+    }
+
+    /// <summary>
     /// *선택한 스테이지 게임시작
     /// </summary>
     public void StartStage()
@@ -89,12 +100,6 @@ public class StageManager : MonoBehaviour {
 
         // 스테이지층
         stageTxt.text = GetStageName();
-
-        // 스테이지맵 설정
-        for(int i = 0; i < stageTileMapArr.Length; i++)
-        {
-            stageTileMapArr[i].SetActive(i == (int)oreType);
-        }
 
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();

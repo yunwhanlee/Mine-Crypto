@@ -71,6 +71,9 @@ public class StgInfo
 
             // 캐릭터 가챠뽑기 UI준비
             GM._.stgm.SetGachaUI(GM._.ssm.selectStagePopUp);
+
+            // 선택한 스테이지맵 표시
+            GM._.stgm.SetSelectMap();
         });
 
         // 잠금해제 버튼 이벤트 등록
