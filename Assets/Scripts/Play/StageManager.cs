@@ -308,8 +308,6 @@ public class StageManager : MonoBehaviour {
                 int randPer = Random.Range(0, 1000);
                 int spawnPer = treasureChestSpawnDefPer + Mathf.RoundToInt(GM._.sttm.ExtraChestSpawnPer * 1000);
                 obj = (randPer <= spawnPer)? treasureChestPref : orePrefs[(int)oreType];
-                //! TEST
-                obj = treasureChestPref;
                 Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= sapwnPer({spawnPer})");
             }
 

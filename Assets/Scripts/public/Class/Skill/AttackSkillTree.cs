@@ -109,8 +109,13 @@ public class AttackSkillTree
             if(targetOre == null)
                 continue;
 
+            // 크리스탈타입(보물상자)인 경우, 획득 제외
+            if(targetOre.OreType != RSC.CRISTAL)
+            {
+                MiningController.AcceptRsc(targetOre.OreType, MeteoDmg);
+            }
+
             MiningController.DecreaseOreHpBar(targetOre, MeteoDmg);
-            MiningController.AcceptRsc(targetOre, MeteoDmg);
         }
     }
 #endregion

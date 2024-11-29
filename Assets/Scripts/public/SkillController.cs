@@ -14,7 +14,7 @@ using TMPro;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 10;
+    const int WAIT_COOLTIME = 60;
     public int coolTime;
 
     //* VALUE
@@ -129,9 +129,6 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
-        //! TEST
-        randSkillCate = SkillCate.Attack;
-
         switch(randSkillCate)
         {
             case SkillCate.Attack:
@@ -238,8 +235,12 @@ public class SkillController : MonoBehaviour
             if(targetOre == null)
                 continue;
 
-            // 인게임 채굴재화 수령
-            MiningController.AcceptRsc(targetOre, atkSkill.EarthQuakeDmg);
+            // 크리스탈타입(보물상자)인 경우, 획득 제외
+            if(targetOre.OreType != RSC.CRISTAL)
+            {
+                // 인게임 채굴재화 수령
+                MiningController.AcceptRsc(targetOre.OreType, atkSkill.EarthQuakeDmg);
+            }
 
             // 광석 체력감소
             MiningController.DecreaseOreHpBar(targetOre, atkSkill.EarthQuakeDmg);
@@ -295,9 +296,6 @@ public class SkillController : MonoBehaviour
 
             targetOre.IsDestroied = true;
             Destroy(targetOre.gameObject);
-
-            // MiningController.DecreaseOreHpBar(targetOre, targetOre.MaxHp);
-            // MiningController.AcceptRsc(targetOre, targetOre.MaxHp);
         }
 
         // 캐릭터 가운데로 강제이동

@@ -32,7 +32,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         public Sprite iconCharaImg;                    // UI표시 전용 아이콘 이미지
         public Slider bagStorageSlider;                // カバン保管量 スライダーバー
         public TMP_Text bagStorageSliderTxt;           // カバン保管量 スライダーバー テキスト
-        public Ore targetOre;
+        public Ore targetOre;                          // 타겟광석
+        public RSC targetOreType;                      // 타겟광석 타입 (타겟이 파괴되어도 타입으로 확인하기 위해)
         public GameObject[] buffFireEFArr;             // 버프 파이어 이펙트 배열 
 
         //* VALUE
@@ -202,6 +203,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                     // 타겟 지정 완료
                     targetOre = ore;
+                    // 타겟타입 지정 완료
+                    targetOreType = ore.OreType;
 
                     targetOre.MiningCnt++;
                     GM._.mnm.CurTotalMiningCnt++;
@@ -259,7 +262,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                     if(BagStorage > 0) {
                         // 재화 수령
-                        AcceptRsc(targetOre, BagStorage);
+                        AcceptRsc(targetOreType, BagStorage);
+                        targetOreType = RSC.ORE1; // 더미값으로 초기화
                     }
 
                     // 가방 비우기
@@ -317,15 +321,22 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
             //* 채굴중인 경우
             if(status == Status.MINING) {
-                // 도중에 타겟광석이 파괴된다면
-                if(targetOre.IsDestroied) //targetOre == null)
+                //* 도중에 타겟광석이 파괴된다면
+                if(targetOre.IsDestroied) // targetOre == null
                 {
                     attackWaitTime = ATTACK_SPEED_MAX_SEC; // 공격대기시간 제거
 
                     //* 일반광석인 경우
-                    if(targetOre.OreType != RSC.CRISTAL)
+                    if(targetOreType != RSC.CRISTAL)
                     {
-                        status = Status.BACKHOME; // 귀가
+                        // 수용량이 다 안차도 타겟파괴시 바로귀가
+                        // status = Status.BACKHOME; // 귀가
+
+                        // 수용량이 덜 채워져있다면
+                        if(BagStorage < BagStorageSize)
+                            status = Status.GO; // 다음광석을 찾으러 이동
+                        else
+                            status = Status.BACKHOME; // 귀가
                         return;
                     }
                     //* 보물상자인 경우
@@ -352,7 +363,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     attackWaitTime = 0;
 
                     //* 일반광석인 경우
-                    if(targetOre.OreType != RSC.CRISTAL)
+                    if(targetOreType != RSC.CRISTAL)
                     {
                         // 가방용량 증가
                         if(bagStorage < BagStorageSize)
@@ -373,12 +384,20 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     DecreaseOreHpBar(targetOre, AttackVal);
 
                     // 광석체력 0이라면, 파괴
-                    if(targetOre.IsDestroied)
+                    if(targetOre.IsDestroied) // targetOre == null
                     {
                         //* 일반광석인 경우
-                        if(targetOre.OreType != RSC.CRISTAL)
+                        if(targetOreType != RSC.CRISTAL)
                         {
-                            status = Status.BACKHOME; // 귀가
+                            // 수용량이 다 안차도 타겟파괴시 바로귀가
+                            // status = Status.BACKHOME; // 귀가
+
+                            // 수용량이 덜 채워져있다면
+                            if(BagStorage < BagStorageSize)
+                                status = Status.GO; // 다음광석을 찾으러 이동
+                            else
+                                status = Status.BACKHOME; // 귀가
+
                             // 채굴한 광석이 없다면, 바로 광석타켓 삭제
                             if(bagStorage == 0)
                                 targetOre = null;
@@ -397,19 +416,18 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// <summary>
         /// 인게임 채굴재화 수령
         /// </summary>
-        public static void AcceptRsc(Ore targetOre, int val)
+        public static void AcceptRsc(RSC targetOreType, int val)
         {
-            // 크리스탈타입(보물상자)인 경우, 획득 제외
-            if(targetOre.OreType != RSC.CRISTAL)
-            {
-                //* 재화 이펙트 재생
-                _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
-                GM._.ui.PlayOreAttractionPtcUIEF(targetOre.OreType);
-                //* 재화 획득(타겟재화 증가)
-                DM._.DB.statusDB.SetRscArr((int)targetOre.OreType, val);
-                // 게임결과 획득한 보상 중 재화에 반영
-                GM._.pm.playResRwdArr[(int)targetOre.OreType] += val;
-            }
+            Debug.Log($"AcceptRsc(targetOre= {targetOreType}, val= {val}):: ");
+
+            _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+
+            //* 재화 이펙트 재생
+            GM._.ui.PlayOreAttractionPtcUIEF(targetOreType);
+            //* 재화 획득(타겟재화 증가)
+            DM._.DB.statusDB.SetRscArr((int)targetOreType, val);
+            // 게임결과 획득한 보상 중 재화에 반영
+            GM._.pm.playResRwdArr[(int)targetOreType] += val;
         }
 
         /// <summary>
