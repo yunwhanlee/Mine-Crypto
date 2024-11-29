@@ -112,7 +112,7 @@ public class RebornManager : MonoBehaviour
         int val = DM._.DB.stageDB.GetTotalBestFloor() / 5;
 
         string title = "모든 기억을 잃고 환생하시겠습니까?";
-        string content = "숙련도, 명예레벨, 환생강화를 제외한 모든것이 초기화됩니다.";
+        string content = "숙련도, 명예레벨, 환생강화, 버섯도감을 제외한 모든것이 초기화됩니다.";
         string extraRwd = upgIncLightStonePer.Lv > 0? $"(+ {GetExtraRwdVal()})" : "";
         string reward = $"보상 : <sprite name=LIGHTSTONE> {GetRwdVal()} {extraRwd}";
 

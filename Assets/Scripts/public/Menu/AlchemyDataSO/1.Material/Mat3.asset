@@ -17,5 +17,5 @@ MonoBehaviour:
     val: 1000
   - type: 5
     val: 1000
-  type: 0
+  type: 2
   itemSpr: {fileID: -769614330, guid: fc3f91a744885ad48ae9f60b434cd1bc, type: 3}

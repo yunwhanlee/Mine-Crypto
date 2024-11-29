@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b86439f901f69c74a8c256f3ef1af5dd, type: 3}
-  m_Name: 4.TreasureChest
+  m_Name: 7.TreasureChest
   m_EditorClassIdentifier: 
   needItemDataArr:
   - type: 20
@@ -19,5 +19,5 @@ MonoBehaviour:
     val: 10
   - type: 22
     val: 10
-  type: 3
+  type: 6
   itemSpr: {fileID: 21300000, guid: 05b4c15e805fa4156812361f1797f526, type: 3}

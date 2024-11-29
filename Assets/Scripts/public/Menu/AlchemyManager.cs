@@ -458,17 +458,11 @@ public class AlchemyManager : MonoBehaviour
                 int val = 0;
                 switch(csDt.type)
                 {
-                    case CONSUME.ORE_TICKET: 
+                    case CONSUME.ORE_TICKET:
                         val = sttDB.OreTicket;
                         break;
-                    case CONSUME.RED_TICKET: 
+                    case CONSUME.RED_TICKET:
                         val = sttDB.RedTicket;
-                        break;
-                    case CONSUME.ORE_CHEST: 
-                        val = sttDB.OreChest;
-                        break;
-                    case CONSUME.TREASURE_CHEST:
-                        val = sttDB.TreasureChest;
                         break;
                     case CONSUME.MUSH_BOX1:
                         val = sttDB.MushBox1;
@@ -478,6 +472,12 @@ public class AlchemyManager : MonoBehaviour
                         break;
                     case CONSUME.MUSH_BOX3:
                         val = sttDB.MushBox3;
+                        break;
+                    case CONSUME.ORE_CHEST:
+                        val = sttDB.OreChest;
+                        break;
+                    case CONSUME.TREASURE_CHEST:
+                        val = sttDB.TreasureChest;
                         break;
                 }
                 targetitemInfoTxt.text = $"{LM._.Localize(LM.Ammount)}: {val}";

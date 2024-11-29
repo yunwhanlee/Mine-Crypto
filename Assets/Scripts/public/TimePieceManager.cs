@@ -251,6 +251,14 @@ public class TimePieceManager : MonoBehaviour
             upgDt.Lv++;
 
             UpdateDataAndUI();
+
+            // 이미 실행중인  시간의조각 활성화가 있다면 정지하여 초기화
+            if(CorActiveTimerID != null)
+            {
+                StopCoroutine(CorActiveTimerID);
+                CorActiveTimerID = null;
+            }
+
             ActiveProcess(isActive); // 적용데이터 최신화
         }
         else

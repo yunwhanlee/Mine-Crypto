@@ -161,11 +161,11 @@ public class StatusDB
         // (소비) 아이템
         oreTicket = 5;     // 광산 입장티켓
         redTicket = 0;     // 시련의광산 입장티켓
-        oreChest = 0;      // 광석상자
-        treasureChest = 5; // 보물상자
         mushBox1 = 0;      // 의문의 버섯상자
         mushBox2 = 0;      // 신비한 버섯상자
         mushBox3 = 0;      // 전설의 버섯상자
+        oreChest = 0;      // 광석상자
+        treasureChest = 5; // 보물상자
         skillPotion = 0;   // 스킬포션
         lightStone = 0;    // 빛나는돌
         timePotion = 0;    // 시간의포션
@@ -197,11 +197,11 @@ public class StatusDB
             // (소비) 아이템
             case INV.ORE_TICKET:     return oreTicket;
             case INV.RED_TICKET:     return redTicket;
-            case INV.ORE_CHEST:      return oreChest;
-            case INV.TREASURE_CHEST: return treasureChest;
             case INV.MUSH_BOX1:      return mushBox1;
             case INV.MUSH_BOX2:      return mushBox2;
             case INV.MUSH_BOX3:      return mushBox3;
+            case INV.ORE_CHEST:      return oreChest;
+            case INV.TREASURE_CHEST: return treasureChest;
             case INV.SKILLPOTION:    return skillPotion;
             case INV.LIGHTSTONE:     return lightStone;
             case INV.TIMEPOTION:     return timePotion;
@@ -267,6 +267,7 @@ public class StatusDB
     /// </summary>
     /// <param name="idx">재화 타입(인덱스)</param>
     /// <param name="val">증가량</param>
+    /// <param name="isAutoMine">자동채굴 체크트리거 : 자동채굴전용 : 이미 합산이 되었음으로 보상얻을시에는 추가증가 안함</param>
     public int SetRscArr(int idx, int val, bool isAutoMine = false) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
     {
         OreBlessManager obm = GM._.obm;
@@ -283,63 +284,73 @@ public class StatusDB
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE1_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE2:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE2_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE3:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE3_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE4:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE4_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE5:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE5_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE6:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE6_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE7:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE7_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.ORE8:
                     extraPer += obm.GetAbilityValue(OREBLESS_ABT.INC_ORE8_RWD_PER);
                     extraPer += rbm.upgIncOrePer.Val;
                     if(val < 0) extraPer = 1;
-                    if(isAutoMine) extraPer = 1; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt(val * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine)
+                        val = Mathf.RoundToInt(val * extraPer);
                     break;
                 case (int)RWD.CRISTAL: // (Int형)
                     int extraVal = GM._.sttm.ExtraIncCristal;
                     extraPer += rbm.upgIncOrePer.Val;
-                    if(isAutoMine) extraVal = 0; // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
-                    val = Mathf.RoundToInt((val + extraVal) * extraPer);
+                    // 자동채굴체크의경우 이미 추가값이 계산되었음으로 처리안함
+                    if(!isAutoMine) {
+                        val = Mathf.RoundToInt((val + extraVal) * extraPer);
+                    }
                     break;
             }
         }

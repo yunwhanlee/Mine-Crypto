@@ -753,15 +753,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 180738756677632
-    m_Localized: It seems to contain a common mushroom.
+    m_Localized: It contain swamp, blue or normal mushroom. Spore or horror mushroom
+      appear at a low probability.
     m_Metadata:
       m_Items: []
   - m_Id: 180749489901568
-    m_Localized: It seems to contain a mystical mushroom.
+    m_Localized: It contain Neungi, shiitake or red mushroom. Spore or horror mushroom
+      appear at a low probability.
     m_Metadata:
       m_Items: []
   - m_Id: 180759728197632
-    m_Localized: It seems to contain a legendary mushroom.
+    m_Localized: It contain horror mushroom.
     m_Metadata:
       m_Items: []
   - m_Id: 186323011080192

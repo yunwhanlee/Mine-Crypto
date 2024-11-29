@@ -16,6 +16,8 @@ MonoBehaviour:
   - type: 13
     val: 1000
   - type: 14
+    val: 1000
+  - type: 8
     val: 100
-  type: 0
+  type: 6
   itemSpr: {fileID: 760716838, guid: fc3f91a744885ad48ae9f60b434cd1bc, type: 3}

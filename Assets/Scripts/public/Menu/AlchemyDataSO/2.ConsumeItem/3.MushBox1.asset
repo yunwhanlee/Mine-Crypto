@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b86439f901f69c74a8c256f3ef1af5dd, type: 3}
-  m_Name: 7.MushBox3
+  m_Name: 3.MushBox1
   m_EditorClassIdentifier: 
   needItemDataArr:
-  - type: 15
-    val: 100
-  - type: 8
-    val: 1000
-  type: 6
-  itemSpr: {fileID: 21300000, guid: b612739a88dc3470490b0c38fb7ffcd5, type: 3}
+  - type: 13
+    val: 10
+  - type: 10
+    val: 10
+  type: 2
+  itemSpr: {fileID: 21300000, guid: 0a7edeaf507834376b86179b0a989ec1, type: 3}

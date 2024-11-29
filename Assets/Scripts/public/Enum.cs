@@ -117,8 +117,8 @@ public static class Enum
         MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
         // 소비 아이템
         ORE_TICKET, RED_TICKET,
-        ORE_CHEST, TREASURE_CHEST,
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        ORE_CHEST, TREASURE_CHEST,
         SKILLPOTION, LIGHTSTONE, TIMEPOTION,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
 
@@ -140,8 +140,8 @@ public static class Enum
         MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8,
         // 소비 아이템
         ORE_TICKET, RED_TICKET,
-        ORE_CHEST, TREASURE_CHEST,
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        ORE_CHEST, TREASURE_CHEST,
         SKILLPOTION, LIGHTSTONE, TIMEPOTION,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
     }
@@ -171,8 +171,13 @@ public static class Enum
     /// (연금술) 소모품
     /// </summary>
     public enum CONSUME {
-        ORE_TICKET, RED_TICKET, ORE_CHEST, TREASURE_CHEST,
-        MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
+        ORE_TICKET,
+        RED_TICKET,
+        MUSH_BOX1,
+        MUSH_BOX2,
+        MUSH_BOX3,
+        ORE_CHEST,
+        TREASURE_CHEST,
     }
 
     /// <summary>
