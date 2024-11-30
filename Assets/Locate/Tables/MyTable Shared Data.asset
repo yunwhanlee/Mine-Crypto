@@ -1003,6 +1003,26 @@ MonoBehaviour:
     m_Key: UI_SkipSkillLv5Msg
     m_Metadata:
       m_Items: []
+  - m_Id: 15008105274511360
+    m_Key: UI_PrevLvSkillLearnMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15009232963473408
+    m_Key: UI_SkillAcquiredMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011078713085952
+    m_Key: UI_SkillResetMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011205083271168
+    m_Key: UI_SkillResetCompleteMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011246678183936
+    m_Key: UI_SkillUnActiveMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

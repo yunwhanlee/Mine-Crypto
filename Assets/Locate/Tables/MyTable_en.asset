@@ -1048,6 +1048,26 @@ MonoBehaviour:
       20%.
     m_Metadata:
       m_Items: []
+  - m_Id: 15008105274511360
+    m_Localized: You will learn the previous level skill.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15009232963473408
+    m_Localized: Skill acquired!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011078713085952
+    m_Localized: You want to reset all skills? All skill point potions will be returned.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011205083271168
+    m_Localized: Skill reset complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011246678183936
+    m_Localized: Skill activation disappears as the end time is approaching.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

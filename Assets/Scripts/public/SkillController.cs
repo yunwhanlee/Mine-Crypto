@@ -117,7 +117,7 @@ public class SkillController : MonoBehaviour
         // 타이머가 8초 이하로 남았다면, 버그방지로 실행하지 않음.
         if(GM._.pm.TimerVal <= 8)
         {
-            GM._.ui.ShowNoticeMsgPopUp("종료시간이 임박해서 스킬발동이 사라집니다.");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.SkillUnActiveMsg)); // 종료시간이 임박해서 스킬발동이 사라집니다.
             return;
         }
 

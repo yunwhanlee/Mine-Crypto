@@ -139,7 +139,7 @@ public class SkillManager : MonoBehaviour
         if(attackSkill.Lv == 1 && buffSkill.Lv == 1 && skipSkill.Lv == 1)
             return;
 
-        GM._.ui.ShowConfirmPopUp("스킬을 전부 리셋하시겠습니까?\n스킬포인트 물약은 전부 반환됩니다.");
+        GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.SkillResetMsg)); // 스킬을 전부 리셋하시겠습니까?\n스킬포인트 물약은 전부 반환됩니다.
         GM._.ui.OnClickConfirmBtnAction = () => {
 
             if(DM._.DB.statusDB.GetInventoryItemVal(INV.CRISTAL) < RESET_CRISTAL_PRICE)
@@ -150,7 +150,7 @@ public class SkillManager : MonoBehaviour
             }
 
             SoundManager._.PlaySfx(SoundManager.SFX.BlessResetSFX);
-            GM._.ui.ShowNoticeMsgPopUp("스킬 초기화 완료!");
+            GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.SkillResetCompleteMsg)); // 스킬 초기화 완료!
 
             // 크리스탈 수량 감소
             DM._.DB.statusDB.SetInventoryItemVal(INV.CRISTAL, -RESET_CRISTAL_PRICE);
@@ -260,31 +260,25 @@ public class SkillManager : MonoBehaviour
         var sttDB = DM._.DB.statusDB;
         int skillPrice = skillPriceArr[curSelectIdx];
 
-        // if(lv > curSelectIdx)
-        // {
-        //     GM._.ui.ShowWarningMsgPopUp("이미 습득한 스킬입니다.");
-        //     return 0;
-        // }
-        // else if(lv < curSelectIdx)
-        // {   
-        //     GM._.ui.ShowWarningMsgPopUp("이전 레벨스킬을 배워야됩니다.");
-        //     return 0;
-        // }
-        // else {
+        if(lv < curSelectIdx)
+        {   
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.PrevLvSkillLearnMsg));
+            return 0;
+        }
         // 스킬포션 수량 체크
         if(sttDB.GetInventoryItemVal(INV.SKILLPOTION) < skillPrice )
         {
-            GM._.ui.ShowWarningMsgPopUp("스킬포인트 물약이 부족합니다.");
+            // 아이템이 부족합니다.
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotEnoughItemMsg));
             return 0;
         }
 
         learnBtnParticleEF.Play();
         learnBtn.gameObject.SetActive(false);
         SoundManager._.PlaySfx(SoundManager.SFX.TranscendUpgradeSFX);
-        GM._.ui.ShowNoticeMsgPopUp("스킬 습득완료!");
+        GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.SkillAcquiredMsg));
         sttDB.SetInventoryItemVal(INV.SKILLPOTION, -skillPrice);
         return 1;
-        // }
     }
 #endregion
 }

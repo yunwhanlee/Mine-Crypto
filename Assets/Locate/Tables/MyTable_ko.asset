@@ -1037,6 +1037,28 @@ MonoBehaviour:
       20% \uC904\uC5B4\uB4EC."
     m_Metadata:
       m_Items: []
+  - m_Id: 15008105274511360
+    m_Localized: "\uC774\uC804 \uB808\uBCA8\uC2A4\uD0AC\uC744 \uBC30\uC6CC\uC57C\uB429\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15009232963473408
+    m_Localized: "\uC2A4\uD0AC \uC2B5\uB4DD\uC644\uB8CC!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011078713085952
+    m_Localized: "\uC2A4\uD0AC\uC744 \uC804\uBD80 \uB9AC\uC14B\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?
+      \uC2A4\uD0AC\uD3EC\uC778\uD2B8 \uBB3C\uC57D\uC740 \uC804\uBD80 \uBC18\uD658\uB429\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011205083271168
+    m_Localized: "\uC2A4\uD0AC \uCD08\uAE30\uD654 \uC644\uB8CC!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15011246678183936
+    m_Localized: "\uC885\uB8CC\uC2DC\uAC04\uC774 \uC784\uBC15\uD574\uC11C \uC2A4\uD0AC\uBC1C\uB3D9\uC774
+      \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

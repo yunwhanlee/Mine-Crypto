@@ -165,8 +165,14 @@ public class LM : MonoBehaviour
         DropItemMsg = "UI_DropItemMsg",
 
         ComingSoonMsg = "UI_ComingSoonMsg",
-
         MaxValMsg = "UI_MaxValMsg", // 현재 최대치입니다.
+
+        PrevLvSkillLearnMsg = "UI_PrevLvSkillLearnMsg",
+        SkillAcquiredMsg = "UI_SkillAcquiredMsg",
+        SkillResetMsg = "UI_SkillResetMsg",
+        SkillResetCompleteMsg = "UI_SkillResetCompleteMsg",
+        SkillUnActiveMsg = "UI_SkillUnActiveMsg",
+
 
         MyTotleBestFloor = "UI_MyTotleBestFloor",
 
