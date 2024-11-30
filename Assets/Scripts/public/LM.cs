@@ -178,6 +178,7 @@ public class LM : MonoBehaviour
         HundradFloorPossibleMsg = "UI_HundradFloorPossibleMsg",
         RebornAskTitle = "UI_RebornAskTitle",
         RebornAskMsg = "UI_RebornAskMsg",
+        AlreadyPlayGame = "UI_AlreadyPlayGame",
 
         MyTotleBestFloor = "UI_MyTotleBestFloor",
 

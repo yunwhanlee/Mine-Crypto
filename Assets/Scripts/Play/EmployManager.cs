@@ -81,7 +81,7 @@ public class EmployManager : MonoBehaviour
     {
         if(GM._.gameState == GameState.PLAY)
         {
-            GM._.ui.ShowWarningMsgPopUp("이미 게임이 진행중입니다.");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.AlreadyPlayGame)); // 이미 게임이 진행중입니다.
             return;
         }
 
