@@ -1035,6 +1035,50 @@ MonoBehaviour:
     m_Key: UI_ConsumePerSec
     m_Metadata:
       m_Items: []
+  - m_Id: 15017896239665152
+    m_Key: UI_UpgIncLightStonePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017950975332352
+    m_Key: UI_UpgIncOrePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017968570437632
+    m_Key: UI_UpgDecSkillTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017982818488320
+    m_Key: UI_UpgMinOreBlessCnt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017998001868800
+    m_Key: UI_UpgDecUpgradePricePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15018013655011328
+    m_Key: UI_UpgDecConsumePricePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15018029358485504
+    m_Key: UI_UpgDecDecoPricePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15018043040305152
+    m_Key: UI_UpgDecTranscendPircePer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15023691631136768
+    m_Key: UI_HundradFloorPossibleMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15023714360070144
+    m_Key: UI_RebornAskTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15023731711905792
+    m_Key: UI_RebornAskMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

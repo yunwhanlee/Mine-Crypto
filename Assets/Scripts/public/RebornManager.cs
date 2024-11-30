@@ -95,7 +95,7 @@ public class RebornManager : MonoBehaviour
     public void OnClickRebornBtn() {
         if(DM._.DB.stageDB.GetTotalBestFloor() < REBORN_MIN_FLOOR)
         {
-            GM._.ui.ShowWarningMsgPopUp("최고층 합이 100층 이상에서만 가능합니다.");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.HundradFloorPossibleMsg)); // 최고층 합이 100층 이상에서만 가능합니다.
             return;
         }
 
@@ -111,10 +111,10 @@ public class RebornManager : MonoBehaviour
     {
         int val = DM._.DB.stageDB.GetTotalBestFloor() / 5;
 
-        string title = "모든 기억을 잃고 환생하시겠습니까?";
-        string content = "숙련도, 명예레벨, 환생강화, 버섯도감을 제외한 모든것이 초기화됩니다.";
+        string title = LM._.Localize(LM.RebornAskTitle); // 모든 기억을 잃고 환생하시겠습니까?
+        string content = LM._.Localize(LM.RebornAskMsg); // 숙련도, 명예레벨, 환생강화, 버섯도감을 제외한 모든것이 초기화됩니다.
         string extraRwd = upgIncLightStonePer.Lv > 0? $"(+ {GetExtraRwdVal()})" : "";
-        string reward = $"보상 : <sprite name=LIGHTSTONE> {GetRwdVal()} {extraRwd}";
+        string reward = $"{LM._.Localize(LM.Reward)} : <sprite name=LIGHTSTONE> {GetRwdVal()} {extraRwd}";
 
         GM._.ui.ShowConfirmPopUp($"{title}\n{content}\n{reward}");
         GM._.ui.OnClickConfirmBtnAction = () => {

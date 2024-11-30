@@ -111,6 +111,7 @@ public class LM : MonoBehaviour
         AutoCristalBagStorage = "UI_AutoCristalBagStorage",
         IncFame = "UI_IncFame",
         ConsumePerSec = "UI_ConsumePerSec",
+        Reward = "UI_Reward",
 
         AttackSkillTitle = "UI_AttackSkillTitle",
         BuffSkillTitle = "UI_BuffSkillTitle",
@@ -174,6 +175,9 @@ public class LM : MonoBehaviour
         SkillResetCompleteMsg = "UI_SkillResetCompleteMsg",
         SkillUnActiveMsg = "UI_SkillUnActiveMsg",
 
+        HundradFloorPossibleMsg = "UI_HundradFloorPossibleMsg",
+        RebornAskTitle = "UI_RebornAskTitle",
+        RebornAskMsg = "UI_RebornAskMsg",
 
         MyTotleBestFloor = "UI_MyTotleBestFloor",
 

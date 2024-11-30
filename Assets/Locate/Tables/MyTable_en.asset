@@ -1082,6 +1082,51 @@ MonoBehaviour:
     m_Localized: Consumption per sec
     m_Metadata:
       m_Items: []
+  - m_Id: 15017896239665152
+    m_Localized: Light Stone Acquisition%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017950975332352
+    m_Localized: All Ore Acquisition%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017968570437632
+    m_Localized: Skill Cooldown Reduction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017982818488320
+    m_Localized: Minimum Bless Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15017998001868800
+    m_Localized: Upgrade Cost down%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15018013655011328
+    m_Localized: Consumable Crafting Cost Down%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15018029358485504
+    m_Localized: Decoration Crafting Cost Down%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15018043040305152
+    m_Localized: Transcendence Upgrade Cost Down%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15023691631136768
+    m_Localized: Only available when the total floors exceed 100.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15023714360070144
+    m_Localized: Would you like to  reborn?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15023731711905792
+    m_Localized: Everything will be reset except for Proficiency, Honor Lv, Reborn,
+      and the Mushroom.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
