@@ -314,6 +314,7 @@ public class RewardUIManager : MonoBehaviour
 
         // 업그레이드 가능알림🔴 최신화
         GM._.ugm.UpdateAlertRedDotUI();
+        GM._.mrm.UpdateAlertRedDotUI();
     }
 #endregion
 }

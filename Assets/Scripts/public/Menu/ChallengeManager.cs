@@ -42,6 +42,7 @@ public class ChallengeManager : MonoBehaviour
 
         // 선택한 광산타입
         GM._.stgm.OreType = RSC.CRISTAL;
+        GM._.stgm.SetSelectMap();
 
         // 캐릭터 가챠뽑기 UI준비
         GM._.stgm.SetGachaUI(windowObj);

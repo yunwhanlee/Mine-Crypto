@@ -101,6 +101,10 @@ public class StageManager : MonoBehaviour {
         // 스테이지층
         stageTxt.text = GetStageName();
 
+        // 시련의광산의 경우, 스테이지맵 표시
+        if(oreType == RSC.CRISTAL)
+            SetSelectMap();
+
         // 타이머 카운트다운 시작
         GM._.pm.StartCowndownTimer();
 

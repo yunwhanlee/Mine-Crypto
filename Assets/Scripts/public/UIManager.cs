@@ -75,11 +75,15 @@ public class UIManager : MonoBehaviour
     }
     public void OnCloseTopMushGroup() {
         topMushGroup.SetActive(false);
+        // 업그레이드 가능알림🔴 최신화
+        GM._.ugm.UpdateAlertRedDotUI();
+        GM._.mrm.UpdateAlertRedDotUI();
     }
 
     public void OnClickMenuIconBtn() {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         menuPopUp.SetActive(true);
+
     }
 
     public void OnClickInvIconBtn() {

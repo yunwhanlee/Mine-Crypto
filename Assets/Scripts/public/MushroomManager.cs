@@ -19,6 +19,7 @@ public class MushroomManager : MonoBehaviour
     public GameObject windowObj;
     public GameObject LockFrameObj;
     public DOTweenAnimation DOTAnim;
+    public GameObject alertRedDotObj;
 
     public Image targetImg;
     public Image[] btnImgArr;
@@ -112,6 +113,25 @@ public class MushroomManager : MonoBehaviour
         DOTAnim.DORestart();
         GM._.ui.topMushGroup.SetActive(true);
         OnClickMushroomBtn(idx: 0); // 버섯1로 선택 초기화
+    }
+
+    /// <summary>
+    /// 업그레이드 가능 알림UI 🔴
+    /// </summary>
+    public void UpdateAlertRedDotUI()
+    {
+        bool isAlertOn = (
+            DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH1] >= ms1_UpgAttack.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH2] >= ms2_UpgMovSpeedPer.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH3] >= ms3_UpgBagStoragePer.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH4] >= ms4_UpgNextStageSkipPer.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH5] >= ms5_UpgIncTimer.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH6] >= ms6_UpgChestSpawnPer.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH7] >= ms7_UpgAtkSpeedPer.Price
+            || DM._.DB.statusDB.MsrArr[(int)MUSH.MUSH8] >= ms8_IncPopulation.Price
+        );
+
+        alertRedDotObj.SetActive(isAlertOn);
     }
 
     private void Upgrade(UpgradeMushFormat upgDt)
@@ -216,6 +236,7 @@ public class MushroomManager : MonoBehaviour
     {
         UpdateData();
         UpdateUI();
+        UpdateAlertRedDotUI();
     }
 #endregion
 }

@@ -114,8 +114,6 @@ public class UpgradeManager : MonoBehaviour
     /// </summary>
     public void UpdateAlertRedDotUI()
     {
-        Debug.Log("UpdateAlertRedDotUI()::");
-
         bool isAlertOn = (
             upgAttackUI.PriceTxt.color == Color.white
             || upgIncTimerUI.PriceTxt.color == Color.white

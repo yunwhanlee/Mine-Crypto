@@ -263,7 +263,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     if(BagStorage > 0) {
                         // 재화 수령
                         AcceptRsc(targetOreType, BagStorage);
-                        targetOreType = RSC.ORE1; // 더미값으로 초기화
                     }
 
                     // 가방 비우기
