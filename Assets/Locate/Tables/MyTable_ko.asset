@@ -1059,6 +1059,19 @@ MonoBehaviour:
       \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
+  - m_Id: 15012989457633280
+    m_Localized: "\uAD11\uC0B0\uC785\uC7A5\uC2DC\n\uC790\uB3D9\uC0AC\uC6A9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15014363641647104
+    m_Localized: "\uAD11\uC0B0\uC5D0\uC11C \uC2DC\uAC04\uC758\uACB0\uC815\uC744 \uC18C\uBAA8\uD558\uC5EC
+      \uAC8C\uC784\uC18D\uB3C4\uB97C \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15015603008147456
+    m_Localized: "1\uCD08\uB2F9 \uC18C\uBAA8\uB7C9"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

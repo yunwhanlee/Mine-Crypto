@@ -110,6 +110,7 @@ public class LM : MonoBehaviour
         AutoOreBagStorage = "UI_AutoOreBagStorage",
         AutoCristalBagStorage = "UI_AutoCristalBagStorage",
         IncFame = "UI_IncFame",
+        ConsumePerSec = "UI_ConsumePerSec",
 
         AttackSkillTitle = "UI_AttackSkillTitle",
         BuffSkillTitle = "UI_BuffSkillTitle",

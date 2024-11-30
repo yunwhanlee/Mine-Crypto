@@ -1023,6 +1023,18 @@ MonoBehaviour:
     m_Key: UI_SkillUnActiveMsg
     m_Metadata:
       m_Items: []
+  - m_Id: 15012989457633280
+    m_Key: UI_AutoTimePieceMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15014363641647104
+    m_Key: UI_TimePieceInfoMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15015603008147456
+    m_Key: UI_ConsumePerSec
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

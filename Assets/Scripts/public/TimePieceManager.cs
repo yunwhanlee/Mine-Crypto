@@ -280,7 +280,7 @@ public class TimePieceManager : MonoBehaviour
 
         myLightStoneTxt.text = $"{DM._.DB.statusDB.LightStone}";
         timePotionCntTxt.text = $"{DM._.DB.statusDB.TimePotion}";
-        decreaseValTxt.text = $"1초당 소모량 : {upgIncTimeScale.Val * 10}";
+        decreaseValTxt.text = $"{LM._.Localize(LM.ConsumePerSec)} : {upgIncTimeScale.Val * 10}";
 
         // 슬라이더UI 최신화
         SetSliderUI();
