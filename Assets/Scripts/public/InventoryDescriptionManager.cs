@@ -379,11 +379,11 @@ public class InventoryDescriptionManager : MonoBehaviour
         // (소비) 아이템
         new InvItem_Info(LM._.Localize(LM.OreTicket), LM._.Localize(LM.Detail_OreTicket)),
         new InvItem_Info(LM._.Localize(LM.RedTicket), LM._.Localize(LM.Detail_RedTicket)),
-        new InvItem_Info(LM._.Localize(LM.OreChest), LM._.Localize(LM.Detail_OreChest)),
-        new InvItem_Info(LM._.Localize(LM.TreasureChest), LM._.Localize(LM.Detail_TreasureChest)),
         new InvItem_Info(LM._.Localize(LM.MushBox1), LM._.Localize(LM.Detail_MushBox1)),
         new InvItem_Info(LM._.Localize(LM.MushBox2), LM._.Localize(LM.Detail_MushBox2)),
         new InvItem_Info(LM._.Localize(LM.MushBox3), LM._.Localize(LM.Detail_MushBox3)),
+        new InvItem_Info(LM._.Localize(LM.OreChest), LM._.Localize(LM.Detail_OreChest)),
+        new InvItem_Info(LM._.Localize(LM.TreasureChest), LM._.Localize(LM.Detail_TreasureChest)),
         new InvItem_Info(LM._.Localize(LM.SkillPotion), LM._.Localize(LM.Detail_SkillPotion)),
         new InvItem_Info(LM._.Localize(LM.LightStone), LM._.Localize(LM.Detail_LightStone)),
         new InvItem_Info(LM._.Localize(LM.TimePotion), LM._.Localize(LM.Detail_TimePotion)),
