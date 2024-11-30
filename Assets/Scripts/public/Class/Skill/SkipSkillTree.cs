@@ -13,6 +13,8 @@ using static Enum;
 [System.Serializable]
 public class SkipSkillTree
 {
+    const int JPFLR1 = 3, JPFLR2 = 4, JPFLR3 = 5, JPFLR4 = 6, JPFLR5 = 7, JPFLR6 = 8;
+
     public SkillTree[] skillTreeArr;
 
     public DOTweenAnimation spaceDarkFadeEFAnim;
@@ -28,8 +30,6 @@ public class SkipSkillTree
     public DOTweenAnimation DecSkillCoolTimeTxtAnim;
     public ParticleImage DecSkillCoolTimePtcEF;
 
-
-
     public int grade;
 
     // 스킬레벨
@@ -40,7 +40,7 @@ public class SkipSkillTree
     // 다음층 이동
     public int MoveNextFloor {
         get {
-            int[] skipGradeFloorArr = {3, 4, 5, 6, 7, 8};
+            int[] skipGradeFloorArr = {JPFLR1, JPFLR2, JPFLR3, JPFLR4, JPFLR5, JPFLR6};
             return skipGradeFloorArr[grade];
         }
     }
@@ -125,11 +125,16 @@ public class SkipSkillTree
     {
         switch(idx)
         {
-            default: return "광산의 남은시간이 50% 감소하고 (3/<color=green>4</color>/<color=blue>5</color>/<color=purple>6</color>/<color=orange>7</color>/<color=red>8</color>)층 이동.";
-            case 1: return "남은 스킬쿨타임이 10% 감소.";
-            case 2: return "광산의 남은시간 감소수치가 35% 줄어듬.";
-            case 3: return "발동시 광석상자 30개와 보물상자 10개를 획득.";
-            case 4: return "남은 스킬쿨타임이 20% 감소, 광산의 남은시간 감소수치가 20% 줄어듬.";
+            default: {
+                string detailJumpFloor = $"({JPFLR1}/<color=green>{JPFLR2}</color>/<color=blue>{JPFLR3}</color>/<color=purple>{JPFLR4}</color>/<color=orange>{JPFLR5}</color>/<color=red>{JPFLR6}</color>)";
+                // 광산의 남은시간이 50% 감소하고 DETAILTAG층 이동
+                string modifiedMsg = LM._.Localize(LM.SkipSkillLv1Msg).Replace("DETAILTAG", detailJumpFloor);
+                return modifiedMsg;
+            }
+            case 1: return LM._.Localize(LM.SkipSkillLv2Msg); // 남은 스킬쿨타임이 10% 감소.
+            case 2: return LM._.Localize(LM.SkipSkillLv3Msg); // 광산의 남은시간 감소수치가 35% 줄어듬.
+            case 3: return LM._.Localize(LM.SkipSkillLv4Msg); // 발동시 광석상자 30개와 보물상자 10개를 획득.
+            case 4: return LM._.Localize(LM.SkipSkillLv5Msg); // 남은 스킬쿨타임이 20% 감소, 광산의 남은시간 감소수치가 20% 줄어듬.
         }
     }
 }

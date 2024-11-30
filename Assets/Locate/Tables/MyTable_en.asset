@@ -972,6 +972,82 @@ MonoBehaviour:
     m_Localized: GoldMine
     m_Metadata:
       m_Items: []
+  - m_Id: 14967664328019968
+    m_Localized: Explosion of space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14967870465478656
+    m_Localized: Cheer up friend!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14967926241333248
+    m_Localized: Back in time space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14970081123733504
+    m_Localized: It causes a full range earthquake, causing DETAILTAG + upgrade attack
+      x upgrade attack% damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976907315744768
+    m_Localized: Meteo for 5 seconds of DETAILTAG + upgrade attack x upgrade attack
+      % per second.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976918069940224
+    m_Localized: If earthquake destroys all the ore, one more after moving to the
+      next floor. (Maximum 3 times)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976942761807872
+    m_Localized: Increased meteo duration to 10 seconds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976954581356544
+    m_Localized: Earthquakes are triggered up to 10 times.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984818020552704
+    m_Localized: Increased movement speed DETAILTAG for 10 seconds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984851969249280
+    m_Localized: increased attack speed DETAILTAG.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984865546211328
+    m_Localized: Increase duration to 15 seconds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984876921163776
+    m_Localized: increased attack power DETAILTAG.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984887935406080
+    m_Localized: Increase duration to 30 seconds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984899964669952
+    m_Localized: Mineral remaining time reduced by 50% and DETAILTAG floor movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984924841086976
+    m_Localized: 10% less skill cool time remaining.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984937008762880
+    m_Localized: The mine's remaining time reduction is reduced by 35%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984947851038720
+    m_Localized: Obtain 30 ore boxes and 10 treasure boxes upon activation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984959200825344
+    m_Localized: Reduced Skill cool time and the remaining time reduction by each
+      20%.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

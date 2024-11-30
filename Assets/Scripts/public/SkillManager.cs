@@ -61,7 +61,7 @@ public class SkillManager : MonoBehaviour
     public int curSelectIdx; // 현재 선택된 스킬 LV인덱스
     public SkillGradeIntroAnim[] introGradeAnimArr; // 스킬 인트로 등급 애니메이션
 
-    public string[] skillNameArr = { "우주 대폭발", "힘내라 친구여", "시공을 거슬러" };
+    public string[] skillNameArr;
     private int[] skillPriceArr = { 0, 5, 10, 25 ,50 }; // 스킬가격 LV1은 기본적용 되어있음
 
     // Skill UI & Data
@@ -81,6 +81,12 @@ public class SkillManager : MonoBehaviour
             DM._.DB.skillTreeDB = new SkillTreeDB();
             DM._.DB.skillTreeDB.Init();
         }
+
+        skillNameArr = new string[] {
+        LM._.Localize(LM.AttackSkillTitle), // 우주 대폭발
+        LM._.Localize(LM.BuffSkillTitle), // 힘내라 친구여
+        LM._.Localize(LM.SkipSkillTitle), // 시공을 거슬러
+        };
 
         skillCooltimeObj.SetActive(false);
         OnClickAttackSkillIconBtn(0);

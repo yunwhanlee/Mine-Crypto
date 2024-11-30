@@ -931,6 +931,78 @@ MonoBehaviour:
     m_Key: UI_GoldMine
     m_Metadata:
       m_Items: []
+  - m_Id: 14967664328019968
+    m_Key: UI_AttackSkillTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14967870465478656
+    m_Key: UI_BuffSkillTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14967926241333248
+    m_Key: UI_SkipSkillTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14970081123733504
+    m_Key: UI_AttackSkillLv1Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976907315744768
+    m_Key: UI_AttackSkillLv2Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976918069940224
+    m_Key: UI_AttackSkillLv3Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976942761807872
+    m_Key: UI_AttackSkillLv4Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14976954581356544
+    m_Key: UI_AttackSkillLv5Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984818020552704
+    m_Key: UI_BuffSkillLv1Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984851969249280
+    m_Key: UI_BuffSkillLv2Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984865546211328
+    m_Key: UI_BuffSkillLv3Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984876921163776
+    m_Key: UI_BuffSkillLv4Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984887935406080
+    m_Key: UI_BuffSkillLv5Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984899964669952
+    m_Key: UI_SkipSkillLv1Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984924841086976
+    m_Key: UI_SkipSkillLv2Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984937008762880
+    m_Key: UI_SkipSkillLv3Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984947851038720
+    m_Key: UI_SkipSkillLv4Msg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14984959200825344
+    m_Key: UI_SkipSkillLv5Msg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -111,6 +111,28 @@ public class LM : MonoBehaviour
         AutoCristalBagStorage = "UI_AutoCristalBagStorage",
         IncFame = "UI_IncFame",
 
+        AttackSkillTitle = "UI_AttackSkillTitle",
+        BuffSkillTitle = "UI_BuffSkillTitle",
+        SkipSkillTitle = "UI_SkipSkillTitle",
+
+        AttackSkillLv1Msg = "UI_AttackSkillLv1Msg",
+        AttackSkillLv2Msg = "UI_AttackSkillLv2Msg",
+        AttackSkillLv3Msg = "UI_AttackSkillLv3Msg",
+        AttackSkillLv4Msg = "UI_AttackSkillLv4Msg",
+        AttackSkillLv5Msg = "UI_AttackSkillLv5Msg",
+
+        BuffSkillLv1Msg = "UI_BuffSkillLv1Msg",
+        BuffSkillLv2Msg = "UI_BuffSkillLv2Msg",
+        BuffSkillLv3Msg = "UI_BuffSkillLv3Msg",
+        BuffSkillLv4Msg = "UI_BuffSkillLv4Msg",
+        BuffSkillLv5Msg = "UI_BuffSkillLv5Msg",
+
+        SkipSkillLv1Msg = "UI_SkipSkillLv1Msg",
+        SkipSkillLv2Msg = "UI_SkipSkillLv2Msg",
+        SkipSkillLv3Msg = "UI_SkipSkillLv3Msg",
+        SkipSkillLv4Msg = "UI_SkipSkillLv4Msg",
+        SkipSkillLv5Msg = "UI_SkipSkillLv5Msg",
+
         PickCharaMsg = "UI_PickCharaMsg",
         NotEnoughItemMsg = "UI_NotEnoughItemMsg",
         NoOreYetMsg = "UI_NoOreYetMsg",

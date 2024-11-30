@@ -14,6 +14,9 @@ using static SoundManager;
 [System.Serializable]
 public class AttackSkillTree
 {
+    const int EQDMG1 = 200, EQDMG2 = 400, EQDMG3 = 800, EQDMG4 = 1500, EQDMG5 = 3000, EQDMG6 = 6000;
+    const int MTDMG1 = 50, MTDMG2 = 100, MTDMG3 = 200, MTDMG4 = 400, MTDMG5 = 1000, MTDMG6 = 2000;
+
     public SkillTree[] skillTreeArr;
     public GameObject[] earthQuakeEFArr;    // 지진공격이펙트 배열
     public GameObject meteoParticleEF;
@@ -50,7 +53,7 @@ public class AttackSkillTree
     // 지진 공격력
     public int EarthQuakeDmg {
         get {
-            int[] dmgGradeArr = { 200, 400, 800, 1500, 3000, 6000 };
+            int[] dmgGradeArr = { EQDMG1, EQDMG2, EQDMG3, EQDMG4, EQDMG5, EQDMG6 };
             int dmg = dmgGradeArr[skillGrade];
             int extraVal = GM._.sttm.ExtraAtk;
             float extraPer = 1 + GM._.sttm.ExtraAtkPer;
@@ -62,7 +65,7 @@ public class AttackSkillTree
     // 메테오 공격력
     public int MeteoDmg {
         get {
-            int[] dmgGradeArr = { 50, 100, 200, 400, 1000, 2000 };
+            int[] dmgGradeArr = { MTDMG1, MTDMG2, MTDMG3, MTDMG4, MTDMG5, MTDMG6 };
             int dmg = dmgGradeArr[skillGrade];
             int extraVal = GM._.sttm.ExtraAtk;
             float extraPer = 1 + GM._.sttm.ExtraAtkPer;
@@ -190,11 +193,24 @@ public class AttackSkillTree
     {
         switch(idx)
         {
-            default: return "전범위 지진을일으켜 (200/<color=green>400</color>/<color=blue>800</color>/<color=purple>1500</color>/<color=orange>3000</color>/<color=red>6000</color>) + 공격력증가 x 공격력증가%의 피해를 준다.";
-            case 1: return "5초간 메테오를 내려 초당 (50/<color=green>100</color>/<color=blue>200</color>/<color=purple>400</color>/<color=orange>1000</color>/<color=red>2000</color>) + 공격력증가 x 공격력증가%의 피해를 준다.";
-            case 2: return "지진으로 모든광석을 파괴하면 다음층 이동 후 1회 더 사용. (최대3회)";
-            case 3: return "메테오 지속시간이 10초로 증가.";
-            case 4: return "지진이 최대 10회까지 연속 발동.";
+            default: {
+                string detailDmg = $"({EQDMG1}/<color=green>{EQDMG2}</color>/<color=blue>{EQDMG3}</color>/<color=purple>{EQDMG4}</color>/<color=orange>{EQDMG5}</color>/<color=red>{EQDMG6}</color>)";
+                // 전범위 지진을일으켜 DMGTAG + 공격력증가 x 공격력증가%의 피해를 준다.
+                string modifiedMsg = LM._.Localize(LM.AttackSkillLv1Msg).Replace("DETAILTAG", detailDmg);
+                return modifiedMsg;
+            }
+            case 1: {
+                string detailDmg = $"({MTDMG1}/<color=green>{MTDMG2}</color>/<color=blue>{MTDMG3}</color>/<color=purple>{MTDMG4}</color>/<color=orange>{MTDMG5}</color>/<color=red>{MTDMG6}</color>)";
+                // 5초간 메테오를 내려 초당 DMGTAG + 공격력증가 x 공격력증가%의 피해를 준다.
+                string modifiedMsg = LM._.Localize(LM.AttackSkillLv2Msg).Replace("DETAILTAG", detailDmg);
+                return modifiedMsg;
+            }
+            case 2:
+                return LM._.Localize(LM.AttackSkillLv3Msg); // 지진으로 모든광석을 파괴하면 다음층 이동 후 1회 더 사용. (최대3회)
+            case 3:
+                return LM._.Localize(LM.AttackSkillLv4Msg); // 메테오 지속시간이 10초로 증가.
+            case 4:
+                return LM._.Localize(LM.AttackSkillLv5Msg); // 지진이 최대 10회까지 연속 발동.
         }
     }
 }

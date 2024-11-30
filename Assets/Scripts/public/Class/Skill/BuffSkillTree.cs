@@ -67,11 +67,25 @@ public class BuffSkillTree
     {
         switch(idx)
         {
-            default: return "10초간 이동속도(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)% 증가.";
-            case 1: return "추가로 공격속도(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)% 증가.";
-            case 2: return "지속시간이 15초로 증가.";
-            case 3: return "추가로 공격력(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)% 증가.";
-            case 4: return "지속시간이 30초로 증가.";
+            default: {
+                const string detailSpdPer = "(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)%";
+                string modifiedMsg = LM._.Localize(LM.BuffSkillLv1Msg).Replace("DETAILTAG", detailSpdPer);
+                return modifiedMsg; // 10초간 이동속도 DETAILTAG 증가.
+            }
+            case 1: {
+                const string detailAtkSpdPer = "(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)%";
+                string modifiedMsg = LM._.Localize(LM.BuffSkillLv2Msg).Replace("DETAILTAG", detailAtkSpdPer);
+                return modifiedMsg; // 추가로 공격속도 DETAILTAG 증가.
+            }
+            case 2: 
+                return LM._.Localize(LM.BuffSkillLv3Msg); // 지속시간이 15초로 증가.
+            case 3: {
+                const string detailExtraAtkPer = "(10/<color=green>20</color>/<color=blue>30</color>/<color=purple>40</color>/<color=orange>50</color>/<color=red>60</color>)%";
+                string modifiedMsg = LM._.Localize(LM.BuffSkillLv4Msg).Replace("DETAILTAG", detailExtraAtkPer);
+                return modifiedMsg; // 추가로 공격력 DETAILTAG 증가.
+            }
+            case 4:
+                return LM._.Localize(LM.BuffSkillLv5Msg); // 지속시간이 30초로 증가.
         }
     }
 }
