@@ -83,7 +83,6 @@ public class UIManager : MonoBehaviour
     public void OnClickMenuIconBtn() {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         menuPopUp.SetActive(true);
-
     }
 
     public void OnClickInvIconBtn() {

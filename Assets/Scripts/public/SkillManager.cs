@@ -26,7 +26,18 @@ public class SkillGradeIntroAnim
     /// </summary>
     public IEnumerator CoPlay(SkillCate cate, int lv)
     {
-        TitleTxt.text = $"{GM._.skm.skillNameArr[(int)cate]} Lv{lv}";
+        switch(cate)
+        {
+            case SkillCate.Attack:
+                TitleTxt.text = $"{LM._.Localize(LM.AttackSkillTitle)} Lv{lv}";
+                break;
+            case SkillCate.Buff:
+                TitleTxt.text = $"{LM._.Localize(LM.BuffSkillTitle)} Lv{lv}";
+                break;
+            case SkillCate.Skip:
+                TitleTxt.text = $"{LM._.Localize(LM.SkipSkillTitle)} Lv{lv}";
+                break;
+        }
 
         windowObj.SetActive(true);
         msgBarAnim.DORestart();
@@ -61,7 +72,6 @@ public class SkillManager : MonoBehaviour
     public int curSelectIdx; // 현재 선택된 스킬 LV인덱스
     public SkillGradeIntroAnim[] introGradeAnimArr; // 스킬 인트로 등급 애니메이션
 
-    public string[] skillNameArr;
     private int[] skillPriceArr = { 0, 5, 10, 25 ,50 }; // 스킬가격 LV1은 기본적용 되어있음
 
     // Skill UI & Data
@@ -81,12 +91,6 @@ public class SkillManager : MonoBehaviour
             DM._.DB.skillTreeDB = new SkillTreeDB();
             DM._.DB.skillTreeDB.Init();
         }
-
-        skillNameArr = new string[] {
-        LM._.Localize(LM.AttackSkillTitle), // 우주 대폭발
-        LM._.Localize(LM.BuffSkillTitle), // 힘내라 친구여
-        LM._.Localize(LM.SkipSkillTitle), // 시공을 거슬러
-        };
 
         skillCooltimeObj.SetActive(false);
         OnClickAttackSkillIconBtn(0);
@@ -188,6 +192,7 @@ public class SkillManager : MonoBehaviour
     {
         windowObj.SetActive(true);
         DOTAnim.DORestart();
+        OnClickAttackSkillIconBtn(0);
         UpdateUI();
     }
 
@@ -223,25 +228,27 @@ public class SkillManager : MonoBehaviour
         curSelectIdx = idx;
 
         // UI 최신화
-        titleTxt.text = $"{skillNameArr[(int)skillCate]} Lv{idx + 1}";
         priceTxt.text = $"{skillPriceArr[idx]}";
 
         InitSkillIconBorder();
 
         switch(skillCate) {
             case SkillCate.Attack:
+                titleTxt.text = LM._.Localize(LM.AttackSkillTitle); // 우주 대폭발
                 attackSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = attackSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = attackSkill.GetDescription(idx);
                 learnBtn.gameObject.SetActive(attackSkill.Lv <= idx);
                 break;
             case SkillCate.Buff:
+                titleTxt.text = LM._.Localize(LM.BuffSkillTitle); // 힘내라 친구여
                 buffSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = buffSkill.GetDescription(idx);
                 learnBtn.gameObject.SetActive(buffSkill.Lv <= idx);
                 break;
             case SkillCate.Skip:
+                titleTxt.text = LM._.Localize(LM.SkipSkillTitle); // 시공을 거슬러
                 skipSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = skipSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = skipSkill.GetDescription(idx);
