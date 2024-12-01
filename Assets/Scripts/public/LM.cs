@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 public class LM : MonoBehaviour
 {
@@ -255,6 +256,13 @@ public class LM : MonoBehaviour
         GM._.stm.SetTitleLogo(languageIdx);
 
         isChaning = false;
+
+        // 설정 볼륨 및 배경음악 데이터 저장후
+        DM._.DB.bgmVolume = GM._.stm.bgmSlider.value;
+        DM._.DB.sfxVolume = GM._.stm.sfxSlider.value;
+
+        // 씬 재로드
+        SceneManager.LoadScene("Game");
     }
 #endregion
 }
