@@ -415,11 +415,12 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// <summary>
         /// 인게임 채굴재화 수령
         /// </summary>
-        public static void AcceptRsc(RSC targetOreType, int val)
+        public static void AcceptRsc(RSC targetOreType, int val, bool isNoSFX = false)
         {
             Debug.Log($"AcceptRsc(targetOre= {targetOreType}, val= {val}):: ");
 
-            _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+            if(!isNoSFX)
+                _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
 
             //* 재화 이펙트 재생
             GM._.ui.PlayOreAttractionPtcUIEF(targetOreType);
@@ -432,10 +433,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// <summary>
         /// 타겟광석 HP감소 및 HP Bar표시
         /// </summary>
-        public static void DecreaseOreHpBar(Ore targetOre, int val)
+        public static void DecreaseOreHpBar(Ore targetOre, int val, bool isNoSFX = false)
         {
             // 광석 체력감소
-            targetOre.DecreaseHp(val);
+            targetOre.DecreaseHp(val, isNoSFX);
 
             // 광석 HpBar 표시
             if(targetOre && !targetOre.HpSlider.gameObject.activeSelf)

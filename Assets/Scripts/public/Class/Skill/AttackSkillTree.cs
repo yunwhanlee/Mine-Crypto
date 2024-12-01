@@ -95,6 +95,7 @@ public class AttackSkillTree
         {
             yield return Util.TIME1;
             _.PlayRandomSfxs(SFX.FireballA_SFX, SFX.FireballB_SFX);
+
             MeteoAttack();
         }
     }
@@ -115,10 +116,16 @@ public class AttackSkillTree
             // 크리스탈타입(보물상자)인 경우, 획득 제외
             if(targetOre.OreType != RSC.CRISTAL)
             {
-                MiningController.AcceptRsc(targetOre.OreType, MeteoDmg);
+                MiningController.AcceptRsc(targetOre.OreType, MeteoDmg, isNoSFX: true);
             }
 
-            MiningController.DecreaseOreHpBar(targetOre, MeteoDmg);
+            // 광석 체력감소
+            MiningController.DecreaseOreHpBar(targetOre, MeteoDmg, isNoSFX: true);
+        }
+        // 광석이 있을경우만, 광석 피격사운드 및 아이템획득 사운드 1회 실행
+        if(GM._.mnm.oreGroupTf.childCount > 0) {
+            _.PlayRandomSfxs(SFX.Metal1SFX, SFX.Metal2SFX);
+            _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
         }
     }
 #endregion

@@ -51,7 +51,7 @@ public class Ore : MonoBehaviour
         MiningCnt = 0;
     }
 
-    public void DecreaseHp(int dmg) {
+    public void DecreaseHp(int dmg, bool isNoSFX = false) {
         // 破壊したら、同じ採掘をしている他のゴブリンはそのまま終了
         if(IsDestroied)
             return;
@@ -61,8 +61,9 @@ public class Ore : MonoBehaviour
 
         if(Hp > 0)
         {
-            int randomIdx = Random.Range((int)SFX.Metal1SFX, (int)SFX.Metal3SFX + 1);
-            _.PlaySfx((SFX)randomIdx);
+            // 사운드
+            if(!isNoSFX)
+                _.PlayRandomSfxs(SFX.Metal1SFX, SFX.Metal3SFX);
 
             MiningHitPtcEF.Play();
 

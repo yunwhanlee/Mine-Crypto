@@ -14,7 +14,7 @@ using TMPro;
 /// </summary>
 public class SkillController : MonoBehaviour
 {
-    const int WAIT_COOLTIME = 60;
+    const int WAIT_COOLTIME = 10;
     public int coolTime;
 
     //* VALUE
@@ -129,6 +129,9 @@ public class SkillController : MonoBehaviour
 
         randSkillCate = (SkillCate)Random.Range(start, end);
 
+        //! TEST 
+        randSkillCate = SkillCate.Attack;
+
         switch(randSkillCate)
         {
             case SkillCate.Attack:
@@ -220,12 +223,17 @@ public class SkillController : MonoBehaviour
         Camera.main.GetComponent<DOTweenAnimation>().DORestart();
 
         yield return Util.TIME1;
+        // 지진사운드
         _.PlayRandomSfxs(SFX.EarthQuakeA_SFX, SFX.EarthQuakeA_SFX);
+
+        // 광석이 있을경우만, 광석 피격사운드 및 아이템획득 사운드 1회 실행
+        if(GM._.mnm.oreGroupTf.childCount > 0) {
+            _.PlayRandomSfxs(SFX.Metal1SFX, SFX.Metal2SFX);
+            _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
+        }
 
         // 지진오브젝트 활성화
         atkSkill.ActiveEarthQuakeObj(atkSkill.skillGrade);
-
-        _.PlayRandomSfxs(SFX.ItemDrop1SFX, SFX.ItemDrop2SFX);
 
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
         {
@@ -239,11 +247,11 @@ public class SkillController : MonoBehaviour
             if(targetOre.OreType != RSC.CRISTAL)
             {
                 // 인게임 채굴재화 수령
-                MiningController.AcceptRsc(targetOre.OreType, atkSkill.EarthQuakeDmg);
+                MiningController.AcceptRsc(targetOre.OreType, atkSkill.EarthQuakeDmg, isNoSFX: true);
             }
 
             // 광석 체력감소
-            MiningController.DecreaseOreHpBar(targetOre, atkSkill.EarthQuakeDmg);
+            MiningController.DecreaseOreHpBar(targetOre, atkSkill.EarthQuakeDmg, isNoSFX: true);
         }
 
         yield return null;
