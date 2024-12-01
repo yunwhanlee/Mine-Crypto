@@ -234,21 +234,21 @@ public class SkillManager : MonoBehaviour
 
         switch(skillCate) {
             case SkillCate.Attack:
-                titleTxt.text = LM._.Localize(LM.AttackSkillTitle); // 우주 대폭발
+                titleTxt.text = $"{LM._.Localize(LM.AttackSkillTitle)} Lv{idx + 1}"; // 우주 대폭발
                 attackSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = attackSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = attackSkill.GetDescription(idx);
                 learnBtn.gameObject.SetActive(attackSkill.Lv <= idx);
                 break;
             case SkillCate.Buff:
-                titleTxt.text = LM._.Localize(LM.BuffSkillTitle); // 힘내라 친구여
+                titleTxt.text = $"{LM._.Localize(LM.BuffSkillTitle)} Lv{idx + 1}"; // 힘내라 친구여
                 buffSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = buffSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = buffSkill.GetDescription(idx);
                 learnBtn.gameObject.SetActive(buffSkill.Lv <= idx);
                 break;
             case SkillCate.Skip:
-                titleTxt.text = LM._.Localize(LM.SkipSkillTitle); // 시공을 거슬러
+                titleTxt.text = $"{LM._.Localize(LM.SkipSkillTitle)} Lv{idx + 1}"; // 시공을 거슬러
                 skipSkill.skillTreeArr[idx].SetSelectedBorderUI();
                 skillImg.sprite = skipSkill.skillTreeArr[idx].IconSpr;
                 descriptionTxt.text = skipSkill.GetDescription(idx);

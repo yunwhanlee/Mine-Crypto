@@ -326,6 +326,7 @@ public class TimePieceManager : MonoBehaviour
         // 시간의결정이 0인경우 정지
         if(curStorage <= 0)
         {
+            curStorage = 0;
             isActive = false;
             ActiveProcess(isActive);
         }

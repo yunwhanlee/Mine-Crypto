@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Deco8
   m_EditorClassIdentifier: 
   needItemDataArr:
-  - type: 27
+  - type: 30
     val: 200
   - type: 16
     val: 1000

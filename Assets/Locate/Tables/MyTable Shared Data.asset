@@ -1083,6 +1083,18 @@ MonoBehaviour:
     m_Key: UI_AlreadyPlayGame
     m_Metadata:
       m_Items: []
+  - m_Id: 15213421991792640
+    m_Key: UI_GoldenMine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15213798468325376
+    m_Key: UI_ForeverBless
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15214060322918400
+    m_Key: UI_Boss
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

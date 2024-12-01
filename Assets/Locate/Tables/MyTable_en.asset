@@ -1131,6 +1131,18 @@ MonoBehaviour:
     m_Localized: The game is playing already.
     m_Metadata:
       m_Items: []
+  - m_Id: 15213421991792640
+    m_Localized: GoldenMine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15213798468325376
+    m_Localized: Forever Bless
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15214060322918400
+    m_Localized: Boss
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
