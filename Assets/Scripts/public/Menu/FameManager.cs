@@ -73,7 +73,7 @@ public class FameManager : MonoBehaviour
     void Update()
     {
         //! TEST 미션 EXP 증가
-        if(Input.GetKeyDown(KeyCode.C))
+        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("TEST 미션 EXP 증가");
             missionArr[(int)MISSION.MINING_ORE_CNT].Exp += 50;

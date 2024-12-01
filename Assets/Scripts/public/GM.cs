@@ -109,14 +109,6 @@ public class GM : MonoBehaviour
         StartCoroutine(CoTimerStart());
     }
 
-    //! 테스트용으로 속도 x1 <-> x3으로함. 실제출시시 Update함수자체를 지우기
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            Time.timeScale = (Time.timeScale != 1)? 1 : 3;
-        }
-    }
-
 #region FUNC
     private IEnumerator CoTimerStart()
     {

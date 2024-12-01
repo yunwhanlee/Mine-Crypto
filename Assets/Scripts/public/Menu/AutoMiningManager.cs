@@ -50,7 +50,7 @@ public class AutoMiningManager : MonoBehaviour
 
     void Update() {
         //! TEST 자동채굴 대기시간 5초 <-> 1분
-        if(Input.GetKeyDown(KeyCode.B))
+        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.B))
         {
             if(WAIT_TIME == 60)
                 WAIT_TIME = 5;

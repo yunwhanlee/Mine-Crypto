@@ -8,7 +8,7 @@ public static class Debug {
                 return true;
             #elif UNITY_ANDROID
                 return DM._?.IsDebugMode ?? false;
-            #else
+            #else // PC
                 return false;
             #endif
         }
@@ -32,6 +32,11 @@ public static class Debug {
         if(IsDebugging)
             UnityEngine.Debug.Log(msg);
     }
+    #else // PC
+    public static void Log(object msg) {
+        if(IsDebugging)
+            UnityEngine.Debug.Log(msg);
+    }
     #endif
 
     #if UNITY_EDITOR
@@ -39,6 +44,11 @@ public static class Debug {
         UnityEngine.Debug.LogError(msg);
     }
     #elif UNITY_ANDROID
+    public static void LogError(object msg) {
+        if(IsDebugging)
+            UnityEngine.Debug.LogError(msg);
+    }
+    #else // PC
     public static void LogError(object msg) {
         if(IsDebugging)
             UnityEngine.Debug.LogError(msg);

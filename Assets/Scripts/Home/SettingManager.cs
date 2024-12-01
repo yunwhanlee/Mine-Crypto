@@ -24,8 +24,14 @@ public class SettingManager : MonoBehaviour
     public Sprite[] languageTitleSprs; // 홈 타이틀 국가별 이미지
     public Image TitleImg;
 
+    //! TEST MODE
+    public GameObject testMode;
+    int testModeCnt = 0;
+
     IEnumerator Start()
     {
+        testMode.SetActive(false);
+
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
 
@@ -35,6 +41,23 @@ public class SettingManager : MonoBehaviour
     }
 
 #region EVENT
+    /// <summary>
+    /// TEST 모드 : 설정창 아이콘 5번클릭 ON, 6번클릭 OFF
+    /// </summary>
+    public void OnClickTestModeBtn()
+    {
+        testModeCnt++;
+
+        // TEST 모드
+        if(!testMode.activeSelf && testModeCnt >= 10) {
+            testMode.SetActive(true);
+        }
+        else if(testMode.activeSelf) {
+            testModeCnt = 0;
+            testMode.SetActive(false);
+        }
+    }
+
     public void OnClickSelectLanguage()
     {
         if(GM._.gameState != GameState.HOME)

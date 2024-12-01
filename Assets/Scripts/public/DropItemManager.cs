@@ -16,11 +16,6 @@ public class DropItemManager : MonoBehaviour
 
     // public GameObject[] dropMsgBarArr; // 아이템드랍 메세지바 배열
 
-    void Start() {
-        //! TEST
-        // InvokeRepeating("DropBonusItem", 1, 0.4f);
-    }
-
 #region FUNC
     /// <summary>
     /// 광석채굴시 보너스아이템 드랍

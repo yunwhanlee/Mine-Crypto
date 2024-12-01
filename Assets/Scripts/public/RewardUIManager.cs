@@ -28,8 +28,8 @@ public class RewardUIManager : MonoBehaviour
     }
 
     void Update() {
-        //! 보상 테스트
-        if(Input.GetKeyDown(KeyCode.V)) {
+        //! TEST 보상 테스트
+        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.V)) {
             // 보상획득 (결과팝업 표시)
             if(rwdCnt % 2 == 0) // 짝수
             {

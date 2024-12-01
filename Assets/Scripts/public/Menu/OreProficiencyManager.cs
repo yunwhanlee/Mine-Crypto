@@ -39,7 +39,7 @@ public class OreProficiencyManager : MonoBehaviour
     void Update()
     {
         //! TEST EXP 증가
-        if(Input.GetKeyDown(KeyCode.C))
+        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("TEST 숙련도 및 미션 EXP 증가");
             for(int i = 0; i < proficiencyArr.Length; i++)
