@@ -1095,6 +1095,14 @@ MonoBehaviour:
     m_Key: UI_Boss
     m_Metadata:
       m_Items: []
+  - m_Id: 18264868148973568
+    m_Key: UI_GoldCoin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18269369874485248
+    m_Key: Detail_GoldCoin
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

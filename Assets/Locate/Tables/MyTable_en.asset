@@ -1143,6 +1143,15 @@ MonoBehaviour:
     m_Localized: Boss
     m_Metadata:
       m_Items: []
+  - m_Id: 18264868148973568
+    m_Localized: GoldCoin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18269369874485248
+    m_Localized: "Gold coins to buy anything in stores.\n (Low probability appears
+      in mines)"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

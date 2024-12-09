@@ -179,6 +179,11 @@ public class UIManager : MonoBehaviour
         GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
     }
 
+    public void OnClickShopBtn() {
+        SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
+        GM._.spm.ShowPopUp();
+    }
+
 #endregion
 
 #region FUNC

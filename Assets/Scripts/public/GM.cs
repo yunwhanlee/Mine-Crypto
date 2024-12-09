@@ -31,6 +31,7 @@ public class GM : MonoBehaviour
     [field:HideInInspector] public SkillManager skm; // 스킬
     [field:HideInInspector] public SkillController skc; // 스킬발동 컨트롤러
     [field:HideInInspector] public RebornManager rbm; // 환생
+    [field:HideInInspector] public ShopManager spm; // 상점
 
     //* HOME
     [field:HideInInspector] public HomeManager hm;
@@ -86,6 +87,7 @@ public class GM : MonoBehaviour
         skm = GameObject.Find("SkillManager").GetComponent<SkillManager>();
         skc = GameObject.Find("SkillController").GetComponent<SkillController>();
         rbm = GameObject.Find("RebornManager").GetComponent<RebornManager>();
+        spm = GameObject.Find("ShopManager").GetComponent<ShopManager>();
 
         // HOME
         hm = GameObject.Find("HomeManager").GetComponent<HomeManager>();

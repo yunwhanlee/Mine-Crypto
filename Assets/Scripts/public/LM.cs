@@ -56,6 +56,7 @@ public class LM : MonoBehaviour
         Detail_SkillPotion = "Detail_SkillPotion",
         Detail_LightStone = "Detail_LightStone",
         Detail_TimePotion = "Detail_TimePotion",
+        Detail_GoldCoin = "Detail_GoldCoin",
 
         Mat1 = "MAT1",
         Mat2 = "MAT2",
@@ -85,6 +86,7 @@ public class LM : MonoBehaviour
         SkillPotion = "UI_SkillPotion",
         LightStone = "UI_LightStone",
         TimePotion = "UI_TimePotion",
+        GoldCoin = "UI_GoldCoin",
 
         Attack = "UI_Attack",
         AttackSpeed = "UI_AttackSpeed",

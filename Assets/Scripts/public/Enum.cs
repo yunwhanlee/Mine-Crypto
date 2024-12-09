@@ -120,6 +120,7 @@ public static class Enum
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
         ORE_CHEST, TREASURE_CHEST,
         SKILLPOTION, LIGHTSTONE, TIMEPOTION,
+        GOLDCOIN,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
 
         // 포인트 (인벤토리 표기X)
@@ -143,6 +144,7 @@ public static class Enum
         MUSH_BOX1, MUSH_BOX2, MUSH_BOX3,
         ORE_CHEST, TREASURE_CHEST,
         SKILLPOTION, LIGHTSTONE, TIMEPOTION,
+        GOLDCOIN,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
     }
 
@@ -151,6 +153,10 @@ public static class Enum
     /// </summary>
     public enum MUSH {
         MUSH1, MUSH2, MUSH3, MUSH4, MUSH5, MUSH6, MUSH7, MUSH8
+    }
+
+    public enum SHOP_CATE {
+        NORMAL, FAME_SUPPLY, REBORN_SUPPLY, INAPP
     }
 
     /// <summary>
@@ -229,6 +235,7 @@ public static class Enum
             case RWD.LIGHTSTONE: return LM._.Localize(LM.LightStone);
             case RWD.TIMEPOTION: return LM._.Localize(LM.TimePotion);
             case RWD.FAME: return LM._.Localize(LM.Fame);
+            case RWD.GOLDCOIN: return LM._.Localize(LM.GoldCoin);
             //※여기 위에 추가
         }
         return "???";

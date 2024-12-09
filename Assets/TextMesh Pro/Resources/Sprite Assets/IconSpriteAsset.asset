@@ -238,6 +238,12 @@ MonoBehaviour:
     m_Scale: 1
     m_Name: TIMEPOTION
     m_HashCode: -358636842
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: GOLDCOIN
+    m_HashCode: 2001347947
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -287,6 +293,22 @@ MonoBehaviour:
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 884548180, guid: 53e298952b563d3428424a90bdb6b6bf, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 43
+      m_Height: 43
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 32
+      m_HorizontalAdvance: 46.2
+    m_GlyphRect:
+      m_X: 131
+      m_Y: 19
+      m_Width: 42
+      m_Height: 43
+    m_Scale: 1.4
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 642043100, guid: 53e298952b563d3428424a90bdb6b6bf, type: 3}
   - m_Index: 10
     m_Metrics:
       m_Width: 16

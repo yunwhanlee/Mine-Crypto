@@ -108,6 +108,7 @@ public class InventoryUIManager : MonoBehaviour
         invSlotUIArr[(int)INV.SKILLPOTION].Active(sttDB.SkillPotion);
         invSlotUIArr[(int)INV.LIGHTSTONE].Active(sttDB.LightStone);
         invSlotUIArr[(int)INV.TIMEPOTION].Active(sttDB.TimePotion);
+        invSlotUIArr[(int)INV.GOLDCOIN].Active(sttDB.GoldCoin);
         //※ 여기 위에 추가
     }
 

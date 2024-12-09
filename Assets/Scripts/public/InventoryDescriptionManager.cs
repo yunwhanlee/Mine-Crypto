@@ -347,7 +347,7 @@ public class InventoryDescriptionManager : MonoBehaviour
     public InvItem_Info[] SetInvItemDescriptionInfo()
     {
         //! 배열 숫자 증가시키기!
-        return new InvItem_Info[9 + 8 + 8 + 10] {
+        return new InvItem_Info[9 + 8 + 8 + 11] {
         // (광석)재화
         new InvItem_Info(LM._.Localize(LM.Ore1), LM._.Localize(LM.Detail_Ore)),
         new InvItem_Info(LM._.Localize(LM.Ore2), LM._.Localize(LM.Detail_Ore)),
@@ -387,6 +387,7 @@ public class InventoryDescriptionManager : MonoBehaviour
         new InvItem_Info(LM._.Localize(LM.SkillPotion), LM._.Localize(LM.Detail_SkillPotion)),
         new InvItem_Info(LM._.Localize(LM.LightStone), LM._.Localize(LM.Detail_LightStone)),
         new InvItem_Info(LM._.Localize(LM.TimePotion), LM._.Localize(LM.Detail_TimePotion)),
+        new InvItem_Info(LM._.Localize(LM.GoldCoin), LM._.Localize(LM.Detail_GoldCoin)),
         //※ 여기 위에 추가
         };
     }

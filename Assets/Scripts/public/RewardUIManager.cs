@@ -52,6 +52,7 @@ public class RewardUIManager : MonoBehaviour
                         { RWD.MAT8, 100 },
                         { RWD.SKILLPOTION, 50 },
                         { RWD.TIMEPOTION, 50 },
+                        { RWD.GOLDCOIN, 50 },
                     }
                 );
                 rwdCnt++;
@@ -294,6 +295,9 @@ public class RewardUIManager : MonoBehaviour
                         break;
                     case RWD.TIMEPOTION: // 시간의포션
                         sttDB.TimePotion += val;
+                        break;
+                    case RWD.GOLDCOIN: // 황금코인
+                        sttDB.GoldCoin += val;
                         break;
 
                     // ※여기 위에 추가

@@ -120,6 +120,14 @@ public class StatusDB
             if(timePotion < 0) timePotion = 0;
         }
     }
+    [Header("(소비) 황금동전")]
+    [field:SerializeField] int goldCoin; public int GoldCoin {
+        get {return goldCoin;}
+        set {
+            goldCoin = value;
+            if(goldCoin < 0) goldCoin = 0;
+        }
+    }
 
     [Header("명예 레벨")]
     [field:SerializeField] int fameLv; public int FameLv {
@@ -133,6 +141,15 @@ public class StatusDB
         set {
             fame = value;
             if(fame < 0) fame = 0;
+        }
+    }
+
+    [Header("황금 포인트")]
+    [field:SerializeField] int goldPoint; public int GoldPoint {
+        get {return goldPoint;}
+        set {
+            goldPoint = value;
+            if(goldPoint < 0) goldPoint = 0;
         }
     }
 
@@ -167,8 +184,10 @@ public class StatusDB
         oreChest = 0;      // 광석상자
         treasureChest = 5; // 보물상자
         skillPotion = 0;   // 스킬포션
+        goldCoin = 0;      // 황금코인
         lightStone = 0;    // 빛나는돌
         timePotion = 0;    // 시간의포션
+        goldPoint = 0;     // 황금포인트
 
         fameLv = 1;        // 명예 레벨
         fame = 0;          // 명예경험치 포인트
@@ -205,6 +224,7 @@ public class StatusDB
             case INV.SKILLPOTION:    return skillPotion;
             case INV.LIGHTSTONE:     return lightStone;
             case INV.TIMEPOTION:     return timePotion;
+            case INV.GOLDCOIN:     return goldCoin;
             //※ 여기위에 추가
         }
 
@@ -258,6 +278,16 @@ public class StatusDB
             case INV.TIMEPOTION:
                 timePotion += val;
                 break;
+            case INV.GOLDCOIN:
+                timePotion += val;
+
+                // 골드코인을 사용할시 황금포인트 추가
+                if(val < 0)
+                {
+                    goldPoint += Mathf.Abs(val);
+                }
+                break;
+
             //※ 여기위에 추가
         }
     }
