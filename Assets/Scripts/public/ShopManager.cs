@@ -14,7 +14,7 @@ public class ShopManager : MonoBehaviour
     public DOTweenAnimation DOTAnim;
 
     public FameSupplyBtn fameSupplyBtnPref; // 명예보급 오브젝트 프리팹
-    public GameObject rebornSupplyBtnPref;  // 환생보급 오브젝트 프리팹
+    public RebornSupplyBtn rebornSupplyBtnPref;  // 환생보급 오브젝트 프리팹
 
     public ScrollRect normalScrollRect;       // 일반상점 스크롤
     public ScrollRect fameSupplyScrollRect;   // 명예보급 스크롤
@@ -26,8 +26,8 @@ public class ShopManager : MonoBehaviour
     public Transform rebornSupplyContentTf; // 환생보급 오브젝트 부모 Transform
     public Transform inAppContentTf;        // (인앱샵) 황금상점 오브젝트 부모 Transform
 
-    private List<FameSupplyBtn> fameSupplyBtnList; // 명예보급 리스트
-    //TODO private List<RebornSupplyBtn> rebornSupplyBtnList; // 환생보급 리스트
+    private List<FameSupplyBtn> fameSupplyBtnList;      // 명예보급 리스트
+    private List<RebornSupplyBtn> rebornSupplyBtnList;  // 환생보급 리스트
 
     public TMP_Text[] cateTxtArr;                // 카테고리 텍스트
     public SHOP_CATE cateIdx;                    // 현재 선택한 카테고리 인덱스
@@ -43,6 +43,7 @@ public class ShopManager : MonoBehaviour
         cateIdx = SHOP_CATE.NORMAL;
 
         fameSupplyBtnList = new List<FameSupplyBtn>();
+        rebornSupplyBtnList = new List<RebornSupplyBtn>();
 
         // 명예보급 오브젝트 생성 후 리스트 추가
         for(int i = 0; i < 15; i++)
@@ -50,7 +51,13 @@ public class ShopManager : MonoBehaviour
             fameSupplyBtnList.Add(Instantiate(fameSupplyBtnPref, fameSupplyContentTf));
         }
 
-        // 데이터 및 UI 초기화
+        // 환생보급 오브젝트 생성 후 리스트 추가
+        for(int i = 0; i < 30; i++)
+        {
+            rebornSupplyBtnList.Add(Instantiate(rebornSupplyBtnPref, rebornSupplyContentTf));
+        }
+
+        // 명예보급 데이터 및 UI 초기화
         fameSupplyBtnList[0].Init(unlockedLv: 2, RWD.GOLDCOIN, 2);
         fameSupplyBtnList[1].Init(unlockedLv: 4, RWD.TIMEPOTION, 5);
         fameSupplyBtnList[2].Init(unlockedLv: 6, RWD.TREASURE_CHEST, 10);
@@ -66,6 +73,38 @@ public class ShopManager : MonoBehaviour
         fameSupplyBtnList[12].Init(unlockedLv: 26, RWD.TREASURE_CHEST, 30);
         fameSupplyBtnList[13].Init(unlockedLv: 28, RWD.SKILLPOTION, 3);
         fameSupplyBtnList[14].Init(unlockedLv: 30, RWD.CRISTAL, 3000);
+
+        // 환생보급 데이터 및 UI 초기화
+        rebornSupplyBtnList[0].Init(unlockedGoldPoint: 0,       RWD.ORE_CHEST, 10);     // 황금점수 0 : 광석상자 10개
+        rebornSupplyBtnList[1].Init(unlockedGoldPoint: 10,      RWD.TREASURE_CHEST, 3); // 황금점수 10 : 보물상자 3개
+        rebornSupplyBtnList[2].Init(unlockedGoldPoint: 30,      RWD.TIMEPOTION, 3);     // 황금점수 30 : 시간의포션 3개
+        rebornSupplyBtnList[3].Init(unlockedGoldPoint: 50,      RWD.CRISTAL, 200);      // 황금점수 50 : 크리스탈 200개
+        rebornSupplyBtnList[4].Init(unlockedGoldPoint: 100,     RWD.ORE_CHEST, 10);     // 황금점수 100 : 광석상자 10개
+        rebornSupplyBtnList[5].Init(unlockedGoldPoint: 200,     RWD.TREASURE_CHEST, 3); // 황금점수 200 : 보물상자 3개
+        rebornSupplyBtnList[6].Init(unlockedGoldPoint: 300,     RWD.TIMEPOTION, 3);     // 황금점수 300 : 시간의포션 3개
+        rebornSupplyBtnList[7].Init(unlockedGoldPoint: 400,     RWD.CRISTAL, 300);      // 황금점수 400 : 크리스탈 300개
+        rebornSupplyBtnList[8].Init(unlockedGoldPoint: 500,     RWD.SKILLPOTION, 2);    // 황금점수 500 : 스킬포인트물약 2개
+        rebornSupplyBtnList[9].Init(unlockedGoldPoint: 650,     RWD.ORE_CHEST, 20);     // 황금점수 650 : 광석상자 20개
+        rebornSupplyBtnList[10].Init(unlockedGoldPoint: 800,     RWD.MUSH_BOX1, 5);      // 황금점수 800 : 의문의버섯상자 5개
+        rebornSupplyBtnList[11].Init(unlockedGoldPoint: 1000,    RWD.MUSH_BOX2, 5);      // 황금점수 1000 : 신비한버섯상자 5개
+        rebornSupplyBtnList[12].Init(unlockedGoldPoint: 1500,    RWD.TIMEPOTION, 5);     // 황금점수 1500 : 시간의포션 5개
+        rebornSupplyBtnList[13].Init(unlockedGoldPoint: 2000,    RWD.SKILLPOTION, 3);    // 황금점수 2000 : 스킬포인트물약 3개
+        rebornSupplyBtnList[14].Init(unlockedGoldPoint: 3000,    RWD.TREASURE_CHEST, 10);// 황금점수 3000 : 보물상자 10개
+        rebornSupplyBtnList[15].Init(unlockedGoldPoint: 4000,    RWD.ORE_CHEST, 50);     // 황금점수 4000 : 광석상자 50개
+        rebornSupplyBtnList[16].Init(unlockedGoldPoint: 5000,    RWD.TIMEPOTION, 10);    // 황금점수 5000 : 시간의포션 10개
+        rebornSupplyBtnList[17].Init(unlockedGoldPoint: 7500,    RWD.MUSH_BOX3, 1);      // 황금점수 7500 : 전설의버섯상자 1개
+        rebornSupplyBtnList[18].Init(unlockedGoldPoint: 10000,   RWD.TREASURE_CHEST, 20);// 황금점수 10000 : 보물상자 20개
+        rebornSupplyBtnList[19].Init(unlockedGoldPoint: 15000,   RWD.ORE_CHEST, 100);    // 황금점수 15000 : 광석상자 100개
+        rebornSupplyBtnList[20].Init(unlockedGoldPoint: 20000,   RWD.TIMEPOTION, 20);    // 황금점수 20000 : 시간의포션 20개
+        rebornSupplyBtnList[21].Init(unlockedGoldPoint: 30000,   RWD.MUSH_BOX1, 20);     // 황금점수 30000 : 의문의버섯상자 20개
+        rebornSupplyBtnList[22].Init(unlockedGoldPoint: 40000,   RWD.MUSH_BOX2, 20);     // 황금점수 40000 : 신비한버섯상자 20개
+        rebornSupplyBtnList[23].Init(unlockedGoldPoint: 50000,   RWD.MUSH_BOX3, 3);      // 황금점수 50000 : 전설의버섯상자 3개
+        rebornSupplyBtnList[24].Init(unlockedGoldPoint: 75000,   RWD.SKILLPOTION, 5);    // 황금점수 75000 : 스킬포인트물약 5개
+        rebornSupplyBtnList[25].Init(unlockedGoldPoint: 100000,  RWD.ORE_CHEST, 200);    // 황금점수 100000 : 광석상자 200개
+        rebornSupplyBtnList[26].Init(unlockedGoldPoint: 150000,  RWD.TREASURE_CHEST, 50);// 황금점수 150000 : 보물상자 50개
+        rebornSupplyBtnList[27].Init(unlockedGoldPoint: 200000,  RWD.TIMEPOTION, 50);    // 황금점수 200000 : 시간의포션 50개
+        rebornSupplyBtnList[28].Init(unlockedGoldPoint: 250000,  RWD.MUSH_BOX3, 10);     // 황금점수 250000 : 전설의버섯상자 10개
+        rebornSupplyBtnList[29].Init(unlockedGoldPoint: 300000,  RWD.SKILLPOTION, 10);   // 황금점수 300000 : 스킬포인트물약 10개
     }
 
 #region EVENT

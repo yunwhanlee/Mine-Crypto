@@ -6,15 +6,15 @@ using UnityEngine.UI;
 using static Enum;
 
 /// <summary>
-/// 명예보급 아이템 리스트 버튼
+/// 명예보급 아이템
 /// </summary>
 public class FameSupplyBtn : MonoBehaviour
 {
-    public TMP_Text itemTxt;
-    public TMP_Text unlockLvTxt;
+    public TMP_Text itemTxt;        // 보상아이템아이콘 및 수량 텍스트
+    public TMP_Text unlockLvTxt;    // 해금 명예필요레벨 텍스트
     public GameObject alertRedDot;
-    public GameObject lockedPanel;
-    public Button button;
+    public GameObject lockedPanel;  // 잠금패널
+    public Button button;           // 버튼
 
     public RWD rwdType;
     public int rwdCnt;

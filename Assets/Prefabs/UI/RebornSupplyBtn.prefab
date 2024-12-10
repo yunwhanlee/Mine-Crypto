@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4974316012235054845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -152,81 +152,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &2142442238097618936
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6461023905331321660}
-  - component: {fileID: 5491994750881326185}
-  - component: {fileID: 4822708698487884312}
-  m_Layer: 0
-  m_Name: AlertAdsIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6461023905331321660
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142442238097618936}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 285706836550599482}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.5, y: -37.5}
-  m_SizeDelta: {x: 65, y: 65}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5491994750881326185
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142442238097618936}
-  m_CullTransparentMesh: 1
---- !u!114 &4822708698487884312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142442238097618936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 40155fe9a80114d44af4e16367172f54, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2240095281176800626
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 285706836550599482}
   - component: {fileID: 726114202733820104}
+  - component: {fileID: 8747271706214549115}
   m_Layer: 0
   m_Name: RebornSupplyBtn
   m_TagString: Untagged
@@ -259,14 +185,13 @@ RectTransform:
   - {fileID: 3175773230490997454}
   - {fileID: 3278665934860993986}
   - {fileID: 3739148079234158513}
-  - {fileID: 6461023905331321660}
   - {fileID: 4974316012235054845}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 225, y: 225}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &726114202733820104
 CanvasRenderer:
@@ -276,6 +201,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240095281176800626}
   m_CullTransparentMesh: 1
+--- !u!114 &8747271706214549115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2240095281176800626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b34925635ea9847905aa41219057e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemTxt: {fileID: 5024976108625378821}
+  UnlockGoldPointTxt: {fileID: 7669959480098359600}
+  alertRedDot: {fileID: 3074656955992026524}
+  lockedPanel: {fileID: 1994863556732561125}
+  button: {fileID: 7064494807920237581}
+  rwdType: 0
+  rwdCnt: 0
+  unlockedGoldPoint: 0
 --- !u!1 &3074656955992026524
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<sprite name=GOLDBAR>
+  m_text: '<sprite name=ORE_CHEST>
 
     2'
   m_isRightToLeft: 0
@@ -766,7 +711,7 @@ GameObject:
   - component: {fileID: 8784118014569296983}
   - component: {fileID: 7669959480098359600}
   m_Layer: 0
-  m_Name: UnlockLvTxt
+  m_Name: UnlockGoldPointTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -781,14 +726,14 @@ RectTransform:
   m_GameObject: {fileID: 5563947870846421281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999202, y: 0.9999202, z: 0.9999202}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4974316012235054845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517576, y: 76}
+  m_AnchoredPosition: {x: 0, y: 76}
   m_SizeDelta: {x: 200, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8784118014569296983
@@ -819,7 +764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBA85\uC608 Lv2"
+  m_text: <sprite name=GOLDCOIN>999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c91bfe8258901ef42b02717f29e12248, type: 2}
   m_sharedMaterial: {fileID: -8604131697151163036, guid: c91bfe8258901ef42b02717f29e12248, type: 2}

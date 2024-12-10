@@ -811,7 +811,7 @@ TextureImporter:
         width: 42
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -819,6 +819,69 @@ TextureImporter:
       bones: []
       spriteID: b5070b9c92cb38442a5ea79c0b0a98ef
       internalID: 642043100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasAsset_34
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 18
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec185eec8814e745b0bcd0011f39b11
+      internalID: -717840860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasAsset_35
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 66
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e20ad19f13aa284498e9a99b02c373d
+      internalID: -1456749749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasAsset_36
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 114
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05095897cd13134d81ae40088dac119
+      internalID: 1122611682
       vertices: []
       indices: 
       edges: []
@@ -862,6 +925,9 @@ TextureImporter:
       SpriteAtlasAsset_31: 1419994860
       SpriteAtlasAsset_32: 884548180
       SpriteAtlasAsset_33: 642043100
+      SpriteAtlasAsset_34: -717840860
+      SpriteAtlasAsset_35: -1456749749
+      SpriteAtlasAsset_36: 1122611682
       SpriteAtlasAsset_4: 1731851910
       SpriteAtlasAsset_5: -960003432
       SpriteAtlasAsset_6: -1524385637
