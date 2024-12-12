@@ -16,12 +16,18 @@ public class FameSupplyBtn : MonoBehaviour
     public GameObject lockedPanel;  // 잠금패널
     public Button button;           // 버튼
 
+    public int id;                  // 획득 트리거 데이터 저장 읽어오기 위한 배열확인용 ID
     public RWD rwdType;
     public int rwdCnt;
     public int unlockedLv;
+    [field:SerializeField] private bool isAccept; public bool IsAccept {
+        get => DM._.DB.shopDB.IsAcceptFameSupplyArr[id];
+        set => DM._.DB.shopDB.IsAcceptFameSupplyArr[id] = value;
+    }
 
-    public void Init(int unlockedLv, RWD rwdType ,int rwdCnt)
+    public void Init(int id, int unlockedLv, RWD rwdType ,int rwdCnt)
     {
+        this.id = id;
         this.unlockedLv = unlockedLv;
         this.rwdType = rwdType;
         this.rwdCnt = rwdCnt;
@@ -38,7 +44,11 @@ public class FameSupplyBtn : MonoBehaviour
         unlockLvTxt.text = $"명예 레벨{unlockedLv}";
         itemTxt.text = $"<sprite name={rwdType}>\n{rwdCnt}";
 
+        // 명예레벨 달성시 잠금표시 해제
         lockedPanel.SetActive(!(unlockedLv <= GM._.fm.FameLv));
+
+        // 이미 수령했는지 확인 비활성화
+        button.interactable = !IsAccept;
     }
 #endregion
 #region EVENT
@@ -54,6 +64,7 @@ public class FameSupplyBtn : MonoBehaviour
             }
         );
 
+        IsAccept = true;
         button.interactable = false;
     }
 #endregion

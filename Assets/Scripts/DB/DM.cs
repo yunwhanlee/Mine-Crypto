@@ -13,6 +13,7 @@ public class DB {
     public int rebornCnt;                   // 환생횟수
     public float bgmVolume;                 // 배경음 볼륨
     public float sfxVolume;                 // 효과음 볼륨
+
     public StatusDB statusDB;
     public UpgradeDB upgradeDB;             // 강화
     public MissionDB missionDB;             // 명예미션
@@ -26,6 +27,7 @@ public class DB {
     public TimePieceDB timePieceDB;         // 시간의조각
     public SkillTreeDB skillTreeDB;         // 스킬
     public RebornDB rebornDB;               // 환생
+    public ShopDB shopDB;                   // 상점
 
     public void Init()
     {
@@ -59,6 +61,8 @@ public class DB {
         skillTreeDB.Init();
         rebornDB = new RebornDB();
         rebornDB.Init();
+        shopDB =  new ShopDB();
+        shopDB.Init();
     }
 }
 

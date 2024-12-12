@@ -10,11 +10,13 @@ using static Enum;
 
 public class ShopManager : MonoBehaviour
 {
+    public static int FAME_SUPPLY_RESET_TIME_SEC = 15;  // 명예보급 리셋 대기시간
+
     public GameObject windowObj;
     public DOTweenAnimation DOTAnim;
 
-    public FameSupplyBtn fameSupplyBtnPref; // 명예보급 오브젝트 프리팹
-    public RebornSupplyBtn rebornSupplyBtnPref;  // 환생보급 오브젝트 프리팹
+    public FameSupplyBtn fameSupplyBtnPref;     // 명예보급 오브젝트 프리팹
+    public RebornSupplyBtn rebornSupplyBtnPref; // 환생보급 오브젝트 프리팹
 
     public ScrollRect normalScrollRect;       // 일반상점 스크롤
     public ScrollRect fameSupplyScrollRect;   // 명예보급 스크롤
@@ -32,7 +34,14 @@ public class ShopManager : MonoBehaviour
     public TMP_Text[] cateTxtArr;                // 카테고리 텍스트
     public SHOP_CATE cateIdx;                    // 현재 선택한 카테고리 인덱스
 
+    public TMP_Text fameSupplyResetTimerTxt;     // 명예보급 리셋타이머 텍스트
     public TMP_Text GoldPointTxt;                // 사용한 골드 포인트 텍스트
+
+    // 명예보급 리셋타이머 현재 남은시간
+    [field:SerializeField] private int fameSupplyTime; public int FameSupplyTime {
+        get => DM._.DB.shopDB.fameSupplyTime;
+        set => DM._.DB.shopDB.fameSupplyTime = value;
+    }
 
 
     IEnumerator Start() {
@@ -58,21 +67,21 @@ public class ShopManager : MonoBehaviour
         }
 
         // 명예보급 데이터 및 UI 초기화
-        fameSupplyBtnList[0].Init(unlockedLv: 2, RWD.GOLDCOIN, 2);
-        fameSupplyBtnList[1].Init(unlockedLv: 4, RWD.TIMEPOTION, 5);
-        fameSupplyBtnList[2].Init(unlockedLv: 6, RWD.TREASURE_CHEST, 10);
-        fameSupplyBtnList[3].Init(unlockedLv: 8, RWD.SKILLPOTION, 1);
-        fameSupplyBtnList[4].Init(unlockedLv: 10, RWD.CRISTAL, 500);
-        fameSupplyBtnList[5].Init(unlockedLv: 12, RWD.GOLDCOIN, 5);
-        fameSupplyBtnList[6].Init(unlockedLv: 14, RWD.TIMEPOTION, 10);
-        fameSupplyBtnList[7].Init(unlockedLv: 16, RWD.TREASURE_CHEST, 20);
-        fameSupplyBtnList[8].Init(unlockedLv: 18, RWD.SKILLPOTION, 2);
-        fameSupplyBtnList[9].Init(unlockedLv: 20, RWD.CRISTAL, 1000);
-        fameSupplyBtnList[10].Init(unlockedLv: 22, RWD.GOLDCOIN, 10);
-        fameSupplyBtnList[11].Init(unlockedLv: 24, RWD.TIMEPOTION, 20);
-        fameSupplyBtnList[12].Init(unlockedLv: 26, RWD.TREASURE_CHEST, 30);
-        fameSupplyBtnList[13].Init(unlockedLv: 28, RWD.SKILLPOTION, 3);
-        fameSupplyBtnList[14].Init(unlockedLv: 30, RWD.CRISTAL, 3000);
+        fameSupplyBtnList[0].Init(id: 0, unlockedLv: 2, RWD.GOLDCOIN, 2);
+        fameSupplyBtnList[1].Init(id: 1, unlockedLv: 4, RWD.TIMEPOTION, 5);
+        fameSupplyBtnList[2].Init(id: 2, unlockedLv: 6, RWD.TREASURE_CHEST, 10);
+        fameSupplyBtnList[3].Init(id: 3, unlockedLv: 8, RWD.SKILLPOTION, 1);
+        fameSupplyBtnList[4].Init(id: 4, unlockedLv: 10, RWD.CRISTAL, 500);
+        fameSupplyBtnList[5].Init(id: 5, unlockedLv: 12, RWD.GOLDCOIN, 5);
+        fameSupplyBtnList[6].Init(id: 6, unlockedLv: 14, RWD.TIMEPOTION, 10);
+        fameSupplyBtnList[7].Init(id: 7, unlockedLv: 16, RWD.TREASURE_CHEST, 20);
+        fameSupplyBtnList[8].Init(id: 8, unlockedLv: 18, RWD.SKILLPOTION, 2);
+        fameSupplyBtnList[9].Init(id: 9, unlockedLv: 20, RWD.CRISTAL, 1000);
+        fameSupplyBtnList[10].Init(id: 0, unlockedLv: 22, RWD.GOLDCOIN, 10);
+        fameSupplyBtnList[11].Init(id: 1, unlockedLv: 24, RWD.TIMEPOTION, 20);
+        fameSupplyBtnList[12].Init(id: 2, unlockedLv: 26, RWD.TREASURE_CHEST, 30);
+        fameSupplyBtnList[13].Init(id: 3, unlockedLv: 28, RWD.SKILLPOTION, 3);
+        fameSupplyBtnList[14].Init(id: 4, unlockedLv: 30, RWD.CRISTAL, 3000);
 
         // 환생보급 데이터 및 UI 초기화
         rebornSupplyBtnList[0].Init(unlockedGoldPoint: 0,       RWD.ORE_CHEST, 10);     // 황금점수 0 : 광석상자 10개
@@ -105,6 +114,17 @@ public class ShopManager : MonoBehaviour
         rebornSupplyBtnList[27].Init(unlockedGoldPoint: 200000,  RWD.TIMEPOTION, 50);    // 황금점수 200000 : 시간의포션 50개
         rebornSupplyBtnList[28].Init(unlockedGoldPoint: 250000,  RWD.MUSH_BOX3, 10);     // 황금점수 250000 : 전설의버섯상자 10개
         rebornSupplyBtnList[29].Init(unlockedGoldPoint: 300000,  RWD.SKILLPOTION, 10);   // 황금점수 300000 : 스킬포인트물약 10개
+
+        //* 명예보급 오프라인 타이머경과 처리
+        // yield return new WaitForSeconds(1); // 저장된 추가획득량 데이터가 로드안되는 문제가 있어 1초 대기
+
+        // // 어플시작시 이전까지 경과한시간
+        // int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
+
+        // // 경과시간 확인
+        // if(passedTime > )
+
+        // fameSupplyTime
     }
 
 #region EVENT
@@ -161,6 +181,31 @@ public class ShopManager : MonoBehaviour
             cateTxtArr[i].color = isSameCate? Color.yellow : Color.white;
 
             contentTfObjArr[i].gameObject.SetActive(isSameCate);
+        }
+    }
+
+    /// <summary>
+    /// 명예보급 타이머 감소
+    /// </summary>
+    public void SetFameSupplyTimer()
+    {
+        FameSupplyTime--;
+        string timeFormat = Util.ConvertTimeFormat(FameSupplyTime);
+        fameSupplyResetTimerTxt.text = timeFormat;
+
+        // 리셋
+        if(FameSupplyTime < 1)
+        {
+            // 초기화
+            FameSupplyTime = FAME_SUPPLY_RESET_TIME_SEC;
+
+            // 명예보급 획득트리거 초기화
+            fameSupplyBtnList.ForEach(fameSupply => 
+                fameSupply.IsAccept = false
+            );
+
+            // UI 업데이트
+            UpdateUI();
         }
     }
 #endregion

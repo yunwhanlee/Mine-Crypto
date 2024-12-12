@@ -114,6 +114,9 @@ public class GM : MonoBehaviour
 #region FUNC
     private IEnumerator CoTimerStart()
     {
+        // 데이터가 다 로드 될때까지 1초 대기
+        yield return Util.TIME1;
+
         while(true)
         {
             // 티켓 자동획득 
@@ -125,6 +128,9 @@ public class GM : MonoBehaviour
 
             // 시간의조각 자동회복
             tpm.SetTimer();
+
+            // 상점 명예보급 타이머
+            spm.SetFameSupplyTimer();
 
             yield return Util.TIME1;
         }

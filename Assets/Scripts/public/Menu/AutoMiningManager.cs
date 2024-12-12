@@ -8,7 +8,7 @@ using static Enum;
 
 public class AutoMiningManager : MonoBehaviour
 {
-    int WAIT_TIME = 60; // 채굴 획득 대기시간
+    int WAIT_TIME_SEC = 60; // 채굴 획득 대기시간
     const int ORE_INC_UNIT = 100; // 자동채굴 최대보관량 증가 단위
 
     [Header("자동채굴 수령버튼 알람아이콘 표시")]
@@ -52,15 +52,15 @@ public class AutoMiningManager : MonoBehaviour
         //! TEST 자동채굴 대기시간 5초 <-> 1분
         if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.B))
         {
-            if(WAIT_TIME == 60)
-                WAIT_TIME = 5;
+            if(WAIT_TIME_SEC == 60)
+                WAIT_TIME_SEC = 5;
             else
-                WAIT_TIME = 60;
+                WAIT_TIME_SEC = 60;
             
-            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 및 시간조각 자동획득 대기시간 <color=red>{WAIT_TIME}</color>초로 변경");
+            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 및 시간조각 자동획득 대기시간 <color=red>{WAIT_TIME_SEC}</color>초로 변경");
 
-            time = WAIT_TIME;
-            cristalTime = WAIT_TIME;
+            time = WAIT_TIME_SEC;
+            cristalTime = WAIT_TIME_SEC;
         }
     }
 
@@ -216,7 +216,7 @@ public class AutoMiningManager : MonoBehaviour
             }
 
             // 자동채굴 획득량 계산
-            int cnt = passedTime / WAIT_TIME; //(type == RSC.CRISTAL? HOUR : MINUTE);
+            int cnt = passedTime / WAIT_TIME_SEC; //(type == RSC.CRISTAL? HOUR : MINUTE);
 
             // 자동채굴 결과수량 //! 이미 수령할때 모두 적용된상태로 얻기때문에 현재 아래의 GetProductionVal가 있으면 중복이 되는 상태임.
             int resVal = autoMiningArr[i].CurStorage + cnt * GetProductionVal((RSC)i);
@@ -225,12 +225,12 @@ public class AutoMiningManager : MonoBehaviour
             if(resVal > autoMiningArr[i].maxStorage)
                 resVal = autoMiningArr[i].maxStorage;
 
-            Debug.Log($"<color=white>자동채굴 오프라인 처리 {oreType}: 이전수량= {autoMiningArr[i].CurStorage} / {autoMiningArr[i].maxStorage}, 획득량: {resVal} (경과시간: {passedTime} / {WAIT_TIME} = {cnt})</color>");
+            Debug.Log($"<color=white>자동채굴 오프라인 처리 {oreType}: 이전수량= {autoMiningArr[i].CurStorage} / {autoMiningArr[i].maxStorage}, 획득량: {resVal} (경과시간: {passedTime} / {WAIT_TIME_SEC} = {cnt})</color>");
             autoMiningArr[i].CurStorage = resVal;
         }
 
-        time = WAIT_TIME;
-        cristalTime = WAIT_TIME;
+        time = WAIT_TIME_SEC;
+        cristalTime = WAIT_TIME_SEC;
     }
 
     /// <summary>
@@ -293,7 +293,8 @@ public class AutoMiningManager : MonoBehaviour
         // 리셋
         if(time < 1)
         {
-            time = WAIT_TIME;
+            // 초기화
+            time = WAIT_TIME_SEC;
 
             // 자동채굴 처리
             int oreLenght = autoMiningArr.Length - 1; // 크리스탈은 제외
@@ -318,7 +319,7 @@ public class AutoMiningManager : MonoBehaviour
         if(cristalTime < 1)
         {
             Debug.Log($"SetCristalTimer():: cristalTime= {cristalTime}");
-            cristalTime = WAIT_TIME;
+            cristalTime = WAIT_TIME_SEC;
 
             // 크리스탈 자동채굴 처리
             SetStorage((int)RSC.CRISTAL);
