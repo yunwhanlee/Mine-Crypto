@@ -185,8 +185,11 @@ public class ShopManager : MonoBehaviour
             return;
         }
 
-        // 황금코인 감소
+        // 황금코인 감소 
         DM._.DB.statusDB.GoldCoin -= goldPrice;
+
+        // 사용한만큼 황금포인트 획득
+        GoldPoint += goldPrice;
 
         // 구매 완료
         SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
@@ -213,6 +216,9 @@ public class ShopManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// UI 업데이트
+    /// </summary>
     private void UpdateUI()
     {
         // 카테고리
@@ -224,6 +230,7 @@ public class ShopManager : MonoBehaviour
         GoldPointTxt.text = $"사용한 골드 포인트 : {DM._.DB.statusDB.GoldPoint}";
 
         fameSupplyBtnList.ForEach(list => list.UpdateUI());
+        rebornSupplyBtnList.ForEach(list => list.UpdateUI());
     }
 
     /// <summary>
