@@ -14,6 +14,7 @@ public class FameSupplyBtn : MonoBehaviour
     public TMP_Text unlockLvTxt;    // 해금 명예필요레벨 텍스트
     public GameObject alertRedDot;
     public GameObject lockedPanel;  // 잠금패널
+    public GameObject adIcon;       // 광고아이콘
     public Button button;           // 버튼
 
     public int id;                  // 획득 트리거 데이터 저장 읽어오기 위한 배열확인용 ID
@@ -41,6 +42,9 @@ public class FameSupplyBtn : MonoBehaviour
 #region FUNC
     public void UpdateUI()
     {
+        // PC가 아닌경우에만 광고아이콘 표시
+        adIcon.SetActive(!GM._.spm.isPC);
+
         unlockLvTxt.text = $"명예 레벨{unlockedLv}";
         itemTxt.text = $"<sprite name={rwdType}>\n{rwdCnt}";
 

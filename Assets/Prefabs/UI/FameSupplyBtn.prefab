@@ -291,10 +291,13 @@ MonoBehaviour:
   unlockLvTxt: {fileID: 7155454947070742400}
   alertRedDot: {fileID: 5917933402571518932}
   lockedPanel: {fileID: 8753689526499866967}
+  adIcon: {fileID: 2912414134696017611}
   button: {fileID: 7353136490352794160}
+  id: 0
   rwdType: 0
   rwdCnt: 0
   unlockedLv: 0
+  isAccept: 0
 --- !u!1 &3495035798365292327
 GameObject:
   m_ObjectHideFlags: 0

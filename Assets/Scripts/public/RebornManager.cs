@@ -199,7 +199,7 @@ public class RebornManager : MonoBehaviour
         // 상점해금
         if(DM._.DB.rebornCnt == 1)
         {
-            SoundManager._.PlaySfx(SoundManager.SFX.UnlockDecoSFX);
+            SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
             GM._.ui.ShowUnlockContentPopUp (
                 GM._.spm.shopUnlockIconSpr,
                 "황금고블린의 상점 개방!",

@@ -49,6 +49,7 @@ public class ShopManager : MonoBehaviour
     private List<FameSupplyBtn> fameSupplyBtnList;      // 명예보급 리스트
     private List<RebornSupplyBtn> rebornSupplyBtnList;  // 환생보급 리스트
 
+    public GameObject cateInAppTab;              // 카테고리 인앱결제 탭
     public TMP_Text[] cateTxtArr;                // 카테고리 텍스트
     public SHOP_CATE cateIdx;                    // 현재 선택한 카테고리 인덱스
 
@@ -61,7 +62,7 @@ public class ShopManager : MonoBehaviour
     public TMP_Text GoldPointTxt;                // 사용한 황금 포인트 텍스트
 
     // 명예보급 리셋타이머 현재 남은시간
-    [field:SerializeField] private int fameSupplyTime; public int FameSupplyTime {
+    [field:SerializeField] private int fameSupplyTime;  public int FameSupplyTime {
         get => DM._.DB.shopDB.fameSupplyTime;
         set => DM._.DB.shopDB.fameSupplyTime = value;
     }
@@ -76,6 +77,9 @@ public class ShopManager : MonoBehaviour
     IEnumerator Start() {
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
+
+        // PC모드가 아닐경우에만 카테고리 황금상점(인앱창) 표시
+        cateInAppTab.SetActive(!isPC);
 
         // 홈화면 상점캐릭터 잠금프레임 표시
         lockCharaFrame.SetActive(!(DM._.DB.rebornCnt > 0));
