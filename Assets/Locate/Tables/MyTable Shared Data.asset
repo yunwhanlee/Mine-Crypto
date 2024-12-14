@@ -872,7 +872,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10978794620030976
-    m_Key: UI_TimePiece
+    m_Key: UI_F
     m_Metadata:
       m_Items: []
   - m_Id: 10979353443930112
@@ -1101,6 +1101,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 18269369874485248
     m_Key: Detail_GoldCoin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20052032633409536
+    m_Key: UI_ExtraFame
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -1152,6 +1152,10 @@ MonoBehaviour:
       in mines)"
     m_Metadata:
       m_Items: []
+  - m_Id: 20052032633409536
+    m_Localized: ExtraFame
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -16,6 +16,7 @@ public class LM : MonoBehaviour
         All = "UI_All",
         Summon = "UI_Summon",
         Fame = "UI_Fame",
+        ExtraFame = "UI_ExtraFame",
         NextFameLvGradeTable = "UI_NextFameLvGradeTable",
         Lv = "UI_Lv",
         Floor = "UI_Floor",

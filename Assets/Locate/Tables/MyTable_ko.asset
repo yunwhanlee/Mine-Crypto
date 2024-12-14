@@ -1145,6 +1145,10 @@ MonoBehaviour:
       \uB4F1\uC7A5)"
     m_Metadata:
       m_Items: []
+  - m_Id: 20052032633409536
+    m_Localized: "\uCD94\uAC00\uBA85\uC608"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

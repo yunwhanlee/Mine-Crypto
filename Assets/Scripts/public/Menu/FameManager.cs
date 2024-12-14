@@ -39,7 +39,9 @@ public class FameManager : MonoBehaviour
         get => DM._.DB.statusDB.Fame;
         set => DM._.DB.statusDB.Fame = value;
     }
-    public int fameMaxExp;
+    public int fameMaxExp {
+        get => CalcFameMaxExp(FameLv);
+    }
 
     [field:Header("미션: 광석채굴, 채굴시간, 강화하기, 광산 클리어, 보물상자 채굴, 시련의광산 돌파")]
 
@@ -192,17 +194,15 @@ public class FameManager : MonoBehaviour
     /// <summary>
     /// 명예레벨 필요경험치 ( MAX 20LV )
     /// </summary>
-    private void UpdateFameMapExp()
+    public void UpdateFameMapExp()
     {
-        fameMaxExp = CalcFameMaxExp(FameLv);
-
         // 명예 레벨업인 경우
         if(FameExp >= fameMaxExp && FameLv < FAME_MAXLV)
         {
             // 업데이트
+            FameExp = FameExp - fameMaxExp; // 레벨업후 남은량 적용
             FameLv++;
-            FameExp = 0;
-            fameMaxExp = CalcFameMaxExp(FameLv);
+            GM._.spm.UpdateUI();
 
             GM._.ui.ShowNoticeMsgPopUp($"{LM._.Localize(LM.Fame)} {LM._.Localize(LM.Lv)} UP!");
             FameLevelUp();
@@ -218,20 +218,36 @@ public class FameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 명예경험치 슬라이더 값
+    /// </summary>
+    public float GetFameExpSliderVal() {
+        // MAX 레벨이라면
+        if(FameLv >= FAME_MAXLV)
+            return 1; // FULL
+
+        return (float)FameExp / fameMaxExp;
+    } 
+
+    /// <summary>
+    /// 명예경험치 슬라이더 문자
+    /// </summary>
+    /// <returns></returns>
+    public string GetFameExpSliderStr() {
+        // MAX 레벨이라면
+        if(FameLv >= FAME_MAXLV)
+            return "MAX";
+
+        return $"{FameExp} / {fameMaxExp}";
+    } 
+
+    /// <summary>
     /// 명예레벨 필요경험치 UI ( MAX 20LV )
     /// </summary>
     private void UpdateFameUI()
     {
         fameLvTxt.text = FameLv.ToString();
-        fameExpSlider.value = (float)FameExp / fameMaxExp;
-        fameExpTxt.text = $"{FameExp} / {fameMaxExp}";
-
-        // MAX 레벨이라면
-        if(FameLv >= FAME_MAXLV)
-        {
-            fameExpSlider.value = 1; // FULL
-            fameExpTxt.text = "MAX";
-        }
+        fameExpSlider.value = GetFameExpSliderVal();
+        fameExpTxt.text = GetFameExpSliderStr();
     }
 
     /// <summary>

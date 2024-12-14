@@ -46,6 +46,10 @@ public class ShopManager : MonoBehaviour
     public TMP_Text[] cateTxtArr;                // 카테고리 텍스트
     public SHOP_CATE cateIdx;                    // 현재 선택한 카테고리 인덱스
 
+    public TMP_Text fameLvTxt;                   // 명성 레벨 텍스트
+    public TMP_Text fameExpTxt;                  // 명성 경험치 텍스트
+    public Slider fameExpSlider;                 // 명성 경험치 슬라이더
+    public TMP_Text fameExtraValTxt;             // 명성 추가획득량 텍스트
     public TMP_Text[] myGoldCntTxtArr;           // 현재 황금코인 수량 텍스트배열
     public TMP_Text fameSupplyResetTimerTxt;     // 명예보급 리셋타이머 텍스트
     public TMP_Text GoldPointTxt;                // 사용한 황금 포인트 텍스트
@@ -266,14 +270,23 @@ public class ShopManager : MonoBehaviour
     /// <summary>
     /// UI 업데이트
     /// </summary>
-    private void UpdateUI()
+    public void UpdateUI()
     {
         // 카테고리
         SetCatetory();
 
         // 현재 황금코인 수량 표시(일반상점)
         myGoldCntTxtArr[0].text = $"{DM._.DB.statusDB.GoldCoin}";
+        // 현재 황금코인 수량 표시(인앱상점)
         myGoldCntTxtArr[1].text = $"{DM._.DB.statusDB.GoldCoin}";
+
+        // 명예정보 표시(인앱상점)
+        fameLvTxt.text = $"{LM._.Localize(LM.Fame)} Lv{GM._.fm.FameLv}";
+        fameExpSlider.value = GM._.fm.GetFameExpSliderVal();
+        fameExpTxt.text = GM._.fm.GetFameExpSliderStr();
+        fameExtraValTxt.text = $"{LM._.Localize(LM.ExtraFame)} +{GM._.sttm.IncFame}";
+        GM._.fm.UpdateFameMapExp(); // 경험치 달성시 레벨업
+
         // 사용한 골드포인트 표시(환생상점)
         GoldPointTxt.text = $"사용한 골드 포인트 : {DM._.DB.statusDB.GoldPoint}";
 

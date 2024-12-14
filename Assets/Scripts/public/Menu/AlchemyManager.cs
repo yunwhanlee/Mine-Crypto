@@ -559,7 +559,7 @@ public class AlchemyManager : MonoBehaviour
                         targetitemInfoTxt.text = $"{LM._.Localize(LM.IncPopulation)} +{dcDt.AbilityVal_ShowTxt}";
                         break;
                     case DECO_ABT.INC_FAME:
-                        targetitemInfoTxt.text = $"{LM._.Localize(LM.Fame)} +{dcDt.AbilityVal_ShowTxt}";
+                        targetitemInfoTxt.text = $"{LM._.Localize(LM.ExtraFame)} +{dcDt.AbilityVal_ShowTxt}";
                         break;
                 }
                 break;
