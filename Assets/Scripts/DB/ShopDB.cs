@@ -11,12 +11,14 @@ public class ShopDB
     public const int FAME_SUPPLY_ARRCNT = 15;
     public const int REBORN_SUPPLY_ARRCNT = 30;
 
+    public bool isRemoveAds;                // 광고제거
     public int fameSupplyTime;              // 명예보급 시간
     public bool[] IsAcceptFameSupplyArr;    // 명예보급 획득 트리거 배열
     public bool[] IsAcceptRebornSupplyArr;  // 환생보급 획득 트리거 배열
 
     public void Init()
     {
+        isRemoveAds = false;
         fameSupplyTime = ShopManager.FAME_SUPPLY_RESET_TIME_SEC;
 
         InitIsAcceptFameSupplyArr();

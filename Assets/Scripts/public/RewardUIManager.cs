@@ -305,7 +305,10 @@ public class RewardUIManager : MonoBehaviour
                         val += GM._.sttm.IncFame;
                         sttDB.Fame += val;
                         break;
-                    
+                    case RWD.REMOVE_ADS:
+                        GM._.spm.RemoveAdsObj.SetActive(false); // 슬롯 비표시
+                        DM._.DB.shopDB.isRemoveAds = true;
+                        break;
                 }
 
                 // 해당 보상슬롯UI 표시

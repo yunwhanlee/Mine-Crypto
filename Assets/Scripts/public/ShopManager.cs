@@ -16,8 +16,13 @@ public class ShopManager : MonoBehaviour
         GOLDCOIN_MEDIUM_CNT = 1100,
         GOLDCOIN_LARGE_CNT = 3500;
 
+    [Header("PC모드")]
+    public bool isPC;                           // PC모드인지 아닌지 체크트리거
+    [Space(10)]
     public GameObject windowObj;
     public DOTweenAnimation DOTAnim;
+
+    public Sprite removeAdsSpr;                 // 광고제거 아이콘 스프라이트
 
     public FameSupplyBtn fameSupplyBtnPref;     // 명예보급 오브젝트 프리팹
     public RebornSupplyBtn rebornSupplyBtnPref; // 환생보급 오브젝트 프리팹
@@ -31,6 +36,8 @@ public class ShopManager : MonoBehaviour
     public Transform fameSupplyContentTf;   // 명예보급 오브젝트 부모 Transform
     public Transform rebornSupplyContentTf; // 환생보급 오브젝트 부모 Transform
     public Transform inAppContentTf;        // (인앱샵) 황금상점 오브젝트 부모 Transform
+
+    public GameObject RemoveAdsObj;         // (일반상점) 광고제거 오브젝트
 
     private List<Button> normalBtnList;                 // 일반상점 리스트
     private List<FameSupplyBtn> fameSupplyBtnList;      // 명예보급 리스트
@@ -88,8 +95,16 @@ public class ShopManager : MonoBehaviour
             rebornSupplyBtnList.Add(Instantiate(rebornSupplyBtnPref, rebornSupplyContentTf));
         }
 
-        // 일반상점 아이템버튼 초기화
-        // normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn()); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
+        //* 일반상점 아이템버튼 초기화
+        // PC모드이거나 광고제거를 구입했다면
+        if(isPC || DM._.DB.shopDB.isRemoveAds)
+        {   // 비표시
+            RemoveAdsObj.SetActive(false);
+        }
+        else
+        {   // 표시
+            normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn(RWD.REMOVE_ADS, 1, goldPrice: 1000)); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
+        }
         normalBtnList[1].onClick.AddListener(() => OnClickNormalItemBtn(RWD.ORE_CHEST, 10, goldPrice: 2)); // 광석상자 10개 : 황금덩어리 2개
         normalBtnList[2].onClick.AddListener(() => OnClickNormalItemBtn(RWD.ORE_CHEST, 100, goldPrice: 20)); // 광석상자 100개 : 황금덩어리 20개
         normalBtnList[3].onClick.AddListener(() => OnClickNormalItemBtn(RWD.TREASURE_CHEST, 3, goldPrice: 2)); // 보물상자 3개 : 황금덩어리 2개
@@ -175,34 +190,6 @@ public class ShopManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 인앱결제 아이템구매 버튼
-    /// </summary>
-    /// <param name="idx">목록 INDEX</param>
-    public void OnClickInAppPurchase_GoldCoinBtn(int idx)
-    {
-        // 선택한 아이템 인덱스에 따른 황금코인 보상수량
-        int[] rwdCntArr = new int[4]{
-            GOLDCOIN_TINY_CNT,
-            GOLDCOIN_SMALL_CNT,
-            GOLDCOIN_MEDIUM_CNT,
-            GOLDCOIN_LARGE_CNT,
-        };
-
-        //TODO 광고시청후
-
-        // 구매 완료
-        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
-        GM._.rwm.ShowReward(
-            new Dictionary<RWD, int> {
-                {RWD.GOLDCOIN, rwdCntArr[idx]},
-            }
-        );
-
-        // UI 업데이트
-        UpdateUI();
-    }
-
-    /// <summary>
     /// 일반상점 아이템구매 버튼
     /// </summary>
     /// <param name="rwdType">보상 종류</param>
@@ -231,6 +218,34 @@ public class ShopManager : MonoBehaviour
             }
         );
         
+        // UI 업데이트
+        UpdateUI();
+    }
+
+    /// <summary>
+    /// 인앱결제 아이템구매 버튼
+    /// </summary>
+    /// <param name="idx">목록 INDEX</param>
+    public void OnClickInAppPurchase_GoldCoinBtn(int idx)
+    {
+        // 선택한 아이템 인덱스에 따른 황금코인 보상수량
+        int[] rwdCntArr = new int[4]{
+            GOLDCOIN_TINY_CNT,
+            GOLDCOIN_SMALL_CNT,
+            GOLDCOIN_MEDIUM_CNT,
+            GOLDCOIN_LARGE_CNT,
+        };
+
+        //TODO 광고시청후
+
+        // 구매 완료
+        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+        GM._.rwm.ShowReward(
+            new Dictionary<RWD, int> {
+                {RWD.GOLDCOIN, rwdCntArr[idx]},
+            }
+        );
+
         // UI 업데이트
         UpdateUI();
     }

@@ -123,8 +123,9 @@ public static class Enum
         GOLDCOIN,
         //※ 여기 위에 추가 => 이 키워드로 다른 스크립트에 추가할곳 다 찾기
 
-        // 포인트 (인벤토리 표기X)
+        // 인벤토리 표기X 리스트
         FAME,
+        REMOVE_ADS
     }
 
     /// <summary>
