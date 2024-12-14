@@ -16,12 +16,18 @@ public class RebornSupplyBtn : MonoBehaviour
     public GameObject lockedPanel;  // 잠금패널
     public Button button;           // 버튼
 
+    public int id;                  // 획득 트리거 데이터 저장 읽어오기 위한 배열확인용 ID
     public RWD rwdType;
     public int rwdCnt;
     public int unlockedGoldPoint;
+    [field:SerializeField] private bool isAccept; public bool IsAccept {
+        get => DM._.DB.shopDB.IsAcceptRebornSupplyArr[id];
+        set => DM._.DB.shopDB.IsAcceptRebornSupplyArr[id] = value;
+    }
 
-    public void Init(int unlockedGoldPoint, RWD rwdType ,int rwdCnt)
+    public void Init(int id, int unlockedGoldPoint, RWD rwdType ,int rwdCnt)
     {
+        this.id = id;
         this.unlockedGoldPoint = unlockedGoldPoint;
         this.rwdType = rwdType;
         this.rwdCnt = rwdCnt;
@@ -38,7 +44,11 @@ public class RebornSupplyBtn : MonoBehaviour
         UnlockGoldPointTxt.text = $"<sprite name=GOLDCOIN>{unlockedGoldPoint}";
         itemTxt.text = $"<sprite name={rwdType}>\n{rwdCnt}";
 
+        // 황금포인트 달성시 잠금표시 해제
         lockedPanel.SetActive(!(unlockedGoldPoint <= GM._.fm.FameLv));
+
+        // 이미 수령했는지 확인 비활성화
+        button.interactable = !IsAccept;
     }
 #endregion
 #region EVENT
@@ -54,6 +64,7 @@ public class RebornSupplyBtn : MonoBehaviour
             }
         );
 
+        IsAccept = true;
         button.interactable = false;
     }
 #endregion

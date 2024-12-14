@@ -281,7 +281,7 @@ public class StatusDB
             case INV.GOLDCOIN:
                 timePotion += val;
 
-                // 골드코인을 사용할시 황금포인트 추가
+                // 골드코인을 사용시 황금포인트 추가
                 if(val < 0)
                 {
                     goldPoint += Mathf.Abs(val);
