@@ -171,41 +171,30 @@ public class PlayManager : MonoBehaviour
                     // 타임포션 1개 획득
                     playResRwdArr[(int)RWD.TIMEPOTION]++;
                     DM._.DB.statusDB.SetInventoryItemVal(INV.TIMEPOTION, 1);
+                    // 황금코인 1개 획득
+                    playResRwdArr[(int)RWD.GOLDCOIN]++;
+                    DM._.DB.statusDB.SetInventoryItemVal(INV.GOLDCOIN, 1);
+                    // 광석상자 획득 (매 층마다 +1)
+                    int oreChestCnt = GM._.stgm.Floor - 1;
+                    playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
+                    DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
                 }
             }
             // 일반광산
             else
             {
+                // 사용한 광석티켓 회수
                 playResRwdArr[(int)RWD.ORE_TICKET]++;       // 결과수치 UI
-                DM._.DB.statusDB.OreTicket++;               // 데이터
-                GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
-            }
-        }
+                DM._.DB.statusDB.OreTicket++; // 데이터
 
-        //* 결과처리
-        // 시련의광산
-        if(GM._.stgm.IsChallengeMode)
-        {
-            // 게임포기 안했을때 (달성한 층수만큼 광석상자 획득)
-            if(isGiveUp == false)
-            {
                 // 광석상자 획득 (매 층마다 +1)
                 int oreChestCnt = GM._.stgm.Floor - 1;
                 playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
                 DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
 
-                // 스킬포션 획득
-                // playResRwdArr[(int)RWD.SKILLPOTION]++;
-                // DM._.DB.statusDB.SkillPotion++;
+                // 광산 클리어 미션
+                GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++; 
             }
-        }
-        // 일반광산
-        else
-        {
-            // 광석상자 획득 (매 층마다 +1)
-            int oreChestCnt = GM._.stgm.Floor - 1;
-            playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
-            DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
         }
 
         // 보상팝업 표시 (나머지는 게임 진행중 실시간으로 이미 제공됨)

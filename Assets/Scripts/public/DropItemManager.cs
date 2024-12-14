@@ -47,6 +47,7 @@ public class DropItemManager : MonoBehaviour
         ItemGacha(rwdList, RWD.MAT6, 100000);
         ItemGacha(rwdList, RWD.MAT7, 1000000);
         ItemGacha(rwdList, RWD.MAT8, 10000000);
+        ItemGacha(rwdList, RWD.GOLDCOIN, 2000, isFixPercent: true);
         
         if(rwdList.Count == 0)
             return;
@@ -99,6 +100,9 @@ public class DropItemManager : MonoBehaviour
             case RWD.MUSH8:
                 sttDB.SetMsrArr((int)rwdList[randIdx] - (int)RWD.MUSH1, 1);
                 break;
+            case RWD.GOLDCOIN:
+                sttDB.GoldCoin++;
+                break;
         }
     }
 
@@ -120,10 +124,11 @@ public class DropItemManager : MonoBehaviour
     /// </summary>
     /// <param name="rwd">드랍아이템 보상</param>
     /// <param name="maxRandom">최대확률 : 정수로 0.01% => 10000 </param>
-    private void ItemGacha(List<RWD> rwdList, RWD rwd, int maxRandom)
+    /// <param name="isFixPercent">랜덤확률 고정트리거</param>
+    private void ItemGacha(List<RWD> rwdList, RWD rwd, int maxRandom, bool isFixPercent = false)
     {
         int randPer = Random.Range(0, maxRandom); // 랜덤확률
-        int winPer = 0 + GM._.stgm.Floor; // 당첨확률
+        int winPer = isFixPercent? 0 : 0 + GM._.stgm.Floor; // 당첨확률
 
         Debug.Log($"ItemGacha(rwd={rwd}, max={maxRandom}):: randPer= {randPer}, winPer= {winPer}, 결과 : {winPer >= randPer}");
 
