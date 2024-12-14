@@ -45,7 +45,7 @@ public class RebornSupplyBtn : MonoBehaviour
         itemTxt.text = $"<sprite name={rwdType}>\n{rwdCnt}";
 
         // 황금포인트 달성시 잠금표시 해제
-        lockedPanel.SetActive(!(unlockedGoldPoint <= GM._.fm.FameLv));
+        lockedPanel.SetActive(!(unlockedGoldPoint <= GM._.spm.GoldPoint));
 
         // 이미 수령했는지 확인 비활성화
         button.interactable = !IsAccept;

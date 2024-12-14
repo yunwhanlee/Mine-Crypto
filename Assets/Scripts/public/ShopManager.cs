@@ -11,6 +11,10 @@ using static Enum;
 public class ShopManager : MonoBehaviour
 {
     public const int FAME_SUPPLY_RESET_TIME_SEC = 20;  // 명예보급 리셋 대기시간(초)
+    private const int GOLDCOIN_TINY_CNT = 100,         // 인앱결제 획득 황금코인
+        GOLDCOIN_SMALL_CNT = 500,
+        GOLDCOIN_MEDIUM_CNT = 1100,
+        GOLDCOIN_LARGE_CNT = 3500;
 
     public GameObject windowObj;
     public DOTweenAnimation DOTAnim;
@@ -35,7 +39,7 @@ public class ShopManager : MonoBehaviour
     public TMP_Text[] cateTxtArr;                // 카테고리 텍스트
     public SHOP_CATE cateIdx;                    // 현재 선택한 카테고리 인덱스
 
-    public TMP_Text myGoldCntTxt;                // 현재 황금코인 수량 텍스트
+    public TMP_Text[] myGoldCntTxtArr;           // 현재 황금코인 수량 텍스트배열
     public TMP_Text fameSupplyResetTimerTxt;     // 명예보급 리셋타이머 텍스트
     public TMP_Text GoldPointTxt;                // 사용한 황금 포인트 텍스트
 
@@ -171,6 +175,34 @@ public class ShopManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 인앱결제 아이템구매 버튼
+    /// </summary>
+    /// <param name="idx">목록 INDEX</param>
+    public void OnClickInAppPurchase_GoldCoinBtn(int idx)
+    {
+        // 선택한 아이템 인덱스에 따른 황금코인 보상수량
+        int[] rwdCntArr = new int[4]{
+            GOLDCOIN_TINY_CNT,
+            GOLDCOIN_SMALL_CNT,
+            GOLDCOIN_MEDIUM_CNT,
+            GOLDCOIN_LARGE_CNT,
+        };
+
+        //TODO 광고시청후
+
+        // 구매 완료
+        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+        GM._.rwm.ShowReward(
+            new Dictionary<RWD, int> {
+                {RWD.GOLDCOIN, rwdCntArr[idx]},
+            }
+        );
+
+        // UI 업데이트
+        UpdateUI();
+    }
+
+    /// <summary>
     /// 일반상점 아이템구매 버튼
     /// </summary>
     /// <param name="rwdType">보상 종류</param>
@@ -225,7 +257,8 @@ public class ShopManager : MonoBehaviour
         SetCatetory();
 
         // 현재 황금코인 수량 표시(일반상점)
-        myGoldCntTxt.text = $"{DM._.DB.statusDB.GoldCoin}";
+        myGoldCntTxtArr[0].text = $"{DM._.DB.statusDB.GoldCoin}";
+        myGoldCntTxtArr[1].text = $"{DM._.DB.statusDB.GoldCoin}";
         // 사용한 골드포인트 표시(환생상점)
         GoldPointTxt.text = $"사용한 골드 포인트 : {DM._.DB.statusDB.GoldPoint}";
 
