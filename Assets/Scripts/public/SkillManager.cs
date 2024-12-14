@@ -143,7 +143,7 @@ public class SkillManager : MonoBehaviour
         if(attackSkill.Lv == 1 && buffSkill.Lv == 1 && skipSkill.Lv == 1)
             return;
 
-        GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.SkillResetMsg)); // 스킬을 전부 리셋하시겠습니까?\n스킬포인트 물약은 전부 반환됩니다.
+        GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.Caution), LM._.Localize(LM.SkillResetMsg)); // 스킬을 전부 리셋하시겠습니까?\n스킬포인트 물약은 전부 반환됩니다.
         GM._.ui.OnClickConfirmBtnAction = () => {
 
             if(DM._.DB.statusDB.GetInventoryItemVal(INV.CRISTAL) < RESET_CRISTAL_PRICE)

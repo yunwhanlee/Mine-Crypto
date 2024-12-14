@@ -109,14 +109,32 @@ public class RebornManager : MonoBehaviour
     /// </summary>
     private void AskConfirmReborn()
     {
-        int val = DM._.DB.stageDB.GetTotalBestFloor() / 5;
+        // int val = DM._.DB.stageDB.GetTotalBestFloor() / 5;
+        int total = GetRwdVal() + GetExtraRwdVal(); // 총 획득수량
 
         string title = LM._.Localize(LM.RebornAskTitle); // 모든 기억을 잃고 환생하시겠습니까?
-        string content = LM._.Localize(LM.RebornAskMsg); // 숙련도, 명예레벨, 환생강화, 버섯도감을 제외한 모든것이 초기화됩니다.
-        string extraRwd = upgIncLightStonePer.Lv > 0? $"(+ {GetExtraRwdVal()})" : "";
-        string reward = $"{LM._.Localize(LM.Reward)} : <sprite name=LIGHTSTONE> {GetRwdVal()} {extraRwd}";
+        string content = LM._.Localize(LM.RebornAskMsg); // 숙련도, 명예레벨, 환생강화, 버섯도감을 제외한 모든것이 초기화
+        string reward = $"<color=black><size=110%>{LM._.Localize(LM.Reward)} : <sprite name=LIGHTSTONE> {total}</size></color>"; //{GetRwdVal()} {extraRwd}";
+        string msgTxt = $"{content}\n{reward}";
 
-        GM._.ui.ShowConfirmPopUp($"{title}\n{content}\n{reward}");
+        //* PC모드가 아닐경우에만 광고시청 추가처리
+        if(!GM._.spm.isPC)
+        {
+            // 추가 메세지 표시
+            msgTxt += $"\n<size=95%><color=green>( 광고시청시 30% 추가획득 : +<sprite name=LIGHTSTONE> {Mathf.RoundToInt(total * 1.3f) - total})</color></size>";
+
+            // 광고버튼 이벤트클릭 구독
+            GM._.ui.OnClickConfirmAdsBtnAction = () => {
+                if(GM._.gameState != GameState.HOME)
+                {   // 플레이중에는 불가능합니다 메세지 표시
+                    GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotAvailableInPlayMsg));
+                    return;
+                }
+                StartCoroutine(CoReborn(isWatchAds: true));
+            };
+        }
+
+        GM._.ui.ShowConfirmPopUp(title, msgTxt, isActiveAdsBtn: true);
         GM._.ui.OnClickConfirmBtnAction = () => {
             if(GM._.gameState != GameState.HOME)
             {   // 플레이중에는 불가능합니다 메세지 표시
@@ -129,9 +147,11 @@ public class RebornManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 환생하기
+    /// 환생
     /// </summary>
-    IEnumerator CoReborn()
+    /// <param name="isWatchAds">광고시청</param>
+    /// <returns></returns>
+    IEnumerator CoReborn(bool isWatchAds = false)
     {
         Debug.Log("CoReborn():: 환생!");
         isRebornTrigger = true;
@@ -163,6 +183,9 @@ public class RebornManager : MonoBehaviour
 
         // 빛의돌 보상수량
         int rewardCnt = GetRwdVal() + GetExtraRwdVal();
+
+        // 광고시청시 추가획득
+        if(isWatchAds) rewardCnt = Mathf.RoundToInt((float)rewardCnt * 1.3f);
 
         // 모든 데이터 초기화
         db.Init();

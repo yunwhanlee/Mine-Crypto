@@ -32,6 +32,7 @@ public class LM : MonoBehaviour
         Yes = "UI_Yes",
         No = "UI_No",
         UpgradeMaxStorage = "UI_UpgradeMaxStorage",
+        Caution = "UI_Caution",
 
         Ore1 = "ORE1",
         Ore2 = "ORE2",

@@ -91,7 +91,7 @@ public class SettingManager : MonoBehaviour
             return;
         }
 
-        GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.AskResetDataMsg));
+        GM._.ui.ShowConfirmPopUp(LM._.Localize(LM.Caution), LM._.Localize(LM.AskResetDataMsg));
         GM._.ui.OnClickConfirmBtnAction = () => {
             DM._.Reset();
             SceneManager.LoadScene("Game");

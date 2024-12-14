@@ -13,7 +13,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Action OnClickConfirmBtnAction = () => {};       // 재확인용팝업 확인버튼 클릭액션
-    public Action OnClickUnlockPopUpDimScreen = null;   // 해금팝업 닫기 스크린 클릭시 추가액션
+    public Action OnClickConfirmAdsBtnAction = () => {};    // 재확인용팝업 광고버튼 클릭액션
+    public Action OnClickUnlockPopUpDimScreen = null;       // 해금팝업 닫기 스크린 클릭시 추가액션
 
     [Header("TOP RSC CNT GROUP")]
     public GameObject topRscGroup;
@@ -32,6 +33,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text noticeMsgTxt;
 
     public GameObject confirmPopUp;                     // 재확인용 팝업 : 정말 하시겠습니까?
+    public GameObject adsBtnObj;                        // 광고시청 버튼 오브젝트
+    public TMP_Text confirmTitleTxt;                    // 타이틀 내용
     public TMP_Text confirmMsgTxt;                      // 메세지 내용
     public TMP_Text confirmBtnTxt;                      // 확인버튼 텍스트
     public TMP_Text cancelBtnTxt;                       // 취소버튼 텍스트
@@ -190,12 +193,14 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// 재확인용 팝업 표시 + OnClickConfirmBtnAction = () => { 처리할 내용 작성하기 }
     /// </summary>
-    public void ShowConfirmPopUp(string msgTxt, string confirmTxt = "", string cancelTxt = "")
+    public void ShowConfirmPopUp(string title, string msgTxt, bool isActiveAdsBtn = false)//string confirmTxt = "", string cancelTxt = "")
     {
         confirmPopUp.SetActive(true);
+        confirmTitleTxt.text = title;
         confirmMsgTxt.text = msgTxt;
-        confirmBtnTxt.text = (confirmTxt == "")? LM._.Localize(LM.Yes) : confirmTxt;
-        cancelBtnTxt.text = (cancelTxt == "")? LM._.Localize(LM.No) : cancelTxt;
+        confirmBtnTxt.text = LM._.Localize(LM.Yes); //(confirmTxt == "")? LM._.Localize(LM.Yes) : confirmTxt;
+        cancelBtnTxt.text = LM._.Localize(LM.No); //(cancelTxt == "")? LM._.Localize(LM.No) : cancelTxt;
+        adsBtnObj.SetActive(isActiveAdsBtn);
     }
 
     /// <summary>
@@ -205,6 +210,15 @@ public class UIManager : MonoBehaviour
     {
         confirmPopUp.SetActive(false);
         OnClickConfirmBtnAction.Invoke(); // 구독한 확인버튼 액션실행
+    }
+
+    /// <summary>
+    /// 재확인용 팝업 광고버튼 클릭
+    /// </summary>
+    public void OnClickConfirmPopUp_AdsBtn()
+    {
+        confirmPopUp.SetActive(false);
+        OnClickConfirmAdsBtnAction.Invoke();
     }
 
     /// <summary>
