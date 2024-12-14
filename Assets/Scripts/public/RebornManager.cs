@@ -158,6 +158,8 @@ public class RebornManager : MonoBehaviour
         var prevRebornDB = db.rebornDB; // 환생강화 데이터
         var prevTimePieceDB = db.timePieceDB; // 시간의결정 데이터
         var prevMushDB = db.mushDB; // 버섯도감 데이터
+        var prevGoldCoin = db.statusDB.GoldCoin; // 황금코인
+        var prevGoldPoint = db.statusDB.GoldPoint; // 황금포인트
 
         // 빛의돌 보상수량
         int rewardCnt = GetRwdVal() + GetExtraRwdVal();
@@ -177,6 +179,8 @@ public class RebornManager : MonoBehaviour
         db.timePieceDB = prevTimePieceDB;           // 시간의결정 데이터
         db.rebornDB = prevRebornDB;                 // 환생강화 데이터
         db.mushDB = prevMushDB;                     // 버섯도감 데이터
+        db.statusDB.GoldCoin = prevGoldCoin;        // 황금코인
+        db.statusDB.GoldPoint = prevGoldPoint;      // 황금포인트
 
         //* 환생횟수 증가
         DM._.DB.rebornCnt++;
@@ -191,6 +195,17 @@ public class RebornManager : MonoBehaviour
         yield return Util.TIME3;
         whiteFadeInOutEFAnim.gameObject.SetActive(false);
         UpdateDataAndUI();
+
+        // 상점해금
+        if(DM._.DB.rebornCnt == 1)
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.UnlockDecoSFX);
+            GM._.ui.ShowUnlockContentPopUp (
+                GM._.spm.shopUnlockIconSpr,
+                "황금고블린의 상점 개방!",
+                "황금코인으로 다양한 아이템 구매와 추가보상 획득이 가능합니다!"
+            );
+        }
     }
 
     /// <summary>
