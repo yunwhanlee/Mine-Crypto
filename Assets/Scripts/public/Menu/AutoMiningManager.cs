@@ -49,7 +49,7 @@ public class AutoMiningManager : MonoBehaviour
     }
 
     void Update() {
-        //! TEST 자동채굴 대기시간 5초 <-> 1분
+        //! TEST 자동채굴 대기시간 5초 <-> 1분 + 제1광산 100층 추가
         if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.B))
         {
             if(WAIT_TIME_SEC == 60)
@@ -57,10 +57,12 @@ public class AutoMiningManager : MonoBehaviour
             else
                 WAIT_TIME_SEC = 60;
             
-            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 및 시간조각 자동획득 대기시간 <color=red>{WAIT_TIME_SEC}</color>초로 변경");
+            GM._.ui.ShowNoticeMsgPopUp($"(테스트모드) 자동채굴 및 시간조각 자동획득 대기시간 <color=red>{WAIT_TIME_SEC}</color>초로 변경 + 제1광산 100층 추가");
 
             time = WAIT_TIME_SEC;
             cristalTime = WAIT_TIME_SEC;
+
+            DM._.DB.stageDB.BestFloorArr[0] += 100;
         }
     }
 

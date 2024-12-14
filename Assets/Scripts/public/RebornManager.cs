@@ -134,7 +134,7 @@ public class RebornManager : MonoBehaviour
             };
         }
 
-        GM._.ui.ShowConfirmPopUp(title, msgTxt, isActiveAdsBtn: true);
+        GM._.ui.ShowConfirmPopUp(title, msgTxt, isActiveAdsBtn: !GM._.spm.isPC);
         GM._.ui.OnClickConfirmBtnAction = () => {
             if(GM._.gameState != GameState.HOME)
             {   // 플레이중에는 불가능합니다 메세지 표시

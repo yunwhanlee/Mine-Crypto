@@ -136,6 +136,7 @@ public class ShopManager : MonoBehaviour
         {   // 표시
             normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn(RWD.REMOVE_ADS, 1, goldPrice: 1000)); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
         }
+
         normalBtnList[1].onClick.AddListener(() => OnClickNormalItemBtn(RWD.ORE_CHEST, 10, goldPrice: 2)); // 광석상자 10개 : 황금덩어리 2개
         normalBtnList[2].onClick.AddListener(() => OnClickNormalItemBtn(RWD.ORE_CHEST, 100, goldPrice: 20)); // 광석상자 100개 : 황금덩어리 20개
         normalBtnList[3].onClick.AddListener(() => OnClickNormalItemBtn(RWD.TREASURE_CHEST, 3, goldPrice: 2)); // 보물상자 3개 : 황금덩어리 2개
@@ -205,6 +206,31 @@ public class ShopManager : MonoBehaviour
         // if(passedTime > )
 
         // fameSupplyTime
+    }
+
+    void Update()
+    {
+        //! TEST 모드변경
+        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.X)) {
+            GM._.spm.isPC = !GM._.spm.isPC;
+            GM._.ui.ShowNoticeMsgPopUp("모드변경(열린창을 닫아주세요.)");
+
+            // PC모드가 아닐경우에만 카테고리 황금상점(인앱창) 표시
+            cateInAppTab.SetActive(!isPC);
+
+            // PC모드이거나 광고제거를 구입했다면
+            if(isPC || DM._.DB.shopDB.isRemoveAds)
+            {   // 비표시
+                RemoveAdsObj.SetActive(false);
+            }
+            else
+            {   // 표시
+                normalBtnList[0].onClick.RemoveAllListeners();
+                normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn(RWD.REMOVE_ADS, 1, goldPrice: 1000)); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
+            }
+
+            Version._.SetVersion();
+        }
     }
 
 #region EVENT
