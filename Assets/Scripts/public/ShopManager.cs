@@ -22,6 +22,7 @@ public class ShopManager : MonoBehaviour
     public GameObject windowObj;
     public DOTweenAnimation DOTAnim;
 
+    public Animator shopCharaAnim;              // 상점 캐릭터 애니메이션
     public Sprite shopUnlockIconSpr;            // 상점 잠금해제 아이콘
 
     public GameObject lockCharaFrame;           // 잠금캐릭프레임 오브젝트
@@ -29,6 +30,7 @@ public class ShopManager : MonoBehaviour
     public FameSupplyBtn fameSupplyBtnPref;     // 명예보급 오브젝트 프리팹
     public RebornSupplyBtn rebornSupplyBtnPref; // 환생보급 오브젝트 프리팹
 
+    public GameObject shopIconBtnAlertRedDotObj;    // 상점버튼 🔴알람
     public GameObject fameSupplyAlertRedDotObj;     // 명예보급 🔴알람
     public GameObject rebornSupplyAlertRedDotObj;   // 환생보급 🔴알람
 
@@ -83,6 +85,9 @@ public class ShopManager : MonoBehaviour
 
         // 홈화면 상점캐릭터 잠금프레임 표시
         lockCharaFrame.SetActive(!(DM._.DB.rebornCnt > 0));
+
+        // 홈화면 상점캐릭터 잠금해제시 IDLE 애니메이션 적용
+        shopCharaAnim.SetTrigger("DoIdle");
 
         // 처음시작 및 배열수량 수정시 Out of Index 에러 방지처리
         DM._.DB.shopDB.CheckNewDataErr();
@@ -335,6 +340,9 @@ public class ShopManager : MonoBehaviour
         // 카테고리 🔴알림 최신화 (잠금해제에 버튼클릭 가능한 슬롯이 하나라도 있으면 표시)
         fameSupplyAlertRedDotObj.SetActive(fameSupplyBtnList.Exists(list => !list.lockedPanel.activeSelf && list.button.interactable));
         rebornSupplyAlertRedDotObj.SetActive(rebornSupplyBtnList.Exists(list => !list.lockedPanel.activeSelf && list.button.interactable));
+
+        // 상점아이콘 버튼 🔴알림 최신화
+        shopIconBtnAlertRedDotObj.SetActive(fameSupplyAlertRedDotObj.activeSelf || rebornSupplyAlertRedDotObj.activeSelf);
     }
 
     /// <summary>
