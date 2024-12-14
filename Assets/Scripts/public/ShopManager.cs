@@ -10,8 +10,10 @@ using static Enum;
 
 public class ShopManager : MonoBehaviour
 {
-    public const int FAME_SUPPLY_RESET_TIME_SEC = 20;  // 명예보급 리셋 대기시간(초)
-    private const int GOLDCOIN_TINY_CNT = 100,         // 인앱결제 획득 황금코인
+    // 명예보급 리셋 대기시간(초)
+    public const int FAME_SUPPLY_RESET_TIME_SEC = 60 * 5;  
+    // 인앱결제 획득 황금코인
+    private const int GOLDCOIN_TINY_CNT = 100,             
         GOLDCOIN_SMALL_CNT = 500,
         GOLDCOIN_MEDIUM_CNT = 1100,
         GOLDCOIN_LARGE_CNT = 3500;
