@@ -27,10 +27,14 @@ public class ShopManager : MonoBehaviour
     public FameSupplyBtn fameSupplyBtnPref;     // 명예보급 오브젝트 프리팹
     public RebornSupplyBtn rebornSupplyBtnPref; // 환생보급 오브젝트 프리팹
 
+    public GameObject fameSupplyAlertRedDotObj;     // 명예보급 🔴알람
+    public GameObject rebornSupplyAlertRedDotObj;   // 환생보급 🔴알람
+
     public ScrollRect normalScrollRect;       // 일반상점 스크롤
     public ScrollRect fameSupplyScrollRect;   // 명예보급 스크롤
     public ScrollRect rebornSupplyScrollRect; // 환생보급 스크롤
     public ScrollRect inAppScrollRect;        // (인앱샵) 황금상점 스크롤
+    private ScrollRect[] contentTfObjArr;     // 스크롤 카테고리별 스크롤 배열
 
     public Transform normalContentTf;       // 일반상점 오브젝트 부모 Transform
     public Transform fameSupplyContentTf;   // 명예보급 오브젝트 부모 Transform
@@ -76,6 +80,13 @@ public class ShopManager : MonoBehaviour
 
         // 카테고리 초기화
         cateIdx = SHOP_CATE.NORMAL;
+
+        contentTfObjArr = new ScrollRect[] {
+            normalScrollRect,
+            fameSupplyScrollRect,
+            rebornSupplyScrollRect,
+            inAppScrollRect,
+        };
 
         normalBtnList = new List<Button>();
         fameSupplyBtnList = new List<FameSupplyBtn>();
@@ -189,7 +200,7 @@ public class ShopManager : MonoBehaviour
     {
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         this.cateIdx = (SHOP_CATE)cateIdx;
-        SetCatetory();
+        UpdateCatetory();
         // UpdateUI(0); // UI 초기화
     }
 
@@ -272,9 +283,6 @@ public class ShopManager : MonoBehaviour
     /// </summary>
     public void UpdateUI()
     {
-        // 카테고리
-        SetCatetory();
-
         // 현재 황금코인 수량 표시(일반상점)
         myGoldCntTxtArr[0].text = $"{DM._.DB.statusDB.GoldCoin}";
         // 현재 황금코인 수량 표시(인앱상점)
@@ -292,28 +300,26 @@ public class ShopManager : MonoBehaviour
 
         fameSupplyBtnList.ForEach(list => list.UpdateUI());
         rebornSupplyBtnList.ForEach(list => list.UpdateUI());
+
+        // 카테고리
+        UpdateCatetory();
     }
 
     /// <summary>
     /// 선택된 카테고리 및 컨텐츠 표시
     /// </summary>
-    private void SetCatetory()
+    public void UpdateCatetory()
     {
-        ScrollRect[] contentTfObjArr = new ScrollRect[] {
-            normalScrollRect,
-            fameSupplyScrollRect,
-            rebornSupplyScrollRect,
-            inAppScrollRect,
-        };
-
         for(int i = 0; i < cateTxtArr.Length; i++)
         {
             bool isSameCate = (int)cateIdx == i;
-
             cateTxtArr[i].color = isSameCate? Color.yellow : Color.white;
-
             contentTfObjArr[i].gameObject.SetActive(isSameCate);
         }
+
+        // 카테고리 🔴알림 최신화 (잠금해제에 버튼클릭 가능한 슬롯이 하나라도 있으면 표시)
+        fameSupplyAlertRedDotObj.SetActive(fameSupplyBtnList.Exists(list => !list.lockedPanel.activeSelf && list.button.interactable));
+        rebornSupplyAlertRedDotObj.SetActive(rebornSupplyBtnList.Exists(list => !list.lockedPanel.activeSelf && list.button.interactable));
     }
 
     /// <summary>

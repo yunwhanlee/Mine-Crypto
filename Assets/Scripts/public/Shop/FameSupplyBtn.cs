@@ -49,6 +49,12 @@ public class FameSupplyBtn : MonoBehaviour
 
         // 이미 수령했는지 확인 비활성화
         button.interactable = !IsAccept;
+
+        // 🔴알람표시
+        alertRedDot.SetActive(!lockedPanel.activeSelf && button.interactable);
+
+        // 카테고리UI 업데이트
+        GM._.spm.UpdateCatetory();
     }
 #endregion
 #region EVENT
@@ -65,7 +71,8 @@ public class FameSupplyBtn : MonoBehaviour
         );
 
         IsAccept = true;
-        button.interactable = false;
+
+        UpdateUI();
     }
 #endregion
 }
