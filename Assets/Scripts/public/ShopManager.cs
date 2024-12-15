@@ -201,15 +201,23 @@ public class ShopManager : MonoBehaviour
         rebornSupplyBtnList[29].Init(id: 29, unlockedGoldPoint: 300000,  RWD.SKILLPOTION, 10);   // 황금점수 300000 : 스킬포인트물약 10개
 
         //* 명예보급 오프라인 타이머경과 처리
-        // yield return new WaitForSeconds(1); // 저장된 추가획득량 데이터가 로드안되는 문제가 있어 1초 대기
+        yield return new WaitForSeconds(1); // 저장된 추가획득량 데이터가 로드안되는 문제가 있어 1초 대기
 
-        // // 어플시작시 이전까지 경과한시간
-        // int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
+        // 어플시작시 이전까지 경과한시간
+        int passedTime = DM._.DB.autoMiningDB.GetPassedSecData();
 
-        // // 경과시간 확인
-        // if(passedTime > )
+        Debug.Log($"ShopManager:: Offline passedTime({passedTime}) > fameSupplyTime({DM._.DB.shopDB.fameSupplyTime})");
 
-        // fameSupplyTime
+        // 경과시간이 남은시간보다 크다면, 모든 슬롯표시후 시간 초기화
+        if(passedTime > DM._.DB.shopDB.fameSupplyTime)
+        {
+            DM._.DB.shopDB.fameSupplyTime = 1;
+        }
+        // 경과시간이 작다면, 그 시간만큼 감소
+        else
+        {
+            DM._.DB.shopDB.fameSupplyTime -= passedTime;
+        }
     }
 
 
