@@ -45,7 +45,7 @@ public class FameSupplyBtn : MonoBehaviour
         // PC가 아닌경우에만 광고아이콘 표시
         adIcon.SetActive(!GM._.spm.isPC);
 
-        unlockLvTxt.text = $"명예 레벨{unlockedLv}";
+        unlockLvTxt.text = $"{LM._.Localize(LM.Fame)} Lv{unlockedLv}";
         itemTxt.text = $"<sprite name={rwdType}>\n{rwdCnt}";
 
         // 명예레벨 달성시 잠금표시 해제
