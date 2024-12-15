@@ -121,7 +121,7 @@ public class RebornManager : MonoBehaviour
         if(!GM._.spm.isPC)
         {
             // 추가 메세지 표시
-            msgTxt += $"\n<size=95%><color=green>( 광고시청시 30% 추가획득 : +<sprite name=LIGHTSTONE> {Mathf.RoundToInt(total * 1.3f) - total})</color></size>";
+            msgTxt += $"\n<size=95%><color=green>( {LM._.Localize(LM.AdsRebornBonusMsg)} : +<sprite name=LIGHTSTONE> {Mathf.RoundToInt(total * 1.3f) - total})</color></size>";
 
             // 광고버튼 이벤트클릭 구독
             GM._.ui.OnClickConfirmAdsBtnAction = () => {

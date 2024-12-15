@@ -191,6 +191,7 @@ public class LM : MonoBehaviour
         LockShopWarningMsg = "UI_lockShopWarningMsg", // 환생 1회 달성시, 이용가능합니다.
         UnlockShopTitleMsg = "UI_UnlockShopTitleMsg", // 황금고블린의 상점 개방!
         UnlockShopContentMsg = "UI_UnlockShopContentMsg", // 황금코인으로 다양한 아이템 구매와 추가보상 획득이 가능합니다!
+        AdsRebornBonusMsg = "UI_AdsRebornBonusMsg", // 광고시청시 30% 추가획득
 
         NONE = "";
 

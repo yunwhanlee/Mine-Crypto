@@ -1194,6 +1194,14 @@ MonoBehaviour:
       \uAD6C\uB9E4\uC640 \uCD94\uAC00\uBCF4\uC0C1 \uD68D\uB4DD\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4!"
     m_Metadata:
       m_Items: []
+  - m_Id: 20309346632306688
+    m_Localized: "\uAD11\uACE0\uBCF4\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20310350333448192
+    m_Localized: "\uAD11\uACE0\uC2DC\uCCAD\uC2DC 30% \uCD94\uAC00\uD68D\uB4DD"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1124,7 +1124,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20281436005437440
-    m_Key: New Entry
+    m_Key: UI_RebornSupply
     m_Metadata:
       m_Items: []
   - m_Id: 20281688087302144
@@ -1149,6 +1149,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 20285716368166912
     m_Key: UI_UnlockShopContentMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20309346632306688
+    m_Key: UI_WatchAds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20310350333448192
+    m_Key: UI_AdsRebornBonusMsg
     m_Metadata:
       m_Items: []
   m_Metadata:

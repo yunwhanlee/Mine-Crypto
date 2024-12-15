@@ -122,7 +122,7 @@ public class AlchemyManager : MonoBehaviour
         // 슬라이더 이동
         createAmountControlSlider.value = createCnt;
         // 텍스트 수량 표시
-        createAmountTxt.text = $"{createCnt * (cateIdx == ALCHEMY_CATE.EXCHANGE? 100 : 1)}개";
+        createAmountTxt.text = $"{createCnt * (cateIdx == ALCHEMY_CATE.EXCHANGE? 100 : 1)}";
         
         // 제작필요 아이템 개수 곱하여 수량 업데이트
         switch(cateIdx)
