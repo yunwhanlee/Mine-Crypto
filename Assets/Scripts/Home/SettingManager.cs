@@ -30,7 +30,7 @@ public class SettingManager : MonoBehaviour
 
     IEnumerator Start()
     {
-        testMode.SetActive(false);
+        // testMode.SetActive(false);
 
         // 데이터가 먼저 로드될때까지 대기
         yield return new WaitUntil(() => DM._.DB != null);
@@ -46,16 +46,16 @@ public class SettingManager : MonoBehaviour
     /// </summary>
     public void OnClickTestModeBtn()
     {
-        testModeCnt++;
+        // testModeCnt++;
 
-        // TEST 모드
-        if(!testMode.activeSelf && testModeCnt >= 10) {
-            testMode.SetActive(true);
-        }
-        else if(testMode.activeSelf) {
-            testModeCnt = 0;
-            testMode.SetActive(false);
-        }
+        // // TEST 모드
+        // if(!testMode.activeSelf && testModeCnt >= 10) {
+        //     testMode.SetActive(true);
+        // }
+        // else if(testMode.activeSelf) {
+        //     testModeCnt = 0;
+        //     testMode.SetActive(false);
+        // }
     }
 
     public void OnClickSelectLanguage()

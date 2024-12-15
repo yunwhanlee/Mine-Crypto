@@ -221,31 +221,31 @@ public class ShopManager : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        //! TEST 모드변경
-        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.X)) {
-            GM._.spm.isPC = !GM._.spm.isPC;
-            GM._.ui.ShowNoticeMsgPopUp("모드변경(열린창을 닫아주세요.)");
+    // void Update()
+    // {
+    //     //! TEST 모드변경
+    //     if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.X)) {
+    //         GM._.spm.isPC = !GM._.spm.isPC;
+    //         GM._.ui.ShowNoticeMsgPopUp("모드변경(열린창을 닫아주세요.)");
 
-            // PC모드가 아닐경우에만 카테고리 황금상점(인앱창) 표시
-            cateInAppTab.SetActive(!isPC);
+    //         // PC모드가 아닐경우에만 카테고리 황금상점(인앱창) 표시
+    //         cateInAppTab.SetActive(!isPC);
 
-            // PC모드이거나 광고제거를 구입했다면
-            if(isPC || DM._.DB.shopDB.isRemoveAds)
-            {   // 비표시
-                RemoveAdsObj.SetActive(false);
-            }
-            else
-            {   // 표시
-                RemoveAdsObj.SetActive(true);
-                normalBtnList[0].onClick.RemoveAllListeners();
-                normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn(RWD.REMOVE_ADS, 1, goldPrice: 1000)); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
-            }
+    //         // PC모드이거나 광고제거를 구입했다면
+    //         if(isPC || DM._.DB.shopDB.isRemoveAds)
+    //         {   // 비표시
+    //             RemoveAdsObj.SetActive(false);
+    //         }
+    //         else
+    //         {   // 표시
+    //             RemoveAdsObj.SetActive(true);
+    //             normalBtnList[0].onClick.RemoveAllListeners();
+    //             normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn(RWD.REMOVE_ADS, 1, goldPrice: 1000)); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
+    //         }
 
-            Version._.SetVersion();
-        }
-    }
+    //         Version._.SetVersion();
+    //     }
+    // }
 
 #region EVENT
     /// <summary>

@@ -36,20 +36,20 @@ public class OreProficiencyManager : MonoBehaviour
         UpdateTotalAtkPerDataAndUI();
     }
 
-    void Update()
-    {
-        //! TEST EXP 증가
-        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("TEST 숙련도 및 미션 EXP 증가");
-            for(int i = 0; i < proficiencyArr.Length; i++)
-                proficiencyArr[i].Exp += 5000;
+    // void Update()
+    // {
+    //     //! TEST EXP 증가
+    //     if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.C))
+    //     {
+    //         Debug.Log("TEST 숙련도 및 미션 EXP 증가");
+    //         for(int i = 0; i < proficiencyArr.Length; i++)
+    //             proficiencyArr[i].Exp += 5000;
 
-            GM._.ui.ShowNoticeMsgPopUp("(테스트모드) 모든 명예와 숙련도 <color=green>EXP</color> 증가");
+    //         GM._.ui.ShowNoticeMsgPopUp("(테스트모드) 모든 명예와 숙련도 <color=green>EXP</color> 증가");
 
-            UpdateAll();
-        }
-    }
+    //         UpdateAll();
+    //     }
+    // }
 
 #region EVENT
     public void OnClickAcceptBtn(int idx)

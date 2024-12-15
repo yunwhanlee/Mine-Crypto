@@ -72,20 +72,20 @@ public class FameManager : MonoBehaviour
         StartCoroutine(CoUpdateAllForSecond());
     }
 
-    void Update()
-    {
-        //! TEST 미션 EXP 증가
-        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("TEST 미션 EXP 증가");
-            missionArr[(int)MISSION.MINING_ORE_CNT].Exp += 50;
-            missionArr[(int)MISSION.MINING_TIME].Exp += 50;
-            missionArr[(int)MISSION.UPGRADE_CNT].Exp += 10;
-            missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp += 100;
-            missionArr[(int)MISSION.MINING_CHEST_CNT].Exp += 10;
-            missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp += 10;
-        }
-    }
+    // void Update()
+    // {
+    //     //! TEST 미션 EXP 증가
+    //     if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.C))
+    //     {
+    //         Debug.Log("TEST 미션 EXP 증가");
+    //         missionArr[(int)MISSION.MINING_ORE_CNT].Exp += 50;
+    //         missionArr[(int)MISSION.MINING_TIME].Exp += 50;
+    //         missionArr[(int)MISSION.UPGRADE_CNT].Exp += 10;
+    //         missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp += 100;
+    //         missionArr[(int)MISSION.MINING_CHEST_CNT].Exp += 10;
+    //         missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp += 10;
+    //     }
+    // }
 
 #region EVENT
     /// <summary>

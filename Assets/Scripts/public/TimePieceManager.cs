@@ -91,18 +91,18 @@ public class TimePieceManager : MonoBehaviour
         UpdateToggleBtnUI(IsOnAutoActive);
     }
 
-    void Update() {
-        //! TEST 자동채굴 대기시간 5초 <-> 1분
-        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.B))
-        {
-            if(WAIT_TIME == 60)
-                WAIT_TIME = 5;
-            else
-                WAIT_TIME = 60;
+    // void Update() {
+    //     //! TEST 자동채굴 대기시간 5초 <-> 1분
+    //     if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.B))
+    //     {
+    //         if(WAIT_TIME == 60)
+    //             WAIT_TIME = 5;
+    //         else
+    //             WAIT_TIME = 60;
 
-            time = WAIT_TIME;
-        }
-    }
+    //         time = WAIT_TIME;
+    //     }
+    // }
 
 #region EVENT
     /// <summary>

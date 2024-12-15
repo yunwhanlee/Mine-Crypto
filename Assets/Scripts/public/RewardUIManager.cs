@@ -27,62 +27,62 @@ public class RewardUIManager : MonoBehaviour
         InitDataAndUI();
     }
 
-    void Update() {
-        //! TEST 보상 테스트
-        if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.V)) {
-            // 보상획득 (결과팝업 표시)
-            if(rwdCnt % 2 == 0) // 짝수
-            {
-                ShowReward (
-                    new Dictionary<RWD, int>
-                    {
-                        { RWD.ORE1, 50000 },
-                        { RWD.ORE2, 50000 },
-                        { RWD.ORE3, 50000 },
-                        { RWD.ORE4, 50000 },
-                        { RWD.CRISTAL, 10000 },
-                        { RWD.ORE_CHEST, 10 },
-                        { RWD.MAT1, 100 },
-                        { RWD.MAT2, 100 },
-                        { RWD.MAT3, 100 },
-                        { RWD.MAT4, 100 },
-                        { RWD.MAT5, 100 },
-                        { RWD.MAT6, 100 },
-                        { RWD.MAT7, 100 },
-                        { RWD.MAT8, 100 },
-                        { RWD.SKILLPOTION, 50 },
-                        { RWD.TIMEPOTION, 50 },
-                        { RWD.GOLDCOIN, 50 },
-                    }
-                );
-                rwdCnt++;
-            }
-            else // 홀수
-            {
-                ShowReward (
-                    new Dictionary<RWD, int>
-                    {
-                        { RWD.ORE5, 50000 },
-                        { RWD.ORE6, 50000 },
-                        { RWD.ORE7, 50000 },
-                        { RWD.ORE8, 50000 },
-                        { RWD.CRISTAL, 50000 },
-                        { RWD.TREASURE_CHEST, 100 },
-                        { RWD.MUSH1, 200 },
-                        { RWD.MUSH2, 200 },
-                        { RWD.MUSH3, 200 },
-                        { RWD.MUSH4, 200 },
-                        { RWD.MUSH5, 200 },
-                        { RWD.MUSH6, 200 },
-                        { RWD.MUSH7, 200 },
-                        { RWD.MUSH8, 200 },
-                        { RWD.LIGHTSTONE, 10000 },
-                    }
-                );
-                rwdCnt++;
-            }
-        }
-    }
+    // void Update() {
+    //     //! TEST 보상 테스트
+    //     if(GM._.stm.testMode.activeSelf && Input.GetKeyDown(KeyCode.V)) {
+    //         // 보상획득 (결과팝업 표시)
+    //         if(rwdCnt % 2 == 0) // 짝수
+    //         {
+    //             ShowReward (
+    //                 new Dictionary<RWD, int>
+    //                 {
+    //                     { RWD.ORE1, 50000 },
+    //                     { RWD.ORE2, 50000 },
+    //                     { RWD.ORE3, 50000 },
+    //                     { RWD.ORE4, 50000 },
+    //                     { RWD.CRISTAL, 10000 },
+    //                     { RWD.ORE_CHEST, 10 },
+    //                     { RWD.MAT1, 100 },
+    //                     { RWD.MAT2, 100 },
+    //                     { RWD.MAT3, 100 },
+    //                     { RWD.MAT4, 100 },
+    //                     { RWD.MAT5, 100 },
+    //                     { RWD.MAT6, 100 },
+    //                     { RWD.MAT7, 100 },
+    //                     { RWD.MAT8, 100 },
+    //                     { RWD.SKILLPOTION, 50 },
+    //                     { RWD.TIMEPOTION, 50 },
+    //                     { RWD.GOLDCOIN, 50 },
+    //                 }
+    //             );
+    //             rwdCnt++;
+    //         }
+    //         else // 홀수
+    //         {
+    //             ShowReward (
+    //                 new Dictionary<RWD, int>
+    //                 {
+    //                     { RWD.ORE5, 50000 },
+    //                     { RWD.ORE6, 50000 },
+    //                     { RWD.ORE7, 50000 },
+    //                     { RWD.ORE8, 50000 },
+    //                     { RWD.CRISTAL, 50000 },
+    //                     { RWD.TREASURE_CHEST, 100 },
+    //                     { RWD.MUSH1, 200 },
+    //                     { RWD.MUSH2, 200 },
+    //                     { RWD.MUSH3, 200 },
+    //                     { RWD.MUSH4, 200 },
+    //                     { RWD.MUSH5, 200 },
+    //                     { RWD.MUSH6, 200 },
+    //                     { RWD.MUSH7, 200 },
+    //                     { RWD.MUSH8, 200 },
+    //                     { RWD.LIGHTSTONE, 10000 },
+    //                 }
+    //             );
+    //             rwdCnt++;
+    //         }
+    //     }
+    // }
 
 #region EVENT
     /// <summary>
