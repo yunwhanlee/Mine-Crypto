@@ -1111,6 +1111,46 @@ MonoBehaviour:
     m_Key: UI_Caution
     m_Metadata:
       m_Items: []
+  - m_Id: 20280032750702592
+    m_Key: UI_ShopCharaSpeach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20280822680752128
+    m_Key: UI_NormalShop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20281233248587776
+    m_Key: UI_FameSupply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20281436005437440
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20281688087302144
+    m_Key: UI_GoldShop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20282230196899840
+    m_Key: UI_RemoveAds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20283729501196288
+    m_Key: UI_UsedGoldCoinPoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20284107353460736
+    m_Key: UI_lockShopWarningMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20285703764283392
+    m_Key: UI_UnlockShopTitleMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20285716368166912
+    m_Key: UI_UnlockShopContentMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

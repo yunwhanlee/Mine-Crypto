@@ -120,6 +120,7 @@ public class EmployManager : MonoBehaviour
     public void OnClickPlayBtn()
     {
         charaGachaPopUp.SetActive(false);
+        GM._.spm.shopMenuIconBtnObj.SetActive(true);
 
         // 스테이지 시작
         GM._.stgm.StartStage();

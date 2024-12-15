@@ -207,7 +207,9 @@ public class PlayManager : MonoBehaviour
             GM._.tpm.isActive = false;
             GM._.tpm.ActiveProcess(GM._.tpm.isActive);
         }
-            
+
+        // 상점메뉴아이콘 버튼 비표시
+        GM._.spm.shopMenuIconBtnObj.SetActive(false);
     }
 #endregion
 }

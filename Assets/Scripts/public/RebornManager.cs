@@ -225,8 +225,8 @@ public class RebornManager : MonoBehaviour
             SoundManager._.PlaySfx(SoundManager.SFX.UnlockSFX);
             GM._.ui.ShowUnlockContentPopUp (
                 GM._.spm.shopUnlockIconSpr,
-                "황금고블린의 상점 개방!",
-                "황금코인으로 다양한 아이템 구매와 추가보상 획득이 가능합니다!"
+                LM._.Localize(LM.UnlockShopTitleMsg),
+                LM._.Localize(LM.UnlockShopContentMsg)
             );
         }
     }

@@ -1160,6 +1160,47 @@ MonoBehaviour:
     m_Localized: Caution
     m_Metadata:
       m_Items: []
+  - m_Id: 20280032750702592
+    m_Localized: If you have gold coins, would you trade with me?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20280822680752128
+    m_Localized: Normal Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20281233248587776
+    m_Localized: Fame Supply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20281436005437440
+    m_Localized: Reborn Supply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20281688087302144
+    m_Localized: Gold Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20282230196899840
+    m_Localized: Remove Ads
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20283729501196288
+    m_Localized: Used GoldCoin Point
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20284107353460736
+    m_Localized: If you achieve one reborn, you can use it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20285703764283392
+    m_Localized: Golden Goblin's Shop Open!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20285716368166912
+    m_Localized: You can purchase various items and earn additional rewards with
+      golden coins!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

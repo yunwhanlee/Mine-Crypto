@@ -279,7 +279,7 @@ public class StatusDB
                 timePotion += val;
                 break;
             case INV.GOLDCOIN:
-                timePotion += val;
+                goldCoin += val;
 
                 // 골드코인을 사용시 황금포인트 추가
                 if(val < 0)

@@ -27,6 +27,7 @@ public class ShopManager : MonoBehaviour
     public Animator shopCharaAnim;              // 상점 캐릭터 애니메이션
     public Sprite shopUnlockIconSpr;            // 상점 잠금해제 아이콘
 
+    public GameObject shopMenuIconBtnObj;       // 상점메뉴아이콘 버튼 오브젝트
     public GameObject lockCharaFrame;           // 잠금캐릭프레임 오브젝트
 
     public FameSupplyBtn fameSupplyBtnPref;     // 명예보급 오브젝트 프리팹
@@ -36,11 +37,11 @@ public class ShopManager : MonoBehaviour
     public GameObject fameSupplyAlertRedDotObj;     // 명예보급 🔴알람
     public GameObject rebornSupplyAlertRedDotObj;   // 환생보급 🔴알람
 
-    public ScrollRect normalScrollRect;       // 일반상점 스크롤
-    public ScrollRect fameSupplyScrollRect;   // 명예보급 스크롤
-    public ScrollRect rebornSupplyScrollRect; // 환생보급 스크롤
-    public ScrollRect inAppScrollRect;        // (인앱샵) 황금상점 스크롤
-    private ScrollRect[] contentTfObjArr;     // 스크롤 카테고리별 스크롤 배열
+    public GameObject normalTfObj;       // 일반상점 스크롤
+    public GameObject fameSupplyTfObj;   // 명예보급 스크롤
+    public GameObject rebornSupplyTfObj;      // 환생보급 오브젝트
+    public GameObject inAppTfObj;        // (인앱샵) 황금상점 스크롤
+    private GameObject[] contentTfObjArr;     // 스크롤 카테고리별 스크롤 배열
 
     public Transform normalContentTf;       // 일반상점 오브젝트 부모 Transform
     public Transform fameSupplyContentTf;   // 명예보급 오브젝트 부모 Transform
@@ -85,6 +86,9 @@ public class ShopManager : MonoBehaviour
         // PC모드가 아닐경우에만 카테고리 황금상점(인앱창) 표시
         cateInAppTab.SetActive(!isPC);
 
+        // 홈화면 상점메뉴아이콘 비표시
+        shopMenuIconBtnObj.SetActive(false);
+
         // 홈화면 상점캐릭터 잠금프레임 표시
         lockCharaFrame.SetActive(!(DM._.DB.rebornCnt > 0));
 
@@ -97,11 +101,11 @@ public class ShopManager : MonoBehaviour
         // 카테고리 초기화
         cateIdx = SHOP_CATE.NORMAL;
 
-        contentTfObjArr = new ScrollRect[] {
-            normalScrollRect,
-            fameSupplyScrollRect,
-            rebornSupplyScrollRect,
-            inAppScrollRect,
+        contentTfObjArr = new GameObject[] {
+            normalTfObj,
+            fameSupplyTfObj,
+            rebornSupplyTfObj,
+            inAppTfObj,
         };
 
         normalBtnList = new List<Button>();
@@ -208,6 +212,7 @@ public class ShopManager : MonoBehaviour
         // fameSupplyTime
     }
 
+
     void Update()
     {
         //! TEST 모드변경
@@ -225,6 +230,7 @@ public class ShopManager : MonoBehaviour
             }
             else
             {   // 표시
+                RemoveAdsObj.SetActive(true);
                 normalBtnList[0].onClick.RemoveAllListeners();
                 normalBtnList[0].onClick.AddListener(() => OnClickNormalItemBtn(RWD.REMOVE_ADS, 1, goldPrice: 1000)); // 광고제거 : 황금덩어리 1000개 (1회구매가능) [pc버전에는 이부분 비활성]
             }
@@ -317,7 +323,7 @@ public class ShopManager : MonoBehaviour
     {
         if(DM._.DB.rebornCnt < 1)
         {
-            GM._.ui.ShowWarningMsgPopUp("환생 1회 달성시, 사용가능합니다.");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.LockShopWarningMsg));
             return;
         }
 
@@ -340,11 +346,11 @@ public class ShopManager : MonoBehaviour
         fameLvTxt.text = $"{LM._.Localize(LM.Fame)} Lv{GM._.fm.FameLv}";
         fameExpSlider.value = GM._.fm.GetFameExpSliderVal();
         fameExpTxt.text = GM._.fm.GetFameExpSliderStr();
-        fameExtraValTxt.text = $"{LM._.Localize(LM.ExtraFame)} +{GM._.sttm.IncFame}";
+        fameExtraValTxt.text = $"({LM._.Localize(LM.ExtraFame)} +{GM._.sttm.IncFame})";
         GM._.fm.UpdateFameMapExp(); // 경험치 달성시 레벨업
 
         // 사용한 골드포인트 표시(환생상점)
-        GoldPointTxt.text = $"사용한 골드 포인트 : {DM._.DB.statusDB.GoldPoint}";
+        GoldPointTxt.text = $"{LM._.Localize(LM.UsedGoldCoinPoint)} : {DM._.DB.statusDB.GoldPoint}";
 
         fameSupplyBtnList.ForEach(list => list.UpdateUI());
         rebornSupplyBtnList.ForEach(list => list.UpdateUI());
