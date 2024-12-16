@@ -179,7 +179,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenu_RankBtn() {
-        GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+        if(GM._.spm.isPC)
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+        else
+        {
+            // 구글 리더보드
+        }
     }
 
     public void OnClickShopBtn() {
