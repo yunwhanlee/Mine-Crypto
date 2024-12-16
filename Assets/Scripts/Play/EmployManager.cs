@@ -120,7 +120,10 @@ public class EmployManager : MonoBehaviour
     public void OnClickPlayBtn()
     {
         charaGachaPopUp.SetActive(false);
-        GM._.spm.shopMenuIconBtnObj.SetActive(true);
+
+        // 환생 1회이상 달성시, 상점아이콘버튼 표시
+        if(DM._.DB.rebornCnt > 0)
+            GM._.spm.shopMenuIconBtnObj.SetActive(true);
 
         // 스테이지 시작
         GM._.stgm.StartStage();
