@@ -22,6 +22,7 @@ public class TimePieceManager : MonoBehaviour
 
     //* ELEMENT
     public GameObject windowObj;
+    public GameObject alertRedDotObj;
     public GameObject ingameActiveBtnObj;
     public Slider iconStorageSlider;
     public TMP_Text myLightStoneTxt;
@@ -348,7 +349,8 @@ public class TimePieceManager : MonoBehaviour
             iconStorageSlider.value = 0;
         }
 
-        
+        // 🔴알람 (조건1: 시간의조각 최대치이상 보유시 + 조건2:시간의조각이 미사용중일때)
+        alertRedDotObj.SetActive(curStorage >= MaxStorage && !isActive);
     }
 
     public IEnumerator CoActiveTimer()
