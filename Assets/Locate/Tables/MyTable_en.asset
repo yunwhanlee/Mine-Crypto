@@ -1209,6 +1209,16 @@ MonoBehaviour:
     m_Localized: Watch Ads with 30% bonus
     m_Metadata:
       m_Items: []
+  - m_Id: 20806895889780736
+    m_Localized: Best Total Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20809539362459648
+    m_Localized: 'Challenge
+
+      Best Floor'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

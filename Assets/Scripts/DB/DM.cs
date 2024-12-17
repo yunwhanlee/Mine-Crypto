@@ -11,6 +11,8 @@ using UnityEngine;
 public class DB {
     public int languageIdx;                 // 언어설정 인덱스
     public int rebornCnt;                   // 환생횟수
+    public int bestTotalFloor;              // 최대층수 총합기록
+    public int challengeBestFloor;          // 시련광산 최대층수
     public float bgmVolume;                 // 배경음 볼륨
     public float sfxVolume;                 // 효과음 볼륨
 
@@ -33,6 +35,8 @@ public class DB {
     {
         languageIdx = -1;
         rebornCnt = 0;
+        bestTotalFloor = 0;
+        challengeBestFloor = 0;
         bgmVolume = 0.5f;
         sfxVolume = 0.4f;
         statusDB = new StatusDB();

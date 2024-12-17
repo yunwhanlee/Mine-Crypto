@@ -12,6 +12,10 @@ public class StatusManager : MonoBehaviour
     //* Element
     public GameObject windowObj;
     public TMP_Text fameLvTxt;
+
+    public TMP_Text bestFloorTotalFloorTxt; // 일반광산 최대총합층수 기록
+    public TMP_Text challengeBestFloorTxt;  // 시련의광산 최대층수 기록
+
     public TMP_Text[] oreBestFloorTxtArr;
     public TMP_Text[] myStatusTxtArr; // [0]: LeftArea, [1]: RightArea
 
@@ -174,6 +178,9 @@ public class StatusManager : MonoBehaviour
     /// </summary>
     public void UpdateMyStatus()
     {
+        bestFloorTotalFloorTxt.text = $": {DM._.DB.bestTotalFloor}";
+        challengeBestFloorTxt.text = $": {DM._.DB.challengeBestFloor}";
+
         SetOreBestFloorUI();
 
         // 명예레벨 표시

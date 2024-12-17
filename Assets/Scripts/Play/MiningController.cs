@@ -293,7 +293,6 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                                 GM._.gameState = GameState.TIMEOVER;
                                 GM._.pm.StopCorTimer();
                                 GM._.pm.Timeover();
-                                GM._.clm.BestFloor++;
                             }
                             //* 일반광산 다음층으로
                             else

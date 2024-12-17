@@ -144,12 +144,22 @@ public class PlayManager : MonoBehaviour
         // 스킬발동 종료
         GM._.skc.StopActiveSkill();
 
-        // 광산 최고층 기록
+        Debug.Log($"Timeover():: floor= {GM._.stgm.Floor}, bestFloor= {bestFloorArr[stageType]}");
+
+        // 일반광산 최고층 기록
         if(GM._.stgm.Floor > bestFloorArr[stageType])
         {
             bestFloorArr[stageType] = GM._.stgm.Floor;
             GM._.rwm.newBestFloorMsgTxt.text = $"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)} {LM._.Localize(LM.BestRecord)}!"; // <제 {stageType+1}광산> 
             GM._.rwm.newBestFloorMsgTxt.gameObject.SetActive(true);
+
+            int totalFloor = 0; 
+            for(int i = 0; i < bestFloorArr.Length - 1; i++)
+                totalFloor += bestFloorArr[i];
+
+            // 최대층수총합 기록갱신
+            if(DM._.DB.bestTotalFloor < totalFloor)
+                DM._.DB.bestTotalFloor = totalFloor;
         }
 
         //* 게임포기 안했을시 추가 처리
@@ -166,6 +176,14 @@ public class PlayManager : MonoBehaviour
                 // 돌파성공시
                 else
                 {
+                    // 시련의광산 기록갱신
+                    if(DM._.DB.challengeBestFloor < GM._.clm.BestFloor)
+                        DM._.DB.challengeBestFloor = GM._.clm.BestFloor;
+
+                    GM._.clm.BestFloor++;
+                    GM._.rwm.newBestFloorMsgTxt.text = $"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)} {LM._.Localize(LM.BestRecord)}!"; // <제 {stageType+1}광산> 
+                    GM._.rwm.newBestFloorMsgTxt.gameObject.SetActive(true);
+
                     GM._.pm.timerTxt.text = "CLEAR!";
                     GM._.fm.missionArr[(int)MISSION.CHALLENGE_CLEAR_CNT].Exp++; // 광산 클리어 미션
                     // 타임포션 1개 획득

@@ -169,6 +169,8 @@ public class RebornManager : MonoBehaviour
         //* 데이터 초기화전 유지될 데이터 사전준비
         var prevlanguageIdx = db.languageIdx; // 언어
         var prevRebornCnt = db.rebornCnt; // 환생횟수
+        var prevBestTotalFloor = db.bestTotalFloor; // 최대층수 총합기록
+        var prevChallengeBestFloor = db.challengeBestFloor; // 시련광산 최대층수
         var prevBgmVolume = GM._.stm.bgmSlider.value; // 배경음
         var prevSfxVolume = GM._.stm.sfxSlider.value; // 효과음
         var prevFameLv = db.statusDB.FameLv; // 명예레벨
@@ -193,6 +195,8 @@ public class RebornManager : MonoBehaviour
         //* 환생이후도 유지될 데이터 반영
         db.languageIdx = prevlanguageIdx;
         db.rebornCnt = prevRebornCnt;
+        db.bestTotalFloor = prevBestTotalFloor;
+        db.challengeBestFloor = prevChallengeBestFloor;
         db.bgmVolume = prevBgmVolume;
         db.sfxVolume = prevSfxVolume;
         db.statusDB.FameLv = prevFameLv;            // 명예레벨
