@@ -118,7 +118,7 @@ public class RebornManager : MonoBehaviour
         string msgTxt = $"{content}\n{reward}";
 
         //* PC모드가 아닐경우에만 광고시청 추가처리
-        if(!GM._.spm.isPC)
+        if(!DM._.isPC)
         {
             // 추가 메세지 표시
             msgTxt += $"\n<size=95%><color=green>( {LM._.Localize(LM.AdsRebornBonusMsg)} : +<sprite name=LIGHTSTONE> {Mathf.RoundToInt(total * 1.3f) - total})</color></size>";
@@ -134,7 +134,7 @@ public class RebornManager : MonoBehaviour
             };
         }
 
-        GM._.ui.ShowConfirmPopUp(title, msgTxt, isActiveAdsBtn: !GM._.spm.isPC);
+        GM._.ui.ShowConfirmPopUp(title, msgTxt, isActiveAdsBtn: !DM._.isPC);
         GM._.ui.OnClickConfirmBtnAction = () => {
             if(GM._.gameState != GameState.HOME)
             {   // 플레이중에는 불가능합니다 메세지 표시

@@ -13,7 +13,7 @@ public class ShopManager : MonoBehaviour
     // 명예보급 리셋 대기시간(초)
     public static int FAME_SUPPLY_RESET_TIME_SEC
     {   // PC이면 5분, 모바일이면 10분
-        get =>  60 * (GM._.spm.isPC? 5 : 10);
+        get =>  60 * (DM._.isPC? 5 : 10);
     }
     // 인앱결제 획득 황금코인
     private const int GOLDCOIN_TINY_CNT = 100,             
@@ -21,8 +21,6 @@ public class ShopManager : MonoBehaviour
         GOLDCOIN_MEDIUM_CNT = 1100,
         GOLDCOIN_LARGE_CNT = 3500;
 
-    [Header("PC모드")]
-    public bool isPC;                           // PC모드인지 아닌지 체크트리거
     [Space(10)]
     public GameObject windowObj;
     public DOTweenAnimation DOTAnim;
@@ -87,7 +85,7 @@ public class ShopManager : MonoBehaviour
         yield return new WaitUntil(() => DM._.DB != null);
 
         // PC모드가 아닐경우에만 카테고리 황금상점(인앱창) 표시
-        cateInAppTab.SetActive(!isPC);
+        cateInAppTab.SetActive(!DM._.isPC);
 
         // 홈화면 상점메뉴아이콘 비표시
         shopMenuIconBtnObj.SetActive(false);
@@ -135,7 +133,7 @@ public class ShopManager : MonoBehaviour
 
         //* 일반상점 아이템버튼 초기화
         // PC모드이거나 광고제거를 구입했다면
-        if(isPC || DM._.DB.shopDB.isRemoveAds)
+        if(DM._.isPC || DM._.DB.shopDB.isRemoveAds)
         {   // 비표시
             RemoveAdsObj.SetActive(false);
         }

@@ -77,6 +77,8 @@ public class DM : MonoBehaviour {
     public static DM _ {get; private set;}
     const string DB_KEY = "DB";
     public const string PASSEDTIME_KEY = "PASSEDTIME";
+    public bool IsDebugMode; // 디버그로그 체크트리거
+    public bool isPC; // PC모드인지 아닌지 체크트리거
 
     //* ★데이터베이스
     [field: SerializeField] public DB DB {get; private set;}

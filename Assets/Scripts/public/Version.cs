@@ -21,6 +21,6 @@ public class Version : MonoBehaviour
 
     public void SetVersion()
     {
-        versionTxt.text = $"VER. {MAJOR}.{MINOR}.{REVISION}({(GM._.spm.isPC? "PC" : "MB")})";
+        versionTxt.text = $"VER. {MAJOR}.{MINOR}.{REVISION}({(DM._.isPC? "PC" : "MB")})";
     }
 }

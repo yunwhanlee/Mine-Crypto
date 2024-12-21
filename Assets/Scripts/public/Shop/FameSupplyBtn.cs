@@ -43,7 +43,7 @@ public class FameSupplyBtn : MonoBehaviour
     public void UpdateUI()
     {
         // PC가 아닌경우에만 광고아이콘 표시
-        adIcon.SetActive(!GM._.spm.isPC);
+        adIcon.SetActive(!DM._.isPC);
 
         unlockLvTxt.text = $"{LM._.Localize(LM.Fame)} Lv{unlockedLv}";
         itemTxt.text = $"<sprite name={rwdType}>\n{rwdCnt}";

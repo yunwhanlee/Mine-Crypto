@@ -19,7 +19,7 @@ public class ShopDB
     public void Init()
     {
         isRemoveAds = false;
-        fameSupplyTime = ShopManager.FAME_SUPPLY_RESET_TIME_SEC;
+        fameSupplyTime = DM._.isPC? 5 : 10;
 
         InitIsAcceptFameSupplyArr();
         InitIsAcceptRebornSupplyArr();

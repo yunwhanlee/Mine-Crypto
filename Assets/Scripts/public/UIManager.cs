@@ -179,7 +179,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnClickMenu_RankBtn() {
-        if(GM._.spm.isPC)
+        if(DM._.isPC)
             GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
         else
         {
