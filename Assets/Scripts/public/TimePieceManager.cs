@@ -121,6 +121,10 @@ public class TimePieceManager : MonoBehaviour
     /// </summary>
     public void OnClickActiveBtn()
     {
+        // 홈인경우에는 시간의결정 활성화 불가능
+        if(GM._.gameState == GameState.HOME)
+            return;
+
         // ACTIVE -> STOP
         if(isActive)
         {
