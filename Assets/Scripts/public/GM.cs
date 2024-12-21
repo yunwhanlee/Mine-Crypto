@@ -109,9 +109,13 @@ public class GM : MonoBehaviour
 
         SoundManager._.PlayBgm(SoundManager.BGM.Home);
         StartCoroutine(CoTimerStart());
+        StartCoroutine(CoRealTimeTimerStart());
     }
 
 #region FUNC
+    /// <summary>
+    /// 게임속도 적용 타이머
+    /// </summary>
     private IEnumerator CoTimerStart()
     {
         // 데이터가 다 로드 될때까지 1초 대기
@@ -129,10 +133,25 @@ public class GM : MonoBehaviour
             // 시간의조각 자동회복
             tpm.SetTimer();
 
+            yield return Util.TIME1;
+        }
+    }
+
+    /// <summary>
+    /// 현실타이머 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CoRealTimeTimerStart()
+    {
+        // 데이터가 다 로드 될때까지 1초 대기
+        yield return Util.RT_TIME1;
+
+        while(true)
+        {
             // 상점 명예보급 타이머
             spm.SetFameSupplyTimer();
 
-            yield return Util.TIME1;
+            yield return Util.RT_TIME1;
         }
     }
 #endregion

@@ -128,6 +128,7 @@ public class SkillController : MonoBehaviour
         int end = (int)SkillCate.Skip + 1;
 
         randSkillCate = (SkillCate)Random.Range(start, end);
+        // randSkillCate = SkillCate.Attack; //! TEST
 
         switch(randSkillCate)
         {

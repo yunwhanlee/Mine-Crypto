@@ -20,7 +20,7 @@ public class Util : MonoBehaviour
     public static WaitForSeconds TIME30 = new WaitForSeconds(30);
     public static WaitForSeconds TIME60 = new WaitForSeconds(60);
 
-    public static WaitForSecondsRealtime RT_TIME0_1 = new WaitForSecondsRealtime(0.1f);
+    public static WaitForSecondsRealtime RT_TIME1 = new WaitForSecondsRealtime(1f);
 
     public static string ConvertTimeFormat(int timeSec) {
         int sec = timeSec % 60;

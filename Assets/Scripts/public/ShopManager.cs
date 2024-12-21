@@ -11,7 +11,10 @@ using static Enum;
 public class ShopManager : MonoBehaviour
 {
     // 명예보급 리셋 대기시간(초)
-    public const int FAME_SUPPLY_RESET_TIME_SEC = 60 * 5;  
+    public static int FAME_SUPPLY_RESET_TIME_SEC
+    {   // PC이면 5분, 모바일이면 10분
+        get =>  60 * (GM._.spm.isPC? 5 : 10);
+    }
     // 인앱결제 획득 황금코인
     private const int GOLDCOIN_TINY_CNT = 100,             
         GOLDCOIN_SMALL_CNT = 500,
@@ -153,7 +156,7 @@ public class ShopManager : MonoBehaviour
 
         // 명예보급 데이터 및 UI 초기화
         fameSupplyBtnList[0].Init(id: 0, unlockedLv: 2, RWD.GOLDCOIN, 2);               // 명예레벨 2 : 황금덩어리 2개
-        fameSupplyBtnList[1].Init(id: 1, unlockedLv: 4, RWD.TIMEPOTION, 5);             // 명예레벨 4 : 시간의포션 5개
+        fameSupplyBtnList[1].Init(id: 1, unlockedLv: 4, RWD.TIMEPOTION, 2);             // 명예레벨 4 : 시간의포션 2개
         fameSupplyBtnList[2].Init(id: 2, unlockedLv: 6, RWD.TREASURE_CHEST, 10);        // 명예레벨 6 : 보물상자 10개
         fameSupplyBtnList[3].Init(id: 3, unlockedLv: 8, RWD.SKILLPOTION, 1);            // 명예레벨 8 : 스킬포인트물약 1개
         fameSupplyBtnList[4].Init(id: 4, unlockedLv: 10, RWD.CRISTAL, 500);             // 명예레벨 10 : 크리스탈 500개
@@ -310,7 +313,7 @@ public class ShopManager : MonoBehaviour
         //TODO 광고시청후
 
         // 구매 완료
-        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+        SoundManager._.PlaySfx(SoundManager.SFX.SummonMythSFX);
         GM._.rwm.ShowReward(
             new Dictionary<RWD, int> {
                 {RWD.GOLDCOIN, rwdCntArr[idx]},

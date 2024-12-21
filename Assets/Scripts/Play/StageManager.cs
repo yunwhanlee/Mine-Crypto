@@ -310,6 +310,8 @@ public class StageManager : MonoBehaviour {
             {
                 // 낮은확률 광석 -> 보물상자로 랜덤변경
                 int randPer = Random.Range(0, 1000);
+                // int randPer = Random.Range(0, 1); //! TEST
+
                 int spawnPer = treasureChestSpawnDefPer + Mathf.RoundToInt(GM._.sttm.ExtraChestSpawnPer * 1000);
                 obj = (randPer <= spawnPer)? treasureChestPref : orePrefs[(int)oreType];
                 Debug.Log($"CreateOres():: 보물상자 랜덤변경: randPer({randPer}) <= sapwnPer({spawnPer})");

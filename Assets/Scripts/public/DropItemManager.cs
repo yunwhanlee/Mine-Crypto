@@ -52,8 +52,6 @@ public class DropItemManager : MonoBehaviour
         if(rwdList.Count == 0)
             return;
 
-        SoundManager._.PlaySfx(SoundManager.SFX.DropItemSFX);
-
         int randIdx = Random.Range(0, rwdList.Count);
 
         // 이미 메세지바가 다 켜져있다면
@@ -78,6 +76,7 @@ public class DropItemManager : MonoBehaviour
         switch(rwdList[randIdx])
         {
             case RWD.CRISTAL:
+                SoundManager._.PlaySfx(SoundManager.SFX.DropItemSFX);
                 sttDB.SetRscArr((int)rwdList[randIdx], 1);
                 break;
             case RWD.MAT1:
@@ -88,6 +87,7 @@ public class DropItemManager : MonoBehaviour
             case RWD.MAT6:
             case RWD.MAT7:
             case RWD.MAT8:
+                SoundManager._.PlaySfx(SoundManager.SFX.DropItemSFX);
                 sttDB.SetMatArr((int)rwdList[randIdx] - (int)RWD.MAT1, 1);
                 break;
             case RWD.MUSH1:
@@ -98,9 +98,11 @@ public class DropItemManager : MonoBehaviour
             case RWD.MUSH6:
             case RWD.MUSH7:
             case RWD.MUSH8:
+                SoundManager._.PlaySfx(SoundManager.SFX.DropItemSFX);
                 sttDB.SetMsrArr((int)rwdList[randIdx] - (int)RWD.MUSH1, 1);
                 break;
             case RWD.GOLDCOIN:
+                SoundManager._.PlaySfx(SoundManager.SFX.SummonMythSFX);
                 sttDB.GoldCoin++;
                 break;
         }
