@@ -157,9 +157,13 @@ public class PlayManager : MonoBehaviour
             for(int i = 0; i < bestFloorArr.Length - 1; i++)
                 totalFloor += bestFloorArr[i];
 
-            // 최대층수총합 기록갱신
+            //* 최대층수총합 기록갱신
             if(DM._.DB.bestTotalFloor < totalFloor)
+            {
                 DM._.DB.bestTotalFloor = totalFloor;
+                if(!DM._.isPC)
+                    GPGS._.UpdateBestTotalFloor(totalFloor);
+            }
         }
 
         //* 게임포기 안했을시 추가 처리
@@ -176,9 +180,13 @@ public class PlayManager : MonoBehaviour
                 // 돌파성공시
                 else
                 {
-                    // 시련의광산 기록갱신
+                    //* 시련의광산 기록갱신
                     if(DM._.DB.challengeBestFloor < GM._.clm.BestFloor)
+                    {
                         DM._.DB.challengeBestFloor = GM._.clm.BestFloor;
+                        if(!DM._.isPC)
+                            GPGS._.UpdateBestChallengeFloor(GM._.clm.BestFloor);
+                    }
 
                     GM._.clm.BestFloor++;
                     GM._.rwm.newBestFloorMsgTxt.text = $"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)} {LM._.Localize(LM.BestRecord)}!"; // <제 {stageType+1}광산> 

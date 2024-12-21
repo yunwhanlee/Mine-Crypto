@@ -184,6 +184,7 @@ public class UIManager : MonoBehaviour
         else
         {
             // 구글 리더보드
+            GPGS._.ShowLeaderBoard();
         }
     }
 
