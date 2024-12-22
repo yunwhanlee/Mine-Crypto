@@ -153,16 +153,14 @@ public class PlayManager : MonoBehaviour
             GM._.rwm.newBestFloorMsgTxt.text = $"{GM._.stgm.Floor}{LM._.Localize(LM.Floor)} {LM._.Localize(LM.BestRecord)}!"; // <제 {stageType+1}광산> 
             GM._.rwm.newBestFloorMsgTxt.gameObject.SetActive(true);
 
-            int totalFloor = 0; 
-            for(int i = 0; i < bestFloorArr.Length - 1; i++)
-                totalFloor += bestFloorArr[i];
+            // for(int i = 0; i < bestFloorArr.Length - 1; i++)
+            //     totalFloor += bestFloorArr[i];
+            int totalFloor = DM._.DB.stageDB.GetTotalBestFloor(); 
 
             //* 최대층수총합 기록갱신
             if(DM._.DB.bestTotalFloor < totalFloor)
             {
                 DM._.DB.bestTotalFloor = totalFloor;
-                if(!DM._.isPC)
-                    GPGS._.UpdateBestTotalFloor(totalFloor);
             }
         }
 
@@ -184,8 +182,6 @@ public class PlayManager : MonoBehaviour
                     if(DM._.DB.challengeBestFloor < GM._.clm.BestFloor)
                     {
                         DM._.DB.challengeBestFloor = GM._.clm.BestFloor;
-                        if(!DM._.isPC)
-                            GPGS._.UpdateBestChallengeFloor(GM._.clm.BestFloor);
                     }
 
                     GM._.clm.BestFloor++;

@@ -183,8 +183,7 @@ public class UIManager : MonoBehaviour
             GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
         else
         {
-            // 구글 리더보드
-            GPGS._.ShowLeaderBoard();
+            GPGS._.ShowLeaderBoard(); // 구글 리더보드
         }
     }
 
