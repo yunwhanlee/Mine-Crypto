@@ -1,9 +1,9 @@
 lastUpgrade=01101
 proj.pluginVersion=0.11.01
-proj.AppId=997280389416
-and.BundleId=com.slimestudio.MineForever
+proj.AppId=425613391014
+and.BundleId=com.slimestudio.mine_forever
 proj.classDir=Assets
 proj.ConstantsClassName=GPGSIds
-and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e997280389416%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.slimestudio.MineForever%3c%2fstring%3e%0d%0a++%3c%21--leaderboard+BestTotalFloor--%3e%0d%0a++%3cstring+name%3d%22leaderboard_besttotalfloor%22+translatable%3d%22false%22%3eCgkIqLKslIMdEAIQAg%3c%2fstring%3e%0d%0a++%3c%21--leaderboard+BestChallengeFloor--%3e%0d%0a++%3cstring+name%3d%22leaderboard_bestchallengefloor%22+translatable%3d%22false%22%3eCgkIqLKslIMdEAIQAw%3c%2fstring%3e%0d%0a%3c%2fresources%3e
-and.ClientId=997280389416-3tn14blti8rkd6j1br8p09ulrh1qeck0.apps.googleusercontent.com
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e425613391014%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.slimestudio.mine_forever%3c%2fstring%3e%0d%0a++%3c%21--leaderboard+Best+TotalFloor--%3e%0d%0a++%3cstring+name%3d%22leaderboard_best_totalfloor%22+translatable%3d%22false%22%3eCgkIpumjxLEMEAIQAw%3c%2fstring%3e%0d%0a++%3c%21--leaderboard+Best+ChallengeFloor--%3e%0d%0a++%3cstring+name%3d%22leaderboard_best_challengefloor%22+translatable%3d%22false%22%3eCgkIpumjxLEMEAIQBA%3c%2fstring%3e%0d%0a%3c%2fresources%3e
+and.ClientId=425613391014-j1k8u80rc7a1mcl1svs87rpp2u42edcr.apps.googleusercontent.com
 android.SetupDone=true

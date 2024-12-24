@@ -53,7 +53,7 @@ public class GPGS : MonoBehaviour
     public void SetBestTotalFloor(int val)
     {
         // 리더보드 최신화
-        PlayGamesPlatform.Instance.ReportScore(val, GPGSIds.leaderboard_besttotalfloor, (bool success) => {});
+        PlayGamesPlatform.Instance.ReportScore(val, GPGSIds.leaderboard_best_totalfloor, (bool success) => {});
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ public class GPGS : MonoBehaviour
     /// </summary>
     public void SetBestChallengeFloor(int val)
     {
-        PlayGamesPlatform.Instance.ReportScore(val, GPGSIds.leaderboard_bestchallengefloor, (bool success) => {});
+        PlayGamesPlatform.Instance.ReportScore(val, GPGSIds.leaderboard_best_challengefloor, (bool success) => {});
     }
 
 #endregion

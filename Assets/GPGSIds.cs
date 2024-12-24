@@ -24,8 +24,8 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_bestchallengefloor = "CgkIqLKslIMdEAIQAw"; // <GPGSID>
-        public const string leaderboard_besttotalfloor = "CgkIqLKslIMdEAIQAg"; // <GPGSID>
+        public const string leaderboard_best_totalfloor = "CgkIpumjxLEMEAIQAw"; // <GPGSID>
+        public const string leaderboard_best_challengefloor = "CgkIpumjxLEMEAIQBA"; // <GPGSID>
 
 }
 
