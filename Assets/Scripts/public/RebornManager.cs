@@ -130,7 +130,18 @@ public class RebornManager : MonoBehaviour
                     GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.NotAvailableInPlayMsg));
                     return;
                 }
-                StartCoroutine(CoReborn(isWatchAds: true));
+
+                //* 광고제거인 경우
+                if(DM._.DB.shopDB.isRemoveAds)
+                {
+                    StartCoroutine(CoReborn(isWatchAds: true));
+                }
+                //* 그 이외 리워드광고가 로드됬다면
+                else if(AdmobManager._.ShowRewardAd()){
+                    // 시청후 받을보상 액션함수에 구독
+                    AdmobManager._.OnGetRewardAd = () => 
+                        StartCoroutine(CoReborn(isWatchAds: true));
+                }
             };
         }
 

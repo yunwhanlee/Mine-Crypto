@@ -67,16 +67,25 @@ public class FameSupplyBtn : MonoBehaviour
     /// </summary>
     private void OnClickRewardItemBtn()
     {
-        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
-        GM._.rwm.ShowReward(
-            new Dictionary<RWD, int> {
-                {rwdType, rwdCnt},
-            }
-        );
-
-        IsAccept = true;
-
-        UpdateUI();
+        //* PC모드 또는 광고제거인 경우
+        if(DM._.isPC || DM._.DB.shopDB.isRemoveAds)
+        {
+            SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+            GM._.rwm.ShowReward( new Dictionary<RWD, int> {{rwdType, rwdCnt},} );
+            IsAccept = true;
+            UpdateUI();
+        }
+        //* 그 이외 리워드광고가 로드됬다면
+        else if(AdmobManager._.ShowRewardAd()){
+            // 시청후 받을보상 액션함수에 구독
+            AdmobManager._.OnGetRewardAd = () => 
+            {
+                SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+                GM._.rwm.ShowReward( new Dictionary<RWD, int> {{rwdType, rwdCnt},} );
+                IsAccept = true;
+                UpdateUI();
+            };
+        }
     }
 #endregion
 }
