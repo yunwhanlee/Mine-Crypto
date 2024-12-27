@@ -4,6 +4,7 @@ using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
 
+#if UNITY_ANDROID
 //* TEST REWARD AD ID
 // Android : ca-app-pub-3940256099942544/5224354917
 // iOS : ca-app-pub-3940256099942544/1712485313
@@ -84,3 +85,4 @@ public class AdmobManager : MonoBehaviour {
         return true;
     }
 }
+#endif

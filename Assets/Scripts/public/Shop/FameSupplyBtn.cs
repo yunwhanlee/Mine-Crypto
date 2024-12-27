@@ -76,6 +76,7 @@ public class FameSupplyBtn : MonoBehaviour
             UpdateUI();
         }
         //* 그 이외 리워드광고가 로드됬다면
+#if UNITY_ANDROID
         else if(AdmobManager._.ShowRewardAd()){
             // 시청후 받을보상 액션함수에 구독
             AdmobManager._.OnGetRewardAd = () => 
@@ -86,6 +87,7 @@ public class FameSupplyBtn : MonoBehaviour
                 UpdateUI();
             };
         }
+#endif
     }
 #endregion
 }

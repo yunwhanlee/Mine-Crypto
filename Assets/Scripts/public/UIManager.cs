@@ -181,10 +181,12 @@ public class UIManager : MonoBehaviour
     public void OnClickMenu_RankBtn() {
         if(DM._.isPC)
             GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+#if UNITY_ANDROID
         else
         {
             GPGS._.ShowLeaderBoard(); // 구글 리더보드
         }
+#endif
     }
 
     public void OnClickShopBtn() {

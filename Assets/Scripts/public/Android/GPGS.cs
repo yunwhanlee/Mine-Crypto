@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 
+#if UNITY_ANDROID
 public class GPGS : MonoBehaviour
 {
     public static GPGS _;
@@ -66,3 +67,4 @@ public class GPGS : MonoBehaviour
 
 #endregion
 }
+#endif

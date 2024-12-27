@@ -107,9 +107,9 @@ public class DM : MonoBehaviour {
 /// -----------------------------------------------------------------------------------------------------------------
 #region QUIT GAME 
 /// -----------------------------------------------------------------------------------------------------------------
-
 #if UNITY_ANDROID
     public void OnApplicationPause(bool paused){
+        Debug.Log("<color=yellow>OnApplicationPause():: QUIT APP(PC):: SAVE</color>");
         if(DB == null) return;
 
         //* ゲームが開くとき（paused == true）にも起動されるので注意が必要。
@@ -120,6 +120,7 @@ public class DM : MonoBehaviour {
     }
 #else
     public void OnApplicationQuit() {
+        Debug.Log("<color=yellow>OnApplicationQuit():: QUIT APP(PC):: SAVE</color>");
         if(DB == null) return;
 
         Debug.Log("<color=yellow>QUIT APP(PC):: SAVE</color>");
