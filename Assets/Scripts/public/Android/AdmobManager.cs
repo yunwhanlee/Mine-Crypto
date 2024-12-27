@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
 using System;
+#if UNITY_ANDROID
+using GoogleMobileAds.Api;
+#endif
 
 #if UNITY_ANDROID
-//* TEST REWARD AD ID
-// Android : ca-app-pub-3940256099942544/5224354917
-// iOS : ca-app-pub-3940256099942544/1712485313
-
 public class AdmobManager : MonoBehaviour {
     public static AdmobManager _;
     public Action OnGetRewardAd = () => {}; // 리워드 광고보기 액션
