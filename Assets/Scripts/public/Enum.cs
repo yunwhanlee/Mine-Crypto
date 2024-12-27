@@ -19,6 +19,8 @@ public struct InvItem_Info {
 
 public static class Enum
 {
+    public static string TRASURECHEST_OBJNAME = "TreasureChest(Clone)";
+
     public enum GRADE {
         COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH, CNT
     }

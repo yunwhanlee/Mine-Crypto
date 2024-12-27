@@ -203,8 +203,10 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                     // 타겟 지정 완료
                     targetOre = ore;
+
                     // 타겟타입 지정 완료
-                    targetOreType = ore.OreType;
+                    if(targetOre.name != Enum.TRASURECHEST_OBJNAME) //<BUG> 광석오브젝트 이름이 보물상자가 아닐때로 대응
+                        targetOreType = ore.OreType;
 
                     targetOre.MiningCnt++;
                     GM._.mnm.CurTotalMiningCnt++;
@@ -361,7 +363,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     attackWaitTime = 0;
 
                     //* 일반광석인 경우
-                    if(targetOreType != RSC.CRISTAL)
+                    if(targetOre.name != Enum.TRASURECHEST_OBJNAME) //if(targetOreType != RSC.CRISTAL)
                     {
                         // 가방용량 증가
                         if(bagStorage < BagStorageSize)

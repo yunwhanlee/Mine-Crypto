@@ -83,7 +83,8 @@ public class Ore : MonoBehaviour
             GM._.mnm.CurTotalMiningCnt -= MiningCnt;
 
             // 보물상자인 경우
-            if(OreType == RSC.CRISTAL) 
+            // if(OreType == RSC.CRISTAL) <BUG>보물상자에 여러마리가 채광할경우, 보물상자가 파괴되고 집에 돌아오면, OreType이 CRISTAL이기때문에 크리스탈을 채굴보관량만큼 획득하는 버그
+            if(name == Enum.TRASURECHEST_OBJNAME)
             {   
                 _.PlaySfx(SFX.TreasureChestOrePickSFX);
 
