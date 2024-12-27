@@ -193,6 +193,18 @@ public class UIManager : MonoBehaviour
         SoundManager._.PlaySfx(SoundManager.SFX.Tap1SFX);
         GM._.spm.ShowPopUp();
     }
+    // 황금광산 추가컨텐츠 준비중
+    public void OnClickGoldMineEnterBtn() { 
+        GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+    }
+    // 영원한축복 추가컨텐츠 준비중
+    public void OnClickEternalBlessEnterBtn() { 
+        GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+    }
+    // 보스 추가컨텐츠 준비중
+    public void OnClickBossEnterBtn() { 
+        GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.ComingSoonMsg));
+    }
 
 #endregion
 
