@@ -77,7 +77,7 @@ public class GPGS : MonoBehaviour
                 // 플레이어 리더보드 점수가 존재하고
                 if(data.Valid && data.PlayerScore != null && data.Scores.Length > 0)
                 {
-                    GM._.ui.ShowNoticeMsgPopUp($"TOTALFLOORS:: plScore= {data.PlayerScore.value} < myBestScore={myBestScore}");
+                    // GM._.ui.ShowNoticeMsgPopUp($"TOTALFLOORS:: plScore= {data.PlayerScore.value} < myBestScore={myBestScore}");
 
                     // 리더보드점수가 최신 베스트점수보다 낮다면
                     if(data.PlayerScore.value < myBestScore)
@@ -87,6 +87,8 @@ public class GPGS : MonoBehaviour
                             onComplete?.Invoke();
                         });
                     }
+                    else
+                        onComplete?.Invoke(); // 콜백 호출
                 }
                 else
                     onComplete?.Invoke(); // 콜백 호출
@@ -109,7 +111,7 @@ public class GPGS : MonoBehaviour
                 // 플레이어 리더보드 점수가 존재하고
                 if(data.Valid && data.PlayerScore != null && data.Scores.Length > 0)
                 {
-                    GM._.ui.ShowNoticeMsgPopUp($"CHALLANGE:: plScore= {data.PlayerScore.value} < myBestScore={myBestScore}");
+                    // GM._.ui.ShowNoticeMsgPopUp($"CHALLANGE:: plScore= {data.PlayerScore.value} < myBestScore={myBestScore}");
 
                     // 리더보드점수가 최신 베스트점수보다 낮다면
                     if(data.PlayerScore.value < myBestScore)
@@ -120,6 +122,8 @@ public class GPGS : MonoBehaviour
                             onComplete?.Invoke();
                         });
                     }
+                    else
+                        onComplete?.Invoke(); // 콜백 호출
                 }
                 else
                     onComplete?.Invoke(); // 콜백 호출
