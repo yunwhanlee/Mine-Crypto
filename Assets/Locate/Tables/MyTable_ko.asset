@@ -1210,6 +1210,22 @@ MonoBehaviour:
     m_Localized: "\uC2DC\uB828\uAD11\uC0B0\n\uCD5C\uB300\uCE35\uC218"
     m_Metadata:
       m_Items: []
+  - m_Id: 25444350882451456
+    m_Localized: KRW 1,100
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25444764839284736
+    m_Localized: KRW 4,900
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25445017063755776
+    m_Localized: KRW 9,900
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25445268612943872
+    m_Localized: KRW 29,000
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

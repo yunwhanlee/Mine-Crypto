@@ -308,8 +308,6 @@ public class ShopManager : MonoBehaviour
             GOLDCOIN_LARGE_CNT,
         };
 
-        //TODO 광고시청후
-
         // 구매 완료
         SoundManager._.PlaySfx(SoundManager.SFX.SummonMythSFX);
         GM._.rwm.ShowReward(

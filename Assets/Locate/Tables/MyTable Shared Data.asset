@@ -1167,6 +1167,22 @@ MonoBehaviour:
     m_Key: UI_ChallengeBestFloor
     m_Metadata:
       m_Items: []
+  - m_Id: 25444350882451456
+    m_Key: GoldCoinTinyPrice_UI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25444764839284736
+    m_Key: GoldCoinSmallPrice_UI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25445017063755776
+    m_Key: GoldCoinMediumPrice_UI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25445268612943872
+    m_Key: GoldCoinLargePrice_UI
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
