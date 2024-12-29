@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
 using TMPro;
+using static Enum;
 
 public class SettingManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class SettingManager : MonoBehaviour
     public Image TitleImg;
 
     //! TEST MODE
-    public GameObject testMode;
+    // public GameObject testMode;
     int testModeCnt = 0;
 
     IEnumerator Start()
@@ -42,20 +43,36 @@ public class SettingManager : MonoBehaviour
 
 #region EVENT
     /// <summary>
-    /// TEST 모드 : 설정창 아이콘 5번클릭 ON, 6번클릭 OFF
+    /// TEST 모드 : 설정창 아이콘 10번클릭
     /// </summary>
     public void OnClickTestModeBtn()
     {
-        // testModeCnt++;
+        testModeCnt++;
 
-        // // TEST 모드
-        // if(!testMode.activeSelf && testModeCnt >= 10) {
-        //     testMode.SetActive(true);
-        // }
-        // else if(testMode.activeSelf) {
-        //     testModeCnt = 0;
-        //     testMode.SetActive(false);
-        // }
+        // TEST 모드
+        if(testModeCnt % 10 == 0) {
+            // 보상획득
+            GM._.rwm.ShowReward (
+                new Dictionary<RWD, int>
+                {
+                    { RWD.ORE_CHEST, 100 },
+                    { RWD.TREASURE_CHEST, 100 },
+                    { RWD.LIGHTSTONE, 5000 },
+                }
+            );
+            // 층수 증가
+            DM._.DB.stageDB.BestFloorArr[0] += 12;
+            DM._.DB.stageDB.BestFloorArr[1] += 12;
+            DM._.DB.stageDB.BestFloorArr[2] += 12;
+            DM._.DB.stageDB.BestFloorArr[3] += 12;
+            DM._.DB.stageDB.BestFloorArr[4] += 12;
+            DM._.DB.stageDB.BestFloorArr[5] += 12;
+            DM._.DB.stageDB.BestFloorArr[6] += 12;
+            DM._.DB.stageDB.BestFloorArr[7] += 12;
+
+            DM._.DB.bestTotalFloor = DM._.DB.stageDB.GetTotalBestFloor();
+            GM._.ui.ShowNoticeMsgPopUp("각 일반광산층 12층씩 추가");
+        }
     }
 
     public void OnClickSelectLanguage()
