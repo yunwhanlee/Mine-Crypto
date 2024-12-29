@@ -138,10 +138,17 @@ public class RebornManager : MonoBehaviour
                 }
 #if UNITY_ANDROID
                 //* 그 이외 리워드광고가 로드됬다면
-                else if(AdmobManager._.ShowRewardAd()){
+                else
+                {
+                    if(!AdmobManager._.CheckIsLoadedAd())
+                        return;
+
                     // 시청후 받을보상 액션함수에 구독
                     AdmobManager._.OnGetRewardAd = () => 
                         StartCoroutine(CoReborn(isWatchAds: true));
+
+                    // 리워드 광고 시청
+                    AdmobManager._.ShowRewardAd();
                 }
 #endif
             };

@@ -48,7 +48,7 @@ public class AdmobManager : MonoBehaviour {
         rewardAd.OnUserEarnedReward += (sender, e) => 
         {
             // 리워드 보상수령 (액션함수 구독)
-            OnGetRewardAd.Invoke();
+            OnGetRewardAd?.Invoke();
             OnGetRewardAd = () => {}; // 초기화
         };
         rewardAd.OnAdFailedToLoad +=  (sender, e) =>
@@ -67,20 +67,26 @@ public class AdmobManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 리워드광고 표시
+    /// 리워드가 로드됬는지 확인
     /// </summary>
-    public bool ShowRewardAd()
+    public bool CheckIsLoadedAd()
     {
         if(!rewardAd.IsLoaded())
         {
             GM._.ui.ShowWarningMsgPopUp("(언어변역하기)광고로드중.. 잠시후 다시 실행해주세요.");
             return false;
         }
+        else
+            return true;
+    }
 
+    /// <summary>
+    /// 리워드광고 표시
+    /// </summary>
+    public void ShowRewardAd()
+    {
         rewardAd.Show();
         LoadRewardAd();
-
-        return true;
     }
 }
 #endif

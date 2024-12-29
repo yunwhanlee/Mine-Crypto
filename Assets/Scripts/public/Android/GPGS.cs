@@ -91,7 +91,13 @@ public class GPGS : MonoBehaviour
                         onComplete?.Invoke(); // 콜백 호출
                 }
                 else
-                    onComplete?.Invoke(); // 콜백 호출
+                {
+                    GM._.ui.ShowNoticeMsgPopUp($"TOTALFLOORS:: 처음 새로운 점수 등록");
+                    // 리더보드 최신화
+                    PlayGamesPlatform.Instance.ReportScore(myBestScore, GPGSIds.leaderboard_best_totalfloor, (bool success) => {
+                        onComplete?.Invoke();
+                    });
+                }
             }
         );
     }
@@ -126,7 +132,14 @@ public class GPGS : MonoBehaviour
                         onComplete?.Invoke(); // 콜백 호출
                 }
                 else
-                    onComplete?.Invoke(); // 콜백 호출
+                {
+                    GM._.ui.ShowNoticeMsgPopUp($"TOTALFLOORS:: 처음 새로운 점수 등록");
+                    // 리더보드 최신화
+                    PlayGamesPlatform.Instance.ReportScore(myBestScore, GPGSIds.leaderboard_best_challengefloor, (bool success) => {
+                        // 최신화 완료 후 콜백 호출
+                        onComplete?.Invoke();
+                    });
+                }
             }
         );
     }

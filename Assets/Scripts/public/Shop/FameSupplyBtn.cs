@@ -77,17 +77,31 @@ public class FameSupplyBtn : MonoBehaviour
         }
         //* 그 이외 리워드광고가 로드됬다면
 #if UNITY_ANDROID
-        else if(AdmobManager._.ShowRewardAd()){
+        else
+        {
+            if(!AdmobManager._.CheckIsLoadedAd())
+                return;
+
             // 시청후 받을보상 액션함수에 구독
             AdmobManager._.OnGetRewardAd = () => 
             {
-                SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
-                GM._.rwm.ShowReward( new Dictionary<RWD, int> {{rwdType, rwdCnt},} );
-                IsAccept = true;
-                UpdateUI();
+                //* <BUG> 코루틴대기없이 보상처리시 앱이 튕기는 버그 대응
+                StartCoroutine(Coreward());
             };
+
+            // 리워드 광고 시청
+            AdmobManager._.ShowRewardAd();
         }
 #endif
+    }
+
+    IEnumerator Coreward()
+    {
+        yield return Util.TIME0_2;
+        SoundManager._.PlaySfx(SoundManager.SFX.FameCompleteSFX);
+        GM._.rwm.ShowReward( new Dictionary<RWD, int> {{rwdType, rwdCnt},} );
+        IsAccept = true;
+        UpdateUI();
     }
 #endregion
 }
