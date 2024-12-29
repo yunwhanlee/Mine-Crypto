@@ -71,7 +71,8 @@ public class SettingManager : MonoBehaviour
             DM._.DB.stageDB.BestFloorArr[7] += 12;
 
             DM._.DB.bestTotalFloor = DM._.DB.stageDB.GetTotalBestFloor();
-            GM._.ui.ShowNoticeMsgPopUp("각 일반광산층 12층씩 추가");
+            DM._.DB.statusDB.FameLv++;
+            GM._.ui.ShowNoticeMsgPopUp("모든광산 12층씩 추가 및 +명예레벨1");
         }
     }
 
