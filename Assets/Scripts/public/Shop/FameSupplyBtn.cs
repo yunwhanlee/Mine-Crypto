@@ -85,7 +85,7 @@ public class FameSupplyBtn : MonoBehaviour
             // 시청후 받을보상 액션함수에 구독
             AdmobManager._.OnGetRewardAd = () => 
             {
-                //* <BUG> 코루틴대기없이 보상처리시 앱이 튕기는 버그 대응
+                //* <BUG> 코루틴대기없이 리워드보상처리시 앱이 튕기는 버그 대응
                 StartCoroutine(Coreward());
             };
 

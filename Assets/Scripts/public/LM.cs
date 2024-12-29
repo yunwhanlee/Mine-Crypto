@@ -193,6 +193,9 @@ public class LM : MonoBehaviour
         UnlockShopContentMsg = "UI_UnlockShopContentMsg", // 황금코인으로 다양한 아이템 구매와 추가보상 획득이 가능합니다!
         AdsRebornBonusMsg = "UI_AdsRebornBonusMsg", // 광고시청시 30% 추가획득
 
+        AdFailedToLoad = "UI_AdFailedToLoad", // 광고로드 실패
+        LoadAdPlsRetryMsg = "UI_LoadAdPlsRetryMsg", // 광고를 로드중입니다. 잠시후 다시 실행해주세요.
+
         NONE = "";
 
     bool isChaning;

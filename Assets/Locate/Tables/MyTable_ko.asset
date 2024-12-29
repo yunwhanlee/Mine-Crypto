@@ -1226,6 +1226,15 @@ MonoBehaviour:
     m_Localized: KRW 29,000
     m_Metadata:
       m_Items: []
+  - m_Id: 25518133852999680
+    m_Localized: "\uAD11\uACE0\uB85C\uB4DC \uC2E4\uD328"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25518454088110080
+    m_Localized: "\uAD11\uACE0\uB97C \uB85C\uB4DC\uC911\uC785\uB2C8\uB2E4. \uC7A0\uC2DC\uD6C4
+      \uB2E4\uC2DC \uC2E4\uD589\uD574\uC8FC\uC138\uC694."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

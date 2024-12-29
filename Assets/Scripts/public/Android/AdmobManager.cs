@@ -54,7 +54,7 @@ public class AdmobManager : MonoBehaviour {
         rewardAd.OnAdFailedToLoad +=  (sender, e) =>
         {
             // 리워도 광고로드 실패
-            GM._.ui.ShowWarningMsgPopUp("(언어변역하기)광고로드 실패");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.AdFailedToLoad));
         };
     }
 
@@ -73,7 +73,7 @@ public class AdmobManager : MonoBehaviour {
     {
         if(!rewardAd.IsLoaded())
         {
-            GM._.ui.ShowWarningMsgPopUp("(언어변역하기)광고로드중.. 잠시후 다시 실행해주세요.");
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.LoadAdPlsRetryMsg));
             return false;
         }
         else
