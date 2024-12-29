@@ -12,7 +12,7 @@ public class AdmobManager : MonoBehaviour {
     public Action OnGetRewardAd = () => {}; // 리워드 광고보기 액션
 
     const string RewardAdTestID = "ca-app-pub-3940256099942544/5224354917";
-    const string RewardAdID = "ca-app-pub-3908204064369314/8676974201";
+    const string RewardAdID = "ca-app-pub-1249617108512204/2185484711";
 
     [SerializeField] public bool isTestMode;
 
