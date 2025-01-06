@@ -195,7 +195,7 @@ public class MushroomManager : MonoBehaviour
                 break;
             case (int)MUSH.MUSH5:
                 mushFormat = ms5_UpgIncTimer;
-                targetAbilityTxt.text = $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val} => +{ms5_UpgIncTimer.GetNextVal()}초";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val} => +{ms5_UpgIncTimer.GetNextVal()}sec";
                 break;
             case (int)MUSH.MUSH6:
                 mushFormat =ms6_UpgChestSpawnPer;
@@ -216,7 +216,7 @@ public class MushroomManager : MonoBehaviour
         if(ms2_UpgMovSpeedPer.Lv > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MoveSpeed)} +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)}%\n";
         if(ms3_UpgBagStoragePer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.BagStorage)} +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)}%\n";
         if(ms4_UpgNextStageSkipPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.NextStageSkip)} {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)}%\n";
-        if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val}초\n";
+        if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val}sec\n";
         if(ms6_UpgChestSpawnPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.IncChestSpawnPer)} +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)}%\n";
         if(ms7_UpgAtkSpeedPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.AttackSpeed)} +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)}%\n";
         if(ms8_IncPopulation.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.IncPopulation)} +{ms8_IncPopulation.Val}\n";
