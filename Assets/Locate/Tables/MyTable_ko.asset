@@ -1235,6 +1235,14 @@ MonoBehaviour:
       \uB2E4\uC2DC \uC2E4\uD589\uD574\uC8FC\uC138\uC694."
     m_Metadata:
       m_Items: []
+  - m_Id: 28304382912233472
+    m_Localized: "\uB2E4\uC74C\uCE35\uC73C\uB85C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28305031901085696
+    m_Localized: "\uC810\uD504!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

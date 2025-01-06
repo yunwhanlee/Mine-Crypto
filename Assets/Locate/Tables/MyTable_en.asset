@@ -1243,6 +1243,16 @@ MonoBehaviour:
     m_Localized: Loading the Ad. Pls try again in a moment.
     m_Metadata:
       m_Items: []
+  - m_Id: 28304382912233472
+    m_Localized: 'To the
+
+      Next Floor'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28305031901085696
+    m_Localized: Jump!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
