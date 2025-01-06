@@ -165,7 +165,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.slimestudio.mine_forever
-    Standalone: com.slimestudio.mineforever
+    Standalone: com.slimestudio.mine-forever
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -758,7 +758,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: MineCrypto
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -766,7 +766,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: MineCrypto
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: mine_forever
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
