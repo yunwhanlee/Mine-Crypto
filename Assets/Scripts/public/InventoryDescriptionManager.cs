@@ -125,6 +125,8 @@ public class InventoryDescriptionManager : MonoBehaviour
                 OnConfirmBtnClicked = () => {
                     Debug.Log("광석상자 오픈!");
                     SoundManager._.PlaySfx(SoundManager.SFX.OpenOreChestSFX);
+
+                    const int MAX_OPENCNT = 1000;
                     
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {
@@ -136,15 +138,16 @@ public class InventoryDescriptionManager : MonoBehaviour
                     RWD[] rwdArr = new RWD[3];
                     int[] cntArr = new int[3];
 
+                    // 광석상자 한번에 최대오픈 개수 제한
+                    int openCnt = (sttDB.OreChest >= MAX_OPENCNT)? MAX_OPENCNT : sttDB.OreChest;
+
                     // 대량일 경우 루프 경량화를 위한 나누기 변수
-                    int divide = (sttDB.OreChest > 100)? 10 // 100개 이상일 경우, 나누기 10
-                        : (sttDB.OreChest > 1000)? 100      // 1000개 이상일 경우, 나누기 100
+                    int divide = (sttDB.OreChest >= 100)? 10 // 100개 이상일 경우, 나누기 10
+                        : (sttDB.OreChest >= 1000)? 100      // 1000개 이상일 경우, 나누기 100
                         : 1;                                // 그 이외는 1개씩 처리
                     
                     // 나머지 값
                     int remainCnt = sttDB.OreChest % divide;
-
-                    Debug.Log($"remainCnt= {remainCnt}");
 
                     // 모든 보물상자 열기
                     for(int i = 0; i < sttDB.OreChest / divide; i++)
@@ -206,7 +209,7 @@ public class InventoryDescriptionManager : MonoBehaviour
                     GM._.pfm.proficiencyArr[(int)PROFICIENCY.ORE_CHEST].Exp += sttDB.OreChest;
 
                     // 인벤토리 소비아이템 수량 감소
-                    sttDB.OreChest = 0;
+                    sttDB.OreChest = sttDB.OreChest - openCnt;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
