@@ -136,8 +136,46 @@ public class InventoryDescriptionManager : MonoBehaviour
                     RWD[] rwdArr = new RWD[3];
                     int[] cntArr = new int[3];
 
+                    // 대량일 경우 루프 경량화를 위한 나누기 변수
+                    int divide = (sttDB.OreChest > 100)? 10 // 100개 이상일 경우, 나누기 10
+                        : (sttDB.OreChest > 1000)? 100      // 1000개 이상일 경우, 나누기 100
+                        : 1;                                // 그 이외는 1개씩 처리
+                    
+                    // 나머지 값
+                    int remainCnt = sttDB.OreChest % divide;
+
+                    Debug.Log($"remainCnt= {remainCnt}");
+
                     // 모든 보물상자 열기
-                    for(int i = 0; i < sttDB.OreChest; i++)
+                    for(int i = 0; i < sttDB.OreChest / divide; i++)
+                    {
+                        // 중복없는 보상 종류선택을 위한 리스트
+                        List<RWD> rwdList = new() {
+                            RWD.ORE1, RWD.ORE2, RWD.ORE3, RWD.ORE4,
+                            RWD.ORE5, RWD.ORE6, RWD.ORE7, RWD.ORE8,
+                        };
+
+                        // 중복없는 랜덤 재화 3개 선택
+                        for(int j = 0; j < rwdArr.Length; j++)
+                        {
+                            // 1.보상 아이템 랜덤선택
+                            int randIdx = Random.Range(0, rwdList.Count);
+
+                            Debug.Log($"randIdx= {randIdx}");
+
+                            // 2.보상 수량
+                            int bestFloor = DM._.DB.stageDB.BestFloorArr[randIdx];
+                            int val = 100 + (bestFloor * 100 * divide); // 계산식
+
+                            rwdDic[(RWD)randIdx] += val;
+
+                            // 리스트 제거 (중복방지)
+                            rwdList.RemoveAt(randIdx);
+                        }
+                    }
+
+                    // 나눈나머지 광석획득
+                    for(int i = 0; i < remainCnt; i++)
                     {
                         // 중복없는 보상 종류선택을 위한 리스트
                         List<RWD> rwdList = new() {
@@ -162,7 +200,7 @@ public class InventoryDescriptionManager : MonoBehaviour
                             // 리스트 제거 (중복방지)
                             rwdList.RemoveAt(randIdx);
                         }
-                    }
+                    }  
 
                     //* 숙련도 경험치 증가
                     GM._.pfm.proficiencyArr[(int)PROFICIENCY.ORE_CHEST].Exp += sttDB.OreChest;

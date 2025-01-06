@@ -387,6 +387,15 @@ public class StatusDB
 
         rscArr[idx] += val;
 
+        // 최대소지개수 10억으로 제한
+        if(rscArr[idx] > MAX_ITEM_CNT)
+        {
+            rscArr[idx] = MAX_ITEM_CNT;
+            GM._.ui.topRscTxtArr[idx].color = Color.red;
+        }
+        else
+            GM._.ui.topRscTxtArr[idx].color = Color.white;
+
         if(rscArr[idx] < 0)
             rscArr[idx] = 0;
 
