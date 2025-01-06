@@ -258,28 +258,37 @@ public class StatusDB
                 SetMsrArr((int)itemType - mushIdxOffset, val);
                 break;
             case INV.ORE_TICKET:
+                // 최대소지개수 10억으로 제한
                 OreTicket += val;
+                if(OreTicket > MAX_ITEM_CNT) OreTicket = MAX_ITEM_CNT;
                 break;
             case INV.RED_TICKET:
                 RedTicket += val;
+                if(RedTicket > MAX_ITEM_CNT) RedTicket = MAX_ITEM_CNT;
                 break;
             case INV.ORE_CHEST: 
                 OreChest += val;
+                if(OreChest > MAX_ITEM_CNT) OreChest = MAX_ITEM_CNT;
                 break;
             case INV.TREASURE_CHEST:
                 TreasureChest += val;
+                if(TreasureChest > MAX_ITEM_CNT) TreasureChest = MAX_ITEM_CNT;
                 break;
             case INV.SKILLPOTION:
                 skillPotion += val;
+                if(skillPotion > MAX_ITEM_CNT) skillPotion = MAX_ITEM_CNT;
                 break;
             case INV.LIGHTSTONE:
                 lightStone += val;
+                if(lightStone > MAX_ITEM_CNT) lightStone = MAX_ITEM_CNT;
                 break;
             case INV.TIMEPOTION:
                 timePotion += val;
+                if(timePotion > MAX_ITEM_CNT) timePotion = MAX_ITEM_CNT;
                 break;
             case INV.GOLDCOIN:
                 goldCoin += val;
+                if(goldCoin > MAX_ITEM_CNT) goldCoin = MAX_ITEM_CNT;
 
                 // 골드코인을 사용시 황금포인트 추가
                 if(val < 0)
@@ -418,6 +427,12 @@ public class StatusDB
     {
         matArr[idx] += val;
 
+        // 최대소지개수 10억으로 제한
+        if(matArr[idx] > MAX_ITEM_CNT)
+        {
+            matArr[idx] = MAX_ITEM_CNT;
+        }
+
         if(matArr[idx] < 0)
             matArr[idx] = 0;
 
@@ -436,6 +451,12 @@ public class StatusDB
     public int SetMsrArr(int idx, int val) //? 배열 setter는 요소가 바뀌어도 호출이 안되므로, 메서드 자체 제작
     {
         msrArr[idx] += val;
+
+        // 최대소지개수 10억으로 제한
+        if(msrArr[idx] > MAX_ITEM_CNT)
+        {
+            msrArr[idx] = MAX_ITEM_CNT;
+        }
 
         if(msrArr[idx] < 0)
             msrArr[idx] = 0;

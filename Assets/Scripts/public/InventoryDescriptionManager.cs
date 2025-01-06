@@ -146,11 +146,12 @@ public class InventoryDescriptionManager : MonoBehaviour
                         : (sttDB.OreChest >= 1000)? 100      // 1000개 이상일 경우, 나누기 100
                         : 1;                                // 그 이외는 1개씩 처리
                     
-                    // 나머지 값
-                    int remainCnt = sttDB.OreChest % divide;
+                    int remainCnt = sttDB.OreChest % divide; // 나머지 값
+
+                    Debug.Log($"ORE CHEST openCnt= {openCnt}, remainCnt= {remainCnt}");
 
                     // 모든 보물상자 열기
-                    for(int i = 0; i < sttDB.OreChest / divide; i++)
+                    for(int i = 0; i < openCnt / divide; i++)
                     {
                         // 중복없는 보상 종류선택을 위한 리스트
                         List<RWD> rwdList = new() {
