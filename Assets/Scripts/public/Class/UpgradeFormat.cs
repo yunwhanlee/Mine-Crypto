@@ -16,6 +16,15 @@ public class UpgradeFormat
     public bool IsMaxLv {get => Lv >= MaxLv;}
 
     /// <summary>
+    /// 업그레이드 가능한지 여부 확인
+    /// </summary>
+    /// <returns>업그레이드 가능하다면 true, 아니면 false</returns>
+    public bool CheckPossibleUpgrade()
+    {
+        return DM._.DB.statusDB.GetInventoryItemVal(NeedRsc) >= Price;
+    }
+
+    /// <summary>
     /// 가격 업데이트 (기본)
     /// </summary>
     public void UpdatePrice(DEC_UPG_TYPE decUpgType = DEC_UPG_TYPE.NONE)

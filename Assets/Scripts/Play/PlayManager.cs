@@ -232,6 +232,10 @@ public class PlayManager : MonoBehaviour
 
         // 상점메뉴아이콘 버튼 비표시
         GM._.spm.shopMenuIconBtnObj.SetActive(false);
+
+        // 업그레이드 가능알림🔴 최신화
+        GM._.ugm.UpdateAlertRedDotUI();
+        GM._.mrm.UpdateAlertRedDotUI();
     }
 #endregion
 }
