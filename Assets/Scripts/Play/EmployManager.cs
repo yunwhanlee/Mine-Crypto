@@ -206,7 +206,8 @@ public class EmployManager : MonoBehaviour
             var tupleGachaRes = gachaResultList[i];
             int charaIdx = tupleGachaRes.Item2;
 
-            yield return Util.TIME0_1; // 약간 대기하여 캐릭터가 겹치지 않도록
+            yield return Util.TIME0_05; // 약간 대기하여 캐릭터가 겹치지 않도록
+            //yield return null;
 
             // 캐릭터 생성
             var ins = Instantiate(GM._.mnm.goblinPrefs[charaIdx], GM._.mnm.workerGroupTf);

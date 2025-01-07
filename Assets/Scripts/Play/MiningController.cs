@@ -40,6 +40,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         const float TARGET_Y_UNDER_MINUS = 0.5f;      // 고블린을 광석보다 앞으로 배치하기 위해, 타겟위치 Y값 낮출 값
         const float ATTACK_SPEED_MAX_SEC = 1.5f;       // 공격속도 최대치
         const float REACH_TARGET_MIN_DIST = 0.225f;    // 타겟지점 도달판단 최소거리(집, 광석)
+        private Transform oreGroupTf;                  // 광석부모그룹
+        private Vector3 homePos;                        // 홈 위치
 
         // 이름
         [field: SerializeField] public string Name {get; private set;}
@@ -125,6 +127,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             _animation = GetComponent<CharacterAnimation>();
             rigid = GetComponent<Rigidbody2D>();
             sprRdr = GetComponentInChildren<SpriteRenderer>();
+            oreGroupTf = mnm.oreGroupTf;
+            homePos = mnm.homeTf.position;
 
             // 버프이펙트 비표시 초기화
             SetBuffFireEF(isActive: false);
@@ -143,10 +147,9 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         }
 
         /// <summary>
-        /// 타겟 이동관련 처리
+        /// 광석 채굴관련 처리
         /// </summary>
-        void FixedUpdate()
-        {
+        void Update() {
             if(GM._.gameState == GameState.TIMEOVER)
             {
                 if(_animation.GetState() != CharacterState.Die)
@@ -154,178 +157,244 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 return;
             }
 
-            if(status == Status.SPAWN || status == Status.CLEARSTAGE)
+            switch(status)
             {
-                Debug.Log($"status= {status}");
-                return;
+                case Status.SPAWN:
+                case Status.CLEARSTAGE:
+                    break;
+                case Status.GO:
+                    HandleMoveToTarget();
+                    break;
+                case Status.MINING:
+                    HandleMining();
+                    break;
+                case Status.BACKHOME:
+                    HandleBackHone();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+#region FUNC
+        /// <summary>
+        /// 채굴하러 이동중인 경우
+        /// </summary>
+        private void HandleMoveToTarget()
+        {
+            // 달리기 애니메이션 실행 (1회)
+            if(_animation.GetState() != CharacterState.Run)
+                _animation.Run();
+
+            // 타겟광석이 없을 경우
+            if(!targetOre)
+            {
+                Ore ore = null;
+
+                float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
+                attackWaitTime = attackSpeedSec; // 처음 1회는 바로 공격하도록
+
+                // 타겟광석 설정
+                for(int i = 0; i < oreGroupTf.childCount; i++)
+                {
+                    // 순서대로 타겟광석을 배분하기위한 균형카운트
+                    int CurBalanceMiningCnt = 1 + mnm.CurTotalMiningCnt / oreGroupTf.childCount;
+
+                    // i번째 광석대입
+                    ore = oreGroupTf.GetChild(i).GetComponent<Ore>();
+
+                    // 위 광석을 채굴중인 캐릭이 균형카운트보다 작다면, 루프 종료
+                    if(ore.MiningCnt < CurBalanceMiningCnt)
+                    {
+                        Debug.Log($"Calc MiningCnt Balance: {CurBalanceMiningCnt} <- {mnm.CurTotalMiningCnt} / {oreGroupTf.childCount}");
+                        break;
+                    }
+                }
+
+                //* 도중에 다른 캐릭터가 타겟광석을 파괴했을 경우
+                if(ore == null)
+                {
+                    status = Status.BACKHOME; // 귀가
+                    targetOre = null;
+                    return;
+                }
+
+                // 타겟 지정 완료
+                targetOre = ore;
+
+                // 타겟타입 지정 완료
+                if(targetOre.name != Enum.TRASURECHEST_OBJNAME) //<BUG> 광석오브젝트 이름이 보물상자가 아닐때로 대응
+                    targetOreType = ore.OreType;
+
+                targetOre.MiningCnt++;
+                mnm.CurTotalMiningCnt++;
             }
 
-            //* 채굴하러 이동중인 경우
-            if(status == Status.GO)
+            // Sorting Layer 앞 배치를 위해, 타겟 Y좌표를 조금아래로 설정
+            var pos = targetOre.transform.position;
+            Vector3 underYTargetPos = new (pos.x, pos.y - TARGET_Y_UNDER_MINUS, pos.z);
+
+            // 타겟광석과의 거리
+            float distance = Move(underYTargetPos);
+
+            // 캐릭터의 이동 속도에 비례해 동적 거리 조건 생성
+            float dynamicReachDist = REACH_TARGET_MIN_DIST + (MoveSpeed * 0.1f); // 보정 비율
+
+            //* 타겟광석에 도착했을 경우
+            if(distance < dynamicReachDist)
             {
-                // 달리기 애니메이션 실행 (1회)
-                if(_animation.GetState() != CharacterState.Run)
-                    _animation.Run();
-
-                // 타겟광석이 없을 경우
-                if(!targetOre)
-                {
-                    Ore ore = null;
-                    Transform oreGroupTf = GM._.mnm.oreGroupTf;
-
-                    float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; // 実際の攻撃速度(秒)
-                    attackWaitTime = attackSpeedSec; // 처음 1회는 바로 공격하도록
-
-                    // 타겟광석 설정
-                    for(int i = 0; i < oreGroupTf.childCount; i++)
-                    {
-                        // 순서대로 타겟광석을 배분하기위한 균형카운트
-                        int CurBalanceMiningCnt = 1 + GM._.mnm.CurTotalMiningCnt / oreGroupTf.childCount;
-
-                        // i번째 광석대입
-                        ore = oreGroupTf.GetChild(i).GetComponent<Ore>();
-
-                        // 위 광석을 채굴중인 캐릭이 균형카운트보다 작다면, 루프 종료
-                        if(ore.MiningCnt < CurBalanceMiningCnt)
-                        {
-                            Debug.Log($"Calc MiningCnt Balance: {CurBalanceMiningCnt} <- {GM._.mnm.CurTotalMiningCnt} / {oreGroupTf.childCount}");
-                            break;
-                        }
-                    }
-
-                    //* 도중에 다른 캐릭터가 타겟광석을 파괴했을 경우
-                    if(ore == null)
-                    {
-                        status = Status.BACKHOME; // 귀가
-                        targetOre = null;
-                        return;
-                    }
-
-                    // 타겟 지정 완료
-                    targetOre = ore;
-
-                    // 타겟타입 지정 완료
-                    if(targetOre.name != Enum.TRASURECHEST_OBJNAME) //<BUG> 광석오브젝트 이름이 보물상자가 아닐때로 대응
-                        targetOreType = ore.OreType;
-
-                    targetOre.MiningCnt++;
-                    GM._.mnm.CurTotalMiningCnt++;
-                }
-
-                // Sorting Layer 앞 배치를 위해, 타겟 Y좌표를 조금아래로 설정
-                var pos = targetOre.transform.position;
-                Vector3 underYTargetPos = new (pos.x, pos.y - TARGET_Y_UNDER_MINUS, pos.z);
-
-                // 타겟광석과의 거리
-                float distance = Move(underYTargetPos);
-
-                // 캐릭터의 이동 속도에 비례해 동적 거리 조건 생성
-                float dynamicReachDist = REACH_TARGET_MIN_DIST + (MoveSpeed * 0.1f); // 보정 비율
-
-                //* 타겟광석에 도착했을 경우
-                if(distance < dynamicReachDist)
-                {
-                    status = Status.MINING; // 채굴시작!
-                }
-            }
-            //* 귀가하는 경우
-            else if(status == Status.BACKHOME)
-            {
-                // 가방에 채광한 광석이 있다면
-                if(bagStorage > 0)
-                {
-                    //* 가방들고 돌아오기 애니메이션 실행 (1회)
-                    if(_animation.GetState() != CharacterState.Crawl)
-                        _animation.Crawl();
-                }
-                // 없다면
-                else
-                {
-                    // 가방없이 달리기 애니메이션 실행 (1회)
-                    if(_animation.GetState() != CharacterState.Run)
-                        _animation.Run();
-                }
-
-                Vector3 homePos = GM._.mnm.homeTf.position;
-
-                // 집과의 거리
-                float distance = Move(homePos);
-
-                // 캐릭터의 이동 속도에 비례해 동적 거리 조건 생성
-                float dynamicReachDist = REACH_TARGET_MIN_DIST + (MoveSpeed * 0.05f); // 보정 비율
-
-                if(MoveSpeed > 40)
-                    Debug.Log($"moveSpeed={MoveSpeed}, distance({distance}) < dynamicReachDist({dynamicReachDist})");
-
-                //* 집 도착
-                if(distance < dynamicReachDist)
-                {
-                    Debug.Log("REACH HOME!");
-
-                    if(BagStorage > 0) {
-                        // 재화 수령
-                        AcceptRsc(targetOreType, BagStorage);
-                    }
-
-                    // 가방 비우기
-                    BagStorage = 0;
-
-                    //* 맵에 광석이 남아있는 경우
-                    if(GM._.mnm.oreGroupTf.childCount > 0)
-                    {
-                        status = Status.GO; // 채굴하러 이동
-                        _animation.Idle();
-                    }
-                    //* 맵에 광석이 없는 경우
-                    else
-                    {
-                        status = Status.CLEARSTAGE; // 스테이지 클리어
-                        _animation.Die(); // 쓰러짐 애니메이션
-
-                        // 캐릭터 클리어 카운트 ++
-                        GM._.mnm.workerClearStageStatusCnt++;
-
-                        // 모든 캐릭터가 클리어 카운트 됬다면
-                        if(GM._.mnm.workerClearStageStatusCnt >= GM._.mnm.workerGroupTf.childCount)
-                        {
-                            //* 시련의광산 층 돌파 성공
-                            if(GM._.stgm.IsChallengeMode)
-                            {
-                                // 스테이지 클리어
-                                GM._.gameState = GameState.TIMEOVER;
-                                GM._.pm.StopCorTimer();
-                                GM._.pm.Timeover();
-                            }
-                            //* 일반광산 다음층으로
-                            else
-                            {
-                                GM._.mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
-                                StartCoroutine(GM._.stgm.CoNextStage()); // 다음 스테이지 이동
-                            }
-                        }
-                    }
-
-                    _animation.moveDustParticle.Stop();
-                }
+                status = Status.MINING; // 채굴시작!
             }
         }
 
         /// <summary>
-        /// 광석 채굴관련 처리
+        /// 귀가하는 경우
         /// </summary>
-        void Update() {
-            if(GM._.gameState == GameState.TIMEOVER)
-                return;
-            if(status == Status.SPAWN)
-                return;
+        private void HandleBackHone()
+        {
+            // 가방에 채광한 광석이 있다면
+            if(bagStorage > 0)
+            {
+                //* 가방들고 돌아오기 애니메이션 실행 (1회)
+                if(_animation.GetState() != CharacterState.Crawl)
+                    _animation.Crawl();
+            }
+            // 없다면
+            else
+            {
+                // 가방없이 달리기 애니메이션 실행 (1회)
+                if(_animation.GetState() != CharacterState.Run)
+                    _animation.Run();
+            }
 
-            //* 채굴중인 경우
-            if(status == Status.MINING) {
-                //* 도중에 타겟광석이 파괴된다면
+            // 집과의 거리
+            float distance = Move(homePos);
+
+            // 캐릭터의 이동 속도에 비례해 동적 거리 조건 생성
+            float dynamicReachDist = REACH_TARGET_MIN_DIST + (MoveSpeed * 0.05f); // 보정 비율
+
+            if(MoveSpeed > 40)
+                Debug.Log($"moveSpeed={MoveSpeed}, distance({distance}) < dynamicReachDist({dynamicReachDist})");
+
+            //* 집 도착
+            if(distance < dynamicReachDist)
+            {
+                Debug.Log("REACH HOME!");
+
+                if(BagStorage > 0) {
+                    // 재화 수령
+                    AcceptRsc(targetOreType, BagStorage);
+                }
+
+                // 가방 비우기
+                BagStorage = 0;
+
+                //* 맵에 광석이 남아있는 경우
+                if(oreGroupTf.childCount > 0)
+                {
+                    status = Status.GO; // 채굴하러 이동
+                    _animation.Idle();
+                }
+                //* 맵에 광석이 없는 경우
+                else
+                {
+                    status = Status.CLEARSTAGE; // 스테이지 클리어
+                    _animation.Die(); // 쓰러짐 애니메이션
+
+                    // 캐릭터 클리어 카운트 ++
+                    mnm.workerClearStageStatusCnt++;
+
+                    // 모든 캐릭터가 클리어 카운트 됬다면
+                    if(mnm.workerClearStageStatusCnt >= mnm.workerGroupTf.childCount)
+                    {
+                        //* 시련의광산 층 돌파 성공
+                        if(GM._.stgm.IsChallengeMode)
+                        {
+                            // 스테이지 클리어
+                            GM._.gameState = GameState.TIMEOVER;
+                            GM._.pm.StopCorTimer();
+                            GM._.pm.Timeover();
+                        }
+                        //* 일반광산 다음층으로
+                        else
+                        {
+                            mnm.workerClearStageStatusCnt = 0; // 클리어카운트 초기화
+                            StartCoroutine(GM._.stgm.CoNextStage()); // 다음 스테이지 이동
+                        }
+                    }
+                }
+
+                _animation.moveDustParticle.Stop();
+            }
+        }
+
+        private void HandleMining()
+        {
+            //* 도중에 타겟광석이 파괴된다면
+            if(targetOre.IsDestroied) // targetOre == null
+            {
+                attackWaitTime = ATTACK_SPEED_MAX_SEC; // 공격대기시간 제거
+
+                //* 일반광석인 경우
+                if(targetOreType != RSC.CRISTAL)
+                {
+                    // 수용량이 다 안차도 타겟파괴시 바로귀가
+                    // status = Status.BACKHOME; // 귀가
+
+                    // 수용량이 덜 채워져있다면
+                    if(BagStorage < BagStorageSize)
+                        status = Status.GO; // 다음광석을 찾으러 이동
+                    else
+                        status = Status.BACKHOME; // 귀가
+                    return;
+                }
+                //* 보물상자인 경우
+                else
+                {
+                    status = Status.GO; // 다음광석을 찾으러 이동
+                }
+
+            }
+
+            attackWaitTime += Time.deltaTime;
+
+            // 実際の攻撃速度(秒)
+            float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; 
+
+            // 달리는 애니메이션 정지
+            if(_animation.GetState() == CharacterState.Run)
+                _animation.Idle();
+
+            //* 광석채굴 (공격)
+            if(attackWaitTime > attackSpeedSec)
+            {
+                SoundManager._.PlaySfx(SFX.AttackSFX);
+                attackWaitTime = 0;
+
+                //* 일반광석인 경우
+                if(targetOre.name != Enum.TRASURECHEST_OBJNAME) //if(targetOreType != RSC.CRISTAL)
+                {
+                    // 가방용량 증가
+                    if(bagStorage < BagStorageSize)
+                    {
+                        BagStorage += AttackVal;
+                    }
+                    // 가방이 꽉찬 경우
+                    else {
+                        status = Status.BACKHOME; // 귀가
+                        return;
+                    }
+                }
+
+                // 채굴 애니메이션
+                _animation.Slash();
+
+                // 광석 체력감소
+                DecreaseOreHpBar(targetOre, AttackVal);
+
+                // 광석체력 0이라면, 파괴
                 if(targetOre.IsDestroied) // targetOre == null
                 {
-                    attackWaitTime = ATTACK_SPEED_MAX_SEC; // 공격대기시간 제거
-
                     //* 일반광석인 경우
                     if(targetOreType != RSC.CRISTAL)
                     {
@@ -337,82 +406,20 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                             status = Status.GO; // 다음광석을 찾으러 이동
                         else
                             status = Status.BACKHOME; // 귀가
-                        return;
+
+                        // 채굴한 광석이 없다면, 바로 광석타켓 삭제
+                        if(bagStorage == 0)
+                            targetOre = null;
                     }
                     //* 보물상자인 경우
                     else
                     {
-                        status = Status.GO; // 다음광석을 찾으러 이동
-                    }
-
-                }
-
-                attackWaitTime += Time.deltaTime;
-
-                // 実際の攻撃速度(秒)
-                float attackSpeedSec = ATTACK_SPEED_MAX_SEC / AttackSpeed; 
-
-                // 달리는 애니메이션 정지
-                if(_animation.GetState() == CharacterState.Run)
-                    _animation.Idle();
-
-                //* 광석채굴 (공격)
-                if(attackWaitTime > attackSpeedSec)
-                {
-                    SoundManager._.PlaySfx(SFX.AttackSFX);
-                    attackWaitTime = 0;
-
-                    //* 일반광석인 경우
-                    if(targetOre.name != Enum.TRASURECHEST_OBJNAME) //if(targetOreType != RSC.CRISTAL)
-                    {
-                        // 가방용량 증가
-                        if(bagStorage < BagStorageSize)
-                        {
-                            BagStorage += AttackVal;
-                        }
-                        // 가방이 꽉찬 경우
-                        else {
-                            status = Status.BACKHOME; // 귀가
-                            return;
-                        }
-                    }
-
-                    // 채굴 애니메이션
-                    _animation.Slash();
-
-                    // 광석 체력감소
-                    DecreaseOreHpBar(targetOre, AttackVal);
-
-                    // 광석체력 0이라면, 파괴
-                    if(targetOre.IsDestroied) // targetOre == null
-                    {
-                        //* 일반광석인 경우
-                        if(targetOreType != RSC.CRISTAL)
-                        {
-                            // 수용량이 다 안차도 타겟파괴시 바로귀가
-                            // status = Status.BACKHOME; // 귀가
-
-                            // 수용량이 덜 채워져있다면
-                            if(BagStorage < BagStorageSize)
-                                status = Status.GO; // 다음광석을 찾으러 이동
-                            else
-                                status = Status.BACKHOME; // 귀가
-
-                            // 채굴한 광석이 없다면, 바로 광석타켓 삭제
-                            if(bagStorage == 0)
-                                targetOre = null;
-                        }
-                        //* 보물상자인 경우
-                        else
-                        {
-                            status = Status.GO;
-                        }
+                        status = Status.GO;
                     }
                 }
             }
         }
 
-#region FUNC
         /// <summary>
         /// 인게임 채굴재화 수령
         /// </summary>
@@ -452,6 +459,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         /// <returns>타겟과의 거리</returns>
         private float Move(Vector3 tgPos)
         {
+            const float SPEED_CORRECTION = 0.02f; // 속도보정
+
             // 방향
             Vector2 dir = (tgPos - transform.position).normalized;
 
@@ -459,7 +468,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             sprRdr.flipX = dir.x < 0;
 
             // 방향벡터
-            Vector2 moveVec = dir * MoveSpeed * Time.fixedDeltaTime;
+            Vector2 moveVec = dir * MoveSpeed * Time.timeScale;
+            moveVec *= SPEED_CORRECTION;
 
             // 타겟으로 이동
             rigid.MovePosition(rigid.position + moveVec);
