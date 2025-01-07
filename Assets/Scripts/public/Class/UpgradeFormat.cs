@@ -9,7 +9,7 @@ using static Enum;
 public class UpgradeFormat
 {
     [field:SerializeField] public int Lv {get; set;}
-    [field:SerializeField] public int MaxLv {get; protected set;}
+    [field:SerializeField] public int MaxLv {get; set;}
     [field:SerializeField] public Enum.INV NeedRsc {get; protected set;} // 업그레이드에 필요한 재화종류
     [field:SerializeField] public int Price {get; set;}                 // 업그레이드 가격
     [field:SerializeField] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
@@ -135,7 +135,7 @@ public class UpgradeFormatInt : UpgradeFormat
 public class UpgradeMushFormat
 {
     [field:SerializeField] public int Lv {get; set;}
-    [field:HideInInspector] public int MaxLv {get; protected set;}
+    [field:SerializeField] public int MaxLv {get; set;}
     [field:SerializeField] public Enum.MUSH NeedMush {get; protected set;} // 업그레이드에 필요한 버섯종류
     [field:SerializeField] public int Price {get; set;}                 // 업그레이드 가격
     [field:HideInInspector] public int PriceDef {get; protected set;}   // 업그레이드 초기 가격
@@ -160,13 +160,13 @@ public class UpgradeMushFormatFloat : UpgradeMushFormat
     [field:SerializeField] public float Val {get => DefVal + (Lv * Unit);}
     [field:SerializeField] public float Unit {get; private set;}
 
-    public UpgradeMushFormatFloat(int Lv, int MaxLv, float Unit, Enum.MUSH NeedMush, int PriceDef, float DefVal) {
+    public UpgradeMushFormatFloat(int Lv, float Unit, MUSH NeedMush, int PriceDef, float DefVal, int MaxLv) {
         this.Lv = Lv;
-        this.MaxLv = MaxLv;
         this.Unit = Unit;
         this.NeedMush = NeedMush;
         this.PriceDef = PriceDef;
         this.DefVal = DefVal;
+        this.MaxLv = MaxLv;
     }
 
     public float GetNextVal() => DefVal + (Lv + 1) * Unit;
@@ -182,13 +182,13 @@ public class UpgradeMushFormatInt : UpgradeMushFormat
     [field:SerializeField] public int Val {get => DefVal + (Lv * Unit);}
     [field:SerializeField] public int Unit {get; private set;}
 
-    public UpgradeMushFormatInt(int Lv, int Unit, Enum.MUSH NeedMush, int PriceDef, int DefVal, int MaxLv) {
+    public UpgradeMushFormatInt(int Lv, int Unit, MUSH NeedMush, int PriceDef, int DefVal, int MaxLv) {
         this.Lv = Lv;
-        this.MaxLv = MaxLv;
         this.Unit = Unit;
         this.NeedMush = NeedMush;
         this.PriceDef = PriceDef;
         this.DefVal = DefVal;
+        this.MaxLv = MaxLv;
     }
 
     public int GetNextVal() => DefVal + (Lv + 1) * Unit;

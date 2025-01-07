@@ -1199,6 +1199,10 @@ MonoBehaviour:
     m_Key: UI_Jump
     m_Metadata:
       m_Items: []
+  - m_Id: 28605363898155008
+    m_Key: UI_MaxPopulationMsg
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1205,6 +1205,10 @@ MonoBehaviour:
     m_Localized: Jump!
     m_Metadata:
       m_Items: []
+  - m_Id: 28605363898155008
+    m_Localized: "\u4EBA\u53E3\u657050\u4EBA \u6700\u5927\u8D85\u904E"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

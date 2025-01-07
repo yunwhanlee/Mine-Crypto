@@ -99,13 +99,25 @@ public class StatusManager : MonoBehaviour
     }
 
     // 최종 소환캐릭터 수
-    public int TotalPopulation { 
-        get => GM._.ugm.upgIncPopulation.Val
-            + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION) // (축복)
-            + (int)GM._.acm.decoItemData[(int)DECO.SNOWED_TREE_3].AbilityVal // (연금술) 장식
-            + (int)GM._.acm.decoItemData[(int)DECO.ICE_SHEET_6].AbilityVal // (연금술) 장식
-            + (int)GM._.acm.decoItemData[(int)DECO.CANYON_ROCK_8].AbilityVal // (연금술) 장식
-            + GM._.mrm.ms8_IncPopulation.Val;
+    public int TotalPopulation {
+        get {
+            const int MAX_POPULATION = 50;
+
+            int val = GM._.ugm.upgIncPopulation.Val
+                + (int)GM._.obm.GetAbilityValue(OREBLESS_ABT.INC_POPULATION) // (축복)
+                + (int)GM._.acm.decoItemData[(int)DECO.SNOWED_TREE_3].AbilityVal // (연금술) 장식
+                + (int)GM._.acm.decoItemData[(int)DECO.ICE_SHEET_6].AbilityVal // (연금술) 장식
+                + (int)GM._.acm.decoItemData[(int)DECO.CANYON_ROCK_8].AbilityVal // (연금술) 장식
+                + GM._.mrm.ms8_IncPopulation.Val;
+
+            if(val > MAX_POPULATION)
+            {
+                GM._.ui.ShowNoticeMsgPopUp(LM._.Localize(LM.MaxPopulationMsg));
+                val = MAX_POPULATION;
+            }
+
+            return val;
+        } 
     }
 
     // 시작층수 증가량
@@ -199,7 +211,7 @@ public class StatusManager : MonoBehaviour
         string INC_TIMER = ExtraIncTimer > DEF_TIMER? $"{LM._.Localize(LM.MiningTime)} : +{ExtraIncTimer - DEF_TIMER}sec\n" : "";
         string NEXT_SKIP_PER = ExtraNextSkipPer > 0? $"{LM._.Localize(LM.NextStageSkip)} : +{Util.FloatToStr(ExtraNextSkipPer * 100)}%\n" : "";
         string INC_CRSITAL = ExtraIncCristal > 0? $"{LM._.Localize(LM.ExtraCristal)} : +{ExtraIncCristal}\n" : "";
-        string INC_POPULATION = TotalPopulation > DEF_POPULATION? $"{LM._.Localize(LM.IncPopulation)} : +{TotalPopulation - DEF_POPULATION}\n" : "";
+        string INC_POPULATION = TotalPopulation > DEF_POPULATION? $"{LM._.Localize(LM.IncPopulation)} : +{TotalPopulation - DEF_POPULATION}/{MAX_POPULATION}</color>\n" : "";
         string INC_STARTFLOOR = ExtraStartFloor > 0? $"{LM._.Localize(LM.StartingFloor)} : +{ExtraStartFloor + 1}F\n" : "";
         string CHEST_SPAWN_PER = ExtraChestSpawnPer > 0? $"{LM._.Localize(LM.IncChestSpawnPer)} : +{Util.FloatToStr(ExtraChestSpawnPer * 100)}%\n" : "";
         string ORE1_RWD_PER = ExtraOre1RwdPer > 0? $"{LM._.Localize(LM.ExtraOre1)} : +{Util.FloatToStr(ExtraOre1RwdPer * 100)}%\n" : "";
@@ -217,6 +229,15 @@ public class StatusManager : MonoBehaviour
         string INC_AUTO_ORE_BAGSTG_PER = ExtraAutoOreBagStoragePer > 0? $"{LM._.Localize(LM.AutoOreBagStorage)} : +{Util.FloatToStr(ExtraAutoOreBagStoragePer * 100)}%\n" : "";
         string INC_AUTO_CRISTAL_BAGSTG_PER = ExtraAutoCristalBagStoragePer > 0? $"{LM._.Localize(LM.AutoCristalBagStorage)} : +{Util.FloatToStr(ExtraAutoCristalBagStoragePer * 100)}%\n" : "";
         string INC_FAME = IncFame > 0? $"{LM._.Localize(LM.IncFame)} : +{IncFame}\n" : "";
+
+        if(TotalPopulation >= MAX_POPULATION)
+        {
+            
+        }
+
+        // 최대인구수 체크 및 색상 표시
+        INC_POPULATION = (TotalPopulation >= MAX_POPULATION)? $"<color=red>{INC_POPULATION}"
+            : $"<color=white>{INC_POPULATION}";
 
         // 결과 텍스트
         string resStr = ATK

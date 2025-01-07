@@ -195,6 +195,7 @@ public class LM : MonoBehaviour
 
         AdFailedToLoad = "UI_AdFailedToLoad", // 광고로드 실패
         LoadAdPlsRetryMsg = "UI_LoadAdPlsRetryMsg", // 광고를 로드중입니다. 잠시후 다시 실행해주세요.
+        MaxPopulationMsg = "UI_MaxPopulationMsg", // 인구수 50명 최대초과
 
         NONE = "";
 

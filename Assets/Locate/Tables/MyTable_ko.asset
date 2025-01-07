@@ -1243,6 +1243,10 @@ MonoBehaviour:
     m_Localized: "\uC810\uD504!"
     m_Metadata:
       m_Items: []
+  - m_Id: 28605363898155008
+    m_Localized: "\uC778\uAD6C\uC218 50\uBA85 \uCD5C\uB300\uCD08\uACFC"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
