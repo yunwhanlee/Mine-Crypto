@@ -21,4 +21,4 @@ MonoBehaviour:
   itemSpr: {fileID: -184914165, guid: a54107c711dd44b40b4f7aedcff341f4, type: 3}
   type: 5
   abilityType: 3
-  abilityVal: 5
+  abilityVal: 3

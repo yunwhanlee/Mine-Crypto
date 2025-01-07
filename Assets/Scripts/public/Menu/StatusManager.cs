@@ -236,7 +236,7 @@ public class StatusManager : MonoBehaviour
         }
 
         // 최대인구수 체크 및 색상 표시
-        INC_POPULATION = (TotalPopulation >= MAX_POPULATION)? $"<color=red>{INC_POPULATION}"
+        INC_POPULATION = ((TotalPopulation - DEF_POPULATION) >= MAX_POPULATION)? $"<color=red>{INC_POPULATION}"
             : $"<color=white>{INC_POPULATION}";
 
         // 결과 텍스트
