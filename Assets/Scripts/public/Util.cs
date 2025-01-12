@@ -6,6 +6,7 @@ using static Enum;
 public class Util : MonoBehaviour
 {
     public static WaitForSeconds TIME0_05 = new WaitForSeconds(0.05f);
+    public static WaitForSeconds TIME0_075 = new WaitForSeconds(0.075f);
     public static WaitForSeconds TIME0_1 = new WaitForSeconds(0.1f);
     public static WaitForSeconds TIME0_2 = new WaitForSeconds(0.2f);
     public static WaitForSeconds TIME0_3 = new WaitForSeconds(0.3f);

@@ -28,7 +28,7 @@ public class TimePieceDB
         );
         // 시간속도증가 데이터
         upgIncTimeScale = new (
-            Lv: 0, Unit: 0.1f, NeedRsc: INV.LIGHTSTONE, PriceDef: 30, DefVal: 1.2f, MaxLv: 48
+            Lv: 0, Unit: 0.1f, NeedRsc: INV.LIGHTSTONE, PriceDef: 30, DefVal: 1.2f, MaxLv: 28
         );
     }
 }

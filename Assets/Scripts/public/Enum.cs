@@ -22,6 +22,8 @@ public static class Enum
     public static string TRASURECHEST_OBJNAME = "TreasureChest(Clone)";
     public static string GOOGLE_URL = "https://play.google.com/store/apps/details?id=com.slimestudio.mine_forever";
     public static string STEAM_URL = "https://store.steampowered.com/app/3370500/FOREVER/";
+    public static int MAX_ITEM_CNT = 999999999; // 각 아이템소지 최대개수
+    public static int MAX_POPULATION = 47; // 최대인구수 : 기본지급 3명 포함해서 결과적으로 50명
 
     public enum GRADE {
         COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH, CNT

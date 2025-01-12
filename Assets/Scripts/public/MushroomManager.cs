@@ -61,6 +61,56 @@ public class MushroomManager : MonoBehaviour
         ms7_UpgAtkSpeedPer = DM._.DB.mushDB.ms7_UpgAtkSpeedPer;
         ms8_IncPopulation = DM._.DB.mushDB.ms8_IncPopulation;
 
+        //! 저장 데이터 중 최대레벨 업데이트 확인
+        if(ms1_UpgAttack.MaxLv >= 1000 || ms1_UpgAttack.MaxLv == 0)
+        {
+            ms1_UpgAttack.MaxLv = 1000;
+            if(ms1_UpgAttack.Lv >= 1000)
+                ms1_UpgAttack.Lv = 1000;
+        }
+        if(ms2_UpgMovSpeedPer.MaxLv >= 1000 || ms2_UpgMovSpeedPer.MaxLv == 0)
+        {
+            ms2_UpgMovSpeedPer.MaxLv = 1000;
+            if(ms2_UpgMovSpeedPer.Lv >= 1000)
+                ms2_UpgMovSpeedPer.Lv = 1000;
+        }
+        if(ms3_UpgBagStoragePer.MaxLv >= 1000 || ms3_UpgBagStoragePer.MaxLv == 0)
+        {
+            ms3_UpgBagStoragePer.MaxLv = 1000;
+            if(ms3_UpgBagStoragePer.Lv >= 1000)
+                ms3_UpgBagStoragePer.Lv = 1000;
+        }
+        if(ms4_UpgNextStageSkipPer.MaxLv >= 1000 || ms4_UpgNextStageSkipPer.MaxLv == 0)
+        {
+            ms4_UpgNextStageSkipPer.MaxLv = 1000;
+            if(ms4_UpgNextStageSkipPer.Lv >= 1000)
+                ms4_UpgNextStageSkipPer.Lv = 1000;
+        }
+        if(ms5_UpgIncTimer.MaxLv >= 1000 || ms5_UpgIncTimer.MaxLv == 0)
+        {
+            ms5_UpgIncTimer.MaxLv = 1000;
+            if(ms5_UpgIncTimer.Lv >= 1000)
+                ms5_UpgIncTimer.Lv = 1000;
+        }
+        if(ms6_UpgChestSpawnPer.MaxLv >= 1000 || ms6_UpgChestSpawnPer.MaxLv == 0)
+        {
+            ms6_UpgChestSpawnPer.MaxLv = 1000;
+            if(ms6_UpgChestSpawnPer.Lv >= 1000)
+                ms6_UpgChestSpawnPer.Lv = 1000;
+        }
+        if(ms7_UpgAtkSpeedPer.MaxLv >= 1000 || ms7_UpgAtkSpeedPer.MaxLv == 0)
+        {
+            ms7_UpgAtkSpeedPer.MaxLv = 1000;
+            if(ms7_UpgAtkSpeedPer.Lv >= 1000)
+                ms7_UpgAtkSpeedPer.Lv = 1000;
+        }
+        if(ms8_IncPopulation.MaxLv >= 20 || ms8_IncPopulation.MaxLv == 0 )
+        {
+            ms8_IncPopulation.MaxLv = 20;
+            if(ms8_IncPopulation.Lv >= 20)
+                ms8_IncPopulation.Lv = 20;
+        }
+
         UpdateDataAndUI();
     }
 
@@ -136,6 +186,12 @@ public class MushroomManager : MonoBehaviour
 
     private void Upgrade(UpgradeMushFormat upgDt)
     {
+        if(upgDt.Lv >= upgDt.MaxLv)
+        {
+            GM._.ui.ShowWarningMsgPopUp(LM._.Localize(LM.MaxLvMsg));
+            return;
+        }
+
         if(DM._.DB.statusDB.MsrArr[(int)upgDt.NeedMush] >= upgDt.Price)
         {
             SoundManager._.PlaySfx(SoundManager.SFX.UpgradeMushSFX);
@@ -195,7 +251,7 @@ public class MushroomManager : MonoBehaviour
                 break;
             case (int)MUSH.MUSH5:
                 mushFormat = ms5_UpgIncTimer;
-                targetAbilityTxt.text = $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val} => +{ms5_UpgIncTimer.GetNextVal()}초";
+                targetAbilityTxt.text = $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val} => +{ms5_UpgIncTimer.GetNextVal()}sec";
                 break;
             case (int)MUSH.MUSH6:
                 mushFormat =ms6_UpgChestSpawnPer;
@@ -216,14 +272,14 @@ public class MushroomManager : MonoBehaviour
         if(ms2_UpgMovSpeedPer.Lv > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MoveSpeed)} +{Util.FloatToStr(ms2_UpgMovSpeedPer.Val * 100)}%\n";
         if(ms3_UpgBagStoragePer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.BagStorage)} +{Util.FloatToStr(ms3_UpgBagStoragePer.Val * 100)}%\n";
         if(ms4_UpgNextStageSkipPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.NextStageSkip)} {Util.FloatToStr(ms4_UpgNextStageSkipPer.Val * 100)}%\n";
-        if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val}초\n";
+        if(ms5_UpgIncTimer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.MiningTime)} +{ms5_UpgIncTimer.Val}sec\n";
         if(ms6_UpgChestSpawnPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.IncChestSpawnPer)} +{Util.FloatToStr(ms6_UpgChestSpawnPer.Val * 100)}%\n";
         if(ms7_UpgAtkSpeedPer.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.AttackSpeed)} +{Util.FloatToStr(ms7_UpgAtkSpeedPer.Val * 100)}%\n";
         if(ms8_IncPopulation.Val > 0) totalAbilityTxt.text += $"{LM._.Localize(LM.IncPopulation)} +{ms8_IncPopulation.Val}\n";
 
         targetImg.sprite = GM._.MushSprArr[mushIdx];
         targetNameTxt.text = $"{GM._.idm.INV_ITEM_INFO[offset + mushIdx].name}";
-        targetLvTxt.text = $"LV. {mushFormat.Lv}";
+        targetLvTxt.text = $"LV. {((mushFormat.Lv >= mushFormat.MaxLv)? "MAX" : mushFormat.Lv) }";
 
         string colorTag = DM._.DB.statusDB.MsrArr[(int)mushFormat.NeedMush] >= mushFormat.Price? "white" : "red";
         upgradeBtnTxt.text = $"{LM._.Localize(LM.Upgrade)}\n<sprite name={mushFormat.NeedMush}> <color={colorTag}>{mushFormat.Price}</color>";

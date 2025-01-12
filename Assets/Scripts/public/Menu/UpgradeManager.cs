@@ -115,14 +115,14 @@ public class UpgradeManager : MonoBehaviour
     public void UpdateAlertRedDotUI()
     {
         bool isAlertOn = (
-            upgAttackUI.PriceTxt.color == Color.white
-            || upgIncTimerUI.PriceTxt.color == Color.white
-            || upgAttackSpeedUI.PriceTxt.color == Color.white
-            || upgBagStorageUI.PriceTxt.color == Color.white
-            || upgNextStageSkipUI.PriceTxt.color == Color.white
-            || upgIncPopulationUI.PriceTxt.color == Color.white
-            || upgMoveSpeedUI.PriceTxt.color == Color.white
-            || upgIncCristalUI.PriceTxt.color == Color.white
+            upgAttack.CheckPossibleUpgrade() ||          // upgAttackUI.PriceTxt.color == Color.white
+            upgIncTimer.CheckPossibleUpgrade() ||        // || upgIncTimerUI.PriceTxt.color == Color.white
+            upgAttackSpeed.CheckPossibleUpgrade() ||     // || upgAttackSpeedUI.PriceTxt.color == Color.white
+            upgBagStorage.CheckPossibleUpgrade() ||      // || upgBagStorageUI.PriceTxt.color == Color.white
+            upgNextStageSkip.CheckPossibleUpgrade() ||   // || upgNextStageSkipUI.PriceTxt.color == Color.white
+            upgIncPopulation.CheckPossibleUpgrade() ||   // || upgIncPopulationUI.PriceTxt.color == Color.white
+            upgMoveSpeed.CheckPossibleUpgrade() ||       // || upgMoveSpeedUI.PriceTxt.color == Color.white
+            upgIncCristal.CheckPossibleUpgrade()         // || upgIncCristalUI.PriceTxt.color == Color.white
         );
         alertRedDotObj.SetActive(isAlertOn);
     }

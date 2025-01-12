@@ -84,6 +84,14 @@ public class TimePieceManager : MonoBehaviour
         // 시간속도증가 데이터  
         upgIncTimeScale = DM._.DB.timePieceDB.upgIncTimeScale;
 
+        //! 저장 데이터 중 최대레벨 업데이트 확인
+        if(upgIncTimeScale.MaxLv >= 28)
+        {
+            upgIncTimeScale.MaxLv = 28;
+            if(upgIncTimeScale.Lv >= 28)
+                upgIncTimeScale.Lv = 28;
+        }
+
         //* 오프라인 자동획득 결과처리
         yield return new WaitForSeconds(1); // 저장된 추가획득량 데이터가 로드안되는 문제가 있어 1초 대기
 

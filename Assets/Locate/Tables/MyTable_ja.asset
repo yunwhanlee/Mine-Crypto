@@ -1215,6 +1215,16 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 25736166462689280
     m_Localized: "\u5927\u5207\u306A\u30EC\u30D3\u30E5\u30FC\u3092\u66F8\u3044\u3066\u3044\u305F\u3060\u3051\u307E\u3059\u304B\uFF1F"
+  - m_Id: 28304382912233472
+    m_Localized: "\u6B21\u306E\u968E\u3078"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28305031901085696
+    m_Localized: Jump!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28605363898155008
+    m_Localized: "\u4EBA\u53E3\u657050\u4EBA \u6700\u5927\u8D85\u904E"
     m_Metadata:
       m_Items: []
   references:

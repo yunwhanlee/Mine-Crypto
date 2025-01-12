@@ -12,6 +12,8 @@ using static Enum;
 /// </summary>
 public class InventoryDescriptionManager : MonoBehaviour
 {
+    const int MAX_CHEST_OPENCNT = 1000;
+
     Action OnConfirmBtnClicked;     // 확인버튼 이벤트: 아이템 소비인지 확인타입인지 구분
 
     public GameObject windowObj;    // 상세정보 팝업
@@ -67,8 +69,11 @@ public class InventoryDescriptionManager : MonoBehaviour
                         {RWD.TIMEPOTION, 0},
                     };
 
+                    // 한번에 최대오픈 개수 제한
+                    int openCnt = (sttDB.TreasureChest >= MAX_CHEST_OPENCNT)? MAX_CHEST_OPENCNT : sttDB.TreasureChest;
+
                     // 모든 보물상자 열기
-                    for(int i = 0; i < sttDB.TreasureChest; i++)
+                    for(int i = 0; i < openCnt; i++)
                     {
                         // 랜덤티켓
                         int random = Random.Range(0, 100);
@@ -97,7 +102,7 @@ public class InventoryDescriptionManager : MonoBehaviour
                     GM._.pfm.proficiencyArr[(int)PROFICIENCY.TREASURE_CHEST].Exp += sttDB.TreasureChest;
 
                     // 인벤토리 소비아이템 수량 감소
-                    sttDB.TreasureChest = 0;
+                    sttDB.TreasureChest = sttDB.TreasureChest - openCnt;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
@@ -136,8 +141,48 @@ public class InventoryDescriptionManager : MonoBehaviour
                     RWD[] rwdArr = new RWD[3];
                     int[] cntArr = new int[3];
 
+                    // 한번에 최대오픈 개수 제한
+                    int openCnt = (sttDB.OreChest >= MAX_CHEST_OPENCNT)? MAX_CHEST_OPENCNT : sttDB.OreChest;
+
+                    // 대량일 경우 루프 경량화를 위한 나누기 변수
+                    int divide = (sttDB.OreChest >= 100)? 10 // 100개 이상일 경우, 나누기 10
+                        : (sttDB.OreChest >= 1000)? 100      // 1000개 이상일 경우, 나누기 100
+                        : 1;                                // 그 이외는 1개씩 처리
+                    
+                    int remainCnt = sttDB.OreChest % divide; // 나머지 값
+
+                    Debug.Log($"ORE CHEST openCnt= {openCnt}, remainCnt= {remainCnt}");
+
                     // 모든 보물상자 열기
-                    for(int i = 0; i < sttDB.OreChest; i++)
+                    for(int i = 0; i < openCnt / divide; i++)
+                    {
+                        // 중복없는 보상 종류선택을 위한 리스트
+                        List<RWD> rwdList = new() {
+                            RWD.ORE1, RWD.ORE2, RWD.ORE3, RWD.ORE4,
+                            RWD.ORE5, RWD.ORE6, RWD.ORE7, RWD.ORE8,
+                        };
+
+                        // 중복없는 랜덤 재화 3개 선택
+                        for(int j = 0; j < rwdArr.Length; j++)
+                        {
+                            // 1.보상 아이템 랜덤선택
+                            int randIdx = Random.Range(0, rwdList.Count);
+
+                            Debug.Log($"randIdx= {randIdx}");
+
+                            // 2.보상 수량
+                            int bestFloor = DM._.DB.stageDB.BestFloorArr[randIdx];
+                            int val = 100 + (bestFloor * 100 * divide); // 계산식
+
+                            rwdDic[(RWD)randIdx] += val;
+
+                            // 리스트 제거 (중복방지)
+                            rwdList.RemoveAt(randIdx);
+                        }
+                    }
+
+                    // 나눈나머지 광석획득
+                    for(int i = 0; i < remainCnt; i++)
                     {
                         // 중복없는 보상 종류선택을 위한 리스트
                         List<RWD> rwdList = new() {
@@ -162,13 +207,13 @@ public class InventoryDescriptionManager : MonoBehaviour
                             // 리스트 제거 (중복방지)
                             rwdList.RemoveAt(randIdx);
                         }
-                    }
+                    }  
 
                     //* 숙련도 경험치 증가
                     GM._.pfm.proficiencyArr[(int)PROFICIENCY.ORE_CHEST].Exp += sttDB.OreChest;
 
                     // 인벤토리 소비아이템 수량 감소
-                    sttDB.OreChest = 0;
+                    sttDB.OreChest = sttDB.OreChest - openCnt;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
@@ -205,7 +250,10 @@ public class InventoryDescriptionManager : MonoBehaviour
                         {RWD.MUSH1, 0}, {RWD.MUSH2, 0}, {RWD.MUSH4, 0}, {RWD.MUSH7, 0}, {RWD.MUSH8, 0}
                     };
 
-                    for(int i = 0; i < sttDB.MushBox1; i++)
+                    // 한번에 최대오픈 개수 제한
+                    int openCnt = (sttDB.MushBox1 >= MAX_CHEST_OPENCNT)? MAX_CHEST_OPENCNT : sttDB.MushBox1;
+
+                    for(int i = 0; i < openCnt; i++)
                     {
                         // 랜덤선택
                         int randPer = Random.Range(0, 1000);
@@ -220,7 +268,7 @@ public class InventoryDescriptionManager : MonoBehaviour
                     }
 
                     // 인벤토리 소비아이템 수량 감소
-                    sttDB.MushBox1 = 0;
+                    sttDB.MushBox1 = sttDB.MushBox1 - openCnt;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
@@ -253,7 +301,10 @@ public class InventoryDescriptionManager : MonoBehaviour
                         {RWD.MUSH3, 0}, {RWD.MUSH5, 0}, {RWD.MUSH6, 0}, {RWD.MUSH7, 0}, {RWD.MUSH8, 0}
                     };
 
-                    for(int i = 0; i < sttDB.MushBox2; i++)
+                    // 한번에 최대오픈 개수 제한
+                    int openCnt = (sttDB.MushBox2 >= MAX_CHEST_OPENCNT)? MAX_CHEST_OPENCNT : sttDB.MushBox2;
+
+                    for(int i = 0; i < openCnt; i++)
                     {
                         // 랜덤선택
                         int randPer = Random.Range(0, 1000);
@@ -268,7 +319,7 @@ public class InventoryDescriptionManager : MonoBehaviour
                     }
 
                     // 인벤토리 소비아이템 수량 감소
-                    sttDB.MushBox2 = 0;
+                    sttDB.MushBox2 = sttDB.MushBox2 - openCnt;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (
@@ -299,11 +350,14 @@ public class InventoryDescriptionManager : MonoBehaviour
                     // 보상으로 나오는 모든 아이템 Dic
                     Dictionary<RWD, int> rwdDic = new Dictionary<RWD, int>() {{RWD.MUSH8, 0}};
 
+                    // 한번에 최대오픈 개수 제한
+                    int openCnt = (sttDB.MushBox3 >= MAX_CHEST_OPENCNT)? MAX_CHEST_OPENCNT : sttDB.MushBox3;
+
                     // 수량 추가
-                    rwdDic[RWD.MUSH8] = sttDB.MushBox3;
+                    rwdDic[RWD.MUSH8] = openCnt;
 
                     // 인벤토리 소비아이템 수량 감소
-                    sttDB.MushBox3 = 0;
+                    sttDB.MushBox3 = sttDB.MushBox3 - openCnt;
 
                     //* 보상 획득
                     GM._.rwm.ShowReward (

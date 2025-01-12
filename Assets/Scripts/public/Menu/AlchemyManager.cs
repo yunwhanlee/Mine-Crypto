@@ -115,12 +115,24 @@ public class AlchemyManager : MonoBehaviour
     {
         Debug.Log("OnSliderValueChanged()::");
 
-        // 최대 제작수량
-        int creatableMax = (int)createAmountControlSlider.maxValue;
-        // 제작수량 (기준 정수단위)
-        createCnt = Mathf.RoundToInt(createAmountControlSlider.value * creatableMax) / creatableMax;
-        // 슬라이더 이동
-        createAmountControlSlider.value = createCnt;
+        // 슬라이더 값 (0~1 사이)
+        float sliderNormalizedValue = createAmountControlSlider.value;
+
+        // 슬라이더 값이 0이라면 버튼 비활성화
+        createBtn.interactable = sliderNormalizedValue != 0;
+
+        if (creatableMax <= 0)
+            return;
+
+        // 제작수량 (기준 정수단위) 슬라이더 값은 0~1 사이로 유지
+        createCnt = Mathf.RoundToInt(sliderNormalizedValue * creatableMax); //createAmountControlSlider.value * creatableMax) / creatableMax;
+
+        // 슬라이더 스냅
+        if (!Mathf.Approximately(createAmountControlSlider.value, (float)createCnt / creatableMax))
+        {
+            createAmountControlSlider.value = (float)createCnt / creatableMax;
+        }
+
         // 텍스트 수량 표시
         createAmountTxt.text = $"{createCnt * (cateIdx == ALCHEMY_CATE.EXCHANGE? 100 : 1)}";
         
@@ -144,6 +156,8 @@ public class AlchemyManager : MonoBehaviour
                 // 제작필요 아이템 업데이트
                 for(int i = 0; i < excDt.needItemDataArr.Length; i++)
                     UpdateNeedItem(excDt, i, createCnt);
+                break;
+            default:
                 break;
         }
     }
@@ -352,12 +366,11 @@ public class AlchemyManager : MonoBehaviour
     private void SetSlider()
     {
         if(creatableMax > 0) {
-            createAmountControlSlider.maxValue = creatableMax; // 최대값 설정
+            createAmountControlSlider.value = 1;
             createAmountControlSlider.interactable = true; // 슬라이더 활성화
         }
         else {
-            // createAmountTxt.text = "1개";
-            createAmountControlSlider.value = 1; // 하나도 못 만들면 0으로 고정
+            createAmountControlSlider.value = 0; // 하나도 못 만들면 0으로 고정
             createAmountControlSlider.interactable = false; // 슬라이더 비활성화
         }
         

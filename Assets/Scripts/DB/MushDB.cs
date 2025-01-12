@@ -44,7 +44,7 @@ public class MushDB
             Lv:0, Unit: 0.05f, NeedMush: MUSH.MUSH7, PriceDef: 1, DefVal: 0, MaxLv: 1000
         );
         ms8_IncPopulation = new UpgradeMushFormatInt(
-            Lv:0, Unit: 1, NeedMush: MUSH.MUSH8, PriceDef: 1, DefVal: 0, MaxLv: 1000
+            Lv:0, Unit: 1, NeedMush: MUSH.MUSH8, PriceDef: 1, DefVal: 0, MaxLv: 20
         );
     }
 }

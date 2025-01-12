@@ -199,7 +199,7 @@ public class PlayManager : MonoBehaviour
                     // 광석상자 획득 (매 층마다 +1)
                     int oreChestCnt = GM._.stgm.Floor - 1;
                     playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
-                    DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
+                    DM._.DB.statusDB.OreChest += oreChestCnt;        // 데이터
                 }
             }
             // 일반광산
@@ -212,7 +212,7 @@ public class PlayManager : MonoBehaviour
                 // 광석상자 획득 (매 층마다 +1)
                 int oreChestCnt = GM._.stgm.Floor - 1;
                 playResRwdArr[(int)RWD.ORE_CHEST] += oreChestCnt; // 결과수치 UI
-                DM._.DB.statusDB.OreChest = oreChestCnt;        // 데이터
+                DM._.DB.statusDB.OreChest += oreChestCnt;        // 데이터
 
                 // 광산 클리어 미션
                 GM._.fm.missionArr[(int)MISSION.STAGE_CLEAR_CNT].Exp++; 
@@ -232,6 +232,10 @@ public class PlayManager : MonoBehaviour
 
         // 상점메뉴아이콘 버튼 비표시
         GM._.spm.shopMenuIconBtnObj.SetActive(false);
+
+        // 업그레이드 가능알림🔴 최신화
+        GM._.ugm.UpdateAlertRedDotUI();
+        GM._.mrm.UpdateAlertRedDotUI();
     }
 #endregion
 }
