@@ -20,7 +20,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         IEnumerator CoSpawn() {
             Jump();
-            yield return Util.TIME0_05;
+            yield return Util.TIME1;
             Idle();
         }
 

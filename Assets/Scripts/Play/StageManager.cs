@@ -228,7 +228,8 @@ public class StageManager : MonoBehaviour {
     {
         // CutOutMask UI 애니메이션 대기
         yield return GM._.epm.waitCreateCharaSec;
-        yield return GM._.mnm.waitSpawnToGoSec;
+        //! (BUG) 캐릭터가 등장이후에도 1마리정도가 멀뚱멀뚱거림 -> 1번째 캐릭이 생성되는게 광석보다 빠르므로 그 이후 처리가 안되는 듯하여 대기시간 감소 
+        // yield return GM._.mnm.waitSpawnToGoSec; 
 
         // RESET : 모든 광석 오브젝트 삭제
         for(int i = 0; i < GM._.mnm.oreGroupTf.childCount; i++)
