@@ -15,6 +15,7 @@ public class DB {
     public int challengeBestFloor;          // 시련광산 최대층수
     public float bgmVolume;                 // 배경음 볼륨
     public float sfxVolume;                 // 효과음 볼륨
+    public bool isShowedReview;             // 리뷰 트리거
 
     public StatusDB statusDB;
     public UpgradeDB upgradeDB;             // 강화
@@ -39,6 +40,8 @@ public class DB {
         challengeBestFloor = 0;
         bgmVolume = 0.5f;
         sfxVolume = 0.4f;
+        isShowedReview = false;
+
         statusDB = new StatusDB();
         statusDB.Init();
         upgradeDB = new UpgradeDB();

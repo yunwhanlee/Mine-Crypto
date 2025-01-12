@@ -295,6 +295,32 @@ public class OreBlessManager : MonoBehaviour
                     $"{LM._.Localize(LM.Congraturation)} {LM._.Localize($"UI_MineStage{i + 1}")} {LM._.Localize(LM.UnlockBlessContentMsg)}"
                 );
 
+                // 리뷰 행복선물 알림
+                if(!DM._.isPC)
+                {
+                    if(i == 2 && obm.oreBlessFormatArr[i].IsUnlock && !DM._.DB.isShowedReview)
+                    {
+                        DM._.DB.isShowedReview = true;
+
+                        GM._.ui.ShowConfirmPopUp($"<sprite name=CRISTAL> {LM._.Localize(LM.HappyPresentTitle)} <sprite name=CRISTAL>"
+                            , $"<size=200%><sprite name=ORE_CHEST>20 <sprite name=TREASURE_CHEST>10 <sprite name=SKILLPOTION>10 <sprite name=TIMEPOTION>10\n<size=100%>{LM._.Localize(LM.ReviewMsg)}</size>");
+                        GM._.ui.OnClickConfirmBtnAction = () => {
+                            Application.OpenURL(GOOGLE_URL);
+
+                            SoundManager._.PlaySfx(SoundManager.SFX.OpenTreasureChestSFX);
+                            GM._.rwm.ShowReward (
+                                new Dictionary<RWD, int>
+                                {
+                                    { RWD.ORE_CHEST, 20 },
+                                    { RWD.TREASURE_CHEST, 10 },
+                                    { RWD.SKILLPOTION, 10 },
+                                    { RWD.TIMEPOTION, 10 },
+                                }
+                            );
+                        };
+                    }
+                }
+
                 AlertRedDot.SetActive(true);
             }
         }

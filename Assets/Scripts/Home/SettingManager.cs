@@ -49,31 +49,36 @@ public class SettingManager : MonoBehaviour
     {
         testModeCnt++;
 
-        // TEST 모드
+        // 데이터 리셋
         if(testModeCnt % 10 == 0) {
-            // 보상획득
-            GM._.rwm.ShowReward (
-                new Dictionary<RWD, int>
-                {
-                    { RWD.ORE_CHEST, 100 },
-                    { RWD.TREASURE_CHEST, 100 },
-                    { RWD.LIGHTSTONE, 5000 },
-                }
-            );
-            // 층수 증가
-            DM._.DB.stageDB.BestFloorArr[0] += 12;
-            DM._.DB.stageDB.BestFloorArr[1] += 12;
-            DM._.DB.stageDB.BestFloorArr[2] += 12;
-            DM._.DB.stageDB.BestFloorArr[3] += 12;
-            DM._.DB.stageDB.BestFloorArr[4] += 12;
-            DM._.DB.stageDB.BestFloorArr[5] += 12;
-            DM._.DB.stageDB.BestFloorArr[6] += 12;
-            DM._.DB.stageDB.BestFloorArr[7] += 12;
-
-            DM._.DB.bestTotalFloor = DM._.DB.stageDB.GetTotalBestFloor();
-            DM._.DB.statusDB.FameLv++;
-            GM._.ui.ShowNoticeMsgPopUp("모든광산 12층씩 추가 및 +명예레벨1");
+            OnClickResetBtn();
         }
+
+        // // TEST 모드
+        // if(testModeCnt % 10 == 0) {
+        //     // 보상획득
+        //     GM._.rwm.ShowReward (
+        //         new Dictionary<RWD, int>
+        //         {
+        //             { RWD.ORE_CHEST, 100 },
+        //             { RWD.TREASURE_CHEST, 100 },
+        //             { RWD.LIGHTSTONE, 5000 },
+        //         }
+        //     );
+        //     // 층수 증가
+        //     DM._.DB.stageDB.BestFloorArr[0] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[1] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[2] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[3] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[4] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[5] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[6] += 12;
+        //     DM._.DB.stageDB.BestFloorArr[7] += 12;
+
+        //     DM._.DB.bestTotalFloor = DM._.DB.stageDB.GetTotalBestFloor();
+        //     DM._.DB.statusDB.FameLv++;
+        //     GM._.ui.ShowNoticeMsgPopUp("모든광산 12층씩 추가 및 +명예레벨1");
+        // }
     }
 
     public void OnClickSelectLanguage()
@@ -139,6 +144,14 @@ public class SettingManager : MonoBehaviour
         float roundedValue = Mathf.Round(sfxSlider.value * 10f) / 10f;
         sfxSlider.value = roundedValue;
         SoundManager._.SetSfxVolume(sfxSlider.value);
+    }
+
+    public void OnClickReviewBtn()
+    {
+        if(DM._.isPC)
+            Application.OpenURL(STEAM_URL);
+        else
+            Application.OpenURL(GOOGLE_URL);
     }
 #endregion
 

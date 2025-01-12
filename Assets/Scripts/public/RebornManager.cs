@@ -187,6 +187,7 @@ public class RebornManager : MonoBehaviour
         windowObj.SetActive(false);
 
         //* 데이터 초기화전 유지될 데이터 사전준비
+        var prevIsShowedReview = DM._.isPC? false : db.isShowedReview; // 리뷰 트리거(모바일만)
         var prevlanguageIdx = db.languageIdx; // 언어
         var prevRebornCnt = db.rebornCnt; // 환생횟수
         var prevBestTotalFloor = db.bestTotalFloor; // 최대층수 총합기록
@@ -213,6 +214,8 @@ public class RebornManager : MonoBehaviour
         db.Init();
 
         //* 환생이후도 유지될 데이터 반영
+        if(!DM._.isPC) // 리뷰 트리거(모바일만)
+            db.isShowedReview = prevIsShowedReview;
         db.languageIdx = prevlanguageIdx;
         db.rebornCnt = prevRebornCnt;
         db.bestTotalFloor = prevBestTotalFloor;

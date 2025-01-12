@@ -20,6 +20,8 @@ public struct InvItem_Info {
 public static class Enum
 {
     public static string TRASURECHEST_OBJNAME = "TreasureChest(Clone)";
+    public static string GOOGLE_URL = "https://play.google.com/store/apps/details?id=com.slimestudio.mine_forever";
+    public static string STEAM_URL = "https://store.steampowered.com/app/3370500/FOREVER/";
 
     public enum GRADE {
         COMMON, UNCOMMON, RARE, UNIQUE, LEGEND, MYTH, CNT
